@@ -30,6 +30,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		history.txt = history.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.NLib", "00.NLib", "{286EBC02-3572-4B95-BC59-709527B5B1FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Core", "01.Core", "{AAD8B87D-6F28-41B0-91ED-1BC4C44EA6FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Models", "02.Models", "{2BD477BA-BC55-4333-AE9A-68F3C90D9E7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.WebServices.Core", "03.WebServices.Core", "{A7F3CDC3-6BB8-4C7C-BA77-2497CFB02360}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.WebServices.Servers", "04.WebServices.Servers", "{5A26B3C8-2E03-4905-93D1-D9060B983203}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.WebServices.Clients", "05.WebServices.Clients", "{7F665FB4-90B5-43FB-878F-636A193D4ECF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06.Controls", "06.Controls", "{1F358BE9-5B9E-45E0-A4E3-3E3682BC69F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08.Windows.Services", "08.Windows.Services", "{A1219816-F748-43C9-B824-1C745B482DC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09.App", "09.App", "{C22F5B1E-3122-4E7C-8483-70C35EE5A4CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10.Tests", "10.Tests", "{F8082E1C-9F77-4746-BE89-525109F468E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11.Samples", "11.Samples", "{9F850F11-2C93-4A59-8F2E-F37C8D6A8AB0}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

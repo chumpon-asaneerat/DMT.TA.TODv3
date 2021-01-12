@@ -55,8 +55,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #775
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #774
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #773
-- 
+- DMT.TAxTODv3
+  - Init Solution folders
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #772

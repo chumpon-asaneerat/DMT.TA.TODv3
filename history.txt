@@ -61,8 +61,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #783
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #782
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #781
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - DMT.Local.Rest.Server (References assemblies Checked)
+    - DMT.TA.Rest.Server (References assemblies Checked)
+    - DMT.TOD.Rest.Server (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #780

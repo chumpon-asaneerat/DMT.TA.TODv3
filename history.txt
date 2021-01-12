@@ -40,8 +40,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #780
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #779
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #778
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - DMT.RabbitMQ.Client (References assemblies Checked)
+    - DMT.Rest.Client (References assemblies Checked)
+    - DMT.Rest.Server (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #777

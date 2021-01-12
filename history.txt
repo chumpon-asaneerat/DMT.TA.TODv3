@@ -49,8 +49,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #777
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #776
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #775
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - DMT.Core (References assemblies Checked)
+    - DMT.Smartcard (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #774

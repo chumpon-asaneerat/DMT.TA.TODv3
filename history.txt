@@ -43,8 +43,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #779
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #778
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #777
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv2
+    - DMT.TA.Models (References assemblies Checked)
+    - DMT.TOD.Models (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #776

@@ -37,8 +37,15 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #780
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #779
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - DMT.Local.Rest.Client (References assemblies Checked)
+    - DMT.SCW.Rest.Client (References assemblies Checked)
+    - DMT.TA.Rest.Client (References assemblies Checked)
+    - DMT.TAxTOD.Rest.Client (References assemblies Checked)
+    - DMT.TOD.Rest.Client (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #778

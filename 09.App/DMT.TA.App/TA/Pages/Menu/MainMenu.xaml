@@ -1,0 +1,354 @@
+﻿<UserControl x:Class="DMT.TA.Pages.Menu.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="750"
+             d:DesignWidth="1500"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  CONSTS  -->
+        <GridLength x:Key="TextHeight">75</GridLength>
+        <GridLength x:Key="ButtonHeight">135</GridLength>
+        <GridLength x:Key="RowSpace">5</GridLength>
+        <sys:Double x:Key="ButtonSpace">5</sys:Double>
+        <!--  COLORS  -->
+        <SolidColorBrush x:Key="ExchangeAndCouponBG" Color="DarkOrange" />
+        <SolidColorBrush x:Key="ExchangeAndCouponBGHover" Color="DarkRed" />
+        <SolidColorBrush x:Key="ExchangeAndCouponFG" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="CollectorCreditAndCouponBG" Color="Orchid" />
+        <SolidColorBrush x:Key="CollectorCreditAndCouponBGHover" Color="Purple" />
+        <SolidColorBrush x:Key="CollectorCreditAndCouponFG" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="CheckBalanceBG" Color="RoyalBlue" />
+        <SolidColorBrush x:Key="CheckBalanceBGHover" Color="DarkBlue" />
+        <SolidColorBrush x:Key="CheckBalanceFG" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="ConfigAndExitBG" Color="Indigo" />
+        <SolidColorBrush x:Key="ConfigAndExitBGHover" Color="Blue" />
+        <SolidColorBrush x:Key="ConfigAndExitFG" Color="WhiteSmoke" />
+        <!--  TEXTBLOCK (GROUP HEADER)  -->
+        <Style x:Key="ExchangeAndCouponHeaderTextStyle"
+               BasedOn="{StaticResource MenuGroupHeaderTextStyle}"
+               TargetType="TextBlock">
+            <Setter Property="Background" Value="{StaticResource ExchangeAndCouponBG}" />
+            <Setter Property="Foreground" Value="{StaticResource ExchangeAndCouponFG}" />
+        </Style>
+        <Style x:Key="CollectorCreditAndCouponHeaderTextStyle"
+               BasedOn="{StaticResource MenuGroupHeaderTextStyle}"
+               TargetType="TextBlock">
+            <Setter Property="Background" Value="{StaticResource CollectorCreditAndCouponBG}" />
+            <Setter Property="Foreground" Value="{StaticResource CollectorCreditAndCouponFG}" />
+        </Style>
+        <!--  BUTTON STYLES  -->
+        <Style x:Key="ExchangeAndCouponButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ExchangeAndCouponBG}" />
+            <Setter Property="Foreground" Value="{StaticResource ExchangeAndCouponFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ExchangeAndCouponBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ExchangeAndCouponFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ExchangeAndCouponBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ExchangeAndCouponFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CollectorCreditAndCouponButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource CollectorCreditAndCouponBG}" />
+            <Setter Property="Foreground" Value="{StaticResource CollectorCreditAndCouponFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource CollectorCreditAndCouponBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource CollectorCreditAndCouponFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource CollectorCreditAndCouponBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource CollectorCreditAndCouponFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CheckBalanceButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource CheckBalanceBG}" />
+            <Setter Property="Foreground" Value="{StaticResource CheckBalanceFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource CheckBalanceBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource CheckBalanceFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource CheckBalanceBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource CheckBalanceFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ConfigAndExitButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ConfigAndExitBG}" />
+            <Setter Property="Foreground" Value="{StaticResource ConfigAndExitFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ConfigAndExitBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ConfigAndExitFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ConfigAndExitBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ConfigAndExitFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <!--  EXCHANGE AND PLAZA COUPON GROUP  -->
+            <Grid Grid.Row="1"
+                  Grid.RowSpan="4"
+                  Grid.Column="1"
+                  Margin="5,0,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource TextHeight}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Style="{StaticResource ExchangeAndCouponHeaderTextStyle}"
+                           Text="จัดการ เงินยืมทอน / คูปอง ภายในด่าน" />
+                <Button x:Name="cmdRequestExchange"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Click="cmdRequestExchange_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ยืม/แลกเงินยืมทอน" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ฝ่ายบัญชี" />
+                    </StackPanel>
+                </Button>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdCouponSoldByPlaza"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Click="cmdCouponSoldByPlaza_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="หัวหน้า" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ขายคูปอง" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="cmdReturnExchange"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Click="cmdReturnExchange_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="คืนเงินยืมทอน" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ฝ่ายบัญชี" />
+                    </StackPanel>
+                </Button>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdCouponSoldHistory"
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Click="cmdCouponSoldHistory_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ประวัติ" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="การขายคูปอง" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="cmdInHouseExchange"
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Click="cmdInHouseExchange_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="แลกเงินหมุนเวียน" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ภายในด่าน" />
+                    </StackPanel>
+                </Button>
+                <TextBlock Grid.Row="5"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdCreditTransactionSummaryReport"
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Click="cmdCreditTransactionSummaryReport_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="รายงานสรุปการ" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ยืมเงินทอน" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+            <!--  USER CREDIT AND USER COUPON GROUP  -->
+            <Grid Grid.Row="1"
+                  Grid.RowSpan="4"
+                  Grid.Column="2"
+                  Margin="5,0,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource TextHeight}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Style="{StaticResource CollectorCreditAndCouponHeaderTextStyle}"
+                           Text="จัดการเงินยืมทอน / คูปองพนักงาน" />
+                <Button x:Name="cmdUserCreditManage"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Click="cmdUserCreditManage_Click"
+                        Style="{StaticResource CollectorCreditAndCouponButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="เงินยืมทอน" />
+                </Button>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdUserBorrowCoupon"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Click="cmdUserBorrowCoupon_Click"
+                        Style="{StaticResource CollectorCreditAndCouponButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="รับคูปอง" />
+                </Button>
+
+                <Button x:Name="cmdUserCreditHistory"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Click="cmdUserCreditHistory_Click"
+                        Style="{StaticResource CollectorCreditAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ประวัติ" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="แลกเงินยืมทอน" />
+                    </StackPanel>
+                </Button>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdUserReturnCoupon"
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Click="cmdUserReturnCoupon_Click"
+                        Style="{StaticResource CollectorCreditAndCouponButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="คืนคูปอง" />
+                </Button>
+
+                <Button x:Name="cmdCheckBalance"
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Click="cmdCheckBalance_Click"
+                        Style="{StaticResource CheckBalanceButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="เช็คยอดด่าน" />
+                </Button>
+                <TextBlock Grid.Row="5"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdExit"
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Click="cmdExit_Click"
+                        Style="{StaticResource ConfigAndExitButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />
+                </Button>
+
+                <Button x:Name="cmdSetting"
+                        Grid.Row="7"
+                        Grid.Column="2"
+                        Click="cmdSetting_Click"
+                        Style="{StaticResource ConfigAndExitButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ตั้งค่า" />
+                </Button>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

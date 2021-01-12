@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="DMT.Account.Pages.Menu.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="750"
+             d:DesignWidth="1200"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  CONSTS  -->
+        <GridLength x:Key="TextHeight">75</GridLength>
+        <GridLength x:Key="ButtonHeight">135</GridLength>
+        <GridLength x:Key="RowSpace">5</GridLength>
+        <sys:Double x:Key="ButtonSpace">5</sys:Double>
+        <!--  COLORS  -->
+        <SolidColorBrush x:Key="TollAdminBG" Color="ForestGreen" />
+        <SolidColorBrush x:Key="TollAdminBGHover" Color="DarkGreen" />
+        <SolidColorBrush x:Key="TollAdminFG" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="ExitBG" Color="Indigo" />
+        <SolidColorBrush x:Key="ExitBGHover" Color="Blue" />
+        <SolidColorBrush x:Key="ExitFG" Color="WhiteSmoke" />
+        <!--  TEXTBLOCK (GROUP HEADER)  -->
+        <Style x:Key="TollAdminHeaderTextStyle"
+               BasedOn="{StaticResource MenuGroupHeaderTextStyle}"
+               TargetType="TextBlock">
+            <Setter Property="Background" Value="{StaticResource TollAdminBG}" />
+            <Setter Property="Foreground" Value="{StaticResource TollAdminFG}" />
+        </Style>
+        <!--  BUTTON STYLES  -->
+        <Style x:Key="TollAdminButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource TollAdminBG}" />
+            <Setter Property="Foreground" Value="{StaticResource TollAdminFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource TollAdminBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource TollAdminFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource TollAdminBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource TollAdminFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExitButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ExitBG}" />
+            <Setter Property="Foreground" Value="{StaticResource ExitFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ExitBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ExitFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ExitBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ExitFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <!--  TOLL ADMIN GROUP  -->
+            <Grid Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource TextHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="360" />
+                    <ColumnDefinition Width="{StaticResource RowSpace}" />
+                    <ColumnDefinition Width="360" />
+                    <ColumnDefinition Width="{StaticResource RowSpace}" />
+                    <ColumnDefinition Width="370" />
+                </Grid.ColumnDefinitions>
+                <!--  ACCOUNT - HEADER  -->
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="5"
+                           Style="{StaticResource TollAdminHeaderTextStyle}"
+                           Text="Toll Admin (Account)" />
+                <!--  ACCOUNT - BUTTONS  -->
+                <Button x:Name="cmdCreditAndCouponSummary"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Click="cmdCreditAndCouponSummary_Click"
+                        Style="{StaticResource TollAdminButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ตรวจสอบยอด" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="เงินยืม-ทอนและคูปอง" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="cndRequestExchangeHistory"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Click="cndRequestExchangeHistory_Click"
+                        Style="{StaticResource TollAdminButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ประวัติ คำร้อง" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ขอแลก/ยืมเงินทอน" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="cmdTSBBalanceSummary"
+                        Grid.Row="2"
+                        Grid.Column="4"
+                        Click="cmdTSBBalanceSummary_Click"
+                        Style="{StaticResource TollAdminButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="วงเงินด่าน" />
+                </Button>
+                <Button x:Name="cndRequestExchangeManage"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Click="cndRequestExchangeManage_Click"
+                        Style="{StaticResource TollAdminButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="คำร้องขอแลก/ยืม" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="เงินยืม-ทอน" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="cndCouponSoldHistory"
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Click="cndCouponSoldHistory_Click"
+                        Style="{StaticResource TollAdminButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ประวัติการขายคูปอง" />
+                </Button>
+                <Button x:Name="cndExit"
+                        Grid.Row="4"
+                        Grid.Column="4"
+                        Click="cndExit_Click"
+                        Style="{StaticResource ExitButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />
+                </Button>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

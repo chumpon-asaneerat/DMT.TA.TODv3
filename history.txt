@@ -49,8 +49,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #787
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #786
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #785
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - DMT.Account.App (References assemblies Checked)
+    - DMT.Plaza.Config.App (References assemblies Checked)
+    - DMT.Plaza.Service.Manager.App (References assemblies Checked)
+    - DMT.Plaza.Simulator.App (References assemblies Checked)
+    - DMT.TA.App (References assemblies Checked)
+    - DMT.TOD.App (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #784

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Force Merge related resource dictionary  -->
+        <ResourceDictionary Source="/DMT.Plaza.Config.App;component/Themes/CommonStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Plaza.Config.App;component/Themes/CommonEntryStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

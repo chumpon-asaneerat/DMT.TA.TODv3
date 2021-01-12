@@ -1,0 +1,155 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:util="clr-namespace:DMT.Controls.Utils"
+                    mc:Ignorable="PresentationOptions">
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Force Merge related resource dictionary  -->
+        <ResourceDictionary Source="/DMT.Plaza.Simulator.App;component/Themes/CommonStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Plaza.Simulator.App;component/Themes/CommonEntryStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  COMMON BANK NOTE DESCRIPTION  -->
+    <Style x:Key="BankNoteDescriptionStyle" TargetType="TextBlock">
+        <Setter Property="Width" Value="80" />
+        <Setter Property="FontSize" Value="{StaticResource EntryFontSize18}" />
+        <Setter Property="Foreground" Value="{StaticResource EntryTextForeground}" />
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="5,2" />
+    </Style>
+    <!--  EACH BANK NOTE DESCRIPTION  -->
+    <Style x:Key="BHT1Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="1 บาท" />
+    </Style>
+    <Style x:Key="BHT2Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="2 บาท" />
+    </Style>
+    <Style x:Key="BHT5Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="5 บาท" />
+    </Style>
+    <Style x:Key="BHT10Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="10 บาท" />
+    </Style>
+    <Style x:Key="BHT20Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="20 บาท" />
+    </Style>
+    <Style x:Key="BHT50Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="50 บาท" />
+    </Style>
+    <Style x:Key="BHT100Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="100 บาท" />
+    </Style>
+    <Style x:Key="BHT500Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="500 บาท" />
+    </Style>
+    <Style x:Key="BHT1000Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="1000 บาท" />
+    </Style>
+    <Style x:Key="BHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+
+    <!--  EACH NOTE AMOUNT (TEXTBOX)  -->
+    <Style x:Key="BHT1Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT1Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT1, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT2Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT2Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT2, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT5Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT5Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT5, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT10Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT10Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT10, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT20Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT20Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT20, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT50Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT50Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT50, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT100Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT100Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT100, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT500Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT500Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT500, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHT1000Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT1000Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountBHT1000, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BHTTotalAmount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <!--
+        <Setter Property="Foreground" Value="{Binding BHTTotalForeground}" />
+        -->
+        <Setter Property="Text" Value="{Binding BHTTotal, StringFormat=N0}" />
+    </Style>
+
+    <!--  EACH BANK NOTE UNIT  -->
+    <Style x:Key="ConinUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+    <Style x:Key="BillUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+    <Style x:Key="TotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+</ResourceDictionary>

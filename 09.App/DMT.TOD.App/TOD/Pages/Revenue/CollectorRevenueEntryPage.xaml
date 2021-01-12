@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="DMT.TOD.Pages.Revenue.CollectorRevenueEntryPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </UserControl.Resources>
+    <TabControl x:Name="tabs"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                SelectedIndex="0">
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="เลือกวันที่ของรายได้"
+                 Visibility="Collapsed">
+            <ScrollViewer Background="Silver"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!--  BUTTONS  -->
+                    <DockPanel Height="60"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               DockPanel.Dock="Bottom">
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdBack"
+                                          Click="cmdBack_Click"
+                                          DockPanel.Dock="Left"
+                                          ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdGotoRevenueEntry"
+                                          Click="cmdGotoRevenueEntry_Click"
+                                          DockPanel.Dock="Right"
+                                          ImageSource="/DMT.TOD.App;component/Images/Button/OK2.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Right" />
+                    </DockPanel>
+                    <!--  WORK AREA  -->
+                    <DockPanel LastChildFill="True">
+                        <Grid />
+                    </DockPanel>
+                </DockPanel>
+            </ScrollViewer>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="ป้อนรายได้"
+                 Visibility="Collapsed">
+            <ScrollViewer Background="Silver"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!--  BUTTONS  -->
+                    <DockPanel Height="60"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               DockPanel.Dock="Bottom">
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdBack2"
+                                          Click="cmdBack2_Click"
+                                          DockPanel.Dock="Left"
+                                          ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdGotoRevenueEntryPreview"
+                                          Click="cmdGotoRevenueEntryPreview_Click"
+                                          DockPanel.Dock="Right"
+                                          ImageSource="/DMT.TOD.App;component/Images/Button/Money.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="นำส่งรายได้" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Right" />
+                    </DockPanel>
+                    <!--  WORK AREA  -->
+                    <DockPanel LastChildFill="True">
+                        <Grid />
+                    </DockPanel>
+                </DockPanel>
+            </ScrollViewer>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="ยืนยันการป้อนรายได้"
+                 Visibility="Collapsed">
+            <ScrollViewer Background="Silver"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!--  BUTTONS  -->
+                    <DockPanel Height="60"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               DockPanel.Dock="Bottom">
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdBack3"
+                                          Click="cmdBack3_Click"
+                                          DockPanel.Dock="Left"
+                                          ImageSource="/DMT.TOD.App;component/Images/Button/Edit.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="แก้ไข" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdOk"
+                                          Click="cmdOk_Click"
+                                          DockPanel.Dock="Right"
+                                          ImageSource="/DMT.TOD.App;component/Images/Button/Approve.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยืนยัน นำส่งรายได้" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Right" />
+                    </DockPanel>
+                    <!--  WORK AREA  -->
+                    <DockPanel LastChildFill="True">
+                        <Grid />
+                    </DockPanel>
+                </DockPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>

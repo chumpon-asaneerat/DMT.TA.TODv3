@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="DMT.Pages.SignInPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
+             d:DesignHeight="400"
+             d:DesignWidth="600"
+             Loaded="UserControl_Loaded"
+             Unloaded="UserControl_Unloaded"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <sys:Double x:Key="ImageButtonWidth">NaN</sys:Double>
+    </UserControl.Resources>
+    <TabControl x:Name="tabs"
+                Width="600"
+                Height="400"
+                Margin="0"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                SelectedIndex="0">
+        <TabItem Margin="0"
+                 Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="Sign In"
+                 Visibility="Collapsed">
+            <Grid>
+                <Grid Background="DimGray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="25" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1"
+                          Grid.RowSpan="4"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="3">
+                        <Image Opacity="0.5" Source="/DMT.Account.App;component/Images/Background/snartcard.png" />
+                    </Grid>
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <StackPanel Margin="5">
+                            <TextBlock Style="{StaticResource LabelText}" Text="กรุณาระบุรหัสพนักงาน 5 หลัก" />
+                            <Grid Height="5" />
+                            <TextBox x:Name="txtUserId"
+                                     util:FocusOptions.SelectAll="True"
+                                     util:KeyboardOptions.Enabled="True"
+                                     util:KeyboardOptions.EnterAsTab="True"
+                                     util:KeyboardOptions.LeftRightNavigation="False"
+                                     util:KeyboardOptions.UpDownNavigation="True"
+                                     Style="{StaticResource CommonTextBox}" />
+                            <Grid Height="5" />
+                            <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่าน" />
+                            <Grid Height="5" />
+                            <PasswordBox x:Name="txtPassword"
+                                         util:FocusOptions.SelectAll="True"
+                                         util:KeyboardOptions.Enabled="True"
+                                         util:KeyboardOptions.EnterAsTab="False"
+                                         util:KeyboardOptions.LeftRightNavigation="False"
+                                         util:KeyboardOptions.UpDownNavigation="True"
+                                         KeyDown="txtPassword_KeyDown"
+                                         Style="{StaticResource CommonPwdBox}" />
+                            <Grid Height="5" />
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Grid.Row="1"
+                          Grid.Column="2"
+                          Margin="5">
+                        <StackPanel Margin="5,0">
+                            <Grid Height="10" />
+                            <ctrl:ImageButton x:Name="cmdOK"
+                                              Click="cmdOK_Click"
+                                              ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="OK" />
+                            </ctrl:ImageButton>
+                            <Grid Height="5" />
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Grid.Row="2"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Margin="0,5,0,0">
+                        <TextBlock Name="txtMsg"
+                                   Style="{StaticResource ErrorText}"
+                                   Text="" />
+                    </StackPanel>
+                    <Grid Grid.Row="3"
+                          Grid.Column="1"
+                          Margin="5,0">
+                        <ctrl:ImageButton x:Name="cmdChangePwd"
+                                          Click="cmdChangePwd_Click"
+                                          ImageSource="/DMT.Account.App;component/Images/Button/Return.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="Change Password" />
+                        </ctrl:ImageButton>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="Change Password"
+                 Visibility="Collapsed">
+            <Grid Background="DimGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                      Grid.RowSpan="7"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="3">
+                    <Image Opacity="0.5" Source="/DMT.Account.App;component/Images/Background/snartcard.png" />
+                </Grid>
+                <StackPanel Grid.Row="1"
+                            Grid.RowSpan="5"
+                            Grid.Column="1">
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{StaticResource LabelText}" Text="กรุณาระบุรหัสพนักงาน 5 หลัก" />
+                        <Grid Height="5" />
+                        <TextBox x:Name="txtUserId2"
+                                 util:FocusOptions.SelectAll="True"
+                                 util:KeyboardOptions.Enabled="True"
+                                 util:KeyboardOptions.EnterAsTab="True"
+                                 util:KeyboardOptions.LeftRightNavigation="False"
+                                 util:KeyboardOptions.UpDownNavigation="True"
+                                 Style="{StaticResource CommonTextBox}" />
+                        <Grid Height="5" />
+                        <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่าน" />
+                        <Grid Height="5" />
+                        <PasswordBox x:Name="txtPassword2"
+                                     util:FocusOptions.SelectAll="True"
+                                     util:KeyboardOptions.Enabled="True"
+                                     util:KeyboardOptions.EnterAsTab="True"
+                                     util:KeyboardOptions.LeftRightNavigation="False"
+                                     util:KeyboardOptions.UpDownNavigation="True"
+                                     Style="{StaticResource CommonPwdBox}" />
+                        <Grid Height="5" />
+                        <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่านใหม่" />
+                        <Grid Height="5" />
+                        <PasswordBox x:Name="txtNewPassword"
+                                     util:FocusOptions.SelectAll="True"
+                                     util:KeyboardOptions.Enabled="True"
+                                     util:KeyboardOptions.EnterAsTab="True"
+                                     util:KeyboardOptions.LeftRightNavigation="False"
+                                     util:KeyboardOptions.UpDownNavigation="True"
+                                     Style="{StaticResource CommonPwdBox}" />
+                        <Grid Height="5" />
+                        <TextBlock Style="{StaticResource LabelText}" Text="กรุณายืนยันรหัสผ่านใหม่" />
+                        <Grid Height="5" />
+                        <PasswordBox x:Name="txtConfirmPassword"
+                                     util:FocusOptions.SelectAll="True"
+                                     util:KeyboardOptions.Enabled="True"
+                                     util:KeyboardOptions.EnterAsTab="False"
+                                     util:KeyboardOptions.LeftRightNavigation="False"
+                                     util:KeyboardOptions.UpDownNavigation="True"
+                                     KeyDown="txtConfirmPassword_KeyDown"
+                                     Style="{StaticResource CommonPwdBox}" />
+                        <Grid Height="5" />
+                    </StackPanel>
+                </StackPanel>
+                <Grid Grid.Row="1"
+                      Grid.RowSpan="2"
+                      Grid.Column="2"
+                      Margin="5">
+                    <StackPanel Margin="5,0">
+                        <Grid Height="10" />
+                        <ctrl:ImageButton x:Name="cmdOK2"
+                                          Click="cmdOK2_Click"
+                                          ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="OK" />
+                        </ctrl:ImageButton>
+                        <Grid Height="10" />
+                        <ctrl:ImageButton x:Name="cmdCancel2"
+                                          Click="cmdCancel2_Click"
+                                          ImageSource="/DMT.Account.App;component/Images/Button/Cancel.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="Cancel" />
+                        </ctrl:ImageButton>
+                        <Grid Height="5" />
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="5"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Margin="0,5,0,0">
+                    <TextBlock Name="txtMsg2"
+                               Style="{StaticResource ErrorText}"
+                               Text="" />
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

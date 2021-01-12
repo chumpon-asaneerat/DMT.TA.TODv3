@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="PresentationOptions">
+    <!--  BASIC SIZE, COLORS AND BACKGROUND  -->
+    <sys:Double x:Key="ImageButtonWidth">NaN</sys:Double>
+
+    <!--  CONST TEXTBLOCK FONT SIZE  -->
+    <sys:Double x:Key="ImageButtonFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
+    <sys:Double x:Key="ImageButtonTFontSize20" PresentationOptions:Freeze="True">20</sys:Double>
+
+    <SolidColorBrush x:Key="ImageButtonFG"
+                     PresentationOptions:Freeze="True"
+                     Color="DarkOrange" />
+    <ImageBrush x:Key="ImageButtonBGImage"
+                PresentationOptions:Freeze="True"
+                ImageSource="/DMT.Controls;component/Images/Button/Button5.png" />
+
+    <!--  IMAGE BUTTON TEXTBLOCK STYLE  -->
+    <Style x:Key="ImageButtonText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource ImageButtonTFontSize20}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style x:Key="ImageButtonTextMD" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource ImageButtonFontSize18}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+</ResourceDictionary>

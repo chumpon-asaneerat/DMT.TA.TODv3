@@ -58,8 +58,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #784
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #783
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #782
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - DMT.Controls (References assemblies Checked)
+    - All projects recheck output path and build actions.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #781

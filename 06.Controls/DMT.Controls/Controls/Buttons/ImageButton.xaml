@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="DMT.Controls.Buttons.ImageButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="50"
+             d:DesignWidth="220"
+             Focusable="False"
+             IsTabStop="False"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  BUTTON STYLE  -->
+        <Style x:Key="ImageButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="{DynamicResource ImageButtonWidth}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <!--
+            <Setter Property="Focusable" Value="True" />
+            <Setter Property="IsTabStop" Value="True" />
+            -->
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border"
+                                Background="{DynamicResource ImageButtonBGImage}"
+                                BorderThickness="2"
+                                CornerRadius="8"
+                                Opacity="0.8">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="1" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ImageButtonFG}" />
+                                <Setter Property="Foreground" Value="{DynamicResource ImageButtonFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Opacity" Value="1" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ImageButtonFG}" />
+                                <Setter Property="Foreground" Value="{DynamicResource ImageButtonFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--  BUTTON IMAGE CONTAINER (GRID) STYLE  -->
+        <Style x:Key="ImageButtonImageContainerStyle" TargetType="Grid">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="50" />
+        </Style>
+        <!--  BUTTON IMAGE STYLE  -->
+        <Style x:Key="ImageButtonImageStyle" TargetType="Image">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Button x:Name="_Button"
+            Click="_Button_Click"
+            Style="{StaticResource ImageButtonStyle}">
+        <DockPanel Margin="5,0">
+            <Grid Width="5" />
+            <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Style="{StaticResource ImageButtonImageContainerStyle}">
+                <Image x:Name="_Image"
+                       Source="{Binding ImageSource}"
+                       Style="{StaticResource ImageButtonImageStyle}" />
+            </Grid>
+            <ItemsControl x:Name="_ItemsControl"
+                          Focusable="False"
+                          IsTabStop="False"
+                          ItemsSource="{Binding Items}">
+                <!--  ItemsPanelTemplate  -->
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DockPanel>
+    </Button>
+</UserControl>

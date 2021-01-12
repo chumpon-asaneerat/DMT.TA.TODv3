@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/GroupMenuStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/ImageButtonStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/InlineButtonStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/TextBlockStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/ListBoxStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/ListViewStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/TreeViewStyle.xaml" />
+
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/CreditEntryStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/CouponEntryStyle.xaml" />
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/RevenueEntryStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

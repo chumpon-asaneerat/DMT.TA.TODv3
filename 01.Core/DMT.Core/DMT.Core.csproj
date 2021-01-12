@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Executables\Production\</OutputPath>
+    <OutputPath>..\..\Executables\Production\Common\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,30 +55,67 @@
   <ItemGroup>
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
-    <Compile Include="Consts\Routes\Client\Actions\Unregister.cs" />
-    <Compile Include="Consts\Routes\Client\Client.Controller.cs" />
-    <Compile Include="Consts\Routes\Client\Actions\Register.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\Lane\Save.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\PlazaGroup\Save.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\Plaza\Save.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\TSB\Current.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\TSB\Save.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\TSB\SetActive.cs" />
-    <Compile Include="Consts\Routes\Notify\Actions\ShiftChanged.cs" />
-    <Compile Include="Consts\Routes\Notify\Actions\TSBChanged.cs" />
+    <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Coupon\Actions\User\Transaction\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Coupon\Actions\User\Transaction\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Coupon\Coupon.Controller.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\TSB\Transaction\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\TSB\Transaction\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\User\Cancel.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\User\Current.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\User\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\User\Transaction\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Actions\User\Transaction\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Credit\Credit.Controller.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Lane\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Lane\Searchs.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\PlazaGroup\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Plaza\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Plaza\Searchs.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\PlazaGroup\Searchs.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\RouteConsts.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Infrastructure.Controller.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\Lane\Gets.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\Plaza\Gets.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\PlazaGroup\Gets.cs" />
-    <Compile Include="Consts\Routes\Infrastructure\Actions\TSB\Gets.cs" />
-    <Compile Include="Consts\Routes\Notify\Notify.Controller.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Infrastructure.Controller.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Lane\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Plaza\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\PlazaGroup\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Security\Actions\Role\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Security\Actions\Role\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Security\Actions\User\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Security\Actions\User\Save.cs" />
+    <Compile Include="Consts\Routes\Local\Security\Actions\User\Searchs.cs" />
+    <Compile Include="Consts\Routes\Local\Security\Security.Controller.cs" />
+    <Compile Include="Consts\Routes\Local\Shift\Actions\Common\Gets.cs" />
+    <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Change.cs" />
+    <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\Local\Shift\Shift.Controller.cs" />
+    <Compile Include="Consts\Routes\SCW\Emu\SCW.Emulator.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\SCW\Master\SCW.Master.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\SCW\SCW.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\SCW\Security\SCW.Security.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\SCW\TOD\SCW.TOD.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\TAxTOD\Coupons\TAxTOD.Coupon.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\TAxTOD\TAA\TAxTOD.TAA.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\TAxTOD\TAxTOD.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\TA\Notify\Actions\ShiftChanged.cs" />
+    <Compile Include="Consts\Routes\TA\Notify\Actions\TSBChanged.cs" />
+    <Compile Include="Consts\Routes\TA\Notify\TA.Notify.Controller.cs" />
+    <Compile Include="Consts\Routes\TOD\Notify\Actions\ShiftChanged.cs" />
+    <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBChanged.cs" />
+    <Compile Include="Consts\Routes\TOD\Notify\TOD.Notify.Controller.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />
     <Compile Include="ExtensionMethods\NJson.cs" />
     <Compile Include="ExtensionMethods\RangeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Cmd.cs" />
     <Compile Include="Services\ConfigManager.cs" />
+    <Compile Include="Services\LocalServiceManager.cs" />
+    <Compile Include="Services\JsonMessageTransferService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib\NLib.csproj">
@@ -86,6 +123,8 @@
       <Name>NLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

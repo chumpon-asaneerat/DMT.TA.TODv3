@@ -17,7 +17,7 @@ namespace DMT.Services
 
     #region Each config class
 
-    #region ApplicationConfig (Common DMT Consts Information)
+    #region DMTConfig (Common DMT Consts Information)
 
     /// <summary>
     /// The DMT Config class.
@@ -35,6 +35,7 @@ namespace DMT.Services
             this.network = "4";
             this.tsb = "97";
             this.terminal = "49701";
+            this.networkId = 31;
         }
 
         #endregion
@@ -57,8 +58,8 @@ namespace DMT.Services
         /// <returns></returns>
         public string GetString()
         {
-            string code = string.Format("network:{0}, tsb:{1}, terminal:{2}",
-                this.network, this.tsb, this.terminal);
+            string code = string.Format("network:{0}, tsb:{1}, terminal:{2}, networkId:{3}",
+                this.network, this.tsb, this.terminal, this.networkId);
             return code;
         }
 
@@ -78,6 +79,93 @@ namespace DMT.Services
         /// Gets or sets terminal.
         /// </summary>
         public string terminal { get; set; }
+        /// <summary>
+        /// Gets or sets networkId.
+        /// </summary>
+        public int networkId { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region LocalHostWebServiceConfig (Local IP Web Service Config) - ?????
+
+    /// <summary>
+    /// The LocalHostWebServiceConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class LocalHostWebServiceConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public LocalHostWebServiceConfig()
+        {
+            this.Protocol = "http";
+            this.PortNumber = 9001;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// IsEquals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool IsEquals(object obj)
+        {
+            if (null == obj || !(obj is LocalHostWebServiceConfig)) return false;
+            return this.GetString() == (obj as LocalHostWebServiceConfig).GetString();
+        }
+        /// <summary>
+        /// GetString.
+        /// </summary>
+        /// <returns></returns>
+        public string GetString()
+        {
+            string code = string.Format("{0}://{1}:{2}",
+                this.Protocol, this.HostName, this.PortNumber);
+            return code;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets protocol.
+        /// </summary>
+        public string Protocol { get; set; }
+        /// <summary>
+        /// Gets or sets Host Name or IP Address.
+        /// </summary>
+        [JsonIgnore]
+        public string HostName
+        {
+            get
+            {
+                var ip = NLib.Utils.NetworkUtils.GetLocalIPAddress();
+                return (null != ip) ? ip.ToString() : "unknown";
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets or sets port number.
+        /// </summary>
+        public int PortNumber { get; set; }
+        /// <summary>
+        /// Gets or sets User Name.
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
+        /// Gets or sets Password.
+        /// </summary>
+        public string Password { get; set; }
 
         #endregion
     }
@@ -246,7 +334,71 @@ namespace DMT.Services
 
     #endregion
 
-    #region TAxTODWebServiceConfig (For TAxTOD Server Web Service)
+    #region LocalWebServiceConfig (For Local Plaza Web Service)
+
+    /// <summary>
+    /// The LocalWebServiceConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class LocalWebServiceConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public LocalWebServiceConfig() 
+        {
+            this.Service = new WebServiceConfig()
+            {
+                Protocol = "http",
+                HostName = "localhost",
+                PortNumber = 9000,
+                UserName = "DMTUSER",
+                Password = "DMTPASS"
+            };
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// IsEquals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool IsEquals(object obj)
+        {
+            if (null == obj || !(obj is LocalWebServiceConfig)) return false;
+            return this.GetString() == (obj as LocalWebServiceConfig).GetString();
+        }
+        /// <summary>
+        /// GetString.
+        /// </summary>
+        /// <returns></returns>
+        public string GetString()
+        {
+            if (null != this.Service)
+                return string.Format("{0}", this.Service.GetString());
+            else return "Local http is null.";
+        }
+        
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Http service.
+        /// </summary>
+        public WebServiceConfig Service { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TAxTODWebServiceConfig (For TAxTOD Web Service)
 
     /// <summary>
     /// The TAxTODWebServiceConfig class.
@@ -310,7 +462,7 @@ namespace DMT.Services
 
     #endregion
 
-    #region SCWWebServiceConfig (For SCW Server Web Service)
+    #region SCWWebServiceConfig (For SCW Web Service)
 
     /// <summary>
     /// The SCWWebServiceConfig class.
@@ -504,22 +656,23 @@ namespace DMT.Services
 
     #endregion
 
-    #region TAAppPlazaConfig (Combine configuration used in TA Plaza applicaltion)
+    #region PlazaServiceConfig (Combine configuration used in Local Plaza Windows Service)
 
     /// <summary>
-    /// The TAAppPlazaConfig class.
+    /// The PlazaServiceConfig class.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public class TAAppPlazaConfig
+    public class PlazaServiceConfig
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public TAAppPlazaConfig() : base()
+        public PlazaServiceConfig() : base()
         {
             this.DMT = new DMTConfig();
+            this.Plaza = new LocalWebServiceConfig();
             this.TAxTOD = new TAxTODWebServiceConfig();
             this.SCW = new SCWWebServiceConfig();
             this.RabbitMQ = new RabbitMQServiceConfig();
@@ -538,8 +691,8 @@ namespace DMT.Services
         /// <returns></returns>
         public bool IsEquals(object obj)
         {
-            if (null == obj || !(obj is TAAppPlazaConfig)) return false;
-            return this.GetString() == (obj as TAAppPlazaConfig).GetString();
+            if (null == obj || !(obj is PlazaServiceConfig)) return false;
+            return this.GetString() == (obj as PlazaServiceConfig).GetString();
         }
         /// <summary>
         /// GetString.
@@ -557,6 +710,16 @@ namespace DMT.Services
             {
                 code += string.Format("DMT: {0}",
                     this.DMT.GetString()) + Environment.NewLine;
+            }
+            // Local Plaza server
+            if (null == this.Plaza)
+            {
+                code += "Plaza: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("Plaza: {0}",
+                    this.Plaza.GetString()) + Environment.NewLine;
             }
             // TAxTOD server
             if (null == this.TAxTOD)
@@ -620,6 +783,14 @@ namespace DMT.Services
         /// </summary>
         public DMTConfig DMT { get; set; }
         /// <summary>
+        /// Gets or sets Rabbit MQ Service Config.
+        /// </summary>
+        public RabbitMQServiceConfig RabbitMQ { get; set; }
+        /// <summary>
+        /// Gets or sets Local Plaza Service Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza { get; set; }
+        /// <summary>
         /// Gets or sets TAxTOD Service Config.
         /// </summary>
         public TAxTODWebServiceConfig TAxTOD { get; set; }
@@ -628,17 +799,220 @@ namespace DMT.Services
         /// </summary>
         public SCWWebServiceConfig SCW { get; set; }
         /// <summary>
-        /// Gets or sets Rabbit MQ Service Config.
-        /// </summary>
-        public RabbitMQServiceConfig RabbitMQ { get; set; }
-        /// <summary>
         /// Gets or sets TA App Service Config (local server).
         /// </summary>
         public TAAppWebServiceConfig TAApp { get; set; }
         /// <summary>
-        /// Gets or sets TOD App Service Config (for notify).
+        /// Gets or sets TOD App Service Config (local server).
         /// </summary>
         public TODAppWebServiceConfig TODApp { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region PlazaAppPConfig (Combine configuration used in TA Plaza applicaltion)
+
+    /// <summary>
+    /// The PlazaAppPConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class PlazaAppConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public PlazaAppConfig() : base()
+        {
+            this.DMT = new DMTConfig();
+            this.Plaza = new LocalWebServiceConfig();
+            this.SCW = new SCWWebServiceConfig();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// IsEquals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool IsEquals(object obj)
+        {
+            if (null == obj || !(obj is PlazaAppConfig)) return false;
+            return this.GetString() == (obj as PlazaAppConfig).GetString();
+        }
+        /// <summary>
+        /// GetString.
+        /// </summary>
+        /// <returns></returns>
+        public string GetString()
+        {
+            string code = string.Empty;
+            // Application
+            if (null == this.DMT)
+            {
+                code += "DMT: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("DMT: {0}",
+                    this.DMT.GetString()) + Environment.NewLine;
+            }
+            // Local
+            if (null == this.Plaza)
+            {
+                code += "Plaza null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("Plaza: {0}",
+                    this.Plaza.GetString()) + Environment.NewLine;
+            }
+            // SCW server
+            if (null == this.SCW)
+            {
+                code += "SCW: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("DC: {0}",
+                    this.SCW.GetString()) + Environment.NewLine;
+            }
+            return code;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets DMT Config.
+        /// </summary>
+        public DMTConfig DMT { get; set; }
+        /// <summary>
+        /// Gets or sets Local Plaza Service Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza { get; set; }
+        /// <summary>
+        /// Gets or sets SCW Service Config.
+        /// </summary>
+        public SCWWebServiceConfig SCW { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TAAppPlazaConfig (Combine configuration used in TA Plaza applicaltion)
+
+    /// <summary>
+    /// The TAAppPlazaConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class TAAppPlazaConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TAAppPlazaConfig() : base()
+        {
+            this.DMT = new DMTConfig();
+            this.Plaza = new LocalWebServiceConfig();
+            this.SCW = new SCWWebServiceConfig();
+            this.TAApp = new TAAppWebServiceConfig();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// IsEquals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool IsEquals(object obj)
+        {
+            if (null == obj || !(obj is TAAppPlazaConfig)) return false;
+            return this.GetString() == (obj as TAAppPlazaConfig).GetString();
+        }
+        /// <summary>
+        /// GetString.
+        /// </summary>
+        /// <returns></returns>
+        public string GetString()
+        {
+            string code = string.Empty;
+            // Application
+            if (null == this.DMT)
+            {
+                code += "DMT: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("DMT: {0}",
+                    this.DMT.GetString()) + Environment.NewLine;
+            }
+            // Local
+            if (null == this.Plaza)
+            {
+                code += "Plaza null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("Plaza: {0}",
+                    this.Plaza.GetString()) + Environment.NewLine;
+            }
+            // SCW server
+            if (null == this.SCW)
+            {
+                code += "SCW: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("DC: {0}",
+                    this.SCW.GetString()) + Environment.NewLine;
+            }
+            // TA Application (Plaza)
+            if (null == this.TAApp)
+            {
+                code += "TAApp: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("TAApp: {0}",
+                    this.TAApp.GetString()) + Environment.NewLine;
+            }
+            return code;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets DMT Config.
+        /// </summary>
+        public DMTConfig DMT { get; set; }
+        /// <summary>
+        /// Gets or sets Local Plaza Service Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza { get; set; }
+        /// <summary>
+        /// Gets or sets SCW Service Config.
+        /// </summary>
+        public SCWWebServiceConfig SCW { get; set; }
+        /// <summary>
+        /// Gets or sets TA App Service Config (local server).
+        /// </summary>
+        public TAAppWebServiceConfig TAApp { get; set; }
 
         #endregion
     }
@@ -661,10 +1035,8 @@ namespace DMT.Services
         public TODAppPlazaConfig() : base()
         {
             this.DMT = new DMTConfig();
-            this.TAxTOD = new TAxTODWebServiceConfig();
+            this.Plaza = new LocalWebServiceConfig();
             this.SCW = new SCWWebServiceConfig();
-            this.RabbitMQ = new RabbitMQServiceConfig();
-            this.TAApp = new TAAppWebServiceConfig();
             this.TODApp = new TODAppWebServiceConfig();
         }
 
@@ -699,15 +1071,15 @@ namespace DMT.Services
                 code += string.Format("DMT: {0}",
                     this.DMT.GetString()) + Environment.NewLine;
             }
-            // TAxTOD server
-            if (null == this.TAxTOD)
+            // Local
+            if (null == this.Plaza)
             {
-                code += "TAxTOD: null" + Environment.NewLine;
+                code += "Plaza: null" + Environment.NewLine;
             }
             else
             {
-                code += string.Format("TAxTOD: {0}",
-                    this.TAxTOD.GetString()) + Environment.NewLine;
+                code += string.Format("Plaza: {0}",
+                    this.Plaza.GetString()) + Environment.NewLine;
             }
             // SCW server
             if (null == this.SCW)
@@ -718,26 +1090,6 @@ namespace DMT.Services
             {
                 code += string.Format("DC: {0}",
                     this.SCW.GetString()) + Environment.NewLine;
-            }
-            // RabbitMQ
-            if (null == this.RabbitMQ)
-            {
-                code += "RabbitMQ: null" + Environment.NewLine;
-            }
-            else
-            {
-                code += string.Format("RabbitMQ: {0}",
-                    this.RabbitMQ.GetString()) + Environment.NewLine;
-            }
-            // TA Application (Plaza)
-            if (null == this.TAApp)
-            {
-                code += "TAApp: null" + Environment.NewLine;
-            }
-            else
-            {
-                code += string.Format("TAApp: {0}",
-                    this.TAApp.GetString()) + Environment.NewLine;
             }
             // TOD Application (Plaza)
             if (null == this.TODApp)
@@ -761,21 +1113,13 @@ namespace DMT.Services
         /// </summary>
         public DMTConfig DMT { get; set; }
         /// <summary>
-        /// Gets or sets TAxTOD Service Config.
+        /// Gets or sets Plaza Local Service Config.
         /// </summary>
-        public TAxTODWebServiceConfig TAxTOD { get; set; }
+        public LocalWebServiceConfig Plaza { get; set; }
         /// <summary>
         /// Gets or sets SCW Service Config.
         /// </summary>
         public SCWWebServiceConfig SCW { get; set; }
-        /// <summary>
-        /// Gets or sets Rabbit MQ Service Config.
-        /// </summary>
-        public RabbitMQServiceConfig RabbitMQ { get; set; }
-        /// <summary>
-        /// Gets or sets TA App Service Config (for notify).
-        /// </summary>
-        public TAAppWebServiceConfig TAApp { get; set; }
         /// <summary>
         /// Gets or sets TOD App Service Config (local server).
         /// </summary>
@@ -786,11 +1130,137 @@ namespace DMT.Services
 
     #endregion
 
+    #region AccountAppPlazaConfig (Combine configuration used in TA Account applicaltion)
+
+    /// <summary>
+    /// The AccountAppPlazaConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class AccountAppPlazaConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public AccountAppPlazaConfig() : base()
+        {
+            this.DMT = new DMTConfig();
+            this.RabbitMQ = new RabbitMQServiceConfig();
+            this.SCW = new SCWWebServiceConfig();
+            this.TAxTOD = new TAxTODWebServiceConfig();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// IsEquals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool IsEquals(object obj)
+        {
+            if (null == obj || !(obj is TAAppPlazaConfig)) return false;
+            return this.GetString() == (obj as TAAppPlazaConfig).GetString();
+        }
+        /// <summary>
+        /// GetString.
+        /// </summary>
+        /// <returns></returns>
+        public string GetString()
+        {
+            string code = string.Empty;
+            // Application
+            if (null == this.DMT)
+            {
+                code += "DMT: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("DMT: {0}",
+                    this.DMT.GetString()) + Environment.NewLine;
+            }
+            // RabbitMQ
+            if (null == this.RabbitMQ)
+            {
+                code += "RabbitMQ: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("RabbitMQ: {0}",
+                    this.RabbitMQ.GetString()) + Environment.NewLine;
+            }
+            // SCW server
+            if (null == this.SCW)
+            {
+                code += "SCW: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("DC: {0}",
+                    this.SCW.GetString()) + Environment.NewLine;
+            }
+            // TAxTOD Server
+            if (null == this.TAxTOD)
+            {
+                code += "TAxTOD: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("TAxTOD: {0}",
+                    this.TAxTOD.GetString()) + Environment.NewLine;
+            }
+            return code;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets DMT Config.
+        /// </summary>
+        public DMTConfig DMT { get; set; }
+        /// <summary>
+        /// Gets or sets Rabbit MQ Service Config.
+        /// </summary>
+        public RabbitMQServiceConfig RabbitMQ { get; set; }
+        /// <summary>
+        /// Gets or sets SCW Service Config.
+        /// </summary>
+        public SCWWebServiceConfig SCW { get; set; }
+        /// <summary>
+        /// Gets or sets TAxTOD Service Config.
+        /// </summary>
+        public TAxTODWebServiceConfig TAxTOD { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
     #endregion
 
     #region Plaza Config and related interfaces
 
-    #region RabbitMQConfig Interface
+    #region IDMTConfig Interface
+
+    /// <summary>
+    /// The IDMTConfig inferface.
+    /// </summary>
+    public interface IDMTConfig
+    {
+        /// <summary>
+        /// Gets DMT Config.
+        /// </summary>
+        DMTConfig DMT { get; }
+    }
+
+    #endregion
+
+    #region IRabbitMQConfig Interface
 
     /// <summary>
     /// The IRabbitMQConfig inferface.
@@ -801,6 +1271,21 @@ namespace DMT.Services
         /// Gets RabbitMQ Config.
         /// </summary>
         RabbitMQServiceConfig RabbitMQ { get; }
+    }
+
+    #endregion
+
+    #region IPlazaConfig Interface
+
+    /// <summary>
+    /// The IPlazaConfig inferface.
+    /// </summary>
+    public interface IPlazaConfig
+    {
+        /// <summary>
+        /// Gets Local Plaza Config.
+        /// </summary>
+        LocalWebServiceConfig Plaza { get; }
     }
 
     #endregion
@@ -835,12 +1320,12 @@ namespace DMT.Services
 
     #endregion
 
-    #region ITAAppWebServiceConfig Interface
+    #region ITAAppConfig Interface
 
     /// <summary>
-    /// The ITAAppWebServiceConfig inferface.
+    /// The ITAAppConfig inferface.
     /// </summary>
-    public interface ITAAppWebServiceConfig
+    public interface ITAAppConfig
     {
         /// <summary>
         /// Gets TAApp Config.
@@ -850,12 +1335,12 @@ namespace DMT.Services
 
     #endregion
 
-    #region ITODAppWebServiceConfig Interface
+    #region ITODAppConfig Interface
 
     /// <summary>
-    /// The ITODAppWebServiceConfig inferface.
+    /// The ITODAppConfig inferface.
     /// </summary>
-    public interface ITODAppWebServiceConfig
+    public interface ITODAppConfig
     {
         /// <summary>
         /// Gets TODApp Config.
@@ -867,14 +1352,14 @@ namespace DMT.Services
 
     #endregion
 
-    #region ConfigManager (abstract)
+    #region JsonConfigFileManger (abstract)
 
     /// <summary>
-    /// The ConfigManager abstract class.
+    /// The JsonConfigFileManger abstract class.
     /// </summary>
     /// <typeparam name="T">The Config Class Type.</typeparam>
-    public abstract class ConfigManager<T> 
-        where T:new()
+    public abstract class JsonConfigFileManger<T>
+        where T : new()
     {
         #region Internal Variables
 
@@ -887,13 +1372,13 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ConfigManager() : base()
+        public JsonConfigFileManger() : base()
         {
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~ConfigManager()
+        ~JsonConfigFileManger()
         {
         }
 
@@ -1012,30 +1497,31 @@ namespace DMT.Services
 
     #endregion
 
-    #region TAConfigManager
+    #region PlazaServiceConfigManager
 
     /// <summary>
-    /// TA Config Manager class.
+    /// The PlazaServiceConfigManager class.
     /// </summary>
-    public class TAConfigManager : ConfigManager<TAAppPlazaConfig>, 
-        IRabbitMQConfig, ISCWConfig, ITAxTODConfig, ITAAppWebServiceConfig, ITODAppWebServiceConfig
+    public class PlazaServiceConfigManager : JsonConfigFileManger<PlazaServiceConfig>,
+        IDMTConfig, IRabbitMQConfig, IPlazaConfig, ISCWConfig, ITAxTODConfig,
+        ITAAppConfig, ITODAppConfig
     {
         #region Static Instance Access
 
-        private static TAConfigManager _instance = null;
+        private static PlazaServiceConfigManager _instance = null;
 
         /// <summary>
         /// Gets ConfigManager instance access.
         /// </summary>
-        public static TAConfigManager Instance
+        public static PlazaServiceConfigManager Instance
         {
             get
             {
                 if (null == _instance)
                 {
-                    lock (typeof(TAConfigManager))
+                    lock (typeof(PlazaServiceConfigManager))
                     {
-                        _instance = new TAConfigManager();
+                        _instance = new PlazaServiceConfigManager();
                     }
                 }
                 return _instance;
@@ -1046,7 +1532,7 @@ namespace DMT.Services
 
         #region Internal Variables
 
-        private string _fileName = NJson.LocalConfigFile("TA.app.config.json");
+        private string _fileName = NJson.LocalConfigFile("plaza.service.config.json");
 
         #endregion
 
@@ -1055,14 +1541,14 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        private TAConfigManager() : base()
+        private PlazaServiceConfigManager() : base()
         {
-            
+
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~TAConfigManager()
+        ~PlazaServiceConfigManager()
         {
             //Shutdown();
         }
@@ -1081,6 +1567,17 @@ namespace DMT.Services
         #region Public Properties
 
         /// <summary>
+        /// Gets DMT Config.
+        /// </summary>
+        public DMTConfig DMT 
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.DMT : null;
+            }
+        }
+        /// <summary>
         /// Gets RabbitMQ Config.
         /// </summary>
         public RabbitMQServiceConfig RabbitMQ
@@ -1089,6 +1586,17 @@ namespace DMT.Services
             {
                 if (null == Value) LoadConfig();
                 return (null != Value) ? Value.RabbitMQ : null;
+            }
+        }
+        /// <summary>
+        /// Gets Plaza Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.Plaza : null;
             }
         }
         /// <summary>
@@ -1136,6 +1644,230 @@ namespace DMT.Services
             }
         }
 
+        #endregion
+    }
+
+    #endregion
+
+    #region PlazaAppConfigManager
+
+    /// <summary>
+    /// Plaza App Config Manager class.
+    /// </summary>
+    public class PlazaAppConfigManager : JsonConfigFileManger<PlazaAppConfig>,
+        IDMTConfig, IPlazaConfig, ISCWConfig
+    {
+        #region Static Instance Access
+
+        private static PlazaAppConfigManager _instance = null;
+
+        /// <summary>
+        /// Gets ConfigManager instance access.
+        /// </summary>
+        public static PlazaAppConfigManager Instance
+        {
+            get
+            {
+                if (null == _instance)
+                {
+                    lock (typeof(PlazaAppConfigManager))
+                    {
+                        _instance = new PlazaAppConfigManager();
+                    }
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
+
+        #region Internal Variables
+
+        private string _fileName = NJson.LocalConfigFile("plaza.app.config.json");
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        private PlazaAppConfigManager() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~PlazaAppConfigManager()
+        {
+            //Shutdown();
+        }
+
+        #endregion
+
+        #region Override Methods and Properties
+
+        /// <summary>
+        /// Gets Config File Name.
+        /// </summary>
+        public override string FileName { get { return _fileName; } }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets DMT Config.
+        /// </summary>
+        public DMTConfig DMT
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.DMT : null;
+            }
+        }
+        /// <summary>
+        /// Gets Plaza Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.Plaza : null;
+            }
+        }
+        /// <summary>
+        /// Gets SCW Config.
+        /// </summary>
+        public SCWWebServiceConfig SCW
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.SCW : null;
+            }
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TAConfigManager
+
+    /// <summary>
+    /// TA Config Manager class.
+    /// </summary>
+    public class TAConfigManager : JsonConfigFileManger<TAAppPlazaConfig>,
+        IDMTConfig, IPlazaConfig, ISCWConfig
+    {
+        #region Static Instance Access
+
+        private static TAConfigManager _instance = null;
+
+        /// <summary>
+        /// Gets ConfigManager instance access.
+        /// </summary>
+        public static TAConfigManager Instance
+        {
+            get
+            {
+                if (null == _instance)
+                {
+                    lock (typeof(TAConfigManager))
+                    {
+                        _instance = new TAConfigManager();
+                    }
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
+
+        #region Internal Variables
+
+        private string _fileName = NJson.LocalConfigFile("TA.app.config.json");
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        private TAConfigManager() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~TAConfigManager()
+        {
+            //Shutdown();
+        }
+
+        #endregion
+
+        #region Override Methods and Properties
+
+        /// <summary>
+        /// Gets Config File Name.
+        /// </summary>
+        public override string FileName { get { return _fileName; } }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets DMT Config.
+        /// </summary>
+        public DMTConfig DMT
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.DMT : null;
+            }
+        }
+        /// <summary>
+        /// Gets Plaza Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.Plaza : null;
+            }
+        }
+        /// <summary>
+        /// Gets SCW Config.
+        /// </summary>
+        public SCWWebServiceConfig SCW
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.SCW : null;
+            }
+        }
+        /// <summary>
+        /// Gets TAApp Config.
+        /// </summary>
+        public TAAppWebServiceConfig TAApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TAApp : null;
+            }
+        }
 
         #endregion
     }
@@ -1147,8 +1879,8 @@ namespace DMT.Services
     /// <summary>
     /// TOD Config Manager class.
     /// </summary>
-    public class TODConfigManager : ConfigManager<TODAppPlazaConfig>, 
-        IRabbitMQConfig, ISCWConfig, ITAxTODConfig, ITAAppWebServiceConfig, ITODAppWebServiceConfig
+    public class TODConfigManager : JsonConfigFileManger<TODAppPlazaConfig>,
+        IDMTConfig, IPlazaConfig, ISCWConfig
     {
         #region Static Instance Access
 
@@ -1211,6 +1943,135 @@ namespace DMT.Services
         #region Public Properties
 
         /// <summary>
+        /// Gets DMT Config.
+        /// </summary>
+        public DMTConfig DMT
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.DMT : null;
+            }
+        }
+        /// <summary>
+        /// Gets Plaza Config.
+        /// </summary>
+        public LocalWebServiceConfig Plaza
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.Plaza : null;
+            }
+        }
+        /// <summary>
+        /// Gets SCW Config.
+        /// </summary>
+        public SCWWebServiceConfig SCW
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.SCW : null;
+            }
+        }
+        /// <summary>
+        /// Gets TODApp Config.
+        /// </summary>
+        public TODAppWebServiceConfig TODApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TODApp : null;
+            }
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region AccountConfigManager
+
+    /// <summary>
+    /// Account Config Manager class.
+    /// </summary>
+    public class AccountConfigManager : JsonConfigFileManger<AccountAppPlazaConfig>,
+        IDMTConfig, IRabbitMQConfig, ITAxTODConfig, ISCWConfig
+    {
+        #region Static Instance Access
+
+        private static AccountConfigManager _instance = null;
+
+        /// <summary>
+        /// Gets ConfigManager instance access.
+        /// </summary>
+        public static AccountConfigManager Instance
+        {
+            get
+            {
+                if (null == _instance)
+                {
+                    lock (typeof(TAConfigManager))
+                    {
+                        _instance = new AccountConfigManager();
+                    }
+                }
+                return _instance;
+            }
+        }
+
+        #endregion
+
+        #region Internal Variables
+
+        private string _fileName = NJson.LocalConfigFile("Account.app.config.json");
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        private AccountConfigManager() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~AccountConfigManager()
+        {
+            //Shutdown();
+        }
+
+        #endregion
+
+        #region Override Methods and Properties
+
+        /// <summary>
+        /// Gets Config File Name.
+        /// </summary>
+        public override string FileName { get { return _fileName; } }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets DMT Config.
+        /// </summary>
+        public DMTConfig DMT
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.DMT : null;
+            }
+        }
+        /// <summary>
         /// Gets RabbitMQ Config.
         /// </summary>
         public RabbitMQServiceConfig RabbitMQ
@@ -1235,34 +2096,12 @@ namespace DMT.Services
         /// <summary>
         /// Gets TAxTOD Config.
         /// </summary>
-        public TAxTODWebServiceConfig TAxTOD 
-        {
-            get 
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TAxTOD : null; 
-            }
-        }
-        /// <summary>
-        /// Gets TAApp Config.
-        /// </summary>
-        public TAAppWebServiceConfig TAApp
+        public TAxTODWebServiceConfig TAxTOD
         {
             get
             {
                 if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TAApp : null;
-            }
-        }
-        /// <summary>
-        /// Gets TODApp Config.
-        /// </summary>
-        public TODAppWebServiceConfig TODApp
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TODApp : null;
+                return (null != Value) ? Value.TAxTOD : null;
             }
         }
 

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D584F0A-920F-4BE1-8652-3527FD7A5C27}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DMT</RootNamespace>
+    <AssemblyName>DMT.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Executables\Production\Common\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SQLite-net, Version=1.7.335.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLiteNetExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\SQLiteNetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.3.851, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.3.851, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.nativelibrary, Version=2.0.3.851, Culture=neutral, PublicKeyToken=502ed628492ab262, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\SQLitePCLRaw.nativelibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.3.851, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExtensionMethods\NullableType.ExtensionMethods.cs" />
+    <Compile Include="Models\Common\DMT.Search.cs" />
+    <Compile Include="Models\Common\DMTModelBase.cs" />
+    <Compile Include="Models\Common\NDbResult.cs" />
+    <Compile Include="Models\Common\NQueries.cs" />
+    <Compile Include="Models\Common\NSearch.cs" />
+    <Compile Include="Models\Common\NTables.cs" />
+    <Compile Include="Models\Common\UICommands.cs" />
+    <Compile Include="Models\Common\Utils.cs" />
+    <Compile Include="Models\Local\Configuration\UniqueCode.cs" />
+    <Compile Include="Models\Local\Configuration\ViewHistory.cs" />
+    <Compile Include="Models\Local\Credits\TSB\TSBCreditBanalce.cs" />
+    <Compile Include="Models\Local\Credits\TSB\TSBCreditTransaction.cs" />
+    <Compile Include="Models\Local\Credits\User\UserCreditBalance.cs" />
+    <Compile Include="Models\Local\Credits\User\UserCreditTransaction.cs" />
+    <Compile Include="Models\Local\Exchange\TSBExchangeGroup.cs" />
+    <Compile Include="Models\Local\Exchange\TSBExchangeTransaction.cs" />
+    <Compile Include="Models\Local\Infrastructures\Lane.cs" />
+    <Compile Include="Models\Local\Infrastructures\Plaza.cs" />
+    <Compile Include="Models\Local\Infrastructures\PlazaGroup.cs" />
+    <Compile Include="Models\Local\Infrastructures\TSB.cs" />
+    <Compile Include="Models\Local\Infrastructures\UIModels.cs" />
+    <Compile Include="Models\Local\Master\MCardAllow.cs" />
+    <Compile Include="Models\Local\Master\MCoupon.cs" />
+    <Compile Include="Models\Local\Master\MCouponBook.cs" />
+    <Compile Include="Models\Local\Master\MCurrency.cs" />
+    <Compile Include="Models\Local\Revenues\RevenueEntry.cs" />
+    <Compile Include="Models\Local\Shifts\UserShift.cs" />
+    <Compile Include="Models\Local\Shifts\UserShiftRevenue.cs" />
+    <Compile Include="Models\SCW\Common.cs" />
+    <Compile Include="Models\SCW\SCWCardAllowList.cs" />
+    <Compile Include="Models\SCW\SCWChangePassword.cs" />
+    <Compile Include="Models\SCW\SCWChiefOnDuty.cs" />
+    <Compile Include="Models\SCW\SCWCouponBookList.cs" />
+    <Compile Include="Models\SCW\SCWCouponList.cs" />
+    <Compile Include="Models\SCW\SCWCurrencyDemonList.cs" />
+    <Compile Include="Models\SCW\SCWDeclare.cs" />
+    <Compile Include="Models\SCW\SCWEmulators.cs" />
+    <Compile Include="Models\SCW\SCWEMVTransactionList.cs" />
+    <Compile Include="Models\SCW\SCWJobList.cs" />
+    <Compile Include="Models\SCW\SCWJobList2.cs" />
+    <Compile Include="Models\SCW\SCWLogInAudit.cs" />
+    <Compile Include="Models\SCW\SCWPasswordExpiresDays.cs" />
+    <Compile Include="Models\SCW\SCWQRCodeTransactionList.cs" />
+    <Compile Include="Models\SCW\SCWSaveChiefDuty.cs" />
+    <Compile Include="Models\Local\Shifts\Shift.cs" />
+    <Compile Include="Models\Local\Shifts\TSBShift.cs" />
+    <Compile Include="Models\SCW\UIModels.cs" />
+    <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />
+    <Compile Include="Services\AccountDbService.cs" />
+    <Compile Include="Views\SqlScriptManager.cs" />
+    <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
+    <Compile Include="Models\Local\Users\Role.cs" />
+    <Compile Include="Models\Local\Users\User.cs" />
+    <Compile Include="Services\LocalDbServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\00.NLib\NLib\NLib.csproj">
+      <Project>{41a9d6c0-c833-403f-9bc1-eecdc246a428}</Project>
+      <Name>NLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01.Core\DMT.Core\DMT.Core.csproj">
+      <Project>{db7fb4b5-3662-479e-a7da-26b73611bfd4}</Project>
+      <Name>DMT.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Scripts\Coupons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Users\UserView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Infrastructures\LaneView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaGroupView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\TSBShiftView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditSummaryView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditTransactionView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditBorrowSummaryView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditReturnSummaryView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditSummaryView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditTransactionView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftRevenueView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Revenues\RevenueEntryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Exchanges\TSBExchangeGroupView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Exchanges\TSBExchangeTransactionView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditST25SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditST50SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT1000SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT1SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT2SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT5SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT10SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT20SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT50SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT100SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT500SummaryView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditUserBHTTotalSummaryView.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\runtimes\*.*" /Y/D/E
+xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\..\PlazaService\runtimes\*.*" /Y/D/E
+xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\..\Account\runtimes\*.*" /Y/D/E</PostBuildEvent>
+  </PropertyGroup>
+</Project>

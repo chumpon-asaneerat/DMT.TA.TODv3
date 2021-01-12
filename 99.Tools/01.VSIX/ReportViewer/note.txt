@@ -1,0 +1,43 @@
+Please NOTE that this procedure of adding the reporting services described by @Rich Shealer 
+above will be iterated every time you start a different project. In order to avoid that:
+
+If you may need to set up a different computer (eg, at home without internet), then keep 
+your downloaded installers from the marketplace somewhere safe, ie:
+
+Microsoft.DataTools.ReportingServices.vsix, and
+Microsoft.RdlcDesigner.vsix
+Fetch the following libraries from the packages or bin folder of the application you have 
+created with reporting services in it:
+
+Microsoft.ReportViewer.Common.dll
+Microsoft.ReportViewer.DataVisualization.dll
+Microsoft.ReportViewer.Design.dll
+Microsoft.ReportViewer.ProcessingObjectModel.dll
+Microsoft.ReportViewer.WinForms.dll
+Install the 2 components from 1 above
+
+Add the dlls from 2 above as references (Project>References>Add...)
+(Optional) Add Reporting tab to the toolbar
+Add Items to Reporting tab
+Browse to the bin folder or where you have the above dlls and add them
+You are now good to go! ReportViewer icon will be added to your toolbar, and you will also 
+now find Report and ReportWizard templates added to your Common list of templates when you 
+want to add a New Item... (Report) to your project
+
+NB: When set up using Nuget package manager, the Report and ReportWizard templates are 
+grouped under Reporting. Using my method described above however does not add the Reporting 
+grouping in installed templates, but I dont think it is any trouble given that it enables 
+you to quickly integrate rdlc without internet and without downloading what you already 
+have from Nuget every time!
+
+
+source:
+https://stackoverflow.com/questions/40713705/reportviewer-tool-missing-in-visual-studio-2017-rc
+
+download links:
+
+- Microsoft RDLC Report Designer
+https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftRdlcReportDesignerforVisualStudio-18001
+
+- Microsoft Reporting Services Projects
+https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftReportProjectsforVisualStudio

@@ -1,0 +1,28 @@
+1. Goto Port Menu and select device and Open port.
+
+2. Select Card (Menu) to -> Mifare 1K
+
+3. On Operation GroupBox Select Key A option and Enter Key = FFFFFFFFFFFF
+
+4. Click read (Sector 0/Block 0)
+
+5. Result should be shown below:
+
+rf_antenna_sta
+rf_init_type
+rf_antenna_sta
+rf_request
+rf_anticoll
+rf_select
+rf_M1_authentication2 -> Key[A], Key FFFFFFFFFFFF
+
+rf_M1_read
+rf_M1_read
+rf_M1_read
+rf_M1_read
+
+Result :
+2713686F330804000133DAFBCF6B621D
+00000000000000000000000000000000
+00000000000000000000000000000000
+000000000000 FF078069 FFFFFFFFFFFF

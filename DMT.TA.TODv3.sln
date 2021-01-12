@@ -3,9 +3,36 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tools", "99.Tools", "{B0A55A65-B4C3-451B-AE75-661F4FF88B8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.VSIX", "01.VSIX", "{79CB5FB4-02D8-421C-B7D7-1984BFFE2654}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportViewer", "ReportViewer", "{EBB22968-5A19-45FC-BDA6-0E71BB2663FD}"
+	ProjectSection(SolutionItems) = preProject
+		99.Tools\01.VSIX\ReportViewer\Microsoft.DataTools.ReportingServices.z01 = 99.Tools\01.VSIX\ReportViewer\Microsoft.DataTools.ReportingServices.z01
+		99.Tools\01.VSIX\ReportViewer\Microsoft.DataTools.ReportingServices.z02 = 99.Tools\01.VSIX\ReportViewer\Microsoft.DataTools.ReportingServices.z02
+		99.Tools\01.VSIX\ReportViewer\Microsoft.DataTools.ReportingServices.zip = 99.Tools\01.VSIX\ReportViewer\Microsoft.DataTools.ReportingServices.zip
+		99.Tools\01.VSIX\ReportViewer\Microsoft.RdlcDesigner.vsix = 99.Tools\01.VSIX\ReportViewer\Microsoft.RdlcDesigner.vsix
+		99.Tools\01.VSIX\ReportViewer\note.txt = 99.Tools\01.VSIX\ReportViewer\note.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.RFREADER", "02.RFREADER", "{D23BDD2E-D407-450F-953C-C41DD44B238A}"
+	ProjectSection(SolutionItems) = preProject
+		99.Tools\02.RFREADER\ICTransfer.exe = 99.Tools\02.RFREADER\ICTransfer.exe
+		99.Tools\02.RFREADER\MasterCom.dll = 99.Tools\02.RFREADER\MasterCom.dll
+		99.Tools\02.RFREADER\MasterRD.dll = 99.Tools\02.RFREADER\MasterRD.dll
+		99.Tools\02.RFREADER\SL600 test.txt = 99.Tools\02.RFREADER\SL600 test.txt
+		99.Tools\02.RFREADER\SL_Paper.dll = 99.Tools\02.RFREADER\SL_Paper.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79CB5FB4-02D8-421C-B7D7-1984BFFE2654} = {B0A55A65-B4C3-451B-AE75-661F4FF88B8B}
+		{EBB22968-5A19-45FC-BDA6-0E71BB2663FD} = {79CB5FB4-02D8-421C-B7D7-1984BFFE2654}
+		{D23BDD2E-D407-450F-953C-C41DD44B238A} = {B0A55A65-B4C3-451B-AE75-661F4FF88B8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

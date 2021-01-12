@@ -55,8 +55,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #785
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #784
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #783
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - SmartcardM1Test
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #782

@@ -46,8 +46,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #788
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #787
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #786
-- 
+- DMT.TAxTODv3
+  - Move project from DMT.TAxTODv1
+    - Wpf.Owin.Rest.Server.Sample (References assemblies Checked)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #785

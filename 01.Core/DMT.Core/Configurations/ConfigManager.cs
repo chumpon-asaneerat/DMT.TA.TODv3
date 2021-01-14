@@ -423,7 +423,7 @@ namespace DMT.Configurations
     /// TA Config Manager class.
     /// </summary>
     public class TAConfigManager : JsonConfigFileManger<TAAppPlazaConfig>,
-        IDMTConfig, IPlazaConfig, ISCWConfig
+        IDMTConfig, ISCWConfig, ITODAppConfig, ITAxTODConfig
     {
         #region Static Instance Access
 
@@ -497,17 +497,6 @@ namespace DMT.Configurations
             }
         }
         /// <summary>
-        /// Gets Plaza Config.
-        /// </summary>
-        public LocalWebServiceConfig Plaza
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.Plaza : null;
-            }
-        }
-        /// <summary>
         /// Gets SCW Config.
         /// </summary>
         public SCWWebServiceConfig SCW
@@ -519,6 +508,28 @@ namespace DMT.Configurations
             }
         }
         /// <summary>
+        /// Gets RabbitMQ Config.
+        /// </summary>
+        public RabbitMQServiceConfig RabbitMQ
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.RabbitMQ : null;
+            }
+        }
+        /// <summary>
+        /// Gets TAxTOD Config.
+        /// </summary>
+        public TAxTODWebServiceConfig TAxTOD
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TAxTOD : null;
+            }
+        }
+        /// <summary>
         /// Gets TAApp Config.
         /// </summary>
         public TAAppWebServiceConfig TAApp
@@ -527,6 +538,17 @@ namespace DMT.Configurations
             {
                 if (null == Value) LoadConfig();
                 return (null != Value) ? Value.TAApp : null;
+            }
+        }
+        /// <summary>
+        /// Gets TODApp Config.
+        /// </summary>
+        public TODAppWebServiceConfig TODApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TODApp : null;
             }
         }
 
@@ -541,7 +563,7 @@ namespace DMT.Configurations
     /// TOD Config Manager class.
     /// </summary>
     public class TODConfigManager : JsonConfigFileManger<TODAppPlazaConfig>,
-        IDMTConfig, IPlazaConfig, ISCWConfig
+        IDMTConfig, ISCWConfig, ITAAppConfig
     {
         #region Static Instance Access
 
@@ -615,17 +637,6 @@ namespace DMT.Configurations
             }
         }
         /// <summary>
-        /// Gets Plaza Config.
-        /// </summary>
-        public LocalWebServiceConfig Plaza
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.Plaza : null;
-            }
-        }
-        /// <summary>
         /// Gets SCW Config.
         /// </summary>
         public SCWWebServiceConfig SCW
@@ -634,6 +645,28 @@ namespace DMT.Configurations
             {
                 if (null == Value) LoadConfig();
                 return (null != Value) ? Value.SCW : null;
+            }
+        }
+        /// <summary>
+        /// Gets RabbitMQ Config.
+        /// </summary>
+        public RabbitMQServiceConfig RabbitMQ
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.RabbitMQ : null;
+            }
+        }
+        /// <summary>
+        /// Gets TAApp Config.
+        /// </summary>
+        public TAAppWebServiceConfig TAApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TAApp : null;
             }
         }
         /// <summary>

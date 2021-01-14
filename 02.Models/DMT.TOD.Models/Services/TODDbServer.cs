@@ -1681,6 +1681,11 @@ namespace DMT.Services
             #endregion
         }
 
+        private void InitTSBCreditInitializeTransaction(TSB value)
+        {
+            // Do nothing.
+        }
+
         private void InitShifts()
         {
             if (null == Db) return;

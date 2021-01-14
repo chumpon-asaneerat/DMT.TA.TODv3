@@ -50,8 +50,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #798
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #797
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #796
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project.
+    - Refactor remove all view scripts.
+  - DMT.TOD.Models project.
+    - Refactor remove all view scripts.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #795
@@ -59,6 +64,7 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #795
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #794
+- DMT.TAxTODv3
   - DMT.Models project
     - Remove init views method.
   - DMT.Account.Models project.
@@ -70,6 +76,7 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #794
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #793
+- DMT.TAxTODv3
   - DMT.Models project
     - Remove all init methods.
   - DMT.Account.Models project.

@@ -44,8 +44,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #795
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #794
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #793
-- 
+  - DMT.Models project
+    - Remove all init methods.
+  - DMT.Account.Models project.
+    - Refactor all init methods.
+  - DMT.TA.Models project.
+    - Refactor all init methods.
+  - DMT.TOD.Models project.
+    - Refactor all init methods.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #792

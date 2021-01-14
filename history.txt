@@ -53,8 +53,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #792
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #791
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #790
-- 
+- DMT.TAxTODv3
+  - Add DMT.Account.Models project.
+    - Add reference assemblies
+    - Prepare folders.
+    - Add App.config
+    - Setup assbmblyinfo.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #789

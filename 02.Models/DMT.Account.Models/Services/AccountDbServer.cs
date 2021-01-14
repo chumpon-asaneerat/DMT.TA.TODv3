@@ -106,6 +106,7 @@ namespace DMT.Services
         private void InitTables()
         {
             Db.CreateTable<ViewHistory>();
+            Db.CreateTable<UniqueCode>();
 
             Db.CreateTable<MCurrency>();
             Db.CreateTable<MCoupon>();
@@ -121,6 +122,9 @@ namespace DMT.Services
 
             Db.CreateTable<Role>();
             Db.CreateTable<User>();
+            //Db.CreateTable<LogInLog>();
+
+            Db.CreateTable<TSBShift>();
         }
 
         private void InitDefaults()
@@ -2050,7 +2054,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
             if (null == Db)
             {
-                lock (typeof(LocalDbServer))
+                lock (typeof(AccountDbServer))
                 {
                     try
                     {

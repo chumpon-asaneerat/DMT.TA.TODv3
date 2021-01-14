@@ -147,7 +147,7 @@
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
     <Compile Include="Models\Local\Users\Role.cs" />
     <Compile Include="Models\Local\Users\User.cs" />
-    <Compile Include="Services\LocalDbServer.cs" />
+    <None Include="Services\LocalDbServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

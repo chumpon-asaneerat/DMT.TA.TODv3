@@ -103,50 +103,6 @@ namespace DMT.Services
 
         #region Private Methods
 
-        private void InitTables()
-        {
-            Db.CreateTable<ViewHistory>();
-            Db.CreateTable<UniqueCode>();
-
-            Db.CreateTable<MCurrency>();
-            Db.CreateTable<MCoupon>();
-            Db.CreateTable<MCouponBook>();
-            Db.CreateTable<MCardAllow>();
-
-            Db.CreateTable<TSB>();
-            Db.CreateTable<PlazaGroup>();
-            Db.CreateTable<Plaza>();
-            Db.CreateTable<Lane>();
-
-            Db.CreateTable<Shift>();
-
-            Db.CreateTable<Role>();
-            Db.CreateTable<User>();
-            //Db.CreateTable<LogInLog>();
-
-            Db.CreateTable<TSBShift>();
-            Db.CreateTable<UserShift>();
-            Db.CreateTable<UserShiftRevenue>();
-
-            Db.CreateTable<RevenueEntry>();
-
-            Db.CreateTable<TSBCreditTransaction>();
-
-            Db.CreateTable<UserCreditBalance>();
-            Db.CreateTable<UserCreditTransaction>();
-
-            Db.CreateTable<TSBExchangeGroup>();
-            Db.CreateTable<TSBExchangeTransaction>();
-
-            //Db.CreateTable<TSBCouponTransaction>();
-
-            ////Db.CreateTable<UserCouponBalance>();
-            //Db.CreateTable<UserCouponTransaction>();
-        }
-
-
-
-
         private void InitViews()
         {
             if (null == Db) return;

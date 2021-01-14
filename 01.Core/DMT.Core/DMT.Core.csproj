@@ -108,9 +108,12 @@
     <Compile Include="Consts\Routes\TA\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\TA.Notify.Controller.cs" />
+    <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\TOD.Notify.Controller.cs" />
+    <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />
+    <Compile Include="Consts\Routes\TOD\TOD.Controller.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />
     <Compile Include="ExtensionMethods\NJson.cs" />
     <Compile Include="ExtensionMethods\RangeParser.cs" />
@@ -127,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
+    <Folder Include="Consts\Routes\TOD\Shift\Actions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

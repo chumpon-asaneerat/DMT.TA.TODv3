@@ -47,9 +47,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #809
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #808
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #807
-- 
-
+- DMT.TAxTODv3
+  - DMT.Core project
+    - TA (app) routes implements
+      - Add TA.Controller.cs
+      - Update TA.Notify.Controller.cs
+    - TOD (app) routes implements
+      - Add TOD.Controller.cs
+      - Add TOD.Shift.Controller.cs
+      - Update TOD.Notify.Controller.cs
+     
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #806
 - DMT.TAxTODv3

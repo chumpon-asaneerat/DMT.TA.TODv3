@@ -114,12 +114,6 @@
     <Compile Include="Models\Common\Utils.cs" />
     <Compile Include="Models\Local\Configuration\UniqueCode.cs" />
     <Compile Include="Models\Local\Configuration\ViewHistory.cs" />
-    <Compile Include="Models\Local\Credits\TSB\TSBCreditBanalce.cs" />
-    <Compile Include="Models\Local\Credits\TSB\TSBCreditTransaction.cs" />
-    <Compile Include="Models\Local\Credits\User\UserCreditBalance.cs" />
-    <Compile Include="Models\Local\Credits\User\UserCreditTransaction.cs" />
-    <Compile Include="Models\Local\Exchange\TSBExchangeGroup.cs" />
-    <Compile Include="Models\Local\Exchange\TSBExchangeTransaction.cs" />
     <Compile Include="Models\Local\Infrastructures\Lane.cs" />
     <Compile Include="Models\Local\Infrastructures\Plaza.cs" />
     <Compile Include="Models\Local\Infrastructures\PlazaGroup.cs" />
@@ -129,9 +123,6 @@
     <Compile Include="Models\Local\Master\MCoupon.cs" />
     <Compile Include="Models\Local\Master\MCouponBook.cs" />
     <Compile Include="Models\Local\Master\MCurrency.cs" />
-    <Compile Include="Models\Local\Revenues\RevenueEntry.cs" />
-    <Compile Include="Models\Local\Shifts\UserShift.cs" />
-    <Compile Include="Models\Local\Shifts\UserShiftRevenue.cs" />
     <Compile Include="Models\SCW\Common.cs" />
     <Compile Include="Models\SCW\SCWCardAllowList.cs" />
     <Compile Include="Models\SCW\SCWChangePassword.cs" />
@@ -152,7 +143,6 @@
     <Compile Include="Models\Local\Shifts\TSBShift.cs" />
     <Compile Include="Models\SCW\UIModels.cs" />
     <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />
-    <Compile Include="Services\AccountDbService.cs" />
     <Compile Include="Views\SqlScriptManager.cs" />
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
     <Compile Include="Models\Local\Users\Role.cs" />

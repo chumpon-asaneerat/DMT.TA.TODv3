@@ -50,8 +50,24 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #793
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #792
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #791
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Move all Credit models to DMT.TA.Models.
+    - Move all Exchange models to DMT.TA.Models.
+    - Move all Revenue models to DMT.TOD.Models.
+    - Move all UserShift models to DMT.TOD.Models.
+  - DMT.Account.Models project.
+    - Move AccountDbService.cs from DMT.Models project.
+    - Rename AccountDbService.cs to AccountDbServer.cs
+    - Add AccountSqlScriptManager class.
+  - DMT.TA.Models project.
+    - Move Credit all models from DMT.Models project.
+    - Move Exchange all models from DMT.Models project.
+  - DMT.TOD.Models project.
+    - Move Revenue all models from DMT.Models project.
+    - Move UserShift all models from DMT.Models project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #790

@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\BaseConfigs.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Gets.cs" />
@@ -113,8 +114,7 @@
     <Compile Include="ExtensionMethods\RangeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Cmd.cs" />
-    <Compile Include="Services\ConfigManager.cs" />
-    <Compile Include="Services\LocalServiceManager.cs" />
+    <Compile Include="Configurations\ConfigManager.cs" />
     <Compile Include="Services\JsonMessageTransferService.cs" />
   </ItemGroup>
   <ItemGroup>

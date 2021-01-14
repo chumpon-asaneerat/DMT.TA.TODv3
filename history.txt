@@ -62,8 +62,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #804
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #803
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #802
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Move ConfigManager Configurations folder.
+    - Remove LocalServiceManager.cs
+    - All Configuration related classes move from DMT.Services to DMT.Configurations
+    - Remove LocalHostWebServiceConfig class.
+    - Remove LocalWebServiceConfig class.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #801

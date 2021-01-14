@@ -68,8 +68,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #802
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #801
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #800
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Config.App project.
+    - Add reference to DMT.TA.Rest.Client
+    - Add reference to DMT.TOD.Rest.Client
+  - DMT.Plaza.Simulator.App project.
+    - Add reference to DMT.TA.Rest.Client
+    - Add reference to DMT.TOD.Rest.Client
+  - DMT.TA.App project.
+    - Add reference to DMT.TOD.Rest.Client
+  - DMT.TOD.App project.
+    - Add reference to DMT.TA.Rest.Client
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #799

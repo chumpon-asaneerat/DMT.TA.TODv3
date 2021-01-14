@@ -261,6 +261,14 @@
       <Project>{5afdd4c5-434e-4b9f-a6e8-05c75dd95b59}</Project>
       <Name>DMT.SCW.Rest.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TA.Rest.Client\DMT.TA.Rest.Client.csproj">
+      <Project>{b0d8bcd7-ce8f-41b9-9ad1-0d2b0be7e45d}</Project>
+      <Name>DMT.TA.Rest.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TOD.Rest.Client\DMT.TOD.Rest.Client.csproj">
+      <Project>{cda29d61-9f4f-46f2-a256-81a32b1d7e52}</Project>
+      <Name>DMT.TOD.Rest.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\ApplicationConfigs.cs" />
+    <Compile Include="Configurations\ApplicationInferfaces.cs" />
     <Compile Include="Configurations\_BaseConfigs.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />

@@ -56,8 +56,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #806
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #805
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #804
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Remove IPlazaConfig interface.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #803

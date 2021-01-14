@@ -47,8 +47,26 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #794
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #793
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #792
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Set SqlScriptManager build action to none.
+  - DMT.Account.Models project.
+    - Refactor all view script related methods and class.
+    - Refactor all public methods.
+    - Refactor all public properties.
+    - Refactor all public events.
+  - DMT.TA.Models project.
+    - Refactor all view script related methods and class.
+    - Refactor all public methods.
+    - Refactor all public properties.
+    - Refactor all public events.
+  - DMT.TOD.Models project.
+    - Refactor all view script related methods and class.
+    - Refactor all public methods.
+    - Refactor all public properties.
+    - Refactor all public events.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #791

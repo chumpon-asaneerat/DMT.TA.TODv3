@@ -84,8 +84,8 @@
     <Compile Include="Models\Shifts\UserShift.cs" />
     <Compile Include="Models\Shifts\UserShiftRevenue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TODLocalDbServer.cs" />
-    <Compile Include="Views\TODSqlScriptManager.cs" />
+    <Compile Include="Services\TODDbServer.cs" />
+    <Compile Include="Views\TODSqliteScriptManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib\NLib.csproj">

@@ -143,7 +143,7 @@
     <Compile Include="Models\Local\Shifts\TSBShift.cs" />
     <Compile Include="Models\SCW\UIModels.cs" />
     <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />
-    <Compile Include="Views\SqlScriptManager.cs" />
+    <None Include="Views\SqlScriptManager.cs" />
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
     <Compile Include="Models\Local\Users\Role.cs" />
     <Compile Include="Models\Local\Users\User.cs" />

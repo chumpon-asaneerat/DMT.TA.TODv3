@@ -9,14 +9,14 @@ using NLib;
 
 namespace DMT.Views
 {
-    #region AccountSqlScriptManager
+    #region AccountSqliteScriptManager
 
     /// <summary>
     /// The Account Sqlite Script Manager class.
     /// </summary>
-    public class AccountSqlScriptManager
+    public class AccountSqliteScriptManager
     {
-        private static Assembly Current { get { return typeof(AccountSqlScriptManager).Assembly; } }
+        private static Assembly Current { get { return typeof(AccountSqliteScriptManager).Assembly; } }
         /// <summary>
         /// Gets View SQL Script (from embedded resource).
         /// </summary>

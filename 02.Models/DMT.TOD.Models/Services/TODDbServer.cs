@@ -2389,7 +2389,7 @@ namespace DMT.Services
 			MethodBase med = MethodBase.GetCurrentMethod();
 			if (null == Db)
 			{
-				lock (typeof(TODLocalDbServer))
+				lock (typeof(LocalDbServer))
 				{
 					try
 					{

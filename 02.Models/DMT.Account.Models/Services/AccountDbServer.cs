@@ -2288,7 +2288,7 @@ namespace DMT.Services
                         embededResourceName = @"DMT.Views.Scripts." + resourceName;
                     }
 
-                    script = SqliteScriptManager.GetScript(embededResourceName);
+                    script = AccountSqliteScriptManager.GetScript(embededResourceName);
 
                     if (!string.IsNullOrEmpty(script))
                     {
@@ -2331,7 +2331,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
             if (null == Db)
             {
-                lock (typeof(AccountDbServer))
+                lock (typeof(LocalDbServer))
                 {
                     try
                     {

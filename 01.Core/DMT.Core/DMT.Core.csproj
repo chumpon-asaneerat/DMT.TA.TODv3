@@ -53,7 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\BaseConfigs.cs" />
+    <Compile Include="Configurations\ApplicationConfigs.cs" />
+    <Compile Include="Configurations\_BaseConfigs.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Gets.cs" />

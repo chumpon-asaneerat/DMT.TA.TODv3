@@ -13,8 +13,6 @@ using NLib.Controls.Design;
 
 namespace DMT.Configurations
 {
-    #region Each config class
-
     #region DMTConfig (Common DMT Consts Information)
 
     /// <summary>
@@ -502,8 +500,6 @@ namespace DMT.Configurations
 
         #endregion
     }
-
-    #endregion
 
     #endregion
 }

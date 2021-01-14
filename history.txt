@@ -59,8 +59,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #805
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #804
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #803
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Remove PlazaServiceConfig class.
+    - Remove PlazaAppConfig class.
+    - TAAppPlazaConfig class add TAxTOD, TODApp and RabbitMQ property.
+    - TODAppPlazaConfig class add TAApp and RabbitMQ property.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #802

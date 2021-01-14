@@ -1967,57 +1967,6 @@ namespace DMT.Services
             // Revenues - Embeded resource used . instead / to access sub contents.
             prefix = @"Revenues";
             InitView("RevenueEntryView", 1, prefix);
-
-            // Credits - Embeded resource used . instead / to access sub contents.
-            prefix = @"Credits";
-            InitView("UserCreditBorrowSummaryView", 1, prefix);
-            InitView("UserCreditReturnSummaryView", 1, prefix);
-            // !!! Required UserCreditBorrowSummaryView and UserCreditBorrowSummaryView
-            InitView("UserCreditSummaryView", 1, prefix);
-
-            InitView("TSBCreditTransactionView", 1, prefix);
-            // User Total.
-            InitView("TSBCreditUserBHTTotalSummaryView", 1, prefix);
-            // TSB Amount(s).
-            InitView("TSBCreditST25SummaryView", 1, prefix);
-            InitView("TSBCreditST50SummaryView", 1, prefix);
-            InitView("TSBCreditBHT1SummaryView", 1, prefix);
-            InitView("TSBCreditBHT2SummaryView", 1, prefix);
-            InitView("TSBCreditBHT5SummaryView", 1, prefix);
-            InitView("TSBCreditBHT10SummaryView", 1, prefix);
-            InitView("TSBCreditBHT20SummaryView", 1, prefix);
-            InitView("TSBCreditBHT50SummaryView", 1, prefix);
-            InitView("TSBCreditBHT100SummaryView", 1, prefix);
-            InitView("TSBCreditBHT500SummaryView", 1, prefix);
-            InitView("TSBCreditBHT1000SummaryView", 1, prefix);
-            // !!! Required Above views
-            InitView("TSBCreditSummaryView", 1, prefix);
-
-
-            InitView("UserCreditTransactionView", 1, prefix);
-
-            // Coupons - Embeded resource used . instead / to access sub contents.
-            /*
-            prefix = @"Coupons";
-            InitView("TSBCouponTransactionView", 1, prefix);
-
-            InitView("TSBCouponStockBalanceView", 1, prefix);
-            InitView("TSBCouponLaneBalanceView", 1, prefix);
-            InitView("TSBCouponSoldByLaneBalanceView", 1, prefix);
-            InitView("TSBCouponSoldByTSBBalanceView", 1, prefix);
-            InitView("TSBCouponBalanceView", 1, prefix);
-
-            InitView("TSBCouponSummarryView", 1, prefix);
-            InitView("UserCoupon35SummaryView", 1, prefix);
-            InitView("UserCoupon80SummaryView", prefix);
-            InitView("UserCouponSummaryView", 1, prefix);
-            InitView("UserCouponTransactionView", 1, prefix);
-            */
-
-            // Exchanges - Embeded resource used . instead / to access sub contents.
-            prefix = @"Exchanges";
-            InitView("TSBExchangeGroupView", 1, prefix);
-            InitView("TSBExchangeTransactionView", 1, prefix);
         }
 
         class ViewInfo

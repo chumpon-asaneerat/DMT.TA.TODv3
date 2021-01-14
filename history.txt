@@ -47,8 +47,22 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #799
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #798
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #797
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Remove all views scripts.
+    - Remove LocalDbServer.cs
+  - DMT.Account.Models project.
+    - Ported all Infrastructure related view scripts
+  - DMT.TA.Models project.
+    - Ported all Infrastructure related view scripts
+    - Ported all TSBShift related view scripts
+    - Ported all Credit related view scripts
+    - Ported all Exchange related view scripts
+  - DMT.TOD.Models project.
+    - Ported all Revenue related view scripts
+    - Ported all Shift related view scripts
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #796

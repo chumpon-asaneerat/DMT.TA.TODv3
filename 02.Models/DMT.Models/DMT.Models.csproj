@@ -143,11 +143,9 @@
     <Compile Include="Models\Local\Shifts\TSBShift.cs" />
     <Compile Include="Models\SCW\UIModels.cs" />
     <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />
-    <None Include="Views\SqlScriptManager.cs" />
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
     <Compile Include="Models\Local\Users\Role.cs" />
     <Compile Include="Models\Local\Users\User.cs" />
-    <None Include="Services\LocalDbServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,81 +158,7 @@
       <Name>DMT.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Scripts\Coupons\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Users\UserView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Infrastructures\LaneView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaGroupView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Shifts\TSBShiftView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditSummaryView.sql" />
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditTransactionView.sql" />
-    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditBorrowSummaryView.sql" />
-    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditReturnSummaryView.sql" />
-    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditSummaryView.sql" />
-    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditTransactionView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftRevenueView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Revenues\RevenueEntryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Exchanges\TSBExchangeGroupView.sql" />
-    <EmbeddedResource Include="Views\Scripts\Exchanges\TSBExchangeTransactionView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditST25SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditST50SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT1000SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT1SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT2SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT5SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT10SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT20SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT50SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT100SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditBHT500SummaryView.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\TSBCreditUserBHTTotalSummaryView.sql" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\runtimes\*.*" /Y/D/E

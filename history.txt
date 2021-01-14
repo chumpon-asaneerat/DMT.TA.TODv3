@@ -50,8 +50,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #808
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #807
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #806
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Add PlazaAppConfig class
+    - Remove PlazaServiceConfigManager class
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #805

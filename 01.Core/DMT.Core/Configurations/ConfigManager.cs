@@ -158,165 +158,13 @@ namespace DMT.Configurations
 
     #endregion
 
-    #region PlazaServiceConfigManager
-
-    /// <summary>
-    /// The PlazaServiceConfigManager class.
-    /// </summary>
-    public class PlazaServiceConfigManager : JsonConfigFileManger<PlazaServiceConfig>,
-        IDMTConfig, IRabbitMQConfig, IPlazaConfig, ISCWConfig, ITAxTODConfig,
-        ITAAppConfig, ITODAppConfig
-    {
-        #region Static Instance Access
-
-        private static PlazaServiceConfigManager _instance = null;
-
-        /// <summary>
-        /// Gets ConfigManager instance access.
-        /// </summary>
-        public static PlazaServiceConfigManager Instance
-        {
-            get
-            {
-                if (null == _instance)
-                {
-                    lock (typeof(PlazaServiceConfigManager))
-                    {
-                        _instance = new PlazaServiceConfigManager();
-                    }
-                }
-                return _instance;
-            }
-        }
-
-        #endregion
-
-        #region Internal Variables
-
-        private string _fileName = NJson.LocalConfigFile("plaza.service.config.json");
-
-        #endregion
-
-        #region Constructor and Destructor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        private PlazaServiceConfigManager() : base()
-        {
-
-        }
-        /// <summary>
-        /// Destructor.
-        /// </summary>
-        ~PlazaServiceConfigManager()
-        {
-            //Shutdown();
-        }
-
-        #endregion
-
-        #region Override Methods and Properties
-
-        /// <summary>
-        /// Gets Config File Name.
-        /// </summary>
-        public override string FileName { get { return _fileName; } }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets DMT Config.
-        /// </summary>
-        public DMTConfig DMT 
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.DMT : null;
-            }
-        }
-        /// <summary>
-        /// Gets RabbitMQ Config.
-        /// </summary>
-        public RabbitMQServiceConfig RabbitMQ
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.RabbitMQ : null;
-            }
-        }
-        /// <summary>
-        /// Gets Plaza Config.
-        /// </summary>
-        public LocalWebServiceConfig Plaza
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.Plaza : null;
-            }
-        }
-        /// <summary>
-        /// Gets SCW Config.
-        /// </summary>
-        public SCWWebServiceConfig SCW
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.SCW : null;
-            }
-        }
-        /// <summary>
-        /// Gets TAxTOD Config.
-        /// </summary>
-        public TAxTODWebServiceConfig TAxTOD
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TAxTOD : null;
-            }
-        }
-        /// <summary>
-        /// Gets TAApp Config.
-        /// </summary>
-        public TAAppWebServiceConfig TAApp
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TAApp : null;
-            }
-        }
-        /// <summary>
-        /// Gets TODApp Config.
-        /// </summary>
-        public TODAppWebServiceConfig TODApp
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TODApp : null;
-            }
-        }
-
-        #endregion
-    }
-
-    #endregion
-
     #region PlazaAppConfigManager
 
     /// <summary>
     /// Plaza App Config Manager class.
     /// </summary>
     public class PlazaAppConfigManager : JsonConfigFileManger<PlazaAppConfig>,
-        IDMTConfig, IPlazaConfig, ISCWConfig
+        IDMTConfig, ISCWConfig, ITAxTODConfig, ITAAppConfig, ITODAppConfig
     {
         #region Static Instance Access
 
@@ -390,17 +238,6 @@ namespace DMT.Configurations
             }
         }
         /// <summary>
-        /// Gets Plaza Config.
-        /// </summary>
-        public LocalWebServiceConfig Plaza
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.Plaza : null;
-            }
-        }
-        /// <summary>
         /// Gets SCW Config.
         /// </summary>
         public SCWWebServiceConfig SCW
@@ -409,6 +246,39 @@ namespace DMT.Configurations
             {
                 if (null == Value) LoadConfig();
                 return (null != Value) ? Value.SCW : null;
+            }
+        }
+        /// <summary>
+        /// Gets TAxTOD Config.
+        /// </summary>
+        public TAxTODWebServiceConfig TAxTOD
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TAxTOD : null;
+            }
+        }
+        /// <summary>
+        /// Gets TAApp Config.
+        /// </summary>
+        public TAAppWebServiceConfig TAApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TAApp : null;
+            }
+        }
+        /// <summary>
+        /// Gets TODApp Config.
+        /// </summary>
+        public TODAppWebServiceConfig TODApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TODApp : null;
             }
         }
 

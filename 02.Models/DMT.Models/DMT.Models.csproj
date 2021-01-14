@@ -112,17 +112,17 @@
     <Compile Include="Models\Common\NTables.cs" />
     <Compile Include="Models\Common\UICommands.cs" />
     <Compile Include="Models\Common\Utils.cs" />
-    <Compile Include="Models\Local\Configuration\UniqueCode.cs" />
-    <Compile Include="Models\Local\Configuration\ViewHistory.cs" />
-    <Compile Include="Models\Local\Infrastructures\Lane.cs" />
-    <Compile Include="Models\Local\Infrastructures\Plaza.cs" />
-    <Compile Include="Models\Local\Infrastructures\PlazaGroup.cs" />
-    <Compile Include="Models\Local\Infrastructures\TSB.cs" />
-    <Compile Include="Models\Local\Infrastructures\UIModels.cs" />
-    <Compile Include="Models\Local\Master\MCardAllow.cs" />
-    <Compile Include="Models\Local\Master\MCoupon.cs" />
-    <Compile Include="Models\Local\Master\MCouponBook.cs" />
-    <Compile Include="Models\Local\Master\MCurrency.cs" />
+    <Compile Include="Models\Plaza\Configuration\UniqueCode.cs" />
+    <Compile Include="Models\Plaza\Configuration\ViewHistory.cs" />
+    <Compile Include="Models\Plaza\Infrastructures\Lane.cs" />
+    <Compile Include="Models\Plaza\Infrastructures\Plaza.cs" />
+    <Compile Include="Models\Plaza\Infrastructures\PlazaGroup.cs" />
+    <Compile Include="Models\Plaza\Infrastructures\TSB.cs" />
+    <Compile Include="Models\Plaza\Infrastructures\UIModels.cs" />
+    <Compile Include="Models\Plaza\Master\MCardAllow.cs" />
+    <Compile Include="Models\Plaza\Master\MCoupon.cs" />
+    <Compile Include="Models\Plaza\Master\MCouponBook.cs" />
+    <Compile Include="Models\Plaza\Master\MCurrency.cs" />
     <Compile Include="Models\SCW\Common.cs" />
     <Compile Include="Models\SCW\SCWCardAllowList.cs" />
     <Compile Include="Models\SCW\SCWChangePassword.cs" />
@@ -139,13 +139,13 @@
     <Compile Include="Models\SCW\SCWPasswordExpiresDays.cs" />
     <Compile Include="Models\SCW\SCWQRCodeTransactionList.cs" />
     <Compile Include="Models\SCW\SCWSaveChiefDuty.cs" />
-    <Compile Include="Models\Local\Shifts\Shift.cs" />
-    <Compile Include="Models\Local\Shifts\TSBShift.cs" />
+    <Compile Include="Models\Plaza\Shifts\Shift.cs" />
+    <Compile Include="Models\Plaza\Shifts\TSBShift.cs" />
     <Compile Include="Models\SCW\UIModels.cs" />
     <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
-    <Compile Include="Models\Local\Users\Role.cs" />
-    <Compile Include="Models\Local\Users\User.cs" />
+    <Compile Include="Models\Plaza\Users\Role.cs" />
+    <Compile Include="Models\Plaza\Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

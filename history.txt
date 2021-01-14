@@ -65,8 +65,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #803
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #802
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #801
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Rename Local to Plaza.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #800

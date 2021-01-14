@@ -44,8 +44,28 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #800
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #799
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #798
-- 
+- DMT.TAxTODv3
+  - DMT.Core project. Note.
+    - Move all local service route to TA and TOD app.
+    - Refactor all config classes (TOD/TA required to 2 way communication).
+  - DMT.Local.Rest.Client project. Note.
+    - Move all route api code to TA/TOD Rest.Client project.
+    - Need to remove this project later.
+  - DMT.TA.Rest.Client project. Note.
+    - Need to implements rest api for all new TA operations.
+  - DMT.TOD.Rest.Client project. Note.
+    - Need to implements rest api for all new TOD operations.
+  - DMT.Local.Rest.Server project. Note.
+    - Move all route api code to TA/TOD Rest.Server project.
+    - Need to remove this project later.
+  - DMT.TA.Rest.Server project. Note.
+    - Need to supports RabbitMQ service.
+    - Need to implements rest api for all new TOD operations that need to user in TOD project.
+  - DMT.TOD.Rest.Server project. Note.
+    - Need to supports RabbitMQ service.
+    - Need to implements rest api for all new TOD operations that need to user in TA project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #797

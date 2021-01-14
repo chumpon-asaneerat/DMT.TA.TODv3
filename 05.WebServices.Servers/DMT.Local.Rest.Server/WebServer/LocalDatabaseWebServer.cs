@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using Microsoft.Owin.Hosting;
 using System.Web.Http;
-using NLib;
+using NLib.Reflection;
 
 #endregion
 

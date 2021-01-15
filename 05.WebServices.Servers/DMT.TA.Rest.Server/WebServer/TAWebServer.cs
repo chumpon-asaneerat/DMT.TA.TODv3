@@ -207,7 +207,7 @@ namespace DMT.Services
                         string controllerName, actionName, actionUrl;
 
                         // Set Controller Name.
-                        controllerName = RouteConsts.Security.Role.ControllerName;
+                        controllerName = RouteConsts.TA.Security.Role.ControllerName;
 
                         // Gets
                         actionName = RouteConsts.TA.Security.Role.Gets.Name;
@@ -415,13 +415,13 @@ namespace DMT.Services
 
             // Start database server.
             TALocalDbServer.Instance.Start();
-            if (LocalDbServer.Instance.Connected)
+            if (TALocalDbServer.Instance.Connected)
             {
-                med.Info("Plaza local database connected.");
+                med.Info("TA local database connected.");
             }
             else
             {
-                med.Info("Plaza local database connect failed.");
+                med.Info("TA local database connect failed.");
             }
 
             if (null == server)
@@ -477,7 +477,7 @@ namespace DMT.Services
 
             // Shutdown database server.
             TALocalDbServer.Instance.Shutdown();
-            med.Info("Plaza local database disconnected.");
+            med.Info("TA local database disconnected.");
         }
 
         #endregion

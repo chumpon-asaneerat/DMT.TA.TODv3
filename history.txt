@@ -59,8 +59,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #835
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #834
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #833
-- 
+- DMT.TAxTODv3
+  - Remove DMT.Local.Web.Services project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #832

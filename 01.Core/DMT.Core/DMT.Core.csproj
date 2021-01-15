@@ -74,6 +74,9 @@
     <Compile Include="Consts\Routes\Account\Security\Account.Security.Controller.cs" />
     <Compile Include="Consts\Routes\Account\Security\Actions\Role\Gets.cs" />
     <Compile Include="Consts\Routes\Account\Security\Actions\Role\Save.cs" />
+    <Compile Include="Consts\Routes\Account\Security\Actions\User\Gets.cs" />
+    <Compile Include="Consts\Routes\Account\Security\Actions\User\Save.cs" />
+    <Compile Include="Consts\Routes\Account\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\User\Transaction\Gets.cs" />
@@ -89,9 +92,6 @@
     <Compile Include="Consts\Routes\Local\Credit\Actions\User\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\Local\Credit\Credit.Controller.cs" />
     <Compile Include="Consts\Routes\RouteConsts.cs" />
-    <Compile Include="Consts\Routes\Local\Security\Actions\User\Gets.cs" />
-    <Compile Include="Consts\Routes\Local\Security\Actions\User\Save.cs" />
-    <Compile Include="Consts\Routes\Local\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\Local\Shift\Actions\Common\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Change.cs" />
     <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Current.cs" />
@@ -123,6 +123,9 @@
     <Compile Include="Consts\Routes\TA\Notify\TA.Notify.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Security\Actions\Role\Gets.cs" />
     <Compile Include="Consts\Routes\TA\Security\Actions\Role\Save.cs" />
+    <Compile Include="Consts\Routes\TA\Security\Actions\User\Gets.cs" />
+    <Compile Include="Consts\Routes\TA\Security\Actions\User\Save.cs" />
+    <Compile Include="Consts\Routes\TA\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TA\Security\TA.Security.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
@@ -145,6 +148,9 @@
     <Compile Include="Consts\Routes\TOD\Notify\TOD.Notify.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Security\Actions\Role\Gets.cs" />
     <Compile Include="Consts\Routes\TOD\Security\Actions\Role\Save.cs" />
+    <Compile Include="Consts\Routes\TOD\Security\Actions\User\Gets.cs" />
+    <Compile Include="Consts\Routes\TOD\Security\Actions\User\Save.cs" />
+    <Compile Include="Consts\Routes\TOD\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TOD\Security\TOD.Security.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\TOD.Controller.cs" />
@@ -163,10 +169,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Consts\Routes\Account\Security\Actions\User\" />
     <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
-    <Folder Include="Consts\Routes\TA\Security\Actions\User\" />
-    <Folder Include="Consts\Routes\TOD\Security\Actions\User\" />
     <Folder Include="Consts\Routes\TOD\Shift\Actions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

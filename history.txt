@@ -62,8 +62,25 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #824
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #823
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #822
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #9
+    - Account Routes
+      - Security's User actions
+        - Gets
+        - Save
+        - Searchs
+    - TA Routes
+      - Security's User actions
+        - Gets
+        - Save
+        - Searchs
+    - TOD Routes
+      - Security's User actions
+        - Gets
+        - Save
+        - Searchs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #821

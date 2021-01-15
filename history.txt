@@ -53,8 +53,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #827
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #826
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #825
-- 
+- DMT.TAxTODv3
+  - DMT.Local.Rest.Client project.
+    - Remove all Infrastructure operations.
+    - Remove all Security operations.
+  - DMT.TA.Rest.Client project.
+    - Infrastructure operations
+    - Security operations
+  - DMT.TOD.Rest.Client project.
+    - Infrastructure operations
+    - Security operations
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #824

@@ -53,20 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Infrastructure\Infrastructure.Operations.cs" />
-    <Compile Include="Services\Infrastructure\Operations\Lane\Gets.cs" />
-    <Compile Include="Services\Infrastructure\Operations\Lane\Save.cs" />
-    <Compile Include="Services\Infrastructure\Operations\Lane\Searchs.cs" />
-    <Compile Include="Services\Infrastructure\Operations\PlazaGroup\Gets.cs" />
-    <Compile Include="Services\Infrastructure\Operations\PlazaGroup\Save.cs" />
-    <Compile Include="Services\Infrastructure\Operations\PlazaGroup\Searchs.cs" />
-    <Compile Include="Services\Infrastructure\Operations\Plaza\Gets.cs" />
-    <Compile Include="Services\Infrastructure\Operations\Plaza\Save.cs" />
-    <Compile Include="Services\Infrastructure\Operations\Plaza\Searchs.cs" />
-    <Compile Include="Services\Infrastructure\Operations\TSB\Current.cs" />
-    <Compile Include="Services\Infrastructure\Operations\TSB\Gets.cs" />
-    <Compile Include="Services\Infrastructure\Operations\TSB\Save.cs" />
-    <Compile Include="Services\Infrastructure\Operations\TSB\SetActive.cs" />
     <Compile Include="Services\Local.cs" />
     <Compile Include="Services\Security\Operations\Role\Gets.cs" />
     <Compile Include="Services\Security\Operations\Role\Save.cs" />

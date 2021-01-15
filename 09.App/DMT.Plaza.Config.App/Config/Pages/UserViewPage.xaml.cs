@@ -63,76 +63,6 @@ namespace DMT.Config.Pages
 
         #endregion
 
-        #region Private Methods
-
-        private void RefreshTreeTOD()
-        {
-            treeTOD.ItemsSource = null;
-
-            items.Clear();
-            /*
-            var roles = ops.Role.Gets().Value();
-            if (null != roles)
-            {
-                roles.ForEach(role => 
-                {
-                    RoleItem item = role.CloneTo<RoleItem>();
-                    items.Add(item);
-
-                    var search = Search.User.ByRoleId.Create(role.RoleId);
-                    var users = ops.User.Search.ByRoleId(search).Value();
-                    if (null != users)
-                    {
-                        users.ForEach(user =>
-                        {
-                            UserItem uItem = user.CloneTo<UserItem>();
-                            item.Users.Add(uItem);
-                        });
-                    }
-                });
-            }
-            */
-            treeTOD.ItemsSource = items;
-        }
-
-        private void RefreshTreeTAA()
-        {
-            treeTAA.ItemsSource = null;
-
-            items.Clear();
-            /*
-            var roles = ops.Role.Gets().Value();
-            if (null != roles)
-            {
-                roles.ForEach(role => 
-                {
-                    RoleItem item = role.CloneTo<RoleItem>();
-                    items.Add(item);
-
-                    var search = Search.User.ByRoleId.Create(role.RoleId);
-                    var users = ops.User.Search.ByRoleId(search).Value();
-                    if (null != users)
-                    {
-                        users.ForEach(user =>
-                        {
-                            UserItem uItem = user.CloneTo<UserItem>();
-                            item.Users.Add(uItem);
-                        });
-                    }
-                });
-            }
-            */
-            treeTAA.ItemsSource = items;
-        }
-
-        private void RefreshTree()
-        {
-            RefreshTreeTOD();
-            RefreshTreeTAA();
-        }
-
-        #endregion
-
         #region TreeView Handler
 
         private void treeTOD_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -151,14 +81,22 @@ namespace DMT.Config.Pages
 
         private void cmdSaveTOD_Click(object sender, RoutedEventArgs e)
         {
-            if (null == pgridTOD.SelectedObject) return;
+            if (null == pgridTOD.SelectedObject)
+            {
+                MessageBox.Show("No item selected");
+                return;
+            }
             if (pgridTOD.SelectedObject is RoleItem) SaveRuleTOD();
             if (pgridTOD.SelectedObject is UserItem) SaveUserTOD();
         }
 
         private void cmdSaveTAA_Click(object sender, RoutedEventArgs e)
         {
-            if (null == pgridTAA.SelectedObject) return;
+            if (null == pgridTAA.SelectedObject)
+            {
+                MessageBox.Show("No item selected");
+                return;
+            }
             if (pgridTAA.SelectedObject is RoleItem) SaveRuleTAA();
             if (pgridTAA.SelectedObject is UserItem) SaveUserTAA();
         }
@@ -167,92 +105,136 @@ namespace DMT.Config.Pages
 
         #region Private Methods
 
+        private void RefreshTreeTOD()
+        {
+            treeTOD.ItemsSource = null;
+
+            items.Clear();
+
+            var roles = todops.Role.Gets().Value();
+            if (null != roles)
+            {
+                roles.ForEach(role =>
+                {
+                    RoleItem item = role.CloneTo<RoleItem>();
+                    items.Add(item);
+
+                    var search = Search.User.ByRoleId.Create(role.RoleId);
+                    var users = todops.User.Search.ByRoleId(search).Value();
+                    if (null != users)
+                    {
+                        users.ForEach(user =>
+                        {
+                            UserItem uItem = user.CloneTo<UserItem>();
+                            item.Users.Add(uItem);
+                        });
+                    }
+                });
+            }
+            treeTOD.ItemsSource = items;
+        }
+
+        private void RefreshTreeTAA()
+        {
+            treeTAA.ItemsSource = null;
+
+            items.Clear();
+
+            var roles = taaops.Role.Gets().Value();
+            if (null != roles)
+            {
+                roles.ForEach(role =>
+                {
+                    RoleItem item = role.CloneTo<RoleItem>();
+                    items.Add(item);
+
+                    var search = Search.User.ByRoleId.Create(role.RoleId);
+                    var users = taaops.User.Search.ByRoleId(search).Value();
+                    if (null != users)
+                    {
+                        users.ForEach(user =>
+                        {
+                            UserItem uItem = user.CloneTo<UserItem>();
+                            item.Users.Add(uItem);
+                        });
+                    }
+                });
+            }
+            treeTAA.ItemsSource = items;
+        }
+
+        private void RefreshTree()
+        {
+            RefreshTreeTOD();
+            RefreshTreeTAA();
+        }
+
         private void SaveRuleTOD()
         {
             var value = (pgridTOD.SelectedObject as Role);
-            if (null == value)
-            {
-                MessageBox.Show("No item selected");
-                return;
-            }
-            /*
-            var ret = ops.User.Save(value);
+            if (null == value) return;
+
+            var ret = todops.Role.Save(value);
             if (ret.Failed)
             {
-                MessageBox.Show("Save User Error.");
+                MessageBox.Show("TOD Application WS Save Role Error.");
             }
             else
             {
-                MessageBox.Show("Save User Success.");
+                MessageBox.Show("TOD Application WS Save Role Success.");
                 RefreshTree();
             }
-            */
         }
 
         private void SaveUserTOD()
         {
             var value = (pgridTOD.SelectedObject as User);
-            if (null == value)
-            {
-                MessageBox.Show("No item selected");
-                return;
-            }
-            /*
-            var ret = ops.User.Save(value);
+            if (null == value) return;
+
+            var ret = todops.User.Save(value);
             if (ret.Failed)
             {
-                MessageBox.Show("Save User Error.");
+                MessageBox.Show("TOD Application WS Save User Error.");
             }
             else
             {
-                MessageBox.Show("Save User Success.");
+                MessageBox.Show("TOD Application WS Save User Success.");
                 RefreshTree();
             }
-            */
         }
 
         private void SaveRuleTAA()
         {
             var value = (pgridTAA.SelectedObject as Role);
-            if (null == value)
-            {
-                MessageBox.Show("No item selected");
-                return;
-            }
-            /*
-            var ret = ops.Role.Save(value);
+            if (null == value) return;
+
+            var ret = taaops.Role.Save(value);
             if (ret.Failed)
             {
-                MessageBox.Show("Save Role Error.");
+                MessageBox.Show("TA Application WS Save Role Error.");
             }
             else
             {
-                MessageBox.Show("Save Role Success.");
+                MessageBox.Show("TA Application WS Save Role Success.");
                 RefreshTree();
             }
-            */
         }
 
         private void SaveUserTAA()
         {
-            var value = (pgridTAA.SelectedObject as Role);
-            if (null == value)
-            {
-                MessageBox.Show("No item selected");
-                return;
-            }
-            /*
-            var ret = ops.User.Save(value);
+            var value = (pgridTAA.SelectedObject as User);
+            if (null == value) return;
+
+            var ret = taaops.User.Save(value);
             if (ret.Failed)
             {
-                MessageBox.Show("Save User Error.");
+                MessageBox.Show("TA Application WS Save User Error.");
             }
             else
             {
-                MessageBox.Show("Save User Success.");
+                MessageBox.Show("TA Application WS Save User Success.");
                 RefreshTree();
             }
-            */
         }
 
         #endregion

@@ -2,11 +2,11 @@
 {
     static partial class RouteConsts
     {
-        /// <summary>The TA class.</summary>
-        public static partial class TA 
+        /// <summary>The TOD class.</summary>
+        public static partial class Account
         {
             /// <summary>Gets name.</summary>
-            public const string Name = "TA";
+            public const string Name = "Account";
             public const string Url = RouteConsts.Url + @"/" + Name;
         }
     }

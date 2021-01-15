@@ -2,7 +2,7 @@
 {
     static partial class RouteConsts
     {
-        partial class TOD
+        partial class TA
         {
             /// <summary>The Shift Controller.</summary>
             public static partial class Shift

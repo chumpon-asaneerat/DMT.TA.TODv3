@@ -59,8 +59,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #815
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #814
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #813
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Account Routes #1
+      - Infrastructure actions
+      - Security actions
+    - TA Routes
+      - Infrastructure actions
+      - Security actions
+    - TOD Routes
+      - Infrastructure actions
+      - Security actions
+      - Shift actions
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #812

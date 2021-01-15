@@ -58,6 +58,9 @@
     <Compile Include="Configurations\_BaseConfigs.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
+    <Compile Include="Consts\Routes\Account\Account.Controller.cs" />
+    <Compile Include="Consts\Routes\Account\Infrastructure\Account.Infrastructure.Controller.cs" />
+    <Compile Include="Consts\Routes\Account\Security\Account.Security.Controller.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\User\Transaction\Gets.cs" />
@@ -105,13 +108,18 @@
     <Compile Include="Consts\Routes\TAxTOD\Coupons\TAxTOD.Coupon.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TAA\TAxTOD.TAA.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TAxTOD.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\TA\Infrastructure\TA.Infrastructure.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\TA.Notify.Controller.cs" />
+    <Compile Include="Consts\Routes\TA\Security\TA.Security.Controller.cs" />
+    <Compile Include="Consts\Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
+    <Compile Include="Consts\Routes\TOD\Infrastructure\TOD.Infrastructure.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\TOD.Notify.Controller.cs" />
+    <Compile Include="Consts\Routes\TOD\Security\TOD.Security.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\TOD.Controller.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />
@@ -129,7 +137,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\" />
+    <Folder Include="Consts\Routes\Account\Security\Actions\" />
     <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
+    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\" />
+    <Folder Include="Consts\Routes\TA\Security\Actions\" />
+    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\" />
+    <Folder Include="Consts\Routes\TOD\Security\Actions\" />
     <Folder Include="Consts\Routes\TOD\Shift\Actions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

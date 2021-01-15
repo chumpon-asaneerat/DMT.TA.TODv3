@@ -1,6 +1,5 @@
 ﻿namespace DMT
 {
-    // Url: api/ta/Notify
     static partial class RouteConsts
     {
         partial class TA

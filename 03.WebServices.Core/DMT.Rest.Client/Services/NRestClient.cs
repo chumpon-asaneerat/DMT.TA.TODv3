@@ -3,11 +3,16 @@
 using System;
 using System.Net; // for http status code.
 using System.Reflection;
+
 using NLib;
+
+using DMT.Models;
+using DMT.Configurations;
+
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Serializers.NewtonsoftJson;
-using DMT.Models;
+
 
 #endregion
 
@@ -448,24 +453,6 @@ namespace DMT.Services
             string host = "localhost", int port = 9000)
         {
             return new NRestClient(protocol, host, port);
-        }
-        /// <summary>
-        /// Create Rest Client for local plaza web service.
-        /// </summary>
-        /// <param name="config">The IPlazaConfig interface instance.</param>
-        /// <returns>Returns instance of NRestClient for local plaza web service.</returns>
-        public static NRestClient CreateLocalClient(IPlazaConfig config)
-        {
-            if (null == config) return null;
-            if (null == config.Plaza) return null;
-            if (null == config.Plaza.Service) return null;
-
-            var server = config.Plaza.Service;
-            WebProtocol protocol = (server.Protocol == "http") ? WebProtocol.http : WebProtocol.https;
-            string hostName = server.HostName;
-            int portNo = server.PortNumber;
-
-            return new NRestClient(protocol, hostName, portNo);
         }
         /// <summary>
         /// Create Rest Client for TA/TOD node.js server.

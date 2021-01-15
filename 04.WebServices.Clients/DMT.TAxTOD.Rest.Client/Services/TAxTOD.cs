@@ -2,6 +2,7 @@
 
 using System;
 using DMT.Models;
+using DMT.Configurations;
 
 #endregion
 

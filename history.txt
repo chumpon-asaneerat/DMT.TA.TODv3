@@ -44,8 +44,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #830
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #829
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #828
-- 
+- DMT.TAxTODv3
+  - Re-references all projects
+    - NLib
+    - Nlib.Reports
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #827

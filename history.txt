@@ -62,8 +62,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #814
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #813
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #812
-- 
+- DMT.TAxTODv3
+  - Remove DMT.Plaza.Service.Manager.App project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #811

@@ -1,21 +1,20 @@
 ﻿namespace DMT
 {
-    // Url : api/credit/user/transaction/save
     static partial class RouteConsts
     {
-        static partial class Credit
+        static partial class TA
         {
-            static partial class User
+            static partial class Credit
             {
-                static partial class Transaction
+                static partial class User
                 {
-                    /// <summary>The Save User Credit Transaction(s) action.</summary>
+                    /// <summary>The Save User Credit Balance action.</summary>
                     public static class Save
                     {
                         /// <summary>Gets route name.</summary>
                         public const string Name = "Save";
                         /// <summary>Gets route url.</summary>
-                        public const string Url = Transaction.Url + @"/" + Name;
+                        public const string Url = User.Url + @"/" + Name;
                     }
                 }
             }

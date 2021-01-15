@@ -56,8 +56,33 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #826
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #825
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #824
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #11
+    - Local Routes
+      - All routes removed.
+    - TA Routes
+      - Coupon actions
+        - TSB Transaction(s)
+          - Gets
+          - Save
+        - User Transaction(s)
+          - Gets
+          - Save
+      - Credit actions
+        - TSB
+          - Current
+          - Transaction(s)
+            - Gets
+            - Save
+        - User Transaction
+          - Current
+          - Cancel
+          - Save
+          - Transaction(s)
+            - Gets
+            - Save
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #823

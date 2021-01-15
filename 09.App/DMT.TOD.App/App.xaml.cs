@@ -6,6 +6,8 @@ using System.Windows;
 using NLib;
 using NLib.Logs;
 
+using DMT.Configurations;
+
 #endregion
 
 namespace DMT
@@ -93,12 +95,16 @@ namespace DMT
             LogManager.Instance.Start();
 
             // Load Config service.
-            Services.TODConfigManager.Instance.LoadConfig();
+            TODConfigManager.Instance.LoadConfig();
             // Setup config reference to all rest client class.
-            Services.Operations.Plaza.Config = Services.TODConfigManager.Instance;
-            Services.Operations.Plaza.DMT = Services.TODConfigManager.Instance; // required for NetworkId
-            Services.Operations.SCW.Config = Services.TODConfigManager.Instance;
-            Services.Operations.SCW.DMT = Services.TODConfigManager.Instance; // required for NetworkId
+            Services.Operations.TA.Config = TODConfigManager.Instance;
+            Services.Operations.TA.DMT = TODConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.SCW.Config = TODConfigManager.Instance;
+            Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
 
             // Start SCWMQ
             Services.SCWMQService.Instance.Start();

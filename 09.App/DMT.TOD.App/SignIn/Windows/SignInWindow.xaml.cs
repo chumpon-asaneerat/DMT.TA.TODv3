@@ -15,8 +15,6 @@ using System.Windows.Threading;
 
 namespace DMT.Windows
 {
-    using ops = Services.Operations.Plaza.Security; // reference to static class.
-
     /// <summary>
     /// Interaction logic for SignInWindow.xaml
     /// </summary>
@@ -210,8 +208,7 @@ namespace DMT.Windows
             }
 
             var md5 = Utils.MD5.Encrypt(pwd);
-            var search = Search.User.ByLogIn.Create(userId, md5);
-            _user = ops.User.Search.ByLogIn(search).Value();
+            _user = User.GetByLogIn(userId, md5).Value();
 
             VerifyUser();
         }
@@ -267,8 +264,7 @@ namespace DMT.Windows
 
             var userId = txtUserId2.Text.Trim();
             var md5 = Utils.MD5.Encrypt(txtPassword2.Password);
-            var search = Search.User.ByLogIn.Create(userId, md5);
-            _user = ops.User.Search.ByLogIn(search).Value();
+            _user = User.GetByLogIn(userId, md5).Value();
 
             if (null == _user)
             {
@@ -297,7 +293,7 @@ namespace DMT.Windows
             }
 
             _user.Password = newPwd; // change password.
-            var saveRet = ops.User.Save(_user);
+            var saveRet = User.SaveUser(_user);
 
             if (!saveRet.Ok)
             {

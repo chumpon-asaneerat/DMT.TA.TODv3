@@ -10,7 +10,7 @@
                 /// <summary>Gets controller name.</summary>
                 public const string ControllerName = "Shift";
                 /// <summary>Gets base controller url.</summary>
-                public const string Url = TOD.Url + @"/" + ControllerName;
+                public const string Url = TA.Url + @"/" + ControllerName;
 
                 // Url: api/shift/tsb
                 /// <summary>The Shift's TSB Controller.</summary>

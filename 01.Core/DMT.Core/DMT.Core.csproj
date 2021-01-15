@@ -92,10 +92,6 @@
     <Compile Include="Consts\Routes\Local\Credit\Actions\User\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\Local\Credit\Credit.Controller.cs" />
     <Compile Include="Consts\Routes\RouteConsts.cs" />
-    <Compile Include="Consts\Routes\Local\Shift\Actions\Common\Gets.cs" />
-    <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Change.cs" />
-    <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Current.cs" />
-    <Compile Include="Consts\Routes\Local\Shift\Shift.Controller.cs" />
     <Compile Include="Consts\Routes\SCW\Emu\SCW.Emulator.RouteConsts.cs" />
     <Compile Include="Consts\Routes\SCW\Master\SCW.Master.RouteConsts.cs" />
     <Compile Include="Consts\Routes\SCW\SCW.RouteConsts.cs" />
@@ -127,6 +123,7 @@
     <Compile Include="Consts\Routes\TA\Security\Actions\User\Save.cs" />
     <Compile Include="Consts\Routes\TA\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TA\Security\TA.Security.Controller.cs" />
+    <Compile Include="Consts\Routes\TA\Shift\Common\Gets.cs" />
     <Compile Include="Consts\Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Lane\Gets.cs" />
@@ -152,6 +149,10 @@
     <Compile Include="Consts\Routes\TOD\Security\Actions\User\Save.cs" />
     <Compile Include="Consts\Routes\TOD\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TOD\Security\TOD.Security.Controller.cs" />
+    <Compile Include="Consts\Routes\TOD\Shift\Actions\Common\Gets.cs" />
+    <Compile Include="Consts\Routes\TOD\Shift\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Current.cs" />
+    <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\TOD.Controller.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />
@@ -168,9 +169,6 @@
       <Name>NLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
-    <Folder Include="Consts\Routes\TOD\Shift\Actions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

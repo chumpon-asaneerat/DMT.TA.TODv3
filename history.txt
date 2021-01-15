@@ -59,8 +59,21 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #825
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #824
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #823
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #10
+    - TA Routes
+      - Shift actions
+        - Gets
+    - TOD Routes
+      - Shift actions
+        - Gets
+        - TSB
+          - Current
+        - User
+          - Current
+          - Searchs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #822

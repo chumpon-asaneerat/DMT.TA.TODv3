@@ -53,8 +53,22 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #817
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #816
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #815
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #3
+    - Account Routes
+      - Security actions
+        - Role
+        - User
+    - TA Routes
+      - Security actions
+        - Role
+        - User
+    - TOD Routes
+      - Security actions
+        - Role
+        - User
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #814

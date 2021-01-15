@@ -85,7 +85,6 @@
     <Compile Include="Consts\Routes\Local\Infrastructure\Actions\PlazaGroup\Searchs.cs" />
     <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\RouteConsts.cs" />
-    <Compile Include="Consts\Routes\Local\Infrastructure\Infrastructure.Controller.cs" />
     <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Lane\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Infrastructure\Actions\Plaza\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Infrastructure\Actions\PlazaGroup\Gets.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Consts\Routes\Local\Security\Actions\User\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Security\Actions\User\Save.cs" />
     <Compile Include="Consts\Routes\Local\Security\Actions\User\Searchs.cs" />
-    <Compile Include="Consts\Routes\Local\Security\Security.Controller.cs" />
     <Compile Include="Consts\Routes\Local\Shift\Actions\Common\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Change.cs" />
     <Compile Include="Consts\Routes\Local\Shift\Actions\TSB\Current.cs" />
@@ -137,13 +135,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\" />
-    <Folder Include="Consts\Routes\Account\Security\Actions\" />
+    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\Lane\" />
+    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\PlazaGroup\" />
+    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\Plaza\" />
+    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\TSB\" />
+    <Folder Include="Consts\Routes\Account\Security\Actions\Role\" />
+    <Folder Include="Consts\Routes\Account\Security\Actions\User\" />
     <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
-    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\" />
-    <Folder Include="Consts\Routes\TA\Security\Actions\" />
-    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\" />
-    <Folder Include="Consts\Routes\TOD\Security\Actions\" />
+    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\Lane\" />
+    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\PlazaGroup\" />
+    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\Plaza\" />
+    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\TSB\" />
+    <Folder Include="Consts\Routes\TA\Security\Actions\Role\" />
+    <Folder Include="Consts\Routes\TA\Security\Actions\User\" />
+    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\Lane\" />
+    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\PlazaGroup\" />
+    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\Plaza\" />
+    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\" />
+    <Folder Include="Consts\Routes\TOD\Security\Actions\Role\" />
+    <Folder Include="Consts\Routes\TOD\Security\Actions\User\" />
     <Folder Include="Consts\Routes\TOD\Shift\Actions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

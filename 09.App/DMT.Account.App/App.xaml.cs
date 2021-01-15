@@ -6,6 +6,8 @@ using System.Windows;
 using NLib;
 using NLib.Logs;
 
+using DMT.Configurations;
+
 #endregion
 
 namespace DMT
@@ -94,17 +96,17 @@ namespace DMT
             Services.AccountDbServer.Instance.Start();
 
             // Load Config service.
-            Services.AccountConfigManager.Instance.LoadConfig();
-            Services.Operations.TAxTOD.Config = Services.AccountConfigManager.Instance;
-            Services.Operations.TAxTOD.DMT = Services.AccountConfigManager.Instance; // required for NetworkId
-            Services.Operations.SCW.Config = Services.AccountConfigManager.Instance;
-            Services.Operations.SCW.DMT = Services.AccountConfigManager.Instance; // required for NetworkId
+            AccountConfigManager.Instance.LoadConfig();
+            Services.Operations.TAxTOD.Config = AccountConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = AccountConfigManager.Instance; // required for NetworkId
+            Services.Operations.SCW.Config = AccountConfigManager.Instance;
+            Services.Operations.SCW.DMT = AccountConfigManager.Instance; // required for NetworkId
 
             // Start SCWMQ
             Services.SCWMQService.Instance.Start();
 
             // Start RabbitMQ
-            Services.RabbitMQService.Instance.RabbitMQ = Services.AccountConfigManager.Instance.RabbitMQ;
+            Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
             Services.RabbitMQService.Instance.Start();
 
             Window window = null;

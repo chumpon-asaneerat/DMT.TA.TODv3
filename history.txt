@@ -53,8 +53,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #837
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #836
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #835
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App - Full compile and execute OK.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #834

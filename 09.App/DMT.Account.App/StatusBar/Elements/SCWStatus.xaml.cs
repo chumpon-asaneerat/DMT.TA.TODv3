@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 
+using DMT.Configurations;
 using DMT.Services;
 
 #endregion
@@ -37,8 +38,8 @@ namespace DMT.Controls.StatusBar
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
-                TAConfigManager.Instance.SCW.Service.HostName : "unknown";
+            string host = (null != AccountConfigManager.Instance.SCW && null != AccountConfigManager.Instance.SCW.Service) ?
+                AccountConfigManager.Instance.SCW.Service.HostName : "unknown";
 
             ping = new NLib.Components.PingManager();
             ping.OnReply += Ping_OnReply;

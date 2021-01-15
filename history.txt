@@ -56,8 +56,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #836
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #835
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #834
-- 
+- DMT.TAxTODv3
+  - Recheck Build Action -> xcopy files.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #833

@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 
 namespace DMT.Config.Pages
 {
-    using taaops = Services.Operations.TA.Security; // reference to static class.
     using todops = Services.Operations.TOD.Security; // reference to static class.
+    using taaops = Services.Operations.TA.Security; // reference to static class.
 
     /// <summary>
     /// Interaction logic for UserViewPage.xaml
@@ -65,9 +65,9 @@ namespace DMT.Config.Pages
 
         #region Private Methods
 
-        private void RefreshTree()
+        private void RefreshTreeTOD()
         {
-            tree.ItemsSource = null;
+            treeTOD.ItemsSource = null;
 
             items.Clear();
             /*
@@ -91,68 +91,174 @@ namespace DMT.Config.Pages
                     }
                 });
             }
-            tree.ItemsSource = items;
             */
+            treeTOD.ItemsSource = items;
+        }
+
+        private void RefreshTreeTAA()
+        {
+            treeTAA.ItemsSource = null;
+
+            items.Clear();
+            /*
+            var roles = ops.Role.Gets().Value();
+            if (null != roles)
+            {
+                roles.ForEach(role => 
+                {
+                    RoleItem item = role.CloneTo<RoleItem>();
+                    items.Add(item);
+
+                    var search = Search.User.ByRoleId.Create(role.RoleId);
+                    var users = ops.User.Search.ByRoleId(search).Value();
+                    if (null != users)
+                    {
+                        users.ForEach(user =>
+                        {
+                            UserItem uItem = user.CloneTo<UserItem>();
+                            item.Users.Add(uItem);
+                        });
+                    }
+                });
+            }
+            */
+            treeTAA.ItemsSource = items;
+        }
+
+        private void RefreshTree()
+        {
+            RefreshTreeTOD();
+            RefreshTreeTAA();
         }
 
         #endregion
 
         #region TreeView Handler
 
-        private void tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void treeTOD_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            pgrid.SelectedObject = e.NewValue;
+            pgridTOD.SelectedObject = e.NewValue;
+        }
+
+        private void treeTAA_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            pgridTAA.SelectedObject = e.NewValue;
         }
 
         #endregion
 
-        private void SaveRule()
+        #region Button Handlers
+
+        private void cmdSaveTOD_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            var value = (pgrid.SelectedObject as Role);
-            if (null != value)
+            if (null == pgridTOD.SelectedObject) return;
+            if (pgridTOD.SelectedObject is RoleItem) SaveRuleTOD();
+            if (pgridTOD.SelectedObject is UserItem) SaveUserTOD();
+        }
+
+        private void cmdSaveTAA_Click(object sender, RoutedEventArgs e)
+        {
+            if (null == pgridTAA.SelectedObject) return;
+            if (pgridTAA.SelectedObject is RoleItem) SaveRuleTAA();
+            if (pgridTAA.SelectedObject is UserItem) SaveUserTAA();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void SaveRuleTOD()
+        {
+            var value = (pgridTOD.SelectedObject as Role);
+            if (null == value)
             {
-                var ret = ops.Role.Save(value);
-                if (ret.Failed)
-                {
-                    MessageBox.Show("Save Role Error.");
-                }
-                else
-                {
-                    MessageBox.Show("Save Role Success.");
-                    RefreshTree();
-                }
+                MessageBox.Show("No item selected");
+                return;
+            }
+            /*
+            var ret = ops.User.Save(value);
+            if (ret.Failed)
+            {
+                MessageBox.Show("Save User Error.");
+            }
+            else
+            {
+                MessageBox.Show("Save User Success.");
+                RefreshTree();
             }
             */
         }
 
-        private void SaveUser()
+        private void SaveUserTOD()
         {
-            /*
-            var value = (pgrid.SelectedObject as User);
-            if (null != value)
+            var value = (pgridTOD.SelectedObject as User);
+            if (null == value)
             {
-                var ret = ops.User.Save(value);
-                if (ret.Failed)
-                {
-                    MessageBox.Show("Save User Error.");
-                }
-                else
-                {
-                    MessageBox.Show("Save User Success.");
-                    RefreshTree();
-                }
+                MessageBox.Show("No item selected");
+                return;
+            }
+            /*
+            var ret = ops.User.Save(value);
+            if (ret.Failed)
+            {
+                MessageBox.Show("Save User Error.");
+            }
+            else
+            {
+                MessageBox.Show("Save User Success.");
+                RefreshTree();
             }
             */
         }
 
-        private void cmdSave_Click(object sender, RoutedEventArgs e)
+        private void SaveRuleTAA()
         {
-            if (null == pgrid.SelectedObject) return;
-            if (pgrid.SelectedObject is RoleItem) SaveRule();
-            if (pgrid.SelectedObject is UserItem) SaveUser();
+            var value = (pgridTAA.SelectedObject as Role);
+            if (null == value)
+            {
+                MessageBox.Show("No item selected");
+                return;
+            }
+            /*
+            var ret = ops.Role.Save(value);
+            if (ret.Failed)
+            {
+                MessageBox.Show("Save Role Error.");
+            }
+            else
+            {
+                MessageBox.Show("Save Role Success.");
+                RefreshTree();
+            }
+            */
         }
+
+        private void SaveUserTAA()
+        {
+            var value = (pgridTAA.SelectedObject as Role);
+            if (null == value)
+            {
+                MessageBox.Show("No item selected");
+                return;
+            }
+            /*
+            var ret = ops.User.Save(value);
+            if (ret.Failed)
+            {
+                MessageBox.Show("Save User Error.");
+            }
+            else
+            {
+                MessageBox.Show("Save User Success.");
+                RefreshTree();
+            }
+            */
+        }
+
+        #endregion
     }
+
+    #region Model classes.
 
     public class RoleItem : Role
     {
@@ -166,4 +272,6 @@ namespace DMT.Config.Pages
     }
 
     public class UserItem : User { }
+
+    #endregion
 }

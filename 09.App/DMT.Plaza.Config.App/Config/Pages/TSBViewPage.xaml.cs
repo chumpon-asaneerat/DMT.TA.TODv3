@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 
 namespace DMT.Config.Pages
 {
-    using taaops = Services.Operations.TA.Infrastructure; // reference to static class.
     using todops = Services.Operations.TOD.Infrastructure; // reference to static class.
+    using taaops = Services.Operations.TA.Infrastructure; // reference to static class.
 
     /// <summary>
     /// Interaction logic for TSBViewPage.xaml

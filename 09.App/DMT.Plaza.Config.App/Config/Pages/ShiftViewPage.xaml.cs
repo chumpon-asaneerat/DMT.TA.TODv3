@@ -26,8 +26,8 @@ using System.Runtime.InteropServices;
 
 namespace DMT.Config.Pages
 {
-    using taaops = Services.Operations.TA.Shift; // reference to static class.
     using todops = Services.Operations.TOD.Shift; // reference to static class.
+    using taaops = Services.Operations.TA.Shift; // reference to static class.
 
     /// <summary>
     /// Interaction logic for ShiftViewPage.xaml
@@ -62,19 +62,76 @@ namespace DMT.Config.Pages
 
         #region ListView Handler
 
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listViewTOD_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            pgrid.SelectedObject = listView.SelectedItem;
+            pgridTOD.SelectedObject = listViewTOD.SelectedItem;
+        }
+
+        private void listViewTAA_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            pgridTAA.SelectedObject = listViewTAA.SelectedItem;
         }
 
         #endregion
 
+        #region Button Handlers
+
+        private void cmdSaveTOD_Click(object sender, RoutedEventArgs e)
+        {
+            SaveShiftTOD();
+        }
+
+        private void cmdSaveTAA_Click(object sender, RoutedEventArgs e)
+        {
+            SaveShiftTAA();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void RefreshListTOD()
+        {
+            var shifts = todops.Gets().Value();
+            listViewTOD.ItemsSource = shifts;
+        }
+
+        private void RefreshListTAA()
+        {
+            var shifts = taaops.Gets().Value();
+            listViewTAA.ItemsSource = shifts;
+        }
+
         private void RefreshList()
         {
-            /*
-            var shifts = ops.Gets().Value();
-            listView.ItemsSource = shifts;
-            */
+            RefreshListTOD();
+            RefreshListTAA();
         }
+
+        private void SaveShiftTOD()
+        {
+            var value = (pgridTOD.SelectedObject as Shift);
+            if (null == value)
+            {
+                MessageBox.Show("No item selected");
+                return;
+            }
+            //todops
+            MessageBox.Show("TOD Application WS not implements Shift's Save operation");
+        }
+
+        private void SaveShiftTAA()
+        {
+            var value = (pgridTAA.SelectedObject as Shift);
+            if (null == value)
+            {
+                MessageBox.Show("No item selected");
+                return;
+            }
+            //taaops
+            MessageBox.Show("TA Application WS not implements Shift's Save operation");
+        }
+
+        #endregion
     }
 }

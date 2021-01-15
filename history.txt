@@ -47,8 +47,25 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #819
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #818
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #817
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #5
+    - Account Routes
+      - Infrastructure's Plaza actions
+        - Gets
+        - Save
+        - Searchs
+    - TA Routes
+      - Infrastructure's Plaza actions
+        - Gets
+        - Save
+        - Searchs
+    - TOD Routes
+      - Infrastructure's Plaza actions
+        - Gets
+        - Save
+        - Searchs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #816

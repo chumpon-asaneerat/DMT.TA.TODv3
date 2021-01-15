@@ -136,9 +136,29 @@
       <Project>{7d584f0a-920f-4be1-8652-3527fd7a5c27}</Project>
       <Name>DMT.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\02.Models\DMT.TA.Models\DMT.TA.Models.csproj">
+      <Project>{3765dc14-2c59-445f-8e73-efc7a59709e4}</Project>
+      <Name>DMT.TA.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\03.WebServices.Core\DMT.RabbitMQ.Client\DMT.RabbitMQ.Client.csproj">
+      <Project>{37616cb2-8712-4767-b165-76f046cfc68b}</Project>
+      <Name>DMT.RabbitMQ.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\03.WebServices.Core\DMT.Rest.Server\DMT.Rest.Server.csproj">
       <Project>{53f967f3-9713-43da-94f5-687ddec8cf04}</Project>
       <Name>DMT.Rest.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.SCW.Rest.Client\DMT.SCW.Rest.Client.csproj">
+      <Project>{5afdd4c5-434e-4b9f-a6e8-05c75dd95b59}</Project>
+      <Name>DMT.SCW.Rest.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TAxTOD.Rest.Client\DMT.TAxTOD.Rest.Client.csproj">
+      <Project>{78d73003-864f-4c0e-81f2-21f721388f4d}</Project>
+      <Name>DMT.TAxTOD.Rest.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TOD.Rest.Client\DMT.TOD.Rest.Client.csproj">
+      <Project>{cda29d61-9f4f-46f2-a256-81a32b1d7e52}</Project>
+      <Name>DMT.TOD.Rest.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,7 +26,8 @@ using System.Runtime.InteropServices;
 
 namespace DMT.Config.Pages
 {
-    using ops = Services.Operations.Plaza.Shift; // reference to static class.
+    using taaops = Services.Operations.TA.Shift; // reference to static class.
+    using todops = Services.Operations.TOD.Shift; // reference to static class.
 
     /// <summary>
     /// Interaction logic for ShiftViewPage.xaml
@@ -70,8 +71,10 @@ namespace DMT.Config.Pages
 
         private void RefreshList()
         {
+            /*
             var shifts = ops.Gets().Value();
             listView.ItemsSource = shifts;
+            */
         }
     }
 }

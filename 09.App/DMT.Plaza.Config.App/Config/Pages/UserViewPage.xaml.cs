@@ -27,7 +27,8 @@ using System.Runtime.InteropServices;
 
 namespace DMT.Config.Pages
 {
-    using ops = Services.Operations.Plaza.Security; // reference to static class.
+    using taaops = Services.Operations.TA.Security; // reference to static class.
+    using todops = Services.Operations.TOD.Security; // reference to static class.
 
     /// <summary>
     /// Interaction logic for UserViewPage.xaml
@@ -69,32 +70,7 @@ namespace DMT.Config.Pages
             tree.ItemsSource = null;
 
             items.Clear();
-
             /*
-            var roles = ops.Role.Gets().Value();
-            var users = ops.User.Gets().Value();
-            if (null != roles)
-            {
-                roles.ForEach(role =>
-                {
-                    RoleItem item = role.CloneTo<RoleItem>();
-                    items.Add(item);
-                    if (null != users)
-                    {
-                        users.ForEach(user =>
-                        {
-                            // Add if match role.
-                            if (user.RoleId == role.RoleId)
-                            {
-                                UserItem uItem = user.CloneTo<UserItem>();
-                                item.Users.Add(uItem);
-                            }
-                        });
-                    }
-                });
-            }
-            */
-
             var roles = ops.Role.Gets().Value();
             if (null != roles)
             {
@@ -116,6 +92,7 @@ namespace DMT.Config.Pages
                 });
             }
             tree.ItemsSource = items;
+            */
         }
 
         #endregion
@@ -131,6 +108,7 @@ namespace DMT.Config.Pages
 
         private void SaveRule()
         {
+            /*
             var value = (pgrid.SelectedObject as Role);
             if (null != value)
             {
@@ -145,10 +123,12 @@ namespace DMT.Config.Pages
                     RefreshTree();
                 }
             }
+            */
         }
 
         private void SaveUser()
         {
+            /*
             var value = (pgrid.SelectedObject as User);
             if (null != value)
             {
@@ -163,6 +143,7 @@ namespace DMT.Config.Pages
                     RefreshTree();
                 }
             }
+            */
         }
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)

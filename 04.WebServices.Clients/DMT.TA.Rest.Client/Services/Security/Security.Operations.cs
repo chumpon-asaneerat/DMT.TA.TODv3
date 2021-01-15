@@ -6,7 +6,7 @@ using System;
 
 namespace DMT.Services.Operations
 {
-    static partial class Plaza
+    static partial class TA
     {
         /// <summary>The Security Operations class.</summary>
         public static partial class Security

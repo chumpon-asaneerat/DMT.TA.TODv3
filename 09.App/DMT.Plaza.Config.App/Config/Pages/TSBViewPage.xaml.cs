@@ -27,7 +27,8 @@ using System.Runtime.InteropServices;
 
 namespace DMT.Config.Pages
 {
-    using ops = Services.Operations.Plaza.Infrastructure; // reference to static class.
+    using taaops = Services.Operations.TA.Infrastructure; // reference to static class.
+    using todops = Services.Operations.TOD.Infrastructure; // reference to static class.
 
     /// <summary>
     /// Interaction logic for TSBViewPage.xaml
@@ -63,6 +64,7 @@ namespace DMT.Config.Pages
 
         private void RefreshTree()
         {
+            /*
             tree.ItemsSource = null;
 
             items.Clear();
@@ -97,6 +99,7 @@ namespace DMT.Config.Pages
             });
 
             tree.ItemsSource = items;
+            */
         }
 
         #region Button Handler
@@ -104,12 +107,14 @@ namespace DMT.Config.Pages
         private void cmdSetActiveTSB_Click(object sender, RoutedEventArgs e)
         {
             // Set Active.
+            /*
             var item = (sender as Button).DataContext;
             if (null != item && item is TSBItem)
             {
                 ops.TSB.SetActive(item as TSB);
                 RefreshTree();
             }
+            */
         }
 
         #endregion
@@ -125,6 +130,7 @@ namespace DMT.Config.Pages
 
         private void SaveTSB()
         {
+            /*
             var value = (pgrid.SelectedObject as TSB);
             if (null != value)
             {
@@ -139,10 +145,12 @@ namespace DMT.Config.Pages
                     RefreshTree();
                 }
             }
+            */
         }
 
         private void SavePlaza()
         {
+            /*
             var value = (pgrid.SelectedObject as Plaza);
             if (null != value)
             {
@@ -157,10 +165,12 @@ namespace DMT.Config.Pages
                     RefreshTree();
                 }
             }
+            */
         }
 
         private void SaveLane()
         {
+            /*
             var value = (pgrid.SelectedObject as Lane);
             if (null != value)
             {
@@ -175,25 +185,30 @@ namespace DMT.Config.Pages
                     RefreshTree();
                 }
             }
+            */
         }
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)
         {
+            /*
             if (null == pgrid.SelectedObject) return;
             if (pgrid.SelectedObject is TSBItem) SaveTSB();
             if (pgrid.SelectedObject is PlazaItem) SavePlaza();
             if (pgrid.SelectedObject is LaneItem) SaveLane();
+            */
         }
 
         private void cmdChangeActiveTSB_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             // Set Active.
+            /*
             var item = (e.OriginalSource as Button).DataContext;
             if (null != item && item is TSBItem)
             {
                 ops.TSB.SetActive(item as TSB);
                 RefreshTree();
             }
+            */
         }
 
         private void cmdChangeActiveTSB_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -201,39 +216,4 @@ namespace DMT.Config.Pages
             e.CanExecute = true;
         }
     }
-
-    /*
-    public class TSBItem : TSB
-    {
-        public TSBItem()
-        {
-            Plazas = new ObservableCollection<PlazaItem>();
-        }
-
-        [ReadOnly(true)]
-        [Browsable(false)]
-        public string IsActive 
-        {
-            get { return (this.Active) ? "[A]" : ""; }
-            set { }
-        }
-
-        [Browsable(false)]
-        public ObservableCollection<PlazaItem> Plazas { get; set; }
-    }
-
-    public class PlazaItem : Plaza
-    {
-        public PlazaItem()
-        {
-            Lanes = new ObservableCollection<LaneItem>();
-        }
-
-        [Browsable(false)]
-        public ObservableCollection<LaneItem> Lanes { get; set; }
-    }
-
-    [Browsable(false)]
-    public class LaneItem : Lane { }
-    */
 }

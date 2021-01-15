@@ -47,8 +47,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #829
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #828
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #827
-- 
+- DMT.TAxTODv3
+  - Remove DMT.Local.Rest.Client project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #826

@@ -41,8 +41,18 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #830
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #829
-- 
+- DMT.TAxTODv3
+  - DMT.Local.Rest.Client project.
+    - Remove all Infrastructure controllers.
+    - Remove all Security controllers.
+  - DMT.TA.Rest.Client project.
+    - Add Infrastructure controllers.
+    - Add Security controllers.
+  - DMT.TOD.Rest.Client project.
+    - Add Infrastructure controllers.
+    - Add Security controllers.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #828

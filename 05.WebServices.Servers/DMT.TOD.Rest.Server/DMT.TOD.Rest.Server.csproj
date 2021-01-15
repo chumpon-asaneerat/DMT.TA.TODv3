@@ -93,9 +93,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Save.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Searchs.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\PlazaGroup\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\PlazaGroup\Save.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\PlazaGroup\Searchs.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\Plaza\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\Plaza\Save.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\Plaza\Searchs.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\Current.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\Save.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\SetActive.cs" />
+    <Compile Include="WebServer\Controllers\Infrastructure\Infrastructure.Controller.cs" />
     <Compile Include="WebServer\Controllers\Notify\Notify.Controller.cs" />
     <Compile Include="WebServer\Controllers\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="WebServer\Controllers\Notify\Actions\TSBChanged.cs" />
+    <Compile Include="WebServer\Controllers\Security\Actions\Role\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Security\Actions\Role\Save.cs" />
+    <Compile Include="WebServer\Controllers\Security\Actions\User\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Security\Actions\User\Save.cs" />
+    <Compile Include="WebServer\Controllers\Security\Actions\User\Searchs.cs" />
+    <Compile Include="WebServer\Controllers\Security\Security.Controller.cs" />
     <Compile Include="WebServer\Services\TODNotifyService.cs" />
     <Compile Include="WebServer\TODWebServer.cs" />
   </ItemGroup>

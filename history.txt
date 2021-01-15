@@ -41,8 +41,27 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #820
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #819
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #7
+    - Account Routes
+      - Infrastructure's TSB actions
+        - Gets
+        - Save
+    - TA Routes
+      - Infrastructure's TSB actions
+        - Current
+        - Gets
+        - Save
+        - SetActive
+    - TOD Routes
+      - Infrastructure's TSB actions
+        - Current
+        - Gets
+        - Save
+        - Searchs
+        - SetActive
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #818

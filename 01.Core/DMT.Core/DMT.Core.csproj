@@ -69,6 +69,8 @@
     <Compile Include="Consts\Routes\Account\Infrastructure\Actions\Plaza\Gets.cs" />
     <Compile Include="Consts\Routes\Account\Infrastructure\Actions\Plaza\Save.cs" />
     <Compile Include="Consts\Routes\Account\Infrastructure\Actions\Plaza\Searchs.cs" />
+    <Compile Include="Consts\Routes\Account\Infrastructure\Actions\TSB\Gets.cs" />
+    <Compile Include="Consts\Routes\Account\Infrastructure\Actions\TSB\Save.cs" />
     <Compile Include="Consts\Routes\Account\Security\Account.Security.Controller.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Coupon\Actions\TSB\Transaction\Save.cs" />
@@ -84,11 +86,7 @@
     <Compile Include="Consts\Routes\Local\Credit\Actions\User\Transaction\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Credit\Actions\User\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\Local\Credit\Credit.Controller.cs" />
-    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\Current.cs" />
-    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\Save.cs" />
-    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\RouteConsts.cs" />
-    <Compile Include="Consts\Routes\Local\Infrastructure\Actions\TSB\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Security\Actions\Role\Gets.cs" />
     <Compile Include="Consts\Routes\Local\Security\Actions\Role\Save.cs" />
     <Compile Include="Consts\Routes\Local\Security\Actions\User\Gets.cs" />
@@ -115,6 +113,10 @@
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Plaza\Gets.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Plaza\Save.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Plaza\Searchs.cs" />
+    <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\Gets.cs" />
+    <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\Save.cs" />
+    <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\TA.Infrastructure.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\TSBChanged.cs" />
@@ -131,6 +133,10 @@
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Plaza\Gets.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Plaza\Save.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Plaza\Searchs.cs" />
+    <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\Gets.cs" />
+    <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\Save.cs" />
+    <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\TOD.Infrastructure.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\ShiftChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBChanged.cs" />
@@ -153,14 +159,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Consts\Routes\Account\Infrastructure\Actions\TSB\" />
     <Folder Include="Consts\Routes\Account\Security\Actions\Role\" />
     <Folder Include="Consts\Routes\Account\Security\Actions\User\" />
     <Folder Include="Consts\Routes\Local\Shift\Actions\User\" />
-    <Folder Include="Consts\Routes\TA\Infrastructure\Actions\TSB\" />
     <Folder Include="Consts\Routes\TA\Security\Actions\Role\" />
     <Folder Include="Consts\Routes\TA\Security\Actions\User\" />
-    <Folder Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\" />
     <Folder Include="Consts\Routes\TOD\Security\Actions\Role\" />
     <Folder Include="Consts\Routes\TOD\Security\Actions\User\" />
     <Folder Include="Consts\Routes\TOD\Shift\Actions\" />

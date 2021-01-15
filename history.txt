@@ -50,8 +50,25 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #818
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #817
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #816
-- 
+- DMT.TAxTODv3
+  - DMT.Core project #4
+    - Account Routes
+      - Infrastructure's Lane actions
+        - Gets
+        - Save
+        - Searchs
+    - TA Routes
+      - Infrastructure's Lane actions
+        - Gets
+        - Save
+        - Searchs
+    - TOD Routes
+      - Infrastructure's Lane actions
+        - Gets
+        - Save
+        - Searchs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #815

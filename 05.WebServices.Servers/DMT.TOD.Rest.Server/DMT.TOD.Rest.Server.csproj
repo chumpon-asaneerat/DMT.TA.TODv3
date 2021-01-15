@@ -116,6 +116,10 @@
     <Compile Include="WebServer\Controllers\Security\Actions\User\Save.cs" />
     <Compile Include="WebServer\Controllers\Security\Actions\User\Searchs.cs" />
     <Compile Include="WebServer\Controllers\Security\Security.Controller.cs" />
+    <Compile Include="WebServer\Controllers\Shift\Actions\Common\Gets.cs" />
+    <Compile Include="WebServer\Controllers\Shift\Actions\TSB\Current.cs" />
+    <Compile Include="WebServer\Controllers\Shift\Actions\User\Searchs.cs" />
+    <Compile Include="WebServer\Controllers\Shift\Shift.Controller.cs" />
     <Compile Include="WebServer\Services\TODNotifyService.cs" />
     <Compile Include="WebServer\TODWebServer.cs" />
   </ItemGroup>

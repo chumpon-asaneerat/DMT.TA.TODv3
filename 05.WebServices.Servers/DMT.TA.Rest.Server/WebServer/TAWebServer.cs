@@ -271,6 +271,35 @@ namespace DMT.Services
                     }
                 }
             }
+
+            internal static class Shift
+            {
+                internal static void MapRoutes(HttpConfiguration config)
+                {
+                    string controllerName, actionName, actionUrl;
+
+                    // Set Controller Name.
+                    controllerName = RouteConsts.TA.Shift.ControllerName;
+
+                    // Gets
+                    actionName = RouteConsts.TA.Shift.Gets.Name;
+                    actionUrl = RouteConsts.TA.Shift.Gets.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                }
+
+                internal static class User
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        /*
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.Shift.User.ControllerName;
+                        */
+                    }
+                }
+            }
         }
 
         #region Override Methods
@@ -295,6 +324,11 @@ namespace DMT.Services
             // Security
             MapControllers.Security.Role.MapRoutes(config);
             MapControllers.Security.User.MapRoutes(config);
+
+            // Shift
+            MapControllers.Shift.MapRoutes(config);
+            // Shift (User)
+            MapControllers.Shift.User.MapRoutes(config);
 
             #region Default Route (do not used)
 

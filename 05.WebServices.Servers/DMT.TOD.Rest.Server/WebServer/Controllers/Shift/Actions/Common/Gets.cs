@@ -14,7 +14,7 @@ namespace DMT.Services
         partial class CommonController
         {
             [HttpPost]
-            [ActionName(RouteConsts.Shift.Gets.Name)]
+            [ActionName(RouteConsts.TOD.Shift.Gets.Name)]
             //[AllowAnonymous]
             public NDbResult<List<Models.Shift>> Gets()
             {

@@ -272,6 +272,51 @@ namespace DMT.Services
                     }
                 }
             }
+
+            internal static class Shift
+            {
+                internal static void MapRoutes(HttpConfiguration config)
+                {
+                    string controllerName, actionName, actionUrl;
+
+                    // Set Controller Name.
+                    controllerName = RouteConsts.TOD.Shift.ControllerName;
+
+                    // Gets
+                    actionName = RouteConsts.TOD.Shift.Gets.Name;
+                    actionUrl = RouteConsts.TOD.Shift.Gets.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                }
+
+                internal static class TSB
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.TOD.Shift.TSB.ControllerName;
+
+                        // Current
+                        actionName = RouteConsts.TOD.Shift.TSB.Current.Name;
+                        actionUrl = RouteConsts.TOD.Shift.TSB.Current.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                    }
+                }
+
+                internal static class User
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        /*
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.Shift.User.ControllerName;
+                        */
+                    }
+                }
+            }
         }
 
         #region Override Methods
@@ -296,6 +341,12 @@ namespace DMT.Services
             // Security
             MapControllers.Security.Role.MapRoutes(config);
             MapControllers.Security.User.MapRoutes(config);
+
+            // Shift
+            MapControllers.Shift.MapRoutes(config);
+            // Shift (TSB/User)
+            MapControllers.Shift.TSB.MapRoutes(config);
+            MapControllers.Shift.User.MapRoutes(config);
 
             #region Default Route (do not used)
 

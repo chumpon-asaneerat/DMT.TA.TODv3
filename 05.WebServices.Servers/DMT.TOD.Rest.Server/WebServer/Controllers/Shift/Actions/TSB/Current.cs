@@ -14,7 +14,7 @@ namespace DMT.Services
         partial class TSBController
         {
             [HttpPost]
-            [ActionName(RouteConsts.Shift.TSB.Current.Name)]
+            [ActionName(RouteConsts.TOD.Shift.TSB.Current.Name)]
             //[AllowAnonymous]
             public NDbResult<TSBShift> Current()
             {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DMT.Services.Operations
 {
-    static partial class Plaza
+    static partial class TOD
     {
         static partial class Shift
         {
@@ -17,7 +17,7 @@ namespace DMT.Services.Operations
             public static NRestResult<List<Models.Shift>> Gets()
             {
                 var ret = Execute<List<Models.Shift>>(
-                    RouteConsts.Shift.Gets.Url);
+                    RouteConsts.TOD.Shift.Gets.Url);
                 return ret;
             }
         }

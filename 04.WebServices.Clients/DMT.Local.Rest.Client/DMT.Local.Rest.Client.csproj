@@ -54,14 +54,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Local.cs" />
-    <Compile Include="Services\Security\Operations\Role\Gets.cs" />
-    <Compile Include="Services\Security\Operations\Role\Save.cs" />
-    <Compile Include="Services\Security\Operations\User\Gets.cs" />
-    <Compile Include="Services\Security\Operations\User\Save.cs" />
-    <Compile Include="Services\Security\Operations\User\Searchs.cs" />
-    <Compile Include="Services\Security\Security.Operations.cs" />
-    <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
-    <Compile Include="Services\Shift\Shift.Operations.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\01.Core\DMT.Core\DMT.Core.csproj">
@@ -80,9 +72,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Shift\Operations\TSB\" />
-    <Folder Include="Services\Shift\Operations\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -50,8 +50,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #828
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #827
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #826
-- 
+- DMT.TAxTODv3
+  - DMT.Local.Rest.Client project.
+    - Remove all Shift operations.
+  - DMT.TA.Rest.Client project.
+    - Shift operations
+  - DMT.TOD.Rest.Client project.
+    - Shift operations
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #825

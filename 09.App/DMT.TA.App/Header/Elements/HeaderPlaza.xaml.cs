@@ -11,8 +11,6 @@ using DMT.Services;
 
 namespace DMT.Controls.Header
 {
-    using ops = Services.Operations.Plaza.Infrastructure; // reference to static class.
-
     /// <summary>
     /// Interaction logic for HeaderPlaza.xaml
     /// </summary>
@@ -58,7 +56,7 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            var tsb = ops.TSB.Current().Value();
+            var tsb = TSB.GetCurrent().Value();
             if (null != tsb)
             {
                 txtPlazaId.Text = "รหัสด่าน : " + tsb.TSBId;

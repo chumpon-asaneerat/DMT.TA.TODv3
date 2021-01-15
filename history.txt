@@ -47,8 +47,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #839
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #838
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #837
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App - Full compile and execute OK.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #836

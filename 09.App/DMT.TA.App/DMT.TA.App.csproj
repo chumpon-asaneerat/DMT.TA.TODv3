@@ -363,9 +363,17 @@
       <Project>{7d584f0a-920f-4be1-8652-3527fd7a5c27}</Project>
       <Name>DMT.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\02.Models\DMT.TA.Models\DMT.TA.Models.csproj">
+      <Project>{3765dc14-2c59-445f-8e73-efc7a59709e4}</Project>
+      <Name>DMT.TA.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\03.WebServices.Core\DMT.Rest.Client\DMT.Rest.Client.csproj">
       <Project>{26ba4314-6b80-4a59-9e0d-7c29919bbc6f}</Project>
       <Name>DMT.Rest.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TAxTOD.Rest.Client\DMT.TAxTOD.Rest.Client.csproj">
+      <Project>{78d73003-864f-4c0e-81f2-21f721388f4d}</Project>
+      <Name>DMT.TAxTOD.Rest.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TOD.Rest.Client\DMT.TOD.Rest.Client.csproj">
       <Project>{cda29d61-9f4f-46f2-a256-81a32b1d7e52}</Project>

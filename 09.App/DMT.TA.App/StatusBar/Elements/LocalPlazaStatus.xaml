@@ -25,7 +25,7 @@
                 Background="DimGray">
             <TextBlock Margin="10,0"
                        Style="{StaticResource LocalDbStatusTextBlockCommonStyle}"
-                       Text="Local Service : " />
+                       Text="Local : " />
         </Border>
         <Border x:Name="borderStatus"
                 VerticalAlignment="Stretch"
@@ -33,7 +33,7 @@
             <TextBlock x:Name="txtStatus"
                        Margin="10,0"
                        Style="{StaticResource LocalDbStatusTextBlockCommonStyle}"
-                       Text="Offline" />
+                       Text="Disconnected" />
         </Border>
     </StackPanel>
 </UserControl>

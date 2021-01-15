@@ -56,8 +56,28 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #816
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #815
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #814
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Account Routes #2
+      - Infrastructure actions
+        - TSB
+        - PlazaGroup
+        - Plaza
+        - Lane
+    - TA Routes
+      - Infrastructure actions
+        - TSB
+        - PlazaGroup
+        - Plaza
+        - Lane
+    - TOD Routes
+      - Infrastructure actions
+        - TSB
+        - PlazaGroup
+        - Plaza
+        - Lane
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #813

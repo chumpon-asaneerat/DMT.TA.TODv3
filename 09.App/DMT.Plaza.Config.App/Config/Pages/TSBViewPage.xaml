@@ -11,85 +11,171 @@
              Unloaded="UserControl_Unloaded"
              mc:Ignorable="d">
     <UserControl.CommandBindings>
-        <CommandBinding x:Name="cmdChangeActiveTSB"
-                        CanExecute="cmdChangeActiveTSB_CanExecute"
+        <CommandBinding x:Name="cmdChangeActiveTSBTOD"
+                        CanExecute="cmdChangeActiveTSBTOD_CanExecute"
                         Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}"
-                        Executed="cmdChangeActiveTSB_Executed" />
+                        Executed="cmdChangeActiveTSBTOD_Executed" />
+        <CommandBinding x:Name="cmdChangeActiveTSBTAA"
+                        CanExecute="cmdChangeActiveTSBTAA_CanExecute"
+                        Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}"
+                        Executed="cmdChangeActiveTSBTAA_Executed" />
     </UserControl.CommandBindings>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="5" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <TreeView x:Name="tree"
-                  Grid.Column="0"
-                  SelectedItemChanged="tree_SelectedItemChanged"
-                  Style="{StaticResource InfrastructureTreeView}">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type models:TSBItem}" ItemsSource="{Binding Plazas}">
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <Button x:Name="cmdSetActiveTSB"
-                                Margin="2,0"
-                                Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}">
-                            Active
-                        </Button>
-                        <TextBlock Width="20"
-                                   Margin="2,0"
-                                   Text="{Binding IsActive}" />
-                        <TextBlock>
-                            <Run Text="{Binding TSBId}" />
-                            <Run Text=" - " />
-                            <Run Text="{Binding TSBNameTH}" />
-                            <Run Text=" (" />
-                            <Run Text="{Binding TSBNameEN}" />
-                            <Run Text=")" />
-                        </TextBlock>
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-                <HierarchicalDataTemplate DataType="{x:Type models:PlazaItem}" ItemsSource="{Binding Lanes}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>
-                            <Run Text="{Binding PlazaId}" />
-                            <Run Text=" - " />
-                            <Run Text="{Binding PlazaNameTH}" />
-                            <Run Text=" (" />
-                            <Run Text="{Binding PlazaNameEN}" />
-                            <Run Text=")" />
-                            <Run Text=" - " />
-                            <Run Text="{Binding Direction}" />
-                        </TextBlock>
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type models:LaneItem}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>
-                            <Run Text="{Binding LaneId}" />
-                            <Run Text=" - " />
-                            <Run Text=" (" />
-                            <Run Text="{Binding LaneType}" />
-                            <Run Text=")" />
-                        </TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </TreeView.Resources>
-        </TreeView>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
-            <xceed:PropertyGrid x:Name="pgrid" />
-            <Grid Grid.Row="1">
-                <Button x:Name="cmdSave"
-                        Width="75"
-                        Margin="0,10,10,0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Click="cmdSave_Click"
-                        Content="Save" />
+    <TabControl x:Name="tabs">
+        <TabItem FontSize="16" Header="TOD">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TreeView x:Name="treeTOD"
+                          Grid.Column="0"
+                          SelectedItemChanged="treeTOD_SelectedItemChanged"
+                          Style="{StaticResource InfrastructureTreeView}">
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type models:TSBItem}" ItemsSource="{Binding Plazas}">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button x:Name="cmdSetActiveTSBTOD"
+                                        Margin="2,0"
+                                        Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}">
+                                    Active
+                                </Button>
+                                <TextBlock Width="20"
+                                           Margin="2,0"
+                                           Text="{Binding IsActive}" />
+                                <TextBlock>
+                                    <Run Text="{Binding TSBId}" />
+                                    <Run Text=" - " />
+                                    <Run Text="{Binding TSBNameTH}" />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding TSBNameEN}" />
+                                    <Run Text=")" />
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type models:PlazaItem}" ItemsSource="{Binding Lanes}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <Run Text="{Binding PlazaId}" />
+                                    <Run Text=" - " />
+                                    <Run Text="{Binding PlazaNameTH}" />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding PlazaNameEN}" />
+                                    <Run Text=")" />
+                                    <Run Text=" - " />
+                                    <Run Text="{Binding Direction}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type models:LaneItem}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <Run Text="{Binding LaneId}" />
+                                    <Run Text=" - " />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding LaneType}" />
+                                    <Run Text=")" />
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <xceed:PropertyGrid x:Name="pgridTOD" />
+                    <Grid Grid.Row="1">
+                        <Button x:Name="cmdSaveTOD"
+                                Width="75"
+                                Margin="0,10,10,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Click="cmdSaveTOD_Click"
+                                Content="Save" />
+                    </Grid>
+                </Grid>
             </Grid>
-        </Grid>
-    </Grid>
+        </TabItem>
+        <TabItem FontSize="16" Header="TA">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TreeView x:Name="treeTAA"
+                          Grid.Column="0"
+                          SelectedItemChanged="treeTAA_SelectedItemChanged"
+                          Style="{StaticResource InfrastructureTreeView}">
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type models:TSBItem}" ItemsSource="{Binding Plazas}">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button x:Name="cmdSetActiveTSBTAA"
+                                        Margin="2,0"
+                                        Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}">
+                                    Active
+                                </Button>
+                                <TextBlock Width="20"
+                                           Margin="2,0"
+                                           Text="{Binding IsActive}" />
+                                <TextBlock>
+                                    <Run Text="{Binding TSBId}" />
+                                    <Run Text=" - " />
+                                    <Run Text="{Binding TSBNameTH}" />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding TSBNameEN}" />
+                                    <Run Text=")" />
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type models:PlazaItem}" ItemsSource="{Binding Lanes}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <Run Text="{Binding PlazaId}" />
+                                    <Run Text=" - " />
+                                    <Run Text="{Binding PlazaNameTH}" />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding PlazaNameEN}" />
+                                    <Run Text=")" />
+                                    <Run Text=" - " />
+                                    <Run Text="{Binding Direction}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type models:LaneItem}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <Run Text="{Binding LaneId}" />
+                                    <Run Text=" - " />
+                                    <Run Text=" (" />
+                                    <Run Text="{Binding LaneType}" />
+                                    <Run Text=")" />
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <xceed:PropertyGrid x:Name="pgridTAA" />
+                    <Grid Grid.Row="1">
+                        <Button x:Name="cmdSaveTAA"
+                                Width="75"
+                                Margin="0,10,10,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Click="cmdSaveTAA_Click"
+                                Content="Save" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </UserControl>

@@ -62,7 +62,125 @@ namespace DMT.Config.Pages
 
         #endregion
 
+        #region Button Handler
+
+        #region TOD
+
+        private void cmdChangeActiveTSBTOD_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void cmdChangeActiveTSBTOD_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            // Set Active.
+            /*
+            var item = (e.OriginalSource as Button).DataContext;
+            if (null != item && item is TSBItem)
+            {
+                ops.TSB.SetActive(item as TSB);
+                RefreshTree();
+            }
+            */
+        }
+
+        private void cmdSetActiveTSBTOD_Click(object sender, RoutedEventArgs e)
+        {
+            // Set Active.
+            /*
+            var item = (sender as Button).DataContext;
+            if (null != item && item is TSBItem)
+            {
+                ops.TSB.SetActive(item as TSB);
+                RefreshTree();
+            }
+            */
+        }
+
+        private void cmdSaveTOD_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (null == pgrid.SelectedObject) return;
+            if (pgrid.SelectedObject is TSBItem) SaveTSB();
+            if (pgrid.SelectedObject is PlazaItem) SavePlaza();
+            if (pgrid.SelectedObject is LaneItem) SaveLane();
+            */
+        }
+
+        #endregion
+
+        #region TAA
+
+        private void cmdChangeActiveTSBTAA_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            // Set Active.
+            /*
+            var item = (e.OriginalSource as Button).DataContext;
+            if (null != item && item is TSBItem)
+            {
+                ops.TSB.SetActive(item as TSB);
+                RefreshTree();
+            }
+            */
+        }
+
+        private void cmdChangeActiveTSBTAA_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void cmdSetActiveTSBTAA_Click(object sender, RoutedEventArgs e)
+        {
+            // Set Active.
+            /*
+            var item = (sender as Button).DataContext;
+            if (null != item && item is TSBItem)
+            {
+                ops.TSB.SetActive(item as TSB);
+                RefreshTree();
+            }
+            */
+        }
+
+        private void cmdSaveTAA_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (null == pgrid.SelectedObject) return;
+            if (pgrid.SelectedObject is TSBItem) SaveTSB();
+            if (pgrid.SelectedObject is PlazaItem) SavePlaza();
+            if (pgrid.SelectedObject is LaneItem) SaveLane();
+            */
+        }
+
+        #endregion
+
+        #endregion
+
+        #region TreeView Handler
+
+        private void treeTOD_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            pgridTOD.SelectedObject = e.NewValue;
+        }
+
+        private void treeTAA_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            pgridTAA.SelectedObject = e.NewValue;
+        }
+
+        #endregion
+
+        #region Private Methods
+
         private void RefreshTree()
+        {
+            RefreshTOD();
+            RefreshTAA();
+        }
+
+        #region TOD
+
+        private void RefreshTOD()
         {
             /*
             tree.ItemsSource = null;
@@ -102,33 +220,7 @@ namespace DMT.Config.Pages
             */
         }
 
-        #region Button Handler
-
-        private void cmdSetActiveTSB_Click(object sender, RoutedEventArgs e)
-        {
-            // Set Active.
-            /*
-            var item = (sender as Button).DataContext;
-            if (null != item && item is TSBItem)
-            {
-                ops.TSB.SetActive(item as TSB);
-                RefreshTree();
-            }
-            */
-        }
-
-        #endregion
-
-        #region TreeView Handler
-
-        private void tree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            pgrid.SelectedObject = e.NewValue;
-        }
-
-        #endregion
-
-        private void SaveTSB()
+        private void SaveTSBTOD()
         {
             /*
             var value = (pgrid.SelectedObject as TSB);
@@ -148,7 +240,7 @@ namespace DMT.Config.Pages
             */
         }
 
-        private void SavePlaza()
+        private void SavePlazaTOD()
         {
             /*
             var value = (pgrid.SelectedObject as Plaza);
@@ -168,7 +260,7 @@ namespace DMT.Config.Pages
             */
         }
 
-        private void SaveLane()
+        private void SaveLaneTOD()
         {
             /*
             var value = (pgrid.SelectedObject as Lane);
@@ -188,32 +280,112 @@ namespace DMT.Config.Pages
             */
         }
 
-        private void cmdSave_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region TAA
+
+        private void RefreshTAA()
         {
             /*
-            if (null == pgrid.SelectedObject) return;
-            if (pgrid.SelectedObject is TSBItem) SaveTSB();
-            if (pgrid.SelectedObject is PlazaItem) SavePlaza();
-            if (pgrid.SelectedObject is LaneItem) SaveLane();
+            tree.ItemsSource = null;
+
+            items.Clear();
+            var tsbs = ops.TSB.Gets().Value();
+            if (null == tsbs)
+                return;
+
+            tsbs.ForEach(tsb =>
+            {
+                var tItem = new TSBItem(tsb);
+                items.Add(tItem);
+
+                var plazas = ops.Plaza.Search.ByTSB(tsb).Value();
+                if (null != plazas)
+                {
+                    plazas.ForEach(plaza =>
+                    {
+                        var pItem = new PlazaItem(plaza);
+                        tItem.Plazas.Add(pItem);
+
+                        var lanes = ops.Lane.Search.ByPlaza(plaza).Value();
+                        if (null != lanes)
+                        {
+                            lanes.ForEach(lane =>
+                            {
+                                var lItem = new LaneItem(lane);
+                                pItem.Lanes.Add(lItem);
+                            });
+                        }
+                    });
+                }
+            });
+
+            tree.ItemsSource = items;
             */
         }
 
-        private void cmdChangeActiveTSB_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void SaveTSBTAA()
         {
-            // Set Active.
             /*
-            var item = (e.OriginalSource as Button).DataContext;
-            if (null != item && item is TSBItem)
+            var value = (pgrid.SelectedObject as TSB);
+            if (null != value)
             {
-                ops.TSB.SetActive(item as TSB);
-                RefreshTree();
+                var ret = ops.TSB.Save(value);
+                if (ret.Failed)
+                {
+                    MessageBox.Show("Save TSB Error.");
+                }
+                else
+                {
+                    MessageBox.Show("Save TSB Success.");
+                    RefreshTree();
+                }
             }
             */
         }
 
-        private void cmdChangeActiveTSB_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void SavePlazaTAA()
         {
-            e.CanExecute = true;
+            /*
+            var value = (pgrid.SelectedObject as Plaza);
+            if (null != value)
+            {
+                var ret = ops.Plaza.Save(value);
+                if (ret.Failed)
+                {
+                    MessageBox.Show("Save Plaza Error.");
+                }
+                else
+                {
+                    MessageBox.Show("Save Plaza Success.");
+                    RefreshTree();
+                }
+            }
+            */
         }
+
+        private void SaveLaneTAA()
+        {
+            /*
+            var value = (pgrid.SelectedObject as Lane);
+            if (null != value)
+            {
+                var ret = ops.Lane.Save(value);
+                if (ret.Failed)
+                {
+                    MessageBox.Show("Save Lane Error.");
+                }
+                else
+                {
+                    MessageBox.Show("Save Lane Success.");
+                    RefreshTree();
+                }
+            }
+            */
+        }
+
+        #endregion
+
+        #endregion
     }
 }

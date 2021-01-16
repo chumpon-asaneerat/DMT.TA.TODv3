@@ -11,14 +11,10 @@
              Unloaded="UserControl_Unloaded"
              mc:Ignorable="d">
     <UserControl.CommandBindings>
-        <CommandBinding x:Name="cmdChangeActiveTSBTOD"
-                        CanExecute="cmdChangeActiveTSBTOD_CanExecute"
+        <CommandBinding x:Name="cmdChangeActiveTSB"
+                        CanExecute="cmdChangeActiveTSB_CanExecute"
                         Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}"
-                        Executed="cmdChangeActiveTSBTOD_Executed" />
-        <CommandBinding x:Name="cmdChangeActiveTSBTAA"
-                        CanExecute="cmdChangeActiveTSBTAA_CanExecute"
-                        Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}"
-                        Executed="cmdChangeActiveTSBTAA_Executed" />
+                        Executed="cmdChangeActiveTSB_Executed" />
     </UserControl.CommandBindings>
     <TabControl x:Name="tabs">
         <TabItem FontSize="16" Header="TOD">
@@ -35,7 +31,7 @@
                     <TreeView.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type models:TSBItem}" ItemsSource="{Binding Plazas}">
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                <Button x:Name="cmdSetActiveTSBTOD"
+                                <Button x:Name="cmdSetActiveTSB"
                                         Margin="2,0"
                                         Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}">
                                     Active
@@ -113,7 +109,7 @@
                     <TreeView.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type models:TSBItem}" ItemsSource="{Binding Plazas}">
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                <Button x:Name="cmdSetActiveTSBTAA"
+                                <Button x:Name="cmdSetActiveTSB"
                                         Margin="2,0"
                                         Command="{x:Static models:UICommands+Infrastructure+ChangeActiveTSB.Command}">
                                     Active

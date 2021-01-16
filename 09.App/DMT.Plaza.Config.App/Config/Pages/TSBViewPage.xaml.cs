@@ -65,39 +65,44 @@ namespace DMT.Config.Pages
 
         #region Button Handler
 
-        #region TOD
-
-        private void cmdChangeActiveTSBTOD_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void cmdChangeActiveTSB_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
 
-        private void cmdChangeActiveTSBTOD_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void cmdChangeActiveTSB_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             // Set Active.
             var item = (e.OriginalSource as Button).DataContext;
             if (null != item && item is TSBItem)
             {
-                todops.TSB.SetActive(item as TSB);
+                if (tabs.SelectedIndex == 0)
+                    todops.TSB.SetActive(item as TSB);
+                else taaops.TSB.SetActive(item as TSB);
                 RefreshTree();
             }
         }
 
-        private void cmdSetActiveTSBTOD_Click(object sender, RoutedEventArgs e)
+        private void cmdSetActiveTSB_Click(object sender, RoutedEventArgs e)
         {
             // Set Active.
             var item = (sender as Button).DataContext;
             if (null != item && item is TSBItem)
             {
-                todops.TSB.SetActive(item as TSB);
+                if (tabs.SelectedIndex == 0)
+                    todops.TSB.SetActive(item as TSB);
+                else taaops.TSB.SetActive(item as TSB);
                 RefreshTree();
             }
         }
 
+        #region TOD
+
         private void cmdSaveTOD_Click(object sender, RoutedEventArgs e)
         {
             if (null == pgridTOD.SelectedObject) return;
-            if (pgridTOD.SelectedObject is TSBItem) SaveTSBTOD();
+            if (tabs.SelectedIndex != 0) return;
+                if (pgridTOD.SelectedObject is TSBItem) SaveTSBTOD();
             if (pgridTOD.SelectedObject is PlazaItem) SavePlazaTOD();
             if (pgridTOD.SelectedObject is LaneItem) SaveLaneTOD();
         }
@@ -106,36 +111,10 @@ namespace DMT.Config.Pages
 
         #region TAA
 
-        private void cmdChangeActiveTSBTAA_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void cmdChangeActiveTSBTAA_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            // Set Active.
-            var item = (e.OriginalSource as Button).DataContext;
-            if (null != item && item is TSBItem)
-            {
-                taaops.TSB.SetActive(item as TSB);
-                RefreshTree();
-            }
-        }
-
-        private void cmdSetActiveTSBTAA_Click(object sender, RoutedEventArgs e)
-        {
-            // Set Active.
-            var item = (sender as Button).DataContext;
-            if (null != item && item is TSBItem)
-            {
-                taaops.TSB.SetActive(item as TSB);
-                RefreshTree();
-            }
-        }
-
         private void cmdSaveTAA_Click(object sender, RoutedEventArgs e)
         {
             if (null == pgridTAA.SelectedObject) return;
+            if (tabs.SelectedIndex != 1) return;
             if (pgridTAA.SelectedObject is TSBItem) SaveTSBTAA();
             if (pgridTAA.SelectedObject is PlazaItem) SavePlazaTAA();
             if (pgridTAA.SelectedObject is LaneItem) SaveLaneTAA();

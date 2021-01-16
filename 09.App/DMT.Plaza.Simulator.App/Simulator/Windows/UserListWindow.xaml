@@ -22,12 +22,13 @@
         </Grid.RowDefinitions>
         <ListBox x:Name="lstUsers"
                  Grid.Row="0"
-                 ItemContainerStyle="{StaticResource DMTItemContainerStyle}"
                  ItemsSource="{Binding}"
+                 ItemContainerStyle="{StaticResource DMTListBoxItemContainer}"
                  MouseDoubleClick="lstUsers_MouseDoubleClick"
                  SelectionChanged="lstUsers_SelectionChanged"
                  Style="{StaticResource SingleSelectWrapListBox}" 
-                 ItemTemplate="{StaticResource UserCardItem}"/>
+                 ItemTemplate="{StaticResource UserCardItem}"
+                 FocusVisualStyle="{x:Null}"/>
         <Border Grid.Row="2"
                 Margin="1"
                 BorderBrush="Silver"

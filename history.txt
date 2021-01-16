@@ -50,8 +50,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #868
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #867
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #866
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update ListBoxStyle.xaml.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #865

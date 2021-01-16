@@ -62,8 +62,29 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #844
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #843
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #842
-- 
+- DMT.TAxTODv3 Notes
+  - Rabbit MQ Staff data need to check pwd expired.
+  - Required to add UserLogIn table (User Expire, Track Login datetime).
+  - Required check Enter invalid pwd 3 times in day need to lock account for 24 hours.
+  - All app need common to access Page, Window instance (static/singelton).
+  - Change SP to GetTACoupon with pagination.
+  - Config App finished TSBTreeView (TAA/TOD).
+  - Simulator App required to refactor.
+    - ListBox Template
+      - Rounded Connor Selection ? See TML Style.
+    - Seperate ListBox Style to another file.
+  - For TODAY
+    - TA Exchange models
+    - Change Shift (TSB).
+    - Begin Shift (User).
+    - EMV/QR Code View.
+    - Job List View.
+  - Reports
+    - Check Report datasource (copy exists to new one and test open report).
+    - Daily Revenue Entry report
+    - Revenue Summary report
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #841

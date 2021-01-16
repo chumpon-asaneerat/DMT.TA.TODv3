@@ -3,15 +3,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using NLib.Reflection;
+
 using DMT.Services;
+
+using NLib.Reflection;
 
 #endregion
 
 namespace DMT.Models
 {
-    using localOps = Services.Operations.Plaza; // reference to static class.
-    //using todOps = Services.Operations.SCW.TOD; // reference to static class.
+    using todOps = Services.Operations.TOD; // reference to static class.
 
     #region UserCache
 
@@ -78,7 +79,7 @@ namespace DMT.Models
                 if (!_users.ContainsKey(userId))
                 {
                     var search = Search.User.ById.Create(userId);
-                    var usr = localOps.Security.User.Search.ById(search).Value();
+                    var usr = todOps.Security.User.Search.ById(search).Value();
                     if (null == usr) return null;
                     // add to cache.
                     _users.Add(userId, usr);
@@ -400,10 +401,10 @@ namespace DMT.Models
         public static List<LaneInfo> GetLanes()
         {
             List<LaneInfo> results = new List<LaneInfo>();
-            var tsb = localOps.Infrastructure.TSB.Current().Value();
+            var tsb = todOps.Infrastructure.TSB.Current().Value();
             if (null != tsb)
             {
-                var lanes = localOps.Infrastructure.Lane.Search.ByTSB(tsb).Value();
+                var lanes = todOps.Infrastructure.Lane.Search.ByTSB(tsb).Value();
                 if (null != lanes && lanes.Count > 0)
                 {
                     lanes.ForEach(lane =>

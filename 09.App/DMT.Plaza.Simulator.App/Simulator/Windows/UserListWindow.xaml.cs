@@ -16,7 +16,7 @@ using NLib.Reflection;
 
 namespace DMT.Simulator.Windows
 {
-    using localOps = Services.Operations.Plaza; // reference to static class.
+    using todops = Services.Operations.TOD.Security; // reference to static class.
 
     /// <summary>
     /// Interaction logic for UserListWindow.xaml
@@ -197,7 +197,7 @@ namespace DMT.Simulator.Windows
         {
             lstUsers.ItemsSource = null;
             // Load Users.
-            var allusers = localOps.Security.User.Gets().Value();
+            var allusers = todops.User.Gets().Value();
             
             if (null != users && users.Length > 0)
             {

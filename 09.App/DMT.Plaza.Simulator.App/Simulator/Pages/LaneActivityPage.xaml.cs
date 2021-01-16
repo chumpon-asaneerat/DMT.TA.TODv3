@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Globalization;
 
 using DMT.Models;
+using DMT.Configurations;
 using DMT.Services;
 using NLib.Reflection;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -24,8 +25,9 @@ using System.Net;
 
 namespace DMT.Simulator.Pages
 {
-    using localOps = Services.Operations.Plaza; // reference to static class.
-    using todOps = Services.Operations.SCW.TOD;
+    using todops = Services.Operations.TOD.Infrastructure; // reference to static class.
+
+    using scwOps = Services.Operations.SCW.TOD;
     using emuOps = Services.Operations.SCW.Emulator; // reference to static class.
 
     /// <summary>
@@ -233,9 +235,9 @@ namespace DMT.Simulator.Pages
                 // Process (in another thread)
 
                 lanes = LaneInfo.GetLanes();
-                var tsb = localOps.Infrastructure.TSB.Current().Value();
+                var tsb = todops.TSB.Current().Value();
                 if (null == tsb) return;
-                var plazas = localOps.Infrastructure.Plaza.Search.ByTSB(tsb).Value();
+                var plazas = todops.Plaza.Search.ByTSB(tsb).Value();
                 if (null == plazas || plazas.Count <= 0) return;
 
                 // Read all scw jobs.
@@ -307,7 +309,7 @@ namespace DMT.Simulator.Pages
                 emvParam.endDateTime = null;
 
                 emvItems = new List<LaneEMV>();
-                var emvResults = todOps.emvTransactionList(emvParam);
+                var emvResults = scwOps.emvTransactionList(emvParam);
                 if (null != emvResults && null != emvResults.list)
                 {
                     emvResults.list.ForEach(item =>
@@ -325,7 +327,7 @@ namespace DMT.Simulator.Pages
                 qrcodeParam.endDateTime = null;
 
                 qrcodeItems = new List<LaneQRCode>();
-                var qrcodeResults = todOps.qrcodeTransactionList(qrcodeParam);
+                var qrcodeResults = scwOps.qrcodeTransactionList(qrcodeParam);
                 if (null != qrcodeResults && null != qrcodeResults.list)
                 {
                     qrcodeResults.list.ForEach(item =>

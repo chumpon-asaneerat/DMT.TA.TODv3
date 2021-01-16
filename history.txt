@@ -44,8 +44,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #860
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #859
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #858
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Simulator.App refactor #5.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #857

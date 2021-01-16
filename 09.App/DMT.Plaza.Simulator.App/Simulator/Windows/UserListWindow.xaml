@@ -1,8 +1,8 @@
 ﻿<Window x:Class="DMT.Simulator.Windows.UserListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
         Title="Avaliable Users"
         Width="850"
         Height="400"
@@ -14,7 +14,15 @@
         ShowInTaskbar="False"
         Unloaded="Window_Unloaded"
         WindowStartupLocation="CenterOwner"
-        mc:Ignorable="d">
+        mc:Ignorable="PresentationOptions">
+    <Window.Resources>
+        <SolidColorBrush x:Key="ListBoxItemSelectedBorderBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="CornflowerBlue" />
+        <SolidColorBrush x:Key="ListBoxItemSelectedBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="CornflowerBlue" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -22,13 +30,12 @@
         </Grid.RowDefinitions>
         <ListBox x:Name="lstUsers"
                  Grid.Row="0"
-                 ItemsSource="{Binding}"
                  ItemContainerStyle="{StaticResource DMTListBoxItemContainer}"
+                 ItemTemplate="{StaticResource UserCardItem}"
+                 ItemsSource="{Binding}"
                  MouseDoubleClick="lstUsers_MouseDoubleClick"
                  SelectionChanged="lstUsers_SelectionChanged"
-                 Style="{StaticResource SingleSelectWrapListBox}" 
-                 ItemTemplate="{StaticResource UserCardItem}"
-                 FocusVisualStyle="{x:Null}"/>
+                 Style="{StaticResource SingleSelectWrapListBox}" />
         <Border Grid.Row="2"
                 Margin="1"
                 BorderBrush="Silver"

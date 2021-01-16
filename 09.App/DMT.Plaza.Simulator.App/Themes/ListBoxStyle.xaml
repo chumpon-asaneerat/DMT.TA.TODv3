@@ -20,12 +20,12 @@
     <SolidColorBrush x:Key="ListBoxItemSelectedBorderBrush"
                      PresentationOptions:Freeze="True"
                      Color="DarkOrange" />
-    <SolidColorBrush x:Key="ListBoxItemSelectedForground"
-                     PresentationOptions:Freeze="True"
-                     Color="WhiteSmoke" />
     <SolidColorBrush x:Key="ListBoxItemSelectedBackground"
                      PresentationOptions:Freeze="True"
                      Color="Orange" />
+    <SolidColorBrush x:Key="ListBoxItemSelectedForground"
+                     PresentationOptions:Freeze="True"
+                     Color="WhiteSmoke" />
 
     <!--  CONST CARD IMAGES  -->
     <ImageBrush x:Key="BlackCard"

@@ -195,31 +195,12 @@
   <ItemGroup>
     <Resource Include="Images\Networks\Network 1 Information.png" />
     <Resource Include="Images\Networks\Network 2 Search.png" />
-    <Resource Include="Images\Servers\connected.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Servers\Install.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Servers\uninstall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Configs\config_01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Configs\config_02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Configs\services.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Toll\Money.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Users\users.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Reports\slip_06.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Networks\plaza_network1.png" />
@@ -232,9 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Clock\clock.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Money\borrow3.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib\NLib.csproj">
@@ -265,6 +243,24 @@
       <Project>{cda29d61-9f4f-46f2-a256-81a32b1d7e52}</Project>
       <Name>DMT.TOD.Rest.Client</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

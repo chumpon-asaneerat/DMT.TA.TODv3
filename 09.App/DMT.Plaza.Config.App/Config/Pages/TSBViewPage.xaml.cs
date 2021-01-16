@@ -215,7 +215,7 @@ namespace DMT.Config.Pages
                 MessageBox.Show("No item selected");
                 return;
             }
-            var ret = ops.TSB.Save(value);
+            var ret = todops.TSB.Save(value);
             if (ret.Failed)
             {
                 MessageBox.Show("TOD Application WS Save TSB Error.");
@@ -235,7 +235,7 @@ namespace DMT.Config.Pages
                 MessageBox.Show("No item selected");
                 return;
             }
-            var ret = ops.Plaza.Save(value);
+            var ret = todops.Plaza.Save(value);
             if (ret.Failed)
             {
                 MessageBox.Show("TOD Application WS Save Plaza Error.");
@@ -255,7 +255,7 @@ namespace DMT.Config.Pages
                 MessageBox.Show("No item selected");
                 return;
             }
-            var ret = ops.Lane.Save(value);
+            var ret = todops.Lane.Save(value);
             if (ret.Failed)
             {
                 MessageBox.Show("TOD Application WS Save Lane Error.");
@@ -317,7 +317,7 @@ namespace DMT.Config.Pages
                 MessageBox.Show("No item selected");
                 return;
             }
-            var ret = ops.TSB.Save(value);
+            var ret = taaops.TSB.Save(value);
             if (ret.Failed)
             {
                 MessageBox.Show("TOD Application WS Save TSB Error.");
@@ -337,7 +337,7 @@ namespace DMT.Config.Pages
                 MessageBox.Show("No item selected");
                 return;
             }
-            var ret = ops.Plaza.Save(value);
+            var ret = taaops.Plaza.Save(value);
             if (ret.Failed)
             {
                 MessageBox.Show("TOD Application WS Save Plaza Error.");
@@ -357,7 +357,7 @@ namespace DMT.Config.Pages
                 MessageBox.Show("No item selected");
                 return;
             }
-            var ret = ops.Lane.Save(value);
+            var ret = taaops.Lane.Save(value);
             if (ret.Failed)
             {
                 MessageBox.Show("TOD Application WS Save Lane Error.");

@@ -4,9 +4,28 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="PresentationOptions">
-    <!--  CONST LISTVIEW FONT SIZE  -->
+    <!--  CONST LISTBOX FONT SIZE  -->
+    <sys:Double x:Key="ListBoxFontSize14" PresentationOptions:Freeze="True">14</sys:Double>
     <sys:Double x:Key="ListBoxFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
     <sys:Double x:Key="ListBoxFontSize20" PresentationOptions:Freeze="True">20</sys:Double>
+
+    <!--  CONST LISTBOX ITEM SIZE  -->
+    <GridLength x:Key="GridListBoxItemWidth">250</GridLength>
+    <GridLength x:Key="GridListBoxItemHeight">150</GridLength>
+
+    <sys:Double x:Key="ListBoxItemWidth" PresentationOptions:Freeze="True">250</sys:Double>
+    <sys:Double x:Key="ListBoxItemHeight" PresentationOptions:Freeze="True">150</sys:Double>
+
+    <!--  CONST LISTBOX COLORS  -->
+    <SolidColorBrush x:Key="ListBoxItemSelectedBorderBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="DarkOrange" />
+    <SolidColorBrush x:Key="ListBoxItemSelectedForground"
+                     PresentationOptions:Freeze="True"
+                     Color="WhiteSmoke" />
+    <SolidColorBrush x:Key="ListBoxItemSelectedBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="Orange" />
 
     <!--  LISTBOX STYLES  -->
     <Style x:Key="DMTListBox" TargetType="{x:Type ListBox}">
@@ -111,30 +130,26 @@
 
     <!--  USER CARD LISTBOX ITEM DATA TEMPLATE  -->
     <Style x:Key="UserCardItemTemplate" TargetType="{x:Type ListBoxItem}">
-        <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+        <Setter Property="IsSelected" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate>
-                    <Border Name="ItemBorder"
-                            Margin="2"
-                            BorderBrush="Transparent"
-                            BorderThickness="1"
-                            CornerRadius="3">
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid>
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="{StaticResource GridListBoxItemWidth}" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="90" />
                                 <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
-                            <Border x:Name="border_background"
+                            <Border x:Name="container_background"
                                     Grid.Row="0"
                                     Grid.RowSpan="3"
                                     Grid.Column="0"
-                                    Width="250"
-                                    Height="150"
+                                    Width="{StaticResource ListBoxItemWidth}"
+                                    Height="{StaticResource ListBoxItemHeight}"
                                     CornerRadius="1">
                                 <Border.Background>
                                     <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Black.png" />
@@ -147,47 +162,69 @@
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="18"
+                                <TextBlock FontSize="{StaticResource ListBoxFontSize18}"
                                            FontWeight="Bold"
                                            Text="{Binding UserId}" />
-                                <TextBlock FontSize="14" Text="{Binding FullNameTH}" />
+                                <TextBlock FontSize="{StaticResource ListBoxFontSize14}" Text="{Binding FullNameTH}" />
                                 <Grid Height="2" />
                             </StackPanel>
                             <!--  Role Name  -->
                             <TextBlock Grid.Row="2"
                                        Grid.Column="0"
                                        Margin="0,2,0,0"
-                                       FontSize="14"
+                                       FontSize="{StaticResource ListBoxFontSize14}"
                                        FontWeight="Bold"
                                        Foreground="WhiteSmoke"
                                        Text="{Binding RoleNameTH}"
                                        TextAlignment="Center" />
                         </Grid>
-                    </Border>
+                        <!--  TOPMOST BORDER FOR SELECTION  -->
+                        <Border Name="item_border"
+                                Margin="3"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                BorderBrush="{StaticResource ListBoxItemSelectedBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                Opacity="1"
+                                Visibility="Hidden">
+                            <Border HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="{StaticResource ListBoxItemSelectedBackground}"
+                                    BorderThickness="0"
+                                    Opacity=".25" />
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="item_border" Property="Visibility" Value="Visible" />
+                            <!--
+                            <Setter TargetName="imgChecked" Property="Visibility" Value="Visible" />
+                            -->
+                        </Trigger>
                         <DataTrigger Binding="{Binding Path=RoleId}" Value="ADMINS">
-                            <Setter TargetName="border_background" Property="Background">
+                            <Setter TargetName="container_background" Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Purple.png" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=RoleId}" Value="ACCOUNT">
-                            <Setter TargetName="border_background" Property="Background">
+                            <Setter TargetName="container_background" Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Red.png" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=RoleId}" Value="TC">
-                            <Setter TargetName="border_background" Property="Background">
+                            <Setter TargetName="container_background" Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Blue.png" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=RoleId}" Value="CTC">
-                            <Setter TargetName="border_background" Property="Background">
+                            <Setter TargetName="container_background" Property="Background">
                                 <Setter.Value>
                                     <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Green.png" />
                                 </Setter.Value>

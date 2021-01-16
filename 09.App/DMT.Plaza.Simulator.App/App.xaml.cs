@@ -8,6 +8,8 @@ using System.Windows;
 using NLib;
 using NLib.Logs;
 
+using DMT.Configurations;
+
 #endregion
 
 namespace DMT
@@ -95,12 +97,16 @@ namespace DMT
             LogManager.Instance.Start();
 
             // Load Config service.
-            Services.PlazaAppConfigManager.Instance.LoadConfig();
+            PlazaAppConfigManager.Instance.LoadConfig();
             // Setup config reference to all rest client class.
-            Services.Operations.Plaza.Config = Services.PlazaAppConfigManager.Instance;
-            Services.Operations.Plaza.DMT = Services.PlazaAppConfigManager.Instance; // required for NetworkId
-            Services.Operations.SCW.Config = Services.PlazaAppConfigManager.Instance;
-            Services.Operations.SCW.DMT = Services.PlazaAppConfigManager.Instance; // required for NetworkId
+            Services.Operations.TA.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.TA.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.TOD.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.TOD.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.SCW.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.SCW.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
 
             Window window = null;
             window = new MainWindow();

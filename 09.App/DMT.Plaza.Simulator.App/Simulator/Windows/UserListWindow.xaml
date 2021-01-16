@@ -22,109 +22,11 @@
         </Grid.RowDefinitions>
         <ListBox x:Name="lstUsers"
                  Grid.Row="0"
-                 Background="Transparent"
-                 FontSize="18"
+                 ItemContainerStyle="{StaticResource UserCardItemTemplate}"
                  ItemsSource="{Binding}"
                  MouseDoubleClick="lstUsers_MouseDoubleClick"
                  SelectionChanged="lstUsers_SelectionChanged"
-                 SelectionMode="Single"
-                 VirtualizingPanel.IsVirtualizing="True"
-                 VirtualizingPanel.VirtualizationMode="Recycling">
-            <ListBox.Resources>
-                <Style TargetType="{x:Type ListBox}">
-                    <!--  Set the ItemTemplate of the ListBox to a DataTemplate which explains how to display an object of type BitmapImage.  -->
-                    <Setter Property="ItemTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <Grid Margin="2">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="250" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="90" />
-                                        <RowDefinition Height="30" />
-                                    </Grid.RowDefinitions>
-                                    <Border x:Name="border"
-                                            Grid.Row="0"
-                                            Grid.RowSpan="3"
-                                            Grid.Column="0"
-                                            Width="250"
-                                            Height="150"
-                                            CornerRadius="1">
-                                        <Border.Background>
-                                            <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Black.png" />
-                                        </Border.Background>
-                                    </Border>
-                                    <!--  UserId and Full Name  -->
-                                    <StackPanel Grid.Row="1"
-                                                Grid.Column="0"
-                                                Margin="20,20,0,0"
-                                                HorizontalAlignment="Stretch"
-                                                VerticalAlignment="Stretch"
-                                                Orientation="Vertical">
-                                        <TextBlock FontSize="18"
-                                                   FontWeight="Bold"
-                                                   Text="{Binding UserId}" />
-                                        <TextBlock FontSize="14" Text="{Binding FullNameTH}" />
-                                        <Grid Height="2" />
-                                    </StackPanel>
-                                    <!--  Role Name  -->
-                                    <TextBlock Grid.Row="2"
-                                               Grid.Column="0"
-                                               Margin="0,2,0,0"
-                                               FontSize="14"
-                                               FontWeight="Bold"
-                                               Foreground="WhiteSmoke"
-                                               Text="{Binding RoleNameTH}"
-                                               TextAlignment="Center" />
-                                </Grid>
-                                <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Path=RoleId}" Value="ADMINS">
-                                        <Setter TargetName="border" Property="Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Purple.png" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=RoleId}" Value="ACCOUNT">
-                                        <Setter TargetName="border" Property="Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Red.png" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=RoleId}" Value="TC">
-                                        <Setter TargetName="border" Property="Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Blue.png" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=RoleId}" Value="CTC">
-                                        <Setter TargetName="border" Property="Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Green.png" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <!--  Swap out the default items panel with a WrapPanel so that the images will be arranged with a different layout.  -->
-                    <Setter Property="ItemsPanel">
-                        <Setter.Value>
-                            <ItemsPanelTemplate>
-                                <WrapPanel />
-                            </ItemsPanelTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <!--  Set this attached property to 'Disabled' so that the ScrollViewer in the ListBox will never show a horizontal scrollbar, and the WrapPanel it contains will be constrained to the width of the ScrollViewer's viewable surface.  -->
-                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-                </Style>
-            </ListBox.Resources>
-        </ListBox>
+                 Style="{StaticResource SingleSelectWrapListBox}" />
         <Border Grid.Row="2"
                 Margin="1"
                 BorderBrush="Silver"

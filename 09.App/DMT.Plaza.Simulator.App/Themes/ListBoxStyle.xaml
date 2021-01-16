@@ -1,4 +1,201 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="PresentationOptions">
+    <!--  CONST LISTVIEW FONT SIZE  -->
+    <sys:Double x:Key="ListBoxFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
+    <sys:Double x:Key="ListBoxFontSize20" PresentationOptions:Freeze="True">20</sys:Double>
+
+    <!--  LISTBOX STYLES  -->
+    <Style x:Key="DMTListBox" TargetType="{x:Type ListBox}">
+        <!--  Common  -->
+        <Setter Property="FontSize" Value="{StaticResource ListBoxFontSize18}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <!--  Synchronized  -->
+        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+        <!--  VirtualizingPanel  -->
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+        <Setter Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="True" />
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+    </Style>
+
+    <Style x:Key="SingleSelectListBox"
+           BasedOn="{StaticResource DMTListBox}"
+           TargetType="ListView">
+        <Setter Property="SelectionMode" Value="Single" />
+    </Style>
+
+    <Style x:Key="MultiSelectListBox"
+           BasedOn="{StaticResource DMTListBox}"
+           TargetType="ListBox">
+        <Setter Property="SelectionMode" Value="Multiple" />
+    </Style>
+
+    <Style x:Key="ExtendedSelectListBox"
+           BasedOn="{StaticResource DMTListBox}"
+           TargetType="ListBox">
+        <Setter Property="SelectionMode" Value="Extended" />
+    </Style>
+
+    <!--  WRAP LISTBOX STYLES  -->
+    <Style x:Key="DMTWrapListBox"
+           BasedOn="{StaticResource DMTListBox}"
+           TargetType="{x:Type ListBox}">
+        <!--  Swap out the default items panel with a WrapPanel so that the images will be arranged with a different layout.  -->
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--  Set this attached property to 'Disabled' so that the ScrollViewer in the ListBox will never show a horizontal scrollbar, and the WrapPanel it contains will be constrained to the width of the ScrollViewer's viewable surface.  -->
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    </Style>
+
+    <Style x:Key="SingleSelectWrapListBox"
+           BasedOn="{StaticResource DMTWrapListBox}"
+           TargetType="ListBox">
+        <Setter Property="SelectionMode" Value="Single" />
+    </Style>
+
+    <Style x:Key="MultiSelectWrapListBox"
+           BasedOn="{StaticResource DMTWrapListBox}"
+           TargetType="ListBox">
+        <Setter Property="SelectionMode" Value="Multiple" />
+    </Style>
+
+    <Style x:Key="ExtendedSelectWrapListBox"
+           BasedOn="{StaticResource DMTWrapListBox}"
+           TargetType="ListBox">
+        <Setter Property="SelectionMode" Value="Extended" />
+    </Style>
+
+    <!--  WRAP LISTBOX ITEM STYLES  -->
+
+    <!--  EXAMPLE LISTBOX ITEM CONTROL TEMPLATE  -->
+    <Style x:Key="ExampleWrapItemControlTemplate" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+        <Setter Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}" />
+        <Setter Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualHeight}" />
+        <!--  ADJUST LAYOUT HERE  -->
+        <!--
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        -->
+    </Style>
+
+    <!--  EXAMPLE LISTBOX ITEM DATA TEMPLATE  -->
+    <Style x:Key="ExampleWrapItemDataTemplate" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+        <Setter Property="MaxWidth" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWidth}" />
+        <Setter Property="MaxHeight" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualHeight}" />
+        <!--  ADJUST LAYOUT HERE  -->
+        <!--
+        <Setter Property="Template">
+            <Setter.Value>
+                <DataTemplate>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        -->
+    </Style>
+
+    <!--  USER CARD LISTBOX ITEM DATA TEMPLATE  -->
+    <Style x:Key="UserCardItemTemplate" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Name="ItemBorder"
+                            Margin="2"
+                            BorderBrush="Transparent"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Border x:Name="border_background"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"
+                                    Width="250"
+                                    Height="150"
+                                    CornerRadius="1">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Black.png" />
+                                </Border.Background>
+                            </Border>
+                            <!--  UserId and Full Name  -->
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="0"
+                                        Margin="20,20,0,0"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Orientation="Vertical">
+                                <TextBlock FontSize="18"
+                                           FontWeight="Bold"
+                                           Text="{Binding UserId}" />
+                                <TextBlock FontSize="14" Text="{Binding FullNameTH}" />
+                                <Grid Height="2" />
+                            </StackPanel>
+                            <!--  Role Name  -->
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Margin="0,2,0,0"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Foreground="WhiteSmoke"
+                                       Text="{Binding RoleNameTH}"
+                                       TextAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=RoleId}" Value="ADMINS">
+                            <Setter TargetName="border_background" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Purple.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleId}" Value="ACCOUNT">
+                            <Setter TargetName="border_background" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Red.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleId}" Value="TC">
+                            <Setter TargetName="border_background" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Blue.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=RoleId}" Value="CTC">
+                            <Setter TargetName="border_background" Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Green.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

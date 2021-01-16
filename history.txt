@@ -44,8 +44,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #850
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #849
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #848
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project.
+    - Add Infrastructure View Scripts.
+  - DMT.TOD.Models project.
+    - Add Infrastructure View Scripts.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #847

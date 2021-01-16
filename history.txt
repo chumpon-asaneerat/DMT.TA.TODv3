@@ -41,8 +41,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #865
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #864
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Config.App
+    - Update ListBoxStyle.xaml.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #863

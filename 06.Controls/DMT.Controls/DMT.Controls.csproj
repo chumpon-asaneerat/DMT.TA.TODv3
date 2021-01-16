@@ -186,6 +186,24 @@
   <ItemGroup>
     <Resource Include="Images\Button\Button5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cards\Card-Red.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

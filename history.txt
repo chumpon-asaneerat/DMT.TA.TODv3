@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #859
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #858
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #857
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Add Card images.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #856

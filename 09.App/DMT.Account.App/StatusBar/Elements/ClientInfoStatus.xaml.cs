@@ -35,17 +35,24 @@ namespace DMT.Controls.StatusBar
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
             AccountUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             AccountUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
         }
 
         #endregion
 
         #region Config Watcher Handlers
+
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
 
         private void UI_ConfigChanged(object sender, EventArgs e)
         {

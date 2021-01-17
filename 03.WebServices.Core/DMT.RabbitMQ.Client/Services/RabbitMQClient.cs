@@ -160,6 +160,11 @@ namespace DMT.Services
             }
             catch (Exception ex)
             {
+                if (null != _factory)
+                {
+                    Console.WriteLine("Connect failed: Host:{0}, Port:{1}.",
+                        _factory.HostName, _factory.Port);
+                }
                 //Console.WriteLine(ex);
                 med.Err(ex);
                 Disconnect(); // free channel and connection.
@@ -243,6 +248,7 @@ namespace DMT.Services
             {
                 if (!this.Connect())
                 {
+                    Console.WriteLine("Listen -> connect failed. QueueName: {0}", queueName);
                     return false;
                 }
             }

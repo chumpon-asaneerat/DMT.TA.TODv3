@@ -47,8 +47,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #879
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #878
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #877
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update All StatusBar elements #2.
+    - Update app.xaml.cs #2.
+  - DMT.RabbitMQ.Client
+    - RabbitMQClient class
+      - Add Log to Console in Connect method.
+      - Add Log to Console in Listen method.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #876

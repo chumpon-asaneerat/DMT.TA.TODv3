@@ -97,10 +97,12 @@ namespace DMT
 
             // Load Config service.
             AccountConfigManager.Instance.LoadConfig();
+            AccountConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
             Services.Operations.TAxTOD.Config = AccountConfigManager.Instance;
             Services.Operations.TAxTOD.DMT = AccountConfigManager.Instance; // required for NetworkId
             Services.Operations.SCW.Config = AccountConfigManager.Instance;
             Services.Operations.SCW.DMT = AccountConfigManager.Instance; // required for NetworkId
+            AccountConfigManager.Instance.Start(); // Start File Watcher.
 
             // Start SCWMQ
             Services.SCWMQService.Instance.Start();
@@ -129,6 +131,7 @@ namespace DMT
         {
             // Shutdown File Watcher.
             AccountUIConfigManager.Instance.Shutdown();
+            AccountConfigManager.Instance.Shutdown();
 
             // Shutdown RabbitMQ.
             Services.RabbitMQService.Instance.Shutdown();
@@ -150,5 +153,23 @@ namespace DMT
 
             base.OnExit(e);
         }
+
+        private void Service_ConfigChanged(object sender, EventArgs e)
+        {
+            // When Service Config file changed.
+
+            // Update all related service operations.
+            Services.Operations.TAxTOD.Config = AccountConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = AccountConfigManager.Instance; // required for NetworkId
+            Services.Operations.SCW.Config = AccountConfigManager.Instance;
+            Services.Operations.SCW.DMT = AccountConfigManager.Instance; // required for NetworkId
+
+            // RabbitMQ
+            Services.RabbitMQService.Instance.Shutdown(); // Shutdown
+            // Reload config.
+            Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
+            Services.RabbitMQService.Instance.Start(); // Start
+        }
+
     }
 }

@@ -44,12 +44,14 @@ namespace DMT.Controls.StatusBar
             timer.Tick += timer_Tick;
             timer.Start();
 
+            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
             AccountUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             AccountUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != timer)
             {
@@ -71,6 +73,11 @@ namespace DMT.Controls.StatusBar
         #endregion
 
         #region Config Watcher Handlers
+
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
 
         private void UI_ConfigChanged(object sender, EventArgs e)
         {

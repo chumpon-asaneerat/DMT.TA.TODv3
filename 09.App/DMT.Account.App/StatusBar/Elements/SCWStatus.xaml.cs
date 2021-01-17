@@ -54,12 +54,14 @@ namespace DMT.Controls.StatusBar
             timer.Tick += timer_Tick;
             timer.Start();
 
+            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
             AccountUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             AccountUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != ping)
             {
@@ -106,6 +108,23 @@ namespace DMT.Controls.StatusBar
         #endregion
 
         #region Config Watcher Handlers
+
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            if (null != ping)
+            {
+                string host = (null != AccountConfigManager.Instance.SCW && null != AccountConfigManager.Instance.SCW.Service) ?
+                    AccountConfigManager.Instance.SCW.Service.HostName : "unknown";
+                // Stop ping service.
+                ping.Stop();
+                // Clear and add new host.
+                ping.Clear();
+                ping.Add(host);
+                // Restart ping service.
+                ping.Start();
+            }
+            UpdateUI();
+        }
 
         private void UI_ConfigChanged(object sender, EventArgs e)
         {

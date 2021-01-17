@@ -38,8 +38,8 @@ namespace DMT.Controls.StatusBar
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string host = (null != AccountConfigManager.Instance.TAxTOD && null != AccountConfigManager.Instance.TAxTOD.Service) ?
-                AccountConfigManager.Instance.TAxTOD.Service.HostName : "unknown";
+            string host = (null != TAConfigManager.Instance.TAxTOD && null != TAConfigManager.Instance.TAxTOD.Service) ?
+                TAConfigManager.Instance.TAxTOD.Service.HostName : "unknown";
 
             ping = new NLib.Components.PingManager();
             ping.OnReply += Ping_OnReply;
@@ -54,14 +54,14 @@ namespace DMT.Controls.StatusBar
             timer.Tick += timer_Tick;
             timer.Start();
 
-            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
-            AccountUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
+            TAConfigManager.Instance.ConfigChanged += ConfigChanged;
+            TAUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            AccountUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
-            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
+            TAUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != ping)
             {
@@ -113,8 +113,8 @@ namespace DMT.Controls.StatusBar
         {
             if (null != ping)
             {
-                string host = (null != AccountConfigManager.Instance.TAxTOD && null != AccountConfigManager.Instance.TAxTOD.Service) ?
-                    AccountConfigManager.Instance.TAxTOD.Service.HostName : "unknown";
+                string host = (null != TAConfigManager.Instance.TAxTOD && null != TAConfigManager.Instance.TAxTOD.Service) ?
+                    TAConfigManager.Instance.TAxTOD.Service.HostName : "unknown";
                 // Stop ping service.
                 ping.Stop();
                 // Clear and add new host.
@@ -135,7 +135,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = AccountUIConfigManager.Instance.TAServer;
+            var statusCfg = TAUIConfigManager.Instance.TAServer;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

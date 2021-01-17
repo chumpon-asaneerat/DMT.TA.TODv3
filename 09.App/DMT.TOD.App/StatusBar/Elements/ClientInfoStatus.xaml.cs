@@ -6,6 +6,9 @@ using System.Windows.Controls;
 
 using NLib.Utils;
 
+using DMT.Configurations;
+using DMT.Services;
+
 #endregion
 
 namespace DMT.Controls.StatusBar
@@ -32,17 +35,46 @@ namespace DMT.Controls.StatusBar
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
+            TODUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            TODUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
+        }
 
+        #endregion
+
+        #region Config Watcher Handlers
+
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void UI_ConfigChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
         }
 
         #endregion
 
         private void UpdateUI()
         {
+            var statusCfg = TODUIConfigManager.Instance.ClientInfo;
+            if (null == statusCfg || !statusCfg.Visible)
+            {
+                // Hide Control.
+                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // Show Control.
+                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+            }
+
             var ipaddr = NetworkUtils.GetLocalIPAddress();
             txtStatus.Text = (null != ipaddr) ? ipaddr.ToString() : "0.0.0.0";
         }

@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 
 using DMT.Configurations;
+using DMT.Services;
 
 #endregion
 
@@ -52,10 +53,16 @@ namespace DMT.Controls.StatusBar
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+
+            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
+            TODUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            TODUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
+
             if (null != ping)
             {
                 ping.OnReply -= Ping_OnReply;
@@ -94,6 +101,20 @@ namespace DMT.Controls.StatusBar
         #region Timer Handler
 
         void timer_Tick(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        #endregion
+
+        #region Config Watcher Handlers
+
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void UI_ConfigChanged(object sender, EventArgs e)
         {
             UpdateUI();
         }

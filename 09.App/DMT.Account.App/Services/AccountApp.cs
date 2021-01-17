@@ -11,8 +11,7 @@ using DMT.Services;
 
 #endregion
 
-
-namespace DMT.Controls
+namespace DMT
 {
     /// <summary>
     /// The AccountApp class.

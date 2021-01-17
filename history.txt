@@ -47,8 +47,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #874
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #873
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #872
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Rename CurrentAccount to AccountApp class and move to Services folder.
+    - Fixed all reference code.
+  - DMT.TA.App project.
+    - Rename CurrentTA to TAApp class and move to Services folder.
+    - Fixed all reference code.
+  - DMT.TOD.App project.
+    - Add TODApp class.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #871

@@ -58,7 +58,7 @@ namespace DMT.Account.Pages.Menu
         {
             // Exit
             // When enter Sign In Screen reset current user.
-            Controls.AccountApp.User.Current = null;
+            AccountApp.User.Current = null;
 
             var page = new DMT.Pages.SignInPage();
             page.Setup(

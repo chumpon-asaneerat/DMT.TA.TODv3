@@ -228,7 +228,7 @@ namespace DMT.Pages
             }
 
             SmartcardManager.Instance.Shutdown();
-            Controls.AccountApp.User.Current = _user;
+            AccountApp.User.Current = _user;
             // Init Main Menu
             PageContentManager.Instance.Current = new Account.Pages.Menu.MainMenu();
         }

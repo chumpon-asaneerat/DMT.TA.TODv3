@@ -106,7 +106,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Header\CurrentTA.cs" />
+    <Compile Include="Services\TAApp.cs" />
     <Compile Include="Header\Elements\HeaderChief.xaml.cs">
       <DependentUpon>HeaderChief.xaml</DependentUpon>
     </Compile>

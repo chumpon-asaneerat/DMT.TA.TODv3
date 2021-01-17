@@ -124,7 +124,7 @@ namespace DMT.TA.Pages.Menu
         {
             // ออกจากระบบ
             // When enter Sign In Screen reset current user.
-            Controls.TAApp.User.Current = null;
+            TAApp.User.Current = null;
 
             var page = new DMT.Pages.SignInPage();
             page.Setup(

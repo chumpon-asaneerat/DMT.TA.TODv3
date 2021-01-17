@@ -107,7 +107,7 @@
     <Compile Include="Account\Pages\Menu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Header\CurrentAccount.cs" />
+    <Compile Include="Services\AccountApp.cs" />
     <Compile Include="Header\Elements\HeaderDateTime.xaml.cs">
       <DependentUpon>HeaderDateTime.xaml</DependentUpon>
     </Compile>

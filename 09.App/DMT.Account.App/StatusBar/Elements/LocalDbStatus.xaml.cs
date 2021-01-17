@@ -14,16 +14,16 @@ using DMT.Services;
 namespace DMT.Controls.StatusBar
 {
     /// <summary>
-    /// Interaction logic for SCWStatus.xaml
+    /// Interaction logic for LocalDbStatus.xaml
     /// </summary>
-    public partial class SCWStatus : UserControl
+    public partial class LocalDbStatus : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public SCWStatus()
+        public LocalDbStatus()
         {
             InitializeComponent();
         }
@@ -31,22 +31,12 @@ namespace DMT.Controls.StatusBar
         #endregion
 
         private DispatcherTimer timer = null;
-        private NLib.Components.PingManager ping = null;
         private bool isOnline = false;
 
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string host = (null != AccountConfigManager.Instance.SCW && null != AccountConfigManager.Instance.SCW.Service) ?
-                AccountConfigManager.Instance.SCW.Service.HostName : "unknown";
-
-            ping = new NLib.Components.PingManager();
-            ping.OnReply += Ping_OnReply;
-            ping.Add(host);
-            ping.Interval = 1000;
-            ping.Start();
-
             UpdateUI();
 
             timer = new DispatcherTimer();
@@ -61,37 +51,12 @@ namespace DMT.Controls.StatusBar
         {
             AccountUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
 
-            if (null != ping)
-            {
-                ping.OnReply -= Ping_OnReply;
-                ping.Stop();
-                ping.Dispose();
-            }
-            ping = null;
-
             if (null != timer)
             {
                 timer.Tick -= timer_Tick;
                 timer.Stop();
             }
             timer = null;
-        }
-
-        #endregion
-
-        #region Ping Reply Handler
-
-        private void Ping_OnReply(object sender, NLib.Networks.PingResponseEventArgs e)
-        {
-            if (null != e.Reply &&
-                e.Reply.Status == System.Net.NetworkInformation.IPStatus.Success)
-            {
-                isOnline = true;
-            }
-            else
-            {
-                isOnline = false;
-            }
         }
 
         #endregion
@@ -116,7 +81,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = AccountUIConfigManager.Instance.SCW;
+            var statusCfg = AccountUIConfigManager.Instance.LocalDb;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.
@@ -128,15 +93,16 @@ namespace DMT.Controls.StatusBar
                 if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
             }
 
+            isOnline = AccountDbServer.Instance.Connected;
             if (isOnline)
             {
                 borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);
-                txtStatus.Text = "Online";
+                txtStatus.Text = "Connected";
             }
             else
             {
                 borderStatus.Background = new SolidColorBrush(Colors.Maroon);
-                txtStatus.Text = "Offline";
+                txtStatus.Text = "Disconnected";
             }
         }
     }

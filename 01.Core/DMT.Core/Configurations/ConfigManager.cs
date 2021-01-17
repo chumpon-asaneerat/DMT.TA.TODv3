@@ -24,6 +24,7 @@ namespace DMT.Configurations
     {
         #region Internal Variables
 
+        private FileSystemWatcher _watcher = null;
         private T _cfg = new T();
 
         #endregion
@@ -35,12 +36,73 @@ namespace DMT.Configurations
         /// </summary>
         public JsonConfigFileManger() : base()
         {
+            
         }
         /// <summary>
         /// Destructor.
         /// </summary>
         ~JsonConfigFileManger()
         {
+            Shutdown();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void InitWacther(bool reCreated = false)
+        {
+            if (null != _watcher && !reCreated)
+            {
+                return;
+            }
+            if (null != _watcher)
+            {
+                ReleaseWacther();
+            }
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                _watcher = new FileSystemWatcher();
+                _watcher.Path = NJson.LocalConfigFolder;
+                _watcher.NotifyFilter = NotifyFilters.LastWrite;
+                _watcher.Filter = "*.json";
+                _watcher.Changed += _watcher_Changed;
+                _watcher.EnableRaisingEvents = true;
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                ReleaseWacther();
+            }
+        }
+
+        private void ReleaseWacther()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (null != _watcher)
+                {
+                    _watcher.Changed -= _watcher_Changed;
+                    _watcher.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+            _watcher = null;
+        }
+
+        private void _watcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(e.FullPath) && !string.IsNullOrWhiteSpace(this.FileName) &&
+                e.FullPath.Trim().ToLower() == this.FileName.Trim().ToLower())
+            {
+                this.LoadConfig(); // Reload config.
+            }
         }
 
         #endregion
@@ -133,6 +195,20 @@ namespace DMT.Configurations
                     med.Err(ex);
                 }
             }
+        }
+        /// <summary>
+        /// Start File Watcher Service.
+        /// </summary>
+        public void Start()
+        {
+            InitWacther();
+        }
+        /// <summary>
+        /// Shutdown File Watcher Service.
+        /// </summary>
+        public void Shutdown()
+        {
+            ReleaseWacther();
         }
 
         #endregion

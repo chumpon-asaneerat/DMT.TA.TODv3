@@ -137,7 +137,7 @@ namespace DMT
         /// <summary>
         /// Gets local data json folder path name.
         /// </summary>
-        static string LocalDataFolder
+        public static string LocalDataFolder
         {
             get
             {
@@ -153,7 +153,7 @@ namespace DMT
         /// <summary>
         /// Gets local configs json folder path name.
         /// </summary>
-        static string LocalConfigFolder
+        public static string LocalConfigFolder
         {
             get
             {

@@ -50,8 +50,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #878
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #877
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #876
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update JsonConfigFileManger<T> class
+      - Add FileSystemWatcher supports.
+    - Update NJson class.
+      - Set public access in some properties.
+  - DMT.Account.App project.
+    - Update UIConfigs.cs #3
+    - Update All StatusBar elements #1.
+    - Update app.xaml.cs #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #875

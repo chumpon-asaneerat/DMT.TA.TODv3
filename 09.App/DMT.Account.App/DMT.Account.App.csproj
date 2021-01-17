@@ -120,6 +120,7 @@
     <Compile Include="Header\AccountHeader.xaml.cs">
       <DependentUpon>AccountHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\UIConfigs.cs" />
     <Compile Include="SignIn\Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>

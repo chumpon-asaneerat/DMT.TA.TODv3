@@ -44,8 +44,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #875
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #874
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #873
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Add UIConfigs.cs
+      - Add StatusBarConfig class.
+      - Add UIConfig class.
+  - DMT.Account.App project.
+    - Add UIConfigs.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #872

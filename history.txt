@@ -65,8 +65,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #893
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #892
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #891
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Common Code for Singleton/Static Access All Pages, Windows
+      - MainMenu page.
+      - SignIn page.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #890

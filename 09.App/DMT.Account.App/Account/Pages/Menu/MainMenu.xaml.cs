@@ -60,15 +60,8 @@ namespace DMT.Account.Pages.Menu
             // When enter Sign In Screen reset current user.
             AccountApp.User.Current = null;
 
-            var page = new DMT.Pages.SignInPage();
-            page.Setup(
-                "ADMINS",
-                "ACCOUNT",
-                /*"CTC_MGR", "CTC", "TC",*/
-                "MT_ADMIN", "MT_TECH",
-                "FINANCE", "SV",
-                "RAD_MGR", "RAD_SUP");
-
+            var page = AccountApp.Pages.SignIn;
+            page.Setup(AccountApp.Permissions.Account);
             PageContentManager.Instance.Current = page;
         }
 

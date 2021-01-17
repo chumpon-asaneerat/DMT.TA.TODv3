@@ -101,15 +101,7 @@ namespace DMT.Pages
         {
             tabs.SelectedIndex = 1;
 
-            txtUserId.Text = string.Empty;
-            txtPassword.Password = string.Empty;
-            txtMsg.Text = string.Empty;
-
-            txtUserId2.Text = string.Empty;
-            txtPassword2.Password = string.Empty;
-            txtNewPassword.Password = string.Empty;
-            txtConfirmPassword.Password = string.Empty;
-            txtMsg2.Text = string.Empty;
+            ClearInputs();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
@@ -126,15 +118,7 @@ namespace DMT.Pages
         {
             tabs.SelectedIndex = 0;
 
-            txtUserId.Text = string.Empty;
-            txtPassword.Password = string.Empty;
-            txtMsg.Text = string.Empty;
-
-            txtUserId2.Text = string.Empty;
-            txtPassword2.Password = string.Empty;
-            txtNewPassword.Password = string.Empty;
-            txtConfirmPassword.Password = string.Empty;
-            txtMsg2.Text = string.Empty;
+            ClearInputs();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
@@ -228,9 +212,8 @@ namespace DMT.Pages
             }
 
             SmartcardManager.Instance.Shutdown();
-            AccountApp.User.Current = _user;
-            // Init Main Menu
-            PageContentManager.Instance.Current = new Account.Pages.Menu.MainMenu();
+
+            GotoMainMenu();
         }
 
         private void CheckChangePassword()
@@ -240,15 +223,7 @@ namespace DMT.Pages
             {
                 tabs.SelectedIndex = 0;
 
-                txtUserId.Text = string.Empty;
-                txtPassword.Password = string.Empty;
-                txtMsg.Text = string.Empty;
-
-                txtUserId2.Text = string.Empty;
-                txtPassword2.Password = string.Empty;
-                txtNewPassword.Password = string.Empty;
-                txtConfirmPassword.Password = string.Empty;
-                txtMsg2.Text = string.Empty;
+                ClearInputs();
 
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                 {
@@ -312,16 +287,46 @@ namespace DMT.Pages
             return ret;
         }
 
+        private void GotoMainMenu()
+        {
+            // Set Current User.
+            AccountApp.User.Current = _user;
+            // Init Main Menu
+            PageContentManager.Instance.Current = AccountApp.Pages.MainMenu;
+        }
+
+        private void ClearInputs()
+        {
+            txtUserId.Text = string.Empty;
+            txtPassword.Password = string.Empty;
+            txtMsg.Text = string.Empty;
+
+            txtUserId2.Text = string.Empty;
+            txtPassword2.Password = string.Empty;
+            txtNewPassword.Password = string.Empty;
+            txtConfirmPassword.Password = string.Empty;
+            txtMsg2.Text = string.Empty;
+        }
+
         #endregion
 
         #region Public Methods
 
         public void Setup(params string[] roles)
         {
+            // Clear Inputs.
+            ClearInputs();
+            tabs.SelectedIndex = 0;
+
             _roles.Clear();
             _roles.AddRange(roles);
 
             SmartcardManager.Instance.Start();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId.Focus();
+            }));
         }
 
         public User User { get { return _user; } }

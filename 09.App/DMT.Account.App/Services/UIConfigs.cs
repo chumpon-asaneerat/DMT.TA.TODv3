@@ -27,9 +27,9 @@ namespace DMT.Configurations
         {
             this.AppInfo = new StatusBarConfig() { Name = "AppInfo", Visible = true };
             this.ClientInfo = new StatusBarConfig() { Name = "ClientInfo", Visible = true };
-            this.LocalDb = new StatusBarConfig() { Name = "LocalDb", Visible = false };
+            this.LocalDb = new StatusBarConfig() { Name = "LocalDb", Visible = true };
             this.SCW = new StatusBarConfig() { Name = "SCW", Visible = false };
-            this.TAServer = new StatusBarConfig() { Name = "TAServer", Visible = true };
+            this.TAServer = new StatusBarConfig() { Name = "TAServer", Visible = false };
         }
 
         #endregion

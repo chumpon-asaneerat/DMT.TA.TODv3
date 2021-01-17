@@ -27,9 +27,10 @@ namespace DMT.Configurations
         {
             this.AppInfo = new StatusBarConfig() { Name = "AppInfo", Visible = true };
             this.ClientInfo = new StatusBarConfig() { Name = "ClientInfo", Visible = true };
-            this.LocalDb = new StatusBarConfig() { Name = "LocalDb", Visible = false };
+            this.LocalDb = new StatusBarConfig() { Name = "LocalDb", Visible = true };
             this.SCW = new StatusBarConfig() { Name = "SCW", Visible = false };
             this.TAServer = new StatusBarConfig() { Name = "TAServer", Visible = true };
+            this.TODApp = new StatusBarConfig() { Name = "TODApp", Visible = false };
         }
 
         #endregion
@@ -46,6 +47,8 @@ namespace DMT.Configurations
         public StatusBarConfig SCW { get; set; }
         /// <summary>Gets or sets TAServer status bar.</summary>
         public StatusBarConfig TAServer { get; set; }
+        /// <summary>Gets or sets TOD App status bar.</summary>
+        public StatusBarConfig TODApp { get; set; }
 
         #endregion
     }
@@ -172,6 +175,17 @@ namespace DMT.Configurations
             {
                 if (null == Value) LoadConfig();
                 return (null != Value) ? Value.TAServer : null;
+            }
+        }
+        /// <summary>
+        /// Gets TODApp Config.
+        /// </summary>
+        public StatusBarConfig TODApp
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value) ? Value.TODApp : null;
             }
         }
 

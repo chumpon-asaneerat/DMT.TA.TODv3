@@ -44,8 +44,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #880
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #879
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #878
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update JsonConfigFileManger<T> class
+      - Add Some check file changed event.
+  - DMT.Account.App project.
+    - Update All StatusBar elements #3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #877

@@ -26,6 +26,7 @@ namespace DMT.Configurations
 
         private FileSystemWatcher _watcher = null;
         private T _cfg = new T();
+        private DateTime _lastRead = DateTime.MinValue;
 
         #endregion
 
@@ -101,7 +102,17 @@ namespace DMT.Configurations
             if (!string.IsNullOrWhiteSpace(e.FullPath) && !string.IsNullOrWhiteSpace(this.FileName) &&
                 e.FullPath.Trim().ToLower() == this.FileName.Trim().ToLower())
             {
-                this.LoadConfig(); // Reload config.
+                // Gets Last Write Time.
+                DateTime lastWriteTime = File.GetLastWriteTime(e.FullPath);
+                TimeSpan ts = lastWriteTime - _lastRead;
+                if (ts.TotalMilliseconds > 0)
+                {
+                    Console.WriteLine("Detected File '{0}' Changed.", e.Name);
+                    // Reload config.
+                    this.LoadConfig();
+                    // Set last read.
+                    _lastRead = lastWriteTime;
+                }
             }
         }
 

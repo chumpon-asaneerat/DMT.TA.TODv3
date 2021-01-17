@@ -142,8 +142,11 @@
     <Compile Include="StatusBar\Elements\SCWStatus.xaml.cs">
       <DependentUpon>SCWStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StatusBar\Elements\LocalPlazaStatus.xaml.cs">
-      <DependentUpon>LocalPlazaStatus.xaml</DependentUpon>
+    <Compile Include="StatusBar\Elements\LocalDbStatus.xaml.cs">
+      <DependentUpon>LocalDbStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatusBar\Elements\TAAppStatus.xaml.cs">
+      <DependentUpon>TAAppStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="StatusBar\TODStatusBar.xaml.cs">
       <DependentUpon>TODStatusBar.xaml</DependentUpon>
@@ -227,7 +230,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StatusBar\Elements\LocalPlazaStatus.xaml">
+    <Page Include="StatusBar\Elements\LocalDbStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatusBar\Elements\TAAppStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

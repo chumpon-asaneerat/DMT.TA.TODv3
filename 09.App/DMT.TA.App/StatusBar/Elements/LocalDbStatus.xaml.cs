@@ -13,16 +13,16 @@ using DMT.Services;
 namespace DMT.Controls.StatusBar
 {
     /// <summary>
-    /// Interaction logic for LocalPlazaStatus.xaml
+    /// Interaction logic for LocalDbStatus.xaml
     /// </summary>
-    public partial class LocalPlazaStatus : UserControl
+    public partial class LocalDbStatus : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public LocalPlazaStatus()
+        public LocalDbStatus()
         {
             InitializeComponent();
         }
@@ -67,7 +67,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            isOnline = TODLocalDbServer.Instance.Connected;
+            isOnline = TALocalDbServer.Instance.Connected;
             if (isOnline)
             {
                 borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);

@@ -27,11 +27,16 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
-        #region Loaded
+        #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion

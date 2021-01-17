@@ -59,8 +59,23 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #885
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #884
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #883
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server project.
+    - Update TAWebServer.cs
+      - Add Supports Config Changed.
+  - DMT.TOD.Rest.Server project.
+    - Update TODWebServer.cs
+      - Add Supports Config Changed.
+  - DMT.TA.App project #3.
+    - Update All StatusBar elements.
+    - Update App.xaml.cs
+    - Update UIConfigs.cs
+  - DMT.TOD.App project #3.
+    - Update All StatusBar elements.
+    - Update App.xaml.cs
+    - Update UIConfigs.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #882

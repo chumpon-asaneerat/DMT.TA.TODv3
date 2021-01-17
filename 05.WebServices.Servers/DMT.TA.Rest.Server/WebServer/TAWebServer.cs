@@ -420,6 +420,25 @@ namespace DMT.Services
             nash.Run("advfirewall firewall delete rule name=\"" + appName + "\"");
         }
 
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            // When Service Config file changed.
+            // SCW
+            Operations.SCW.Config = TAConfigManager.Instance;
+            Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
+            // TAxTOD
+            Operations.TAxTOD.Config = TAConfigManager.Instance;
+            Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
+            // TOD
+            Operations.TOD.Config = TAConfigManager.Instance;
+            Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
+
+            // RabbitMQ
+            RabbitMQService.Instance.Shutdown();
+            RabbitMQService.Instance.RabbitMQ = TAConfigManager.Instance.RabbitMQ;
+            RabbitMQService.Instance.Start();
+        }
+
         #endregion
 
         #region Public Methods
@@ -437,6 +456,7 @@ namespace DMT.Services
                 return;
             }
             // Setup config reference to all rest client class.
+            TAConfigManager.Instance.ConfigChanged += ConfigChanged;
             // SCW
             Operations.SCW.Config = TAConfigManager.Instance;
             Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
@@ -491,6 +511,8 @@ namespace DMT.Services
         public void Shutdown()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+
+            TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             // Shutdown Rabbit MQ Service.
             RabbitMQService.Instance.Shutdown();

@@ -170,6 +170,5 @@ namespace DMT
             Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
             Services.RabbitMQService.Instance.Start(); // Start
         }
-
     }
 }

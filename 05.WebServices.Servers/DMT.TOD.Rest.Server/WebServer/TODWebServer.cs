@@ -438,6 +438,25 @@ namespace DMT.Services
             nash.Run("advfirewall firewall delete rule name=\"" + appName + "\"");
         }
 
+        private void ConfigChanged(object sender, EventArgs e)
+        {
+            // When Service Config file changed.
+            // SCW
+            Operations.SCW.Config = TODConfigManager.Instance;
+            Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
+            // TA
+            Operations.TA.Config = TODConfigManager.Instance;
+            Operations.TA.DMT = TODConfigManager.Instance; // required for NetworkId
+            // TAxTOD
+            Operations.TAxTOD.Config = TODConfigManager.Instance;
+            Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
+
+            // RabbitMQ
+            RabbitMQService.Instance.Shutdown();
+            RabbitMQService.Instance.RabbitMQ = TODConfigManager.Instance.RabbitMQ;
+            RabbitMQService.Instance.Start();
+        }
+
         #endregion
 
         #region Public Methods
@@ -455,6 +474,7 @@ namespace DMT.Services
                 return;
             }
             // Setup config reference to all rest client class.
+            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
             // SCW
             Operations.SCW.Config = TODConfigManager.Instance;
             Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
@@ -503,12 +523,15 @@ namespace DMT.Services
                 med.Info("RabbitMQ Client service connect failed.");
             }
         }
+
         /// <summary>
         /// Shutdown service.
         /// </summary>
         public void Shutdown()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+
+            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             // Shutdown Rabbit MQ Service.
             RabbitMQService.Instance.Shutdown();

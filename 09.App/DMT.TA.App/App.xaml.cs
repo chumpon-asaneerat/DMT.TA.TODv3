@@ -96,6 +96,7 @@ namespace DMT
 
             // Load Config service.
             TAConfigManager.Instance.LoadConfig();
+            TAConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
             // Setup config reference to all rest client class.
             Services.Operations.TOD.Config = TAConfigManager.Instance;
             Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
@@ -105,6 +106,7 @@ namespace DMT
 
             Services.Operations.SCW.Config = TAConfigManager.Instance;
             Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
+            TAConfigManager.Instance.Start(); // Start File Watcher.
 
             // Start SCWMQ
             Services.SCWMQService.Instance.Start();
@@ -112,6 +114,10 @@ namespace DMT
             // Start App Notify Server.
             appServ = new Services.TAWebServer();
             appServ.Start();
+
+            // Load UI Config
+            TAUIConfigManager.Instance.LoadConfig();
+            TAUIConfigManager.Instance.Start(); // Start File Watcher.
 
             Window window = null;
             window = new MainWindow();
@@ -127,6 +133,10 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // Shutdown File Watcher.
+            TAUIConfigManager.Instance.Shutdown();
+            TAConfigManager.Instance.Shutdown();
+
             if (null != appServ)
             {
                 appServ.Shutdown();
@@ -146,6 +156,20 @@ namespace DMT
             WpfAppContoller.Instance.Shutdown(autoCloseProcess, e.ApplicationExitCode);
 
             base.OnExit(e);
+        }
+
+        private void Service_ConfigChanged(object sender, EventArgs e)
+        {
+            // When Service Config file changed.
+            // Update all related service operations.
+            Services.Operations.TOD.Config = TAConfigManager.Instance;
+            Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.SCW.Config = TAConfigManager.Instance;
+            Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
         }
     }
 }

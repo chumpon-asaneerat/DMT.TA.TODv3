@@ -32,7 +32,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdRequestExchange_Click(object sender, RoutedEventArgs e)
         {
             // ยืม/แลก เงินยืมทอนฝ่ายบัญชี
-            var page = new Exchange.RequestExchangePage();
+            var page = TAApp.Pages.RequestExchange;
             //page.Setup();
             PageContentManager.Instance.Current = page;
         }
@@ -40,7 +40,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdReturnExchange_Click(object sender, RoutedEventArgs e)
         {
             // คืนเงินยืมทอนฝ่ายบัญชี
-            var page = new Exchange.ManageExchangePage();
+            var page = TAApp.Pages.ManageExchange;
             //page.Setup();
             PageContentManager.Instance.Current = page;
         }
@@ -48,7 +48,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdInHouseExchange_Click(object sender, RoutedEventArgs e)
         {
             // แลกเงินหมุนเวียนในด่าน
-            var page = new Exchange.InternalExchangePage();
+            var page = TAApp.Pages.InternalExchange;
             //page.Setup();
             PageContentManager.Instance.Current = page;
         }
@@ -56,7 +56,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdCouponSoldByPlaza_Click(object sender, RoutedEventArgs e)
         {
             // หัวหน่าขายคูปอง
-            var page = new Coupon.CouponTSBSalePage();
+            var page = TAApp.Pages.CouponTSBSale;
             //page.Setup(DMT.Controls.TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
@@ -64,7 +64,8 @@ namespace DMT.TA.Pages.Menu
         private void cmdCouponSoldHistory_Click(object sender, RoutedEventArgs e)
         {
             // ประวัติการขายคูปอง
-            var page = new Coupon.CouponHistoryViewPage();
+            var page = TAApp.Pages.CouponHistoryView;
+            //page.Setup();
             PageContentManager.Instance.Current = page;
         }
 
@@ -81,7 +82,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdUserCreditManage_Click(object sender, RoutedEventArgs e)
         {
             // เงินยืมทอน (collector)
-            var page = new Credit.CollectorCreditManagePage();
+            var page = TAApp.Pages.CollectorCreditManage;
             //page.RefreshPlazaInfo();
             PageContentManager.Instance.Current = page;
         }
@@ -89,21 +90,23 @@ namespace DMT.TA.Pages.Menu
         private void cmdUserBorrowCoupon_Click(object sender, RoutedEventArgs e)
         {
             // รับคูปอง (collector)
-            var page = new Coupon.ReceiveCouponPage();
+            var page = TAApp.Pages.ReceiveCoupon;
+            //page.Setup(DMT.Controls.TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
         private void cmdUserReturnCoupon_Click(object sender, RoutedEventArgs e)
         {
             // คืนคูปอง (collector)
-            var page = new Coupon.ReturnCouponPage();
+            var page = TAApp.Pages.ReturnCoupon;
+            //page.Setup(DMT.Controls.TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
         private void cmdUserCreditHistory_Click(object sender, RoutedEventArgs e)
         {
             // ประวัติการแลกเงินยืมทอน (collector)
-            var page = new Credit.CreditHistoryViewPage();
+            var page = TAApp.Pages.CreditHistoryView;
             //page.Setup(DMT.Controls.TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
@@ -111,7 +114,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdCheckBalance_Click(object sender, RoutedEventArgs e)
         {
             // เช็คยอดด่าน
-            var win = new Windows.Plaza.PlazaBalanceSummaryWindow();
+            var win = TAApp.Windows.PlazaBalanceSummary;
             win.Owner = Application.Current.MainWindow;
             //win.RefreshPlazaInfo();
             if (win.ShowDialog() == false)
@@ -123,18 +126,9 @@ namespace DMT.TA.Pages.Menu
         private void cmdExit_Click(object sender, RoutedEventArgs e)
         {
             // ออกจากระบบ
-            // When enter Sign In Screen reset current user.
-            TAApp.User.Current = null;
-
-            var page = new DMT.Pages.SignInPage();
-            page.Setup(
-                "ADMINS",
-                "ACCOUNT",
-                "CTC_MGR", "CTC", /*"TC",*/
-                "MT_ADMIN", "MT_TECH",
-                "FINANCE", "SV",
-                "RAD_MGR", "RAD_SUP");
-
+            TAApp.User.Current = null; // When enter Sign In Screen reset current user.
+            var page = TAApp.Pages.SignIn;
+            page.Setup(TAApp.Permissions.CTC);
             PageContentManager.Instance.Current = page;
         }
 

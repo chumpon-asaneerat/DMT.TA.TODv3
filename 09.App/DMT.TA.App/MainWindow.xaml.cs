@@ -40,14 +40,8 @@ namespace DMT
             PageContentManager.Instance.ContentChanged += new EventHandler(Instance_ContentChanged);
             PageContentManager.Instance.Start();
             // Init Sign In
-            var page = new Pages.SignInPage();
-            page.Setup(
-                "ADMINS",
-                "ACCOUNT",
-                "CTC_MGR", "CTC", /*"TC",*/
-                "MT_ADMIN", "MT_TECH",
-                "FINANCE", "SV",
-                "RAD_MGR", "RAD_SUP");
+            var page = TAApp.Pages.SignIn;
+            page.Setup(TAApp.Permissions.CTC);
             PageContentManager.Instance.Current = page;
         }
 

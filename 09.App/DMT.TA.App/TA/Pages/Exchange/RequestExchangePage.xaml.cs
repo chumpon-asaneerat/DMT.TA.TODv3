@@ -50,7 +50,7 @@ namespace DMT.TA.Pages.Exchange
         private void GotoMainMenu()
         {
             // Main Menu Page
-            var page = new Menu.MainMenu();
+            var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
         }
 

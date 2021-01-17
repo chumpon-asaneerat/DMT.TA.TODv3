@@ -111,6 +111,18 @@ namespace DMT.Controls.StatusBar
 
         private void ConfigChanged(object sender, EventArgs e)
         {
+            if (null != ping)
+            {
+                string host = (null != TAConfigManager.Instance.TODApp && null != TAConfigManager.Instance.TODApp.Service) ?
+                    TAConfigManager.Instance.TODApp.Service.HostName : "unknown";
+                // Stop ping service.
+                ping.Stop();
+                // Clear and add new host.
+                ping.Clear();
+                ping.Add(host);
+                // Restart ping service.
+                ping.Start();
+            }
             UpdateUI();
         }
 
@@ -123,6 +135,18 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
+            var statusCfg = TAUIConfigManager.Instance.TODApp;
+            if (null == statusCfg || !statusCfg.Visible)
+            {
+                // Hide Control.
+                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // Show Control.
+                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+            }
+
             if (isOnline)
             {
                 borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);

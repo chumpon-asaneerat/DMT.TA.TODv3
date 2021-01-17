@@ -88,6 +88,18 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
+            var statusCfg = TAUIConfigManager.Instance.LocalDb;
+            if (null == statusCfg || !statusCfg.Visible)
+            {
+                // Hide Control.
+                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // Show Control.
+                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+            }
+
             isOnline = TALocalDbServer.Instance.Connected;
             if (isOnline)
             {

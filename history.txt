@@ -47,8 +47,23 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #889
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #888
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #887
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update StatusBarConfig class.
+  - DMT.Account.App project #4.
+    - Update HeaderDateTime element.
+    - Update All StatusBar elements.
+    - Update UIConfigs.cs
+  - DMT.TA.App project #7.
+    - Update HeaderDateTime element.
+    - Update All StatusBar elements.
+    - Update UIConfigs.cs
+  - DMT.TOD.App project #7.
+    - Update HeaderDateTime element.
+    - Update All StatusBar elements.
+    - Update UIConfigs.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #886

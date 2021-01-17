@@ -24,41 +24,18 @@ namespace DMT.Configurations
         /// </summary>
         public StatusBarConfig() : base()
         {
-            this.Name = string.Empty;
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// IsEquals.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public bool IsEquals(object obj)
-        {
-            if (null == obj || !(obj is StatusBarConfig)) return false;
-            return this.GetString() == (obj as StatusBarConfig).GetString();
-        }
-        /// <summary>
-        /// GetString.
-        /// </summary>
-        /// <returns></returns>
-        public string GetString()
-        {
-            string code = this.Name;
-            return code;
+            this.Visible = false;
+            this.IntervalSeconds = 5;
         }
 
         #endregion
 
         #region Public Properties
 
-        /// <summary>Gets or sets Name.</summary>
-        public string Name { get; set; }
         /// <summary>Gets or sets Visibility.</summary>
         public bool Visible { get; set; }
+        /// <summary>Gets or sets Interval in seconds. Default 5 seomds.</summary>
+        public int IntervalSeconds { get; set; }
 
         #endregion
     }

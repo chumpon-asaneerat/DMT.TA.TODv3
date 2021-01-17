@@ -40,11 +40,14 @@ namespace DMT.Controls.StatusBar
         {
             string host = (null != AccountConfigManager.Instance.TAxTOD && null != AccountConfigManager.Instance.TAxTOD.Service) ?
                 AccountConfigManager.Instance.TAxTOD.Service.HostName : "unknown";
+            int interval = (null != AccountUIConfigManager.Instance.TAServer) ?
+                AccountUIConfigManager.Instance.TAServer.IntervalSeconds : 5;
+            if (interval < 0) interval = 5;
 
             ping = new NLib.Components.PingManager();
             ping.OnReply += Ping_OnReply;
             ping.Add(host);
-            ping.Interval = 1000;
+            ping.Interval = interval * 1000;
             ping.Start();
 
             UpdateUI();
@@ -115,8 +118,13 @@ namespace DMT.Controls.StatusBar
             {
                 string host = (null != AccountConfigManager.Instance.TAxTOD && null != AccountConfigManager.Instance.TAxTOD.Service) ?
                     AccountConfigManager.Instance.TAxTOD.Service.HostName : "unknown";
+                int interval = (null != AccountUIConfigManager.Instance.TAServer) ?
+                    AccountUIConfigManager.Instance.TAServer.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+
                 // Stop ping service.
                 ping.Stop();
+                ping.Interval = interval * 1000;
                 // Clear and add new host.
                 ping.Clear();
                 ping.Add(host);

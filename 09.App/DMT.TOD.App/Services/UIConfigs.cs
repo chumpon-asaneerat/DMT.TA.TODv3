@@ -25,11 +25,11 @@ namespace DMT.Configurations
         /// </summary>
         public TODUIConfig()
         {
-            this.AppInfo = new StatusBarConfig() { Name = "AppInfo", Visible = true };
-            this.ClientInfo = new StatusBarConfig() { Name = "ClientInfo", Visible = true };
-            this.LocalDb = new StatusBarConfig() { Name = "LocalDb", Visible = true };
-            this.SCW = new StatusBarConfig() { Name = "SCW", Visible = false };
-            this.TAApp = new StatusBarConfig() { Name = "TAApp", Visible = false };
+            this.AppInfo = new StatusBarConfig() { Visible = true };
+            this.ClientInfo = new StatusBarConfig() { Visible = true };
+            this.LocalDb = new StatusBarConfig() { Visible = true };
+            this.SCW = new StatusBarConfig() { Visible = false };
+            this.TAApp = new StatusBarConfig() { Visible = false };
         }
 
         #endregion

@@ -64,36 +64,4 @@ namespace DMT.Configurations
     }
 
     #endregion
-
-    #region UIConfig
-
-    /// <summary>
-    /// The UIConfig class.
-    /// </summary>
-    [JsonObject(MemberSerialization.OptOut)]
-    public class UIConfig
-    {
-        #region Constructor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public UIConfig() : base()
-        {
-            this.StatusBars = new List<StatusBarConfig>();
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets StatusBars UI list.
-        /// </summary>
-        public List<StatusBarConfig> StatusBars { get; set; }
-
-        #endregion
-    }
-
-    #endregion
 }

@@ -41,8 +41,14 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #875
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #874
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update UIConfigs.cs
+      - Remove UIConfig class.
+  - DMT.Account.App project.
+    - Update UIConfigs.cs #2
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #873

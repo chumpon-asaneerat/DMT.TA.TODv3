@@ -1777,7 +1777,7 @@ namespace DMT.Services
                 LastNameTH = lName,
                 Password = Utils.MD5.Encrypt("123456"),
                 CardId = "",
-                AccountStatus = User.AccountFlags.Valid,
+                AccountStatus = User.AccountFlags.Avaliable,
                 IsDummy = true,
                 RoleId = item.RoleId
             };
@@ -1826,7 +1826,7 @@ namespace DMT.Services
                 LastNameTH = lName,
                 Password = Utils.MD5.Encrypt("123456"),
                 CardId = "",
-                AccountStatus = User.AccountFlags.Valid,
+                AccountStatus = User.AccountFlags.Avaliable,
                 IsDummy = true,
                 RoleId = item.RoleId
             };
@@ -1862,7 +1862,7 @@ namespace DMT.Services
                 LastNameTH = lName,
                 Password = Utils.MD5.Encrypt("123456"),
                 CardId = "",
-                AccountStatus = User.AccountFlags.Valid,
+                AccountStatus = User.AccountFlags.Avaliable,
                 IsDummy = true,
                 RoleId = item.RoleId
             };

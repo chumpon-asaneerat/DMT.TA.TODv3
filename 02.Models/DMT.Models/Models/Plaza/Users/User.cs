@@ -40,13 +40,17 @@ namespace DMT.Models
 		public enum AccountFlags : int
 		{
 			/// <summary>
-			/// Account still valid.
-			/// </summary>
-			Valid = 0,
-			/// <summary>
 			/// Account is invalid.
 			/// </summary>
-			Invalid = 1
+			Invalid = 0,
+			/// <summary>
+			/// Account still avaliable.
+			/// </summary>
+			Avaliable = 1,
+			/// <summary>
+			/// Account is disable.
+			/// </summary>
+			Disable = 2
 		}
 
 		#endregion
@@ -77,7 +81,7 @@ namespace DMT.Models
 		// Expiration
 		private DateTime? _PasswordDate = new DateTime?();
 		private int _ExpireDays = 0;
-		private AccountFlags _AccountStatus = AccountFlags.Valid;
+		private AccountFlags _AccountStatus = AccountFlags.Avaliable;
 		// Validation (runtime)
 		private string _NewPassword = string.Empty;
 		private string _ConfirmPassword = string.Empty;

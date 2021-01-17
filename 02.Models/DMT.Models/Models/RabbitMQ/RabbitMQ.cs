@@ -37,45 +37,25 @@ namespace DMT.Models
     /// </summary>
     public class RabbitMQStaff
     {
-        /// <summary>
-        /// Gets or sets Staff Id.
-        /// </summary>
+        /// <summary>Gets or sets Staff Id.</summary>
         public string staffId { get; set; }
-        /// <summary>
-        /// Gets or sets Staff Family Name.
-        /// </summary>
+        /// <summary>Gets or sets Staff Family Name.</summary>
         public string staffFamilyName { get; set; }
-        /// <summary>
-        /// Gets or sets Staff First Name.
-        /// </summary>
+        /// <summary>Gets or sets Staff First Name.</summary>
         public string staffFirstName { get; set; }
-        /// <summary>
-        /// Gets or sets Staff Middle Name.
-        /// </summary>
+        /// <summary>Gets or sets Staff Middle Name.</summary>
         public string staffMiddleName { get; set; }
-        /// <summary>
-        /// Gets or sets Staff Title.
-        /// </summary>
+        /// <summary>Gets or sets Staff Title.</summary>
         public string title { get; set; }
-        /// <summary>
-        /// Gets or sets Password.
-        /// </summary>
+        /// <summary>Gets or sets Password.</summary>
         public string password { get; set; }
-        /// <summary>
-        /// Gets or sets Group.
-        /// </summary>
+        /// <summary>Gets or sets Group.</summary>
         public int group { get; set; }
-        /// <summary>
-        /// Gets or sets Card S/N.
-        /// </summary>
+        /// <summary>Gets or sets Card S/N.</summary>
         public string cardSerialNo { get; set; }
-        /// <summary>
-        /// Gets or sets password update datetime.
-        /// </summary>
-        public DateTime passwordUpdateDatetime { get; set; }
-        /// <summary>
-        /// Gets or sets status.
-        /// </summary>
+        /// <summary>Gets or sets password update datetime.</summary>
+        public DateTime? passwordUpdateDatetime { get; set; }
+        /// <summary>Gets or sets status.</summary>
         public string status { get; set; }
 
         /// <summary>
@@ -100,6 +80,15 @@ namespace DMT.Models
             ret.Password = value.password;
             ret.CardId = value.cardSerialNo;
             ret.GroupId = value.group;
+            if (!string.IsNullOrEmpty(value.status))
+            {
+                if (value.status == "A")
+                    ret.AccountStatus = User.AccountFlags.Avaliable;
+                else if (value.status == "D")
+                    ret.AccountStatus = User.AccountFlags.Disable;
+                else ret.AccountStatus = User.AccountFlags.Invalid;
+            }
+            else ret.AccountStatus = User.AccountFlags.Invalid; // no status data so mark as invalid.
 
             return ret;
         }

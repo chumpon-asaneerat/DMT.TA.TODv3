@@ -63,7 +63,7 @@ namespace DMT
 
         private void cmdLaneActivity_Click(object sender, RoutedEventArgs e)
         {
-            var page = new Simulator.Pages.LaneActivityPage();
+            var page = SimApp.Pages.LaneActivity;
             page.Setup();
             PageContentManager.Instance.Current = page;
         }
@@ -81,7 +81,7 @@ namespace DMT
         private void cmdTSBCouponView_Click(object sender, RoutedEventArgs e)
         {
             //PageContentManager.Instance.Current = new Simulator.Pages.TSBCouponViewPage();
-            var page = new Simulator.Pages.BankNotEntryPage();
+            var page = SimApp.Pages.BankNoteEntry;
             page.Setup();
             PageContentManager.Instance.Current = page;
         }

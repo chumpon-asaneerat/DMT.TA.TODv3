@@ -88,12 +88,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Lane.Models.cs" />
+    <Compile Include="Services\SimApp.cs" />
     <Compile Include="Simulator\Controls\Credit\Entry\CreditAmountEntry.xaml.cs">
       <DependentUpon>CreditAmountEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Simulator\Controls\Utils\AttachProperties.cs" />
-    <Compile Include="Simulator\Pages\BankNotEntryPage.xaml.cs">
-      <DependentUpon>BankNotEntryPage.xaml</DependentUpon>
+    <Compile Include="Simulator\Pages\BankNoteEntryPage.xaml.cs">
+      <DependentUpon>BankNoteEntryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Simulator\Pages\LaneActivityPage.xaml.cs">
       <DependentUpon>LaneActivityPage.xaml</DependentUpon>
@@ -144,7 +145,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Simulator\Pages\BankNotEntryPage.xaml">
+    <Page Include="Simulator\Pages\BankNoteEntryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

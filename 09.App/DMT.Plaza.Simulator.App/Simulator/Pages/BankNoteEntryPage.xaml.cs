@@ -22,14 +22,14 @@ namespace DMT.Simulator.Pages
     /// <summary>
     /// Interaction logic for BankNotEntryPage.xaml
     /// </summary>
-    public partial class BankNotEntryPage : UserControl
+    public partial class BankNoteEntryPage : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public BankNotEntryPage()
+        public BankNoteEntryPage()
         {
             InitializeComponent();
         }

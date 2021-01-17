@@ -124,7 +124,7 @@ namespace DMT.Simulator.Pages
                 });
             }
             // Select User to Begin job.
-            var win = new Windows.UserListWindow();
+            var win = SimApp.Windows.UserList;
             win.Owner = Application.Current.MainWindow;
             win.Setup(excludeUsrs.ToArray());
             if (win.ShowDialog() == false) return;
@@ -146,7 +146,7 @@ namespace DMT.Simulator.Pages
             var button = (sender as Button);
             var lane = (null != button && null != button.DataContext) ? button.DataContext as LaneInfo : null;
             if (null == lane) return;
-            var win = new Windows.PaymentWindow();
+            var win = SimApp.Windows.Payment;
             win.Owner = Application.Current.MainWindow;
             win.Setup(lane);
             if (win.ShowDialog() == false) return;

@@ -66,6 +66,10 @@
     <Reference Include="Microsoft.Owin.StaticFiles">
       <HintPath>..\..\References\Microsoft.Owin.StaticFiles.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\References\Owin.dll</HintPath>
@@ -123,6 +127,7 @@
     </Compile>
     <Compile Include="Services\TODApp.cs" />
     <Compile Include="Services\RuntimeManager.cs" />
+    <Compile Include="Services\UIConfigs.cs" />
     <Compile Include="SignIn\SmartcardManager.cs" />
     <Compile Include="SignIn\UserSearchManager.cs" />
     <Compile Include="SignIn\Windows\SignInWindow.xaml.cs">

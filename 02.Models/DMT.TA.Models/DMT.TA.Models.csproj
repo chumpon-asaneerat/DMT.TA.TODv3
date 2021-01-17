@@ -179,9 +179,6 @@
     <EmbeddedResource Include="Views\Scripts\Exchanges\TSBExchangeTransactionView.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Shifts\TSBShiftView.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Users\UserView.sql" />
   </ItemGroup>
   <ItemGroup>

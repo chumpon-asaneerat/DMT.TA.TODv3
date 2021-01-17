@@ -44,8 +44,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #870
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #869
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #868
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Add UserShift.cs
+  - DMT.TA.Models project.
+    - Remove TSBShiftView.sql
+    - TADbServer.cs - Remove init view TSBShiftView code.
+  - DMT.TOD.Models project.
+    - Remove UserShift.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #867

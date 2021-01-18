@@ -134,6 +134,7 @@
     <Compile Include="Consts\Routes\TOD\Shift\Actions\Common\Gets.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\TSB\Change.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Change.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />

@@ -47,8 +47,24 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #909
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #908
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #907
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Disable Shift-User route
+      - Current
+      - Change
+  - DMT.TOD.Rest.Client project.
+    - Implements Shift-User Operations
+      - Current
+      - Change
+  - DMT.TOD.Rest.Server project.
+    - Implements Shift-User Controllers
+      - Current
+      - Change
+    - Implements Shift-User Server Map Routes.
+      - Current
+      - Change
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #906

@@ -81,6 +81,8 @@
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
     <Compile Include="Services\Shift\Operations\TSB\Change.cs" />
     <Compile Include="Services\Shift\Operations\TSB\Current.cs" />
+    <Compile Include="Services\Shift\Operations\User\Change.cs" />
+    <Compile Include="Services\Shift\Operations\User\Current.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TOD.cs" />
   </ItemGroup>
@@ -105,8 +107,6 @@
       <Name>DMT.Rest.Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Shift\Operations\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

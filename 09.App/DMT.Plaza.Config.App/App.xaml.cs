@@ -98,6 +98,7 @@ namespace DMT
 
             // Load Config service.
             PlazaAppConfigManager.Instance.LoadConfig();
+            PlazaAppConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
             // Setup config reference to all rest client class.
             Services.Operations.TA.Config = PlazaAppConfigManager.Instance;
             Services.Operations.TA.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
@@ -122,6 +123,9 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // Shutdown File Watcher.
+            PlazaAppConfigManager.Instance.Shutdown();
+
             // Shutdown log manager
             LogManager.Instance.Shutdown();
 
@@ -132,6 +136,21 @@ namespace DMT
             WpfAppContoller.Instance.Shutdown(autoCloseProcess, e.ApplicationExitCode);
 
             base.OnExit(e);
+        }
+
+        private void Service_ConfigChanged(object sender, EventArgs e)
+        {
+            // When Service Config file changed.
+
+            // Update all related service operations.
+            Services.Operations.TA.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.TA.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.TOD.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.TOD.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.SCW.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.SCW.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
         }
 
         private void SetupExceptionHandling()

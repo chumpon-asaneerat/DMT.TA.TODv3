@@ -108,6 +108,7 @@ namespace DMT
 
             Services.Operations.SCW.Config = PlazaAppConfigManager.Instance;
             Services.Operations.SCW.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+            PlazaAppConfigManager.Instance.Start(); // Start File Watcher.
 
             Window window = null;
             window = new MainWindow();

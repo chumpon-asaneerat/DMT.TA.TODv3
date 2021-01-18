@@ -56,8 +56,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #906
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #905
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #904
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Config.App project
+    - Update App.xaml.cs -> Supports detected config changed #2.
+  - DMT.Plaza.Simulator.App project
+    - Update App.xaml.cs -> Supports detected config changed #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #903

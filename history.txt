@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #899
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #898
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #897
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Config.App project
+    - Common Code for Singleton/Static Access All Pages, Windows
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #896

@@ -66,17 +66,17 @@ namespace DMT
 
         private void cmdTSBManage_Click(object sender, RoutedEventArgs e)
         {
-            PageContentManager.Instance.Current = new Config.Pages.TSBViewPage();
+            PageContentManager.Instance.Current = ConfigApp.Pages.TSBView;
         }
 
         private void cmdUserView_Click(object sender, RoutedEventArgs e)
         {
-            PageContentManager.Instance.Current = new Config.Pages.UserViewPage();
+            PageContentManager.Instance.Current = ConfigApp.Pages.UserView;
         }
 
         private void cmdShiftView_Click(object sender, RoutedEventArgs e)
         {
-            PageContentManager.Instance.Current = new Config.Pages.ShiftViewPage();
+            PageContentManager.Instance.Current = ConfigApp.Pages.ShiftView;
         }
 
         #endregion

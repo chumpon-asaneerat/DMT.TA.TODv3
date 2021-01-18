@@ -45,7 +45,7 @@ namespace DMT
 
             #endregion
 
-            #region Lane Activity
+            #region Bank Note Entry
 
             private static Simulator.Pages.BankNoteEntryPage _BankNoteEntry;
 

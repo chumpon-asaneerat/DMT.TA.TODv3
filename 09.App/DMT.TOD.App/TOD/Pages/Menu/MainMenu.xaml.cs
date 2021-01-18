@@ -34,14 +34,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdCollectorBOJ_Click(object sender, RoutedEventArgs e)
         {
             // เปิดกะ
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", "TC",
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.TC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -49,7 +44,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // Begin of Shift Page
-            var jobWindow = new Windows.UserShifts.BOSWindow();
+            var jobWindow = TODApp.Windows.BOS;
             jobWindow.Owner = Application.Current.MainWindow;
             //jobWindow.Setup(user);
             if (jobWindow.ShowDialog() == false)
@@ -61,14 +56,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdCollectorRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
             // ป้อนรายได้
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", "TC",
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.TC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -76,7 +66,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // Collector Revenue Entry Page
-            var page = new Revenue.CollectorRevenueEntryPage();
+            var page = TODApp.Pages.CollectorRevenueEntry;
             //page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
@@ -84,14 +74,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdChiefRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
             // ป้อนรายได้ย้อนหลัง
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", /*"TC",*/
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.CTC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -99,7 +84,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // Chief Revenue Entry Page
-            var page = new Revenue.ChiefRevenueEntryPage();
+            var page = TODApp.Pages.ChiefRevenueEntry;
             //page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
@@ -107,14 +92,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdChiefChangeShift_Click(object sender, RoutedEventArgs e)
         {
             // หัวหน้าเปลี่ยนกะ
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", /*"TC",*/
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.CTC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -122,7 +102,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // Change Shift Page
-            var page = new TollAdmin.ChangeShiftPage();
+            var page = TODApp.Pages.ChangeShift;
             page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
@@ -130,14 +110,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdReportMenu_Click(object sender, RoutedEventArgs e)
         {
             // รายงานต่าง ๆ
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", /*"TC",*/
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.CTC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -145,7 +120,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // Report Main Menu
-            var page = new ReportMenu();
+            var page = TODApp.Pages.ReportMenu;
             // setup
             page.Setup(user);
             PageContentManager.Instance.Current = page;
@@ -154,14 +129,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdEMVQRCode_Click(object sender, RoutedEventArgs e)
         {
             // EMV/QR Code
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", /*"TC",*/
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.CTC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -169,7 +139,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // EMV/QRCode List Page
-            var page = new TollAdmin.EMVQRCodeListPage();
+            var page = TODApp.Pages.EMVQRCode;
             //page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
@@ -177,14 +147,9 @@ namespace DMT.TOD.Pages.Menu
         private void cmdStaffJobs_Click(object sender, RoutedEventArgs e)
         {
             // รายชื่อพนักงานเข้ากะ
-            var signinWin = new SignInWindow();
+            var signinWin = TODApp.Windows.SignIn;
             signinWin.Owner = Application.Current.MainWindow;
-            signinWin.Setup("ADMINS",
-                    "ACCOUNT",
-                    "CTC_MGR", "CTC", /*"TC",*/
-                    "MT_ADMIN", "MT_TECH",
-                    "FINANCE", "SV",
-                    "RAD_MGR", "RAD_SUP");
+            signinWin.Setup(TODApp.Permissions.CTC);
             if (signinWin.ShowDialog() == false)
             {
                 return;
@@ -192,7 +157,7 @@ namespace DMT.TOD.Pages.Menu
             var user = signinWin.User;
 
             // Job List Page
-            var page = new TollAdmin.JobListPage();
+            var page = TODApp.Pages.JobList;
             page.Setup(user);
             PageContentManager.Instance.Current = page;
         }

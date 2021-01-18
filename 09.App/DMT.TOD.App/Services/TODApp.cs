@@ -18,6 +18,240 @@ namespace DMT
     /// </summary>
     public static class TODApp
     {
+        /// <summary>
+        /// Permissions Static class.
+        /// </summary>
+        public static class Permissions
+        {
+            /// <summary>Gets or sets Role for CTC permission.</summary>
+            public static string[] CTC = new string[]
+            {
+                "ADMINS",
+                "ACCOUNT",
+                "CTC_MGR", "CTC", /*"TC",*/
+                "MT_ADMIN", "MT_TECH",
+                "FINANCE", "SV",
+                "RAD_MGR", "RAD_SUP"
+            };
 
+            /// <summary>Gets or sets Role for TC permission.</summary>
+            public static string[] TC = new string[]
+            {
+                "ADMINS",
+                "ACCOUNT",
+                "CTC_MGR", "CTC", "TC",
+                "MT_ADMIN", "MT_TECH",
+                "FINANCE", "SV",
+                "RAD_MGR", "RAD_SUP"
+            };
+        }
+
+        /// <summary>
+        /// Pages Static class.
+        /// </summary>
+        public static class Pages
+        {
+            #region Main Menu
+
+            private static TOD.Pages.Menu.MainMenu _MainMenu;
+
+            /// <summary>Gets Main Menu Page.</summary>
+            public static TOD.Pages.Menu.MainMenu LaneActivity
+            {
+                get
+                {
+                    if (null == _MainMenu)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _MainMenu = new TOD.Pages.Menu.MainMenu();
+                        }
+                    }
+                    return _MainMenu;
+                }
+            }
+
+            #endregion
+
+            #region Report Menu
+
+            private static TOD.Pages.Menu.ReportMenu _ReportMenu;
+
+            /// <summary>Gets Report Menu Page.</summary>
+            public static TOD.Pages.Menu.ReportMenu ReportMenu
+            {
+                get
+                {
+                    if (null == _ReportMenu)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _ReportMenu = new TOD.Pages.Menu.ReportMenu();
+                        }
+                    }
+                    return _ReportMenu;
+                }
+            }
+
+            #endregion
+
+            #region Configuration Menu
+
+            private static TOD.Pages.Menu.ConfigurationMenu _ConfigurationMenu;
+
+            /// <summary>Gets _Configuration Menu Page.</summary>
+            public static TOD.Pages.Menu.ConfigurationMenu ConfigurationMenu
+            {
+                get
+                {
+                    if (null == _ConfigurationMenu)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _ConfigurationMenu = new TOD.Pages.Menu.ConfigurationMenu();
+                        }
+                    }
+                    return _ConfigurationMenu;
+                }
+            }
+
+            #endregion
+
+            #region Revenue (Chief)
+
+            private static TOD.Pages.Revenue.ChiefRevenueEntryPage _ChiefRevenueEntry;
+
+            /// <summary>Gets Revenue (Chief) Page.</summary>
+            public static TOD.Pages.Revenue.ChiefRevenueEntryPage ChiefRevenueEntry
+            {
+                get
+                {
+                    if (null == _ChiefRevenueEntry)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _ChiefRevenueEntry = new TOD.Pages.Revenue.ChiefRevenueEntryPage();
+                        }
+                    }
+                    return _ChiefRevenueEntry;
+                }
+            }
+
+            #endregion
+
+            #region Revenue (Collector)
+
+            private static TOD.Pages.Revenue.CollectorRevenueEntryPage _CollectorRevenueEntry;
+
+            /// <summary>Gets Revenue (Collector) Page.</summary>
+            public static TOD.Pages.Revenue.CollectorRevenueEntryPage CollectorRevenueEntry
+            {
+                get
+                {
+                    if (null == _CollectorRevenueEntry)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _CollectorRevenueEntry = new TOD.Pages.Revenue.CollectorRevenueEntryPage();
+                        }
+                    }
+                    return _CollectorRevenueEntry;
+                }
+            }
+
+            #endregion
+
+            #region Change Shift
+
+            private static TOD.Pages.TollAdmin.ChangeShiftPage _ChangeShift;
+
+            /// <summary>Gets Change Shift Page.</summary>
+            public static TOD.Pages.TollAdmin.ChangeShiftPage ChangeShift
+            {
+                get
+                {
+                    if (null == _ChangeShift)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _ChangeShift = new TOD.Pages.TollAdmin.ChangeShiftPage();
+                        }
+                    }
+                    return _ChangeShift;
+                }
+            }
+
+            #endregion
+
+            #region EMV/QRCode
+
+            private static TOD.Pages.TollAdmin.EMVQRCodeListPage _EMVQRCode;
+
+            /// <summary>Gets EMV/QRCode Page.</summary>
+            public static TOD.Pages.TollAdmin.EMVQRCodeListPage EMVQRCode
+            {
+                get
+                {
+                    if (null == _EMVQRCode)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _EMVQRCode = new TOD.Pages.TollAdmin.EMVQRCodeListPage();
+                        }
+                    }
+                    return _EMVQRCode;
+                }
+            }
+
+            #endregion
+
+            #region Job List
+
+            private static TOD.Pages.TollAdmin.JobListPage _JobList;
+
+            /// <summary>Gets Job List Page.</summary>
+            public static TOD.Pages.TollAdmin.JobListPage JobList
+            {
+                get
+                {
+                    if (null == _JobList)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _JobList = new TOD.Pages.TollAdmin.JobListPage();
+                        }
+                    }
+                    return _JobList;
+                }
+            }
+
+            #endregion
+        }
+
+        /// <summary>
+        /// Windows Static class.
+        /// </summary>
+        public static class Windows
+        {
+            #region SignIn
+
+            /// <summary>Gets SignIn Window.</summary>
+            public static DMT.Windows.SignInWindow SignIn
+            {
+                get { return new DMT.Windows.SignInWindow(); }
+            }
+
+            #endregion
+
+            #region BOS (Begin Of Shift)
+
+            /// <summary>Gets BOS (Begin Of Shift Window.</summary>
+            public static TOD.Windows.UserShifts.BOSWindow BOS
+            {
+                get { return new TOD.Windows.UserShifts.BOSWindow(); }
+            }
+
+            #endregion
+        }
     }
 }

@@ -56,10 +56,16 @@ namespace DMT.Controls.Header
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+
+            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
+            TODUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            TODUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
+
             if (null != ping)
             {
                 ping.OnReply -= Ping_OnReply;

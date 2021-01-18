@@ -56,10 +56,16 @@ namespace DMT.Controls.Header
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+
+            TAConfigManager.Instance.ConfigChanged += ConfigChanged;
+            TAUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            TAUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
+            TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
+
             if (null != ping)
             {
                 ping.OnReply -= Ping_OnReply;

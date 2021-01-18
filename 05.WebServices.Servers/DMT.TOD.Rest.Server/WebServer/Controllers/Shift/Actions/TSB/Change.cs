@@ -9,6 +9,7 @@ using DMT.Models;
 
 namespace DMT.Services
 {
+    /*
     using TAOps = Services.Operations.TA.Notify;
 
     partial class Shift
@@ -32,4 +33,5 @@ namespace DMT.Services
             }
         }
     }
+    */
 }

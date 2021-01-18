@@ -50,8 +50,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #908
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #907
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #906
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Disable Shift-TSB route
+      - Change
+  - DMT.TOD.Rest.Client project.
+    - Disable Shift-TSB Operations
+      - Change
+  - DMT.TOD.Rest.Server project.
+    - Disable Shift-TSB Controllers
+      - Change
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #905

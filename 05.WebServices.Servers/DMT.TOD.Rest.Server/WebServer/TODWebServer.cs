@@ -301,6 +301,11 @@ namespace DMT.Services
                         actionName = RouteConsts.TOD.Shift.TSB.Current.Name;
                         actionUrl = RouteConsts.TOD.Shift.TSB.Current.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                        // Change
+                        //actionName = RouteConsts.TOD.Shift.TSB.Change.Name;
+                        //actionUrl = RouteConsts.TOD.Shift.TSB.Change.Url;
+                        //Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }
 

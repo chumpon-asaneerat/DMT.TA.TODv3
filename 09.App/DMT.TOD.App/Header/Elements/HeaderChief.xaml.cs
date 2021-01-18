@@ -29,9 +29,6 @@ namespace DMT.Controls.Header
 
         #endregion
 
-        // TODO: Refactor HeaderChief elements LocalOperations
-        //private LocalOperations ops = LocalServiceOperations.Instance.Plaza;
-
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -65,10 +62,7 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            /*
-            // TODO: Fixed HeaderUser elements to update current chief for TA/TOD
-            var ret = ops.Shifts.GetCurrent();
-            var shift = ret.Value();
+            var shift = TSBShift.GetTSBShift().Value();
             if (null == shift)
             {
                 txtSupervisorId.Text = "รหัสหัวหน้าด่าน : ";
@@ -79,7 +73,6 @@ namespace DMT.Controls.Header
                 txtSupervisorId.Text = "รหัสหัวหน้าด่าน : " + shift.UserId;
                 txtSupervisorName.Text = "หัวหน้าด่าน : " + shift.FullNameTH;
             }
-            */
         }
     }
 }

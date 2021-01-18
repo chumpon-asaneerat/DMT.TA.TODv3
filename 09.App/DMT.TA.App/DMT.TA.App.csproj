@@ -382,6 +382,10 @@
       <Project>{3765dc14-2c59-445f-8e73-efc7a59709e4}</Project>
       <Name>DMT.TA.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\02.Models\DMT.TOD.Models\DMT.TOD.Models.csproj">
+      <Project>{c9b46736-c7e7-40dc-957f-be015e598300}</Project>
+      <Name>DMT.TOD.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\03.WebServices.Core\DMT.Rest.Client\DMT.Rest.Client.csproj">
       <Project>{26ba4314-6b80-4a59-9e0d-7c29919bbc6f}</Project>
       <Name>DMT.Rest.Client</Name>
@@ -401,6 +405,10 @@
     <ProjectReference Include="..\..\04.WebServices.Clients\DMT.SCW.Rest.Client\DMT.SCW.Rest.Client.csproj">
       <Project>{5afdd4c5-434e-4b9f-a6e8-05c75dd95b59}</Project>
       <Name>DMT.SCW.Rest.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\05.WebServices.Servers\DMT.TOD.Rest.Server\DMT.TOD.Rest.Server.csproj">
+      <Project>{313dcc84-b2ff-46c4-b7a4-ae5a0bcfd1b2}</Project>
+      <Name>DMT.TOD.Rest.Server</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\06.Controls\DMT.Controls\DMT.Controls.csproj">
       <Project>{aeed7b1c-4e56-4d44-bbd1-a936be653d4d}</Project>

@@ -79,6 +79,8 @@
     <Compile Include="Services\Security\Operations\User\Searchs.cs" />
     <Compile Include="Services\Security\Security.Operations.cs" />
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
+    <Compile Include="Services\Shift\Operations\TSB\Change.cs" />
+    <Compile Include="Services\Shift\Operations\TSB\Current.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TOD.cs" />
   </ItemGroup>
@@ -104,7 +106,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\Shift\Operations\TSB\" />
     <Folder Include="Services\Shift\Operations\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

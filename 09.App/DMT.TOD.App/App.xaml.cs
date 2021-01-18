@@ -7,6 +7,7 @@ using NLib;
 using NLib.Logs;
 
 using DMT.Configurations;
+using DMT.Services;
 
 #endregion
 
@@ -119,6 +120,10 @@ namespace DMT
             TODUIConfigManager.Instance.LoadConfig();
             TODUIConfigManager.Instance.Start(); // Start File Watcher.
 
+            // Set NotifyService
+            TODNotifyService.Instance.TSBChanged += TSBChanged;
+            TODNotifyService.Instance.ShiftChanged += ShiftChanged;
+
             Window window = null;
             window = new MainWindow();
 
@@ -133,6 +138,10 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // Release NotifyService event.
+            TODNotifyService.Instance.TSBChanged -= TSBChanged;
+            TODNotifyService.Instance.ShiftChanged -= ShiftChanged;
+
             // Shutdown File Watcher.
             TODUIConfigManager.Instance.Shutdown();
             TODConfigManager.Instance.Shutdown();
@@ -170,6 +179,16 @@ namespace DMT
 
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
+        }
+
+        private void TSBChanged(object sender, EventArgs e)
+        {
+            RuntimeManager.Instance.RaiseTSBChanged();
+        }
+
+        private void ShiftChanged(object sender, EventArgs e)
+        {
+            RuntimeManager.Instance.RaiseShiftChanged();
         }
     }
 }

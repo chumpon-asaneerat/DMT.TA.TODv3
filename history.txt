@@ -53,8 +53,33 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #907
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #906
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #905
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Add Shift-TSB route
+      - Current
+      - Change
+  - DMT.TOD.Rest.Client project.
+    - Implements Shift-TSB Operations
+      - Current
+      - Change
+  - DMT.TA.Rest.Server project.
+    - Implements Infrastructure->TSB Controllers
+      - SetActive
+  - DMT.TOD.Rest.Server project.
+    - Implements Infrastructure->TSB Controllers
+      - SetActive
+    - Implements Shift-TSB Controllers
+      - Change
+  - DMT.TA.App project.
+    - Update App.xaml.cs
+      - Init/Release TANofifyService events.
+    - Updete HeaderChief control.
+  - DMT.TOD.App project.
+    - Update App.xaml.cs
+      - Init/Release TODNofifyService events.
+    - Updete HeaderChief control.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #904

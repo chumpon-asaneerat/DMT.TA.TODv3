@@ -7,6 +7,7 @@ using NLib;
 using NLib.Logs;
 
 using DMT.Configurations;
+using DMT.Services;
 
 #endregion
 
@@ -119,6 +120,10 @@ namespace DMT
             TAUIConfigManager.Instance.LoadConfig();
             TAUIConfigManager.Instance.Start(); // Start File Watcher.
 
+            // Init NotifyService event.
+            TANotifyService.Instance.TSBChanged += TSBChanged;
+            TANotifyService.Instance.ShiftChanged += ShiftChanged;
+
             Window window = null;
             window = new MainWindow();
 
@@ -133,6 +138,10 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // Release NotifyService event.
+            TANotifyService.Instance.TSBChanged -= TSBChanged;
+            TANotifyService.Instance.ShiftChanged -= ShiftChanged;
+
             // Shutdown File Watcher.
             TAUIConfigManager.Instance.Shutdown();
             TAConfigManager.Instance.Shutdown();
@@ -170,6 +179,16 @@ namespace DMT
 
             Services.Operations.SCW.Config = TAConfigManager.Instance;
             Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
+        }
+
+        private void TSBChanged(object sender, EventArgs e)
+        {
+            RuntimeManager.Instance.RaiseTSBChanged();
+        }
+
+        private void ShiftChanged(object sender, EventArgs e)
+        {
+            RuntimeManager.Instance.RaiseShiftChanged();
         }
     }
 }

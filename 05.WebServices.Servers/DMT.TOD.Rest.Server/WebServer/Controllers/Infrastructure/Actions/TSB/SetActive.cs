@@ -21,7 +21,8 @@ namespace DMT.Services
                 var ret = TSB.SetActive(value.TSBId);
                 if (null != ret && ret.Ok)
                 {
-                    // Notify TSBChanged to (TAApp and TODApp).
+                    // Notify TSBChanged to TODApp.
+                    TODNotifyService.Instance.RaiseTSBChanged();
                 }
                 return ret;
             }

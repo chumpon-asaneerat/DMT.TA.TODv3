@@ -70,6 +70,7 @@ namespace DMT.Pages
                 _user = SmartcardManager.Instance.User;
                 if (tabs.SelectedIndex == 0)
                 {
+                    if (null != _user) UserAccess.Success(_user.UserId).Value(); // Update success.
                     VerifyUser();
                 }
                 else if (tabs.SelectedIndex == 1)
@@ -94,18 +95,12 @@ namespace DMT.Pages
         private void cmdOK_Click(object sender, RoutedEventArgs e)
         {
             if (tabs.SelectedIndex != 0) return;
-            CheckInput();
+            CheckSignInInput();
         }
 
         private void cmdChangePwd_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 1;
-            ClearInputs();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                txtUserId2.Focus();
-            }));
+            GotoChangePasswordTab();
         }
 
         private void cmdOK2_Click(object sender, RoutedEventArgs e)
@@ -115,55 +110,28 @@ namespace DMT.Pages
 
         private void cmdCancel2_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 0;
-
-            ClearInputs();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                txtUserId.Focus();
-            }));
+            GotoSignInTab();
         }
 
         private void cmdOK3_Click(object sender, RoutedEventArgs e)
         {
+            SmartcardManager.Instance.Shutdown();
             GotoMainMenu();
         }
 
         private void cmdChangePwd3_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 1;
-
-            ClearInputs();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                txtUserId2.Focus();
-            }));
+            GotoChangePasswordTab();
         }
 
         private void cmdChangePwd4_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 1;
-
-            ClearInputs();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                txtUserId2.Focus();
-            }));
+            GotoChangePasswordTab();
         }
 
         private void cmdOK5_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 0;
-
-            ClearInputs();
-
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                txtUserId.Focus();
-            }));
+            GotoSignInTab();
         }
 
         #endregion
@@ -175,7 +143,7 @@ namespace DMT.Pages
             if (tabs.SelectedIndex != 0) return;
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {
-                CheckInput();
+                CheckSignInInput();
                 e.Handled = true;
             }
         }
@@ -206,7 +174,74 @@ namespace DMT.Pages
             }
         }
 
-        private void CheckInput()
+        private void ClearInputs()
+        {
+            txtUserId.Text = string.Empty;
+            txtPassword.Password = string.Empty;
+            txtMsg.Text = string.Empty;
+
+            txtUserId2.Text = string.Empty;
+            txtPassword2.Password = string.Empty;
+            txtNewPassword.Password = string.Empty;
+            txtConfirmPassword.Password = string.Empty;
+            txtMsg2.Text = string.Empty;
+        }
+
+        private void GotoMainMenu()
+        {
+            // Set Current User.
+            TAApp.User.Current = _user;
+            // Init Main Menu
+            PageContentManager.Instance.Current = TAApp.Pages.MainMenu;
+        }
+
+        private void GotoSignInTab()
+        {
+            tabs.SelectedIndex = 0;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId.Focus();
+            }));
+        }
+
+        private void GotoChangePasswordTab()
+        {
+            tabs.SelectedIndex = 1;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId2.Focus();
+            }));
+        }
+
+        private void GotoNotifyPasswordNearExpiredTab(int remainDays)
+        {
+            txtExpiredInDays.Text = remainDays.ToString();
+            tabs.SelectedIndex = 2;
+        }
+
+        private void GotoNotifyPasswordExpiredTab()
+        {
+            tabs.SelectedIndex = 3;
+        }
+
+        private void GotoChangePasswordSuccessTab()
+        {
+            tabs.SelectedIndex = 4;
+        }
+
+        private void GotoLockAccountTab(int lockHours)
+        {
+            txtLockHours.Text = lockHours.ToString();
+            tabs.SelectedIndex = 5;
+        }
+
+        private void CheckSignInInput()
         {
             txtMsg.Text = string.Empty;
 
@@ -230,7 +265,80 @@ namespace DMT.Pages
             var md5 = Utils.MD5.Encrypt(pwd);
             _user = User.GetByLogIn(userId, md5).Value();
 
+            // Check if enter mismatch password.
+            if (IsUserExists(userId))
+            {
+                if (null == _user)
+                {
+                    UserAccess.Failed(userId).Value(); // Update failed.
+                }
+                else
+                {
+                    UserAccess.Success(userId).Value(); // Update success.
+                }
+            }
+
             VerifyUser();
+        }
+
+        private bool IsUserExists(string userId)
+        {
+            var usr = User.GetByUserId(userId).Value();
+            return (null != usr);
+        }
+
+        private bool IsPasswordNeearExpireOrExpired()
+        {
+            bool ret = false;
+
+            if (null != _user)
+            {
+                if (_user.PasswordDate.HasValue)
+                {
+                    DateTime expire = _user.PasswordDate.Value.AddDays(User.DefaultExpiredDays);
+                    TimeSpan ts = expire.Date - DateTime.Now.Date;
+                    if (ts.TotalDays <= 0)
+                    {
+                        // Expired.
+                        GotoNotifyPasswordExpiredTab();
+                        ret = true;
+                    }
+                    else if (ts.TotalDays <= User.DefaultNotifyDays)
+                    {
+                        // Near Expired.
+                        GotoNotifyPasswordNearExpiredTab(Convert.ToInt32(ts.TotalDays));
+                        ret = true;
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        private bool IsAccountLock()
+        {
+            bool ret = false;
+
+            if (null != _user)
+            {
+                /*
+                var access = UserAccess.GetUserAccess(_user.UserId).Value();
+                if (null == access)
+                {
+                    ShowError("ไม่พบข้อมูลการเข้าใช้งานของพนักงาน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น");
+                    return;
+                }
+                //access.LastNotifyDate;
+                //access.LastLockDate;
+                //access.FailCount;
+                if (access.LastAccessDate.HasValue)
+                {
+
+                }
+                */
+            }
+
+            return ret;
         }
 
         private void VerifyUser()
@@ -251,6 +359,26 @@ namespace DMT.Pages
                 return;
             }
 
+            if (null != _user)
+            {
+                var access = UserAccess.GetUserAccess(_user.UserId).Value();
+                if (null == access)
+                {
+                    ShowError("ไม่พบข้อมูลการเข้าใช้งานของพนักงาน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น");
+                    return;
+                }
+            }
+
+            if (IsPasswordNeearExpireOrExpired())
+            {
+                return;
+            }
+
+            if (IsAccountLock())
+            {
+                return;
+            }
+
             SmartcardManager.Instance.Shutdown();
             GotoMainMenu();
         }
@@ -260,13 +388,7 @@ namespace DMT.Pages
             // Call change password.
             if (ChangePassword())
             {
-                tabs.SelectedIndex = 0;
-                ClearInputs();
-
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-                {
-                    txtUserId.Focus();
-                }));
+                GotoChangePasswordSuccessTab();
             }
         }
 
@@ -326,31 +448,14 @@ namespace DMT.Pages
             return ret;
         }
 
-        private void GotoMainMenu()
-        {
-            // Set Current User.
-            TAApp.User.Current = _user;
-            // Init Main Menu
-            PageContentManager.Instance.Current = TAApp.Pages.MainMenu;
-        }
-
-        private void ClearInputs()
-        {
-            txtUserId.Text = string.Empty;
-            txtPassword.Password = string.Empty;
-            txtMsg.Text = string.Empty;
-
-            txtUserId2.Text = string.Empty;
-            txtPassword2.Password = string.Empty;
-            txtNewPassword.Password = string.Empty;
-            txtConfirmPassword.Password = string.Empty;
-            txtMsg2.Text = string.Empty;
-        }
-
         #endregion
 
-        #region Public Methods
+        #region Public Methods and Properties
 
+        /// <summary>
+        /// Setup
+        /// </summary>
+        /// <param name="roles">The Role list.</param>
         public void Setup(params string[] roles)
         {
             // Clear Inputs.
@@ -367,9 +472,16 @@ namespace DMT.Pages
                 txtUserId.Focus();
             }));
         }
-
+        /// <summary>
+        /// Gets current User.
+        /// </summary>
         public User User { get { return _user; } }
 
         #endregion
+
+        private void cmdOK6_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

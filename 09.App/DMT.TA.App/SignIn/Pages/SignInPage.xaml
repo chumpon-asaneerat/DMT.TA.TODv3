@@ -263,12 +263,13 @@
                                        FontSize="28"
                                        Style="{StaticResource ErrorText}">
                                 <Run Text="รหัสผ่านจะหมดอายุภายใน " />
-                                <Run FontSize="36"
+                                <Run x:Name="txtExpiredInDays"
+                                     FontSize="36"
                                      Foreground="Orange"
-                                     Text="0 " />
-                                <Run Text="วัน " />
+                                     Text="0" />
+                                <Run Text=" วัน" />
                                 <LineBreak />
-                                <Run Text="กดปุ่ม 'ตกลง' เพื่อทำการ เพื่อทำการทำงานต่อ" />
+                                <Run Text="กดปุ่ม 'ตกลง' เพื่อทำงานต่อไป" />
                                 <LineBreak />
                                 <Run Text="หรือ" />
                                 <LineBreak />
@@ -364,6 +365,58 @@
                                    FontSize="28"
                                    Style="{StaticResource ErrorText}">
                             <Run Text="ทำการเปลี่ยนรหัสผ่านเสร็จสิ้นแล้ว" />
+                            <LineBreak />
+                            <Run Text="กดปุ่ม ตกลง เพื่อทำการ Sign In ใหม่" />
+                        </TextBlock>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="Change Password"
+                 Visibility="Collapsed">
+            <!--  Account Locked.  -->
+            <Grid Background="DimGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                      Grid.RowSpan="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="3">
+                    <Image Opacity="0.5" Source="/DMT.TA.App;component/Images/Background/snartcard.png" />
+                </Grid>
+                <DockPanel Grid.Row="1"
+                           Grid.Column="1"
+                           LastChildFill="True">
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                        <ctrl:ImageButton x:Name="cmdOK6"
+                                          Width="250"
+                                          Click="cmdOK6_Click"
+                                          ImageSource="/DMT.TA.App;component/Images/Button/OK.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                        </ctrl:ImageButton>
+                    </DockPanel>
+                    <Grid VerticalAlignment="Center">
+                        <TextBlock Name="txtMsg6"
+                                   FontSize="28"
+                                   Style="{StaticResource ErrorText}">
+                            <Run Text="บัญชีผู้ใช้นี้ ไม่สามารถใช้งานได้ ณ. ขณะนี้" />
+                            <Run Text="กรุณาลองใหม่ หลัง " />
+                            <Run x:Name="txtLockHours"
+                                 FontSize="36"
+                                 Foreground="Orange"
+                                 Text="0" />
+                            <Run Text=" ชั่วโมง" />
                             <LineBreak />
                             <Run Text="กดปุ่ม ตกลง เพื่อทำการ Sign In ใหม่" />
                         </TextBlock>

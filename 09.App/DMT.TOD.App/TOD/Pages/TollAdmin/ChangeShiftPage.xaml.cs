@@ -43,6 +43,7 @@ namespace DMT.TOD.Pages.TollAdmin
         private List<User> _users = null;
         private TSB _tsb = null;
         private List<Plaza> _plazas = null;
+        private List<Lane> _lanes = null;
         private List<LaneJob> _jobs = null;
 
         #endregion
@@ -58,6 +59,11 @@ namespace DMT.TOD.Pages.TollAdmin
         {
             if (cbShifts.SelectedIndex == -1)
             {
+                // Show Message.
+                var msg = TODApp.Windows.MessageBox;
+                msg.Setup("ไม่สามารถเปิดกะใหม่ได้ เนื่องจาก ยังมีกะที่ยังไม่ป้อนรายได้", "DMT - Tour of Duty");
+                msg.ShowDialog();
+
                 cbShifts.Focus();
                 return;
             }
@@ -108,7 +114,10 @@ namespace DMT.TOD.Pages.TollAdmin
         private void RefreshLanes()
         {
             lvJobs.ItemsSource = null;
-            if (null == _tsb || null == _plazas || _plazas.Count <= 0 || null == _user) return;
+            if (null == _tsb || 
+                null == _plazas || _plazas.Count <= 0 ||
+                null == _lanes || _lanes.Count <= 0 ||
+                null == _user) return;
 
             int networkId = TODConfigManager.Instance.DMT.networkId;
             
@@ -127,6 +136,7 @@ namespace DMT.TOD.Pages.TollAdmin
                 {
                     _users.ForEach(usr => 
                     {
+                        // Load job for each user.
                         var param = new SCWJobList();
                         param.networkId = networkId;
                         param.plazaId = plaza.SCWPlazaId;
@@ -137,7 +147,17 @@ namespace DMT.TOD.Pages.TollAdmin
                         {
                             ret.list.ForEach(job =>
                             {
-                                alljobs.Add(new LaneJob(job, usr));
+                                // Maps Lanes to get access more info for binding.
+                                // Note: SCW return only laneId so its cannot display more information so we need to map on 
+                                // local lane data.
+                                var matchLane = _lanes.Find(lane =>
+                                {
+                                    return job.plazaId == lane.SCWPlazaId && job.laneId == lane.LaneNo;
+                                });
+                                if (null != matchLane)
+                                {
+                                    alljobs.Add(new LaneJob(job, matchLane, usr));
+                                }
                             });
                         }
                     });
@@ -163,14 +183,17 @@ namespace DMT.TOD.Pages.TollAdmin
             _user = user;
             if (null != _user)
             {
+                // Load Shifts.
                 DateTime dt = DateTime.Now;
                 var shifts = Models.Shift.GetShifts().Value();
                 cbShifts.ItemsSource = shifts;
-
+                // Get Current TSB and related plazas, lanes.
                 _tsb = TSB.GetCurrent().Value();
                 if (null == _tsb) return;
                 _plazas = Plaza.GetTSBPlazas(_tsb.TSBId).Value();
+                _lanes = Lane.GetTSBLanes(_tsb.TSBId).Value();
 
+                // Gets Users that Opened shift (User Shift).
                 _users = new List<User>();
                 var userShifts = UserShift.GetUnCloseUserShifts().Value();
                 if (null != userShifts && userShifts.Count > 0)

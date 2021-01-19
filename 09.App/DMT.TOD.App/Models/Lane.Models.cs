@@ -120,10 +120,12 @@ namespace DMT.Models
         /// Constructor.
         /// </summary>
         /// <param name="job">The SCWJob instance.</param>
+        /// <param name="lane">The Lane instance.</param>
         /// <param name="user">The User instance.</param>
-        public LaneJob(SCWJob job, User user)
+        public LaneJob(SCWJob job, Lane lane, User user)
         {
             this.Job = job;
+            this.Lane = lane;
             this.User = user;
         }
 
@@ -137,49 +139,23 @@ namespace DMT.Models
 
         #region Model instance(s)
 
-        /// <summary>Gets User.</summary>
-        public User User { get; private set; }
-
         /// <summary>Gets LaneJob.</summary>
         public SCWJob Job { get; private set; }
 
-        #endregion
+        /// <summary>Gets Lane.</summary>
+        public Lane Lane { get; private set; }
 
-        #region User
-
-        /// <summary>Gets User Id.</summary>
-        public string UserId
-        {
-            get { return (null != User) ? User.UserId : string.Empty; }
-            set { }
-        }
-        /// <summary>Gets User Full Name EN.</summary>
-        public string FullNameEN
-        {
-            get { return (null != User) ? User.FullNameEN : string.Empty; }
-            set { }
-        }
-        /// <summary>Gets User Full Name TH.</summary>
-        public string FullNameTH
-        {
-            get { return (null != User) ? User.FullNameTH : string.Empty; }
-            set { }
-        }
+        /// <summary>Gets User.</summary>
+        public User User { get; private set; }
 
         #endregion
 
-        #region LaneJob
+        #region Job
 
         /// <summary>Gets Job No.</summary>
         public int? JobNo
         {
             get { return (null != Job) ? Job.jobNo : null; }
-            set { }
-        }
-        /// <summary>Gets Lane Id.</summary>
-        public int? LaneId
-        {
-            get { return (null != Job) ? Job.laneId : null; }
             set { }
         }
 
@@ -265,6 +241,75 @@ namespace DMT.Models
 
         /// <summary>Check Has Job.</summary>
         public bool HasJob { get { return null != Job; } set { } }
+
+        #endregion
+
+        #region Plaza
+
+        /// <summary>Gets Plaza Id.</summary>
+        public string PlazaId
+        {
+            get { return (null != Lane) ? Lane.PlazaId : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets Plaza Name EN.</summary>
+        public string PlazaNameEN
+        {
+            get { return (null != Lane) ? Lane.PlazaNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets Plaza Name TH.</summary>
+        public string PlazaNameTH
+        {
+            get { return (null != Lane) ? Lane.PlazaNameTH : string.Empty; }
+            set { }
+        }
+
+        #endregion
+
+        #region Lane
+
+        /// <summary>Gets Lane Id.</summary>
+        public string LaneId
+        {
+            get { return (null != Lane) ? Lane.LaneId : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets Lane No.</summary>
+        public int? LaneNo
+        {
+            get { return (null != Lane) ? Lane.LaneNo : 0; }
+            set { }
+        }
+        /// <summary>Gets SCW Plaza Id.</summary>
+        public int? SCWPlazaId
+        {
+            get { return (null != Lane) ? Lane.SCWPlazaId : 0; }
+            set { }
+        }
+
+        #endregion
+
+        #region User
+
+        /// <summary>Gets User Id.</summary>
+        public string UserId
+        {
+            get { return (null != User) ? User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets User Full Name EN.</summary>
+        public string FullNameEN
+        {
+            get { return (null != User) ? User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets User Full Name TH.</summary>
+        public string FullNameTH
+        {
+            get { return (null != User) ? User.FullNameTH : string.Empty; }
+            set { }
+        }
 
         #endregion
 

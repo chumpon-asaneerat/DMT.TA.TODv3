@@ -262,6 +262,51 @@ namespace DMT
             }
 
             #endregion
+
+            #region MessageBox(s)
+
+            /// <summary>Gets MessageBox Window.</summary>
+            public static DMT.Windows.MessageBoxWindow MessageBox
+            {
+                get
+                {
+                    var ret = new DMT.Windows.MessageBoxWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            /// <summary>Gets MessageBox Yes-No Window</summary>
+            public static DMT.Windows.MessageBoxYesNoWindow MessageBoxYesNo
+            {
+                get
+                {
+                    var ret = new DMT.Windows.MessageBoxYesNoWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            /// <summary>Gets MessageBox Yes-No 2 Window</summary>
+            public static DMT.Windows.MessageBoxYesNo2Window MessageBoxYesNo2
+            {
+                get
+                {
+                    var ret = new DMT.Windows.MessageBoxYesNo2Window();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            /// <summary>Gets MessageBox Yes-No 3 Window</summary>
+            public static DMT.Windows.MessageBoxYesNo3Window MessageBoxYesNo3
+            {
+                get
+                {
+                    var ret = new DMT.Windows.MessageBoxYesNo3Window();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }

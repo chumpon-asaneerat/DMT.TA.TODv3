@@ -61,8 +61,8 @@ namespace DMT.TOD.Windows.UserShifts
                     var success = UserShift.BeginUserShift(inst).Ok;
                     if (!success)
                     {
-                        DMT.Windows.MessageBoxWindow msg = new DMT.Windows.MessageBoxWindow();
-                        msg.Owner = Application.Current.MainWindow;
+                        // Show Message.
+                        var msg = TODApp.Windows.MessageBox;
                         msg.Setup("ไม่สามารถเปิดกะใหม่ได้ เนื่องจาก ยังมีกะที่ยังไม่ป้อนรายได้", "DMT - Tour of Duty");
                         msg.ShowDialog();
                     }

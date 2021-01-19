@@ -30,6 +30,7 @@
                  BorderThickness="0"
                  Header="Sign In"
                  Visibility="Collapsed">
+            <!--  Sign In  -->
             <Grid Background="DimGray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
@@ -83,13 +84,13 @@
                         <ctrl:ImageButton x:Name="cmdOK"
                                           Click="cmdOK_Click"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/OK.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="OK" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                         </ctrl:ImageButton>
                         <Grid Height="10" />
                         <ctrl:ImageButton x:Name="cmdCancel"
                                           Click="cmdCancel_Click"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Cancel.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="Cancel" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                         </ctrl:ImageButton>
                         <Grid Height="5" />
                     </StackPanel>
@@ -109,7 +110,7 @@
                     <ctrl:ImageButton x:Name="cmdChangePwd"
                                       Click="cmdChangePwd_Click"
                                       ImageSource="/DMT.TOD.App;component/Images/Button/Return.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="Change Password" />
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="เปลี่ยนรหัสผ่าน" />
                     </ctrl:ImageButton>
                 </Grid>
             </Grid>
@@ -119,6 +120,7 @@
                  BorderThickness="0"
                  Header="Change Password"
                  Visibility="Collapsed">
+            <!--  Change Password  -->
             <Grid Background="DimGray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
@@ -198,13 +200,13 @@
                         <ctrl:ImageButton x:Name="cmdOK2"
                                           Click="cmdOK2_Click"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/OK.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="OK" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                         </ctrl:ImageButton>
                         <Grid Height="10" />
                         <ctrl:ImageButton x:Name="cmdCancel2"
                                           Click="cmdCancel2_Click"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Cancel.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="Cancel" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                         </ctrl:ImageButton>
                         <Grid Height="5" />
                     </StackPanel>

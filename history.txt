@@ -50,8 +50,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #918
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #917
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #916
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project.
+    - Update Sign In UI #1.
+  - DMT.TOD.Models project.
+    - Update Sign In UI #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #915

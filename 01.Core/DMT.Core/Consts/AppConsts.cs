@@ -11,8 +11,8 @@ namespace DMT
         // common properties
         public static string Version = "1";
         public static string Minor = "1";
-        public static string Build = "5210";
-        public static DateTime LastUpdate = new DateTime(2021, 01, 09, 23, 15, 00);
+        public static string Build = "6335";
+        public static DateTime LastUpdate = new DateTime(2021, 01, 20, 10, 15, 00);
 
         public static class Application
         {
@@ -85,19 +85,8 @@ namespace DMT
                 public static string Build = AppConsts.Build;
                 public static DateTime LastUpdate = AppConsts.LastUpdate;
             }
-            /*
-            public static class DataCenter
-            {
-                public static string ApplicationName = @"DMT Data Center Workbench";
-                // common
-                public static string Version = AppConsts.Version;
-                public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
-            }
-            */
         }
-
+        /*
         public static class WindowsService
         {
             public static class Local
@@ -113,5 +102,6 @@ namespace DMT
                 public static DateTime LastUpdate = AppConsts.LastUpdate;
             }
         }
+        */
     }
 }

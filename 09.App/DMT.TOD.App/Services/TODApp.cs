@@ -263,6 +263,21 @@ namespace DMT
 
             #endregion
 
+            #region User Search
+
+            /// <summary>Gets User Search Window.</summary>
+            public static DMT.Windows.UserSearchWindow UserSearch
+            {
+                get
+                {
+                    var ret = new DMT.Windows.UserSearchWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region MessageBox(s)
 
             /// <summary>Gets MessageBox Window.</summary>

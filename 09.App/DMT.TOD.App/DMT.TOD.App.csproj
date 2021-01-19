@@ -381,8 +381,6 @@
     <Resource Include="Images\Button\Approved.png" />
     <Resource Include="Images\Button\Approved2.png" />
     <Resource Include="Images\Button\Approved3.png" />
-    <Resource Include="Images\Button\Approved4.png" />
-    <Resource Include="Images\Button\Approved5.png" />
     <Resource Include="Images\Button\back.png" />
     <Resource Include="Images\Button\Back3.png" />
     <Resource Include="Images\Button\Cancel2.png" />
@@ -395,10 +393,8 @@
     <Resource Include="Images\Button\Printer2.png" />
     <Resource Include="Images\Button\Printer3.png" />
     <Resource Include="Images\Button\Rejected.png" />
-    <Resource Include="Images\Button\Rejected2.png" />
     <Resource Include="Images\Button\Rejected3.png" />
     <Resource Include="Images\Button\Rejected4.png" />
-    <Resource Include="Images\Button\Rejected5.png" />
     <Resource Include="Images\Button\Save.png" />
     <Resource Include="Images\Button\Save2.png" />
     <Resource Include="Images\Button\search.png" />

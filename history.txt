@@ -44,8 +44,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #910
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #909
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #908
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Remove unused images.
+  - DMT.TA.App project.
+    - Remove unused images.
+  - DMT.TPD.App project.
+    - Remove unused images.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #907

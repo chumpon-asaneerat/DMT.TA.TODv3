@@ -122,7 +122,7 @@ namespace DMT.Services
 
             Db.CreateTable<Role>();
             Db.CreateTable<User>();
-            //Db.CreateTable<LogInLog>();
+            Db.CreateTable<UserAccess>();
 
             Db.CreateTable<TSBShift>();
 

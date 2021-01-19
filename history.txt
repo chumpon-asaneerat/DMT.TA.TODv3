@@ -62,8 +62,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #914
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #913
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #912
-- 
+- DMT.TAxTODv3
+  - DMT.Account.Models project.
+    - Init UserAccess Table.
+  - DMT.TA.Models project.
+    - Init UserAccess Table.
+  - DMT.TOD.Models project.
+    - Init UserAccess Table.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #911

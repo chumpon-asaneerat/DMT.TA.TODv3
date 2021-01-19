@@ -41,8 +41,14 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #960
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #959
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - ChangeShift (TSB)
+      - Add JobNo column.
+    - JobList
+      - Refactor Layout #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #958

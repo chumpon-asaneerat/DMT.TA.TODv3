@@ -84,6 +84,9 @@
                                 <GridViewColumn Width="220"
                                                 CellTemplate="{StaticResource EndDateTimeString}"
                                                 Header="วัน/เวลา จบการทำงาน" />
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource JobNo}"
+                                                Header="Job No" />
                                 <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource UserId}"
                                                 Header="รหัสพนักงาน" />

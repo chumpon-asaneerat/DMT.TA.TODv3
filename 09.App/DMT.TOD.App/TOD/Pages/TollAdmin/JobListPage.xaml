@@ -52,20 +52,23 @@
                 <!--  WORK AREA  -->
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="10" />
                     </Grid.RowDefinitions>
-                    <ListView x:Name="lstUsers" Grid.Row="1" Grid.Column="1"
+                    <ListView x:Name="lstUsers"
+                              Grid.Row="1"
+                              Grid.Column="1"
                               FontSize="{StaticResource InputFontSize18}"
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              SelectionChanged="lstUsers_SelectionChanged"
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
@@ -84,13 +87,32 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <ListView x:Name="lstLaneJobs" Grid.Row="1" Grid.Column="3"
+                    <ListView x:Name="lstLaneJobs"
+                              Grid.Row="1"
+                              Grid.Column="3"
                               FontSize="{StaticResource InputFontSize18}"
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
-                                
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource JobNo}"
+                                                Header="Job No" />
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="220"
+                                                CellTemplate="{StaticResource BeginDateTimeString}"
+                                                Header="วันเวลาเริ่มปฎิบัติงาน" />
+                                <GridViewColumn Width="220"
+                                                CellTemplate="{StaticResource EndDateTimeString}"
+                                                Header="วันเวลาเลิกปฎิบัติงาน" />
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource LaneNo}"
+                                                Header="เลน" />
+                                <GridViewColumn Width="250"
+                                                DisplayMemberBinding="{Binding Path=RevenueDateTimeString}"
+                                                Header="วันเวลาทำ TOD" />
                             </GridView>
                         </ListView.View>
                     </ListView>

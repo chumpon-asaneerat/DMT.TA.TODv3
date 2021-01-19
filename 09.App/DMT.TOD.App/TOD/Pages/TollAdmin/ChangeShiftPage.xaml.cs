@@ -134,13 +134,13 @@ namespace DMT.TOD.Pages.TollAdmin
             {
                 if (null != _usershifts && _usershifts.Count > 0)
                 {
-                    _usershifts.ForEach(usershift => 
+                    _usershifts.ForEach(userShift => 
                     {
                         // Load job for each user.
                         var param = new SCWJobList();
                         param.networkId = networkId;
                         param.plazaId = plaza.SCWPlazaId;
-                        param.staffId = usershift.UserId;
+                        param.staffId = userShift.UserId;
 
                         var ret = scwOps.jobList(param);
                         if (null != ret && null != ret.list && ret.list.Count > 0)
@@ -156,7 +156,7 @@ namespace DMT.TOD.Pages.TollAdmin
                                 });
                                 if (null != matchLane)
                                 {
-                                    alljobs.Add(new LaneJob(job, matchLane, usershift));
+                                    alljobs.Add(new LaneJob(job, matchLane, userShift));
                                 }
                             });
                         }

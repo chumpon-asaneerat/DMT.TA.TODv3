@@ -263,5 +263,11 @@
   <ItemGroup>
     <Resource Include="Images\Cards\Card-Red.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\States\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\States\unchecked.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

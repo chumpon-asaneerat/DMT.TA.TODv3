@@ -65,8 +65,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #973
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #972
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #971
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Config.App project.
+    - Add States images (checked/unchecked).
+  - DMT.Plaza.Simulator.App project.
+    - Add States images (checked/unchecked).
+  - DMT.Account.App project.
+    - Add States images (checked/unchecked).
+  - DMT.TA.App project.
+    - Add States images (checked/unchecked).
+  - DMT.TOD.App project.
+    - Add States images (checked/unchecked).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #970

@@ -211,7 +211,9 @@
     <Resource Include="Images\Colors\Green.png" />
     <Resource Include="Images\Colors\GreenLarge.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\States\checked.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Lanes\toll-clipart.jpg" />
     <Resource Include="Images\Lanes\tool.png" />
@@ -270,6 +272,9 @@
       <Project>{cda29d61-9f4f-46f2-a256-81a32b1d7e52}</Project>
       <Name>DMT.TOD.Rest.Client</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\States\unchecked.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

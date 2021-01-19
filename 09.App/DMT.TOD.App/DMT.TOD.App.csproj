@@ -413,6 +413,8 @@
     <Resource Include="Images\Button\search2.png" />
     <Resource Include="Images\Button\search3.png" />
     <Resource Include="Images\Button\User.png" />
+    <Resource Include="Images\States\checked.png" />
+    <Resource Include="Images\States\unchecked.png" />
     <Content Include="MasterCom.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

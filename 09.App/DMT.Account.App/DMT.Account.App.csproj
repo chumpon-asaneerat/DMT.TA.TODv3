@@ -273,6 +273,8 @@
     <Resource Include="Images\Button\Approved.png" />
     <Resource Include="Images\Button\Approve.png" />
     <Resource Include="Images\Background\snartcard.png" />
+    <Resource Include="Images\States\checked.png" />
+    <Resource Include="Images\States\unchecked.png" />
     <Content Include="MasterCom.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

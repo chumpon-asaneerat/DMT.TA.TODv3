@@ -132,6 +132,9 @@
     </Compile>
     <Compile Include="SignIn\SmartcardManager.cs" />
     <Compile Include="SignIn\UserSearchManager.cs" />
+    <Compile Include="SignIn\Windows\UserSearchWindow.xaml.cs">
+      <DependentUpon>UserSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatusBar\Elements\AppInfoStatus.xaml.cs">
       <DependentUpon>AppInfoStatus.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SignIn\Pages\SignInPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SignIn\Windows\UserSearchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

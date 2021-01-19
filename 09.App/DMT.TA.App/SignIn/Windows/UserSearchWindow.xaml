@@ -1,0 +1,96 @@
+﻿<Window x:Class="DMT.Windows.UserSearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="กรุณาเลือกพนักงานเก็บเงิน"
+        Width="600"
+        Height="400"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </Window.Resources>
+    <Grid Background="White">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdOK"
+                                      Click="cmdOK_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/OK2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยืนยัน" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdCancel"
+                                      Click="cmdCancel_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <DockPanel HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           LastChildFill="True">
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Top"
+                                Orientation="Horizontal">
+                        <TextBlock Margin="2"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="35"
+                                   FontWeight="Bold"
+                                   Foreground="Red"
+                                   Text="กรุณาเลือกพนักงานเก็บเงิน"
+                                   TextAlignment="Center" />
+                    </StackPanel>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <ListView x:Name="lvUsers"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="250"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

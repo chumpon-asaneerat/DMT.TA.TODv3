@@ -134,6 +134,9 @@
     <Compile Include="SignIn\Windows\SignInWindow.xaml.cs">
       <DependentUpon>SignInWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SignIn\Windows\UserSearchWindow.xaml.cs">
+      <DependentUpon>UserSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatusBar\Elements\AppInfoStatus.xaml.cs">
       <DependentUpon>AppInfoStatus.xaml</DependentUpon>
     </Compile>
@@ -218,6 +221,10 @@
     <Page Include="SignIn\Windows\SignInWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SignIn\Windows\UserSearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatusBar\Elements\AppInfoStatus.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -57,11 +57,11 @@ namespace DMT.Windows
         /// <param name="msg7"></param>
         /// <param name="msg8"></param>
         /// <param name="msg9"></param>
-        /// <param name="head"></param>
+        /// <param name="title"></param>
         public void Setup(string msg1, string msg2, string msg3, string msg4, string msg5
-            , string msg6, string msg7, string msg8, string msg9, string head)
+            , string msg6, string msg7, string msg8, string msg9, string title)
         {
-            this.Title = head;
+            this.Title = title;
             txtMsg1.Text = msg1;
             txtMsg2.Text = msg2;
             txtMsg3.Text = msg3;

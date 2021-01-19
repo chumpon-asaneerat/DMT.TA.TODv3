@@ -47,8 +47,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #969
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #968
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #967
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Add datasource for TOD reports.
+    - Port all TOD Report rdlc files.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #966

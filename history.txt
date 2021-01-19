@@ -44,8 +44,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #940
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #939
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #938
-- 
+- DMT.TAxTODv3
+  - NLib project
+    - Environments -> AppInfo display text change format.
+  - DMT.Core project
+    - Update AppVersion
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #937

@@ -211,7 +211,7 @@ namespace NLib
         {
             get
             {
-                return string.Format("{0} v{1}.{2} build {3} {4:yyyy/MM/dd HH:mm:ss}",
+                return string.Format("{0} v{1}.{2} build {3} {4:yyyy/MM/dd HH:mm}",
                     this.ProductName, this.Version, this.Minor, this.Build, this.LastUpdate);
             }
         }

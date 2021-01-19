@@ -65,8 +65,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #963
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #962
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #961
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Update LaneJob Model.
+      - Add RevenueDateTime property (Always returns Empty string).
+    - JobList
+      - Refactor Layout #3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #960

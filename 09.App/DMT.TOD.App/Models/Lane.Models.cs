@@ -330,6 +330,13 @@ namespace DMT.Models
             set { }
         }
 
+        /// <summary>Gets RevenueDateTimeString.</summary>
+        public string RevenueDateTimeString
+        {
+            get { return string.Empty;  }
+            set { }
+        }
+
         #endregion
 
         #endregion

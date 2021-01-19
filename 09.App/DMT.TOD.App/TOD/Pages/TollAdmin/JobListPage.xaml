@@ -110,6 +110,11 @@
                                 <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource LaneNo}"
                                                 Header="เลน" />
+                                <!--
+                                    NOTE.
+                                    IF USER Enter Revenue data should not returns from SCW
+                                    so no meaning to show this column
+                                -->
                                 <GridViewColumn Width="250"
                                                 DisplayMemberBinding="{Binding Path=RevenueDateTimeString}"
                                                 Header="วันเวลาทำ TOD" />

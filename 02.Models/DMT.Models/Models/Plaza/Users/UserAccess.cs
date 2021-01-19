@@ -49,7 +49,7 @@ namespace DMT.Models
             }
         }
 
-        private static int _DefaultLockHours = 90;
+        private static int _DefaultLockHours = 24;
         /// <summary>Gets or sets Default Lock Hours.</summary>
         public static int DefaultLockHours
         {
@@ -514,6 +514,7 @@ namespace DMT.Models
                     }
                     access.FailCount = 0; // Reset failed counter.
                     access.LastLockDate = new DateTime?(); // Reset lock date.
+                    access.LastNotifyDate = new DateTime?(); // Reset lock date.
 
                     access.LastAccessDate = DateTime.Now;
 
@@ -579,6 +580,63 @@ namespace DMT.Models
                     }
 
                     access.LastAccessDate = DateTime.Now;
+
+                    result = Save(access);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Update Nofity Date.
+        /// </summary>
+        /// <param name="userId">The User Id.</param>
+        /// <returns>Returns NDbResult instance.</returns>
+        public static NDbResult<UserAccess> Nofity(string userId)
+        {
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                return Nofity(db, userId);
+            }
+        }
+        /// <summary>
+        /// Update Nofity Date.
+        /// </summary>
+        /// <param name="db">The database connection.</param>
+        /// <param name="userId">The User Id.</param>
+        /// <returns>Returns NDbResult instance.</returns>
+        public static NDbResult<UserAccess> Nofity(SQLiteConnection db, string userId)
+        {
+            var result = new NDbResult<UserAccess>();
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    UserAccess access = GetUserAccess(db, userId).Value();
+                    if (null == access)
+                    {
+                        access = new UserAccess();
+                        access.UserId = userId;
+                        access.LastAccessDate = DateTime.Now;
+                    }
+                    access.LastNotifyDate = DateTime.Now;
 
                     result = Save(access);
                 }

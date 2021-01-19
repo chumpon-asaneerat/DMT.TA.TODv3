@@ -134,6 +134,11 @@ namespace DMT.Pages
             GotoSignInTab();
         }
 
+        private void cmdOK6_Click(object sender, RoutedEventArgs e)
+        {
+            GotoSignInTab();
+        }
+
         #endregion
 
         #region TextBox Keydown
@@ -270,7 +275,14 @@ namespace DMT.Pages
             {
                 if (null == _user)
                 {
-                    UserAccess.Failed(userId).Value(); // Update failed.
+                    if (IsAccountLock(userId))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        UserAccess.Failed(userId).Value(); // Update failed.
+                    }
                 }
                 else
                 {
@@ -305,6 +317,8 @@ namespace DMT.Pages
                     }
                     else if (ts.TotalDays <= User.DefaultNotifyDays)
                     {
+                        // Update last notify date.
+                        UserAccess.Nofity(_user.UserId);
                         // Near Expired.
                         GotoNotifyPasswordNearExpiredTab(Convert.ToInt32(ts.TotalDays));
                         ret = true;
@@ -315,27 +329,25 @@ namespace DMT.Pages
             return ret;
         }
 
-        private bool IsAccountLock()
+        private bool IsAccountLock(string userId)
         {
             bool ret = false;
 
-            if (null != _user)
+            var access = UserAccess.GetUserAccess(userId).Value();
+            if (null != access && access.LastLockDate.HasValue)
             {
-                /*
-                var access = UserAccess.GetUserAccess(_user.UserId).Value();
-                if (null == access)
+                DateTime lockDate = access.LastLockDate.Value.AddHours(UserAccess.DefaultLockHours);
+                TimeSpan ts = lockDate - DateTime.Now;
+                if (ts.TotalHours > 0)
                 {
-                    ShowError("ไม่พบข้อมูลการเข้าใช้งานของพนักงาน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น");
-                    return;
+                    GotoLockAccountTab(Convert.ToInt32(ts.TotalHours));
+                    ret = true;
                 }
-                //access.LastNotifyDate;
-                //access.LastLockDate;
-                //access.FailCount;
-                if (access.LastAccessDate.HasValue)
+                else
                 {
-
+                    // Reset lock.
+                    UserAccess.Success(userId);
                 }
-                */
             }
 
             return ret;
@@ -370,11 +382,6 @@ namespace DMT.Pages
             }
 
             if (IsPasswordNeearExpireOrExpired())
-            {
-                return;
-            }
-
-            if (IsAccountLock())
             {
                 return;
             }
@@ -477,10 +484,5 @@ namespace DMT.Pages
         public User User { get { return _user; } }
 
         #endregion
-
-        private void cmdOK6_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

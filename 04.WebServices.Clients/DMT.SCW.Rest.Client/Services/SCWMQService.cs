@@ -95,6 +95,28 @@ namespace DMT.Services
             MoveToBackup(fullFileName);
         }
 
+        private void SendLogInAudit(string fullFileName, Models.SCWLogInAudit value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.Security.loginAudit(value);
+            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service.");
+                return;
+            }
+            if (ret.status.code != "S200")
+            {
+                // Execute Result is not Success so move to error folder.
+                med.Err("SCW Web Service returns error.");
+                MoveToError(fullFileName);
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
         private void SendChangePassword(string fullFileName, Models.SCWChangePassword value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -152,6 +174,21 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("loginaudit"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SCWLogInAudit>();
+                    SendLogInAudit(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
             else if (fullFileName.Contains("changepwd"))
             {
                 try
@@ -195,6 +232,17 @@ namespace DMT.Services
         {
             if (null == value) return;
             string fileName = GetFileName("declare");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The SCWLogInAudit instance.</param>
+        public void WriteQueue(Models.SCWLogInAudit value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("loginaudit");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

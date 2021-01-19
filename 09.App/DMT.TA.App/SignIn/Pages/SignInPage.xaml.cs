@@ -70,7 +70,11 @@ namespace DMT.Pages
                 _user = SmartcardManager.Instance.User;
                 if (tabs.SelectedIndex == 0)
                 {
-                    if (null != _user) UserAccess.Success(_user.UserId).Value(); // Update success.
+                    if (null != _user)
+                    {
+                        UserAccess.Success(_user.UserId).Value(); // Update success.
+                        LogInLog(true);
+                    }
                     VerifyUser();
                 }
                 else if (tabs.SelectedIndex == 1)
@@ -282,11 +286,13 @@ namespace DMT.Pages
                     else
                     {
                         UserAccess.Failed(userId).Value(); // Update failed.
+                        LogInLog(false);
                     }
                 }
                 else
                 {
                     UserAccess.Success(userId).Value(); // Update success.
+                    LogInLog(true);
                 }
             }
 
@@ -347,6 +353,7 @@ namespace DMT.Pages
                 {
                     // Reset lock.
                     UserAccess.Success(userId);
+                    LogInLog(true);
                 }
             }
 
@@ -434,6 +441,8 @@ namespace DMT.Pages
             }
 
             _user.Password = newPwd; // change password.
+            _user.PasswordDate = DateTime.Now;
+
             var saveRet = User.SaveUser(_user);
             if (!saveRet.Ok)
             {
@@ -450,9 +459,25 @@ namespace DMT.Pages
             inst.password = oldPwd;
             inst.newPassword = newPwd;
             inst.confirmNewPassword = confPwd;
+
             SCWMQService.Instance.WriteQueue(inst);
 
             return ret;
+        }
+
+        private void LogInLog(bool success)
+        {
+            /*
+            var inst = new SCWLogInAudit();
+            inst.networkId = (null != Configurations.AccountConfigManager.Instance.DMT) ? 
+                Configurations.AccountConfigManager.Instance.DMT.networkId : 31;
+            inst.plazaId = ??;
+            inst.description = (success) ? "LogIn Success" : "Invalid Password.";
+            inst.staffId = _user.UserId;
+            inst.status = (success) ? "success" : "fail";
+
+            SCWMQService.Instance.WriteQueue(inst);
+            */
         }
 
         #endregion

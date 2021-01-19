@@ -59,8 +59,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #925
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #924
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #923
-- 
+- DMT.TAxTODv3
+  - DMT.SCW.Rest.Client project.
+    - Add LogInAudit supports.
+  - DMT.Account.Models project.
+    - Update Sign In UI #7.
+  - DMT.TA.Models project.
+    - Update Sign In UI #7.
+  - DMT.TOD.Models project.
+    - Update Sign In UI #7.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #922

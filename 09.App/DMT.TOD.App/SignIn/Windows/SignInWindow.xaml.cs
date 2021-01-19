@@ -130,18 +130,52 @@ namespace DMT.Windows
         {
             tabs.SelectedIndex = 0;
 
-            txtUserId.Text = string.Empty;
-            txtPassword.Password = string.Empty;
-            txtMsg.Text = string.Empty;
-
-            txtUserId2.Text = string.Empty;
-            txtPassword2.Password = string.Empty;
-            txtNewPassword.Password = string.Empty;
-            txtConfirmPassword.Password = string.Empty;
-            txtMsg2.Text =  string.Empty;
+            ClearInputs();
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => 
             { 
+                txtUserId.Focus();
+            }));
+        }
+
+        private void cmdOK3_Click(object sender, RoutedEventArgs e)
+        {
+            SmartcardManager.Instance.Shutdown();
+            this.DialogResult = true;
+        }
+
+        private void cmdChangePwd3_Click(object sender, RoutedEventArgs e)
+        {
+            tabs.SelectedIndex = 1;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId2.Focus();
+            }));
+        }
+
+        private void cmdChangePwd4_Click(object sender, RoutedEventArgs e)
+        {
+            tabs.SelectedIndex = 1;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId2.Focus();
+            }));
+        }
+
+        private void cmdOK5_Click(object sender, RoutedEventArgs e)
+        {
+            tabs.SelectedIndex = 0;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
                 txtUserId.Focus();
             }));
         }
@@ -230,6 +264,7 @@ namespace DMT.Windows
                 txtUserId.Focus();
                 return;
             }
+
             SmartcardManager.Instance.Shutdown();
             this.DialogResult = true;
         }
@@ -241,15 +276,7 @@ namespace DMT.Windows
             {
                 tabs.SelectedIndex = 0;
 
-                txtUserId.Text = string.Empty;
-                txtPassword.Password = string.Empty;
-                txtMsg.Text = string.Empty;
-
-                txtUserId2.Text = string.Empty;
-                txtPassword2.Password = string.Empty;
-                txtNewPassword.Password = string.Empty;
-                txtConfirmPassword.Password = string.Empty;
-                txtMsg2.Text = string.Empty;
+                ClearInputs();
 
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                 {
@@ -315,6 +342,19 @@ namespace DMT.Windows
             return ret;
         }
 
+        private void ClearInputs()
+        {
+            txtUserId.Text = string.Empty;
+            txtPassword.Password = string.Empty;
+            txtMsg.Text = string.Empty;
+
+            txtUserId2.Text = string.Empty;
+            txtPassword2.Password = string.Empty;
+            txtNewPassword.Password = string.Empty;
+            txtConfirmPassword.Password = string.Empty;
+            txtMsg2.Text = string.Empty;
+        }
+
         #endregion
 
         #region Public Methods
@@ -330,25 +370,5 @@ namespace DMT.Windows
         public User User { get { return _user; } }
 
         #endregion
-
-        private void cmdOK3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdChangePwd3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdChangePwd4_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdOK5_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

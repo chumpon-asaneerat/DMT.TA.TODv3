@@ -126,6 +126,47 @@ namespace DMT.Pages
             }));
         }
 
+        private void cmdOK3_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
+        private void cmdChangePwd3_Click(object sender, RoutedEventArgs e)
+        {
+            tabs.SelectedIndex = 1;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId2.Focus();
+            }));
+        }
+
+        private void cmdChangePwd4_Click(object sender, RoutedEventArgs e)
+        {
+            tabs.SelectedIndex = 1;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId2.Focus();
+            }));
+        }
+
+        private void cmdOK5_Click(object sender, RoutedEventArgs e)
+        {
+            tabs.SelectedIndex = 0;
+
+            ClearInputs();
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId.Focus();
+            }));
+        }
+
         #endregion
 
         #region TextBox Keydown
@@ -212,7 +253,6 @@ namespace DMT.Pages
             }
 
             SmartcardManager.Instance.Shutdown();
-
             GotoMainMenu();
         }
 
@@ -332,25 +372,5 @@ namespace DMT.Pages
         public User User { get { return _user; } }
 
         #endregion
-
-        private void cmdOK3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdChangePwd3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdChangePwd4_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdOK5_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

@@ -10,20 +10,20 @@ using Newtonsoft.Json;
 
 namespace DMT.Configurations
 {
-    #region TODUIConfig
+    #region TODStatusBars
 
     /// <summary>
-    /// The TODUIConfig class.
+    /// The TODStatusBars class.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public class TODUIConfig
+    public class TODStatusBars
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public TODUIConfig()
+        public TODStatusBars()
         {
             this.AppInfo = new StatusBarConfig() { Visible = true };
             this.ClientInfo = new StatusBarConfig() { Visible = true };
@@ -46,6 +46,36 @@ namespace DMT.Configurations
         public StatusBarConfig SCW { get; set; }
         /// <summary>Gets or sets TA App status bar.</summary>
         public StatusBarConfig TAApp { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TODUIConfig
+
+    /// <summary>
+    /// The TODUIConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class TODUIConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TODUIConfig()
+        {
+            this.StatusBars = new TODStatusBars();
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets TOD status bars.</summary>
+        public TODStatusBars StatusBars { get; set; }
 
         #endregion
     }

@@ -10,20 +10,20 @@ using Newtonsoft.Json;
 
 namespace DMT.Configurations
 {
-    #region TAUIConfig
+    #region TAStatusBars
 
     /// <summary>
-    /// The TAUIConfig class.
+    /// The TAStatusBars class.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public class TAUIConfig
+    public class TAStatusBars
     {
         #region Constructor
 
         /// <summary>
-        /// TAUIConfig.
+        /// Constructor.
         /// </summary>
-        public TAUIConfig()
+        public TAStatusBars()
         {
             this.AppInfo = new StatusBarConfig() { Visible = true };
             this.ClientInfo = new StatusBarConfig() { Visible = true };
@@ -49,6 +49,36 @@ namespace DMT.Configurations
         public StatusBarConfig TAServer { get; set; }
         /// <summary>Gets or sets TOD App status bar.</summary>
         public StatusBarConfig TODApp { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TAUIConfig
+
+    /// <summary>
+    /// The TAUIConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class TAUIConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// TAUIConfig.
+        /// </summary>
+        public TAUIConfig()
+        {
+            this.StatusBars = new TAStatusBars();
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets TOD status bars.</summary>
+        public TAStatusBars StatusBars { get; set; }
 
         #endregion
     }

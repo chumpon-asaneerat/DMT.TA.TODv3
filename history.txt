@@ -59,8 +59,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #945
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #944
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #943
-- 
+- DMT.TAxTODv3
+  - DMT.Controls Project.
+    - Refactor MessageBoxYesNo2Window UI layout.
+    - Refactor MessageBoxYesNo3Window UI layout.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #942

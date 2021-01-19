@@ -41,11 +41,13 @@
                     <Grid Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdCancel"
                                       DockPanel.Dock="Left"
+                                      Click="cmdCancel_Click"
                                       ImageSource="/DMT.Controls;component/Images/Button/Cancel2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
                     <ctrl:ImageButton x:Name="cmdOk"
+                                      Click="cmdOK_Click"
                                       DockPanel.Dock="Right"
                                       ImageSource="/DMT.Controls;component/Images/Button/OK2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />

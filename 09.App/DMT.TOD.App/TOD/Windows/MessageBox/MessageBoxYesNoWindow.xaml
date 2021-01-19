@@ -3,14 +3,62 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Width="600"
-        Height="220"
+        Height="250"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d">
+    <Window.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </Window.Resources>
+    <Grid Background="DimGray">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdCancel"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdOk"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/Save2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="บันทึก" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <Grid>
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </Grid>
+    <!--
     <Grid Background="DimGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
@@ -107,4 +155,5 @@
             <Grid />
         </DockPanel>
     </Grid>
+    -->
 </Window>

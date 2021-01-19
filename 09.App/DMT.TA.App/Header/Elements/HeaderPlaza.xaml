@@ -14,7 +14,7 @@
             <Style x:Key="HeaderPlazaTextBlockCommonStyle" TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="WhiteSmoke" />
                 <Setter Property="FontSize" Value="18" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>
@@ -27,7 +27,8 @@
                     BorderBrush="Silver"
                     BorderThickness="1"
                     DockPanel.Dock="Top">
-                <TextBlock FontSize="12"
+                <TextBlock HorizontalAlignment="Center"
+                           FontSize="12"
                            Style="{StaticResource HeaderPlazaTextBlockCommonStyle}"
                            Text="Plaza" />
             </Border>

@@ -41,8 +41,13 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #970
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #969
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Header Plaza fixed alignment.
+  - DMT.TOD.App project.
+    - Header Plaza fixed alignment.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #968

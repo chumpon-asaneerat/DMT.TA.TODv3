@@ -125,6 +125,7 @@
     <Compile Include="Header\PlazaHeader.xaml.cs">
       <DependentUpon>PlazaHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Lane.Models.cs" />
     <Compile Include="Services\TODApp.cs" />
     <Compile Include="Services\RuntimeManager.cs" />
     <Compile Include="Services\UIConfigs.cs" />

@@ -339,5 +339,25 @@ namespace DMT.Pages
         public User User { get { return _user; } }
 
         #endregion
+
+        private void cmdOK3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdChangePwd3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdChangePwd4_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdOK5_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

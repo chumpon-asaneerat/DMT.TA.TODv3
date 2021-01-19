@@ -244,12 +244,14 @@
                         <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
                             <ctrl:ImageButton x:Name="cmdOK3"
                                               Width="250"
+                                              Click="cmdOK3_Click"
                                               DockPanel.Dock="Right"
                                               ImageSource="/DMT.TA.App;component/Images/Button/OK.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                             </ctrl:ImageButton>
                             <ctrl:ImageButton x:Name="cmdChangePwd3"
                                               Width="250"
+                                              Click="cmdChangePwd3_Click"
                                               DockPanel.Dock="Left"
                                               ImageSource="/DMT.TA.App;component/Images/Button/Return.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="เปลี่ยนรหัสผ่าน" />
@@ -306,6 +308,7 @@
                     <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
                         <ctrl:ImageButton x:Name="cmdChangePwd4"
                                           Width="250"
+                                          Click="cmdChangePwd4_Click"
                                           ImageSource="/DMT.TA.App;component/Images/Button/Return.png">
                             <TextBlock Style="{StaticResource ImageButtonText}" Text="เปลี่ยนรหัสผ่าน" />
                         </ctrl:ImageButton>
@@ -351,6 +354,7 @@
                     <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
                         <ctrl:ImageButton x:Name="cmdOK5"
                                           Width="250"
+                                          Click="cmdOK5_Click"
                                           ImageSource="/DMT.TA.App;component/Images/Button/OK.png">
                             <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                         </ctrl:ImageButton>

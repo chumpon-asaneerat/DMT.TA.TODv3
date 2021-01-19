@@ -176,12 +176,6 @@
     <Compile Include="TOD\Pages\Menu\ReportMenu.xaml.cs">
       <DependentUpon>ReportMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TOD\Windows\MessageBox\MessageBoxWindow.xaml.cs">
-      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TOD\Windows\MessageBox\MessageBoxYesNoWindow.xaml.cs">
-      <DependentUpon>MessageBoxYesNoWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TOD\Windows\UserShifts\BOSWindow.xaml.cs">
       <DependentUpon>BOSWindow.xaml</DependentUpon>
     </Compile>
@@ -278,14 +272,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TOD\Pages\Menu\ReportMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TOD\Windows\MessageBox\MessageBoxWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TOD\Windows\MessageBox\MessageBoxYesNoWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

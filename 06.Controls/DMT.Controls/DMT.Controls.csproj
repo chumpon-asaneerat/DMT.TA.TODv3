@@ -59,6 +59,12 @@
       <DependentUpon>ImageButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Utils\AttachProperties.cs" />
+    <Compile Include="MessageBox\MessageBoxWindow.xaml.cs">
+      <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBox\MessageBoxYesNoWindow.xaml.cs">
+      <DependentUpon>MessageBoxYesNoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,6 +121,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MessageBox\MessageBoxWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBox\MessageBoxYesNoWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\CommonEntryStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,7 +183,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MessageBox\" />
+    <Resource Include="Images\Button\Cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Button\Button.png" />
@@ -203,6 +217,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Cards\Card-Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\Cancel2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\OK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\OK2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\Save2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -345,7 +345,12 @@ namespace DMT
             /// <summary>Gets Internal Exchange Window.</summary>
             public static TA.Windows.Exchange.InternalExchangeWindow InternalExchange
             {
-                get { return new TA.Windows.Exchange.InternalExchangeWindow(); }
+                get 
+                {
+                    var ret = new TA.Windows.Exchange.InternalExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret; 
+                }
             }
 
             #endregion
@@ -355,7 +360,12 @@ namespace DMT
             /// <summary>Gets Receive Exchange Window.</summary>
             public static TA.Windows.Exchange.ReceiveExchangeWindow ReceiveExchange
             {
-                get { return new TA.Windows.Exchange.ReceiveExchangeWindow(); }
+                get 
+                {
+                    var ret = new TA.Windows.Exchange.ReceiveExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
             }
 
             #endregion
@@ -365,7 +375,12 @@ namespace DMT
             /// <summary>Gets Plaza Balance Summary Window.</summary>
             public static TA.Windows.Plaza.PlazaBalanceSummaryWindow PlazaBalanceSummary
             {
-                get { return new TA.Windows.Plaza.PlazaBalanceSummaryWindow(); }
+                get 
+                {
+                    var ret = new TA.Windows.Plaza.PlazaBalanceSummaryWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
             }
 
             #endregion

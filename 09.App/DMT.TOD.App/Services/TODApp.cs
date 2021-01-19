@@ -238,7 +238,12 @@ namespace DMT
             /// <summary>Gets SignIn Window.</summary>
             public static DMT.Windows.SignInWindow SignIn
             {
-                get { return new DMT.Windows.SignInWindow(); }
+                get 
+                {
+                    var ret = new DMT.Windows.SignInWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret; 
+                }
             }
 
             #endregion
@@ -248,7 +253,12 @@ namespace DMT
             /// <summary>Gets BOS (Begin Of Shift Window.</summary>
             public static TOD.Windows.UserShifts.BOSWindow BOS
             {
-                get { return new TOD.Windows.UserShifts.BOSWindow(); }
+                get 
+                {
+                    var ret = new TOD.Windows.UserShifts.BOSWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret; 
+                }
             }
 
             #endregion

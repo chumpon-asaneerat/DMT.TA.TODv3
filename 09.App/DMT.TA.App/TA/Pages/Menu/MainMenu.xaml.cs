@@ -33,7 +33,7 @@ namespace DMT.TA.Pages.Menu
         {
             // ยืม/แลก เงินยืมทอนฝ่ายบัญชี
             var page = TAApp.Pages.RequestExchange;
-            //page.Setup();
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -41,7 +41,7 @@ namespace DMT.TA.Pages.Menu
         {
             // คืนเงินยืมทอนฝ่ายบัญชี
             var page = TAApp.Pages.ManageExchange;
-            //page.Setup();
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -49,7 +49,7 @@ namespace DMT.TA.Pages.Menu
         {
             // แลกเงินหมุนเวียนในด่าน
             var page = TAApp.Pages.InternalExchange;
-            //page.Setup();
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -57,7 +57,7 @@ namespace DMT.TA.Pages.Menu
         {
             // หัวหน่าขายคูปอง
             var page = TAApp.Pages.CouponTSBSale;
-            //page.Setup(DMT.Controls.TAApp.User.Current);
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -74,7 +74,7 @@ namespace DMT.TA.Pages.Menu
             // รายงานสรุปการยืมเงินทอน
             /*
             var page = new Reports.CollectorFundSummaryReportPage();
-            page.Setup(DMT.Controls.TAApp.User.Current);
+            page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
             */
         }
@@ -91,7 +91,7 @@ namespace DMT.TA.Pages.Menu
         {
             // รับคูปอง (collector)
             var page = TAApp.Pages.ReceiveCoupon;
-            //page.Setup(DMT.Controls.TAApp.User.Current);
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -99,7 +99,7 @@ namespace DMT.TA.Pages.Menu
         {
             // คืนคูปอง (collector)
             var page = TAApp.Pages.ReturnCoupon;
-            //page.Setup(DMT.Controls.TAApp.User.Current);
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -107,7 +107,7 @@ namespace DMT.TA.Pages.Menu
         {
             // ประวัติการแลกเงินยืมทอน (collector)
             var page = TAApp.Pages.CreditHistoryView;
-            //page.Setup(DMT.Controls.TAApp.User.Current);
+            //page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 
@@ -115,12 +115,8 @@ namespace DMT.TA.Pages.Menu
         {
             // เช็คยอดด่าน
             var win = TAApp.Windows.PlazaBalanceSummary;
-            win.Owner = Application.Current.MainWindow;
             //win.RefreshPlazaInfo();
-            if (win.ShowDialog() == false)
-            {
-                return;
-            }
+            win.ShowDialog();
         }
 
         private void cmdExit_Click(object sender, RoutedEventArgs e)

@@ -31,21 +31,18 @@ namespace DMT.TOD.Pages.Menu
 
         #region Button Handlers
 
+        // TEST - PASSED.
         private void cmdCollectorBOJ_Click(object sender, RoutedEventArgs e)
         {
             // เปิดกะ
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.TC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // Begin of Shift Page
             var jobWindow = TODApp.Windows.BOS;
-            jobWindow.Owner = Application.Current.MainWindow;
             jobWindow.Setup(user);
             if (jobWindow.ShowDialog() == false)
             {
@@ -57,12 +54,9 @@ namespace DMT.TOD.Pages.Menu
         {
             // ป้อนรายได้
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.TC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // Collector Revenue Entry Page
@@ -75,12 +69,9 @@ namespace DMT.TOD.Pages.Menu
         {
             // ป้อนรายได้ย้อนหลัง
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.CTC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // Chief Revenue Entry Page
@@ -89,16 +80,14 @@ namespace DMT.TOD.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdChiefChangeShift_Click(object sender, RoutedEventArgs e)
         {
             // หัวหน้าเปลี่ยนกะ
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.CTC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // Change Shift Page
@@ -107,16 +96,14 @@ namespace DMT.TOD.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdReportMenu_Click(object sender, RoutedEventArgs e)
         {
             // รายงานต่าง ๆ
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.CTC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // Report Main Menu
@@ -130,12 +117,9 @@ namespace DMT.TOD.Pages.Menu
         {
             // EMV/QR Code
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.CTC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // EMV/QRCode List Page
@@ -148,12 +132,9 @@ namespace DMT.TOD.Pages.Menu
         {
             // รายชื่อพนักงานเข้ากะ
             var signinWin = TODApp.Windows.SignIn;
-            signinWin.Owner = Application.Current.MainWindow;
             signinWin.Setup(TODApp.Permissions.CTC);
-            if (signinWin.ShowDialog() == false)
-            {
-                return;
-            }
+            if (signinWin.ShowDialog() == false) return;
+
             var user = signinWin.User;
 
             // Job List Page

@@ -41,8 +41,15 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #950
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #949
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - All Windows Static access auto set Owner.
+    - Update code in that call related windows.
+  - DMT.TOD.App
+    - All Windows Static access auto set Owner.
+    - Update code in that call related windows.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #948

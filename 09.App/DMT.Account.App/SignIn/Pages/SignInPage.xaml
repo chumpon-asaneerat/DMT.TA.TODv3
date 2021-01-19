@@ -248,7 +248,7 @@
                                               ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                             </ctrl:ImageButton>
-                            <ctrl:ImageButton x:Name="cmdChangePwd2"
+                            <ctrl:ImageButton x:Name="cmdChangePwd3"
                                               Width="250"
                                               DockPanel.Dock="Left"
                                               ImageSource="/DMT.Account.App;component/Images/Button/Return.png">

@@ -62,8 +62,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #974
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #973
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #972
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Add CheckBox and RadioButton Style.
+  - DMT.Plaza.Config.App project.
+    - Add CheckBox and RadioButton Style.
+  - DMT.Plaza.Simulator.App project.
+    - Add CheckBox and RadioButton Style.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #971

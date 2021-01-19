@@ -156,8 +156,8 @@ namespace DMT.Configurations
         {
             get
             {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.AppInfo : null;
+                if (null == Value || null == Value.StatusBars) LoadConfig();
+                return (null != Value && null != Value.StatusBars) ? Value.StatusBars.AppInfo : null;
             }
         }
         /// <summary>
@@ -167,8 +167,8 @@ namespace DMT.Configurations
         {
             get
             {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.ClientInfo : null;
+                if (null == Value || null == Value.StatusBars) LoadConfig();
+                return (null != Value && null != Value.StatusBars) ? Value.StatusBars.ClientInfo : null;
             }
         }
         /// <summary>
@@ -178,8 +178,8 @@ namespace DMT.Configurations
         {
             get
             {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.LocalDb : null;
+                if (null == Value || null == Value.StatusBars) LoadConfig();
+                return (null != Value && null != Value.StatusBars) ? Value.StatusBars.LocalDb : null;
             }
         }
         /// <summary>
@@ -189,8 +189,8 @@ namespace DMT.Configurations
         {
             get
             {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.SCW : null;
+                if (null == Value || null == Value.StatusBars) LoadConfig();
+                return (null != Value && null != Value.StatusBars) ? Value.StatusBars.SCW : null;
             }
         }
         /// <summary>
@@ -200,8 +200,8 @@ namespace DMT.Configurations
         {
             get
             {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TAServer : null;
+                if (null == Value || null == Value.StatusBars) LoadConfig();
+                return (null != Value && null != Value.StatusBars) ? Value.StatusBars.TAServer : null;
             }
         }
 

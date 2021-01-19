@@ -16,7 +16,7 @@
     <Grid Background="DimGray">
         <DockPanel LastChildFill="True">
             <ctrl:AccountHeader Height="100" DockPanel.Dock="Top" />
-            <ctrl:AccountStatusBar Height="30" DockPanel.Dock="Bottom" />
+            <ctrl:AccountStatusBar Height="16" DockPanel.Dock="Bottom" />
             <ContentPresenter x:Name="container" />
         </DockPanel>
     </Grid>

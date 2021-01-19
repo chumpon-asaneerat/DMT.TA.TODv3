@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="18"
-             d:DesignWidth="160"
+             d:DesignHeight="16"
+             d:DesignWidth="200"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded"
              mc:Ignorable="d">
@@ -25,7 +25,7 @@
                 Background="DimGray">
             <TextBlock Margin="10,0"
                        Style="{StaticResource LocalDbStatusTextBlockCommonStyle}"
-                       Text="Local : " />
+                       Text="DB (Local) : " />
         </Border>
         <Border x:Name="borderStatus"
                 VerticalAlignment="Stretch"

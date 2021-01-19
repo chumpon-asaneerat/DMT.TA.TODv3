@@ -50,8 +50,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #938
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #937
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #936
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App Project.
+    - Status Bar elements.
+  - DMT.TA.App Project.
+    - Status Bar elements.
+  - DMT.TOD.App Project.
+    - Status Bar elements.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #935

@@ -86,13 +86,13 @@
                                                 DisplayMemberBinding="{Binding Path=EndDateTimeString}"
                                                 Header="วัน/เวลา จบการทำงาน" />
                                 <GridViewColumn Width="100"
-                                                DisplayMemberBinding="{Binding Path=staffId}"
+                                                DisplayMemberBinding="{Binding Path=UserId}"
                                                 Header="รหัสพนักงาน" />
                                 <GridViewColumn Width="250"
                                                 DisplayMemberBinding="{Binding Path=FullNameEN}"
                                                 Header="ชื่อพนักงาน" />
                                 <GridViewColumn Width="150"
-                                                DisplayMemberBinding="{Binding Path=laneId}"
+                                                DisplayMemberBinding="{Binding Path=LaneId}"
                                                 Header="เลน" />
                             </GridView>
                         </ListView.View>

@@ -56,8 +56,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #956
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #955
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #954
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - ChangeShift (TSB)
+      - Fixed bug in LaneJob model.
+      - Update code order job list by Begin (BOJ).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #953

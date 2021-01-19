@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -118,6 +119,7 @@ namespace DMT.TOD.Pages.TollAdmin
             }
             _jobs.Clear();
 
+            var alljobs = new List<LaneJob>();
             // Gets jobs from each plaza.
             _plazas.ForEach(plaza => 
             {
@@ -135,12 +137,15 @@ namespace DMT.TOD.Pages.TollAdmin
                         {
                             ret.list.ForEach(job =>
                             {
-                                _jobs.Add(new LaneJob(job, usr));
+                                alljobs.Add(new LaneJob(job, usr));
                             });
                         }
                     });
                 }
             });
+
+            // sort and assigned to jobs list.
+            _jobs.AddRange(alljobs.OrderBy(x => x.Begin).ToArray());
 
             lvJobs.ItemsSource = _jobs;
         }

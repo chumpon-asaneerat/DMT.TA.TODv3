@@ -176,11 +176,28 @@ namespace DMT.Models
             get { return (null != Job) ? Job.jobNo : null; }
             set { }
         }
+        /// <summary>Gets Lane Id.</summary>
+        public int? LaneId
+        {
+            get { return (null != Job) ? Job.laneId : null; }
+            set { }
+        }
 
         /// <summary>Gets Begin Job DateTime.</summary>
         public DateTime? Begin
         {
             get { return (null != Job) ? Job.bojDateTime : null; }
+            set { }
+        }
+        /// <summary>Gets Begin Job DateTime in string.</summary>
+        public string BeginDateTimeString
+        {
+            get
+            {
+                string val = (null != Job && Job.bojDateTime.HasValue) ?
+                    Job.bojDateTime.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty;
+                return val;
+            }
             set { }
         }
         /// <summary>Gets Begin Job Date in string.</summary>
@@ -210,6 +227,17 @@ namespace DMT.Models
         public DateTime? End
         {
             get { return (null != Job) ? Job.eojDateTime : null; }
+            set { }
+        }
+        /// <summary>Gets End Job DateTime in string.</summary>
+        public string EndDateTimeString
+        {
+            get
+            {
+                string val = (null != Job && Job.eojDateTime.HasValue) ?
+                    Job.eojDateTime.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty;
+                return val;
+            }
             set { }
         }
         /// <summary>Gets End Job Date in string.</summary>

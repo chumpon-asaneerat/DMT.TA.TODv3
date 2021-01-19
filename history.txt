@@ -62,8 +62,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #954
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #953
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #952
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Simulator.App
+    - All Windows Static access auto set Owner.
+    - Update code in that call related windows.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #951

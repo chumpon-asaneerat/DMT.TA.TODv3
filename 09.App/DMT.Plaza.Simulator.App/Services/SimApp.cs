@@ -78,7 +78,12 @@ namespace DMT
             /// <summary>Gets User List Window.</summary>
             public static Simulator.Windows.UserListWindow UserList
             {
-                get { return new Simulator.Windows.UserListWindow(); }
+                get 
+                {
+                    var ret = new Simulator.Windows.UserListWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret; 
+                }
             }
 
             #endregion
@@ -88,7 +93,12 @@ namespace DMT
             /// <summary>Gets Payment Window.</summary>
             public static Simulator.Windows.PaymentWindow Payment
             {
-                get { return new Simulator.Windows.PaymentWindow(); }
+                get 
+                { 
+                    var ret = new Simulator.Windows.PaymentWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
             }
 
             #endregion

@@ -125,9 +125,9 @@ namespace DMT.Simulator.Pages
             }
             // Select User to Begin job.
             var win = SimApp.Windows.UserList;
-            win.Owner = Application.Current.MainWindow;
             win.Setup(excludeUsrs.ToArray());
             if (win.ShowDialog() == false) return;
+
             var usr = win.User;
             if (null == usr) return; // no user exist.
             BOJ(lane, usr);
@@ -147,7 +147,6 @@ namespace DMT.Simulator.Pages
             var lane = (null != button && null != button.DataContext) ? button.DataContext as LaneInfo : null;
             if (null == lane) return;
             var win = SimApp.Windows.Payment;
-            win.Owner = Application.Current.MainWindow;
             win.Setup(lane);
             if (win.ShowDialog() == false) return;
         }

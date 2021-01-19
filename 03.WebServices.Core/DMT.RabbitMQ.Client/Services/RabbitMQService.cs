@@ -110,13 +110,11 @@ namespace DMT.Services
                     var mq = jsonString.FromJson<Models.RabbitMQStaffMessage>();
                     if (null != mq)
                     {
-                        //TODO: Rabbit ToLocal Need to check PasswordDate?.
                         var staffs = Models.RabbitMQStaff.ToLocals(mq.staff);
                         if (null != staffs && staffs.Count > 0)
                         {
                             Task.Run(() =>
                             {
-                                // TODO: Check can save when direct access to database here.
                                 Models.User.SaveUsers(staffs);
                             });
                         }

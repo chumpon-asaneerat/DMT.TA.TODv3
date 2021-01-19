@@ -80,8 +80,25 @@ namespace DMT.Models
             ret.Password = value.password;
             ret.CardId = value.cardSerialNo;
             ret.GroupId = value.group;
+
+            // Password update date.
+            if (null == value.passwordUpdateDatetime || !value.passwordUpdateDatetime.HasValue)
+            {
+                // No data set as today.
+                ret.PasswordDate = DateTime.Now;
+            }
+            else
+            {
+                // Has data so used new data.
+                ret.PasswordDate = value.passwordUpdateDatetime;
+            }
+            // Status.
             if (!string.IsNullOrEmpty(value.status))
             {
+                // Status value:
+                // - Invalid   = 0
+                // - Avaliable = 1
+                // - Disable   = 2
                 if (value.status == "A")
                     ret.AccountStatus = User.AccountFlags.Avaliable;
                 else if (value.status == "D")

@@ -68,8 +68,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #912
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #911
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #910
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - User
+      - Remove ExpireDays proeprty.
+      - Add DefaultExpireDays Static Property.
+    - RabbitMQStaff
+      - Supports Update PasswordDate, AccountStatus to User class.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #909

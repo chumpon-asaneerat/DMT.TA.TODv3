@@ -55,6 +55,26 @@ namespace DMT.Models
 
 		#endregion
 
+		#region Public Static Propeties (required)
+
+		private static int _DefaultExpiredDays = 90;
+
+		/// <summary>Gets or sets Default Expired Days.</summary>
+		public static int DefaultExpiredDays 
+		{
+			get { return _DefaultExpiredDays; }
+			set 
+			{
+				if (value <= 0) return; // ignore less than zero.
+				if (_DefaultExpiredDays != value)
+				{
+					_DefaultExpiredDays = value;
+				}
+			}
+		}
+
+		#endregion
+
 		#region Intenral Variables
 
 		private string _UserId = string.Empty;
@@ -80,7 +100,6 @@ namespace DMT.Models
 		private string _RoleNameTH = string.Empty;
 		// Expiration
 		private DateTime? _PasswordDate = new DateTime?();
-		private int _ExpireDays = 0;
 		private AccountFlags _AccountStatus = AccountFlags.Avaliable;
 		// Validation (runtime)
 		private string _NewPassword = string.Empty;
@@ -571,25 +590,6 @@ namespace DMT.Models
 				return ret;
 			}
 			set { }
-		}
-		/// <summary>
-		/// Gets or sets Expire Days.
-		/// </summary>
-		[Category("Expiration")]
-		[Description("Gets or sets Expire Days.")]
-		[ReadOnly(true)]
-		[PropertyMapName("ExpireDays")]
-		public int ExpireDays
-		{
-			get { return _ExpireDays; }
-			set
-			{
-				if (_ExpireDays != value)
-				{
-					_ExpireDays = value;
-					this.RaiseChanged("ExpireDays");
-				}
-			}
 		}
 		/// <summary>
 		/// Gets or sets Account Status Flag.

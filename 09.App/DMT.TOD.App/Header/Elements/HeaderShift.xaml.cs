@@ -29,9 +29,6 @@ namespace DMT.Controls.Header
 
         #endregion
 
-        // TODO: Refactor HeaderShift elements LocalOperations
-        //private LocalOperations ops = LocalServiceOperations.Instance.Plaza;
-
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -65,13 +62,9 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            /*
-            // TODO: Refactor HeaderShift element Update current shift
-            var ret = ops.Shifts.GetCurrent();
-            var shift = ret.Value();
+            var shift = TSBShift.GetTSBShift().Value();
             if (null != shift)
             {
-                // TODO: Refactor
                 txtShiftDate.Text = shift.BeginDateString;
                 txtShiftTime.Text = shift.BeginTimeString;
                 txtShiftId.Text = shift.ShiftNameTH;
@@ -82,7 +75,6 @@ namespace DMT.Controls.Header
                 txtShiftTime.Text = string.Empty;
                 txtShiftId.Text = string.Empty;
             }
-            */
         }
     }
 }

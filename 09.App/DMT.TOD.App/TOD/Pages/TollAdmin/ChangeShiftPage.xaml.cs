@@ -17,6 +17,7 @@ using NLib.Reflection;
 namespace DMT.TOD.Pages.TollAdmin
 {
     using scwOps = Services.Operations.SCW.TOD;
+    using taOps = Services.Operations.TA.Notify;
 
     /// <summary>
     /// Interaction logic for ChangeShiftPage.xaml
@@ -54,6 +55,41 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
+            if (cbShifts.SelectedIndex == -1)
+            {
+                cbShifts.Focus();
+                return;
+            }
+            var shift = cbShifts.SelectedItem as Models.Shift;
+            if (null != shift)
+            {
+                int networkId = TODConfigManager.Instance.DMT.networkId;
+
+                TSBShift inst = TSBShift.Create(shift, _user).Value();
+                // set date
+                inst.Begin = DateTime.Now;
+
+                // Update TSB Shift
+                var ret = TSBShift.ChangeShift(inst);
+                if (ret.Ok && null != _user && null != _plazas && _plazas.Count > 0)
+                {
+                    // Update TOD
+                    RuntimeManager.Instance.RaiseShiftChanged();
+                    // Notify to TA
+                    taOps.ShiftChanged();
+
+                    // send to server
+                    var scw = new SCWSaveChiefDuty();
+                    scw.networkId = networkId;
+                    scw.plazaId = Convert.ToInt32(_plazas[0].SCWPlazaId);
+                    scw.staffId = _user.UserId;
+                    scw.staffTypeId = 1;
+                    scw.beginDateTime = inst.Begin;
+                    // send.
+                    SCWMQService.Instance.WriteQueue(scw);
+                }
+            }
+
             GotoMainMenu();
         }
 
@@ -73,7 +109,6 @@ namespace DMT.TOD.Pages.TollAdmin
             lvJobs.ItemsSource = null;
             if (null == _tsb || null == _plazas || _plazas.Count <= 0 || null == _user) return;
 
-            // Read all scw jobs.
             int networkId = TODConfigManager.Instance.DMT.networkId;
             
             if (null == _jobs)
@@ -114,6 +149,10 @@ namespace DMT.TOD.Pages.TollAdmin
 
         #region Public Methods
 
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="user">The Chief user.</param>
         public void Setup(User user)
         {
             _user = user;

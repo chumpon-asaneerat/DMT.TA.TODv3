@@ -139,6 +139,28 @@ namespace DMT.Services
             MoveToBackup(fullFileName);
         }
 
+        private void SendSaveChiefDuty(string fullFileName, Models.SCWSaveChiefDuty value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.TOD.saveCheifDuty(value);
+            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service.");
+                return;
+            }
+            if (ret.status.code != "S200")
+            {
+                // Execute Result is not Success so move to error folder.
+                med.Err("SCW Web Service returns error.");
+                MoveToError(fullFileName);
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
         #endregion
 
         #region Override Methods and Properties
@@ -204,6 +226,21 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("savechiefduty"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SCWSaveChiefDuty>();
+                    SendSaveChiefDuty(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
             else
             {
                 // process not staff list so Not Supports file.
@@ -254,6 +291,17 @@ namespace DMT.Services
         {
             if (null == value) return;
             string fileName = GetFileName("changepwd");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The SCWSaveChiefDuty instance.</param>
+        public void WriteQueue(Models.SCWSaveChiefDuty value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("savechiefduty");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

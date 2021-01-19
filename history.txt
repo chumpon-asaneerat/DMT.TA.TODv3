@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #929
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #928
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #927
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.Models project.
+    - Implements ChangeShift (TSB) #2
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #926

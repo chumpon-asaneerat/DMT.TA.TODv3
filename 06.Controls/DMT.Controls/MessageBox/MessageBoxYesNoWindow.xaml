@@ -16,6 +16,16 @@
     <Window.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+        <!--  TEXTBLOCK STYLE  -->
+        <Style x:Key="TextMessageStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
     </Window.Resources>
     <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -59,13 +69,7 @@
                     <TextBlock x:Name="txtMsg"
                                Grid.Row="1"
                                Grid.Column="1"
-                               Margin="3"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="40"
-                               Foreground="WhiteSmoke"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
+                               Style="{StaticResource TextMessageStyle}" />
                 </Grid>
             </DockPanel>
         </Grid>

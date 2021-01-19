@@ -53,22 +53,17 @@ namespace DMT.Windows
         /// <param name="msg3"></param>
         /// <param name="msg4"></param>
         /// <param name="msg5"></param>
-        /// <param name="head"></param>
-        public void Setup(string msg1, string msg2, string msg3, string msg4, string msg5, string head)
+        /// <param name="title"></param>
+        public void Setup(string msg1, string msg2, string msg3, string msg4, string msg5, string title)
         {
-            this.Title = head;
+            this.Title = title;
+            // Line 1
             txtMsg1.Text = msg1;
+            // Line 2
             txtMsg2.Text = msg2;
             txtMsg3.Text = msg3;
             txtMsg4.Text = msg4;
             txtMsg5.Text = msg5;
-
-            txtMsg1.Foreground = new SolidColorBrush(Colors.Black);
-            txtMsg2.Foreground = new SolidColorBrush(Colors.Red);
-            txtMsg3.Foreground = new SolidColorBrush(Colors.Black);
-            txtMsg4.Foreground = new SolidColorBrush(Colors.Red);
-            txtMsg5.Foreground = new SolidColorBrush(Colors.Black);
-
         }
     }
 }

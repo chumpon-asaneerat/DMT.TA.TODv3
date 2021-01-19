@@ -121,12 +121,12 @@ namespace DMT.Models
         /// </summary>
         /// <param name="job">The SCWJob instance.</param>
         /// <param name="lane">The Lane instance.</param>
-        /// <param name="user">The User instance.</param>
-        public LaneJob(SCWJob job, Lane lane, User user)
+        /// <param name="usershift">The UserShift instance.</param>
+        public LaneJob(SCWJob job, Lane lane, UserShift usershift)
         {
             this.Job = job;
             this.Lane = lane;
-            this.User = user;
+            this.UserShift = usershift;
         }
 
         #endregion
@@ -145,8 +145,8 @@ namespace DMT.Models
         /// <summary>Gets Lane.</summary>
         public Lane Lane { get; private set; }
 
-        /// <summary>Gets User.</summary>
-        public User User { get; private set; }
+        /// <summary>Gets User Shift.</summary>
+        public UserShift UserShift { get; private set; }
 
         #endregion
 
@@ -290,24 +290,43 @@ namespace DMT.Models
 
         #endregion
 
-        #region User
+        #region UserShift
 
         /// <summary>Gets User Id.</summary>
         public string UserId
         {
-            get { return (null != User) ? User.UserId : string.Empty; }
+            get { return (null != UserShift) ? UserShift.UserId : string.Empty; }
             set { }
         }
         /// <summary>Gets User Full Name EN.</summary>
         public string FullNameEN
         {
-            get { return (null != User) ? User.FullNameEN : string.Empty; }
+            get { return (null != UserShift) ? UserShift.FullNameEN : string.Empty; }
             set { }
         }
         /// <summary>Gets User Full Name TH.</summary>
         public string FullNameTH
         {
-            get { return (null != User) ? User.FullNameTH : string.Empty; }
+            get { return (null != UserShift) ? UserShift.FullNameTH : string.Empty; }
+            set { }
+        }
+
+        /// <summary>Gets Shift Id.</summary>
+        public int ShiftId
+        {
+            get { return (null != UserShift) ? UserShift.ShiftId : 0; }
+            set { }
+        }
+        /// <summary>Gets Shift Name EN.</summary>
+        public string ShiftNameEN
+        {
+            get { return (null != UserShift) ? UserShift.ShiftNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets Shift Name TH.</summary>
+        public string ShiftNameTH
+        {
+            get { return (null != UserShift) ? UserShift.ShiftNameTH : string.Empty; }
             set { }
         }
 

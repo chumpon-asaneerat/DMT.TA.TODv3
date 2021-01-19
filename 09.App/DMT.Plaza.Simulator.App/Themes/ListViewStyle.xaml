@@ -313,6 +313,23 @@
                    TextAlignment="Left" />
     </DataTemplate>
 
+    <!--  Common for Shift/TSBShift/UserShift  -->
+    <DataTemplate x:Key="ShiftId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ShiftId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ShiftNameEN">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ShiftNameEN}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ShiftNameTH">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ShiftNameTH}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
     <!--  Common for JobList  -->
     <DataTemplate x:Key="JobNo">
         <TextBlock HorizontalAlignment="Stretch"

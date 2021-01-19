@@ -40,7 +40,7 @@ namespace DMT.TOD.Pages.TollAdmin
         #region Internal Variables
 
         private User _user = null;
-        private List<User> _users = null;
+        private List<UserShift> _usershifts = null;
         private TSB _tsb = null;
         private List<Plaza> _plazas = null;
         private List<Lane> _lanes = null;
@@ -132,15 +132,15 @@ namespace DMT.TOD.Pages.TollAdmin
             // Gets jobs from each plaza.
             _plazas.ForEach(plaza => 
             {
-                if (null != _users && _users.Count > 0)
+                if (null != _usershifts && _usershifts.Count > 0)
                 {
-                    _users.ForEach(usr => 
+                    _usershifts.ForEach(usershift => 
                     {
                         // Load job for each user.
                         var param = new SCWJobList();
                         param.networkId = networkId;
                         param.plazaId = plaza.SCWPlazaId;
-                        param.staffId = usr.UserId;
+                        param.staffId = usershift.UserId;
 
                         var ret = scwOps.jobList(param);
                         if (null != ret && null != ret.list && ret.list.Count > 0)
@@ -156,7 +156,7 @@ namespace DMT.TOD.Pages.TollAdmin
                                 });
                                 if (null != matchLane)
                                 {
-                                    alljobs.Add(new LaneJob(job, matchLane, usr));
+                                    alljobs.Add(new LaneJob(job, matchLane, usershift));
                                 }
                             });
                         }
@@ -193,21 +193,8 @@ namespace DMT.TOD.Pages.TollAdmin
                 _plazas = Plaza.GetTSBPlazas(_tsb.TSBId).Value();
                 _lanes = Lane.GetTSBLanes(_tsb.TSBId).Value();
 
-                // Gets Users that Opened shift (User Shift).
-                _users = new List<User>();
-                var userShifts = UserShift.GetUnCloseUserShifts().Value();
-                if (null != userShifts && userShifts.Count > 0)
-                {
-                    UserCache cache = new UserCache();
-                    userShifts.ForEach(userShift => 
-                    {
-                        if (!cache.Contains(userShift.UserId))
-                        {
-                            var usr = cache[userShift.UserId];
-                            if (null != usr) _users.Add(usr);
-                        }
-                    });
-                }
+                // Gets User Shifts that not closed.
+                _usershifts = UserShift.GetUnCloseUserShifts().Value();
 
                 // Load related lane data.
                 RefreshLanes();

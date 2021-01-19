@@ -44,8 +44,21 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #960
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #959
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #958
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Update LaneJob Model.
+    - ChangeShift (TSB)
+      - Chance User to UserShift.
+    - JobList
+      - Refactor Layout #1.
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml (add shift related column templates).
+  - DMT.Plaza.Config.App project.
+    - Update ListViewStyle.xaml (sync with DMT.Controls project).
+  - DMT.Plaza.Simulator.App project.
+    - Update ListViewStyle.xaml (sync with DMT.Controls project).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #957

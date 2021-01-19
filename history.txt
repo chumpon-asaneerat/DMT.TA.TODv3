@@ -47,8 +47,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #939
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #938
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #937
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App Project.
+    - MainWindow status bars height.
+  - DMT.TA.App Project.
+    - MainWindow status bars height.
+  - DMT.TOD.App Project.
+    - MainWindow status bars height.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #936

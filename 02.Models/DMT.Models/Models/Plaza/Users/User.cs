@@ -73,6 +73,22 @@ namespace DMT.Models
 			}
 		}
 
+		private static int _DefaultNotifyDays = 10;
+
+		/// <summary>Gets or sets Default Notify Days.</summary>
+		public static int DefaultNotifyDays
+		{
+			get { return _DefaultNotifyDays; }
+			set
+			{
+				if (value <= 0) return; // ignore less than zero.
+				if (_DefaultNotifyDays != value)
+				{
+					_DefaultNotifyDays = value;
+				}
+			}
+		}
+
 		#endregion
 
 		#region Intenral Variables

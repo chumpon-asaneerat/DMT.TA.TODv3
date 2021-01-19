@@ -47,8 +47,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #959
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #958
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #957
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - ChangeShift (TSB)
+      - Add ListView column PlazaId
+      - Replace Message when no shift selected.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #956

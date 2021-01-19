@@ -61,7 +61,7 @@ namespace DMT.TOD.Pages.TollAdmin
             {
                 // Show Message.
                 var msg = TODApp.Windows.MessageBox;
-                msg.Setup("ไม่สามารถเปิดกะใหม่ได้ เนื่องจาก ยังมีกะที่ยังไม่ป้อนรายได้", "DMT - Tour of Duty");
+                msg.Setup("กรุณาเลือกกะ ที่ต้องการเปลี่ยน", "DMT - Tour of Duty");
                 msg.ShowDialog();
 
                 cbShifts.Focus();

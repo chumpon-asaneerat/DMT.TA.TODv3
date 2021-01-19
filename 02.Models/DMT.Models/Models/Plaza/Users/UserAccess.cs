@@ -32,11 +32,46 @@ namespace DMT.Models
     //[Table("UserAccess")]
     public class UserAccess : NTable<UserAccess>
     {
+        #region Public Static Propeties (required)
+
+        private static int _DefaultFailAllow = 3;
+        /// <summary>Gets or sets Default Failed Allow count.</summary>
+        public static int DefaultFailAllow
+        {
+            get { return _DefaultFailAllow; }
+            set
+            {
+                if (value <= 0) return; // ignore less than zero.
+                if (_DefaultFailAllow != value)
+                {
+                    _DefaultFailAllow = value;
+                }
+            }
+        }
+
+        private static int _DefaultLockHours = 90;
+        /// <summary>Gets or sets Default Lock Hours.</summary>
+        public static int DefaultLockHours
+        {
+            get { return _DefaultLockHours; }
+            set
+            {
+                if (value <= 0) return; // ignore less than zero.
+                if (_DefaultLockHours != value)
+                {
+                    _DefaultLockHours = value;
+                }
+            }
+        }
+
+        #endregion
+
         #region Intenral Variables
 
         private string _UserId = string.Empty;
         private DateTime? _LastAccessDate = new DateTime?();
         private DateTime? _LastNotifyDate = new DateTime?();
+        private DateTime? _LastLockDate = new DateTime?();
         private int _FailCount = 0;
 
         #endregion
@@ -232,6 +267,83 @@ namespace DMT.Models
         }
 
         /// <summary>
+        /// Gets or sets LastLock Date.
+        /// </summary>
+        [Category("Access")]
+        [Description("Gets or sets LastLock Date.")]
+        [ReadOnly(true)]
+        [PropertyMapName("LastLockDate")]
+        public DateTime? LastLockDate
+        {
+            get { return _LastLockDate; }
+            set
+            {
+                if (_LastLockDate != value)
+                {
+                    _LastLockDate = value;
+                    this.RaiseChanged("LastLock");
+                    this.RaiseChanged("LastLockDateString");
+                    this.RaiseChanged("LastLockTimeString");
+                    this.RaiseChanged("LastLockDateTimeString");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets LastLock Date String.
+        /// </summary>
+        [Category("Access")]
+        [Description("Gets LastLock Date String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string LastLockDateString
+        {
+            get
+            {
+                var ret = (!this._LastLockDate.HasValue || this._LastLockDate.Value == DateTime.MinValue) ?
+                    "" : this._LastLockDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets LastLock Time String.
+        /// </summary>
+        [Category("Access")]
+        [Description("Gets LastLock Time String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string LastLockTimeString
+        {
+            get
+            {
+                var ret = (!this._LastLockDate.HasValue || this._LastLockDate.Value == DateTime.MinValue) ?
+                    "" : this._LastLockDate.Value.ToThaiTimeString();
+                return ret;
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets or sets LastLock Date Time String..
+        /// </summary>
+        [Category("Access")]
+        [Description("Gets or sets LastLock Date Time String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string LastLockDateTimeString
+        {
+            get
+            {
+                var ret = (!this._LastLockDate.HasValue || this._LastLockDate.Value == DateTime.MinValue) ?
+                    "" : this._LastLockDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+                return ret;
+            }
+            set { }
+        }
+
+        /// <summary>
         /// Gets or sets LogIn Fail Count.
         /// </summary>
         [Category("Access")]
@@ -271,7 +383,7 @@ namespace DMT.Models
         /// </summary>
         /// <param name="value">The UserAccess instance.</param>
         /// <returns>Returns UserAccess instance.</returns>
-        public static NDbResult<UserAccess> SaveUser(UserAccess value)
+        public static NDbResult<UserAccess> SaveUserAccess(UserAccess value)
         {
             var result = new NDbResult<UserAccess>();
             SQLiteConnection db = Default;
@@ -401,6 +513,8 @@ namespace DMT.Models
                         access.UserId = userId;
                     }
                     access.FailCount = 0; // Reset failed counter.
+                    access.LastLockDate = new DateTime?(); // Reset lock date.
+
                     access.LastAccessDate = DateTime.Now;
 
                     result = Save(access);
@@ -458,6 +572,12 @@ namespace DMT.Models
                         access.FailCount = 0; // init default before increase counter.
                     }
                     access.FailCount++; // increase failed count.
+                    if (access.FailCount >= DefaultFailAllow)
+                    {
+                        // Set lock date.
+                        access.LastLockDate = DateTime.Now;
+                    }
+
                     access.LastAccessDate = DateTime.Now;
 
                     result = Save(access);

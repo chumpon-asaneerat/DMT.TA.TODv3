@@ -59,8 +59,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #915
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #914
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #913
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - UserAccess.
+      - Add LastLockDate property.
+      - Add DefaultLockHours static property.
+      - Add DefaultFailAllow static property.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #912

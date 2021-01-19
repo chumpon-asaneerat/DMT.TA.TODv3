@@ -663,7 +663,7 @@ namespace DMT.Models
                         return result;
                     }
                     // Begin new shift.
-                    if (value.Begin == DateTime.MinValue)
+                    if (!value.Begin.HasValue || value.Begin == DateTime.MinValue)
                         value.Begin = DateTime.Now;
 
                     var saveRet = Save(value);
@@ -706,7 +706,7 @@ namespace DMT.Models
                 try
                 {
                     // End shift.
-                    if (value.End == DateTime.MinValue)
+                    if (!value.End.HasValue || value.End == DateTime.MinValue)
                         value.End = DateTime.Now;
 
                     var saveRet = Save(value);

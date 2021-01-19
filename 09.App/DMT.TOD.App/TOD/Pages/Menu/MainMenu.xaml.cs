@@ -46,7 +46,7 @@ namespace DMT.TOD.Pages.Menu
             // Begin of Shift Page
             var jobWindow = TODApp.Windows.BOS;
             jobWindow.Owner = Application.Current.MainWindow;
-            //jobWindow.Setup(user);
+            jobWindow.Setup(user);
             if (jobWindow.ShowDialog() == false)
             {
                 return;

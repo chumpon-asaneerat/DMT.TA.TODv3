@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #930
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #929
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #928
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.Models project.
+    - Implements BOS Window (Collector) #1
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #927

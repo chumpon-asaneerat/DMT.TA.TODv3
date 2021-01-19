@@ -73,26 +73,25 @@
                     <!--  LANE VIEW  -->
                     <ListView x:Name="lvJobs"
                               FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               ItemsSource="{Binding}"
-                              VirtualizingPanel.IsVirtualizing="True"
-                              VirtualizingPanel.IsVirtualizingWhenGrouping="True"
-                              VirtualizingPanel.VirtualizationMode="Recycling">
+                              Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="220"
-                                                DisplayMemberBinding="{Binding Path=BeginDateTimeString}"
+                                                CellTemplate="{StaticResource BeginDateTimeString}"
                                                 Header="วัน/เวลา เปิดการทำงาน" />
                                 <GridViewColumn Width="220"
-                                                DisplayMemberBinding="{Binding Path=EndDateTimeString}"
+                                                CellTemplate="{StaticResource EndDateTimeString}"
                                                 Header="วัน/เวลา จบการทำงาน" />
-                                <GridViewColumn Width="100"
-                                                DisplayMemberBinding="{Binding Path=UserId}"
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
                                                 Header="รหัสพนักงาน" />
                                 <GridViewColumn Width="250"
-                                                DisplayMemberBinding="{Binding Path=FullNameEN}"
+                                                CellTemplate="{StaticResource FullNameTH}"
                                                 Header="ชื่อพนักงาน" />
-                                <GridViewColumn Width="150"
-                                                DisplayMemberBinding="{Binding Path=LaneId}"
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource LaneId}"
                                                 Header="เลน" />
                             </GridView>
                         </ListView.View>

@@ -243,6 +243,11 @@
     </DataTemplate>
 
     <!--  Common for DATE/TIME  -->
+    <DataTemplate x:Key="BeginDateTimeString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding BeginDateTimeString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
     <DataTemplate x:Key="BeginDateString">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding BeginDateString}"
@@ -251,6 +256,12 @@
     <DataTemplate x:Key="BeginTimeString">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding BeginTimeString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="EndDateTimeString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding EndDateTimeString}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="EndDateString">

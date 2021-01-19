@@ -82,7 +82,7 @@
                             <ctrl:ImageButton x:Name="cmdOK"
                                               Click="cmdOK_Click"
                                               ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
-                                <TextBlock Style="{StaticResource ImageButtonText}" Text="OK" />
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                             </ctrl:ImageButton>
                             <Grid Height="5" />
                         </StackPanel>
@@ -102,7 +102,7 @@
                         <ctrl:ImageButton x:Name="cmdChangePwd"
                                           Click="cmdChangePwd_Click"
                                           ImageSource="/DMT.Account.App;component/Images/Button/Return.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="Change Password" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="เปลี่ยนรหัสผ่าน" />
                         </ctrl:ImageButton>
                     </Grid>
                 </Grid>
@@ -192,13 +192,13 @@
                         <ctrl:ImageButton x:Name="cmdOK2"
                                           Click="cmdOK2_Click"
                                           ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="OK" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                         </ctrl:ImageButton>
                         <Grid Height="10" />
                         <ctrl:ImageButton x:Name="cmdCancel2"
                                           Click="cmdCancel2_Click"
                                           ImageSource="/DMT.Account.App;component/Images/Button/Cancel.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="Cancel" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                         </ctrl:ImageButton>
                         <Grid Height="5" />
                     </StackPanel>
@@ -212,6 +212,159 @@
                                Style="{StaticResource ErrorText}"
                                Text="" />
                 </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="Change Password"
+                 Visibility="Collapsed">
+            <!--  Notify Password expired in days.  -->
+            <Grid Background="DimGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                      Grid.RowSpan="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="3">
+                    <Image Opacity="0.5" Source="/DMT.Account.App;component/Images/Background/snartcard.png" />
+                </Grid>
+                <DockPanel Grid.Row="1"
+                           Grid.Column="1"
+                           LastChildFill="True">
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                        <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                            <ctrl:ImageButton x:Name="cmdOK3"
+                                              Width="250"
+                                              DockPanel.Dock="Right"
+                                              ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                            </ctrl:ImageButton>
+                            <ctrl:ImageButton x:Name="cmdChangePwd2"
+                                              Width="250"
+                                              DockPanel.Dock="Left"
+                                              ImageSource="/DMT.Account.App;component/Images/Button/Return.png">
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="เปลี่ยนรหัสผ่าน" />
+                            </ctrl:ImageButton>
+                            <Grid />
+                        </DockPanel>
+                        <Grid VerticalAlignment="Center">
+                            <TextBlock Name="txtMsg3"
+                                       FontSize="28"
+                                       Style="{StaticResource ErrorText}">
+                                <Run Text="รหัสผ่านจะหมดอายุภายใน " />
+                                <Run FontSize="36"
+                                     Foreground="Orange"
+                                     Text="0 " />
+                                <Run Text="วัน " />
+                                <LineBreak />
+                                <Run Text="กดปุ่ม 'ตกลง' เพื่อทำการ เพื่อทำการทำงานต่อ" />
+                                <LineBreak />
+                                <Run Text="หรือ" />
+                                <LineBreak />
+                                <Run Text="กดปุ่ม 'เปลี่ยนรหัสผ่าน' เปลี่ยนรหัสผ่านใหม่" />
+                            </TextBlock>
+                        </Grid>
+                    </DockPanel>
+                </DockPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="Change Password"
+                 Visibility="Collapsed">
+            <!--  Notify Password Expired.  -->
+            <Grid Background="DimGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                      Grid.RowSpan="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="3">
+                    <Image Opacity="0.5" Source="/DMT.Account.App;component/Images/Background/snartcard.png" />
+                </Grid>
+                <DockPanel Grid.Row="1"
+                           Grid.Column="1"
+                           LastChildFill="True">
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                        <ctrl:ImageButton x:Name="cmdChangePwd4"
+                                          Width="250"
+                                          ImageSource="/DMT.Account.App;component/Images/Button/Return.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="เปลี่ยนรหัสผ่าน" />
+                        </ctrl:ImageButton>
+                    </DockPanel>
+                    <Grid VerticalAlignment="Center">
+                        <TextBlock Name="txtMsg4"
+                                   FontSize="28"
+                                   Style="{StaticResource ErrorText}">
+                            <Run Text="รหัสผ่านหมดอายุแล้ว" />
+                            <LineBreak />
+                            <Run Text="กรุณาเปลี่ยนรหัสผ่านใหม่" />
+                        </TextBlock>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="Change Password"
+                 Visibility="Collapsed">
+            <!--  Notify Password Changed.  -->
+            <Grid Background="DimGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                      Grid.RowSpan="3"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="3">
+                    <Image Opacity="0.5" Source="/DMT.Account.App;component/Images/Background/snartcard.png" />
+                </Grid>
+                <DockPanel Grid.Row="1"
+                           Grid.Column="1"
+                           LastChildFill="True">
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+                        <ctrl:ImageButton x:Name="cmdOK5"
+                                          Width="250"
+                                          ImageSource="/DMT.Account.App;component/Images/Button/OK.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                        </ctrl:ImageButton>
+                    </DockPanel>
+                    <Grid VerticalAlignment="Center">
+                        <TextBlock Name="txtMsg5"
+                                   FontSize="28"
+                                   Style="{StaticResource ErrorText}">
+                            <Run Text="ทำการเปลี่ยนรหัสผ่านเสร็จสิ้นแล้ว" />
+                            <LineBreak />
+                            <Run Text="กดปุ่ม ตกลง เพื่อทำการ Sign In ใหม่" />
+                        </TextBlock>
+                    </Grid>
+                </DockPanel>
             </Grid>
         </TabItem>
     </TabControl>

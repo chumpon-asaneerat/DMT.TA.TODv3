@@ -277,17 +277,14 @@ namespace DMT.Pages
             // Check if enter mismatch password.
             if (IsUserExists(userId))
             {
+                if (IsAccountLock(userId))
+                {
+                    return;
+                }
                 if (null == _user)
                 {
-                    if (IsAccountLock(userId))
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        UserAccess.Failed(userId).Value(); // Update failed.
-                        LogInLog(false);
-                    }
+                    UserAccess.Failed(userId).Value(); // Update failed.
+                    LogInLog(false);
                 }
                 else
                 {

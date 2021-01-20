@@ -8,7 +8,10 @@
     <Thickness x:Key="CommonMargin">5</Thickness>
     <GridLength x:Key="PageMargin">5</GridLength>
 
+    <!--  COMMON INPUT FONT SIZE  -->
     <sys:Double x:Key="InputFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
+    <!--  RADIO BUTTON RELATED SIZE  -->
+    <CornerRadius x:Key="CommonRadioButtonCornerRadius" PresentationOptions:Freeze="True">9</CornerRadius>
 
     <!--  TEXT BOX COLORS  -->
     <SolidColorBrush x:Key="TextBoxMouseOverBorderBrush"
@@ -180,28 +183,27 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                    <BulletDecorator Background="White" Cursor="Hand">
+                    <BulletDecorator Background="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=Background}" Cursor="Hand">
                         <BulletDecorator.Bullet>
-                            <Grid Width="16" Height="16">
+                            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                                  Height="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                                  VerticalAlignment="Center">
                                 <!--  Define size of the Bullet  -->
                                 <!--  The two borders  -->
                                 <Border Name="RadioOuter"
                                         Background="Transparent"
-                                        BorderBrush="Gainsboro"
+                                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=Foreground}"
                                         BorderThickness="2"
-                                        CornerRadius="2" />
+                                        CornerRadius="{DynamicResource CommonRadioButtonCornerRadius}" />
                                 <Border Name="RadioMark"
                                         Margin="4"
-                                        Background="#FFADADAD"
-                                        CornerRadius="0"
+                                        Background="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=Foreground}"
+                                        CornerRadius="{DynamicResource CommonRadioButtonCornerRadius}"
                                         Visibility="Hidden" />
                             </Grid>
                         </BulletDecorator.Bullet>
                         <!--  Text element  -->
-                        <TextBlock Margin="3,1,0,0"
-                                   FontFamily="Calibri"
-                                   FontSize="12"
-                                   Foreground="#FF3E3E3E">
+                        <TextBlock Margin="3,0" VerticalAlignment="Center">
                             <ContentPresenter />
                         </TextBlock>
                     </BulletDecorator>
@@ -210,7 +212,6 @@
                         <Trigger Property="IsChecked" Value="true">
                             <!--  If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting  -->
                             <Setter TargetName="RadioMark" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="RadioOuter" Property="BorderBrush" Value="#FFADADAD" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

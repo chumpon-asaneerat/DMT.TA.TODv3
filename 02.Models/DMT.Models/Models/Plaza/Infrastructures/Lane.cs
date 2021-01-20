@@ -675,9 +675,10 @@ namespace DMT.Models
 		/// Get Lane.
 		/// </summary>
 		/// <param name="db">The database connection.</param>
+		/// <param name="scwPlazaId">The SCW Plaza Id.</param>
 		/// <param name="laneNo">The lane No.</param>
 		/// <returns>Returns instance of Lane.</returns>
-		public static NDbResult<Lane> GetLane(SQLiteConnection db, int laneNo)
+		public static NDbResult<Lane> GetLane(SQLiteConnection db, int scwPlazaId, int laneNo)
 		{
 			var result = new NDbResult<Lane>();
 			if (null == db)
@@ -694,8 +695,9 @@ namespace DMT.Models
 					cmd += "SELECT * ";
 					cmd += "  FROM LaneView ";
 					cmd += " WHERE LaneNo = ? ";
+					cmd += "   AND SCWPlazaId = ? ";
 
-					var ret = NQuery.Query<FKs>(cmd, laneNo).FirstOrDefault();
+					var ret = NQuery.Query<FKs>(cmd, laneNo, scwPlazaId).FirstOrDefault();
 					var data = (null != ret) ? ret.ToModel() : null;
 					result.Success(data);
 				}
@@ -711,13 +713,14 @@ namespace DMT.Models
 		/// Get Lane.
 		/// </summary>
 		/// <param name="laneNo">The lane No.</param>
+		/// <param name="scwPlazaId">The SCW Plaza Id.</param>
 		/// <returns>Returns instance of Lane.</returns>
-		public static NDbResult<Lane> GetLane(int laneNo)
+		public static NDbResult<Lane> GetLane(int scwPlazaId, int laneNo)
 		{
 			lock (sync)
 			{
 				SQLiteConnection db = Default;
-				return GetLane(db, laneNo);
+				return GetLane(db, scwPlazaId, laneNo);
 			}
 		}
 

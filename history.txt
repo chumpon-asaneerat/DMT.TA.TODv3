@@ -47,8 +47,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #989
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #988
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #987
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Lane add static method to GetLane by SCWPlazaId (int) and LaneId (int).
+  - DMT.TOD.App project.
+    - Implements Collector Revenue Entry #6.
+    - Implements Chief Revenue Entry #6.
+    - Update Lane.Models.cs
+    - Update EMV-QRCode Page.
+    - Update JobList Page.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #986

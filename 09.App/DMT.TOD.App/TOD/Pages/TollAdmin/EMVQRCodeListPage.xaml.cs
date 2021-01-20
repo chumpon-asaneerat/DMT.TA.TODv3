@@ -261,9 +261,10 @@ namespace DMT.TOD.Pages.TollAdmin
 
             if (null != _selectUser && null != _tsb && null != _plazas)
             {
+                var userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
                 int networkId = TODConfigManager.Instance.DMT.networkId;
 
-                if (null != _plazas && _plazas.Count > 0)
+                if (null != userShift && userShift.Begin.HasValue && null != _plazas && _plazas.Count > 0)
                 {
                     _plazas.ForEach(plaza =>
                     {
@@ -271,7 +272,7 @@ namespace DMT.TOD.Pages.TollAdmin
                         SCWEMVTransactionList param = new SCWEMVTransactionList();
                         param.networkId = networkId;
                         param.plazaId = pzId;
-                        param.staffId = _selectUser.UserId;
+                        param.staffId = userShift.UserId;
                         param.startDateTime = dt1;
                         param.endDateTime = dt2;
                         var emvList = scwOps.emvTransactionList(param);
@@ -279,7 +280,11 @@ namespace DMT.TOD.Pages.TollAdmin
                         {
                             emvList.list.ForEach(item =>
                             {
-                                items.Add(new LaneEMV(item));
+                                if (item.trxDateTime.HasValue &&
+                                    userShift.Begin.Value < item.trxDateTime.Value)
+                                {
+                                    items.Add(new LaneEMV(item));
+                                }
                             });
                         }
                     });
@@ -311,8 +316,9 @@ namespace DMT.TOD.Pages.TollAdmin
             if (null != _selectUser && null != _tsb && null != _plazas)
             {
                 int networkId = TODConfigManager.Instance.DMT.networkId;
+                var userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
 
-                if (null != _plazas && _plazas.Count > 0)
+                if (null != userShift && null != _plazas && _plazas.Count > 0)
                 {
                     _plazas.ForEach(plaza =>
                     {
@@ -320,7 +326,7 @@ namespace DMT.TOD.Pages.TollAdmin
                         SCWQRCodeTransactionList param = new SCWQRCodeTransactionList();
                         param.networkId = networkId;
                         param.plazaId = pzId;
-                        param.staffId = _selectUser.UserId;
+                        param.staffId = userShift.UserId;
                         param.startDateTime = dt1;
                         param.endDateTime = dt2;
                         var emvList = scwOps.qrcodeTransactionList(param);
@@ -328,7 +334,11 @@ namespace DMT.TOD.Pages.TollAdmin
                         {
                             emvList.list.ForEach(item =>
                             {
-                                items.Add(new LaneQRCode(item));
+                                if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
+                                    userShift.Begin.Value < item.trxDateTime.Value)
+                                {
+                                    items.Add(new LaneQRCode(item));
+                                }
                             });
                         }
                     });

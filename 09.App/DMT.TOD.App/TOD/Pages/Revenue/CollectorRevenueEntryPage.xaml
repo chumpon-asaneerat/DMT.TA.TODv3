@@ -129,6 +129,11 @@
                                     <GridViewColumn Width="60"
                                                 CellTemplate="{StaticResource LaneNo}"
                                                 Header="เลน" />
+                                    <!--
+                                    <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource PlazaGroupNameTH}"
+                                                Header="ด่าน" />
+                                    -->
                                 </GridView>
                             </ListView.View>
                         </ListView>

@@ -94,7 +94,7 @@ namespace DMT.TOD.Pages.TollAdmin
         private void RefreshJobList(UserShift userShift)
         {
             lstLaneJobs.ItemsSource = null;
-            if (null == userShift) return; // no selection.
+            if (null == userShift || !userShift.Begin.HasValue) return; // no selection.
 
             int networkId = TODConfigManager.Instance.DMT.networkId;
 
@@ -125,7 +125,7 @@ namespace DMT.TOD.Pages.TollAdmin
                         // local lane data.
                         var matchLane = _lanes.Find(lane =>
                         {
-                            return job.plazaId == lane.SCWPlazaId && job.laneId == lane.LaneNo;
+                            return job.plazaId == lane.SCWPlazaId && job.laneId == lane.LaneNo && job.bojDateTime.Value >= userShift.Begin.Value;
                         });
                         if (null != matchLane)
                         {

@@ -201,7 +201,8 @@ namespace DMT.TOD.Pages.Revenue
                     ret.list.ForEach(job =>
                     {
                         if (job.bojDateTime.HasValue &&
-                            _userShift.Begin.Value <= job.bojDateTime.Value)
+                            _userShift.Begin.Value <= job.bojDateTime.Value &&
+                            job.plazaId.Value == plaza.SCWPlazaId)
                         {
                             alljobs.Add(new LaneJob(job, _userShift));
                         }

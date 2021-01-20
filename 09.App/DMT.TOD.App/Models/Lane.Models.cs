@@ -137,7 +137,7 @@ namespace DMT.Models
         public LaneJob(SCWJob job, UserShift usershift)
         {
             this.Job = job;
-            this.Lane = (job.laneId.HasValue) ? Lane.GetLane(job.laneId.Value).Value() : null;
+            this.Lane = (job.laneId.HasValue) ? Lane.GetLane(job.plazaId.Value, job.laneId.Value).Value() : null;
             this.UserShift = usershift;
         }
 
@@ -256,6 +256,29 @@ namespace DMT.Models
 
         /// <summary>Check Has Job.</summary>
         public bool HasJob { get { return null != Job; } set { } }
+
+        #endregion
+
+        #region PlazaGroup
+
+        /// <summary>Gets Plaza Group Id.</summary>
+        public string PlazaGroupId
+        {
+            get { return (null != Lane) ? Lane.PlazaGroupId : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets Plaza Group Name EN.</summary>
+        public string PlazaGroupNameEN
+        {
+            get { return (null != Lane) ? Lane.PlazaGroupNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>Gets Plaza Group Name TH.</summary>
+        public string PlazaGroupNameTH
+        {
+            get { return (null != Lane) ? Lane.PlazaGroupNameTH : string.Empty; }
+            set { }
+        }
 
         #endregion
 

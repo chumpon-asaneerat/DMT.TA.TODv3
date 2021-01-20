@@ -4,6 +4,11 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="PresentationOptions">
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Force Merge related resource dictionary  -->
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <!--  CONST LISTBOX FONT SIZE  -->
     <sys:Double x:Key="ListBoxFontSize14" PresentationOptions:Freeze="True">14</sys:Double>
     <sys:Double x:Key="ListBoxFontSize18" PresentationOptions:Freeze="True">18</sys:Double>

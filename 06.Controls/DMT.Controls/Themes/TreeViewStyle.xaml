@@ -3,6 +3,11 @@
                     xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Force Merge related resource dictionary  -->
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <!--  CONST TREEVIEW FONT SIZE  -->
     <sys:Double x:Key="TreeViewFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
     <sys:Double x:Key="TreeViewFontSize20" PresentationOptions:Freeze="True">20</sys:Double>

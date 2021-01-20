@@ -50,8 +50,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #978
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #977
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #976
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update ListView, ListBox, TreeView style - merge resource CommonStyle.xaml.
+  - DMT.Plaza.Config.App project.
+    - Update ListView, ListBox, TreeView style - merge resource CommonStyle.xaml.
+  - DMT.Plaza.Simulator.App project.
+    - Update ListView, ListBox, TreeView style - merge resource CommonStyle.xaml.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #975

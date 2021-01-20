@@ -141,6 +141,71 @@
         <Setter Property="Text" Value="ฉบับ" />
     </Style>
 
+    <!--  COUPON USAGE DESCRIPTION  -->
+    <Style x:Key="CouponUsage30Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="30 บาท" />
+    </Style>
+    <Style x:Key="CouponUsage35Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="35 บาท" />
+    </Style>
+    <Style x:Key="CouponUsage70Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="70 บาท" />
+    </Style>
+    <Style x:Key="CouponUsage80Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="80 บาท" />
+    </Style>
+
+    <!--  COUPON SOLD ENTRY (TEXTBOX)  -->
+    <Style x:Key="CouponUsageBHT30"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT30, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="CouponUsageBHT35"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT35, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="CouponUsageBHT70"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT70, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="CouponUsageBHT80"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT80, StringFormat=N0}" />
+    </Style>
+
+    <!--  COUPON USAGE UNIT  -->
+    <Style x:Key="CouponUsageUnitCountStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="ฉบับ" />
+    </Style>
+
     <!--  COUPON SOLD DESCRIPTION  -->
     <Style x:Key="CouponSold35Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"

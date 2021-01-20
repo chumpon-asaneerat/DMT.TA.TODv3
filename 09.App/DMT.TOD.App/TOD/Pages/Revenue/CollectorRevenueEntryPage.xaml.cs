@@ -31,6 +31,26 @@ namespace DMT.TOD.Pages.Revenue
 
         #endregion
 
+        #region Internal Variables
+
+        private User _user = null;
+        private TSB _tsb = null;
+        private List<PlazaGroup> _plazaGroups = null;
+
+        private DateTime _entryDate = DateTime.Now;
+        private DateTime _revDate = DateTime.Now;
+
+        #endregion
+
+        #region Combobox Handlers
+
+        private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -93,6 +113,50 @@ namespace DMT.TOD.Pages.Revenue
             {
                 tabs.SelectedIndex = 1;
             }
+        }
+
+        private void Reset()
+        {
+            // Reset Plaza.
+            cbPlazas.SelectedIndex = -1;
+            LoadPlazaGroups();
+            // Update entry date and revenue date.
+            _entryDate = DateTime.Now;
+            _revDate = DateTime.Now;
+            txtEntryDate.Text = _entryDate.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+            txtRevDate.Text = _revDate.ToThaiDateTimeString("dd/MM/yyyy");
+        }
+
+        private void LoadPlazaGroups()
+        {
+            cbPlazas.ItemsSource = null;
+            if (null != _plazaGroups)
+            {
+                cbPlazas.ItemsSource = _plazaGroups;
+                if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="user"></param>
+        public void Setup(User user)
+        {
+            _user = user;
+            if (null != _user)
+            {
+                _tsb = TSB.GetCurrent().Value();
+                if (null != _tsb)
+                {
+                    _plazaGroups = PlazaGroup.GetTSBPlazaGroups(_tsb).Value();
+                }
+            }
+            Reset();
         }
 
         #endregion

@@ -31,6 +31,29 @@ namespace DMT.TOD.Pages.Revenue
 
         #endregion
 
+        #region Internal Variables
+
+        private User _user = null;
+        private TSB _tsb = null;
+        private List<PlazaGroup> _plazaGroups = null;
+        private List<Models.Shift> _shifts = null;
+
+        #endregion
+
+        #region Combobox Handlers
+
+        private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cbShifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -91,6 +114,63 @@ namespace DMT.TOD.Pages.Revenue
             {
                 tabs.SelectedIndex = 1;
             }
+        }
+
+        private void Reset()
+        {
+            // Reset Plaza.
+            cbPlazas.SelectedIndex = -1;
+            LoadPlazaGroups();
+            // Reset Shift.
+            cbShifts.SelectedIndex = -1;
+            LoadShifts();
+            // Update entry date and revenue date.
+            dtEntryDate.Value = DateTime.Now;
+            dtRevDate.Value = DateTime.Now;
+        }
+
+        private void LoadShifts() 
+        {
+            cbPlazas.ItemsSource = null;
+            if (null != _shifts)
+            {
+                cbPlazas.ItemsSource = _shifts;
+                if (_shifts.Count > 0) cbShifts.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadPlazaGroups() 
+        {
+            cbPlazas.ItemsSource = null;
+            if (null != _plazaGroups)
+            {
+                cbPlazas.ItemsSource = _plazaGroups;
+                if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="user"></param>
+        public void Setup(User user)
+        {
+            _user = user;
+            if (null != _user)
+            {
+                _shifts = Models.Shift.GetShifts().Value();
+
+                _tsb = TSB.GetCurrent().Value();
+                if (null != _tsb)
+                {
+                    _plazaGroups = PlazaGroup.GetTSBPlazaGroups(_tsb).Value();
+                }
+            }
+            Reset();
         }
 
         #endregion

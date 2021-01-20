@@ -48,6 +48,44 @@
                     </DockPanel>
                     <!--  WORK AREA  -->
                     <DockPanel LastChildFill="True">
+                        <StackPanel Margin="0,5"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal">
+                            <TextBlock Margin="5"
+                                       Foreground="Black"
+                                       Style="{StaticResource LabelText}"
+                                       Text="วันที่ป้อนรายได้ : " />
+                            <TextBlock x:Name="txtEntryDate"
+                                       Width="220"
+                                       Margin="5"
+                                       HorizontalAlignment="Center"
+                                       FontSize="18"
+                                       Style="{StaticResource LabelText}"
+                                       Text="" />
+                            <TextBlock Margin="5"
+                                       Foreground="Red"
+                                       Style="{StaticResource LabelText}"
+                                       Text="วันที่ของรายได้ : " />
+                            <TextBlock x:Name="txtRevDate"
+                                       Margin="5"
+                                       Foreground="Black"
+                                       Style="{StaticResource LabelText}"
+                                       Text="" />
+                            <TextBlock Width="120"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Black"
+                                       Style="{StaticResource LabelText}"
+                                       Text="รายได้ของด่าน : "
+                                       TextAlignment="Right" />
+                            <ComboBox x:Name="cbPlazas"
+                                      Width="150"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      DisplayMemberPath="PlazaGroupNameTH"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      Foreground="Black"
+                                      SelectionChanged="cbPlazas_SelectionChanged" />
+                        </StackPanel>
                         <Grid />
                     </DockPanel>
                 </DockPanel>

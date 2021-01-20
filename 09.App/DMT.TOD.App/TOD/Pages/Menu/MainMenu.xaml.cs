@@ -61,7 +61,7 @@ namespace DMT.TOD.Pages.Menu
 
             // Collector Revenue Entry Page
             var page = TODApp.Pages.CollectorRevenueEntry;
-            //page.Setup(user);
+            page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
 
@@ -76,7 +76,7 @@ namespace DMT.TOD.Pages.Menu
 
             // Chief Revenue Entry Page
             var page = TODApp.Pages.ChiefRevenueEntry;
-            //page.Setup(user);
+            page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
 
@@ -113,6 +113,7 @@ namespace DMT.TOD.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdEMVQRCode_Click(object sender, RoutedEventArgs e)
         {
             // EMV/QR Code
@@ -128,6 +129,7 @@ namespace DMT.TOD.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdStaffJobs_Click(object sender, RoutedEventArgs e)
         {
             // รายชื่อพนักงานเข้ากะ

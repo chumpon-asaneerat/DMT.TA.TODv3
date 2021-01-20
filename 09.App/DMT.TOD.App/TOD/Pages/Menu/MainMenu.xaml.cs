@@ -124,7 +124,7 @@ namespace DMT.TOD.Pages.Menu
 
             // EMV/QRCode List Page
             var page = TODApp.Pages.EMVQRCode;
-            //page.Setup(user);
+            page.Setup(user);
             PageContentManager.Instance.Current = page;
         }
 

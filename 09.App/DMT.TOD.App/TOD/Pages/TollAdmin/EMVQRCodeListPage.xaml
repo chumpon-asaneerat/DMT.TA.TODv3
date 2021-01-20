@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DesignHeight="450"
-             d:DesignWidth="800"
+             d:DesignWidth="1000"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d">
     <UserControl.Resources>
         <!--  IMAGE BUTTON STYLE  -->
@@ -44,30 +46,179 @@
                 </DockPanel>
                 <!--  WORK AREA  -->
                 <DockPanel LastChildFill="True">
-                    <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top" LastChildFill="False"
-                               Margin="10, 0"
-                               Height="40">
-                        <RadioButton x:Name="rbEMV"
-                                     Content="EMV"
-                                     DockPanel.Dock="Left"
-                                     Width="80"
-                                     VerticalAlignment="Center"
-                                     Foreground="WhiteSmoke"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonRadioButton}"
-                                     IsChecked="True"
-                                     GroupName="EMVQR" />
-                        <RadioButton x:Name="rbQRCode"
-                                     Content="QR Code"
-                                     Width="100"
-                                     Foreground="WhiteSmoke"
-                                     VerticalAlignment="Center"
-                                     DockPanel.Dock="Left"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonRadioButton}"
-                                     GroupName="EMVQR" />
+                    <!--  PAYMENT FILTER PANEL  -->
+                    <DockPanel Height="70"
+                               Margin="10,0"
+                               VerticalAlignment="Center"
+                               DockPanel.Dock="Top"
+                               LastChildFill="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="3" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="180"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ประเภทการชำระเงิน :  "
+                                           TextAlignment="Right" />
+                                <RadioButton x:Name="rbEMV"
+                                             Width="80"
+                                             Click="rbEMV_Click"
+                                             VerticalAlignment="Center"
+                                             Content="EMV"
+                                             FontSize="{StaticResource InputFontSize18}"
+                                             Foreground="WhiteSmoke"
+                                             GroupName="EMVQR"
+                                             IsChecked="True"
+                                             Style="{StaticResource CommonRadioButton}" />
+                                <RadioButton x:Name="rbQRCode"
+                                             Width="100"
+                                             Click="rbQRCode_Click"
+                                             VerticalAlignment="Center"
+                                             Content="QR Code"
+                                             FontSize="{StaticResource InputFontSize18}"
+                                             Foreground="WhiteSmoke"
+                                             GroupName="EMVQR"
+                                             Style="{StaticResource CommonRadioButton}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="3"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="180"
+                                           Style="{StaticResource LabelText}"
+                                           Text="วันที่ทำรายการ :  "
+                                           TextAlignment="Right" />
+                                <xceed:DateTimePicker x:Name="dtEntryDate"
+                                                      Width="175"
+                                                      VerticalAlignment="Center"
+                                                      CultureInfo="th-TH"
+                                                      FontSize="{StaticResource InputFontSize18}"
+                                                      Format="Custom"
+                                                      ValueChanged="dtEntryDate_ValueChanged"
+                                                      FormatString="dd/MM/yyyy"
+                                                      ShowButtonSpinner="False"
+                                                      TimePickerAllowSpin="False"
+                                                      TimePickerShowButtonSpinner="False"
+                                                      TimePickerVisibility="Collapsed" />
+                                <TextBlock Width="10" />
+                                <TextBlock Width="90"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ช่องทาง :  "
+                                           TextAlignment="Right" />
+                                <TextBox x:Name="txtLaneNo"
+                                         Width="175"
+                                         FontSize="{StaticResource InputFontSize18}"
+                                         Style="{StaticResource CommonTextBox}" />
+                                <TextBlock Width="10" />
+                                <Button x:Name="cmdPaymentSearch"
+                                        Width="150"
+                                        Height="30"
+                                        Click="cmdPaymentSearch_Click"
+                                        VerticalAlignment="Center"
+                                        Content="ค้นหาข้อมูล"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
+                                <TextBlock Width="10" />
+                                <Button x:Name="cmdPaymentClear"
+                                        Width="150"
+                                        Height="30"
+                                        VerticalAlignment="Center"
+                                        Content="เคลียร์"
+                                        Click="cmdPaymentClear_Click"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
+                            </StackPanel>
+                            <Grid Grid.Row="1"
+                                  Grid.RowSpan="5"
+                                  Grid.Column="3" />
+                        </Grid>
                     </DockPanel>
-                    <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top" />
+                    <!--  USER FILTER PANEL  -->
+                    <DockPanel Height="70"
+                               Margin="10,0"
+                               VerticalAlignment="Center"
+                               DockPanel.Dock="Top"
+                               LastChildFill="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="3" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="180"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ค้นหา รหัสพนักงาน : "
+                                           TextAlignment="Right" />
+                                <TextBox x:Name="txtSearchUserId"
+                                         Width="175"
+                                         FontSize="{StaticResource InputFontSize18}"
+                                         Style="{StaticResource CommonTextBox}" />
+                                <TextBlock Width="10" />
+                                <Button x:Name="cmdUserSearch"
+                                        Width="150"
+                                        Height="30"
+                                        Click="cmdUserSearch_Click"
+                                        VerticalAlignment="Center"
+                                        Content="เลือกพนักงาน"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="3"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="175"
+                                           Style="{StaticResource LabelText}"
+                                           Text="รหัสพนักงาน : "
+                                           TextAlignment="Right" />
+                                <TextBlock Width="5" />
+                                <TextBox x:Name="txtUserId"
+                                         Width="175"
+                                         IsReadOnly="False"
+                                         Foreground="WhiteSmoke"
+                                         Background="Silver"
+                                         Style="{StaticResource CommonTextBox}"
+                                         TextAlignment="Center"
+                                         Text="{Binding UserId}" />
+                                <TextBlock Width="10" />
+                                <TextBlock Style="{StaticResource LabelText}" Text="ชื่อพนักงาน:" />
+                                <Grid Width="5" />
+                                <TextBox x:Name="txtUserName"
+                                         Width="250"
+                                         Foreground="WhiteSmoke"
+                                         Background="Silver"
+                                         IsReadOnly="False"
+                                         TextAlignment="Center"
+                                         Style="{StaticResource CommonTextBox}"
+                                         Text="{Binding FullNameTH}" />
+                            </StackPanel>
+                            <Grid Grid.Row="1"
+                                  Grid.RowSpan="5"
+                                  Grid.Column="3" />
+                        </Grid>
+                    </DockPanel>
                     <ListView />
                 </DockPanel>
             </DockPanel>

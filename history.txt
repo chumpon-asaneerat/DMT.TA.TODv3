@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #980
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #979
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #978
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements EMV/QRCode page #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #977

@@ -19,6 +19,16 @@
         <Setter Property="Margin" Value="5,2" />
     </Style>
     <!--  EACH BANK NOTE DESCRIPTION  -->
+    <Style x:Key="ST25Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="25 สตางค์" />
+    </Style>
+    <Style x:Key="ST50Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="50 สตางค์" />
+    </Style>
     <Style x:Key="BHT1Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
@@ -71,6 +81,18 @@
     </Style>
 
     <!--  EACH NOTE AMOUNT (TEXTBOX)  -->
+    <Style x:Key="ST25Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding ST25Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountST25, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="ST50Amount"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding ST50Foreground}" />
+        <Setter Property="Text" Value="{Binding AmountST50, StringFormat=N0}" />
+    </Style>
     <Style x:Key="BHT1Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
@@ -134,18 +156,18 @@
         <Setter Property="Text" Value="{Binding BHTTotal, StringFormat=N0}" />
     </Style>
 
-    <!--  EACH BANK NOTE UNIT  -->
-    <Style x:Key="ConinUnitStyle"
+    <!--  EACH BANK NOTE AMOUNT UNIT  -->
+    <Style x:Key="ConinAmountUnitStyle"
            BasedOn="{StaticResource UnitStyle}"
            TargetType="TextBlock">
         <Setter Property="Text" Value="บาท" />
     </Style>
-    <Style x:Key="BillUnitStyle"
+    <Style x:Key="BillAmountUnitStyle"
            BasedOn="{StaticResource UnitStyle}"
            TargetType="TextBlock">
         <Setter Property="Text" Value="บาท" />
     </Style>
-    <Style x:Key="TotalUnitStyle"
+    <Style x:Key="TotalAmountUnitStyle"
            BasedOn="{StaticResource UnitStyle}"
            TargetType="TextBlock">
         <Setter Property="Text" Value="บาท" />

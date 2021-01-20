@@ -179,6 +179,30 @@
     <Compile Include="StatusBar\TODStatusBar.xaml.cs">
       <DependentUpon>TODStatusBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\CouponDMTEntry.xaml.cs">
+      <DependentUpon>CouponDMTEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\CouponRevenueEntry.xaml.cs">
+      <DependentUpon>CouponRevenueEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\CouponUsageEntry.xaml.cs">
+      <DependentUpon>CouponUsageEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\EMVEntry.xaml.cs">
+      <DependentUpon>EMVEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\OtherEntry.xaml.cs">
+      <DependentUpon>OtherEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\QRCodeEntry.xaml.cs">
+      <DependentUpon>QRCodeEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\TrafficEntry.xaml.cs">
+      <DependentUpon>TrafficEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Controls\Revenue\RevenueEntry.xaml.cs">
+      <DependentUpon>RevenueEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TOD\Pages\Revenue\ChiefRevenueEntryPage.xaml.cs">
       <DependentUpon>ChiefRevenueEntryPage.xaml</DependentUpon>
     </Compile>
@@ -273,6 +297,38 @@
     <Page Include="StatusBar\TODStatusBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\CouponDMTEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\CouponRevenueEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\CouponUsageEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\EMVEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\OtherEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\QRCodeEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\TrafficEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\RevenueEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TOD\Pages\Revenue\ChiefRevenueEntryPage.xaml">
       <SubType>Designer</SubType>
@@ -399,9 +455,7 @@
       <Name>DMT.Controls</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TOD\Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Background\snartcard.png" />
     <Resource Include="Images\Button\Cancel.png" />

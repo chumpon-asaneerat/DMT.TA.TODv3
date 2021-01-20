@@ -9,4 +9,174 @@
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <!--  EACH TRAFFIC COUNT DESCRIPTION  -->
+    <Style x:Key="TrafficST25Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="25 สตางค์" />
+    </Style>
+    <Style x:Key="TrafficST50Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="50 สตางค์" />
+    </Style>
+    <Style x:Key="TrafficBHT1Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="1 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT2Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="2 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT5Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="5 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT10Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="10 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT20Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="20 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT50Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="50 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT100Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="100 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT500Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="500 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHT1000Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="1000 บาท" />
+    </Style>
+    <Style x:Key="TrafficBHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+
+    <!--  EACH TRAFFIC COUNT (TEXTBOX)  -->
+    <Style x:Key="TrafficST25Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficST25, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficST50Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficST50, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT1Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT1, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT2Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT2, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT5Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT5, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT10Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT10, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT20Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT20, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT50Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Foreground" Value="{Binding BHT50Foreground}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT50, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT100Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT100, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT500Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT500, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="TrafficBHT1000Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding TrafficBHT1000, StringFormat=N0}" />
+    </Style>
+
+    <!--  EACH BANK NOTE COUNT UNIT  -->
+    <Style x:Key="ConinCountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="เหรียญ" />
+    </Style>
+    <Style x:Key="BillCountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="ฉบับ" />
+    </Style>
+
+    <!--  FREE PASS DESCRIPTION  -->
+    <Style x:Key="FreePassClassADescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="140" />
+        <Setter Property="Text" Value="บัตร DMT (ป 1)" />
+    </Style>
+    <Style x:Key="FreePassClassOtherDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="140" />
+        <Setter Property="Text" Value="บัตร DMT (ป 2)" />
+    </Style>
+
+    <!--  FREE PASS ENTRY (TEXTBOX)  -->
+    <Style x:Key="FreePassUsageClassA"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding FreePassUsageClassA, StringFormat=N0}" />
+    </Style>
+
+    <Style x:Key="FreePassUsageOther"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding FreePassUsageOther, StringFormat=N0}" />
+    </Style>
+
+    <!--  FREE PASS UNIT  -->
+    <Style x:Key="FreePassUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Text" Value="ฉบับ" />
+    </Style>
 </ResourceDictionary>

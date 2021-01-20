@@ -68,7 +68,8 @@ namespace DMT.TOD.Pages.Revenue
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            //Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         #endregion
@@ -197,6 +198,18 @@ namespace DMT.TOD.Pages.Revenue
                     return;
                 }
             }
+
+            // TODO: Need TA.
+            /*
+            if (!_manager.IsReturnBag)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ระบบตรวจพบว่ายังไม่มีการคืนถุงเงิน กรุณาคืนถุงเงินก่อนป้อนรายได้.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+            */
+
             // All check condition OK.
             tabs.SelectedIndex = 1; // goto next tab.
         }

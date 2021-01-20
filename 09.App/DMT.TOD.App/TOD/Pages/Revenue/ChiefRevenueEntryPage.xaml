@@ -17,14 +17,13 @@
                 BorderBrush="Transparent"
                 BorderThickness="0"
                 SelectedIndex="0">
+        <!--  DATE SELECTION  -->
         <TabItem Background="Transparent"
                  BorderBrush="Transparent"
                  BorderThickness="0"
                  Header="เลือกวันที่ของรายได้"
                  Visibility="Collapsed">
-            <ScrollViewer Background="Silver"
-                          HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
+            <Grid Background="Silver">
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <!--  BUTTONS  -->
                     <DockPanel Height="60"
@@ -52,7 +51,7 @@
                         <Grid />
                     </DockPanel>
                 </DockPanel>
-            </ScrollViewer>
+            </Grid>
         </TabItem>
         <TabItem Background="Transparent"
                  BorderBrush="Transparent"

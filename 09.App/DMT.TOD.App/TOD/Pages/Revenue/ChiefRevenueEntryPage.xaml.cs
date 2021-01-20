@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,6 +11,7 @@ using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
+using System.Threading;
 
 #endregion
 
@@ -33,10 +36,31 @@ namespace DMT.TOD.Pages.Revenue
 
         #region Internal Variables
 
-        private User _user = null;
+        //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
+        private CultureInfo culture = new CultureInfo("th-TH");
+
+        private User _user = null; // Supervisor
+        private User _selectUser = null; // Collector
+
         private TSB _tsb = null;
         private List<PlazaGroup> _plazaGroups = null;
         private List<Models.Shift> _shifts = null;
+
+        private UserShift _userShift = null;
+        private UserShift _revenueShift = null;
+
+        #endregion
+
+        #region Loaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Setup DateTime Picker.
+            dtEntryDate.CultureInfo = culture;
+            dtRevDate.CultureInfo = culture;
+            //Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
 
         #endregion
 
@@ -44,12 +68,14 @@ namespace DMT.TOD.Pages.Revenue
 
         private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == plazaGroup) return;
         }
 
         private void cbShifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var shift = cbShifts.SelectedItem as Models.Shift;
+            if (null == shift) return;
         }
 
         #endregion
@@ -137,6 +163,7 @@ namespace DMT.TOD.Pages.Revenue
                 cbPlazas.ItemsSource = _shifts;
                 if (_shifts.Count > 0) cbShifts.SelectedIndex = 0;
             }
+            LoadLanes();
         }
 
         private void LoadPlazaGroups() 
@@ -146,6 +173,19 @@ namespace DMT.TOD.Pages.Revenue
             {
                 cbPlazas.ItemsSource = _plazaGroups;
                 if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+            }
+            LoadLanes();
+        }
+
+        private void LoadLanes()
+        {
+            _userShift = null;
+            _revenueShift = null;
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            var shift = cbShifts.SelectedItem as Models.Shift;
+            if (null == plazaGroup || null == shift)
+            {
+                return;
             }
         }
 

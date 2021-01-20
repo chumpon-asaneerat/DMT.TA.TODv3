@@ -8,7 +8,8 @@
              xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DesignHeight="450"
              d:DesignWidth="1000"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
@@ -49,7 +50,15 @@
                     </DockPanel>
                     <!--  WORK AREA  -->
                     <DockPanel LastChildFill="True">
-                        <StackPanel Margin="0,5"
+                        <Border Background="CornflowerBlue"
+                                BorderBrush="Silver"
+                                BorderThickness="1"
+                                DockPanel.Dock="Top">
+                            <TextBlock Margin="5"
+                                       Style="{StaticResource LabelText}"
+                                       Text="วันที่ของรายได้" />
+                        </Border>
+                        <StackPanel Margin="0,5,0,0"
                                     DockPanel.Dock="Top"
                                     Orientation="Horizontal">
                             <TextBlock Margin="5"
@@ -103,6 +112,7 @@
                                       SelectionChanged="cbPlazas_SelectionChanged" />
                             <TextBlock Width="10" />
                             <TextBlock HorizontalAlignment="Center"
+                                       Foreground="Black"
                                        Style="{StaticResource LabelText}"
                                        Text="กะ : "
                                        TextAlignment="Right" />
@@ -117,6 +127,103 @@
                                       SelectedValuePath="ShiftId"
                                       SelectionChanged="cbShifts_SelectionChanged" />
                         </StackPanel>
+                        <StackPanel Margin="0"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal">
+                            <!--  USER FILTER PANEL  -->
+                            <DockPanel Height="75"
+                                       Margin="10,1"
+                                       VerticalAlignment="Center"
+                                       DockPanel.Dock="Top"
+                                       LastChildFill="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="1"
+                                                Grid.RowSpan="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                        <TextBlock Width="180"
+                                                   Foreground="Black"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="ค้นหา รหัสพนักงาน : "
+                                                   TextAlignment="Right" />
+                                        <TextBox x:Name="txtSearchUserId"
+                                                 Width="175"
+                                                 FontSize="{StaticResource InputFontSize18}"
+                                                 KeyDown="txtSearchUserId_KeyDown"
+                                                 Style="{StaticResource CommonTextBox}" />
+                                        <TextBlock Width="10" />
+                                        <Button x:Name="cmdUserSearch"
+                                                Width="150"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Click="cmdUserSearch_Click"
+                                                Content="เลือกพนักงาน"
+                                                FontSize="{StaticResource InputFontSize18}"
+                                                Style="{DynamicResource InlineButton}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2"
+                                                Grid.RowSpan="3"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                        <TextBlock Width="175"
+                                                   Foreground="Black"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="รหัสพนักงาน : "
+                                                   TextAlignment="Right" />
+                                        <TextBlock Width="5" />
+                                        <TextBlock x:Name="txtUserId"
+                                                   Width="175"
+                                                   Height="25"
+                                                   Background="CornflowerBlue"
+                                                   Foreground="White"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="{Binding UserId}"
+                                                   TextAlignment="Center" />
+                                        <TextBlock Width="10" />
+                                        <TextBlock Width="100"
+                                                   Foreground="Black"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="ชื่อพนักงาน : " />
+                                        <TextBlock x:Name="txtUserName"
+                                                   Width="250"
+                                                   Height="25"
+                                                   Background="CornflowerBlue"
+                                                   Foreground="White"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="{Binding FullNameTH}"
+                                                   TextAlignment="Center" />
+                                    </StackPanel>
+                                    <Grid Grid.Row="1"
+                                          Grid.RowSpan="4"
+                                          Grid.Column="3" />
+                                </Grid>
+                            </DockPanel>
+                        </StackPanel>
+                        <Border Background="CornflowerBlue"
+                                BorderBrush="Silver"
+                                BorderThickness="1"
+                                DockPanel.Dock="Top">
+                            <TextBlock Margin="5"
+                                       Style="{StaticResource LabelText}"
+                                       Text="รายการกะที่ยังไม่ได้ทำการป้อนรายได้" />
+                        </Border>
                         <Grid />
                     </DockPanel>
                 </DockPanel>

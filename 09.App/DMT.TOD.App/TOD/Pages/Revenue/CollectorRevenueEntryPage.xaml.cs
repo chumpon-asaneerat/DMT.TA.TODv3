@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -33,6 +35,9 @@ namespace DMT.TOD.Pages.Revenue
 
         #region Internal Variables
 
+        //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
+        private CultureInfo culture = new CultureInfo("th-TH");
+
         private User _user = null;
         private TSB _tsb = null;
         private List<PlazaGroup> _plazaGroups = null;
@@ -40,13 +45,27 @@ namespace DMT.TOD.Pages.Revenue
         private DateTime _entryDate = DateTime.Now;
         private DateTime _revDate = DateTime.Now;
 
+        private UserShift _userShift = null;
+        private UserShift _revenueShift = null;
+
+        #endregion
+
+        #region Loaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Combobox Handlers
 
         private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == plazaGroup) return;
+            LoadLanes();
         }
 
         #endregion
@@ -134,6 +153,17 @@ namespace DMT.TOD.Pages.Revenue
             {
                 cbPlazas.ItemsSource = _plazaGroups;
                 if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadLanes()
+        {
+            _userShift = null;
+            _revenueShift = null;
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == plazaGroup)
+            {
+                return;
             }
         }
 

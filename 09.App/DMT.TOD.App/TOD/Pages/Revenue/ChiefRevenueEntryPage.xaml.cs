@@ -100,7 +100,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void cmdGotoRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 1; // goto next tab.
+            GotoRevenueEntry();
         }
 
         private void cmdBack2_Click(object sender, RoutedEventArgs e)
@@ -110,7 +110,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void cmdGotoRevenueEntryPreview_Click(object sender, RoutedEventArgs e)
         {
-            tabs.SelectedIndex = 2; // goto next tab.
+            GotoPrintPreview();
         }
 
         private void cmdBack3_Click(object sender, RoutedEventArgs e)
@@ -176,6 +176,16 @@ namespace DMT.TOD.Pages.Revenue
             {
                 tabs.SelectedIndex = 1;
             }
+        }
+
+        private void GotoRevenueEntry()
+        {
+            tabs.SelectedIndex = 1;
+        }
+
+        private void GotoPrintPreview()
+        {
+            tabs.SelectedIndex = 2;
         }
 
         private void Reset()

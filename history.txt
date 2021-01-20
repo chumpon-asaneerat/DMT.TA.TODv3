@@ -47,8 +47,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #979
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #978
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #977
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update RadioButton, CheckBox Style #4.
+  - DMT.Plaza.Config.App project.
+    - Update RadioButton, CheckBox Style #4.
+  - DMT.Plaza.Simulator.App project.
+    - Update RadioButton, CheckBox Style #4.
+  - DMT.TOD.App project.
+    - Implements EMV/QRCode page #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #976

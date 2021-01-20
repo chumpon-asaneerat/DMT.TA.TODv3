@@ -12,7 +12,7 @@
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
     </UserControl.Resources>
-    <Grid Background="Silver">
+    <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource PageMargin}" />
@@ -43,7 +43,33 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <DockPanel LastChildFill="True">
+                    <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top" LastChildFill="False"
+                               Margin="10, 0"
+                               Height="40">
+                        <RadioButton x:Name="rbEMV"
+                                     Content="EMV"
+                                     DockPanel.Dock="Left"
+                                     Width="80"
+                                     VerticalAlignment="Center"
+                                     Foreground="WhiteSmoke"
+                                     FontSize="{StaticResource InputFontSize18}"
+                                     Style="{StaticResource CommonRadioButton}"
+                                     IsChecked="True"
+                                     GroupName="EMVQR" />
+                        <RadioButton x:Name="rbQRCode"
+                                     Content="QR Code"
+                                     Width="100"
+                                     Foreground="WhiteSmoke"
+                                     VerticalAlignment="Center"
+                                     DockPanel.Dock="Left"
+                                     FontSize="{StaticResource InputFontSize18}"
+                                     Style="{StaticResource CommonRadioButton}"
+                                     GroupName="EMVQR" />
+                    </DockPanel>
+                    <DockPanel VerticalAlignment="Center" DockPanel.Dock="Top" />
+                    <ListView />
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>

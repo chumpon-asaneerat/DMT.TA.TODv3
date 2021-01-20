@@ -181,6 +181,7 @@
                                     Background="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=Background}"
                                     BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=Foreground}"
                                     BorderThickness="2"
+                                    Margin="0,1"
                                     ClipToBounds="True">
                                 <!--
                                 <Border.Effect>
@@ -205,7 +206,7 @@
                                 </Viewbox>
                             </Border>
                         </BulletDecorator.Bullet>
-                        <ContentPresenter Margin="3,0"
+                        <ContentPresenter Margin="5,0"
                                           HorizontalAlignment="Left"
                                           VerticalAlignment="Center"
                                           RecognizesAccessKey="True" />
@@ -232,11 +233,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                    <BulletDecorator Background="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=Background}" Cursor="Hand">
+                    <BulletDecorator VerticalAlignment="Center"
+                                     Background="Transparent"
+                                     Cursor="Hand">
                         <BulletDecorator.Bullet>
-                            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
-                                  Height="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
-                                  VerticalAlignment="Center">
+                            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}" Height="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                                  Margin="0,1">
                                 <!--  Define size of the Bullet  -->
                                 <!--  The two borders  -->
                                 <Border Name="RadioOuter"
@@ -251,10 +253,11 @@
                                         Visibility="Hidden" />
                             </Grid>
                         </BulletDecorator.Bullet>
-                        <!--  Text element  -->
-                        <TextBlock Margin="3,0" VerticalAlignment="Center">
-                            <ContentPresenter />
-                        </TextBlock>
+                        <!--  Content element  -->
+                        <ContentPresenter Margin="5,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True" />
                     </BulletDecorator>
                     <!--  If item is checked, trigger the visibility of the mark  -->
                     <ControlTemplate.Triggers>

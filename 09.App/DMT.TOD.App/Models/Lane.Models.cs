@@ -128,10 +128,18 @@ namespace DMT.Models
             this.Lane = lane;
             this.UserShift = usershift;
         }
-
-        #endregion
-
-        #region Public Methods
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="job">The SCWJob instance.</param>
+        /// <param name="lane">The Lane instance.</param>
+        /// <param name="usershift">The UserShift instance.</param>
+        public LaneJob(SCWJob job, UserShift usershift)
+        {
+            this.Job = job;
+            this.Lane = (job.laneId.HasValue) ? Lane.GetLane(job.laneId.Value).Value() : null;
+            this.UserShift = usershift;
+        }
 
         #endregion
 
@@ -147,6 +155,13 @@ namespace DMT.Models
 
         /// <summary>Gets User Shift.</summary>
         public UserShift UserShift { get; private set; }
+
+        #endregion
+
+        #region Selected
+
+        /// <summary>Gets or sets Selected.</summary>
+        public bool Selected { get; set; }
 
         #endregion
 
@@ -343,7 +358,6 @@ namespace DMT.Models
     }
 
     #endregion
-
 
     #region LaneEMV
 

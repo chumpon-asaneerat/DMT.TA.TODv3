@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
+using DMT.Configurations;
 using DMT.Models;
 using DMT.Services;
+
 using NLib.Services;
 using NLib.Reflection;
 
@@ -16,6 +19,8 @@ using NLib.Reflection;
 
 namespace DMT.TOD.Pages.Revenue
 {
+    using scwOps = Services.Operations.SCW.TOD;
+
     /// <summary>
     /// Interaction logic for CollectorRevenueEntryPage.xaml
     /// </summary>
@@ -41,12 +46,15 @@ namespace DMT.TOD.Pages.Revenue
         private User _user = null;
         private TSB _tsb = null;
         private List<PlazaGroup> _plazaGroups = null;
+        private List<Plaza> _plazas = null;
 
-        private DateTime _entryDate = DateTime.Now;
-        private DateTime _revDate = DateTime.Now;
+        private DateTime? _entryDate = DateTime.Now;
+        private DateTime? _revDate = DateTime.Now;
 
         private UserShift _userShift = null;
         private UserShift _revenueShift = null;
+
+        private List<LaneJob> _jobs = null;
 
         #endregion
 
@@ -65,6 +73,7 @@ namespace DMT.TOD.Pages.Revenue
         {
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             if (null == plazaGroup) return;
+            _plazas = Plaza.GetPlazaGroupPlazas(plazaGroup).Value();
             LoadLanes();
         }
 
@@ -142,8 +151,8 @@ namespace DMT.TOD.Pages.Revenue
             // Update entry date and revenue date.
             _entryDate = DateTime.Now;
             _revDate = DateTime.Now;
-            txtEntryDate.Text = _entryDate.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
-            txtRevDate.Text = _revDate.ToThaiDateTimeString("dd/MM/yyyy");
+            txtEntryDate.Text = (_entryDate.HasValue) ? _entryDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty;
+            txtRevDate.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
         }
 
         private void LoadPlazaGroups()
@@ -158,12 +167,72 @@ namespace DMT.TOD.Pages.Revenue
 
         private void LoadLanes()
         {
-            _userShift = null;
-            _revenueShift = null;
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == plazaGroup)
+            if (null == plazaGroup || null == _userShift || !_userShift.Begin.HasValue)
             {
                 return;
+            }
+
+            grid.ItemsSource = null;
+
+            int networkId = TODConfigManager.Instance.DMT.networkId;
+
+            if (null == _jobs)
+            {
+                // Create new job list.
+                _jobs = new List<LaneJob>();
+            }
+            _jobs.Clear();
+
+            var alljobs = new List<LaneJob>();
+            // Gets jobs from each plaza on selected UserShift.
+            _plazas.ForEach(plaza => 
+            {
+                // Load job for each user.
+                var param = new SCWJobList();
+                param.networkId = networkId;
+                param.plazaId = plaza.SCWPlazaId;
+                param.staffId = _userShift.UserId;
+
+                var ret = scwOps.jobList(param);
+                if (null != ret && null != ret.list && ret.list.Count > 0)
+                {
+                    DateTime currTime = DateTime.Now;
+                    ret.list.ForEach(job =>
+                    {
+                        if (job.bojDateTime.HasValue &&
+                            _userShift.Begin.Value <= job.bojDateTime.Value)
+                        {
+                            alljobs.Add(new LaneJob(job, _userShift));
+                        }
+                    });
+
+                    // sort and assigned to jobs list.
+                    _jobs.AddRange(alljobs.OrderBy(x => x.Begin).ToArray());
+                }
+            });
+
+            grid.ItemsSource = _jobs;
+        }
+
+        private void CheckUserShift()
+        {
+            _userShift = null;
+            if (null != _user)
+            {
+                _userShift = UserShift.GetUserShift(_user.UserId).Value();
+                if (null != _userShift)
+                {
+                    _revDate = (_userShift.Begin.HasValue) ? _userShift.Begin.Value.Date : new DateTime?();
+                    txtRevDate.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
+                }
+                else
+                {
+                    // Show Message User Shift not found.
+                    var msg = TODApp.Windows.MessageBox;
+                    msg.Setup("ไม่พบข้อมูลกะของพนักงาน", "DMT - Tour of Duty");
+                    msg.ShowDialog();
+                }
             }
         }
 
@@ -177,6 +246,7 @@ namespace DMT.TOD.Pages.Revenue
         /// <param name="user"></param>
         public void Setup(User user)
         {
+            tabs.SelectedIndex = 0;
             _user = user;
             if (null != _user)
             {
@@ -187,6 +257,8 @@ namespace DMT.TOD.Pages.Revenue
                 }
             }
             Reset();
+            CheckUserShift();
+            LoadLanes();
         }
 
         #endregion

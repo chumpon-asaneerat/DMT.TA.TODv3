@@ -50,8 +50,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #988
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #987
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #986
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements Collector Revenue Entry #5.
+    - Implements Chief Revenue Entry #5.
+    - Update Lane.Models.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #985

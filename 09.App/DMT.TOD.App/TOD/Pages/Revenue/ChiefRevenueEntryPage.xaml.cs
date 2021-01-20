@@ -4,19 +4,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
+using DMT.Configurations;
+using DMT.Controls;
 using DMT.Models;
 using DMT.Services;
+
 using NLib.Services;
 using NLib.Reflection;
-using System.Threading;
 
 #endregion
 
 namespace DMT.TOD.Pages.Revenue
 {
+    using scwOps = Services.Operations.SCW.TOD;
+
     /// <summary>
     /// Interaction logic for ChiefRevenueEntryPage.xaml
     /// </summary>
@@ -44,10 +49,13 @@ namespace DMT.TOD.Pages.Revenue
 
         private TSB _tsb = null;
         private List<PlazaGroup> _plazaGroups = null;
+        private List<Plaza> _plazas = null;
         private List<Models.Shift> _shifts = null;
 
         private UserShift _userShift = null;
         private UserShift _revenueShift = null;
+
+        private List<LaneJob> _jobs = null;
 
         #endregion
 
@@ -70,12 +78,15 @@ namespace DMT.TOD.Pages.Revenue
         {
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             if (null == plazaGroup) return;
+            _plazas = Plaza.GetPlazaGroupPlazas(plazaGroup).Value();
+            LoadLanes();
         }
 
         private void cbShifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var shift = cbShifts.SelectedItem as Models.Shift;
             if (null == shift) return;
+            LoadLanes();
         }
 
         #endregion
@@ -113,6 +124,31 @@ namespace DMT.TOD.Pages.Revenue
 
             // Go Back to Main Menu.
             GotoMainMenu();
+        }
+
+        private void cmdUserSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchUser();
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter ||
+                e.Key == System.Windows.Input.Key.Return)
+            {
+                SearchUser();
+                e.Handled = true;
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                ResetSelectUser();
+                LoadLanes();
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -155,6 +191,39 @@ namespace DMT.TOD.Pages.Revenue
             dtRevDate.Value = DateTime.Now;
         }
 
+        private void ResetSelectUser()
+        {
+            _selectUser = null;
+            txtSearchUserId.Text = string.Empty;
+            txtUserId.Text = string.Empty;
+            txtUserName.Text = string.Empty;
+        }
+
+        private void SearchUser()
+        {
+            if (!string.IsNullOrEmpty(txtSearchUserId.Text))
+            {
+                string userId = txtSearchUserId.Text;
+                if (string.IsNullOrEmpty(userId)) return;
+
+                UserSearchManager.Instance.Title = "กรุณาเลือกพนักงานเก็บเงิน";
+                _selectUser = UserSearchManager.Instance.SelectUser(userId, TODApp.Permissions.TC);
+                if (null != _selectUser)
+                {
+                    txtUserId.Text = _selectUser.UserId;
+                    txtUserName.Text = _selectUser.FullNameTH;
+                    txtSearchUserId.Text = string.Empty;
+                    LoadLanes();
+                }
+                else
+                {
+                    txtUserId.Text = string.Empty;
+                    txtUserName.Text = string.Empty;
+                    grid.ItemsSource = null; // setup null list.
+                }
+            }
+        }
+
         private void LoadShifts() 
         {
             cbPlazas.ItemsSource = null;
@@ -179,13 +248,33 @@ namespace DMT.TOD.Pages.Revenue
 
         private void LoadLanes()
         {
-            _userShift = null;
-            _revenueShift = null;
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             var shift = cbShifts.SelectedItem as Models.Shift;
             if (null == plazaGroup || null == shift)
             {
                 return;
+            }
+
+            grid.ItemsSource = null;
+
+            int networkId = TODConfigManager.Instance.DMT.networkId;
+
+            if (null == _jobs)
+            {
+                // Create new job list.
+                _jobs = new List<LaneJob>();
+            }
+            _jobs.Clear();
+
+            grid.ItemsSource = _jobs;
+        }
+
+        private void CheckUserShift()
+        {
+            _userShift = null;
+            if (null != _selectUser)
+            {
+                _userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
             }
         }
 
@@ -199,6 +288,7 @@ namespace DMT.TOD.Pages.Revenue
         /// <param name="user"></param>
         public void Setup(User user)
         {
+            tabs.SelectedIndex = 0;
             _user = user;
             if (null != _user)
             {

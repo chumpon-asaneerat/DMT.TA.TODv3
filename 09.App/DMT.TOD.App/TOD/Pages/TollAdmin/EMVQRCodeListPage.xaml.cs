@@ -191,6 +191,31 @@ namespace DMT.TOD.Pages.TollAdmin
             txtUserName.Text = string.Empty;
         }
 
+        private void SearchUser()
+        {
+            if (!string.IsNullOrEmpty(txtSearchUserId.Text))
+            {
+                string userId = txtSearchUserId.Text;
+                if (string.IsNullOrEmpty(userId)) return;
+
+                UserSearchManager.Instance.Title = "กรุณาเลือกพนักงานเก็บเงิน";
+                _selectUser = UserSearchManager.Instance.SelectUser(userId, TODApp.Permissions.TC);
+                if (null != _selectUser)
+                {
+                    txtUserId.Text = _selectUser.UserId;
+                    txtUserName.Text = _selectUser.FullNameTH;
+                    txtSearchUserId.Text = string.Empty;
+                    RefreshEMV_QRCODE();
+                }
+                else
+                {
+                    txtUserId.Text = string.Empty;
+                    txtUserName.Text = string.Empty;
+                    grid.ItemsSource = null; // setup null list.
+                }
+            }
+        }
+
         private int? GetLaneFilter()
         {
             int? ret = new int?();
@@ -324,31 +349,6 @@ namespace DMT.TOD.Pages.TollAdmin
             }
 
             grid.ItemsSource = results;
-        }
-
-        private void SearchUser()
-        {
-            if (!string.IsNullOrEmpty(txtSearchUserId.Text))
-            {
-                string userId = txtSearchUserId.Text;
-                if (string.IsNullOrEmpty(userId)) return;
-
-                UserSearchManager.Instance.Title = "กรุณาเลือกพนักงานเก็บเงิน";
-                _selectUser = UserSearchManager.Instance.SelectUser(userId, TODApp.Permissions.TC);
-                if (null != _selectUser)
-                {
-                    txtUserId.Text = _selectUser.UserId;
-                    txtUserName.Text = _selectUser.FullNameTH;
-                    txtSearchUserId.Text = string.Empty;
-                    RefreshEMV_QRCODE();
-                }
-                else
-                {
-                    txtUserId.Text = string.Empty;
-                    txtUserName.Text = string.Empty;
-                    grid.ItemsSource = null; // setup null list.
-                }
-            }
         }
 
         #endregion

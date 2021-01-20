@@ -232,6 +232,9 @@
                                   Style="{StaticResource SingleSelectListView}">
                             <ListView.View>
                                 <GridView>
+                                    <GridViewColumn Width="50"
+                                                CellTemplate="{StaticResource Selected}"
+                                                Header="" />
                                     <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource JobNo}"
                                                 Header="Job No" />

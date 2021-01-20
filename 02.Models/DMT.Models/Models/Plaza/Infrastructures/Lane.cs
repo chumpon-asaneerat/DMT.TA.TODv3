@@ -669,6 +669,60 @@ namespace DMT.Models
 
 		#endregion
 
+		#region Get Lane By Land No
+
+		/// <summary>
+		/// Get Lane.
+		/// </summary>
+		/// <param name="db">The database connection.</param>
+		/// <param name="laneNo">The lane No.</param>
+		/// <returns>Returns instance of Lane.</returns>
+		public static NDbResult<Lane> GetLane(SQLiteConnection db, int laneNo)
+		{
+			var result = new NDbResult<Lane>();
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+				try
+				{
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM LaneView ";
+					cmd += " WHERE LaneNo = ? ";
+
+					var ret = NQuery.Query<FKs>(cmd, laneNo).FirstOrDefault();
+					var data = (null != ret) ? ret.ToModel() : null;
+					result.Success(data);
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
+		/// Get Lane.
+		/// </summary>
+		/// <param name="laneNo">The lane No.</param>
+		/// <returns>Returns instance of Lane.</returns>
+		public static NDbResult<Lane> GetLane(int laneNo)
+		{
+			lock (sync)
+			{
+				SQLiteConnection db = Default;
+				return GetLane(db, laneNo);
+			}
+		}
+
+		#endregion
+
 		#region Get Lanes by TSB/TSBId
 
 		/// <summary>

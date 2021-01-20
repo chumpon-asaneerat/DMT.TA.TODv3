@@ -10,9 +10,12 @@ using System.Globalization;
 using DMT.Configurations;
 using DMT.Models;
 using DMT.Services;
+using DMT.Controls;
+
 using NLib.Services;
 using NLib.Reflection;
 using System.Threading;
+using System.Windows.Threading;
 
 #endregion
 
@@ -55,7 +58,8 @@ namespace DMT.TOD.Pages.TollAdmin
         {
             // Setup DateTime Picker.
             dtEntryDate.CultureInfo = culture;
-            Thread.CurrentThread.CurrentCulture = culture;
+            //Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         #endregion
@@ -79,6 +83,61 @@ namespace DMT.TOD.Pages.TollAdmin
         private void dtEntryDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             RefreshEMV_QRCODE();
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtLaneNo_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            var currFilter = txtLaneNo.Text.Trim();
+            if (e.Key == System.Windows.Input.Key.Enter ||
+                e.Key == System.Windows.Input.Key.Return)
+            {
+                if (_laneFilter != currFilter)
+                {
+                    _laneFilter = currFilter;
+                    RefreshEMV_QRCODE();
+                    e.Handled = true;
+                }
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                txtLaneNo.Text = string.Empty;
+                e.Handled = true;
+            }
+        }
+
+        private void txtLaneNo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            _laneFilter = txtLaneNo.Text.Trim();
+        }
+
+        private void txtLaneNo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var currFilter = txtLaneNo.Text.Trim();
+            if (_laneFilter != currFilter)
+            {
+                _laneFilter = currFilter;
+                RefreshEMV_QRCODE();
+            }
+        }
+
+        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter ||
+                e.Key == System.Windows.Input.Key.Return)
+            {
+                SearchUser();
+                e.Handled = true;
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                ResetSelectUser();
+                RefreshEMV_QRCODE();
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -124,6 +183,14 @@ namespace DMT.TOD.Pages.TollAdmin
             dtEntryDate.Value = DateTime.Now.Date;
         }
 
+        private void ResetSelectUser()
+        {
+            _selectUser = null;
+            txtSearchUserId.Text = string.Empty;
+            txtUserId.Text = string.Empty;
+            txtUserName.Text = string.Empty;
+        }
+
         private int? GetLaneFilter()
         {
             int? ret = new int?();
@@ -138,6 +205,8 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private void RefreshEMV_QRCODE()
         {
+            grid.ItemsSource = null;
+
             if (!dtEntryDate.Value.HasValue)
             {
                 dtEntryDate.Focus();
@@ -161,11 +230,13 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private void RefreshEMV(DateTime dt1, DateTime dt2)
         {
-            List<SCWEMVTransaction> results = new List<SCWEMVTransaction>();
+            List<LaneEMV> results = new List<LaneEMV>();
+            List<LaneEMV> items = new List<LaneEMV>();
+            List<LaneEMV> sortList = new List<LaneEMV>();
+
             if (null != _selectUser && null != _tsb && null != _plazas)
             {
                 int networkId = TODConfigManager.Instance.DMT.networkId;
-                List<SCWEMVTransaction> items = new List<SCWEMVTransaction>();
 
                 if (null != _plazas && _plazas.Count > 0)
                 {
@@ -181,22 +252,40 @@ namespace DMT.TOD.Pages.TollAdmin
                         var emvList = scwOps.emvTransactionList(param);
                         if (null != emvList && null != emvList.list)
                         {
-                            items.AddRange(emvList.list);
+                            emvList.list.ForEach(item =>
+                            {
+                                items.Add(new LaneEMV(item));
+                            });
                         }
                     });
 
-                    results = items.OrderBy(o => o.trxDateTime).Distinct().ToList();
+                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
+                }
+                // Filter By Lane
+                var filter = GetLaneFilter();
+                if (filter.HasValue)
+                {
+                    // Filter only specificed lane no.
+                    results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
+                }
+                else
+                {
+                    results.AddRange(sortList.ToArray());
                 }
             }
+
+            grid.ItemsSource = results;
         }
 
         private void RefreshQRCODE(DateTime dt1, DateTime dt2)
         {
-            List<SCWQRCodeTransaction> results = new List<SCWQRCodeTransaction>();
+            List<LaneQRCode> results = new List<LaneQRCode>();
+            List<LaneQRCode> items = new List<LaneQRCode>();
+            List<LaneQRCode> sortList = new List<LaneQRCode>();
+
             if (null != _selectUser && null != _tsb && null != _plazas)
             {
                 int networkId = TODConfigManager.Instance.DMT.networkId;
-                List<SCWQRCodeTransaction> items = new List<SCWQRCodeTransaction>();
 
                 if (null != _plazas && _plazas.Count > 0)
                 {
@@ -212,18 +301,54 @@ namespace DMT.TOD.Pages.TollAdmin
                         var emvList = scwOps.qrcodeTransactionList(param);
                         if (null != emvList && null != emvList.list)
                         {
-                            items.AddRange(emvList.list);
+                            emvList.list.ForEach(item =>
+                            {
+                                items.Add(new LaneQRCode(item));
+                            });
                         }
                     });
 
-                    results = items.OrderBy(o => o.trxDateTime).Distinct().ToList();
+                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
+                }
+                // Filter By Lane
+                var filter = GetLaneFilter();
+                if (filter.HasValue)
+                {
+                    // Filter only specificed lane no.
+                    results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
+                }
+                else
+                {
+                    results.AddRange(sortList.ToArray());
                 }
             }
+
+            grid.ItemsSource = results;
         }
 
         private void SearchUser()
         {
+            if (!string.IsNullOrEmpty(txtSearchUserId.Text))
+            {
+                string userId = txtSearchUserId.Text;
+                if (string.IsNullOrEmpty(userId)) return;
 
+                UserSearchManager.Instance.Title = "กรุณาเลือกพนักงานเก็บเงิน";
+                _selectUser = UserSearchManager.Instance.SelectUser(userId, TODApp.Permissions.TC);
+                if (null != _selectUser)
+                {
+                    txtUserId.Text = _selectUser.UserId;
+                    txtUserName.Text = _selectUser.FullNameTH;
+                    txtSearchUserId.Text = string.Empty;
+                    RefreshEMV_QRCODE();
+                }
+                else
+                {
+                    txtUserId.Text = string.Empty;
+                    txtUserName.Text = string.Empty;
+                    grid.ItemsSource = null; // setup null list.
+                }
+            }
         }
 
         #endregion
@@ -238,11 +363,24 @@ namespace DMT.TOD.Pages.TollAdmin
         {
             //_user = user;
             _tsb = TSB.GetCurrent().Value();
+
             ResetDate();
+            ResetSelectUser();
+            txtLaneNo.Text = string.Empty;
+
             if (null != _tsb)
             {
                 _plazas = Plaza.GetTSBPlazas(_tsb).Value();
+                grid.ItemsSource = null;
             }
+
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtSearchUserId.SelectAll();
+                txtSearchUserId.Focus();
+            }));
         }
 
         #endregion

@@ -47,8 +47,8 @@
                 <!--  WORK AREA  -->
                 <DockPanel LastChildFill="True">
                     <!--  PAYMENT FILTER PANEL  -->
-                    <DockPanel Height="70"
-                               Margin="10,0"
+                    <DockPanel Height="75"
+                               Margin="10,1"
                                VerticalAlignment="Center"
                                DockPanel.Dock="Top"
                                LastChildFill="True">
@@ -60,14 +60,15 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="3" />
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="3" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="1"
                                         Grid.Column="0"
+                                        VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
@@ -75,8 +76,8 @@
                                            TextAlignment="Right" />
                                 <RadioButton x:Name="rbEMV"
                                              Width="80"
-                                             Click="rbEMV_Click"
                                              VerticalAlignment="Center"
+                                             Click="rbEMV_Click"
                                              Content="EMV"
                                              FontSize="{StaticResource InputFontSize18}"
                                              Foreground="WhiteSmoke"
@@ -85,8 +86,8 @@
                                              Style="{StaticResource CommonRadioButton}" />
                                 <RadioButton x:Name="rbQRCode"
                                              Width="100"
-                                             Click="rbQRCode_Click"
                                              VerticalAlignment="Center"
+                                             Click="rbQRCode_Click"
                                              Content="QR Code"
                                              FontSize="{StaticResource InputFontSize18}"
                                              Foreground="WhiteSmoke"
@@ -95,6 +96,7 @@
                             </StackPanel>
                             <StackPanel Grid.Row="3"
                                         Grid.Column="0"
+                                        VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
@@ -103,30 +105,32 @@
                                 <xceed:DateTimePicker x:Name="dtEntryDate"
                                                       Width="175"
                                                       VerticalAlignment="Center"
-                                                      CultureInfo="th-TH"
                                                       FontSize="{StaticResource InputFontSize18}"
                                                       Format="Custom"
-                                                      ValueChanged="dtEntryDate_ValueChanged"
                                                       FormatString="dd/MM/yyyy"
                                                       ShowButtonSpinner="False"
                                                       TimePickerAllowSpin="False"
                                                       TimePickerShowButtonSpinner="False"
-                                                      TimePickerVisibility="Collapsed" />
+                                                      TimePickerVisibility="Collapsed"
+                                                      ValueChanged="dtEntryDate_ValueChanged" />
                                 <TextBlock Width="10" />
-                                <TextBlock Width="90"
+                                <TextBlock Width="100"
                                            Style="{StaticResource LabelText}"
                                            Text="ช่องทาง :  "
                                            TextAlignment="Right" />
                                 <TextBox x:Name="txtLaneNo"
                                          Width="175"
                                          FontSize="{StaticResource InputFontSize18}"
+                                         GotFocus="txtLaneNo_GotFocus"
+                                         KeyDown="txtLaneNo_KeyDown"
+                                         LostFocus="txtLaneNo_LostFocus"
                                          Style="{StaticResource CommonTextBox}" />
                                 <TextBlock Width="10" />
                                 <Button x:Name="cmdPaymentSearch"
                                         Width="150"
                                         Height="30"
-                                        Click="cmdPaymentSearch_Click"
                                         VerticalAlignment="Center"
+                                        Click="cmdPaymentSearch_Click"
                                         Content="ค้นหาข้อมูล"
                                         FontSize="{StaticResource InputFontSize18}"
                                         Style="{DynamicResource InlineButton}" />
@@ -135,8 +139,8 @@
                                         Width="150"
                                         Height="30"
                                         VerticalAlignment="Center"
-                                        Content="เคลียร์"
                                         Click="cmdPaymentClear_Click"
+                                        Content="เคลียร์"
                                         FontSize="{StaticResource InputFontSize18}"
                                         Style="{DynamicResource InlineButton}" />
                             </StackPanel>
@@ -146,8 +150,8 @@
                         </Grid>
                     </DockPanel>
                     <!--  USER FILTER PANEL  -->
-                    <DockPanel Height="70"
-                               Margin="10,0"
+                    <DockPanel Height="75"
+                               Margin="10,1"
                                VerticalAlignment="Center"
                                DockPanel.Dock="Top"
                                LastChildFill="True">
@@ -159,14 +163,17 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="3" />
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="3" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="1"
+                                        Grid.RowSpan="2"
                                         Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
@@ -175,51 +182,89 @@
                                 <TextBox x:Name="txtSearchUserId"
                                          Width="175"
                                          FontSize="{StaticResource InputFontSize18}"
+                                         KeyDown="txtSearchUserId_KeyDown"
                                          Style="{StaticResource CommonTextBox}" />
                                 <TextBlock Width="10" />
                                 <Button x:Name="cmdUserSearch"
                                         Width="150"
                                         Height="30"
-                                        Click="cmdUserSearch_Click"
                                         VerticalAlignment="Center"
+                                        Click="cmdUserSearch_Click"
                                         Content="เลือกพนักงาน"
                                         FontSize="{StaticResource InputFontSize18}"
                                         Style="{DynamicResource InlineButton}" />
                             </StackPanel>
-                            <StackPanel Grid.Row="3"
+                            <StackPanel Grid.Row="2"
+                                        Grid.RowSpan="3"
                                         Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Center"
                                         Orientation="Horizontal">
                                 <TextBlock Width="175"
                                            Style="{StaticResource LabelText}"
                                            Text="รหัสพนักงาน : "
                                            TextAlignment="Right" />
                                 <TextBlock Width="5" />
-                                <TextBox x:Name="txtUserId"
-                                         Width="175"
-                                         IsReadOnly="False"
-                                         Foreground="WhiteSmoke"
-                                         Background="Silver"
-                                         Style="{StaticResource CommonTextBox}"
-                                         TextAlignment="Center"
-                                         Text="{Binding UserId}" />
+                                <TextBlock x:Name="txtUserId"
+                                           Width="175"
+                                           Height="25"
+                                           Background="CornflowerBlue"
+                                           Foreground="White"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding UserId}"
+                                           TextAlignment="Center" />
                                 <TextBlock Width="10" />
-                                <TextBlock Style="{StaticResource LabelText}" Text="ชื่อพนักงาน:" />
-                                <Grid Width="5" />
-                                <TextBox x:Name="txtUserName"
-                                         Width="250"
-                                         Foreground="WhiteSmoke"
-                                         Background="Silver"
-                                         IsReadOnly="False"
-                                         TextAlignment="Center"
-                                         Style="{StaticResource CommonTextBox}"
-                                         Text="{Binding FullNameTH}" />
+                                <TextBlock Width="100"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ชื่อพนักงาน : " />
+                                <TextBlock x:Name="txtUserName"
+                                           Width="250"
+                                           Height="25"
+                                           Background="CornflowerBlue"
+                                           Foreground="White"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding FullNameTH}"
+                                           TextAlignment="Center" />
                             </StackPanel>
                             <Grid Grid.Row="1"
-                                  Grid.RowSpan="5"
+                                  Grid.RowSpan="4"
                                   Grid.Column="3" />
                         </Grid>
                     </DockPanel>
-                    <ListView />
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <!--  LIST VIEW  -->
+                    <ListView x:Name="grid"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource RefNo}"
+                                                Header="Ref. No" />
+                                <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource ApproveCode}"
+                                                Header="Approve Code" />
+                                <GridViewColumn Width="110"
+                                                CellTemplate="{StaticResource TrxDateString}"
+                                                Header="วันที่" />
+                                <GridViewColumn Width="110"
+                                                CellTemplate="{StaticResource TrxTimeString}"
+                                                Header="เวลา" />
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource LaneNo}"
+                                                Header="หมายเลขเลน" />
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="300"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </Grid>

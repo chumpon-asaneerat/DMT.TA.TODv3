@@ -53,8 +53,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #977
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #976
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #975
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update RadioButton, CheckBox Style #3.
+  - DMT.Plaza.Config.App project.
+    - Update RadioButton, CheckBox Style #3.
+  - DMT.Plaza.Simulator.App project.
+    - Update RadioButton, CheckBox Style #3.
+  - DMT.Plaza.Config.App project.
+    - Update BankNoteEntryPage.xaml #3.
+      - add usage of CheckBox and RadioButton Style.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #974

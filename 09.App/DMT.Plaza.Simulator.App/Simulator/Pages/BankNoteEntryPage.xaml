@@ -13,11 +13,11 @@
                 <RadioButton VerticalAlignment="Center"
                              Content="Choice 1"
                              Foreground="Red"
-                             FontSize="30"
+                             FontSize="24"
                              GroupName="group1"
                              Style="{StaticResource CommonRadioButton}">
                     <RadioButton.Resources>
-                        <CornerRadius x:Key="CommonRadioButtonCornerRadius">15</CornerRadius>
+                        <CornerRadius x:Key="CommonRadioButtonCornerRadius">12</CornerRadius>
                     </RadioButton.Resources>
                 </RadioButton>
                 <RadioButton VerticalAlignment="Center"
@@ -25,6 +25,25 @@
                              FontSize="{StaticResource InputFontSize18}"
                              GroupName="group1"
                              Style="{StaticResource CommonRadioButton}" />
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <CheckBox Style="{StaticResource CommonCheckBox}" 
+                          VerticalAlignment="Center"
+                          Foreground="CornflowerBlue"
+                          FontSize="{StaticResource InputFontSize18}"
+                          IsChecked="True"
+                          Content="Item 1"/>
+                <CheckBox Style="{StaticResource CommonCheckBox}" 
+                          VerticalAlignment="Center"
+                          FontSize="24"
+                          IsChecked="True"
+                          Content="Item 2">
+                    <CheckBox.Resources>
+                        <Style x:Key="CheckedSymbolPath"
+                           BasedOn="{StaticResource CrossMarkPath}"
+                           TargetType="Path" />
+                    </CheckBox.Resources>
+                </CheckBox>
             </StackPanel>
             <Grid />
         </DockPanel>

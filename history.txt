@@ -53,8 +53,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #987
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #986
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #985
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements Collector Revenue Entry #4.
+    - Implements Chief Revenue Entry #4.
+  - DMT.Controls project.
+    - Update ListView Style -> Add Selected Cell Template.
+  - DMT.Plaza.Config.App project.
+    - Update ListView Style -> Add Selected Cell Template.
+  - DMT.Plaza.Simulator.App project.
+    - Update ListView Style -> Add Selected Cell Template.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #984

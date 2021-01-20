@@ -8,7 +8,7 @@
         <!--  Force Merge related resource dictionary  -->
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <!--  CONST LISTVIEW FONT SIZE  -->
     <sys:Double x:Key="ListViewFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
     <sys:Double x:Key="ListViewFontSize20" PresentationOptions:Freeze="True">20</sys:Double>
@@ -168,6 +168,14 @@
 
 
     <!--  LISTVIEW ITEM CELL DATA TEMPLATES  -->
+
+    <!--  Common for Selected  -->
+    <DataTemplate x:Key="Selected">
+        <CheckBox HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  IsChecked="{Binding Path=Selected}"
+                  Style="{DynamicResource CommonCheckBox}" />
+    </DataTemplate>
 
     <!--  Common for TSB/PlazaGroup/Plaza/Lane  -->
     <DataTemplate x:Key="TSBId">

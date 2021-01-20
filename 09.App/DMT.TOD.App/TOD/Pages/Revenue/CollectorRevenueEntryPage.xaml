@@ -7,8 +7,8 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450"
              d:DesignWidth="800"
-             mc:Ignorable="d"
-             Loaded="UserControl_Loaded">
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
     <UserControl.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
@@ -103,7 +103,35 @@
                                        Style="{StaticResource LabelText}"
                                        Text="รายการกะที่ยังไม่ได้ทำการป้อนรายได้" />
                         </Border>
-                        <Grid />
+                        <!--  LANE VIEW  -->
+                        <ListView x:Name="grid"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource JobNo}"
+                                                Header="Job No" />
+                                    <GridViewColumn Width="220"
+                                                CellTemplate="{StaticResource BeginDateTimeString}"
+                                                Header="เริ่มต้นกะ" />
+                                    <GridViewColumn Width="220"
+                                                CellTemplate="{StaticResource EndDateTimeString}"
+                                                Header="สิ้นสุดกะ" />
+                                    <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                    <GridViewColumn Width="250"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="รหัสพนักงาน" />
+                                    <GridViewColumn Width="60"
+                                                CellTemplate="{StaticResource LaneNo}"
+                                                Header="เลน" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </DockPanel>
                 </DockPanel>
             </Grid>

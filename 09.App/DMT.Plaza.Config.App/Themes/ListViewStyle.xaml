@@ -169,6 +169,14 @@
 
     <!--  LISTVIEW ITEM CELL DATA TEMPLATES  -->
 
+    <!--  Common for Selected  -->
+    <DataTemplate x:Key="Selected">
+        <CheckBox HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  IsChecked="{Binding Path=Selected}"
+                  Style="{DynamicResource CommonCheckBox}" />
+    </DataTemplate>
+
     <!--  Common for TSB/PlazaGroup/Plaza/Lane  -->
     <DataTemplate x:Key="TSBId">
         <TextBlock HorizontalAlignment="Stretch"

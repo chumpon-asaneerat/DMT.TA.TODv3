@@ -106,18 +106,22 @@
                     <TextBlock Style="{StaticResource TrafficTotalUnitStyle}" />
                 </StackPanel>
             </StackPanel>
+            <!--  SEPERATOR  -->
+            <TextBlock Height="5" DockPanel.Dock="Top" />
             <!--  REMARK  -->
-            <StackPanel HorizontalAlignment="Stretch"
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                <!--  REMARK  -->
+                <StackPanel HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Orientation="Vertical"
                         Visibility="{Binding RemarkVisibility}">
-                <TextBlock Height="10" />
-                <TextBlock Margin="12,2"
+                    <TextBlock Height="5" />
+                    <TextBlock Margin="12,2"
                            FontSize="{StaticResource EntryFontSize18}"
                            Foreground="{StaticResource EntryTextForeground}"
                            Text="หมายเหตุ"
                            TextAlignment="Left" />
-                <TextBox Height="90"
+                    <TextBox Height="75"
                          Margin="10,2"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"
@@ -127,9 +131,10 @@
                          TextAlignment="Left"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto" />
+                </StackPanel>
+                <!--  SEPERATOR  -->
+                <TextBlock Height="10" />
             </StackPanel>
-            <!--  SEPERATOR  -->
-            <TextBlock Height="5" />
         </StackPanel>
     </DockPanel>
 </UserControl>

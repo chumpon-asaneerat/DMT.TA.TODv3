@@ -4,6 +4,7 @@
              xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rev="clr-namespace:DMT.TOD.Controls.Revenue"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450"
              d:DesignWidth="800"
@@ -112,23 +113,23 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="100"
-                                                CellTemplate="{StaticResource JobNo}"
-                                                Header="Job No" />
+                                                    CellTemplate="{StaticResource JobNo}"
+                                                    Header="Job No" />
                                     <GridViewColumn Width="220"
-                                                CellTemplate="{StaticResource BeginDateTimeString}"
-                                                Header="เริ่มต้นกะ" />
+                                                    CellTemplate="{StaticResource BeginDateTimeString}"
+                                                    Header="เริ่มต้นกะ" />
                                     <GridViewColumn Width="220"
-                                                CellTemplate="{StaticResource EndDateTimeString}"
-                                                Header="สิ้นสุดกะ" />
+                                                    CellTemplate="{StaticResource EndDateTimeString}"
+                                                    Header="สิ้นสุดกะ" />
                                     <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource UserId}"
-                                                Header="รหัสพนักงาน" />
+                                                    CellTemplate="{StaticResource UserId}"
+                                                    Header="รหัสพนักงาน" />
                                     <GridViewColumn Width="250"
-                                                CellTemplate="{StaticResource FullNameTH}"
-                                                Header="รหัสพนักงาน" />
+                                                    CellTemplate="{StaticResource FullNameTH}"
+                                                    Header="รหัสพนักงาน" />
                                     <GridViewColumn Width="60"
-                                                CellTemplate="{StaticResource LaneNo}"
-                                                Header="เลน" />
+                                                    CellTemplate="{StaticResource LaneNo}"
+                                                    Header="เลน" />
                                     <!--
                                     <GridViewColumn Width="150"
                                                 CellTemplate="{StaticResource PlazaGroupNameTH}"
@@ -149,7 +150,9 @@
             <ScrollViewer Background="Silver"
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <DockPanel HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           LastChildFill="True">
                     <!--  BUTTONS  -->
                     <DockPanel Height="60"
                                HorizontalAlignment="Stretch"
@@ -173,7 +176,77 @@
                     </DockPanel>
                     <!--  WORK AREA  -->
                     <DockPanel LastChildFill="True">
-                        <Grid />
+                        <Border Background="DimGray"
+                                BorderBrush="DimGray"
+                                BorderThickness="1"
+                                DockPanel.Dock="Top">
+                            <DockPanel LastChildFill="True">
+                                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                                    <TextBlock Width="120"
+                                               DockPanel.Dock="Left"
+                                               Style="{StaticResource LabelText}"
+                                               Text="วันที่ของรายได้ :"
+                                               TextAlignment="Right" />
+                                    <TextBlock x:Name="txtRevDate2"
+                                               Width="120"
+                                               DockPanel.Dock="Left"
+                                               Foreground="Yellow"
+                                               Style="{StaticResource LabelText}"
+                                               Text=""
+                                               TextAlignment="Center" />
+                                    <TextBlock Width="50"
+                                               DockPanel.Dock="Left"
+                                               Style="{StaticResource LabelText}"
+                                               Text="กะ :"
+                                               TextAlignment="Right" />
+                                    <TextBlock x:Name="txtShiftName"
+                                               Width="50"
+                                               DockPanel.Dock="Left"
+                                               Foreground="Yellow"
+                                               Style="{StaticResource LabelText}"
+                                               Text=""
+                                               TextAlignment="Center" />
+                                    <TextBlock Width="120"
+                                               DockPanel.Dock="Left"
+                                               Style="{StaticResource LabelText}"
+                                               Text="รายได้ของด่าน :"
+                                               TextAlignment="Right" />
+                                    <TextBlock x:Name="txtPlazaName"
+                                               Width="150"
+                                               Foreground="Yellow"
+                                               Style="{StaticResource LabelText}" />
+                                    <Grid />
+                                </DockPanel>
+                                <DockPanel LastChildFill="True">
+                                    <TextBlock Width="120"
+                                               DockPanel.Dock="Left"
+                                               Style="{StaticResource LabelText}"
+                                               Text="รหัสพนักงาน :"
+                                               TextAlignment="Right" />
+                                    <TextBlock x:Name="txtUserId2"
+                                               Width="120"
+                                               DockPanel.Dock="Left"
+                                               Foreground="Yellow"
+                                               Style="{StaticResource LabelText}"
+                                               Text=""
+                                               TextAlignment="Center" />
+                                    <TextBlock Width="100"
+                                               DockPanel.Dock="Left"
+                                               Style="{StaticResource LabelText}"
+                                               Text="ชื่อพนักงาน :"
+                                               TextAlignment="Right" />
+                                    <TextBlock x:Name="txtUserName2"
+                                               Width="250"
+                                               Foreground="Yellow"
+                                               Style="{StaticResource LabelText}"
+                                               Text=""
+                                               TextAlignment="Center" />
+                                    <Grid />
+                                </DockPanel>
+                                <Grid />
+                            </DockPanel>
+                        </Border>
+                        <rev:RevenueEntry x:Name="entry" />
                     </DockPanel>
                 </DockPanel>
             </ScrollViewer>

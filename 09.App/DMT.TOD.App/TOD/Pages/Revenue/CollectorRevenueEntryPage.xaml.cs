@@ -57,6 +57,7 @@ namespace DMT.TOD.Pages.Revenue
         private UserShift _userShift = null;
         private UserShiftRevenue _revenueShift = null;
         private bool _issNewRevenueShift = false;
+        private Models.RevenueEntry _revenueEntry = null;
 
         private bool _SCWOnline = false;
         private List<LaneJob> _allJobs = null;
@@ -151,6 +152,8 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoRevenueEntry()
         {
+            entry.Setup(null); // Reset Context.
+
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             if (null == plazaGroup)
             {
@@ -211,6 +214,7 @@ namespace DMT.TOD.Pages.Revenue
             */
 
             // All check condition OK.
+            PrepareRevenueEntry();
             tabs.SelectedIndex = 1; // goto next tab.
         }
 
@@ -227,8 +231,11 @@ namespace DMT.TOD.Pages.Revenue
             // Update entry date and revenue date.
             _entryDate = DateTime.Now;
             _revDate = DateTime.Now;
+
             txtEntryDate.Text = (_entryDate.HasValue) ? _entryDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty;
+
             txtRevDate.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
+            txtRevDate2.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
 
             _userShift = null;
         }
@@ -343,6 +350,7 @@ namespace DMT.TOD.Pages.Revenue
                     // Update Revenue Date to UI.
                     _revDate = (_userShift.Begin.HasValue) ? _userShift.Begin.Value.Date : new DateTime?();
                     txtRevDate.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
+                    txtRevDate2.Text = txtRevDate.Text;
                 }
                 else
                 {
@@ -379,6 +387,20 @@ namespace DMT.TOD.Pages.Revenue
                 string msg = "User Revenue Shift found.";
                 med.Info(msg);
             }
+        }
+
+        public void PrepareRevenueEntry()
+        {
+            txtShiftName.Text = (null != _userShift) ? _userShift.ShiftNameTH : string.Empty;
+
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            txtPlazaName.Text = (null != plazaGroup) ? plazaGroup.PlazaGroupNameTH : string.Empty;
+
+            txtUserId2.Text = (null != _userShift) ? _userShift.UserId : string.Empty;
+            txtUserName2.Text = (null != _userShift) ? _userShift.FullNameTH : string.Empty;
+
+            _revenueEntry = new Models.RevenueEntry();
+            entry.Setup(_revenueEntry);
         }
 
         #endregion

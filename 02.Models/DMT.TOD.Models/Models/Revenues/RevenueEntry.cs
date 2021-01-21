@@ -1018,6 +1018,7 @@ namespace DMT.Models
 			get { return _TrafficST25; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficST25 != value)
 				{
 					_TrafficST25 = value;
@@ -1038,6 +1039,7 @@ namespace DMT.Models
 			get { return _TrafficST50; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficST50 != value)
 				{
 					_TrafficST50 = value;
@@ -1058,6 +1060,7 @@ namespace DMT.Models
 			get { return _TrafficBHT1; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT1 != value)
 				{
 					_TrafficBHT1 = value;
@@ -1078,6 +1081,7 @@ namespace DMT.Models
 			get { return _TrafficBHT2; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT2 != value)
 				{
 					_TrafficBHT2 = value;
@@ -1098,6 +1102,7 @@ namespace DMT.Models
 			get { return _TrafficBHT5; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT5 != value)
 				{
 					_TrafficBHT5 = value;
@@ -1118,6 +1123,7 @@ namespace DMT.Models
 			get { return _TrafficBHT10; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT10 != value)
 				{
 					_TrafficBHT10 = value;
@@ -1138,6 +1144,7 @@ namespace DMT.Models
 			get { return _TrafficBHT20; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT20 != value)
 				{
 					_TrafficBHT20 = value;
@@ -1158,6 +1165,7 @@ namespace DMT.Models
 			get { return _TrafficBHT50; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT50 != value)
 				{
 					_TrafficBHT50 = value;
@@ -1178,6 +1186,7 @@ namespace DMT.Models
 			get { return _TrafficBHT100; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT100 != value)
 				{
 					_TrafficBHT100 = value;
@@ -1198,6 +1207,7 @@ namespace DMT.Models
 			get { return _TrafficBHT500; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT500 != value)
 				{
 					_TrafficBHT500 = value;
@@ -1218,6 +1228,7 @@ namespace DMT.Models
 			get { return _TrafficBHT1000; }
 			set
 			{
+				if (value < 0) return;
 				if (_TrafficBHT1000 != value)
 				{
 					_TrafficBHT1000 = value;
@@ -1275,6 +1286,7 @@ namespace DMT.Models
 			get { return _OtherBHTTotal; }
 			set
 			{
+				if (value < decimal.Zero) return;
 				if (_OtherBHTTotal != value)
 				{
 					_OtherBHTTotal = value;
@@ -1319,6 +1331,7 @@ namespace DMT.Models
 			get { return _CouponUsageBHT30; }
 			set
 			{
+				if (value < 0) return;
 				if (_CouponUsageBHT30 != value)
 				{
 					_CouponUsageBHT30 = value;
@@ -1338,6 +1351,7 @@ namespace DMT.Models
 			get { return _CouponUsageBHT35; }
 			set
 			{
+				if (value < 0) return;
 				if (_CouponUsageBHT35 != value)
 				{
 					_CouponUsageBHT35 = value;
@@ -1357,6 +1371,7 @@ namespace DMT.Models
 			get { return _CouponUsageBHT70; }
 			set
 			{
+				if (value < 0) return;
 				if (_CouponUsageBHT70 != value)
 				{
 					_CouponUsageBHT70 = value;
@@ -1376,6 +1391,7 @@ namespace DMT.Models
 			get { return _CouponUsageBHT80; }
 			set
 			{
+				if (value < 0) return;
 				if (_CouponUsageBHT80 != value)
 				{
 					_CouponUsageBHT80 = value;
@@ -1400,6 +1416,7 @@ namespace DMT.Models
 			get { return _FreePassUsageClassA; }
 			set
 			{
+				if (value < 0) return;
 				if (_FreePassUsageClassA != value)
 				{
 					_FreePassUsageClassA = value;
@@ -1419,6 +1436,7 @@ namespace DMT.Models
 			get { return _FreePassUsageOther; }
 			set
 			{
+				if (value < 0) return;
 				if (_FreePassUsageOther != value)
 				{
 					_FreePassUsageOther = value;
@@ -1443,6 +1461,7 @@ namespace DMT.Models
 			get { return _CouponSoldBHT35; }
 			set
 			{
+				if (value < 0) return;
 				if (_CouponSoldBHT35 != value)
 				{
 					_CouponSoldBHT35 = value;
@@ -1464,6 +1483,7 @@ namespace DMT.Models
 			get { return _CouponSoldBHT80; }
 			set
 			{
+				if (value < 0) return;
 				if (_CouponSoldBHT80 != value)
 				{
 					_CouponSoldBHT80 = value;
@@ -1484,6 +1504,7 @@ namespace DMT.Models
 			get { return _CouponSoldBHT35Factor; }
 			set
 			{
+				if (value < decimal.Zero) return;
 				if (_CouponSoldBHT35Factor != value)
 				{
 					_CouponSoldBHT35Factor = value;
@@ -1504,6 +1525,7 @@ namespace DMT.Models
 			get { return _CouponSoldBHT80Factor; }
 			set
 			{
+				if (value < decimal.Zero) return;
 				if (_CouponSoldBHT80Factor != value)
 				{
 					_CouponSoldBHT80Factor = value;

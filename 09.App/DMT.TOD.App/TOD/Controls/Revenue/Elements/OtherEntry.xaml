@@ -39,13 +39,13 @@
                         VerticalAlignment="Center"
                         Orientation="Vertical"
                         Visibility="{Binding RemarkVisibility}">
-                <TextBlock Height="10" />
+                <TextBlock Height="5" />
                 <TextBlock Margin="12,2"
                            FontSize="{StaticResource EntryFontSize18}"
                            Foreground="{StaticResource EntryTextForeground}"
                            Text="หมายเหตุ"
                            TextAlignment="Left" />
-                <TextBox Height="90"
+                <TextBox Height="75"
                          Margin="10,2"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"
@@ -57,7 +57,7 @@
                          VerticalScrollBarVisibility="Auto" />
             </StackPanel>
             <!--  SEPERATOR  -->
-            <TextBlock Height="5" />
+            <TextBlock Height="10" />
         </StackPanel>
     </DockPanel>
 </UserControl>

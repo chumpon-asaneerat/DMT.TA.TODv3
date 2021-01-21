@@ -115,6 +115,7 @@ namespace DMT
             T result = default(T);
             try
             {
+                // TODO: Fixed problem when open/save with Notepad.
                 // deserialize JSON directly from a file
                 using (StreamReader file = File.OpenText(fileName))
                 {

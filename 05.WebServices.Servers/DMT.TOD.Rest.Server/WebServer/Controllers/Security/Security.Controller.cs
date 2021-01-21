@@ -22,7 +22,7 @@ namespace DMT.Services
         public partial class UserController : ApiController { }
     }
 
-    // hack for exports nested class to controller(s)
+    // Exports nested class to controller(s)
     /// <summary>
     /// The Security's Role Manage Controller class.
     /// </summary>

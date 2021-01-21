@@ -30,7 +30,7 @@ namespace DMT.Services
         public partial class LaneController : ApiController { }
     }
 
-    // hack for exports nested class to controller(s)
+    // Exports nested class to controller(s)
     /// <summary>
     /// The Infrastructure's TSB Manage Controller class.
     /// </summary>

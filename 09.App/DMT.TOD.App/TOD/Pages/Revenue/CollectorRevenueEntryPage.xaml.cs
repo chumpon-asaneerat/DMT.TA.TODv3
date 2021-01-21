@@ -89,7 +89,8 @@ namespace DMT.TOD.Pages.Revenue
         private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == plazaGroup) return;
+            if (null != manager && null != manager.Current && null == plazaGroup) return;
+            manager.Current.PlazaGroup = plazaGroup;
             LoadTSBJobs();
         }
 
@@ -279,10 +280,10 @@ namespace DMT.TOD.Pages.Revenue
         private void LoadPlazaGroups()
         {
             cbPlazas.ItemsSource = null;
-            if (null != _plazaGroups)
+            if (null != manager && null != manager.Current)
             {
-                cbPlazas.ItemsSource = _plazaGroups;
-                if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+                cbPlazas.ItemsSource = manager.Current.TSBPlazaGroups;
+                if (manager.Current.TSBPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
             }
         }
 
@@ -396,7 +397,7 @@ namespace DMT.TOD.Pages.Revenue
                 manager.RevenueDate = new DateTime?();
             }
 
-
+            /*
             _userShift = null;
             if (null != _user)
             {
@@ -425,6 +426,7 @@ namespace DMT.TOD.Pages.Revenue
                     win.ShowDialog();
                 }
             }
+            */
         }
 
         public void CheckRevenueShift()

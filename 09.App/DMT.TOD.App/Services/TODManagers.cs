@@ -45,7 +45,14 @@ namespace DMT.Services
     /// </summary>
     public class CurrentTSBManager
     {
-        #region Constructor
+        #region Internal Variables
+
+        private PlazaGroup _plazaGroup = null;
+        private User _user = null;
+
+        #endregion
+
+        #region Constructor and Destructor
 
         /// <summary>
         /// Constructor.
@@ -53,6 +60,30 @@ namespace DMT.Services
         public CurrentTSBManager() : base()
         {
             Refresh();
+        }
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~CurrentTSBManager() { }
+
+        #endregion
+
+        #region Private Methods
+
+        private void RaiseUserChanged()
+        {
+            if (null != UserChanged)
+            {
+                UserChanged.Call(this, EventArgs.Empty);
+            }
+        }
+
+        private void RaisePlazaGroupChanged()
+        {
+            if (null != PlazaGroupChanged)
+            {
+                PlazaGroupChanged.Call(this, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -106,6 +137,36 @@ namespace DMT.Services
         public List<Plaza> TSBPlazas { get; private set; }
 
         /// <summary>
+        /// Gets or set PlazaGroup.
+        /// </summary>
+        public PlazaGroup PlazaGroup
+        {
+            get { return PlazaGroup; }
+            set
+            {
+                if (null != _plazaGroup && null != value && (_plazaGroup.PlazaGroupId == value.PlazaGroupId))
+                    return; // Same PlazaGroupId.
+
+                _plazaGroup = value;
+
+                if (null != _plazaGroup)
+                {
+                    PlazaGroupPlazas = Plaza.GetPlazaGroupPlazas(_plazaGroup).Value();
+                }
+                else
+                {
+                    PlazaGroupPlazas = new List<Plaza>();
+                }
+                // Raise Event.
+                RaisePlazaGroupChanged();
+            }
+        }
+        /// <summary>
+        /// Gets PlazaGroup Plazas.
+        /// </summary>
+        public List<Plaza> PlazaGroupPlazas { get; private set; }
+
+        /// <summary>
         /// Gets Current TSB Shift.
         /// </summary>
         public TSBShift Shift { get; private set; }
@@ -116,7 +177,33 @@ namespace DMT.Services
         /// <summary>
         /// Gets or set User.
         /// </summary>
-        public User User { get; set; }
+        public User User 
+        {
+            get { return _user; }
+            set
+            {
+                if (null != _user && null != value && _user.UserId == value.UserId)
+                    return; // Same UserId
+
+                _user = value;
+
+                // Raise Event.
+                RaiseUserChanged();
+            }
+        }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
 
         #endregion
     }
@@ -130,7 +217,7 @@ namespace DMT.Services
     /// </summary>
     public class JobManager
     {
-        #region Constructor
+        #region Constructor and Destructor
 
         /// <summary>
         /// Constructor.
@@ -143,11 +230,42 @@ namespace DMT.Services
         public JobManager(CurrentTSBManager manager) : this()
         {
             Current = manager;
+            if (null != Current)
+            {
+                Current.UserChanged += Current_UserChanged;
+                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
+            }
+        }
+
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~JobManager() 
+        {
+            if (null != Current)
+            {
+                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.UserChanged -= Current_UserChanged;
+            }
         }
 
         #endregion
 
         #region Private Methods
+
+        #region CurrentTSBManager Event Handlers
+
+        private void Current_UserChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Current_PlazaGroupChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
         private void LoadTSBJobs()
         {
@@ -202,7 +320,7 @@ namespace DMT.Services
     /// </summary>
     public class PaymentManager
     {
-        #region Constructor
+        #region Constructor and Destructor
 
         /// <summary>
         /// Constructor.
@@ -215,11 +333,41 @@ namespace DMT.Services
         public PaymentManager(CurrentTSBManager manager) : this()
         {
             Current = manager;
+            if (null != Current)
+            {
+                Current.UserChanged += Current_UserChanged;
+                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
+            }
+        }
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~PaymentManager()
+        {
+            if (null != Current)
+            {
+                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.UserChanged -= Current_UserChanged;
+            }
         }
 
         #endregion
 
         #region Private Methods
+
+        #region CurrentTSBManager Event Handlers
+
+        private void Current_UserChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Current_PlazaGroupChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
         #endregion
 
@@ -246,7 +394,7 @@ namespace DMT.Services
     /// </summary>
     public class UserShiftManager
     {
-        #region Constructor
+        #region Constructor and Destructor
 
         /// <summary>
         /// Constructor
@@ -259,7 +407,41 @@ namespace DMT.Services
         public UserShiftManager(CurrentTSBManager manager) : this() 
         {
             Current = manager;
+            if (null != Current)
+            {
+                Current.UserChanged += Current_UserChanged;
+                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
+            }
         }
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~UserShiftManager()
+        {
+            if (null != Current)
+            {
+                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.UserChanged -= Current_UserChanged;
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        #region CurrentTSBManager Event Handlers
+
+        private void Current_UserChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Current_PlazaGroupChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
         #endregion
 
@@ -284,64 +466,6 @@ namespace DMT.Services
         #endregion
     }
 
-    /*
-    /// <summary>
-    /// The UserShift Models ExtensionMethods.
-    /// </summary>
-    public static class UserShiftExtensionMethods
-    {
-        #region Gets Begin/End To Date, DateTime String
-
-        /// <summary>
-        /// Get Begin Date String.
-        /// </summary>
-        /// <param name="value">The UseShift instance.</param>
-        /// <returns>Returns Date String if Begin Date Has Value.</returns>
-        public static string BeginDateString(this UserShift value)
-        {
-            if (null == value || !value.Begin.HasValue || value.Begin.Value == DateTime.MinValue)
-                return string.Empty;
-            return value.Begin.Value.ToThaiDateTimeString("dd/MM/yyyy");
-        }
-        /// <summary>
-        /// Get Begin DateTime String.
-        /// </summary>
-        /// <param name="value">The UseShift instance.</param>
-        /// <returns>Returns DateTime String if Begin Date Has Value.</returns>
-        public static string BeginDateTimeString(this UserShift value)
-        {
-            if (null == value || !value.Begin.HasValue || value.Begin.Value == DateTime.MinValue) 
-                return string.Empty;
-            return value.Begin.Value.ToDateTimeString();
-        }
-
-        /// <summary>
-        /// Get End Date String.
-        /// </summary>
-        /// <param name="value">The UseShift instance.</param>
-        /// <returns>Returns Date String if End Date Has Value.</returns>
-        public static string EndDateString(this UserShift value)
-        {
-            if (null == value || !value.End.HasValue || value.End.Value == DateTime.MinValue)
-                return string.Empty;
-            return value.End.Value.ToThaiDateTimeString("dd/MM/yyyy");
-        }
-        /// <summary>
-        /// Get End DateTime String.
-        /// </summary>
-        /// <param name="value">The UseShift instance.</param>
-        /// <returns>Returns DateTime String if End Date Has Value.</returns>
-        public static string EndDateTimeString(this UserShift value)
-        {
-            if (null == value || !value.End.HasValue || value.End.Value == DateTime.MinValue)
-                return string.Empty;
-            return value.End.Value.ToDateTimeString();
-        }
-
-        #endregion
-    }
-    */
-
     #endregion
 
     #region RevenueEntryManager
@@ -351,7 +475,7 @@ namespace DMT.Services
     /// </summary>
     public class RevenueEntryManager
     {
-        #region Constructor
+        #region Constructor and Destructor
 
         /// <summary>
         /// Constructor.
@@ -361,16 +485,47 @@ namespace DMT.Services
             this.ByChief = false;
 
             Current = new CurrentTSBManager();
+            if (null != Current)
+            {
+                Current.UserChanged += Current_UserChanged;
+                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
+            }
+
             Jobs = new JobManager(Current);
             Payments = new PaymentManager(Current);
             UserrShifts = new UserShiftManager(Current);
 
             Clear();
         }
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~RevenueEntryManager()
+        {
+            if (null != Current)
+            {
+                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.UserChanged -= Current_UserChanged;
+            }
+        }
 
         #endregion
 
         #region Private Methods
+
+        #region CurrentTSBManager Event Handlers
+
+        private void Current_UserChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Current_PlazaGroupChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
         #endregion
 

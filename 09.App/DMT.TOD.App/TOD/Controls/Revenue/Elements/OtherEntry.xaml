@@ -37,8 +37,7 @@
             <!--  REMARK  -->
             <StackPanel HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Orientation="Vertical"
-                        Visibility="{Binding RemarkVisibility}">
+                        Orientation="Vertical">
                 <TextBlock Height="5" />
                 <TextBlock Margin="12,2"
                            FontSize="{StaticResource EntryFontSize18}"

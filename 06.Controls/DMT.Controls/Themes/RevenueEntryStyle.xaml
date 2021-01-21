@@ -110,7 +110,6 @@
     <Style x:Key="TrafficBHT50Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Foreground" Value="{Binding BHT50Foreground}" />
         <Setter Property="Text" Value="{Binding TrafficBHT50, StringFormat=N0}" />
     </Style>
     <Style x:Key="TrafficBHT100Count"
@@ -160,6 +159,7 @@
         <Setter Property="Width" Value="70" />
         <Setter Property="Text" Value="ยอดรวม" />
     </Style>
+    
     <!--  OTHER ENTRY (TEXTBOX)  -->
     <Style x:Key="OtherBHTTotal"
            BasedOn="{StaticResource BankNoteCountStyle}"
@@ -167,6 +167,7 @@
         <Setter Property="Width" Value="90" />
         <Setter Property="Text" Value="{Binding OtherBHTTotal, StringFormat=N0}" />
     </Style>
+
     <!--  OTHER UNIT  -->
     <Style x:Key="OtherTotalUnitStyle"
            BasedOn="{StaticResource UnitStyle}"

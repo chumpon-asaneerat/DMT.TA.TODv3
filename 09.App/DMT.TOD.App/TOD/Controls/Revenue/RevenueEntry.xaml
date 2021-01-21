@@ -51,7 +51,6 @@
                                      util:KeyboardOptions.EnterAsTab="True"
                                      util:KeyboardOptions.LeftRightNavigation="True"
                                      util:KeyboardOptions.UpDownNavigation="True"
-                                     KeyDown="txtBagNo_KeyDown"
                                      Style="{StaticResource CommonTextBox}"
                                      Text="{Binding BagNo}"
                                      TextAlignment="Center" />
@@ -65,7 +64,6 @@
                                      util:KeyboardOptions.EnterAsTab="True"
                                      util:KeyboardOptions.LeftRightNavigation="True"
                                      util:KeyboardOptions.UpDownNavigation="True"
-                                     KeyDown="txtBeltNo_KeyDown"
                                      Style="{StaticResource CommonTextBox}"
                                      Text="{Binding BeltNo}"
                                      TextAlignment="Center" />

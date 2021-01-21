@@ -63,7 +63,10 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Private Methods
 
-        private void LoadItems()
+        /// <summary>
+        /// Load Items.
+        /// </summary>
+        public void LoadItems()
         {
             if (null == entry) return;
             this.grid.ItemsSource = null;

@@ -38,22 +38,16 @@ namespace DMT.TOD.Controls.Revenue
 
         #endregion
 
-        #region TextBox Handlers
-
-        private void txtBagNo_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void txtBeltNo_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        #endregion
-
         #region Public Methods
 
+        /// <summary>
+        /// Load Payments.
+        /// </summary>
+        public void LoadPayments()
+        {
+            this.emvEntry.LoadItems();
+            this.qrcodeEntry.LoadItems();
+        }
         /// <summary>
         /// Setup.
         /// </summary>
@@ -78,6 +72,36 @@ namespace DMT.TOD.Controls.Revenue
                 txtBagNo.Focus();
             }));
         }
+        /// <summary>
+        /// Set Bag No Focus.
+        /// </summary>
+        public void FocusBagNo()
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtBagNo.Focus();
+                txtBagNo.SelectAll();
+            }));
+        }
+        /// <summary>
+        /// Set Belt No Focus.
+        /// </summary>
+        public void FocusBeltNo()
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtBeltNo.Focus();
+                txtBeltNo.SelectAll();
+            }));
+        }
+        /// <summary>
+        /// Checks Has BagNo.
+        /// </summary>
+        public bool HasBagNo { get { return !string.IsNullOrWhiteSpace(txtBagNo.Text); } }
+        /// <summary>
+        /// Checks Has Belt.
+        /// </summary>
+        public bool HasBeltNo { get { return !string.IsNullOrWhiteSpace(txtBeltNo.Text); } }
 
         #endregion
     }

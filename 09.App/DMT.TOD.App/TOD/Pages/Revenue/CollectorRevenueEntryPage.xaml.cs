@@ -15,6 +15,7 @@ using DMT.Services;
 
 using NLib;
 using NLib.Services;
+using NLib.Reports.Rdlc;
 using NLib.Reflection;
 
 #endregion
@@ -46,6 +47,8 @@ namespace DMT.TOD.Pages.Revenue
         //private CultureInfo culture = new CultureInfo("th-TH");
 
         private User _user = null;
+        private User _supervisor = null;
+
         private TSB _tsb = null;
         private List<PlazaGroup> _plazaGroups = null;
         private List<Plaza> _TSBPlazas = null;
@@ -57,6 +60,7 @@ namespace DMT.TOD.Pages.Revenue
         private UserShift _userShift = null;
         private UserShiftRevenue _revenueShift = null;
         private bool _issNewRevenueShift = false;
+        private UserCreditBalance _userCredit = null;
         private Models.RevenueEntry _revenueEntry = null;
 
         private bool _SCWOnline = false;
@@ -202,24 +206,47 @@ namespace DMT.TOD.Pages.Revenue
                 }
             }
 
-            // TODO: Need TA.
-            /*
-            if (!_manager.IsReturnBag)
+            if (!IsReturnBag())
             {
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("ระบบตรวจพบว่ายังไม่มีการคืนถุงเงิน กรุณาคืนถุงเงินก่อนป้อนรายได้.", "DMT - Tour of Duty");
                 win.ShowDialog();
                 return;
             }
-            */
+
+            if (!PrepareRevenueEntry())
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ไม่พบข้อมูลกะรายได้ของพนักงาน หรือไม่พบข้อมูลที่เกี่ยวข้อง", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
 
             // All check condition OK.
-            PrepareRevenueEntry();
             tabs.SelectedIndex = 1; // goto next tab.
         }
 
         private void GotoPrintPreview()
         {
+            if (!entry.HasBagNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุ หมายเลขถุงเงิน", "DMT - Tour of Duty");
+                win.ShowDialog();
+                entry.FocusBagNo();
+                return;
+            }
+            if (!entry.HasBeltNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Tour of Duty");
+                win.ShowDialog();
+                entry.FocusBeltNo();
+                return;
+            }
+
+            // Slip Preview
+
             tabs.SelectedIndex = 2;
         }
 
@@ -389,8 +416,58 @@ namespace DMT.TOD.Pages.Revenue
             }
         }
 
-        public void PrepareRevenueEntry()
+        private string CreateLaneList()
         {
+            // create lane list.
+            var Lanes = new List<int>();
+            if (null != _currJobs)
+            {
+                _currJobs.ForEach(job =>
+                {
+                    if (!job.LaneNo.HasValue) return;
+                    if (!Lanes.Contains(job.LaneNo.Value))
+                    {
+                        // add to list
+                        Lanes.Add(job.LaneNo.Value);
+                    }
+                });
+            }
+            // Build Lane List String.
+            int iCnt = 0;
+            int iMax = Lanes.Count;
+            string laneList = string.Empty;
+            Lanes.ForEach(laneNo =>
+            {
+                laneList += laneNo.ToString();
+                if (iCnt < iMax - 1) laneList += ", ";
+                iCnt++;
+            });
+
+            return laneList;
+        }
+
+        private bool IsReturnBag()
+        {
+            bool ret = true;
+
+            // TODO: Need TA.
+            /*
+            var usrSearch = Search.UserCredits.GetActiveById.Create(
+                this.UserShift.UserId, this.PlazaGroup.PlazaGroupId);
+            var userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
+            if (null != userCredit && userCredit.State == UserCreditBalance.StateTypes.Completed)
+            {
+                ret = true;
+            }
+            ret = false;
+            */
+            return ret;
+        }
+
+        private bool PrepareRevenueEntry()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             txtShiftName.Text = (null != _userShift) ? _userShift.ShiftNameTH : string.Empty;
 
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
@@ -399,8 +476,84 @@ namespace DMT.TOD.Pages.Revenue
             txtUserId2.Text = (null != _userShift) ? _userShift.UserId : string.Empty;
             txtUserName2.Text = (null != _userShift) ? _userShift.FullNameTH : string.Empty;
 
+            if (null == _user || null == _supervisor) return false;
+            if (null == _userShift || null == plazaGroup) return false;
+
+            // Create new Revenue Entry.
             _revenueEntry = new Models.RevenueEntry();
+
+            // Is historical
+            _revenueEntry.IsHistorical = false;
+            // assigned plaza group.
+            _revenueEntry.PlazaGroupId = plazaGroup.PlazaGroupId;
+            // update object properties.
+            plazaGroup.AssignTo(_revenueEntry); // assigned plaza group name (EN/TH)
+            _userShift.AssignTo(_revenueEntry); // assigned user shift
+
+            // assigned date after sync object(s) to RevenueEntry.
+            _revenueEntry.EntryDate = _entryDate; // assigned Entry date.
+            var dtNow = DateTime.Now;
+            _revenueEntry.RevenueDate = new DateTime(
+                _revDate.Value.Year, _revDate.Value.Month, _revDate.Value.Day,
+                dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+
+            // Create Lane list (comma seperate string).
+            _revenueEntry.Lanes = CreateLaneList().Trim();
+
+            // Find begin/end of revenue.
+            DateTime begin = DateTime.MinValue;
+            DateTime end = DateTime.MinValue;
+
+            if (begin == DateTime.MinValue)
+            {
+                begin = _userShift.Begin.Value; // Begin time used start of shift.
+            }
+            if (end == DateTime.MinValue)
+            {
+                end = DateTime.Now; // End time used printed date
+            }
+
+            if (_revenueEntry.ShiftBegin == DateTime.MinValue)
+            {
+                _revenueEntry.ShiftBegin = begin;
+            }
+            if (_revenueEntry.ShiftEnd == DateTime.MinValue)
+            {
+                _revenueEntry.ShiftEnd = end;
+            }
+
+            // Update Colllector data,
+            _revenueEntry.CollectorNameEN = _user.FullNameEN;
+            _revenueEntry.CollectorNameTH = _user.FullNameTH;
+            // Update Chief data,
+            _revenueEntry.SupervisorId = _supervisor.UserId;
+            _revenueEntry.SupervisorNameEN = _supervisor.FullNameEN;
+            _revenueEntry.SupervisorNameTH = _supervisor.FullNameTH;
+
+            // TODO: Need TA
+            // Check User Credit to get BagNo and BeltNo.
+            //_userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(search).Value();
+            if (null != _userCredit)
+            {
+                string msg = string.Format("User Credit found. BagNo: {0}, BeltNo: {1}",
+                    _userCredit.BagNo, _userCredit.BeltNo);
+                med.Info(msg);
+
+                _revenueEntry.BagNo = _userCredit.BagNo;
+                _revenueEntry.BeltNo = _userCredit.BeltNo;
+            }
+            else
+            {
+                string msg = "User Credit not found.";
+                med.Info(msg);
+
+                _revenueEntry.BagNo = string.Empty;
+                _revenueEntry.BeltNo = string.Empty;
+            }
+
             entry.Setup(_revenueEntry);
+
+            return true;
         }
 
         #endregion
@@ -420,7 +573,12 @@ namespace DMT.TOD.Pages.Revenue
                 _tsb = TSB.GetCurrent().Value();
                 if (null != _tsb)
                 {
+                    // Gets Supervisor
+                    var tsbShift = TSBShift.GetTSBShift(_tsb.TSBId).Value();
+                    _supervisor = (null != tsbShift) ? User.GetByUserId(tsbShift.UserId).Value() : null;
+                    // Get Plaza Groups
                     _plazaGroups = PlazaGroup.GetTSBPlazaGroups(_tsb).Value();
+                    // Gets Plazas
                     _TSBPlazas = Plaza.GetTSBPlazas(_tsb).Value();
                 }
             }

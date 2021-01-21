@@ -65,8 +65,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1003
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1002
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1001
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements Revenue Entry elements #11.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1000

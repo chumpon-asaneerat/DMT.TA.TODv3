@@ -22,7 +22,7 @@
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
             <StackPanel Orientation="Vertical">
                 <!--  1 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
@@ -103,6 +103,6 @@
                 <!--  SEPERATOR  -->
                 <TextBlock Height="5" />
             </StackPanel>
-        </ScrollViewer>
+        </StackPanel>
     </DockPanel>
 </UserControl>

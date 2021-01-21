@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="220"
-             d:DesignWidth="240"
+             d:DesignWidth="340"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
@@ -22,10 +22,10 @@
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Vertical">
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock Height="5" />
-                <!--  1 BHT  -->
+                <!--  OTHER TOTAL BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource OtherTotalDescription}" />
                     <TextBlock Width="5" />
@@ -33,27 +33,31 @@
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource OtherTotalUnitStyle}" />
                 </StackPanel>
+            </StackPanel>
+            <!--  REMARK  -->
+            <StackPanel HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical"
+                        Visibility="{Binding RemarkVisibility}">
                 <TextBlock Height="10" />
-                <!--  REMARK  -->
-                <TextBlock Margin="10,2"
-                           VerticalAlignment="Center"
+                <TextBlock Margin="12,2"
                            FontSize="{StaticResource EntryFontSize18}"
                            Foreground="{StaticResource EntryTextForeground}"
                            Text="หมายเหตุ"
                            TextAlignment="Left" />
-                <TextBox Width="220"
-                         Height="70"
+                <TextBox Height="70"
                          Margin="10,2"
+                         HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"
                          AcceptsReturn="True"
                          IsTabStop="False"
+                         Text="{Binding OtherRemark}"
                          TextAlignment="Left"
                          TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto" 
-                         Text="{Binding OtherRemark}"/>
-                <!--  SEPERATOR  -->
-                <TextBlock Height="5" />
+                         VerticalScrollBarVisibility="Auto" />
             </StackPanel>
-        </ScrollViewer>
+            <!--  SEPERATOR  -->
+            <TextBlock Height="5" />
+        </StackPanel>
     </DockPanel>
 </UserControl>

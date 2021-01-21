@@ -1,13 +1,13 @@
 ﻿<UserControl x:Class="DMT.TOD.Controls.Revenue.Elements.TrafficEntry"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             d:DesignHeight="430"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="500"
              d:DesignWidth="240"
              Focusable="False"
              IsTabStop="False"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     <DockPanel>
         <Border DockPanel.Dock="Top">
             <Border.Background>
@@ -18,91 +18,118 @@
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
                        Style="{StaticResource EntryHeaderCaption}"
-                       Text="" />
+                       Text="รายได้รวมทั้งหมด" />
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
-            <StackPanel Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <TextBlock Height="5" />
                 <!--  1 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT1Description}" />
-                    <TextBox Style="{StaticResource BHT1Amount}" />
-                    <TextBlock Style="{StaticResource ConinUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT1Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT1Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
                 </StackPanel>
                 <!--  2 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT2Description}" />
-                    <TextBox Style="{StaticResource BHT2Amount}" />
-                    <TextBlock Style="{StaticResource ConinUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT2Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT2Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
                 </StackPanel>
                 <!--  5 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT5Description}" />
-                    <TextBox Style="{StaticResource BHT5Amount}" />
-                    <TextBlock Style="{StaticResource ConinUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT5Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT5Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
                 </StackPanel>
                 <!--  10 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT10Description}" />
-                    <TextBox Style="{StaticResource BHT10Amount}" />
-                    <TextBlock Style="{StaticResource BillUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT10Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT10Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
                 </StackPanel>
                 <!--  20 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT20Description}" />
-                    <TextBox Style="{StaticResource BHT20Amount}" />
-                    <TextBlock Style="{StaticResource BillUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT20Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT20Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                 </StackPanel>
                 <!--  50 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT50Description}" />
-                    <TextBox Style="{StaticResource BHT50Amount}" />
-                    <TextBlock Style="{StaticResource BillUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT50Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT50Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                 </StackPanel>
                 <!--  100 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT100Description}" />
-                    <TextBox Style="{StaticResource BHT100Amount}" />
-                    <TextBlock Style="{StaticResource BillUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT100Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT100Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                 </StackPanel>
                 <!--  500 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT500Description}" />
-                    <TextBox Style="{StaticResource BHT500Amount}" />
-                    <TextBlock Style="{StaticResource BillUnitStyle}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT500Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                 </StackPanel>
                 <!--  1000 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT1000Description}" />
-                    <TextBox Style="{StaticResource BHT1000Amount}" />
-                    <TextBlock Style="{StaticResource BillUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHT1000Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHT1000Count}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                 </StackPanel>
                 <!--  TOTAL BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHTTotalDescription}" />
-                    <TextBox IsEnabled="False" Style="{StaticResource BHTTotalAmount}" />
-                    <TextBlock Style="{StaticResource TotalUnitStyle}" />
+                    <TextBlock Style="{StaticResource TrafficBHTTotalDescription}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource TrafficBHTTotalAmount}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource TrafficTotalUnitStyle}" />
                 </StackPanel>
-                <!--  REMARK  -->
-                <TextBlock Margin="10,2"
-                           VerticalAlignment="Center"
+            </StackPanel>
+            <!--  REMARK  -->
+            <StackPanel HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical"
+                        Visibility="{Binding RemarkVisibility}">
+                <TextBlock Height="10" />
+                <TextBlock Margin="12,2"
                            FontSize="{StaticResource EntryFontSize18}"
                            Foreground="{StaticResource EntryTextForeground}"
                            Text="หมายเหตุ"
                            TextAlignment="Left" />
-                <TextBox Width="220"
-                         Height="70"
+                <TextBox Height="90"
                          Margin="10,2"
+                         HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"
                          AcceptsReturn="True"
                          IsTabStop="False"
+                         Text="{Binding OtherRemark}"
                          TextAlignment="Left"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto" />
-                <!--  SEPERATOR  -->
-                <TextBlock Height="5" />
             </StackPanel>
+            <!--  SEPERATOR  -->
+            <TextBlock Height="5" />
         </StackPanel>
     </DockPanel>
 </UserControl>

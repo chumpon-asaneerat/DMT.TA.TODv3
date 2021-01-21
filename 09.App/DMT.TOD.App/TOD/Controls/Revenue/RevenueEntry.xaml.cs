@@ -1,17 +1,17 @@
-﻿using System;
+﻿#region Using
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+using DMT.Configurations;
+using DMT.Controls;
+using DMT.Models;
+using DMT.Services;
+
+#endregion
 
 namespace DMT.TOD.Controls.Revenue
 {
@@ -20,10 +20,25 @@ namespace DMT.TOD.Controls.Revenue
     /// </summary>
     public partial class RevenueEntry : UserControl
     {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public RevenueEntry()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Internal Variables
+
+        private RevenueEntry entry = null;
+
+        #endregion
+
+        #region TextBox Handlers
 
         private void txtBagNo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -34,5 +49,21 @@ namespace DMT.TOD.Controls.Revenue
         {
 
         }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="value">The Revenue Entry.</param>
+        public void Setup(RevenueEntry value)
+        {
+            entry = value;
+            this.DataContext = entry;
+        }
+
+        #endregion
     }
 }

@@ -45,7 +45,7 @@
                            Foreground="{StaticResource EntryTextForeground}"
                            Text="หมายเหตุ"
                            TextAlignment="Left" />
-                <TextBox Height="70"
+                <TextBox Height="90"
                          Margin="10,2"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Top"

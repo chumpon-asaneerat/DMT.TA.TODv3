@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:DMT.TOD.Controls.Revenue.Elements"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="800"
+             d:DesignHeight="600"
              d:DesignWidth="1300"
              Focusable="False"
              IsTabStop="False"
@@ -28,11 +28,12 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5" />
-                        <ColumnDefinition Width="380" />
-                        <ColumnDefinition Width="380" />
-                        <ColumnDefinition Width="380" />
+                        <ColumnDefinition Width="360" />
+                        <ColumnDefinition Width="360" />
+                        <ColumnDefinition Width="360" />
                         <ColumnDefinition Width="5" />
                     </Grid.ColumnDefinitions>
+                    <!--  BAG/BELT NO  -->
                     <Grid Grid.Row="0"
                           Grid.Column="1"
                           Grid.ColumnSpan="3">
@@ -45,6 +46,7 @@
                             <TextBox x:Name="txtBagNo"
                                      Width="200"
                                      KeyDown="txtBagNo_KeyDown"
+                                     Style="{StaticResource CommonTextBox}"
                                      Text="{Binding BagNo}"
                                      TextAlignment="Center" />
                             <Grid Width="10" />
@@ -53,11 +55,13 @@
                             <TextBox x:Name="txtBeltNo"
                                      Width="200"
                                      KeyDown="txtBeltNo_KeyDown"
+                                     Style="{StaticResource CommonTextBox}"
                                      Text="{Binding BeltNo}"
                                      TextAlignment="Center" />
                             <Grid Width="10" />
                         </StackPanel>
                     </Grid>
+                    <!--  TRAFFIC  -->
                     <Grid Grid.Row="1"
                           Grid.Column="1"
                           VerticalAlignment="Top">
@@ -67,40 +71,42 @@
                                             Background="ForestGreen"
                                             Foreground="WhiteSmoke" />
                     </Grid>
+                    <!--  OTHER/COUPON SOLD  -->
                     <Grid Grid.Row="1"
                           Grid.Column="2"
                           VerticalAlignment="Top">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="290" />
-                            <RowDefinition Height="201" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="245" />
+                            <RowDefinition Height="4" />
+                            <RowDefinition Height="245" />
                         </Grid.RowDefinitions>
                         <local:OtherEntry x:Name="otherRevenue"
                                           Grid.Row="0"
                                           Margin="3"
                                           Background="CornflowerBlue"
                                           Foreground="WhiteSmoke" />
-                        <local:CouponRevenueEntry x:Name="couponRevenue"
-                                                  Grid.Row="1"
+                        <local:CouponRevenueEntry x:Name="couponSold"
+                                                  Grid.Row="2"
                                                   Margin="3"
                                                   Background="Purple"
                                                   Foreground="WhiteSmoke" />
                     </Grid>
+                    <!--  COUPON USAGE/FREE PASS  -->
                     <Grid Grid.Row="1"
                           Grid.Column="3"
                           VerticalAlignment="Top">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="290" />
-                            <RowDefinition Height="201" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="245" />
+                            <RowDefinition Height="4" />
+                            <RowDefinition Height="245" />
                         </Grid.RowDefinitions>
                         <local:CouponUsageEntry x:Name="couponUsage"
                                                 Grid.Row="0"
                                                 Margin="3"
                                                 Background="Purple"
                                                 Foreground="WhiteSmoke" />
-                        <local:CouponDMTEntry x:Name="couponDMT"
-                                              Grid.Row="1"
+                        <local:CouponDMTEntry x:Name="freePass"
+                                              Grid.Row="2"
                                               Margin="3"
                                               Background="Purple"
                                               Foreground="WhiteSmoke" />
@@ -108,15 +114,7 @@
                 </Grid>
             </ScrollViewer>
         </TabItem>
-        <TabItem x:Name="tabQRCode"
-                 HorizontalAlignment="Stretch"
-                 VerticalAlignment="Center"
-                 Header="QR Code">
-            <local:QRCodeEntry x:Name="qrcodeEntry"
-                               Margin="3"
-                               Background="Orange"
-                               Foreground="WhiteSmoke" />
-        </TabItem>
+        <!--  EMV  -->
         <TabItem x:Name="tabEMV"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Center"
@@ -125,6 +123,16 @@
                             Margin="3"
                             Background="Gainsboro"
                             Foreground="WhiteSmoke" />
+        </TabItem>
+        <!--  QR CODE  -->
+        <TabItem x:Name="tabQRCode"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Center"
+                 Header="QR Code">
+            <local:QRCodeEntry x:Name="qrcodeEntry"
+                               Margin="3"
+                               Background="Orange"
+                               Foreground="WhiteSmoke" />
         </TabItem>
     </TabControl>
 </UserControl>

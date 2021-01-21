@@ -384,7 +384,6 @@ namespace DMT.TOD.Pages.TollAdmin
                 grid.ItemsSource = null;
             }
 
-
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {

@@ -179,13 +179,16 @@
                         <Border Background="DimGray"
                                 BorderBrush="DimGray"
                                 BorderThickness="1"
-                                DockPanel.Dock="Top">
-                            <DockPanel LastChildFill="True">
+                                DockPanel.Dock="Top"
+                                HorizontalAlignment="Stretch">
+                            <DockPanel LastChildFill="True"
+                                       HorizontalAlignment="Center">
+                                <TextBlock DockPanel.Dock="Top" Height="2" />
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                                     <TextBlock Width="120"
                                                DockPanel.Dock="Left"
                                                Style="{StaticResource LabelText}"
-                                               Text="วันที่ของรายได้ :"
+                                               Text="วันที่ของรายได้ : "
                                                TextAlignment="Right" />
                                     <TextBlock x:Name="txtRevDate2"
                                                Width="120"
@@ -197,7 +200,7 @@
                                     <TextBlock Width="50"
                                                DockPanel.Dock="Left"
                                                Style="{StaticResource LabelText}"
-                                               Text="กะ :"
+                                               Text="กะ : "
                                                TextAlignment="Right" />
                                     <TextBlock x:Name="txtShiftName"
                                                Width="50"
@@ -209,7 +212,7 @@
                                     <TextBlock Width="120"
                                                DockPanel.Dock="Left"
                                                Style="{StaticResource LabelText}"
-                                               Text="รายได้ของด่าน :"
+                                               Text="รายได้ของด่าน : "
                                                TextAlignment="Right" />
                                     <TextBlock x:Name="txtPlazaName"
                                                Width="150"
@@ -217,11 +220,12 @@
                                                Style="{StaticResource LabelText}" />
                                     <Grid />
                                 </DockPanel>
-                                <DockPanel LastChildFill="True">
+                                <TextBlock DockPanel.Dock="Top" Height="2" />
+                                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                                     <TextBlock Width="120"
                                                DockPanel.Dock="Left"
                                                Style="{StaticResource LabelText}"
-                                               Text="รหัสพนักงาน :"
+                                               Text="รหัสพนักงาน : "
                                                TextAlignment="Right" />
                                     <TextBlock x:Name="txtUserId2"
                                                Width="120"
@@ -233,7 +237,7 @@
                                     <TextBlock Width="100"
                                                DockPanel.Dock="Left"
                                                Style="{StaticResource LabelText}"
-                                               Text="ชื่อพนักงาน :"
+                                               Text="ชื่อพนักงาน : "
                                                TextAlignment="Right" />
                                     <TextBlock x:Name="txtUserName2"
                                                Width="250"
@@ -243,6 +247,7 @@
                                                TextAlignment="Center" />
                                     <Grid />
                                 </DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Height="2" />
                                 <Grid />
                             </DockPanel>
                         </Border>

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using System.Windows.Threading;
 using DMT.Configurations;
 using DMT.Controls;
 using DMT.Models;
@@ -70,6 +70,13 @@ namespace DMT.TOD.Controls.Revenue
             this.couponUsage.Setup(entry);
             this.emvEntry.Setup(entry);
             this.qrcodeEntry.Setup(entry);
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtBagNo.SelectAll();
+                txtBagNo.Focus();
+            }));
         }
 
         #endregion

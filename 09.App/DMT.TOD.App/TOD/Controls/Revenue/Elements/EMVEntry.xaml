@@ -1,13 +1,19 @@
 ﻿<UserControl x:Class="DMT.TOD.Controls.Revenue.Elements.EMVEntry"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="430"
-             d:DesignWidth="240"
+             d:DesignWidth="800"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </UserControl.Resources>
     <DockPanel>
         <Border DockPanel.Dock="Top">
             <Border.Background>
@@ -22,6 +28,100 @@
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
-        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <!--  BUTTONS  -->
+            <DockPanel Height="60"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       DockPanel.Dock="Bottom">
+                <DockPanel.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="#7F323232" />
+                        <GradientStop Offset="1" Color="#7FAAAAAA" />
+                    </LinearGradientBrush>
+                </DockPanel.Background>
+                <Grid Width="5" DockPanel.Dock="Left" />
+                <StackPanel VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
+                            Orientation="Horizontal">
+                    <TextBlock Width="80"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource LabelText}"
+                               Text="จำนวนรวม : " />
+                    <TextBlock Width="10" />
+                    <TextBox x:Name="txtQty"
+                             Width="80"
+                             Foreground="Black"
+                             IsEnabled="False"
+                             Style="{StaticResource CommonTextBox}"
+                             Text="0" />
+                    <TextBlock Width="10" />
+                    <TextBlock Width="80"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource LabelText}"
+                               Text="รายการ" />
+                    <TextBlock Width="10" />
+                    <TextBlock Width="80"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource LabelText}"
+                               Text="ยอดเงินรวม : " />
+                    <TextBlock Width="10" />
+                    <TextBox x:Name="txtTotal"
+                             Width="80"
+                             Foreground="Black"
+                             IsEnabled="False"
+                             Style="{StaticResource CommonTextBox}"
+                             Text="0" />
+                    <TextBlock Width="10" />
+                    <TextBlock Width="80"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource LabelText}"
+                               Text="บาท" />
+                    <TextBlock Width="10" />
+                </StackPanel>
+                <Grid Width="5" DockPanel.Dock="Right" />
+                <ctrl:ImageButton x:Name="cmdBack"
+                                  DockPanel.Dock="Right"
+                                  ImageSource="/DMT.TOD.App;component/Images/Button/Home.png">
+                    <TextBlock Style="{StaticResource ImageButtonText}">
+                        <Run FontSize="18" Text="พิมพ์รายการ" />
+                        <LineBreak />
+                        <Run FontSize="16" Text="EMV" />
+                    </TextBlock>
+                </ctrl:ImageButton>
+            </DockPanel>
+            <!--  LIST VIEW  -->
+            <ListView x:Name="grid"
+                      FontSize="{StaticResource InputFontSize18}"
+                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                      ItemsSource="{Binding}"
+                      Style="{StaticResource SingleSelectListView}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="150"
+                                        CellTemplate="{StaticResource RefNo}"
+                                        Header="เลขที่อ้างอิง" />
+                        <GridViewColumn Width="150"
+                                        CellTemplate="{StaticResource ApproveCode}"
+                                        Header="Approval Code" />
+                        <GridViewColumn Width="110"
+                                        CellTemplate="{StaticResource TrxDateString}"
+                                        Header="วันที่" />
+                        <GridViewColumn Width="110"
+                                        CellTemplate="{StaticResource TrxTimeString}"
+                                        Header="เวลา" />
+                        <GridViewColumn Width="100"
+                                        CellTemplate="{StaticResource LaneNo}"
+                                        Header="ช่องทาง" />
+                        <GridViewColumn Width="120"
+                                        CellTemplate="{StaticResource UserId}"
+                                        Header="รหัสพนักงาน" />
+                        <GridViewColumn Width="300"
+                                        CellTemplate="{StaticResource FullNameTH}"
+                                        Header="ชื่อพนักงาน" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
     </DockPanel>
 </UserControl>

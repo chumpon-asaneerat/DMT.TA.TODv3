@@ -243,10 +243,10 @@
                             <GridView>
                                 <GridViewColumn Width="150"
                                                 CellTemplate="{StaticResource RefNo}"
-                                                Header="Ref. No" />
+                                                Header="เลขที่อ้างอิง" />
                                 <GridViewColumn Width="150"
                                                 CellTemplate="{StaticResource ApproveCode}"
-                                                Header="Approve Code" />
+                                                Header="Approval Code" />
                                 <GridViewColumn Width="110"
                                                 CellTemplate="{StaticResource TrxDateString}"
                                                 Header="วันที่" />
@@ -255,7 +255,7 @@
                                                 Header="เวลา" />
                                 <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource LaneNo}"
-                                                Header="หมายเลขเลน" />
+                                                Header="ช่องทาง" />
                                 <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource UserId}"
                                                 Header="รหัสพนักงาน" />

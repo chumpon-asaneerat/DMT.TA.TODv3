@@ -59,7 +59,7 @@ namespace DMT.TOD.Pages.TollAdmin
             // Setup DateTime Picker.
             dtEntryDate.CultureInfo = culture;
             //Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
+            //Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         #endregion

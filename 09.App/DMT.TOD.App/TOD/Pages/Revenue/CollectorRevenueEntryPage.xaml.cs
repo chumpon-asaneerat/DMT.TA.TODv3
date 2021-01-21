@@ -43,7 +43,7 @@ namespace DMT.TOD.Pages.Revenue
         #region Internal Variables
 
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
-        private CultureInfo culture = new CultureInfo("th-TH");
+        //private CultureInfo culture = new CultureInfo("th-TH");
 
         private User _user = null;
         private TSB _tsb = null;
@@ -69,7 +69,7 @@ namespace DMT.TOD.Pages.Revenue
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
+            //Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         #endregion

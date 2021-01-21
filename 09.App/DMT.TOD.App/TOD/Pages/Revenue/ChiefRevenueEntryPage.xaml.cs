@@ -67,7 +67,7 @@ namespace DMT.TOD.Pages.Revenue
             dtEntryDate.CultureInfo = culture;
             dtRevDate.CultureInfo = culture;
             //Thread.CurrentThread.CurrentCulture = culture;
-            Thread.CurrentThread.CurrentUICulture = culture;
+            //Thread.CurrentThread.CurrentUICulture = culture;
         }
 
         #endregion

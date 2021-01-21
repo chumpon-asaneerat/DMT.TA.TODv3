@@ -62,6 +62,14 @@ namespace DMT.TOD.Controls.Revenue
         {
             entry = value;
             this.DataContext = entry;
+
+            this.trafficRevenue.Setup(entry);
+            this.otherRevenue.Setup(entry);
+            this.freePass.Setup(entry);
+            this.couponSold.Setup(entry);
+            this.couponUsage.Setup(entry);
+            this.emvEntry.Setup(entry);
+            this.qrcodeEntry.Setup(entry);
         }
 
         #endregion

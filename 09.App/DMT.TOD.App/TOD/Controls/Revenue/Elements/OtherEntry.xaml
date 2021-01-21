@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="430"
+             d:DesignHeight="220"
              d:DesignWidth="240"
              Focusable="False"
              IsTabStop="False"
@@ -18,7 +18,7 @@
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
                        Style="{StaticResource EntryHeaderCaption}"
-                       Text="" />
+                       Text="รายได้อื่น" />
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
@@ -27,10 +27,13 @@
                 <TextBlock Height="5" />
                 <!--  1 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT1Description}" />
-                    <TextBox Style="{StaticResource BHT1Amount}" />
-                    <TextBlock Style="{StaticResource ConinUnitStyle}" />
+                    <TextBlock Style="{StaticResource OtherTotalDescription}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource OtherBHTTotal}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource OtherTotalUnitStyle}" />
                 </StackPanel>
+                <TextBlock Height="10" />
                 <!--  REMARK  -->
                 <TextBlock Margin="10,2"
                            VerticalAlignment="Center"
@@ -46,7 +49,8 @@
                          IsTabStop="False"
                          TextAlignment="Left"
                          TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto" />
+                         VerticalScrollBarVisibility="Auto" 
+                         Text="{Binding OtherRemark}"/>
                 <!--  SEPERATOR  -->
                 <TextBlock Height="5" />
             </StackPanel>

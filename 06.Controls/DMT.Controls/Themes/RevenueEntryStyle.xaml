@@ -141,6 +141,30 @@
         <Setter Property="Text" Value="ฉบับ" />
     </Style>
 
+    <!--  OTHER DESCRIPTION  -->
+    <Style x:Key="OtherTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+    <!--  OTHER ENTRY (TEXTBOX)  -->
+    <Style x:Key="OtherBHTTotal"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Text" Value="{Binding OtherBHTTotal, StringFormat=N0}" />
+    </Style>
+    <!--  OTHER UNIT  -->
+    <Style x:Key="OtherTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+
     <!--  COUPON USAGE DESCRIPTION  -->
     <Style x:Key="CouponUsage30Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"

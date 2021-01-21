@@ -467,7 +467,7 @@ namespace DMT.Models
         /// <summary>Gets Amount.</summary>
         public decimal Amount
         {
-            get { return (null != Transaction) ? Transaction.amount.Value : 0; }
+            get { return (null != Transaction) ? Transaction.amount.Value : decimal.Zero; }
             set { }
         }
 
@@ -608,7 +608,7 @@ namespace DMT.Models
         /// <summary>Gets Amount.</summary>
         public decimal Amount
         {
-            get { return (null != Transaction) ? Transaction.amount.Value : 0; }
+            get { return (null != Transaction) ? Transaction.amount.Value : decimal.Zero; }
             set { }
         }
 

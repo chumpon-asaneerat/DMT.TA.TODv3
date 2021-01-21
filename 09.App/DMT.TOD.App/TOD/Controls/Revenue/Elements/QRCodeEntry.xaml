@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="430"
-             d:DesignWidth="800"
+             d:DesignWidth="1000"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -80,10 +80,10 @@
                                Text="บาท" />
                     <TextBlock Width="10" />
                 </StackPanel>
-                <Grid Width="5" DockPanel.Dock="Right" />
+                <Grid Width="5" DockPanel.Dock="Left" />
                 <ctrl:ImageButton x:Name="cmdBack"
-                                  DockPanel.Dock="Right"
-                                  ImageSource="/DMT.TOD.App;component/Images/Button/Home.png">
+                                  DockPanel.Dock="Left"
+                                  ImageSource="/DMT.TOD.App;component/Images/Button/Printer3.png">
                     <TextBlock Style="{StaticResource ImageButtonText}">
                         <Run FontSize="18" Text="พิมพ์รายการ" />
                         <LineBreak />

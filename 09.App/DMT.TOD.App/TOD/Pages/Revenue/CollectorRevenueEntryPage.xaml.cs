@@ -156,7 +156,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoRevenueEntry()
         {
-            entry.Setup(null); // Reset Context.
+            entry.Setup(null, null, null); // Reset Context.
 
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             if (null == plazaGroup)
@@ -501,23 +501,14 @@ namespace DMT.TOD.Pages.Revenue
             _revenueEntry.Lanes = CreateLaneList().Trim();
 
             // Find begin/end of revenue.
-            DateTime begin = DateTime.MinValue;
-            DateTime end = DateTime.MinValue;
+            DateTime begin = _userShift.Begin.Value; // Begin time used start of shift.
+            DateTime end = DateTime.Now; // End time used printed date
 
-            if (begin == DateTime.MinValue)
-            {
-                begin = _userShift.Begin.Value; // Begin time used start of shift.
-            }
-            if (end == DateTime.MinValue)
-            {
-                end = DateTime.Now; // End time used printed date
-            }
-
-            if (_revenueEntry.ShiftBegin == DateTime.MinValue)
+            if (!_revenueEntry.ShiftBegin.HasValue || _revenueEntry.ShiftBegin.Value == DateTime.MinValue)
             {
                 _revenueEntry.ShiftBegin = begin;
             }
-            if (_revenueEntry.ShiftEnd == DateTime.MinValue)
+            if (!_revenueEntry.ShiftEnd.HasValue || _revenueEntry.ShiftEnd == DateTime.MinValue)
             {
                 _revenueEntry.ShiftEnd = end;
             }
@@ -551,7 +542,7 @@ namespace DMT.TOD.Pages.Revenue
                 _revenueEntry.BeltNo = string.Empty;
             }
 
-            entry.Setup(_revenueEntry);
+            entry.Setup(_revenueEntry, _tsb, _plazas);
 
             return true;
         }

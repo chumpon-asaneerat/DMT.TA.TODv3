@@ -52,7 +52,9 @@ namespace DMT.TOD.Controls.Revenue
         /// Setup.
         /// </summary>
         /// <param name="value">The Revenue Entry.</param>
-        public void Setup(Models.RevenueEntry value)
+        /// <param name="tsb"></param>
+        /// <param name="plazas"></param>
+        public void Setup(Models.RevenueEntry value, TSB tsb, List<Plaza> plazas)
         {
             entry = value;
             this.DataContext = entry;
@@ -62,8 +64,8 @@ namespace DMT.TOD.Controls.Revenue
             this.freePass.Setup(entry);
             this.couponSold.Setup(entry);
             this.couponUsage.Setup(entry);
-            this.emvEntry.Setup(entry);
-            this.qrcodeEntry.Setup(entry);
+            this.emvEntry.Setup(entry, tsb, plazas);
+            this.qrcodeEntry.Setup(entry, tsb, plazas);
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

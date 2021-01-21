@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,6 +15,8 @@ using DMT.Services;
 
 namespace DMT.TOD.Controls.Revenue.Elements
 {
+    using scwOps = Services.Operations.SCW.TOD;
+
     /// <summary>
     /// Interaction logic for EMVEntry.xaml
     /// </summary>
@@ -34,7 +37,11 @@ namespace DMT.TOD.Controls.Revenue.Elements
         #region Internal Variables
 
         private TSB _tsb = null;
+        private List<Plaza> _plazas = null;
         private Models.RevenueEntry entry = null;
+
+        private int rowCnt = 0;
+        private decimal amtVal = 0;
 
         #endregion
 
@@ -44,14 +51,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
         {
             if (null != entry)
             {
-                if (entry.IsHistorical)
-                {
-                    LoadItems();
-                }
-                else
-                {
-                    LoadItems();
-                }
+                LoadItems();
             }
             else
             {
@@ -63,17 +63,67 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Private Methods
 
-        /// <summary>
-        /// Load Items.
-        /// </summary>
-        public void LoadItems()
+        private void RefreshEMV(DateTime dt1, DateTime dt2)
         {
-            if (null == entry) return;
-            this.grid.ItemsSource = null;
+            grid.ItemsSource = null;
 
-            if (null == _tsb) _tsb = TSB.GetCurrent().Value();
+            List<LaneEMV> results = new List<LaneEMV>();
+            List<LaneEMV> items = new List<LaneEMV>();
+            List<LaneEMV> sortList = new List<LaneEMV>();
 
-            this.grid.ItemsSource = null;
+            if (null != entry && null != _tsb && null != _plazas)
+            {
+                var userShift = UserShift.GetUserShift(entry.UserId).Value();
+                int networkId = TODConfigManager.Instance.DMT.networkId;
+
+                if (null != userShift && userShift.Begin.HasValue && null != _plazas && _plazas.Count > 0)
+                {
+                    _plazas.ForEach(plaza =>
+                    {
+                        int pzId = plaza.SCWPlazaId;
+                        SCWEMVTransactionList param = new SCWEMVTransactionList();
+                        param.networkId = networkId;
+                        param.plazaId = pzId;
+                        param.staffId = userShift.UserId;
+                        param.startDateTime = dt1;
+                        param.endDateTime = dt2;
+                        var emvList = scwOps.emvTransactionList(param);
+                        if (null != emvList && null != emvList.list)
+                        {
+                            emvList.list.ForEach(item =>
+                            {
+                                if (item.trxDateTime.HasValue &&
+                                    userShift.Begin.Value < item.trxDateTime.Value)
+                                {
+                                    items.Add(new LaneEMV(item));
+                                }
+                            });
+                        }
+                    });
+
+                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
+                }
+                results.AddRange(sortList.ToArray());
+            }
+            // Calculate Summary.
+            if (null != results && results.Count > 0)
+            {
+                rowCnt = results.Count;
+                amtVal = decimal.Zero;
+                sortList.ForEach(item =>
+                {
+                    amtVal += item.Amount;
+                });
+            }
+            else
+            {
+                rowCnt = 0;
+                amtVal = decimal.Zero;
+            }
+
+            UpdateSummary();
+
+            grid.ItemsSource = results;
         }
 
         private void UpdateSummary()
@@ -86,12 +136,28 @@ namespace DMT.TOD.Controls.Revenue.Elements
         #region Public Methods
 
         /// <summary>
+        /// Load Items.
+        /// </summary>
+        public void LoadItems()
+        {
+            if (null == entry) return;
+
+            DateTime dt1 = entry.ShiftBegin.Value;
+            DateTime dt2 = entry.ShiftEnd.Value;
+
+            RefreshEMV(dt1, dt2);
+        }
+        /// <summary>
         /// Setup.
         /// </summary>
         /// <param name="value">The Revenue Entry.</param>
-        public void Setup(Models.RevenueEntry value)
+        /// <param name="tsb"></param>
+        /// <param name="plazas"></param>
+        public void Setup(Models.RevenueEntry value, TSB tsb, List<Plaza> plazas)
         {
             entry = value;
+            _tsb = tsb;
+            _plazas = plazas;
             this.DataContext = entry;
         }
 

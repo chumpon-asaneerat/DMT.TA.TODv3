@@ -371,6 +371,32 @@ namespace DMT.TOD.Pages.Revenue
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
+            if (null != manager && null != manager.UserrShifts.Shift)
+            {
+                var shift = manager.UserrShifts.Shift;
+
+                string dt1 = shift.BeginDateString;
+                string dt2 = shift.EndDateString;
+
+                string msg = string.Format("User Shift found. Begin: {0}, End {1}", dt1, dt2);
+                med.Info(msg);
+
+                manager.RevenueDate = (shift.Begin.HasValue) ? shift.Begin.Value.Date : new DateTime?();
+            }
+            else
+            {
+                string msg = "User Shift not found.";
+                med.Info(msg);
+
+                // Show Message User Shift not found.
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ไม่พบข้อมูลกะของพนักงาน", "DMT - Tour of Duty");
+                win.ShowDialog();
+
+                manager.RevenueDate = new DateTime?();
+            }
+
+
             _userShift = null;
             if (null != _user)
             {

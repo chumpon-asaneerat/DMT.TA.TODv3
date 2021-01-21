@@ -113,6 +113,10 @@ namespace DMT.Services
         /// Gets Current Chief
         /// </summary>
         public User Chief { get; private set; }
+        /// <summary>
+        /// Gets or set User.
+        /// </summary>
+        public User User { get; set; }
 
         #endregion
     }
@@ -235,7 +239,7 @@ namespace DMT.Services
 
     #endregion
 
-    #region UserShiftManager
+    #region UserShiftManager and UserShift ExtensionMethods
 
     /// <summary>
     /// The UserShiftManager class.
@@ -247,16 +251,24 @@ namespace DMT.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        public UserShiftManager() : base() { }
+        private UserShiftManager() : base() { }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="manager">The CurrentTSBManager instance.</param>
+        public UserShiftManager(CurrentTSBManager manager) : this() 
+        {
+            Current = manager;
+        }
 
         #endregion
 
         #region Public Properties
 
         /// <summary>
-        /// Gets User.
+        /// Gets Current TSB Manager.
         /// </summary>
-        public User User { get; set; }
+        public CurrentTSBManager Current { get; private set; }
         /// <summary>
         /// Gets Current User Shift.
         /// </summary>
@@ -264,13 +276,71 @@ namespace DMT.Services
         {
             get 
             {
-                if (null == User) return null;
-                return UserShift.GetUserShift(User.UserId).Value();
+                if (null == Current || null == Current.User) return null;
+                return UserShift.GetUserShift(Current.User.UserId).Value();
             }
         }
 
         #endregion
     }
+
+    /*
+    /// <summary>
+    /// The UserShift Models ExtensionMethods.
+    /// </summary>
+    public static class UserShiftExtensionMethods
+    {
+        #region Gets Begin/End To Date, DateTime String
+
+        /// <summary>
+        /// Get Begin Date String.
+        /// </summary>
+        /// <param name="value">The UseShift instance.</param>
+        /// <returns>Returns Date String if Begin Date Has Value.</returns>
+        public static string BeginDateString(this UserShift value)
+        {
+            if (null == value || !value.Begin.HasValue || value.Begin.Value == DateTime.MinValue)
+                return string.Empty;
+            return value.Begin.Value.ToThaiDateTimeString("dd/MM/yyyy");
+        }
+        /// <summary>
+        /// Get Begin DateTime String.
+        /// </summary>
+        /// <param name="value">The UseShift instance.</param>
+        /// <returns>Returns DateTime String if Begin Date Has Value.</returns>
+        public static string BeginDateTimeString(this UserShift value)
+        {
+            if (null == value || !value.Begin.HasValue || value.Begin.Value == DateTime.MinValue) 
+                return string.Empty;
+            return value.Begin.Value.ToDateTimeString();
+        }
+
+        /// <summary>
+        /// Get End Date String.
+        /// </summary>
+        /// <param name="value">The UseShift instance.</param>
+        /// <returns>Returns Date String if End Date Has Value.</returns>
+        public static string EndDateString(this UserShift value)
+        {
+            if (null == value || !value.End.HasValue || value.End.Value == DateTime.MinValue)
+                return string.Empty;
+            return value.End.Value.ToThaiDateTimeString("dd/MM/yyyy");
+        }
+        /// <summary>
+        /// Get End DateTime String.
+        /// </summary>
+        /// <param name="value">The UseShift instance.</param>
+        /// <returns>Returns DateTime String if End Date Has Value.</returns>
+        public static string EndDateTimeString(this UserShift value)
+        {
+            if (null == value || !value.End.HasValue || value.End.Value == DateTime.MinValue)
+                return string.Empty;
+            return value.End.Value.ToDateTimeString();
+        }
+
+        #endregion
+    }
+    */
 
     #endregion
 
@@ -293,6 +363,7 @@ namespace DMT.Services
             Current = new CurrentTSBManager();
             Jobs = new JobManager(Current);
             Payments = new PaymentManager(Current);
+            UserrShifts = new UserShiftManager(Current);
 
             Clear();
         }
@@ -329,6 +400,10 @@ namespace DMT.Services
         /// Gets Payment Manager.
         /// </summary>
         public PaymentManager Payments { get; private set; }
+        /// <summary>
+        /// Gets User Shift Manager.
+        /// </summary>
+        public UserShiftManager UserrShifts { get; private set; }
 
         #endregion
 
@@ -382,14 +457,17 @@ namespace DMT.Services
         #region User/Chief (Current)
 
         /// <summary>
-        /// Gets or sets User.
+        /// Gets Current User.
         /// </summary>
-        public User User { get; set; }
-
+        public User User 
+        { 
+            get { return this.Current.User; }
+            set { this.Current.User = value; }
+        }
         /// <summary>
-        /// Gets or sets Chief/Supervisor.
+        /// Gets Current Chief.
         /// </summary>
-        public User Supervisor { get; set; }
+        public User Chief { get { return this.Current.Chief; } }
 
         #endregion
 

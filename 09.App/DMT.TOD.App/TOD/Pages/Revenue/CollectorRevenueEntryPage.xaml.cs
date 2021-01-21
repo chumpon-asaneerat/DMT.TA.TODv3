@@ -160,6 +160,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoRevenueEntry()
         {
+            /*
             entry.Setup(null, null, null); // Reset Context.
 
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
@@ -225,7 +226,7 @@ namespace DMT.TOD.Pages.Revenue
                 win.ShowDialog();
                 return;
             }
-
+            */
             // All check condition OK.
             tabs.SelectedIndex = 1; // goto next tab.
         }
@@ -262,6 +263,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void Reset()
         {
+            /*
             // Reset Plaza.
             cbPlazas.SelectedIndex = -1;
             LoadPlazaGroups();
@@ -275,6 +277,7 @@ namespace DMT.TOD.Pages.Revenue
             txtRevDate2.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
 
             _userShift = null;
+            */
         }
 
         private void LoadPlazaGroups()
@@ -289,6 +292,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void LoadTSBJobs()
         {
+            /*
             if (null == _userShift || !_userShift.Begin.HasValue)
             {
                 return;
@@ -336,10 +340,12 @@ namespace DMT.TOD.Pages.Revenue
 
                 LoadPlazaGroupJobs();
             }
+            */
         }
 
         private void LoadPlazaGroupJobs()
         {
+            /*
             grid.ItemsSource = null;
 
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
@@ -366,10 +372,12 @@ namespace DMT.TOD.Pages.Revenue
             }
 
             grid.ItemsSource = _currJobs;
+            */
         }
 
         private void CheckUserShift()
         {
+            /*
             MethodBase med = MethodBase.GetCurrentMethod();
 
             if (null != manager && null != manager.UserrShifts.Shift)
@@ -396,6 +404,7 @@ namespace DMT.TOD.Pages.Revenue
 
                 manager.RevenueDate = new DateTime?();
             }
+            */
 
             /*
             _userShift = null;
@@ -431,6 +440,7 @@ namespace DMT.TOD.Pages.Revenue
 
         public void CheckRevenueShift()
         {
+            /*
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
@@ -451,12 +461,14 @@ namespace DMT.TOD.Pages.Revenue
                 string msg = "User Revenue Shift found.";
                 med.Info(msg);
             }
+            */
         }
 
         private string CreateLaneList()
         {
             // create lane list.
             var Lanes = new List<int>();
+            /*
             if (null != _currJobs)
             {
                 _currJobs.ForEach(job =>
@@ -469,6 +481,7 @@ namespace DMT.TOD.Pages.Revenue
                     }
                 });
             }
+            */
             // Build Lane List String.
             int iCnt = 0;
             int iMax = Lanes.Count;
@@ -479,7 +492,6 @@ namespace DMT.TOD.Pages.Revenue
                 if (iCnt < iMax - 1) laneList += ", ";
                 iCnt++;
             });
-
             return laneList;
         }
 
@@ -503,6 +515,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private bool PrepareRevenueEntry()
         {
+            /*
             MethodBase med = MethodBase.GetCurrentMethod();
 
             txtShiftName.Text = (null != _userShift) ? _userShift.ShiftNameTH : string.Empty;
@@ -580,7 +593,7 @@ namespace DMT.TOD.Pages.Revenue
             }
 
             entry.Setup(_revenueEntry, _tsb, _plazas);
-
+            */
             return true;
         }
 
@@ -593,6 +606,7 @@ namespace DMT.TOD.Pages.Revenue
                 inst.Definition.EmbededReportName);
             // clear reprot datasource.
             inst.DataSources.Clear();
+            /*
             List<RevenueEntry> items = new List<RevenueEntry>();
             if (null != _revenueEntry)
             {
@@ -613,7 +627,7 @@ namespace DMT.TOD.Pages.Revenue
             string histText = (null != _revenueEntry && _revenueEntry.IsHistorical) ?
                 "(นำส่งย้อนหลัง)" : "";
             inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
-
+            */
             return inst;
         }
         /// <summary>
@@ -623,19 +637,22 @@ namespace DMT.TOD.Pages.Revenue
         {
             get
             {
+                return false;
+                /*
                 var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
                 return (null != _userShift &&
                     null != plazaGroup &&
                     null != _revenueShift &&
                     null != _currJobs &&
                     null != _revenueEntry);
+                */
             }
         }
 
         private bool PrepareReport()
         {
             if (!CanBuildReport) return false;
-
+            /*
             var model = GetReportModel();
             if (null == model ||
                 null == model.DataSources || model.DataSources.Count <= 0 ||
@@ -653,12 +670,13 @@ namespace DMT.TOD.Pages.Revenue
             {
                 this.rptViewer.LoadReport(model);
             }
-
+            */
             return true;
         }
 
         private bool SaveRevenueEntry()
         {
+            /*
             if (null == _revenueEntry ||
                 !_revenueEntry.RevenueDate.HasValue ||
                 _revenueEntry.RevenueDate.Value == DateTime.MinValue ||
@@ -689,7 +707,7 @@ namespace DMT.TOD.Pages.Revenue
                     UniqueCode.IncreaseUniqueId("RevenueEntry");
                 }
             }
-
+            */
 
             // TODO: Need TA
             /*
@@ -703,7 +721,7 @@ namespace DMT.TOD.Pages.Revenue
             */
 
             // Save Revenue Entry.
-
+            /*
             var revInst = Models.RevenueEntry.Save(_revenueEntry).Value();
             string revId = (null != revInst) ? revInst.RevenueId : string.Empty;
             if (null != _revenueShift)
@@ -727,10 +745,13 @@ namespace DMT.TOD.Pages.Revenue
             GenerateRevnueFile();
 
             return !bCloseUserShift;
+            */
+            return false;
         }
 
         private void PrintReport()
         {
+            /*
             if (null == _revenueEntry)
             {
                 var win = TODApp.Windows.MessageBox;
@@ -766,13 +787,15 @@ namespace DMT.TOD.Pages.Revenue
                     GotoMainMenu();
                 }
             }
+            */
         }
 
         private void GenerateRevnueFile()
         {
+            /*
             if (null == _revenueEntry) return;
-            // Generate File.
 
+            // Generate File.
             MethodBase med = MethodBase.GetCurrentMethod();
             try
             {
@@ -836,6 +859,7 @@ namespace DMT.TOD.Pages.Revenue
             {
                 med.Err(ex);
             }
+            */
         }
 
         #endregion
@@ -849,8 +873,10 @@ namespace DMT.TOD.Pages.Revenue
         public void Setup(User user)
         {
             tabs.SelectedIndex = 0;
+
             manager.User = user;
             Reset();
+
             CheckUserShift();
             LoadTSBJobs();
         }

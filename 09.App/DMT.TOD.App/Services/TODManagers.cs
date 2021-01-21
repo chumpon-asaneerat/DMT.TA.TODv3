@@ -7,7 +7,7 @@ using System.Net;
 using System.IO;
 //using System.Windows.Forms;
 //using System.Runtime.InteropServices;
-//using System.ComponentModel;
+using System.ComponentModel;
 using System.Reflection;
 
 using DMT.Configurations;
@@ -72,18 +72,12 @@ namespace DMT.Services
 
         private void RaiseUserChanged()
         {
-            if (null != UserChanged)
-            {
-                UserChanged.Call(this, EventArgs.Empty);
-            }
+            UserChanged.Call(this, EventArgs.Empty);
         }
 
         private void RaisePlazaGroupChanged()
         {
-            if (null != PlazaGroupChanged)
-            {
-                PlazaGroupChanged.Call(this, EventArgs.Empty);
-            }
+            PlazaGroupChanged.Call(this, EventArgs.Empty);
         }
 
         #endregion
@@ -257,12 +251,14 @@ namespace DMT.Services
 
         private void Current_UserChanged(object sender, EventArgs e)
         {
-
+            // Raise Event.
+            UserChanged.Call(sender, e);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
-
+            // Raise Event.
+            PlazaGroupChanged.Call(sender, e);
         }
 
         #endregion
@@ -307,6 +303,19 @@ namespace DMT.Services
         /// Gets Current Jobs for specificed user on current shift and plaza goup.
         /// </summary>
         public List<LaneJob> CurrentJobs { get; private set; }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
 
         #endregion
     }
@@ -359,12 +368,14 @@ namespace DMT.Services
 
         private void Current_UserChanged(object sender, EventArgs e)
         {
-
+            // Raise Event.
+            UserChanged.Call(sender, e);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
-
+            // Raise Event.
+            PlazaGroupChanged.Call(sender, e);
         }
 
         #endregion
@@ -383,17 +394,36 @@ namespace DMT.Services
         public CurrentTSBManager Current { get; private set; }
 
         #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
+
+        #endregion
     }
 
     #endregion
 
-    #region UserShiftManager and UserShift ExtensionMethods
+    #region UserShiftManager
 
     /// <summary>
     /// The UserShiftManager class.
     /// </summary>
     public class UserShiftManager
     {
+        #region Internal Variables
+
+        private UserShift _userShift = null;
+
+        #endregion
+
         #region Constructor and Destructor
 
         /// <summary>
@@ -433,12 +463,23 @@ namespace DMT.Services
 
         private void Current_UserChanged(object sender, EventArgs e)
         {
-
+            if (null == Current || null == Current.User)
+            {
+                _userShift = null;
+            }
+            else
+            {
+                _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
+            }
+            // Raise Event.
+            UserChanged.Call(sender, e);
+            UserShiftChanged.Call(this, EventArgs.Empty);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
-
+            // Raise Event.
+            PlazaGroupChanged.Call(sender, e);
         }
 
         #endregion
@@ -454,14 +495,25 @@ namespace DMT.Services
         /// <summary>
         /// Gets Current User Shift.
         /// </summary>
-        public UserShift Shift
-        {
-            get 
-            {
-                if (null == Current || null == Current.User) return null;
-                return UserShift.GetUserShift(Current.User.UserId).Value();
-            }
-        }
+        public UserShift Shift { get { return _userShift; } }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
+
+        /// <summary>
+        /// The UserShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserShiftChanged;
 
         #endregion
     }
@@ -473,8 +525,18 @@ namespace DMT.Services
     /// <summary>
     /// The RevenueEntryManager class.
     /// </summary>
-    public class RevenueEntryManager
+    public class RevenueEntryManager : INotifyPropertyChanged
     {
+        #region Internal Variables
+
+        private DateTime _now = DateTime.Now;
+
+        private bool _byChief = false;
+        private DateTime? _RevenueDate = new DateTime?();
+        private DateTime? _EntryDate = new DateTime?();
+
+        #endregion
+
         #region Constructor and Destructor
 
         /// <summary>
@@ -482,7 +544,9 @@ namespace DMT.Services
         /// </summary>
         public RevenueEntryManager() : base()
         {
-            this.ByChief = false;
+            // Init date(s).
+            _EntryDate = new DateTime?(_now);
+            _RevenueDate = new DateTime?(_now);
 
             Current = new CurrentTSBManager();
             if (null != Current)
@@ -492,8 +556,14 @@ namespace DMT.Services
             }
 
             Jobs = new JobManager(Current);
+
             Payments = new PaymentManager(Current);
+
             UserrShifts = new UserShiftManager(Current);
+            if (null != UserrShifts)
+            {
+                UserrShifts.UserShiftChanged += UserrShifts_UserShiftChanged;
+            }
 
             Clear();
         }
@@ -502,6 +572,11 @@ namespace DMT.Services
         /// </summary>
         ~RevenueEntryManager()
         {
+            if (null != UserrShifts)
+            {
+                UserrShifts.UserShiftChanged -= UserrShifts_UserShiftChanged;
+            }
+
             if (null != Current)
             {
                 Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
@@ -517,12 +592,70 @@ namespace DMT.Services
 
         private void Current_UserChanged(object sender, EventArgs e)
         {
-
+            // Raise Event.
+            UserChanged.Call(sender, e);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
+            // Raise Event.
+            PlazaGroupChanged.Call(sender, e);
+        }
 
+        #endregion
+
+        #region UserShiftManager EventHandlers
+
+        private void UserrShifts_UserShiftChanged(object sender, EventArgs e)
+        {
+            CheckUserShift();
+        }
+
+        #endregion
+
+        #region Event Raisers
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Revenue/Entry Date Check method(s)
+
+        private void CheckRevenueDate()
+        {
+            if (!ByChief)
+            {
+                if (HasUserShift)
+                {
+                    var shift = UserrShifts.Shift;
+                    RevenueDate = (shift.Begin.HasValue) ? shift.Begin.Value.Date : new DateTime?(_now);
+                }
+                else
+                {
+                    RevenueDate = new DateTime?(_now);
+                }
+            }
+            else
+            {
+                // By Chief
+                RevenueDate = new DateTime?(_now);
+            }
+        }
+
+        #endregion
+
+        #region UserShift method(s)
+
+        private void CheckUserShift()
+        {
+            CheckRevenueDate();
         }
 
         #endregion
@@ -533,8 +666,8 @@ namespace DMT.Services
 
         public void Clear()
         {
-            this.EntryDate = DateTime.Now;
-            this.RevenueDate = DateTime.Now;
+            this.EntryDate = new DateTime?(_now);
+            this.RevenueDate = new DateTime?(_now);
         }
 
         #endregion
@@ -559,22 +692,54 @@ namespace DMT.Services
         /// Gets User Shift Manager.
         /// </summary>
         public UserShiftManager UserrShifts { get; private set; }
+        /// <summary>
+        /// Checks Has User Shift.
+        /// </summary>
+        public bool HasUserShift
+        {
+            get { return (null != UserrShifts && null != UserrShifts.Shift); }
+        }
 
         #endregion
 
         #region ByChief
 
         /// <summary>Gets or sets is revenue by chief.</summary>
-        public bool ByChief { get; set; }
+        public bool ByChief 
+        {
+            get { return _byChief; }
+            set
+            {
+                if (_byChief != value)
+                {
+                    _byChief = value;
+                    CheckRevenueDate();
+                    RaiseChanged("ByChief");
+                }
+            }
+        }
 
         #endregion
 
         #region EntryDate
 
         /// <summary>
-        /// Gets or sets Entry Date.
+        /// Gets Entry Date.
         /// </summary>
-        public DateTime? EntryDate { get; internal set; }
+        public DateTime? EntryDate 
+        {
+            get { return _EntryDate; }
+            set
+            {
+                /*
+                if (_EntryDate != value)
+                {
+                    _EntryDate = value;
+                    RaiseChanged("EntryDate");
+                }
+                */
+            }
+        }
         /// <summary>
         /// Gets Entry Date String.
         /// </summary>
@@ -594,7 +759,18 @@ namespace DMT.Services
         /// <summary>
         /// Gets or sets Revenue Date.
         /// </summary>
-        public DateTime? RevenueDate { get; set; }
+        public DateTime? RevenueDate
+        {
+            get { return _RevenueDate; }
+            set
+            {
+                if (_RevenueDate != value)
+                {
+                    _RevenueDate = value;
+                    RaiseChanged("RevenueDate");
+                }
+            }
+        }
         /// <summary>
         /// Gets Revenue Date String.
         /// </summary>
@@ -625,6 +801,24 @@ namespace DMT.Services
         public User Chief { get { return this.Current.Chief; } }
 
         #endregion
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
 
         #endregion
     }

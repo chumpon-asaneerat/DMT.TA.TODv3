@@ -44,6 +44,9 @@ namespace DMT.TOD.Pages.Revenue
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
 
+        private RevenueEntryManager manager = new RevenueEntryManager();
+
+        /*
         private User _user = null; // Supervisor
         private User _selectUser = null; // Collector
 
@@ -56,7 +59,7 @@ namespace DMT.TOD.Pages.Revenue
         private UserShift _revenueShift = null;
 
         private List<LaneJob> _jobs = null;
-
+        */
         #endregion
 
         #region Loaded
@@ -203,14 +206,17 @@ namespace DMT.TOD.Pages.Revenue
 
         private void ResetSelectUser()
         {
+            /*
             _selectUser = null;
             txtSearchUserId.Text = string.Empty;
             txtUserId.Text = string.Empty;
             txtUserName.Text = string.Empty;
+            */
         }
 
         private void SearchUser()
         {
+            /*
             if (!string.IsNullOrEmpty(txtSearchUserId.Text))
             {
                 string userId = txtSearchUserId.Text;
@@ -232,10 +238,12 @@ namespace DMT.TOD.Pages.Revenue
                     grid.ItemsSource = null; // setup null list.
                 }
             }
+            */
         }
 
         private void LoadShifts() 
         {
+            /*
             cbPlazas.ItemsSource = null;
             if (null != _shifts)
             {
@@ -243,10 +251,12 @@ namespace DMT.TOD.Pages.Revenue
                 if (_shifts.Count > 0) cbShifts.SelectedIndex = 0;
             }
             LoadLanes();
+            */
         }
 
         private void LoadPlazaGroups() 
         {
+            /*
             cbPlazas.ItemsSource = null;
             if (null != _plazaGroups)
             {
@@ -254,10 +264,12 @@ namespace DMT.TOD.Pages.Revenue
                 if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
             }
             LoadLanes();
+            */
         }
 
         private void LoadLanes()
         {
+            /*
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             var shift = cbShifts.SelectedItem as Models.Shift;
             if (null == plazaGroup || null == shift)
@@ -277,15 +289,18 @@ namespace DMT.TOD.Pages.Revenue
             _jobs.Clear();
 
             grid.ItemsSource = _jobs;
+            */
         }
 
         private void CheckUserShift()
         {
+            /*
             _userShift = null;
             if (null != _selectUser)
             {
                 _userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
             }
+            */
         }
 
         #endregion
@@ -299,6 +314,11 @@ namespace DMT.TOD.Pages.Revenue
         public void Setup(User user)
         {
             tabs.SelectedIndex = 0;
+
+            manager.User = user;
+            Reset();
+
+            /*
             _user = user;
             if (null != _user)
             {
@@ -311,6 +331,7 @@ namespace DMT.TOD.Pages.Revenue
                 }
             }
             Reset();
+            */
         }
 
         #endregion

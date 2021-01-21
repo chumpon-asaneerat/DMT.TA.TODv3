@@ -33,7 +33,45 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Internal Variables
 
-        private RevenueEntry entry = null;
+        private TSB _tsb = null;
+        private Models.RevenueEntry entry = null;
+
+        #endregion
+
+        #region DataContext Change Handler
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (null != entry)
+            {
+                if (entry.IsHistorical)
+                {
+                    LoadItems();
+                }
+                else
+                {
+                    LoadItems();
+                }
+            }
+            else
+            {
+                UpdateSummary();
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void LoadItems()
+        {
+
+        }
+
+        private void UpdateSummary()
+        {
+
+        }
 
         #endregion
 
@@ -43,7 +81,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
         /// Setup.
         /// </summary>
         /// <param name="value">The Revenue Entry.</param>
-        public void Setup(RevenueEntry value)
+        public void Setup(Models.RevenueEntry value)
         {
             entry = value;
             this.DataContext = entry;

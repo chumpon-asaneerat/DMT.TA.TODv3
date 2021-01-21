@@ -33,7 +33,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Internal Variables
 
-        private RevenueEntry entry = null;
+        private Models.RevenueEntry entry = null;
 
         #endregion
 
@@ -43,7 +43,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
         /// Setup.
         /// </summary>
         /// <param name="value">The Revenue Entry.</param>
-        public void Setup(RevenueEntry value)
+        public void Setup(Models.RevenueEntry value)
         {
             entry = value;
             this.DataContext = entry;

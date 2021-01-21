@@ -101,7 +101,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
                             emvList.list.ForEach(item =>
                             {
                                 if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
-                                    userShift.Begin.Value < item.trxDateTime.Value)
+                                    userShift.Begin.Value <= item.trxDateTime.Value)
                                 {
                                     items.Add(new LaneQRCode(item));
                                 }
@@ -137,7 +137,8 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         private void UpdateSummary()
         {
-
+            txtQty.Text = rowCnt.ToString("n0");
+            txtTotal.Text = amtVal.ToString("n0");
         }
 
         #endregion
@@ -155,6 +156,16 @@ namespace DMT.TOD.Controls.Revenue.Elements
             DateTime dt2 = entry.ShiftEnd.Value;
 
             RefreshQRCODE(dt1, dt2);
+        }
+        /// <summary>
+        /// Gets Items.
+        /// </summary>
+        public List<LaneQRCode> Items
+        {
+            get
+            {
+                return (null != grid.ItemsSource) ? grid.ItemsSource as List<LaneQRCode> : null;
+            }
         }
         /// <summary>
         /// Setup.

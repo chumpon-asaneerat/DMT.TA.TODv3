@@ -12,6 +12,8 @@ using DMT.Services;
 
 namespace DMT
 {
+    using taOps = Services.Operations.TA.Notify;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -41,6 +43,9 @@ namespace DMT
             PageContentManager.Instance.Start();
             // Init Main Menu
             PageContentManager.Instance.Current = new TOD.Pages.Menu.MainMenu();
+
+            // Raise Event to notify TA App.
+            taOps.ShiftChanged();
         }
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)

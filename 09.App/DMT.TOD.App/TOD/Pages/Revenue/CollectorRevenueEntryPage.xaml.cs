@@ -11,6 +11,7 @@ using System.Windows.Controls;
 
 using DMT.Configurations;
 using DMT.Models;
+using DMT.Models.ExtensionMethods;
 using DMT.Services;
 
 using NLib;
@@ -116,15 +117,13 @@ namespace DMT.TOD.Pages.Revenue
 
         private void cmdBack3_Click(object sender, RoutedEventArgs e)
         {
-            GotoBack();
+            GotoPrevious();
         }
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
             // Printing.
-
-            // Go Back to Main Menu.
-            GotoMainMenu();
+            PrintReport();
         }
 
         #endregion
@@ -138,7 +137,7 @@ namespace DMT.TOD.Pages.Revenue
             PageContentManager.Instance.Current = page;
         }
 
-        private void GotoBack()
+        private void GotoPrevious()
         {
             if (tabs.SelectedIndex == 0)
             {
@@ -246,7 +245,13 @@ namespace DMT.TOD.Pages.Revenue
             }
 
             // Slip Preview
-
+            if (!PrepareReport())
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("พบปัญหาในการเตรียมข้อมูลสำหรับจัดพิมพ์", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
             tabs.SelectedIndex = 2;
         }
 
@@ -545,6 +550,260 @@ namespace DMT.TOD.Pages.Revenue
             entry.Setup(_revenueEntry, _tsb, _plazas);
 
             return true;
+        }
+
+        private RdlcReportModel GetReportModel()
+        {
+            Assembly assembly = this.GetType().Assembly;
+            RdlcReportModel inst = new RdlcReportModel();
+            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
+            inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
+                inst.Definition.EmbededReportName);
+            // clear reprot datasource.
+            inst.DataSources.Clear();
+            List<RevenueEntry> items = new List<RevenueEntry>();
+            if (null != _revenueEntry)
+            {
+                items.Add(_revenueEntry);
+            }
+
+            // assign new data source
+            RdlcReportDataSource mainDS = new RdlcReportDataSource();
+            mainDS.Name = "main"; // the datasource name in the rdlc report.
+            mainDS.Items = items; // setup data source
+            // Add to datasources
+            inst.DataSources.Add(mainDS);
+
+            // Add parameters (if required).
+            DateTime today = DateTime.Now;
+            string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+            inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
+            string histText = (null != _revenueEntry && _revenueEntry.IsHistorical) ?
+                "(นำส่งย้อนหลัง)" : "";
+            inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
+
+            return inst;
+        }
+        /// <summary>
+        /// Checks all information to build report is loaded.
+        /// </summary>
+        private bool CanBuildReport
+        {
+            get
+            {
+                var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+                return (null != _userShift &&
+                    null != plazaGroup &&
+                    null != _revenueShift &&
+                    null != _currJobs &&
+                    null != _revenueEntry);
+            }
+        }
+
+        private bool PrepareReport()
+        {
+            if (!CanBuildReport) return false;
+
+            var model = GetReportModel();
+            if (null == model ||
+                null == model.DataSources || model.DataSources.Count <= 0 ||
+                null == model.DataSources[0] || null == model.DataSources[0].Items)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("No result found.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                if (win.ShowDialog() == true)
+                {
+                    this.rptViewer.ClearReport();
+                }
+            }
+            else
+            {
+                this.rptViewer.LoadReport(model);
+            }
+
+            return true;
+        }
+
+        private bool SaveRevenueEntry()
+        {
+            if (null == _revenueEntry ||
+                !_revenueEntry.RevenueDate.HasValue ||
+                _revenueEntry.RevenueDate.Value == DateTime.MinValue ||
+                !_revenueEntry.EntryDate.HasValue ||
+                _revenueEntry.EntryDate.Value == DateTime.MinValue)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("Entry Date or Revenue Date is not set.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return false;
+            }
+
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == plazaGroup || null == _userShift) return false;
+
+            // Save information.
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            if (_revenueEntry.RevenueId == string.Empty)
+            {
+                // Set Unique ID.
+                var unique = UniqueCode.GetUniqueId("RevenueEntry").Value();
+                if (string.IsNullOrWhiteSpace(_revenueEntry.RevenueId))
+                {
+                    string yr = DateTime.Now.ToThaiDateTimeString("yy");
+                    string autoId = (null != unique) ? yr + unique.LastNumber.ToString("D5") : string.Empty; // auto generate.
+                    _revenueEntry.RevenueId = autoId;
+                    UniqueCode.IncreaseUniqueId("RevenueEntry");
+                }
+            }
+
+
+            // TODO: Need TA
+            /*
+            // Set UserCredits's Revenue Id
+            var usrSearch = Search.UserCredits.GetActiveById.Create(
+                _userShift.UserId, plazaGroup.PlazaGroupId);
+            UserCreditBalance userCredit = null;
+            userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
+            userCredit.RevenueId = this.RevenueEntry.RevenueId;
+            ops.Credits.SaveUserCreditBalance(userCredit);
+            */
+
+            // Save Revenue Entry.
+
+            var revInst = Models.RevenueEntry.Save(_revenueEntry).Value();
+            string revId = (null != revInst) ? revInst.RevenueId : string.Empty;
+            if (null != _revenueShift)
+            {
+                // save revenue shift (for plaza)
+                UserShiftRevenue.SavePlazaRevenue(_revenueShift, _revenueEntry.RevenueDate.Value, revId);
+            }
+
+            // get all lanes information.
+            bool bCloseUserShift = (
+                (null == _allJobs && null == _currJobs) ||
+                (null != _allJobs && null != _currJobs && _allJobs.Count == _currJobs.Count));
+
+            if (bCloseUserShift)
+            {
+                // no lane activitie in user shift.
+                UserShift.EndUserShift(_userShift);
+            }
+
+            // Generte Revenue (declare) File and mark sync status.
+            GenerateRevnueFile();
+
+            return !bCloseUserShift;
+        }
+
+        private void PrintReport()
+        {
+            if (null == _revenueEntry)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("Revenue Entry is not found.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+
+            bool hasActivitied = SaveRevenueEntry();
+
+            if (_revenueEntry.RevenueDate.HasValue && _revenueEntry.RevenueDate.Value != DateTime.MinValue &&
+                _revenueEntry.EntryDate.HasValue && _revenueEntry.EntryDate.Value != DateTime.MinValue)
+            {
+                // print reports only date exists.
+                this.rptViewer.Print();
+            }
+
+            if (!hasActivitied || null == _user)
+            {
+                GotoMainMenu();
+            }
+            else
+            {
+                // Still has more jobs on another Plaza Group.
+                var win = TODApp.Windows.MessageBoxYesNo;
+                win.Setup("กะปัจจุบันยังป้อนรายได้ไม่ครบ ต้องการป้อนรายได้ต่อหรือไม่ ?", "DMT - Tour of Duty");
+                if (win.ShowDialog() == true)
+                {
+                    Setup(_user); // Goback to first page.
+                }
+                else
+                {
+                    GotoMainMenu();
+                }
+            }
+        }
+
+        private void GenerateRevnueFile()
+        {
+            if (null == _revenueEntry) return;
+            // Generate File.
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (null == _revenueEntry) return;
+
+                int networkId = TODConfigManager.Instance.DMT.networkId;
+
+                // Need to sync currency and coupon master!!
+                var currencies = MCurrency.GetCurrencies().Value();
+                var coupons = MCoupon.GetCoupons().Value();
+                var cardAllows = MCardAllow.GetCardAllows().Value();
+
+                var emv = new List<SCWEMVTransaction>();
+                if (null != entry.EMVItems)
+                {
+                    entry.EMVItems.ForEach(item => 
+                    {
+                        if (null == item.Transaction) return;
+                        emv.Add(item.Transaction);
+                    });
+                }
+                var qrCode = new List<SCWQRCodeTransaction>();//RevenueEntryManager.GetQRCodeList(tsb, value, value.RevenueEntry);
+                if (null != entry.QRCodeItems)
+                {
+                    entry.QRCodeItems.ForEach(item =>
+                    {
+                        if (null == item.Transaction) return;
+                        qrCode.Add(item.Transaction);
+                    });
+                }
+
+                // find lane attendances.
+                var jobs = new List<SCWJob>(); //ops.Lanes.GetAttendancesByRevenue(entry).Value();
+                _currJobs.ForEach(job => 
+                {
+                    if (null == job.Job) return;
+                    jobs.Add(job.Job);
+                });
+
+                int plazaId = (null != _plazas && _plazas.Count > 0) ? _plazas[0].SCWPlazaId : -1;
+
+                if (plazaId == -1)
+                {
+                    med.Info("declare error: Cannot search plaza id.");
+                    return;
+                }
+
+                // Create declare json file.
+                // send to server
+                SCWDeclare declare = _revenueEntry.ToServer(networkId, currencies, coupons, cardAllows,
+                    jobs, emv, qrCode, plazaId);
+                // send.
+                SCWMQService.Instance.WriteQueue(declare);
+
+                // Update local database status.
+                _revenueEntry.Status = 1; // generated json file OK.
+                _revenueEntry.LastUpdate = DateTime.Now;
+                Models.RevenueEntry.Save(_revenueEntry);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
         }
 
         #endregion

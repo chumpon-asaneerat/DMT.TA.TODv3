@@ -132,9 +132,9 @@ namespace NLib.Wpf.Controls
         public void LoadReport(RdlcReportModel reportSource)
         {
             rptViewer.LoadReport(reportSource);
-            if (rptViewer.ZoomMode != ZoomMode.FullPage)
+            if (rptViewer.ZoomMode != ZoomMode.PageWidth)
             {
-                rptViewer.ZoomMode = ZoomMode.FullPage;
+                rptViewer.ZoomMode = ZoomMode.PageWidth;
             }
         }
         /// <summary>

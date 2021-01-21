@@ -281,7 +281,7 @@ namespace DMT.TOD.Pages.TollAdmin
                             emvList.list.ForEach(item =>
                             {
                                 if (item.trxDateTime.HasValue &&
-                                    userShift.Begin.Value < item.trxDateTime.Value)
+                                    userShift.Begin.Value <= item.trxDateTime.Value)
                                 {
                                     items.Add(new LaneEMV(item));
                                 }
@@ -335,7 +335,7 @@ namespace DMT.TOD.Pages.TollAdmin
                             emvList.list.ForEach(item =>
                             {
                                 if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
-                                    userShift.Begin.Value < item.trxDateTime.Value)
+                                    userShift.Begin.Value <= item.trxDateTime.Value)
                                 {
                                     items.Add(new LaneQRCode(item));
                                 }

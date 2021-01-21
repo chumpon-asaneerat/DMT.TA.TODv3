@@ -4,6 +4,7 @@
              xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:nlib="clr-namespace:NLib.Wpf.Controls;assembly=NLib.Reports"
              xmlns:rev="clr-namespace:DMT.TOD.Controls.Revenue"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -295,14 +296,13 @@
                     </DockPanel>
                     <!--  WORK AREA  -->
                     <DockPanel LastChildFill="True">
-                        <Border Background="DimGray"
+                        <Border HorizontalAlignment="Stretch"
+                                Background="DimGray"
                                 BorderBrush="DimGray"
                                 BorderThickness="1"
-                                DockPanel.Dock="Top"
-                                HorizontalAlignment="Stretch">
-                            <DockPanel LastChildFill="True"
-                                       HorizontalAlignment="Center">
-                                <TextBlock DockPanel.Dock="Top" Height="2" />
+                                DockPanel.Dock="Top">
+                            <DockPanel HorizontalAlignment="Center" LastChildFill="True">
+                                <TextBlock Height="2" DockPanel.Dock="Top" />
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                                     <TextBlock Width="120"
                                                DockPanel.Dock="Left"
@@ -339,7 +339,7 @@
                                                Style="{StaticResource LabelText}" />
                                     <Grid />
                                 </DockPanel>
-                                <TextBlock DockPanel.Dock="Top" Height="2" />
+                                <TextBlock Height="2" DockPanel.Dock="Top" />
                                 <DockPanel DockPanel.Dock="Top" LastChildFill="True">
                                     <TextBlock Width="120"
                                                DockPanel.Dock="Left"
@@ -366,7 +366,7 @@
                                                TextAlignment="Center" />
                                     <Grid />
                                 </DockPanel>
-                                <TextBlock DockPanel.Dock="Top" Height="2" />
+                                <TextBlock Height="2" DockPanel.Dock="Top" />
                                 <Grid />
                             </DockPanel>
                         </Border>
@@ -394,21 +394,21 @@
                                           Click="cmdBack3_Click"
                                           DockPanel.Dock="Left"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Edit.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="แก้ไข" />
+                            <TextBlock Style="{StaticResource ImageButtonText}"
+                                       Text="แก้ไข" />
                         </ctrl:ImageButton>
                         <Grid Width="5" DockPanel.Dock="Left" />
                         <ctrl:ImageButton x:Name="cmdOk"
                                           Click="cmdOk_Click"
                                           DockPanel.Dock="Right"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Approve.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยืนยัน นำส่งรายได้" />
+                            <TextBlock Style="{StaticResource ImageButtonText}"
+                                       Text="ยืนยัน นำส่งรายได้" />
                         </ctrl:ImageButton>
                         <Grid Width="5" DockPanel.Dock="Right" />
                     </DockPanel>
                     <!--  WORK AREA  -->
-                    <DockPanel LastChildFill="True">
-                        <Grid />
-                    </DockPanel>
+                    <nlib:WpfReportViewer x:Name="rptViewer" Margin="2" />
                 </DockPanel>
             </ScrollViewer>
         </TabItem>

@@ -104,6 +104,26 @@ namespace DMT.TOD.Controls.Revenue
         /// Checks Has Belt.
         /// </summary>
         public bool HasBeltNo { get { return !string.IsNullOrWhiteSpace(txtBeltNo.Text); } }
+        /// <summary>
+        /// Gets EMV Items.
+        /// </summary>
+        public List<LaneEMV> EMVItems
+        {
+            get
+            {
+                return this.emvEntry.Items;
+            }
+        }
+        /// <summary>
+        /// Gets QRCode Items.
+        /// </summary>
+        public List<LaneQRCode> QRCodeItems
+        {
+            get
+            {
+                return this.qrcodeEntry.Items;
+            }
+        }
 
         #endregion
     }

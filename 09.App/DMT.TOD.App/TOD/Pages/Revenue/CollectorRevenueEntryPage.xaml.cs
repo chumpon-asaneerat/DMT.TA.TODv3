@@ -47,6 +47,9 @@ namespace DMT.TOD.Pages.Revenue
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         //private CultureInfo culture = new CultureInfo("th-TH");
 
+        private RevenueEntryManager manager = new RevenueEntryManager();
+
+        /*
         private User _user = null;
         private User _supervisor = null;
 
@@ -67,6 +70,7 @@ namespace DMT.TOD.Pages.Revenue
         private bool _SCWOnline = false;
         private List<LaneJob> _allJobs = null;
         private List<LaneJob> _currJobs = null;
+        */
 
         #endregion
 
@@ -817,21 +821,7 @@ namespace DMT.TOD.Pages.Revenue
         public void Setup(User user)
         {
             tabs.SelectedIndex = 0;
-            _user = user;
-            if (null != _user)
-            {
-                _tsb = TSB.GetCurrent().Value();
-                if (null != _tsb)
-                {
-                    // Gets Supervisor
-                    var tsbShift = TSBShift.GetTSBShift(_tsb.TSBId).Value();
-                    _supervisor = (null != tsbShift) ? User.GetByUserId(tsbShift.UserId).Value() : null;
-                    // Get Plaza Groups
-                    _plazaGroups = PlazaGroup.GetTSBPlazaGroups(_tsb).Value();
-                    // Gets Plazas
-                    _TSBPlazas = Plaza.GetTSBPlazas(_tsb).Value();
-                }
-            }
+            manager.User = user;
             Reset();
             CheckUserShift();
             LoadTSBJobs();

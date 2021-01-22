@@ -31,7 +31,7 @@
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource TrafficBHT1Count}" />
                     <TextBlock Width="5" />
-                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                 </StackPanel>
                 <!--  2 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
@@ -39,7 +39,7 @@
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource TrafficBHT2Count}" />
                     <TextBlock Width="5" />
-                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                 </StackPanel>
                 <!--  5 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
@@ -47,7 +47,7 @@
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource TrafficBHT5Count}" />
                     <TextBlock Width="5" />
-                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                 </StackPanel>
                 <!--  10 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
@@ -55,7 +55,7 @@
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource TrafficBHT10Count}" />
                     <TextBlock Width="5" />
-                    <TextBlock Style="{StaticResource ConinCountUnitStyle}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                 </StackPanel>
                 <!--  20 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">

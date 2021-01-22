@@ -135,7 +135,7 @@
     </Style>
 
     <!--  EACH BANK NOTE COUNT UNIT  -->
-    <Style x:Key="ConinCountUnitStyle"
+    <Style x:Key="CoinCountUnitStyle"
            BasedOn="{StaticResource UnitStyle}"
            TargetType="TextBlock">
         <Setter Property="Text" Value="เหรียญ" />

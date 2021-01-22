@@ -631,6 +631,8 @@ namespace DMT.Services
             var tsbPlazas = Current.TSBPlazas;
             if (null != tsbPlazas)
             {
+                var jobs = new List<LaneJob>();
+
                 tsbPlazas.ForEach(plaza =>
                 {
                     // Load job for each user.
@@ -644,7 +646,6 @@ namespace DMT.Services
                     isOnline = (null != ret && null != ret.status && ret.status.code == "S200");
                     if (isOnline && null != ret.list && ret.list.Count > 0)
                     {
-                        var jobs = new List<LaneJob>();
                         // Loop to find match job.
                         ret.list.ForEach(job =>
                         {
@@ -669,11 +670,11 @@ namespace DMT.Services
                                 }
                             }
                         });
-
-                        // sort by BOJ DateTime and assigned to jobs list.
-                        AllJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
                     }
                 });
+
+                // sort by BOJ DateTime and assigned to jobs list.
+                AllJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
 
                 LoadPlazaGroupJobs();
             }
@@ -681,9 +682,30 @@ namespace DMT.Services
 
         private void LoadPlazaGroupJobs()
         {
-            if (null == PlazaGroup) return;
             if (null == PlazaGroupJobs) PlazaGroupJobs = new List<LaneJob>();
             PlazaGroupJobs.Clear();
+
+            if (null == PlazaGroup) return;
+
+            var plazagroupPlazas = Plaza.GetPlazaGroupPlazas(PlazaGroup).Value();
+
+            if (null == plazagroupPlazas || null == AllJobs || AllJobs.Count <= 0)
+                return;
+
+            if (null != plazagroupPlazas)
+            {
+                plazagroupPlazas.ForEach(plaza =>
+                {
+                    AllJobs.ForEach(job =>
+                    {
+                        if (job.PlazaGroupId == plaza.PlazaGroupId)
+                        {
+                            // Match Selected Plaza Group Id.
+                            PlazaGroupJobs.Add(job);
+                        }
+                    });
+                });
+            }
         }
 
         #endregion

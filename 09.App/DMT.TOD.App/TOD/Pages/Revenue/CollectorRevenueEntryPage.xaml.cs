@@ -91,7 +91,7 @@ namespace DMT.TOD.Pages.Revenue
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             if (null != manager && null != manager.Current && null == plazaGroup) return;
             manager.Current.PlazaGroup = plazaGroup;
-            LoadTSBJobs();
+            RefreshJobList();
         }
 
         #endregion
@@ -277,6 +277,21 @@ namespace DMT.TOD.Pages.Revenue
             }
         }
 
+        private void RefreshJobList()
+        {
+            grid.ItemsSource = null;
+
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == manager || null == manager.UserShift || null == plazaGroup) return;
+            // Refresh jobs.
+            manager.Jobs.OnlyJobInShift = true;
+            manager.Jobs.UserShift = manager.UserShift; // assign current user shift.
+            manager.Jobs.PlazaGroup = plazaGroup; // assign selected plaza group.
+            manager.Jobs.Refresh();
+            // Bind to ListView
+            grid.ItemsSource = manager.Jobs.PlazaGroupJobs;
+        }
+
         #endregion
 
         private void Reset()
@@ -284,6 +299,8 @@ namespace DMT.TOD.Pages.Revenue
             // Reset Plaza.
             cbPlazas.SelectedIndex = -1;
             LoadPlazaGroups();
+            // Load Job.
+            RefreshJobList();
 
             // Set Bindings On Tab - Date Selection.
             txtRevDate.DataContext = manager;
@@ -294,154 +311,6 @@ namespace DMT.TOD.Pages.Revenue
             txtRevDate2.DataContext = manager;
             txtUserId2.DataContext = manager;
             txtUserName2.DataContext = manager;
-        }
-
-        private void LoadTSBJobs()
-        {
-            /*
-            if (null == _userShift || !_userShift.Begin.HasValue)
-            {
-                return;
-            }
-
-            int networkId = TODConfigManager.Instance.DMT.networkId;
-
-            // Create new job list.
-            if (null == _allJobs) _allJobs = new List<LaneJob>();
-            _allJobs.Clear();
-
-            // Gets jobs from each plaza on selected UserShift.
-            if (null != _TSBPlazas)
-            {
-                _TSBPlazas.ForEach(plaza =>
-                {
-                    // Load job for each user.
-                    var param = new SCWJobList();
-                    param.networkId = networkId;
-                    param.plazaId = plaza.SCWPlazaId;
-                    param.staffId = _userShift.UserId;
-
-                    var ret = scwOps.jobList(param);
-                    // Checks execute status.
-                    _SCWOnline = (null != ret && null != ret.status && ret.status.code == "S200");
-
-                    if (_SCWOnline && null != ret.list && ret.list.Count > 0)
-                    {
-                        var jobs = new List<LaneJob>();
-
-                        ret.list.ForEach(job =>
-                        {
-                            if (job.bojDateTime.HasValue &&
-                                _userShift.Begin.Value <= job.bojDateTime.Value &&
-                                job.plazaId.Value == plaza.SCWPlazaId)
-                            {
-                                jobs.Add(new LaneJob(job, _userShift));
-                            }
-                        });
-
-                        // sort and assigned to jobs list.
-                        _allJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
-                    }
-                });
-
-                LoadPlazaGroupJobs();
-            }
-            */
-        }
-
-        private void LoadPlazaGroupJobs()
-        {
-            /*
-            grid.ItemsSource = null;
-
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            _plazas = (null != plazaGroup) ? Plaza.GetPlazaGroupPlazas(plazaGroup).Value() : null;
-
-            if (null == _currJobs) _currJobs = new List<LaneJob>();
-            _currJobs.Clear();
-
-            if (null == _plazas || null == _allJobs || _allJobs.Count <= 0) return;
-
-            if (null != _plazas)
-            {
-                _plazas.ForEach(plaza => 
-                {
-                    _allJobs.ForEach(job =>
-                    {
-                        if (job.PlazaGroupId == plaza.PlazaGroupId)
-                        {
-                            // Match Selected Plaza Group Id.
-                            _currJobs.Add(job);
-                        }
-                    });
-                });
-            }
-
-            grid.ItemsSource = _currJobs;
-            */
-        }
-
-        private void CheckUserShift()
-        {
-            /*
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            if (null != manager && null != manager.UserrShifts.Shift)
-            {
-                var shift = manager.UserrShifts.Shift;
-
-                string dt1 = shift.BeginDateString;
-                string dt2 = shift.EndDateString;
-
-                string msg = string.Format("User Shift found. Begin: {0}, End {1}", dt1, dt2);
-                med.Info(msg);
-
-                manager.RevenueDate = (shift.Begin.HasValue) ? shift.Begin.Value.Date : new DateTime?();
-            }
-            else
-            {
-                string msg = "User Shift not found.";
-                med.Info(msg);
-
-                // Show Message User Shift not found.
-                var win = TODApp.Windows.MessageBox;
-                win.Setup("ไม่พบข้อมูลกะของพนักงาน", "DMT - Tour of Duty");
-                win.ShowDialog();
-
-                manager.RevenueDate = new DateTime?();
-            }
-            */
-
-            /*
-            _userShift = null;
-            if (null != _user)
-            {
-                _userShift = UserShift.GetUserShift(_user.UserId).Value();
-                if (null != _userShift)
-                {
-                    string dt1 = (_userShift.Begin.HasValue) ? _userShift.Begin.Value.ToDateTimeString() : string.Empty;
-                    string dt2 = (_userShift.End.HasValue) ? _userShift.End.Value.ToDateTimeString() : string.Empty;
-
-                    string msg = string.Format("User Shift found. Begin: {0}, End {1}", dt1, dt2);
-                    med.Info(msg);
-
-                    // Update Revenue Date to UI.
-                    _revDate = (_userShift.Begin.HasValue) ? _userShift.Begin.Value.Date : new DateTime?();
-                    txtRevDate.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
-                    txtRevDate2.Text = txtRevDate.Text;
-                }
-                else
-                {
-                    string msg = "User Shift not found.";
-                    med.Info(msg);
-
-                    // Show Message User Shift not found.
-                    var win = TODApp.Windows.MessageBox;
-                    win.Setup("ไม่พบข้อมูลกะของพนักงาน", "DMT - Tour of Duty");
-                    win.ShowDialog();
-                }
-            }
-            */
         }
 
         public void CheckRevenueShift()
@@ -882,9 +751,6 @@ namespace DMT.TOD.Pages.Revenue
 
             manager.User = user;
             Reset();
-
-            CheckUserShift();
-            LoadTSBJobs();
         }
 
         #endregion

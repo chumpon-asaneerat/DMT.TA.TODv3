@@ -86,9 +86,11 @@ namespace DMT.TOD.Pages.TollAdmin
         {
             lstLaneJobs.ItemsSource = null;
             if (null == value || !value.Begin.HasValue) return; // no selection.
+            // Refresh jobs.
             jobMgr.OnlyJobInShift = true;
-            jobMgr.UserShift = value;
+            jobMgr.UserShift = value;// assign selected user shift.
             jobMgr.Refresh();
+            // Bind to ListView
             lstLaneJobs.ItemsSource = jobMgr.AllJobs;
         }
 

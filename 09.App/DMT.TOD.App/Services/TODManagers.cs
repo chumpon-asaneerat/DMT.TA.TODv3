@@ -721,7 +721,11 @@ namespace DMT.Services
         {
             LoadTSBJobs();
         }
-
+        /// <summary>
+        /// Gets all jobs or seelcted jobs lane string i.e. 3,4,5.
+        /// </summary>
+        /// <param name="checkSelected"></param>
+        /// <returns></returns>
         public string GetLaneString(bool checkSelected)
         {
             var Lanes = new List<int>();
@@ -753,6 +757,47 @@ namespace DMT.Services
                 iCnt++;
             });
             return laneList;
+        }
+
+        /// <summary>
+        /// Checks is user selection is continuous.
+        /// </summary>
+        public bool IsContinuous
+        {
+            get
+            {
+                bool isContinuous = true;
+                if (OnlyJobInShift) return isContinuous;
+
+                if (null != PlazaGroupJobs && PlazaGroupJobs.Count > 0)
+                {
+                    // Create indexes list.
+                    int idx = 0;
+                    List<int> indexs = new List<int>();
+                    foreach (var job in PlazaGroupJobs)
+                    {
+                        if (job.Selected) indexs.Add(idx);
+                        idx++;
+                    }
+                    // Check Continuous
+                    if (null != indexs && indexs.Count > 0)
+                    {
+                        // 3, 4, 5, 7
+                        int currIndex = indexs[0] - 1; // set init value to first minus 1 for check in loop.
+                        foreach (int val in indexs)
+                        {
+                            if (val - 1 > currIndex)
+                            {
+                                isContinuous = false;
+                                break;
+                            }
+                            currIndex = val; // update new current index.
+                        }
+                    }
+                }
+
+                return isContinuous;
+            }
         }
 
         #endregion

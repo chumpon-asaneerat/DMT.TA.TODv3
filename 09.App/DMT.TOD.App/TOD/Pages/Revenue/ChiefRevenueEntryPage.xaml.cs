@@ -232,47 +232,20 @@ namespace DMT.TOD.Pages.Revenue
 
             #region Check is Continuous selection
 
-            /*
             bool isContinuous = true;
-            if (null != _manager.Attendances && _manager.Attendances.Count > 0)
+            if (null != manager.Jobs && null != manager.Jobs.PlazaGroupJobs && manager.Jobs.PlazaGroupJobs.Count > 0)
             {
-                // Create indexes list.
-                int idx = 0;
-                List<int> indexs = new List<int>();
-                foreach (var att in _manager.Attendances)
-                {
-                    if (att.Selected) indexs.Add(idx);
-                    idx++;
-                }
-                // Check Continuous
-                if (null != indexs && indexs.Count > 0)
-                {
-                    // 3, 4, 5, 7
-                    int currIndex = indexs[0] - 1; // set init value to first minus 1 for check in loop.
-                    foreach (int val in indexs)
-                    {
-                        if (val - 1 > currIndex)
-                        {
-                            isContinuous = false;
-                            break;
-                        }
-                        currIndex = val; // update new current index.
-                    }
-                }
+                isContinuous = manager.Jobs.IsContinuous;
             }
 
             if (!isContinuous)
             {
-                DMT.Windows.MessageBoxWindow msg = new DMT.Windows.MessageBoxWindow();
-                msg.Owner = Application.Current.MainWindow;
-                msg.Setup("การเลือกรายการ ต้องเป็นรายการต่อเเนื่องกันเท่านั้น", "DMT - Tour of Duty");
-                if (msg.ShowDialog() == true)
-                {
-                    cbPlazas.Focus();
-                }
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("การเลือกรายการ ต้องเป็นรายการต่อเเนื่องกันเท่านั้น", "DMT - Tour of Duty");
+                win.ShowDialog();
+                cbPlazas.Focus();
                 return;
             }
-            */
 
             #endregion
 
@@ -351,11 +324,6 @@ namespace DMT.TOD.Pages.Revenue
         private void ResetSelectUser()
         {
             if (null != manager) manager.User = null;
-            /*
-            txtSearchUserId.Text = string.Empty;
-            txtUserId.Text = string.Empty;
-            txtUserName.Text = string.Empty;
-            */
         }
 
         private void SearchUser()
@@ -373,17 +341,31 @@ namespace DMT.TOD.Pages.Revenue
             }
         }
 
-        private void CreateUserShift()
-        {
-            if (null != manager)
-            {
-                manager.UserShifts.IsCustom = true;
-            }
-        }
-
         private void PrintReport()
         {
+            #region Check Has BagNo/BeltNo
 
+            if (!entry.HasBagNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุ หมายเลขถุงเงิน", "DMT - Tour of Duty");
+                win.ShowDialog();
+                entry.FocusBagNo();
+                return;
+            }
+            if (!entry.HasBeltNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Tour of Duty");
+                win.ShowDialog();
+                entry.FocusBeltNo();
+                return;
+            }
+
+            #endregion
+
+            // All OK so goto next tab.
+            tabs.SelectedIndex = 2;
         }
 
         #endregion

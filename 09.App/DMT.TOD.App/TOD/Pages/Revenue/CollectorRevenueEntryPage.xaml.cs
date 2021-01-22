@@ -240,6 +240,8 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoPrintPreview()
         {
+            #region Check Has BagNo/BeltNo
+
             if (!entry.HasBagNo)
             {
                 var win = TODApp.Windows.MessageBox;
@@ -257,6 +259,8 @@ namespace DMT.TOD.Pages.Revenue
                 return;
             }
 
+            #endregion
+
             // Slip Preview
             if (!PrepareReport())
             {
@@ -265,6 +269,7 @@ namespace DMT.TOD.Pages.Revenue
                 win.ShowDialog();
                 return;
             }
+            // All OK so goto next tab.
             tabs.SelectedIndex = 2;
         }
 

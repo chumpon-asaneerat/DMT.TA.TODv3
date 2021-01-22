@@ -9,6 +9,7 @@
         Height="250"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
@@ -50,8 +51,8 @@
                            DockPanel.Dock="Bottom">
                     <Grid Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdCancel"
-                                      DockPanel.Dock="Left"
                                       Click="cmdCancel_Click"
+                                      DockPanel.Dock="Left"
                                       ImageSource="/DMT.Controls;component/Images/Button/Cancel2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                     </ctrl:ImageButton>

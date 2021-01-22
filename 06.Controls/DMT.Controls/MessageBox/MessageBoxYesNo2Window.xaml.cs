@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 #endregion
 
@@ -28,6 +30,19 @@ namespace DMT.Windows
         public MessageBoxYesNo2Window()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Window Handlers
+
+        private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                DialogResult = false;
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -64,6 +79,12 @@ namespace DMT.Windows
             txtMsg3.Text = msg3;
             txtMsg4.Text = msg4;
             txtMsg5.Text = msg5;
+
+            // Focus on Ok button.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                cmdOk.Focus();
+            }));
         }
     }
 }

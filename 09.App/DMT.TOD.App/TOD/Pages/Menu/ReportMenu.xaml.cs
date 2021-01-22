@@ -61,15 +61,23 @@ namespace DMT.TOD.Pages.Menu
         private void GotoMainMenu()
         {
             // Main Menu Page
-            var page = new Menu.MainMenu();
+            var page = TODApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
         }
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="user">The User Instance.</param>
         public void Setup(User user)
         {
             _user = user;
         }
+
+        #endregion
     }
 }

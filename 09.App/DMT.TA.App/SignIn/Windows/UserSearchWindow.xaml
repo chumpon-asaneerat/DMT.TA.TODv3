@@ -10,6 +10,7 @@
         Height="400"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
@@ -77,6 +78,8 @@
                               FontSize="{StaticResource InputFontSize18}"
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               ItemsSource="{Binding}"
+                              KeyDown="lvUsers_KeyDown"
+                              MouseDoubleClick="lvUsers_MouseDoubleClick"
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 using DMT.Models;
 using DMT.Services;
@@ -36,6 +37,19 @@ namespace DMT.TOD.Windows.UserShifts
 
         private User _user = null;
         private TSB _tsb = null;
+
+        #endregion
+
+        #region Window Handlers
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                e.Handled = true;
+                DialogResult = false;
+            }
+        }
 
         #endregion
 

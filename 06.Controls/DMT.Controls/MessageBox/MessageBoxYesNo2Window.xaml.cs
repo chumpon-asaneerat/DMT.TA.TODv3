@@ -36,12 +36,12 @@ namespace DMT.Windows
 
         #region Window Handlers
 
-        private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                DialogResult = false;
                 e.Handled = true;
+                DialogResult = false;
             }
         }
 

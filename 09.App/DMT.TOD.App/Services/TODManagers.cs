@@ -681,7 +681,14 @@ namespace DMT.Services
                 // sort by BOJ DateTime and assigned to jobs list.
                 AllJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
 
-                LoadPlazaGroupJobs();
+                if (OnlyJobInShift)
+                {
+                    LoadPlazaGroupJobs();
+                }
+                else
+                {
+                    PlazaGroupJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
+                }
             }
 
             SCWOnline = isOnline; // Update public property.

@@ -58,7 +58,7 @@ namespace DMT.TOD.Controls.Revenue
 
                 manager.Payments.EnableLaneFilter = false;
                 manager.Payments.PlazaGroup = manager.PlazaGroup;
-                manager.Payments.PaymentType = PaymentType.Both;
+                manager.Payments.PaymentType = PaymentTypes.Both;
                 manager.Payments.Begin = dt1;
                 manager.Payments.End = dt2;
                 manager.Payments.Refresh();

@@ -49,14 +49,6 @@ namespace DMT.TOD.Pages.Revenue
 
         private RevenueEntryManager manager = new RevenueEntryManager();
 
-        /*
-        private UserShift _userShift = null;
-        private UserShiftRevenue _revenueShift = null;
-        private bool _issNewRevenueShift = false;
-        private UserCreditBalance _userCredit = null;
-        private Models.RevenueEntry _revenueEntry = null;
-        */
-
         #endregion
 
         #region Loaded
@@ -335,43 +327,6 @@ namespace DMT.TOD.Pages.Revenue
 
 
 
-
-
-
-
-        private RdlcReportModel GetReportModel()
-        {
-            Assembly assembly = this.GetType().Assembly;
-            RdlcReportModel inst = new RdlcReportModel();
-            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
-            inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
-                inst.Definition.EmbededReportName);
-            // clear reprot datasource.
-            inst.DataSources.Clear();
-            /*
-            List<RevenueEntry> items = new List<RevenueEntry>();
-            if (null != _revenueEntry)
-            {
-                items.Add(_revenueEntry);
-            }
-
-            // assign new data source
-            RdlcReportDataSource mainDS = new RdlcReportDataSource();
-            mainDS.Name = "main"; // the datasource name in the rdlc report.
-            mainDS.Items = items; // setup data source
-            // Add to datasources
-            inst.DataSources.Add(mainDS);
-
-            // Add parameters (if required).
-            DateTime today = DateTime.Now;
-            string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
-            inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
-            string histText = (null != _revenueEntry && _revenueEntry.IsHistorical) ?
-                "(นำส่งย้อนหลัง)" : "";
-            inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
-            */
-            return inst;
-        }
         /// <summary>
         /// Checks all information to build report is loaded.
         /// </summary>

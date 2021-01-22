@@ -47,10 +47,7 @@ namespace DMT.TOD.Pages.Revenue
         private RevenueEntryManager manager = new RevenueEntryManager();
 
         private User _chief = null; // Supervisor
-        /*
-        private UserShift _userShift = null;
-        private UserShift _revenueShift = null;
-        */
+
         #endregion
 
         #region Loaded
@@ -413,6 +410,10 @@ namespace DMT.TOD.Pages.Revenue
             tabs.SelectedIndex = 0;
 
             _chief = chief;
+            if (null != _chief)
+            {
+
+            }
             if (null != manager)
             {
                 manager.ByChief = true;

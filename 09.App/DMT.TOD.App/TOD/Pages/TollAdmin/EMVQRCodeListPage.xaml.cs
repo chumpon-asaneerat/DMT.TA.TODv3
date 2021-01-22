@@ -225,7 +225,7 @@ namespace DMT.TOD.Pages.TollAdmin
 
             if (null == paymentMgr) return;
 
-            paymentMgr.PaymentType = (rbEMV.IsChecked.Value) ? PaymentType.EMV : PaymentType.QRCode;
+            paymentMgr.PaymentType = (rbEMV.IsChecked.Value) ? PaymentTypes.EMV : PaymentTypes.QRCode;
             paymentMgr.Begin = dt1;
             paymentMgr.End = dt2;
             paymentMgr.Filter = _laneFilter;

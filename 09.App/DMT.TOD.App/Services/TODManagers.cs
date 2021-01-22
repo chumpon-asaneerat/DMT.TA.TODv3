@@ -18,6 +18,8 @@ using DMT.Models.ExtensionMethods;
 
 using NLib;
 using NLib.IO;
+using NLib.Services;
+using NLib.Reports.Rdlc;
 using NLib.Reflection;
 
 using RestSharp;
@@ -859,15 +861,19 @@ namespace DMT.Services
 
     #endregion
 
+    #region PaymentType Enum
+
     /// <summary>
-    /// The PaymentType Enum
+    /// The PaymentTypes Enum
     /// </summary>
-    public enum PaymentType
+    public enum PaymentTypes
     {
         EMV,
         QRCode,
         Both
     }
+
+    #endregion
 
     #region PaymentManager
 
@@ -1116,12 +1122,12 @@ namespace DMT.Services
             if (null == QRCodeItems) QRCodeItems = new List<LaneQRCode>();
             QRCodeItems.Clear();
 
-            if (PaymentType == PaymentType.EMV)
+            if (PaymentType == PaymentTypes.EMV)
             {
                 // EMV
                 LoadEMVItems();
             }
-            else if (PaymentType == PaymentType.QRCode)
+            else if (PaymentType == PaymentTypes.QRCode)
             {
                 // QRCODE
                 LoadQRcodeItems();
@@ -1198,7 +1204,7 @@ namespace DMT.Services
         /// <summary>
         /// Gets or sets Payment type.
         /// </summary>
-        public PaymentType PaymentType { get; set; }
+        public PaymentTypes PaymentType { get; set; }
         /// <summary>
         /// Gets or sets Begin DateTime.
         /// </summary>
@@ -1354,7 +1360,7 @@ namespace DMT.Services
 
         private void UserShifts_UserShiftChanged(object sender, EventArgs e)
         {
-            CheckUserShift();
+            CheckRevenueDate();
         }
 
         #endregion
@@ -1393,15 +1399,6 @@ namespace DMT.Services
                 // By Chief
                 RevenueDate = new DateTime?(_now);
             }
-        }
-
-        #endregion
-
-        #region UserShift method(s)
-
-        private void CheckUserShift()
-        {
-            CheckRevenueDate();
         }
 
         #endregion
@@ -1944,6 +1941,45 @@ namespace DMT.Services
         /// Gets User Revenue Shift.
         /// </summary>
         public UserShiftRevenue RevenueShift { get; private set; }
+
+        #endregion
+
+
+        #region Report Medels
+
+        private RdlcReportModel GetReportModel()
+        {
+            Assembly assembly = this.GetType().Assembly;
+            RdlcReportModel inst = new RdlcReportModel();
+            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
+            inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
+                inst.Definition.EmbededReportName);
+            // clear reprot datasource.
+            inst.DataSources.Clear();
+            /*
+            List<RevenueEntry> items = new List<RevenueEntry>();
+            if (null != _revenueEntry)
+            {
+                items.Add(_revenueEntry);
+            }
+
+            // assign new data source
+            RdlcReportDataSource mainDS = new RdlcReportDataSource();
+            mainDS.Name = "main"; // the datasource name in the rdlc report.
+            mainDS.Items = items; // setup data source
+            // Add to datasources
+            inst.DataSources.Add(mainDS);
+
+            // Add parameters (if required).
+            DateTime today = DateTime.Now;
+            string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+            inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
+            string histText = (null != _revenueEntry && _revenueEntry.IsHistorical) ?
+                "(นำส่งย้อนหลัง)" : "";
+            inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
+            */
+            return inst;
+        }
 
         #endregion
 

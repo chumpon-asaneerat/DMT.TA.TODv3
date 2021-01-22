@@ -76,6 +76,7 @@
                                                   Format="Custom"
                                                   FormatString="dd/MM/yyyy"
                                                   IsEnabled="False"
+                                                  ShowDropDownButton="False"
                                                   ShowButtonSpinner="False"
                                                   TimePickerAllowSpin="False"
                                                   TimePickerShowButtonSpinner="False"

@@ -285,14 +285,12 @@ namespace DMT.TOD.Pages.Revenue
 
         private void SearchUser()
         {
-            /*
-            if (!string.IsNullOrEmpty(txtSearchUserId.Text))
+            string userId = txtSearchUserId.Text.Trim();
+            var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
+            if (!result.IsCanceled)
             {
-                string userId = txtSearchUserId.Text;
-                if (string.IsNullOrEmpty(userId)) return;
-
-                UserSearchManager.Instance.Title = "กรุณาเลือกพนักงานเก็บเงิน";
-                _selectUser = UserSearchManager.Instance.SelectUser(userId, TODApp.Permissions.TC);
+                /*
+                _selectUser = result.User;
                 if (null != _selectUser)
                 {
                     txtUserId.Text = _selectUser.UserId;
@@ -306,8 +304,8 @@ namespace DMT.TOD.Pages.Revenue
                     txtUserName.Text = string.Empty;
                     grid.ItemsSource = null; // setup null list.
                 }
+                */
             }
-            */
         }
 
         private void CheckUserShift()

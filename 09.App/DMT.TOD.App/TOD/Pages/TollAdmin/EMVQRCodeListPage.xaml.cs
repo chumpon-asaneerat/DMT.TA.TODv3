@@ -193,13 +193,12 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private void SearchUser()
         {
-            if (!string.IsNullOrEmpty(txtSearchUserId.Text))
+            string userId = txtSearchUserId.Text.Trim();
+            var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
+            if (!result.IsCanceled)
             {
-                string userId = txtSearchUserId.Text;
-                if (string.IsNullOrEmpty(userId)) return;
+                _selectUser = result.User;
 
-                UserSearchManager.Instance.Title = "กรุณาเลือกพนักงานเก็บเงิน";
-                _selectUser = UserSearchManager.Instance.SelectUser(userId, TODApp.Permissions.TC);
                 if (null != _selectUser)
                 {
                     txtUserId.Text = _selectUser.UserId;

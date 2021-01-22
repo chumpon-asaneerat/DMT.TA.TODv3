@@ -28,7 +28,6 @@ namespace DMT.Services
 {
     using scwOps = Services.Operations.SCW.TOD;
 
-
     #region TODAPI
 
     /// <summary>
@@ -612,6 +611,8 @@ namespace DMT.Services
 
         #endregion
 
+        #region Job Methods
+
         private void LoadTSBJobs()
         {
             UserShift usrShift = this.UserShift;
@@ -711,6 +712,8 @@ namespace DMT.Services
                 });
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -856,12 +859,22 @@ namespace DMT.Services
 
     #endregion
 
+    /// <summary>
+    /// The PaymentType Enum
+    /// </summary>
+    public enum PaymentType
+    {
+        EMV,
+        QRCode,
+        Both
+    }
+
     #region PaymentManager
 
     /// <summary>
     /// The PaymentManager class.
     /// </summary>
-    public class PaymentManager
+    public class PaymentManager : INotifyPropertyChanged
     {
         #region Constructor and Destructor
 
@@ -875,6 +888,8 @@ namespace DMT.Services
         /// <param name="manager">The CurrentTSBManager instance.</param>
         public PaymentManager(CurrentTSBManager manager) : this()
         {
+            EnableLaneFilter = false;
+
             Current = manager;
             if (null != Current)
             {
@@ -922,6 +937,165 @@ namespace DMT.Services
 
         #endregion
 
+        #region Event Raisers
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Payment Methods
+
+        private int? GetLaneFilter()
+        {
+            int? ret = new int?();
+            if (string.IsNullOrEmpty(Filter)) return ret;
+            int num;
+            if (int.TryParse(Filter.Trim(), out num))
+            {
+                ret = new int?(num);
+            }
+            return ret;
+        }
+
+        private void LoadEMVItems()
+        {
+            if (null == EMVItems) EMVItems = new List<LaneEMV>();
+            EMVItems.Clear();
+
+            List<LaneEMV> results = new List<LaneEMV>();
+            List<LaneEMV> items = new List<LaneEMV>();
+            List<LaneEMV> sortList = new List<LaneEMV>();
+
+            if (null != User && null != Current && null != Current.TSB && null != Current.TSBPlazas)
+            {
+                int networkId = TODAPI.NetworkId;
+                var userShift = UserShift.GetUserShift(User.UserId).Value();
+
+                if (null != userShift && userShift.Begin.HasValue && Current.TSBPlazas.Count > 0)
+                {
+                    Current.TSBPlazas.ForEach(plaza =>
+                    {
+                        int pzId = plaza.SCWPlazaId;
+                        SCWEMVTransactionList param = new SCWEMVTransactionList();
+                        param.networkId = networkId;
+                        param.plazaId = pzId;
+                        param.staffId = userShift.UserId;
+                        param.startDateTime = Begin;
+                        param.endDateTime = End;
+                        var emvList = scwOps.emvTransactionList(param);
+                        if (null != emvList && null != emvList.list)
+                        {
+                            emvList.list.ForEach(item =>
+                            {
+                                if (item.trxDateTime.HasValue &&
+                                    userShift.Begin.Value <= item.trxDateTime.Value)
+                                {
+                                    items.Add(new LaneEMV(item));
+                                }
+                            });
+                        }
+                    });
+
+                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
+
+                    if (EnableLaneFilter)
+                    {
+                        // Filter By Lane
+                        var filter = GetLaneFilter();
+                        if (filter.HasValue)
+                        {
+                            // Filter only specificed lane no.
+                            results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
+                        }
+                        else
+                        {
+                            results.AddRange(sortList.ToArray());
+                        }
+                    }
+                    else
+                    {
+                        results.AddRange(sortList.ToArray());
+                    }
+                }
+            }
+
+            EMVItems = results;
+        }
+
+        private void LoadQRcodeItems()
+        {
+            if (null == QRCodeItems) QRCodeItems = new List<LaneQRCode>();
+            QRCodeItems.Clear();
+
+            List<LaneQRCode> results = new List<LaneQRCode>();
+            List<LaneQRCode> items = new List<LaneQRCode>();
+            List<LaneQRCode> sortList = new List<LaneQRCode>();
+
+            if (null != User && null != Current && null != Current.TSB && null != Current.TSBPlazas)
+            {
+                int networkId = TODAPI.NetworkId;
+                var userShift = UserShift.GetUserShift(User.UserId).Value();
+
+                if (null != userShift && userShift.Begin.HasValue && Current.TSBPlazas.Count > 0)
+                {
+                    Current.TSBPlazas.ForEach(plaza =>
+                    {
+                        int pzId = plaza.SCWPlazaId;
+                        SCWQRCodeTransactionList param = new SCWQRCodeTransactionList();
+                        param.networkId = networkId;
+                        param.plazaId = pzId;
+                        param.staffId = userShift.UserId;
+                        param.startDateTime = Begin;
+                        param.endDateTime = End;
+                        var emvList = scwOps.qrcodeTransactionList(param);
+                        if (null != emvList && null != emvList.list)
+                        {
+                            emvList.list.ForEach(item =>
+                            {
+                                if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
+                                    userShift.Begin.Value <= item.trxDateTime.Value)
+                                {
+                                    items.Add(new LaneQRCode(item));
+                                }
+                            });
+                        }
+                    });
+
+                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
+                }
+
+                if (EnableLaneFilter)
+                {
+                    // Filter By Lane
+                    var filter = GetLaneFilter();
+                    if (filter.HasValue)
+                    {
+                        // Filter only specificed lane no.
+                        results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
+                    }
+                    else
+                    {
+                        results.AddRange(sortList.ToArray());
+                    }
+                }
+                else
+                {
+                    results.AddRange(sortList.ToArray());
+                }
+            }
+
+            QRCodeItems = results;
+        }
+
+        #endregion
+
         #endregion
 
         #region Public Methods
@@ -931,21 +1105,133 @@ namespace DMT.Services
         /// </summary>
         public void Refresh()
         {
+            if (null == EMVItems) EMVItems = new List<LaneEMV>();
+            EMVItems.Clear();
+            if (null == QRCodeItems) QRCodeItems = new List<LaneQRCode>();
+            QRCodeItems.Clear();
 
+            if (PaymentType == PaymentType.EMV)
+            {
+                // EMV
+                LoadEMVItems();
+            }
+            else if (PaymentType == PaymentType.QRCode)
+            {
+                // QRCODE
+                LoadQRcodeItems();
+            }
+            else
+            {
+                // BOTH
+                LoadEMVItems();
+            }
         }
 
         #endregion
 
         #region Public Properties
 
+        #region Managers
+
         /// <summary>
         /// Gets Current TSB Manager.
         /// </summary>
         public CurrentTSBManager Current { get; private set; }
+        
+        #endregion
+
+        #region User
+
+        /// <summary>
+        /// Gets or set User (Collector).
+        /// </summary>
+        public User User
+        {
+            get { return (null != Current) ? Current.User : null; }
+            set
+            {
+                if (null != Current)
+                {
+                    Current.User = value;
+                    RaiseChanged("CollectorId");
+                    RaiseChanged("CollectorNameEN");
+                    RaiseChanged("CollectorNameTH");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != Current && null != Current.User) ? Current.User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != Current && null != Current.User) ? Current.User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != Current && null != Current.User) ? Current.User.FullNameTH : string.Empty; }
+            set { }
+        }
+
+        #endregion
+
+        #region Search Condition
+
+        /// <summary>
+        /// Gets or sets Payment type.
+        /// </summary>
+        public PaymentType PaymentType { get; set; }
+        /// <summary>
+        /// Gets or sets Begin DateTime.
+        /// </summary>
+        public DateTime? Begin { get; set; }
+        /// <summary>
+        /// Gets or sets End DateTime.
+        /// </summary>
+        public DateTime? End { get; set; }
+        /// <summary>
+        /// Gets or sets has lane filter.
+        /// </summary>
+        public bool EnableLaneFilter { get; set; }
+        /// <summary>
+        /// Gets or sets filter.
+        /// </summary>
+        public string Filter { get; set; }
+
+        #endregion
+
+        #region Payment Items
+
+        /// <summary>
+        /// Gets EMV List.
+        /// </summary>
+        public List<LaneEMV> EMVItems { get; private set; }
+        /// <summary>
+        /// Gets QRCode List.
+        /// </summary>
+        public List<LaneQRCode> QRCodeItems { get; private set; }
+
+        #endregion
 
         #endregion
 
         #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// The UserChanged Event Handler.

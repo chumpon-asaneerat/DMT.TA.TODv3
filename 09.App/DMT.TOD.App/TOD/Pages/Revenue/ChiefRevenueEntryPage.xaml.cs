@@ -157,7 +157,7 @@ namespace DMT.TOD.Pages.Revenue
         private void GotoMainMenu()
         {
             // Main Menu Page
-            var page = new Menu.MainMenu();
+            var page = TODApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
         }
 

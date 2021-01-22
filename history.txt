@@ -38,8 +38,16 @@
   - ป้อนรายได้ ย้อนหลัง
     - ป้อนได้หมด
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1020
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1021
 - 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1020
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements TOD Manager classes #13.
+    - Implements Collector Revenue Entry #21.
+    - Implements Chief Revenue Entry #21.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1019

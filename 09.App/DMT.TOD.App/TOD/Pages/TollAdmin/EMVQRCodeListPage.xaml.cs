@@ -45,10 +45,10 @@ namespace DMT.TOD.Pages.TollAdmin
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
 
-        private User _selectUser = null;
-        private TSB _tsb = null;
-        private List<Plaza> _plazas = null;
+        private User _user = null;
         private string _laneFilter = string.Empty;
+
+        private PaymentManager paymentMgr = new PaymentManager(new CurrentTSBManager());
 
         #endregion
 
@@ -173,58 +173,41 @@ namespace DMT.TOD.Pages.TollAdmin
         private void GotoMainMenu()
         {
             // Main Menu Page
-            var page = new Menu.MainMenu();
+            var page = TODApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
         }
 
-        private void ResetDate()
+        private void Reset()
         {
+            paymentMgr.User = null;
+            paymentMgr.EnableLaneFilter = true;
+
             dtEntryDate.DefaultValue = DateTime.Now;
             dtEntryDate.Value = DateTime.Now.Date;
+            // Set Bindings User Selection.
+            txtUserId.DataContext = paymentMgr;
+            txtUserName.DataContext = paymentMgr;
         }
 
         private void ResetSelectUser()
         {
-            _selectUser = null;
+            paymentMgr.User = null;
             txtSearchUserId.Text = string.Empty;
-            txtUserId.Text = string.Empty;
-            txtUserName.Text = string.Empty;
         }
 
         private void SearchUser()
         {
             string userId = txtSearchUserId.Text.Trim();
             var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
-            if (!result.IsCanceled)
+            if (!result.IsCanceled && null != paymentMgr)
             {
-                _selectUser = result.User;
-
-                if (null != _selectUser)
+                paymentMgr.User = result.User;
+                if (null != paymentMgr.User)
                 {
-                    txtUserId.Text = _selectUser.UserId;
-                    txtUserName.Text = _selectUser.FullNameTH;
                     txtSearchUserId.Text = string.Empty;
-                    RefreshEMV_QRCODE();
                 }
-                else
-                {
-                    txtUserId.Text = string.Empty;
-                    txtUserName.Text = string.Empty;
-                    grid.ItemsSource = null; // setup null list.
-                }
+                RefreshEMV_QRCODE();
             }
-        }
-
-        private int? GetLaneFilter()
-        {
-            int? ret = new int?();
-            if (string.IsNullOrEmpty(txtLaneNo.Text)) return ret;
-            int num;
-            if (int.TryParse(txtLaneNo.Text.Trim(), out num))
-            {
-                ret = new int?(num);
-            }
-            return ret;
         }
 
         private void RefreshEMV_QRCODE()
@@ -240,124 +223,22 @@ namespace DMT.TOD.Pages.TollAdmin
             DateTime dt1 = dtEntryDate.Value.Value.Date;
             DateTime dt2 = dt1.AddDays(1);
 
+            if (null == paymentMgr) return;
+
+            paymentMgr.PaymentType = (rbEMV.IsChecked.Value) ? PaymentType.EMV : PaymentType.QRCode;
+            paymentMgr.Begin = dt1;
+            paymentMgr.End = dt2;
+            paymentMgr.Filter = _laneFilter;
+            paymentMgr.Refresh();
+
             if (rbEMV.IsChecked.Value)
             {
-                // EMV
-                RefreshEMV(dt1, dt2);
+                grid.ItemsSource = paymentMgr.EMVItems;
             }
             else
             {
-                // QR Code
-                RefreshQRCODE(dt1, dt2);
+                grid.ItemsSource = paymentMgr.QRCodeItems;
             }
-        }
-
-        private void RefreshEMV(DateTime dt1, DateTime dt2)
-        {
-            List<LaneEMV> results = new List<LaneEMV>();
-            List<LaneEMV> items = new List<LaneEMV>();
-            List<LaneEMV> sortList = new List<LaneEMV>();
-
-            if (null != _selectUser && null != _tsb && null != _plazas)
-            {
-                var userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
-                int networkId = TODConfigManager.Instance.DMT.networkId;
-
-                if (null != userShift && userShift.Begin.HasValue && null != _plazas && _plazas.Count > 0)
-                {
-                    _plazas.ForEach(plaza =>
-                    {
-                        int pzId = plaza.SCWPlazaId;
-                        SCWEMVTransactionList param = new SCWEMVTransactionList();
-                        param.networkId = networkId;
-                        param.plazaId = pzId;
-                        param.staffId = userShift.UserId;
-                        param.startDateTime = dt1;
-                        param.endDateTime = dt2;
-                        var emvList = scwOps.emvTransactionList(param);
-                        if (null != emvList && null != emvList.list)
-                        {
-                            emvList.list.ForEach(item =>
-                            {
-                                if (item.trxDateTime.HasValue &&
-                                    userShift.Begin.Value <= item.trxDateTime.Value)
-                                {
-                                    items.Add(new LaneEMV(item));
-                                }
-                            });
-                        }
-                    });
-
-                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
-                }
-                // Filter By Lane
-                var filter = GetLaneFilter();
-                if (filter.HasValue)
-                {
-                    // Filter only specificed lane no.
-                    results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
-                }
-                else
-                {
-                    results.AddRange(sortList.ToArray());
-                }
-            }
-
-            grid.ItemsSource = results;
-        }
-
-        private void RefreshQRCODE(DateTime dt1, DateTime dt2)
-        {
-            List<LaneQRCode> results = new List<LaneQRCode>();
-            List<LaneQRCode> items = new List<LaneQRCode>();
-            List<LaneQRCode> sortList = new List<LaneQRCode>();
-
-            if (null != _selectUser && null != _tsb && null != _plazas)
-            {
-                int networkId = TODConfigManager.Instance.DMT.networkId;
-                var userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
-
-                if (null != userShift && null != _plazas && _plazas.Count > 0)
-                {
-                    _plazas.ForEach(plaza =>
-                    {
-                        int pzId = plaza.SCWPlazaId;
-                        SCWQRCodeTransactionList param = new SCWQRCodeTransactionList();
-                        param.networkId = networkId;
-                        param.plazaId = pzId;
-                        param.staffId = userShift.UserId;
-                        param.startDateTime = dt1;
-                        param.endDateTime = dt2;
-                        var emvList = scwOps.qrcodeTransactionList(param);
-                        if (null != emvList && null != emvList.list)
-                        {
-                            emvList.list.ForEach(item =>
-                            {
-                                if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
-                                    userShift.Begin.Value <= item.trxDateTime.Value)
-                                {
-                                    items.Add(new LaneQRCode(item));
-                                }
-                            });
-                        }
-                    });
-
-                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
-                }
-                // Filter By Lane
-                var filter = GetLaneFilter();
-                if (filter.HasValue)
-                {
-                    // Filter only specificed lane no.
-                    results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
-                }
-                else
-                {
-                    results.AddRange(sortList.ToArray());
-                }
-            }
-
-            grid.ItemsSource = results;
         }
 
         #endregion
@@ -370,18 +251,15 @@ namespace DMT.TOD.Pages.TollAdmin
         /// <param name="user">The User instance.</param>
         public void Setup(User user)
         {
-            //_user = user;
-            _tsb = TSB.GetCurrent().Value();
+            _user = user;
+            if (null != _user)
+            {
 
-            ResetDate();
+            }
+
+            Reset();
             ResetSelectUser();
             txtLaneNo.Text = string.Empty;
-
-            if (null != _tsb)
-            {
-                _plazas = Plaza.GetTSBPlazas(_tsb).Value();
-                grid.ItemsSource = null;
-            }
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

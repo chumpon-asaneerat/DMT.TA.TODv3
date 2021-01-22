@@ -42,7 +42,8 @@ namespace DMT
             PageContentManager.Instance.ContentChanged += new EventHandler(Instance_ContentChanged);
             PageContentManager.Instance.Start();
             // Init Main Menu
-            PageContentManager.Instance.Current = new TOD.Pages.Menu.MainMenu();
+            var page = TODApp.Pages.MainMenu;
+            PageContentManager.Instance.Current = page;
 
             // Raise Event to notify TA App.
             taOps.ShiftChanged();

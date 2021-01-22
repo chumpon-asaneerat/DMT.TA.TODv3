@@ -56,7 +56,7 @@ namespace DMT
             private static TOD.Pages.Menu.MainMenu _MainMenu;
 
             /// <summary>Gets Main Menu Page.</summary>
-            public static TOD.Pages.Menu.MainMenu LaneActivity
+            public static TOD.Pages.Menu.MainMenu MainMenu
             {
                 get
                 {

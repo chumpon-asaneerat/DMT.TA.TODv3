@@ -268,6 +268,41 @@ namespace DMT.TOD.Pages.Revenue
 
             #endregion
 
+            #region Check Has Revenue Shift (for collector)
+
+            manager.CheckRevenueShift();
+
+            if (null != manager.RevenueShift)
+            {
+                if (manager.RevenueShift.RevenueDate.HasValue &&
+                    manager.RevenueShift.RevenueDate.Value != DateTime.MinValue)
+                {
+                    var win = TODApp.Windows.MessageBox;
+                    win.Setup("กะของพนักงานนี้ ถูกป้อนรายได้แล้ว", "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    return;
+                }
+            }
+            else
+            {
+                if (manager.IsNewRevenueShift)
+                {
+                    var win = TODApp.Windows.MessageBox;
+                    win.Setup("ไม่สามารถนำส่งรายได้ เนื่องจากไม่พบข้อมูลการทำงาน", "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    var win = TODApp.Windows.MessageBox;
+                    win.Setup("กะนี้ถูกจัดเก็บรายได้แล้ว.", "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    return;
+                }
+            }
+
+            #endregion
+
             if (!manager.NewRevenueEntry())
             {
                 var win = TODApp.Windows.MessageBox;
@@ -284,6 +319,36 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoPrintPreview()
         {
+            #region Check Has BagNo/BeltNo
+
+            if (!entry.HasBagNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุ หมายเลขถุงเงิน", "DMT - Tour of Duty");
+                win.ShowDialog();
+                entry.FocusBagNo();
+                return;
+            }
+            if (!entry.HasBeltNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Tour of Duty");
+                win.ShowDialog();
+                entry.FocusBeltNo();
+                return;
+            }
+
+            #endregion
+
+            // Slip Preview
+            if (!PrepareReport())
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("พบปัญหาในการเตรียมข้อมูล สำหรับจัดพิมพ์", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+            // All OK so goto next tab.
             tabs.SelectedIndex = 2;
         }
 
@@ -370,31 +435,80 @@ namespace DMT.TOD.Pages.Revenue
             }
         }
 
+        private bool PrepareReport()
+        {
+            if (null == manager || !manager.CanBuildRevenueSlipReport) return false;
+            var model = manager.GetRevenueSlipReportModel();
+
+            if (null == model ||
+                null == model.DataSources || model.DataSources.Count <= 0 ||
+                null == model.DataSources[0] || null == model.DataSources[0].Items)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("No result found.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                if (win.ShowDialog() == true)
+                {
+                    this.rptViewer.ClearReport();
+                }
+            }
+            else
+            {
+                this.rptViewer.LoadReport(model);
+            }
+
+            return true;
+        }
+
         private void PrintReport()
         {
-            #region Check Has BagNo/BeltNo
-
-            if (!entry.HasBagNo)
+            if (null == manager || null == manager.Entry)
             {
                 var win = TODApp.Windows.MessageBox;
-                win.Setup("กรุณาระบุ หมายเลขถุงเงิน", "DMT - Tour of Duty");
+                win.Setup("Revenue Entry is not found.", "DMT - Tour of Duty");
                 win.ShowDialog();
-                entry.FocusBagNo();
-                return;
-            }
-            if (!entry.HasBeltNo)
-            {
-                var win = TODApp.Windows.MessageBox;
-                win.Setup("กรุณาระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Tour of Duty");
-                win.ShowDialog();
-                entry.FocusBeltNo();
                 return;
             }
 
-            #endregion
+            if (null == manager.Entry ||
+                !manager.Entry.RevenueDate.HasValue ||
+                manager.Entry.RevenueDate.Value == DateTime.MinValue ||
+                !manager.Entry.EntryDate.HasValue ||
+                manager.Entry.EntryDate.Value == DateTime.MinValue)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("Entry Date or Revenue Date is not set.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
 
-            // All OK so goto next tab.
-            tabs.SelectedIndex = 2;
+            bool hasActivitied = manager.SaveRevenueEntry();
+
+            if (manager.Entry.RevenueDate.HasValue && manager.Entry.RevenueDate.Value != DateTime.MinValue &&
+                manager.Entry.EntryDate.HasValue && manager.Entry.EntryDate.Value != DateTime.MinValue)
+            {
+                // print reports only date exists.
+                this.rptViewer.Print();
+            }
+
+            if (!hasActivitied || null == manager.User)
+            {
+                GotoMainMenu();
+            }
+            else
+            {
+                // Still has more jobs on another Plaza Group.
+                var win = TODApp.Windows.MessageBoxYesNo;
+                win.Setup("กะปัจจุบันยังป้อนรายได้ไม่ครบ ต้องการป้อนรายได้ต่อหรือไม่ ?", "DMT - Tour of Duty");
+                if (win.ShowDialog() == true)
+                {
+                    Setup(manager.User); // Goback to first page.
+                }
+                else
+                {
+                    GotoMainMenu();
+                }
+            }
         }
 
         #endregion
@@ -416,6 +530,7 @@ namespace DMT.TOD.Pages.Revenue
             }
             if (null != manager)
             {
+                manager.User = null; // Reset.
                 manager.ByChief = true;
                 if (null != manager.UserShifts) manager.UserShifts.IsCustom = true;
             }

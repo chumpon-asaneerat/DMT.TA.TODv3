@@ -104,7 +104,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void cmdBack2_Click(object sender, RoutedEventArgs e)
         {
-            GotoBack();
+            GotoPrevious();
         }
 
         private void cmdGotoRevenueEntryPreview_Click(object sender, RoutedEventArgs e)
@@ -114,15 +114,13 @@ namespace DMT.TOD.Pages.Revenue
 
         private void cmdBack3_Click(object sender, RoutedEventArgs e)
         {
-            GotoBack();
+            GotoPrevious();
         }
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
             // Printing.
-
-            // Go Back to Main Menu.
-            GotoMainMenu();
+            PrintReport();
         }
 
         private void cmdUserSearch_Click(object sender, RoutedEventArgs e)
@@ -163,7 +161,7 @@ namespace DMT.TOD.Pages.Revenue
             PageContentManager.Instance.Current = page;
         }
 
-        private void GotoBack()
+        private void GotoPrevious()
         {
             if (tabs.SelectedIndex == 0)
             {
@@ -181,6 +179,104 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoRevenueEntry()
         {
+            #region Check RevenueEntryManager
+
+            if (null == manager)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("Program Error: RevenueEntryManager is null.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+
+            #endregion
+
+            #region Check Select Shift
+
+            if (null == manager.Current.Shift)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกกะของรายได้", "DMT - Tour of Duty");
+                win.ShowDialog();
+                cbShifts.Focus();
+                return;
+            }
+
+            #endregion
+
+            #region Check Select PlazaGroup
+
+            if (null == manager.PlazaGroup)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกด่านของรายได้", "DMT - Tour of Duty");
+                win.ShowDialog();
+                cbPlazas.Focus();
+                return;
+            }
+
+            #endregion
+
+            #region Check Select User
+
+            if (null == manager.User)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกพนักงาน", "DMT - Tour of Duty");
+                win.ShowDialog();
+                txtUserId.Focus();
+                return;
+            }
+
+            #endregion
+
+            #region Check is Continuous selection
+
+            /*
+            bool isContinuous = true;
+            if (null != _manager.Attendances && _manager.Attendances.Count > 0)
+            {
+                // Create indexes list.
+                int idx = 0;
+                List<int> indexs = new List<int>();
+                foreach (var att in _manager.Attendances)
+                {
+                    if (att.Selected) indexs.Add(idx);
+                    idx++;
+                }
+                // Check Continuous
+                if (null != indexs && indexs.Count > 0)
+                {
+                    // 3, 4, 5, 7
+                    int currIndex = indexs[0] - 1; // set init value to first minus 1 for check in loop.
+                    foreach (int val in indexs)
+                    {
+                        if (val - 1 > currIndex)
+                        {
+                            isContinuous = false;
+                            break;
+                        }
+                        currIndex = val; // update new current index.
+                    }
+                }
+            }
+
+            if (!isContinuous)
+            {
+                DMT.Windows.MessageBoxWindow msg = new DMT.Windows.MessageBoxWindow();
+                msg.Owner = Application.Current.MainWindow;
+                msg.Setup("การเลือกรายการ ต้องเป็นรายการต่อเเนื่องกันเท่านั้น", "DMT - Tour of Duty");
+                if (msg.ShowDialog() == true)
+                {
+                    cbPlazas.Focus();
+                }
+                return;
+            }
+            */
+
+            #endregion
+
+            // All check condition OK.
             tabs.SelectedIndex = 1;
         }
 
@@ -226,18 +322,6 @@ namespace DMT.TOD.Pages.Revenue
             manager.Jobs.PlazaGroup = manager.PlazaGroup;
             manager.Jobs.Refresh();
             grid.ItemsSource = manager.Jobs.PlazaGroupJobs;
-
-            /*
-            int networkId = TODConfigManager.Instance.DMT.networkId;
-
-            if (null == _jobs)
-            {
-                // Create new job list.
-                _jobs = new List<LaneJob>();
-            }
-            _jobs.Clear();
-
-            */
         }
 
         #endregion
@@ -283,18 +367,7 @@ namespace DMT.TOD.Pages.Revenue
                 manager.User = result.User;
                 if (null != manager.User)
                 {
-                    /*
-                    txtUserId.Text = manager.User.UserId;
-                    txtUserName.Text = manager.User.FullNameTH;
-                    */
                     txtSearchUserId.Text = string.Empty;
-                }
-                else
-                {
-                    /*
-                    txtUserId.Text = string.Empty;
-                    txtUserName.Text = string.Empty;
-                    */
                 }
                 LoadTSBLanes();
             }
@@ -306,6 +379,11 @@ namespace DMT.TOD.Pages.Revenue
             {
                 manager.UserShifts.IsCustom = true;
             }
+        }
+
+        private void PrintReport()
+        {
+
         }
 
         #endregion

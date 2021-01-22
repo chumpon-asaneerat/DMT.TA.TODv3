@@ -50,26 +50,11 @@ namespace DMT.TOD.Pages.Revenue
         private RevenueEntryManager manager = new RevenueEntryManager();
 
         /*
-        private User _user = null;
-        private User _supervisor = null;
-
-        private TSB _tsb = null;
-        private List<PlazaGroup> _plazaGroups = null;
-        private List<Plaza> _TSBPlazas = null;
-        private List<Plaza> _plazas = null;
-
-        private DateTime? _entryDate = DateTime.Now;
-        private DateTime? _revDate = DateTime.Now;
-
         private UserShift _userShift = null;
         private UserShiftRevenue _revenueShift = null;
         private bool _issNewRevenueShift = false;
         private UserCreditBalance _userCredit = null;
         private Models.RevenueEntry _revenueEntry = null;
-
-        private bool _SCWOnline = false;
-        private List<LaneJob> _allJobs = null;
-        private List<LaneJob> _currJobs = null;
         */
 
         #endregion
@@ -112,7 +97,7 @@ namespace DMT.TOD.Pages.Revenue
         {
             GotoMainMenu();
             // Used below code if need to go back to select date.
-            //GotoBack();
+            //GotoPrevious();
         }
 
         private void cmdGotoRevenueEntryPreview_Click(object sender, RoutedEventArgs e)
@@ -162,17 +147,37 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoRevenueEntry()
         {
-            /*
-            entry.Setup(null, null, null); // Reset Context.
+            #region Check RevenueEntryManager
 
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == plazaGroup)
+            if (null == manager)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("Program Error: RevenueEntryManager is null.", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+
+            #endregion
+
+            #region Check Select PlazaGroup
+
+            if (null == manager.PlazaGroup)
             {
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("กรุณาเลือกด่านของรายได้", "DMT - Tour of Duty");
                 win.ShowDialog();
                 cbPlazas.Focus();
                 return;
+            }
+
+            #endregion
+
+            /*
+            entry.Setup(null, null, null); // Reset Context.
+
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == plazaGroup)
+            {
             }
 
             CheckRevenueShift(); // Check Revenue Shift.
@@ -346,33 +351,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private string CreateLaneList()
         {
-            // create lane list.
-            var Lanes = new List<int>();
-            /*
-            if (null != _currJobs)
-            {
-                _currJobs.ForEach(job =>
-                {
-                    if (!job.LaneNo.HasValue) return;
-                    if (!Lanes.Contains(job.LaneNo.Value))
-                    {
-                        // add to list
-                        Lanes.Add(job.LaneNo.Value);
-                    }
-                });
-            }
-            */
-            // Build Lane List String.
-            int iCnt = 0;
-            int iMax = Lanes.Count;
-            string laneList = string.Empty;
-            Lanes.ForEach(laneNo =>
-            {
-                laneList += laneNo.ToString();
-                if (iCnt < iMax - 1) laneList += ", ";
-                iCnt++;
-            });
-            return laneList;
+            return (null != manager && null != manager.Jobs) ? manager.Jobs.GetLaneString(false) : string.Empty;
         }
 
         private bool IsReturnBag()

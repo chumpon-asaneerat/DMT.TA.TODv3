@@ -722,6 +722,39 @@ namespace DMT.Services
             LoadTSBJobs();
         }
 
+        public string GetLaneString(bool checkSelected)
+        {
+            var Lanes = new List<int>();
+            if (null != PlazaGroupJobs)
+            {
+                PlazaGroupJobs.ForEach(job =>
+                {
+                    if (checkSelected)
+                    {
+                        // Check if user not checked item in list view ignore it.
+                        if (!job.Selected) return; 
+                    }
+                    if (!job.LaneNo.HasValue) return;
+                    if (!Lanes.Contains(job.LaneNo.Value))
+                    {
+                        // add to list
+                        Lanes.Add(job.LaneNo.Value);
+                    }
+                });
+            }
+            // Build Lane List String.
+            int iCnt = 0;
+            int iMax = Lanes.Count;
+            string laneList = string.Empty;
+            Lanes.ForEach(laneNo =>
+            {
+                laneList += laneNo.ToString();
+                if (iCnt < iMax - 1) laneList += ", ";
+                iCnt++;
+            });
+            return laneList;
+        }
+
         #endregion
 
         #region Public Properties

@@ -36,8 +36,6 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Internal Variables
 
-        private TSB _tsb = null;
-        private List<Plaza> _plazas = null;
         private RevenueEntryManager manager = null;
 
         private int rowCnt = 0;
@@ -51,7 +49,14 @@ namespace DMT.TOD.Controls.Revenue.Elements
         {
             if (null != manager && null != manager.Entry)
             {
-                LoadItems();
+                if (manager.Entry.IsHistorical)
+                {
+                    UpdateList();
+                }
+                else
+                {
+                    UpdateList();
+                }
             }
             else
             {
@@ -63,54 +68,23 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Private Methods
 
-        private void RefreshEMV(DateTime dt1, DateTime dt2)
+        private void UpdateList()
         {
             grid.ItemsSource = null;
 
             List<LaneEMV> results = new List<LaneEMV>();
-            List<LaneEMV> items = new List<LaneEMV>();
-            List<LaneEMV> sortList = new List<LaneEMV>();
 
-            if (null != manager && null != manager.Entry && null != _tsb && null != _plazas)
+            if (null != manager && null != manager.Payments)
             {
-                var userShift = UserShift.GetUserShift(manager.Entry.UserId).Value();
-                int networkId = TODConfigManager.Instance.DMT.networkId;
-
-                if (null != userShift && userShift.Begin.HasValue && null != _plazas && _plazas.Count > 0)
-                {
-                    _plazas.ForEach(plaza =>
-                    {
-                        int pzId = plaza.SCWPlazaId;
-                        SCWEMVTransactionList param = new SCWEMVTransactionList();
-                        param.networkId = networkId;
-                        param.plazaId = pzId;
-                        param.staffId = userShift.UserId;
-                        param.startDateTime = dt1;
-                        param.endDateTime = dt2;
-                        var emvList = scwOps.emvTransactionList(param);
-                        if (null != emvList && null != emvList.list)
-                        {
-                            emvList.list.ForEach(item =>
-                            {
-                                if (item.trxDateTime.HasValue &&
-                                    userShift.Begin.Value <= item.trxDateTime.Value)
-                                {
-                                    items.Add(new LaneEMV(item));
-                                }
-                            });
-                        }
-                    });
-
-                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
-                }
-                results.AddRange(sortList.ToArray());
+                results = manager.Payments.EMVItems;
             }
+
             // Calculate Summary.
             if (null != results && results.Count > 0)
             {
                 rowCnt = results.Count;
                 amtVal = decimal.Zero;
-                sortList.ForEach(item =>
+                results.ForEach(item =>
                 {
                     amtVal += item.Amount;
                 });
@@ -137,28 +111,6 @@ namespace DMT.TOD.Controls.Revenue.Elements
         #region Public Methods
 
         /// <summary>
-        /// Load Items.
-        /// </summary>
-        public void LoadItems()
-        {
-            if (null == manager || null == manager.Entry) return;
-
-            DateTime dt1 = manager.Entry.ShiftBegin.Value;
-            DateTime dt2 = manager.Entry.ShiftEnd.Value;
-
-            RefreshEMV(dt1, dt2);
-        }
-        /// <summary>
-        /// Gets Items.
-        /// </summary>
-        public List<LaneEMV> Items
-        {
-            get 
-            {
-                return (null != grid.ItemsSource) ? grid.ItemsSource as List<LaneEMV> : null;
-            }
-        }
-        /// <summary>
         /// Setup.
         /// </summary>
         /// <param name="value">The RevenueEntryManager instance.</param>
@@ -166,6 +118,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
         {
             manager = value;
             this.DataContext = (null != manager) ? manager.Entry : null;
+            UpdateList();
         }
 
         #endregion

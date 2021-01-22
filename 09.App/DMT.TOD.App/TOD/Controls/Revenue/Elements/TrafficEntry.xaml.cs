@@ -46,6 +46,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
         public void Setup(RevenueEntryManager value)
         {
             manager = value;
+            
             this.DataContext = (null != manager) ? manager.Entry : null;
         }
 

@@ -41,21 +41,28 @@ namespace DMT.TOD.Controls.Revenue
         #region Public Methods
 
         /// <summary>
-        /// Load Payments.
-        /// </summary>
-        public void LoadPayments()
-        {
-            this.emvEntry.LoadItems();
-            this.qrcodeEntry.LoadItems();
-        }
-        /// <summary>
         /// Setup.
         /// </summary>
         /// <param name="value">The RevenueEntryManager instance.</param>
         public void Setup(RevenueEntryManager value)
         {
             manager = value;
-            this.DataContext = manager.Entry;
+
+            if (null != manager)
+            {
+                this.DataContext = manager.Entry;
+
+                // Load EMV/QR Code
+                DateTime dt1 = manager.Entry.ShiftBegin.Value;
+                DateTime dt2 = manager.Entry.ShiftEnd.Value;
+
+                manager.Payments.EnableLaneFilter = false;
+                manager.Payments.PlazaGroup = manager.PlazaGroup;
+                manager.Payments.PaymentType = PaymentType.Both;
+                manager.Payments.Begin = dt1;
+                manager.Payments.End = dt2;
+                manager.Payments.Refresh();
+            }
 
             this.trafficRevenue.Setup(manager);
             this.otherRevenue.Setup(manager);
@@ -65,6 +72,8 @@ namespace DMT.TOD.Controls.Revenue
             this.emvEntry.Setup(manager);
             this.qrcodeEntry.Setup(manager);
 
+            tabs.SelectedIndex = 0; // Reset Tab index.
+
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
@@ -72,6 +81,7 @@ namespace DMT.TOD.Controls.Revenue
                 txtBagNo.Focus();
             }));
         }
+
         /// <summary>
         /// Set Bag No Focus.
         /// </summary>
@@ -102,26 +112,6 @@ namespace DMT.TOD.Controls.Revenue
         /// Checks Has Belt.
         /// </summary>
         public bool HasBeltNo { get { return !string.IsNullOrWhiteSpace(txtBeltNo.Text); } }
-        /// <summary>
-        /// Gets EMV Items.
-        /// </summary>
-        public List<LaneEMV> EMVItems
-        {
-            get
-            {
-                return this.emvEntry.Items;
-            }
-        }
-        /// <summary>
-        /// Gets QRCode Items.
-        /// </summary>
-        public List<LaneQRCode> QRCodeItems
-        {
-            get
-            {
-                return this.qrcodeEntry.Items;
-            }
-        }
 
         #endregion
     }

@@ -7,10 +7,10 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="430"
              d:DesignWidth="1000"
+             DataContextChanged="UserControl_DataContextChanged"
              Focusable="False"
              IsTabStop="False"
-             mc:Ignorable="d"
-             DataContextChanged="UserControl_DataContextChanged">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>

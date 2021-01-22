@@ -975,12 +975,15 @@ namespace DMT.Services
 
             if (null != User && null != Current && null != Current.TSB && null != Current.TSBPlazas)
             {
+                var plazas = (null != PlazaGroup) ?
+                    Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
+
                 int networkId = TODAPI.NetworkId;
                 var userShift = UserShift.GetUserShift(User.UserId).Value();
 
-                if (null != userShift && userShift.Begin.HasValue && Current.TSBPlazas.Count > 0)
+                if (null != userShift && userShift.Begin.HasValue && null != plazas && plazas.Count > 0)
                 {
-                    Current.TSBPlazas.ForEach(plaza =>
+                    plazas.ForEach(plaza =>
                     {
                         int pzId = plaza.SCWPlazaId;
                         SCWEMVTransactionList param = new SCWEMVTransactionList();
@@ -1038,14 +1041,17 @@ namespace DMT.Services
             List<LaneQRCode> items = new List<LaneQRCode>();
             List<LaneQRCode> sortList = new List<LaneQRCode>();
 
-            if (null != User && null != Current && null != Current.TSB && null != Current.TSBPlazas)
+            if (null != User && null != Current && null != Current.TSB)
             {
+                var plazas = (null != PlazaGroup) ? 
+                    Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
+
                 int networkId = TODAPI.NetworkId;
                 var userShift = UserShift.GetUserShift(User.UserId).Value();
 
-                if (null != userShift && userShift.Begin.HasValue && Current.TSBPlazas.Count > 0)
+                if (null != userShift && userShift.Begin.HasValue && null != plazas && plazas.Count > 0)
                 {
-                    Current.TSBPlazas.ForEach(plaza =>
+                    plazas.ForEach(plaza =>
                     {
                         int pzId = plaza.SCWPlazaId;
                         SCWQRCodeTransactionList param = new SCWQRCodeTransactionList();
@@ -1124,6 +1130,7 @@ namespace DMT.Services
             {
                 // BOTH
                 LoadEMVItems();
+                LoadQRcodeItems();
             }
         }
 
@@ -1208,6 +1215,10 @@ namespace DMT.Services
         /// Gets or sets filter.
         /// </summary>
         public string Filter { get; set; }
+        /// <summary>
+        /// Gets or sets plaza gorup filter.
+        /// </summary>
+        public PlazaGroup PlazaGroup { get; set; }
 
         #endregion
 

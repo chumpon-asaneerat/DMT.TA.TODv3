@@ -112,24 +112,24 @@
             <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
                 <!--  REMARK  -->
                 <StackPanel HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        Orientation="Vertical">
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
                     <TextBlock Height="5" />
                     <TextBlock Margin="12,2"
-                           FontSize="{StaticResource EntryFontSize18}"
-                           Foreground="{StaticResource EntryTextForeground}"
-                           Text="หมายเหตุ"
-                           TextAlignment="Left" />
+                               FontSize="{StaticResource EntryFontSize18}"
+                               Foreground="{StaticResource EntryTextForeground}"
+                               Text="หมายเหตุ"
+                               TextAlignment="Left" />
                     <TextBox Height="75"
-                         Margin="10,2"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Top"
-                         AcceptsReturn="True"
-                         IsTabStop="False"
-                         Text="{Binding TrafficRemark}"
-                         TextAlignment="Left"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto" />
+                             Margin="10,2"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Top"
+                             AcceptsReturn="True"
+                             IsTabStop="False"
+                             Text="{Binding TrafficRemark}"
+                             TextAlignment="Left"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto" />
                 </StackPanel>
                 <!--  SEPERATOR  -->
                 <TextBlock Height="10" />

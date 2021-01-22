@@ -10,7 +10,9 @@
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
-    <TabControl Background="Transparent" FontSize="18">
+    <TabControl x:Name="tabs"
+                Background="Transparent"
+                FontSize="18">
         <TabItem HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch"
                  HorizontalContentAlignment="Stretch"

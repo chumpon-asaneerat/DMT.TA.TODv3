@@ -36,8 +36,6 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Internal Variables
 
-        private TSB _tsb = null;
-        private List<Plaza> _plazas = null;
         private RevenueEntryManager manager = null;
 
         private int rowCnt = 0;
@@ -53,11 +51,11 @@ namespace DMT.TOD.Controls.Revenue.Elements
             {
                 if (manager.Entry.IsHistorical)
                 {
-                    LoadItems();
+                    UpdateList();
                 }
                 else
                 {
-                    LoadItems();
+                    UpdateList();
                 }
             }
             else
@@ -70,55 +68,23 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Private Methods
 
-
-        private void RefreshQRCODE(DateTime dt1, DateTime dt2)
+        private void UpdateList()
         {
             grid.ItemsSource = null;
 
             List <LaneQRCode> results = new List<LaneQRCode>();
-            List<LaneQRCode> items = new List<LaneQRCode>();
-            List<LaneQRCode> sortList = new List<LaneQRCode>();
 
-            if (null != manager && null != manager.Entry && null != _tsb && null != _plazas)
+            if (null != manager && null != manager.Payments)
             {
-                int networkId = TODConfigManager.Instance.DMT.networkId;
-                var userShift = UserShift.GetUserShift(manager.Entry.UserId).Value();
-
-                if (null != userShift && null != _plazas && _plazas.Count > 0)
-                {
-                    _plazas.ForEach(plaza =>
-                    {
-                        int pzId = plaza.SCWPlazaId;
-                        SCWQRCodeTransactionList param = new SCWQRCodeTransactionList();
-                        param.networkId = networkId;
-                        param.plazaId = pzId;
-                        param.staffId = userShift.UserId;
-                        param.startDateTime = dt1;
-                        param.endDateTime = dt2;
-                        var emvList = scwOps.qrcodeTransactionList(param);
-                        if (null != emvList && null != emvList.list)
-                        {
-                            emvList.list.ForEach(item =>
-                            {
-                                if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
-                                    userShift.Begin.Value <= item.trxDateTime.Value)
-                                {
-                                    items.Add(new LaneQRCode(item));
-                                }
-                            });
-                        }
-                    });
-
-                    sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
-                }
-                results.AddRange(sortList.ToArray());
+                results = manager.Payments.QRCodeItems;
             }
+
             // Calculate Summary.
             if (null != results && results.Count > 0)
             {
                 rowCnt = results.Count;
                 amtVal = decimal.Zero;
-                sortList.ForEach(item =>
+                results.ForEach(item =>
                 {
                     amtVal += item.Amount;
                 });
@@ -146,28 +112,6 @@ namespace DMT.TOD.Controls.Revenue.Elements
         #region Public Methods
 
         /// <summary>
-        /// Load Items.
-        /// </summary>
-        public void LoadItems()
-        {
-            if (null == manager || null == manager.Entry) return;
-
-            DateTime dt1 = manager.Entry.ShiftBegin.Value;
-            DateTime dt2 = manager.Entry.ShiftEnd.Value;
-
-            RefreshQRCODE(dt1, dt2);
-        }
-        /// <summary>
-        /// Gets Items.
-        /// </summary>
-        public List<LaneQRCode> Items
-        {
-            get
-            {
-                return (null != grid.ItemsSource) ? grid.ItemsSource as List<LaneQRCode> : null;
-            }
-        }
-        /// <summary>
         /// Setup.
         /// </summary>
         /// <param name="value">The RevenueEntryManager instance.</param>
@@ -175,6 +119,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
         {
             manager = value;
             this.DataContext = (null != manager) ? manager.Entry : null;
+            UpdateList();
         }
 
         #endregion

@@ -62,8 +62,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1014
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1013
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1012
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements TOD Manager classes #5.
+    - Implements Collector Revenue Entry #13.
+    - Implements Chief Revenue Entry #13.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1011

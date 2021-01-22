@@ -80,16 +80,21 @@ namespace DMT.TOD.Pages.Revenue
         private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == plazaGroup) return;
-            _plazas = Plaza.GetPlazaGroupPlazas(plazaGroup).Value();
-            LoadLanes();
+            if (null == plazaGroup) return; // No Selection.
+            // Set Current Plaza Group.
+            if (null != manager.Current) manager.Current.PlazaGroup = plazaGroup; 
+
+            LoadTSBLanes();
         }
 
         private void cbShifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var shift = cbShifts.SelectedItem as Models.Shift;
-            if (null == shift) return;
-            LoadLanes();
+            if (null == shift) return; // No Selection.
+            // Set Current Shift.
+            if (null != manager.Current) manager.Current.Shift = shift; 
+
+            LoadTSBLanes();
         }
 
         #endregion
@@ -149,7 +154,7 @@ namespace DMT.TOD.Pages.Revenue
             else if (e.Key == System.Windows.Input.Key.Escape)
             {
                 ResetSelectUser();
-                LoadLanes();
+                LoadTSBLanes();
                 e.Handled = true;
             }
         }
@@ -157,6 +162,8 @@ namespace DMT.TOD.Pages.Revenue
         #endregion
 
         #region Private Methods
+
+        #region Tab Navigate methods
 
         private void GotoMainMenu()
         {
@@ -191,6 +198,59 @@ namespace DMT.TOD.Pages.Revenue
             tabs.SelectedIndex = 2;
         }
 
+        #endregion
+
+        #region Load Masters
+
+        private void LoadShifts()
+        {
+            cbShifts.ItemsSource = null;
+            if (null != manager && null != manager.Current)
+            {
+                cbShifts.ItemsSource = manager.Current.Shifts;
+                if (manager.Current.Shifts.Count > 0) cbShifts.SelectedIndex = 0;
+            }
+            LoadTSBLanes();
+        }
+
+        private void LoadPlazaGroups()
+        {
+            cbPlazas.ItemsSource = null;
+            if (null != manager && null != manager.Current)
+            {
+                cbPlazas.ItemsSource = manager.Current.TSBPlazaGroups;
+                if (manager.Current.TSBPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+            }
+            LoadTSBLanes();
+        }
+
+        private void LoadTSBLanes()
+        {
+            /*
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            var shift = cbShifts.SelectedItem as Models.Shift;
+            if (null == plazaGroup || null == shift)
+            {
+                return;
+            }
+
+            grid.ItemsSource = null;
+
+            int networkId = TODConfigManager.Instance.DMT.networkId;
+
+            if (null == _jobs)
+            {
+                // Create new job list.
+                _jobs = new List<LaneJob>();
+            }
+            _jobs.Clear();
+
+            grid.ItemsSource = _jobs;
+            */
+        }
+
+        #endregion
+
         private void Reset()
         {
             // Reset Plaza.
@@ -199,9 +259,18 @@ namespace DMT.TOD.Pages.Revenue
             // Reset Shift.
             cbShifts.SelectedIndex = -1;
             LoadShifts();
-            // Update entry date and revenue date.
-            dtEntryDate.Value = DateTime.Now;
-            dtRevDate.Value = DateTime.Now;
+
+            // Set Bindings On Tab - Date Selection.
+            dtEntryDate.DataContext = manager;
+            dtRevDate.DataContext = manager;
+            txtUserId.DataContext = manager;
+            txtUserName.DataContext = manager;
+            // Set Bindings On Tab - Revenue Entry.
+            txtPlazaName.DataContext = manager;
+            txtShiftName.DataContext = manager;
+            txtRevDate2.DataContext = manager;
+            txtUserId2.DataContext = manager;
+            txtUserName2.DataContext = manager;
         }
 
         private void ResetSelectUser()
@@ -238,57 +307,6 @@ namespace DMT.TOD.Pages.Revenue
                     grid.ItemsSource = null; // setup null list.
                 }
             }
-            */
-        }
-
-        private void LoadShifts() 
-        {
-            /*
-            cbPlazas.ItemsSource = null;
-            if (null != _shifts)
-            {
-                cbPlazas.ItemsSource = _shifts;
-                if (_shifts.Count > 0) cbShifts.SelectedIndex = 0;
-            }
-            LoadLanes();
-            */
-        }
-
-        private void LoadPlazaGroups() 
-        {
-            /*
-            cbPlazas.ItemsSource = null;
-            if (null != _plazaGroups)
-            {
-                cbPlazas.ItemsSource = _plazaGroups;
-                if (_plazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
-            }
-            LoadLanes();
-            */
-        }
-
-        private void LoadLanes()
-        {
-            /*
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            var shift = cbShifts.SelectedItem as Models.Shift;
-            if (null == plazaGroup || null == shift)
-            {
-                return;
-            }
-
-            grid.ItemsSource = null;
-
-            int networkId = TODConfigManager.Instance.DMT.networkId;
-
-            if (null == _jobs)
-            {
-                // Create new job list.
-                _jobs = new List<LaneJob>();
-            }
-            _jobs.Clear();
-
-            grid.ItemsSource = _jobs;
             */
         }
 

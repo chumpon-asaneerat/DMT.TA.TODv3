@@ -72,7 +72,7 @@
                                        HorizontalAlignment="Center"
                                        FontSize="18"
                                        Style="{StaticResource LabelText}"
-                                       Text="" />
+                                       Text="{Binding EntryDateTimeString}" />
                             <TextBlock Margin="5"
                                        Foreground="Red"
                                        Style="{StaticResource LabelText}"
@@ -81,7 +81,7 @@
                                        Margin="5"
                                        Foreground="Black"
                                        Style="{StaticResource LabelText}"
-                                       Text="" />
+                                       Text="{Binding RevenueDateString}" />
                             <TextBlock Width="120"
                                        HorizontalAlignment="Center"
                                        Foreground="Black"
@@ -195,7 +195,7 @@
                                                DockPanel.Dock="Left"
                                                Foreground="Yellow"
                                                Style="{StaticResource LabelText}"
-                                               Text=""
+                                               Text="{Binding RevenueDateString}"
                                                TextAlignment="Center" />
                                     <TextBlock Width="50"
                                                DockPanel.Dock="Left"
@@ -207,7 +207,7 @@
                                                DockPanel.Dock="Left"
                                                Foreground="Yellow"
                                                Style="{StaticResource LabelText}"
-                                               Text=""
+                                               Text="{Binding ShiftNameTH}"
                                                TextAlignment="Center" />
                                     <TextBlock Width="120"
                                                DockPanel.Dock="Left"
@@ -217,7 +217,8 @@
                                     <TextBlock x:Name="txtPlazaName"
                                                Width="150"
                                                Foreground="Yellow"
-                                               Style="{StaticResource LabelText}" />
+                                               Style="{StaticResource LabelText}"
+                                               Text="{Binding PlazaGroupNameTH}" />
                                     <Grid />
                                 </DockPanel>
                                 <TextBlock Height="2" DockPanel.Dock="Top" />
@@ -232,7 +233,7 @@
                                                DockPanel.Dock="Left"
                                                Foreground="Yellow"
                                                Style="{StaticResource LabelText}"
-                                               Text=""
+                                               Text="{Binding CollectorId}"
                                                TextAlignment="Center" />
                                     <TextBlock Width="100"
                                                DockPanel.Dock="Left"
@@ -243,7 +244,7 @@
                                                Width="250"
                                                Foreground="Yellow"
                                                Style="{StaticResource LabelText}"
-                                               Text=""
+                                               Text="{Binding CollectorNameTH}"
                                                TextAlignment="Center" />
                                     <Grid />
                                 </DockPanel>
@@ -275,16 +276,14 @@
                                           Click="cmdBack3_Click"
                                           DockPanel.Dock="Left"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Edit.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}"
-                                       Text="แก้ไข" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="แก้ไข" />
                         </ctrl:ImageButton>
                         <Grid Width="5" DockPanel.Dock="Left" />
                         <ctrl:ImageButton x:Name="cmdOk"
                                           Click="cmdOk_Click"
                                           DockPanel.Dock="Right"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Approve.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}"
-                                       Text="ยืนยัน นำส่งรายได้" />
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยืนยัน นำส่งรายได้" />
                         </ctrl:ImageButton>
                         <Grid Width="5" DockPanel.Dock="Right" />
                     </DockPanel>

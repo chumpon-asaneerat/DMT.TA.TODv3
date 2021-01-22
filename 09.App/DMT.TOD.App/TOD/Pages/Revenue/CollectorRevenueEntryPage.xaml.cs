@@ -135,6 +135,8 @@ namespace DMT.TOD.Pages.Revenue
 
         #region Private Methods
 
+        #region Tab Navigate methods
+
         private void GotoMainMenu()
         {
             // Main Menu Page
@@ -261,24 +263,9 @@ namespace DMT.TOD.Pages.Revenue
             tabs.SelectedIndex = 2;
         }
 
-        private void Reset()
-        {
-            /*
-            // Reset Plaza.
-            cbPlazas.SelectedIndex = -1;
-            LoadPlazaGroups();
-            // Update entry date and revenue date.
-            _entryDate = DateTime.Now;
-            _revDate = DateTime.Now;
+        #endregion
 
-            txtEntryDate.Text = (_entryDate.HasValue) ? _entryDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty;
-
-            txtRevDate.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
-            txtRevDate2.Text = (_revDate.HasValue) ? _revDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
-
-            _userShift = null;
-            */
-        }
+        #region Load Masters
 
         private void LoadPlazaGroups()
         {
@@ -288,6 +275,25 @@ namespace DMT.TOD.Pages.Revenue
                 cbPlazas.ItemsSource = manager.Current.TSBPlazaGroups;
                 if (manager.Current.TSBPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
             }
+        }
+
+        #endregion
+
+        private void Reset()
+        {
+            // Reset Plaza.
+            cbPlazas.SelectedIndex = -1;
+            LoadPlazaGroups();
+
+            // Set Bindings On Tab - Date Selection.
+            txtRevDate.DataContext = manager;
+            txtEntryDate.DataContext = manager;
+            // Set Bindings On Tab - Revenue Entry.
+            txtPlazaName.DataContext = manager;
+            txtShiftName.DataContext = manager;
+            txtRevDate2.DataContext = manager;
+            txtUserId2.DataContext = manager;
+            txtUserName2.DataContext = manager;
         }
 
         private void LoadTSBJobs()

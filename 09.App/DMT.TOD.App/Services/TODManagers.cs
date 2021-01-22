@@ -47,6 +47,7 @@ namespace DMT.Services
     {
         #region Internal Variables
 
+        private Models.Shift _shift = null;
         private PlazaGroup _plazaGroup = null;
         private User _user = null;
 
@@ -75,6 +76,11 @@ namespace DMT.Services
             UserChanged.Call(this, EventArgs.Empty);
         }
 
+        private void RaiseShiftChanged()
+        {
+            ShiftChanged.Call(this, EventArgs.Empty);
+        }
+
         private void RaisePlazaGroupChanged()
         {
             PlazaGroupChanged.Call(this, EventArgs.Empty);
@@ -89,6 +95,18 @@ namespace DMT.Services
         /// </summary>
         public void Refresh()
         {
+            // Clear Master Objects.
+            TSBPlazaGroups = null;
+            TSBPlazas = null;
+            TSBShift = null;
+            Chief = null;
+            Shifts = null;
+            // Clear Selections.
+            Shift = null;
+            PlazaGroup = null;
+            PlazaGroupPlazas = null;
+            User = null;
+
             // Init TSB 
             TSB = TSB.GetCurrent().Value();
             if (null != TSB)
@@ -99,18 +117,11 @@ namespace DMT.Services
 
                 // Get Current TSB Shift and Chief
                 // Gets Supervisor
-                Shift = TSBShift.GetTSBShift(TSB.TSBId).Value();
-                Chief = (null != Shift) ? User.GetByUserId(Shift.UserId).Value() : null;
+                TSBShift = TSBShift.GetTSBShift(TSB.TSBId).Value();
+                Chief = (null != TSBShift) ? User.GetByUserId(TSBShift.UserId).Value() : null;
             }
-            else
-            {
-                // TSB Not found.
-                TSBPlazaGroups = new List<PlazaGroup>();
-                TSBPlazas = new List<Plaza>();
-
-                Shift = null;
-                Chief = null;
-            }
+            // Init Shifts
+            Shifts = Models.Shift.GetShifts().Value();
         }
 
         #endregion
@@ -129,13 +140,12 @@ namespace DMT.Services
         /// Gets TSB Plazas.
         /// </summary>
         public List<Plaza> TSBPlazas { get; private set; }
-
         /// <summary>
         /// Gets or set PlazaGroup.
         /// </summary>
         public PlazaGroup PlazaGroup
         {
-            get { return PlazaGroup; }
+            get { return _plazaGroup; }
             set
             {
                 if (null != _plazaGroup && null != value && (_plazaGroup.PlazaGroupId == value.PlazaGroupId))
@@ -149,7 +159,7 @@ namespace DMT.Services
                 }
                 else
                 {
-                    PlazaGroupPlazas = new List<Plaza>();
+                    PlazaGroupPlazas = null;
                 }
                 // Raise Event.
                 RaisePlazaGroupChanged();
@@ -159,11 +169,31 @@ namespace DMT.Services
         /// Gets PlazaGroup Plazas.
         /// </summary>
         public List<Plaza> PlazaGroupPlazas { get; private set; }
-
+        /// <summary>
+        /// Gets Shifts.
+        /// </summary>
+        public List<Models.Shift> Shifts { get; private set; }
         /// <summary>
         /// Gets Current TSB Shift.
         /// </summary>
-        public TSBShift Shift { get; private set; }
+        public TSBShift TSBShift { get; private set; }
+        /// <summary>
+        /// Gets Current Shift
+        /// </summary>
+        public Models.Shift Shift
+        {
+            get { return _shift; }
+            set
+            {
+                if (null != _shift && null != value && _shift.ShiftId == value.ShiftId)
+                    return;
+
+                _shift = value;
+
+                // Raise Event.
+                RaiseShiftChanged();
+            }
+        }
         /// <summary>
         /// Gets Current Chief
         /// </summary>
@@ -194,6 +224,10 @@ namespace DMT.Services
         /// The UserChanged Event Handler.
         /// </summary>
         public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
         /// <summary>
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
@@ -227,10 +261,10 @@ namespace DMT.Services
             if (null != Current)
             {
                 Current.UserChanged += Current_UserChanged;
+                Current.ShiftChanged += Current_ShiftChanged;
                 Current.PlazaGroupChanged += Current_PlazaGroupChanged;
             }
         }
-
         /// <summary>
         /// Destructor
         /// </summary>
@@ -239,6 +273,7 @@ namespace DMT.Services
             if (null != Current)
             {
                 Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.ShiftChanged -= Current_ShiftChanged;
                 Current.UserChanged -= Current_UserChanged;
             }
         }
@@ -253,6 +288,12 @@ namespace DMT.Services
         {
             // Raise Event.
             UserChanged.Call(sender, e);
+        }
+
+        private void Current_ShiftChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            ShiftChanged.Call(sender, e);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
@@ -313,6 +354,10 @@ namespace DMT.Services
         /// </summary>
         public event System.EventHandler UserChanged;
         /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
+        /// <summary>
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
         public event System.EventHandler PlazaGroupChanged;
@@ -345,6 +390,7 @@ namespace DMT.Services
             if (null != Current)
             {
                 Current.UserChanged += Current_UserChanged;
+                Current.ShiftChanged += Current_ShiftChanged;
                 Current.PlazaGroupChanged += Current_PlazaGroupChanged;
             }
         }
@@ -356,6 +402,7 @@ namespace DMT.Services
             if (null != Current)
             {
                 Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.ShiftChanged -= Current_ShiftChanged;
                 Current.UserChanged -= Current_UserChanged;
             }
         }
@@ -372,6 +419,12 @@ namespace DMT.Services
             UserChanged.Call(sender, e);
         }
 
+        private void Current_ShiftChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            ShiftChanged.Call(sender, e);
+        }
+
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
             // Raise Event.
@@ -383,6 +436,14 @@ namespace DMT.Services
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Refresh all payments.
+        /// </summary>
+        public void Refresh()
+        {
+
+        }
 
         #endregion
 
@@ -401,6 +462,10 @@ namespace DMT.Services
         /// The UserChanged Event Handler.
         /// </summary>
         public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
         /// <summary>
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
@@ -429,7 +494,10 @@ namespace DMT.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        private UserShiftManager() : base() { }
+        private UserShiftManager() : base() 
+        {
+            IsCustom = false;
+        }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -440,6 +508,7 @@ namespace DMT.Services
             if (null != Current)
             {
                 Current.UserChanged += Current_UserChanged;
+                Current.ShiftChanged += Current_ShiftChanged;
                 Current.PlazaGroupChanged += Current_PlazaGroupChanged;
             }
         }
@@ -451,6 +520,7 @@ namespace DMT.Services
             if (null != Current)
             {
                 Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.ShiftChanged -= Current_ShiftChanged;
                 Current.UserChanged -= Current_UserChanged;
             }
         }
@@ -469,11 +539,39 @@ namespace DMT.Services
             }
             else
             {
-                _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
+                if (!IsCustom)
+                {
+                    _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
+                }
+                else
+                {
+                    // Create new instance.
+                    var inst = new UserShift();
+                    // Assign properties
+                    if (null != Current.TSB) Current.TSB.AssignTo(inst);
+                    if (null != Current.Shift) Current.Shift.AssignTo(inst);
+                    if (null != Current.User) Current.User.AssignTo(inst);
+
+                    // Update UserShiftId from exists one.
+                    if (null != _userShift) inst.UserShiftId = _userShift.UserShiftId;
+                    
+                    // Update Begin and End Date from exists one.
+                    inst.Begin = (null != _userShift) ? _userShift.Begin : new DateTime ?();
+                    inst.End = (null != _userShift) ? _userShift.End : new DateTime?();
+
+                    // Update to current instance.
+                    _userShift = inst;
+                }
             }
             // Raise Event.
             UserChanged.Call(sender, e);
             UserShiftChanged.Call(this, EventArgs.Empty);
+        }
+
+        private void Current_ShiftChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            ShiftChanged.Call(sender, e);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
@@ -486,6 +584,18 @@ namespace DMT.Services
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Refresh data.
+        /// </summary>
+        public void Refresh()
+        {
+            _userShift = null;
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -493,9 +603,21 @@ namespace DMT.Services
         /// </summary>
         public CurrentTSBManager Current { get; private set; }
         /// <summary>
-        /// Gets Current User Shift.
+        /// Gets or sets is custom mode.
         /// </summary>
-        public UserShift Shift { get { return _userShift; } }
+        public bool IsCustom { get; set; }
+        /// <summary>
+        /// Gets or sets Current User Shift.
+        /// </summary>
+        public UserShift Shift 
+        { 
+            get { return _userShift; } 
+            set
+            {
+                if (!IsCustom) return;
+                _userShift = value;
+            }
+        }
 
         #endregion
 
@@ -505,6 +627,10 @@ namespace DMT.Services
         /// The UserChanged Event Handler.
         /// </summary>
         public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
         /// <summary>
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
@@ -544,14 +670,11 @@ namespace DMT.Services
         /// </summary>
         public RevenueEntryManager() : base()
         {
-            // Init date(s).
-            _EntryDate = new DateTime?(_now);
-            _RevenueDate = new DateTime?(_now);
-
             Current = new CurrentTSBManager();
             if (null != Current)
             {
                 Current.UserChanged += Current_UserChanged;
+                Current.ShiftChanged += Current_ShiftChanged;
                 Current.PlazaGroupChanged += Current_PlazaGroupChanged;
             }
 
@@ -559,27 +682,28 @@ namespace DMT.Services
 
             Payments = new PaymentManager(Current);
 
-            UserrShifts = new UserShiftManager(Current);
-            if (null != UserrShifts)
+            UserShifts = new UserShiftManager(Current);
+            if (null != UserShifts)
             {
-                UserrShifts.UserShiftChanged += UserrShifts_UserShiftChanged;
+                UserShifts.UserShiftChanged += UserShifts_UserShiftChanged;
             }
 
-            Clear();
+            Refresh();
         }
         /// <summary>
         /// Destructor
         /// </summary>
         ~RevenueEntryManager()
         {
-            if (null != UserrShifts)
+            if (null != UserShifts)
             {
-                UserrShifts.UserShiftChanged -= UserrShifts_UserShiftChanged;
+                UserShifts.UserShiftChanged -= UserShifts_UserShiftChanged;
             }
 
             if (null != Current)
             {
                 Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.ShiftChanged -= Current_ShiftChanged;
                 Current.UserChanged -= Current_UserChanged;
             }
         }
@@ -596,6 +720,12 @@ namespace DMT.Services
             UserChanged.Call(sender, e);
         }
 
+        private void Current_ShiftChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            ShiftChanged.Call(sender, e);
+        }
+
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
             // Raise Event.
@@ -606,7 +736,7 @@ namespace DMT.Services
 
         #region UserShiftManager EventHandlers
 
-        private void UserrShifts_UserShiftChanged(object sender, EventArgs e)
+        private void UserShifts_UserShiftChanged(object sender, EventArgs e)
         {
             CheckUserShift();
         }
@@ -634,7 +764,7 @@ namespace DMT.Services
             {
                 if (HasUserShift)
                 {
-                    var shift = UserrShifts.Shift;
+                    var shift = UserShifts.Shift;
                     RevenueDate = (shift.Begin.HasValue) ? shift.Begin.Value.Date : new DateTime?(_now);
                 }
                 else
@@ -664,10 +794,23 @@ namespace DMT.Services
 
         #region Public Methods
 
-        public void Clear()
+        /// <summary>
+        /// Refresh.
+        /// </summary>
+        public void Refresh()
         {
-            this.EntryDate = new DateTime?(_now);
+            // Readonly field so need manual raise related events.
+            _EntryDate = new DateTime?(_now);
+            RaiseChanged("EntryDate");
+            RaiseChanged("EntryDateString");
+            RaiseChanged("EntryDateTimeString");
+
             this.RevenueDate = new DateTime?(_now);
+
+            if (null != Current) Current.Refresh();
+            if (null != Jobs) Jobs.Refresh();
+            if (null != Payments) Payments.Refresh();
+            if (null != UserShifts) UserShifts.Refresh();
         }
 
         #endregion
@@ -691,13 +834,87 @@ namespace DMT.Services
         /// <summary>
         /// Gets User Shift Manager.
         /// </summary>
-        public UserShiftManager UserrShifts { get; private set; }
+        public UserShiftManager UserShifts { get; private set; }
+
+        #endregion
+
+        #region PlazaGroup
+
+        /// <summary>
+        /// Gets or set PlazaGroup.
+        /// </summary>
+        public PlazaGroup PlazaGroup
+        {
+            get { return (null != Current) ? Current.PlazaGroup : null; }
+            set
+            {
+                if (null != Current)
+                {
+                    Current.PlazaGroup = value;
+                    RaiseChanged("PlazaGroupId");
+                    RaiseChanged("PlazaGroupNameEN");
+                    RaiseChanged("PlazaGroupNameTH");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets PlazaGroup Id.
+        /// </summary>
+        public string PlazaGroupId
+        {
+            get { return (null != Current && null != Current.PlazaGroup) ? Current.PlazaGroup.PlazaGroupId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets PlazaGroup Name EN.
+        /// </summary>
+        public string PlazaGroupNameEN
+        {
+            get { return (null != Current && null != Current.PlazaGroup) ? Current.PlazaGroup.PlazaGroupNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets PlazaGroup TH.
+        /// </summary>
+        public string PlazaGroupNameTH
+        {
+            get { return (null != Current && null != Current.PlazaGroup) ? Current.PlazaGroup.PlazaGroupNameTH : string.Empty; }
+            set { }
+        }
+
+        #endregion
+
+        #region User Shift
+
         /// <summary>
         /// Checks Has User Shift.
         /// </summary>
         public bool HasUserShift
         {
-            get { return (null != UserrShifts && null != UserrShifts.Shift); }
+            get { return (null != UserShifts && null != UserShifts.Shift); }
+        }
+        /// <summary>
+        /// Gets Collector UserShift.
+        /// </summary>
+        public UserShift UserShift
+        {
+            get { return (HasUserShift) ? UserShifts.Shift : null; }
+        }
+        /// <summary>
+        /// Gets Shift Name EN.
+        /// </summary>
+        public string ShiftNameEN
+        {
+            get { return (HasUserShift) ? UserShifts.Shift.ShiftNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Shift Name TH.
+        /// </summary>
+        public string ShiftNameTH
+        {
+            get { return (HasUserShift) ? UserShifts.Shift.ShiftNameTH : string.Empty; }
+            set { }
         }
 
         #endregion
@@ -713,6 +930,7 @@ namespace DMT.Services
                 if (_byChief != value)
                 {
                     _byChief = value;
+                    UserShifts.IsCustom = _byChief; // in chief mode user shift can custom.
                     CheckRevenueDate();
                     RaiseChanged("ByChief");
                 }
@@ -729,16 +947,7 @@ namespace DMT.Services
         public DateTime? EntryDate 
         {
             get { return _EntryDate; }
-            set
-            {
-                /*
-                if (_EntryDate != value)
-                {
-                    _EntryDate = value;
-                    RaiseChanged("EntryDate");
-                }
-                */
-            }
+            set { }
         }
         /// <summary>
         /// Gets Entry Date String.
@@ -748,7 +957,18 @@ namespace DMT.Services
             get 
             { 
                 return (EntryDate.HasValue) ? 
-                    EntryDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty; 
+                    EntryDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty; 
+            }
+        }
+        /// <summary>
+        /// Gets Entry DateTime String.
+        /// </summary>
+        public string EntryDateTimeString
+        {
+            get
+            {
+                return (EntryDate.HasValue) ?
+                    EntryDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss") : string.Empty;
             }
         }
 
@@ -768,6 +988,8 @@ namespace DMT.Services
                 {
                     _RevenueDate = value;
                     RaiseChanged("RevenueDate");
+                    RaiseChanged("RevenueDateString");
+                    RaiseChanged("RevenueDateTimeString");
                 }
             }
         }
@@ -775,6 +997,17 @@ namespace DMT.Services
         /// Gets Revenue Date String.
         /// </summary>
         public string RevenueDateString
+        {
+            get
+            {
+                return (RevenueDate.HasValue) ?
+                    RevenueDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
+            }
+        }
+        /// <summary>
+        /// Gets Revenue DateTime String.
+        /// </summary>
+        public string RevenueDateTimeString
         {
             get
             {
@@ -788,17 +1021,75 @@ namespace DMT.Services
         #region User/Chief (Current)
 
         /// <summary>
-        /// Gets Current User.
+        /// Gets or set User (Collector).
         /// </summary>
         public User User 
         { 
-            get { return this.Current.User; }
-            set { this.Current.User = value; }
+            get { return (null != Current) ? Current.User : null; }
+            set 
+            {
+                if (null != Current)
+                {
+                    Current.User = value;
+                    RaiseChanged("CollectorId");
+                    RaiseChanged("CollectorNameEN");
+                    RaiseChanged("CollectorNameTH");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != Current && null != Current.User) ? Current.User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != Current && null != Current.User) ? Current.User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != Current && null != Current.User) ? Current.User.FullNameTH : string.Empty; }
+            set { }
         }
         /// <summary>
         /// Gets Current Chief.
         /// </summary>
         public User Chief { get { return this.Current.Chief; } }
+        /// <summary>
+        /// Gets Chief Id.
+        /// </summary>
+        public string ChiefId
+        {
+            get { return (null != Current && null != Current.Chief) ? Current.Chief.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Chief Name EN.
+        /// </summary>
+        public string ChiefNameEN
+        {
+            get { return (null != Current && null != Current.Chief) ? Current.Chief.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Chief Name TH.
+        /// </summary>
+        public string ChiefNameTH
+        {
+            get { return (null != Current && null != Current.Chief) ? Current.Chief.FullNameTH : string.Empty; }
+            set { }
+        }
 
         #endregion
 
@@ -816,23 +1107,13 @@ namespace DMT.Services
         /// </summary>
         public event System.EventHandler UserChanged;
         /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
+        /// <summary>
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
         public event System.EventHandler PlazaGroupChanged;
-
-        #endregion
-    }
-
-    #endregion
-
-    #region HistoricalRevenueEntryManager
-
-    /// <summary>
-    /// The HistoricalRevenueEntryManager class.
-    /// </summary>
-    public class HistoricalRevenueEntryManager
-    {
-        #region Public Properties
 
         #endregion
     }

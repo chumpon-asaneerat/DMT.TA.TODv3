@@ -191,6 +191,28 @@ namespace DMT.TOD.Pages.Revenue
 
             #endregion
 
+            #region Check Date
+
+            if (!manager.RevenueDate.HasValue)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกวันที่ของรายได้", "DMT - Tour of Duty");
+                win.ShowDialog();
+                dtRevDate.Focus();
+                return;
+            }
+
+            if (manager.RevenueDate.HasValue && manager.RevenueDate.Value.Date > DateTime.Now.Date)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ไม่อณุญาตให้ป้อนรายได้ล่วงหน้า กรุณาเลือกวันที่ของรายได้ใหม่", "DMT - Tour of Duty");
+                win.ShowDialog();
+                dtRevDate.Focus();
+                return;
+            }
+
+            #endregion
+
             #region Check Select Shift
 
             if (null == manager.Current.Shift)

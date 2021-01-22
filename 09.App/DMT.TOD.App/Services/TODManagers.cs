@@ -861,7 +861,7 @@ namespace DMT.Services
 
     #endregion
 
-    #region PaymentType Enum
+    #region PaymentTypes Enum
 
     /// <summary>
     /// The PaymentTypes Enum
@@ -1407,6 +1407,8 @@ namespace DMT.Services
 
         #region Public Methods
 
+        #region Refresh
+
         /// <summary>
         /// Refresh.
         /// </summary>
@@ -1426,6 +1428,13 @@ namespace DMT.Services
             if (null != Payments) Payments.Refresh();
         }
 
+        #endregion
+
+        #region RevenueShift method(s)
+
+        /// <summary>
+        /// Check Revenue Shift. Call before create NewRevenueEntry to check UserShiftRevenue.
+        /// </summary>
         public void CheckRevenueShift()
         {
             #region Check User Revenue Shift
@@ -1468,6 +1477,10 @@ namespace DMT.Services
 
             #endregion
         }
+
+        #endregion
+
+        #region Revenue Entry methods.
 
         /// <summary>
         /// Create New Revenue Entry.
@@ -1601,6 +1614,152 @@ namespace DMT.Services
             return true;
         }
         /// <summary>
+        /// Save Revenue Entry.
+        /// </summary>
+        /// <returns></returns>
+        public bool SaveRevenueEntry()
+        {
+            if (null == Entry ||
+                !Entry.RevenueDate.HasValue ||
+                Entry.RevenueDate.Value == DateTime.MinValue ||
+                !Entry.EntryDate.HasValue ||
+                Entry.EntryDate.Value == DateTime.MinValue)
+            {
+                return false;
+            }
+
+            if (null == PlazaGroup || null == UserShift) return false;
+
+            // Save information.
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            if (Entry.RevenueId == string.Empty)
+            {
+                // Set Unique ID.
+                var unique = UniqueCode.GetUniqueId("RevenueEntry").Value();
+                if (string.IsNullOrWhiteSpace(Entry.RevenueId))
+                {
+                    string yr = DateTime.Now.ToThaiDateTimeString("yy");
+                    string autoId = (null != unique) ? yr + unique.LastNumber.ToString("D5") : string.Empty; // auto generate.
+                    Entry.RevenueId = autoId;
+                    UniqueCode.IncreaseUniqueId("RevenueEntry");
+                }
+            }
+
+            // TODO: Need TA
+            /*
+            // Set UserCredits's Revenue Id
+            var usrSearch = Search.UserCredits.GetActiveById.Create(
+                _userShift.UserId, plazaGroup.PlazaGroupId);
+            UserCreditBalance userCredit = null;
+            userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
+            userCredit.RevenueId = this.RevenueEntry.RevenueId;
+            ops.Credits.SaveUserCreditBalance(userCredit);
+            */
+
+            // Save Revenue Entry.
+            var revInst = RevenueEntry.Save(Entry).Value();
+            string revId = (null != revInst) ? revInst.RevenueId : string.Empty;
+            if (null != RevenueShift)
+            {
+                // save revenue shift (for plaza)
+                UserShiftRevenue.SavePlazaRevenue(RevenueShift, Entry.RevenueDate.Value, revId);
+            }
+
+            var allJobs = (null != Jobs) ? Jobs.AllJobs : null;
+            var currJobs = (null != Jobs) ? Jobs.PlazaGroupJobs : null;
+            // get all lanes information.
+            bool bCloseUserShift = (
+                (null == allJobs && null == currJobs) ||
+                (null != allJobs && null != currJobs && allJobs.Count == currJobs.Count));
+
+            if (bCloseUserShift)
+            {
+                // no lane activitie in user shift.
+                UserShift.EndUserShift(UserShift);
+            }
+
+            // Generte Revenue (declare) File and mark sync status.
+            GenerateRevnueFile();
+
+            return !bCloseUserShift;
+        }
+
+        private void GenerateRevnueFile()
+        {
+            if (null == Entry) return;
+
+            // Generate File.
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (null == Entry || null == PlazaGroup) return;
+
+                int networkId = TODConfigManager.Instance.DMT.networkId;
+
+                // Need to sync currency and coupon master!!
+                var currencies = MCurrency.GetCurrencies().Value();
+                var coupons = MCoupon.GetCoupons().Value();
+                var cardAllows = MCardAllow.GetCardAllows().Value();
+
+                var emv = new List<SCWEMVTransaction>();
+                if (null != Payments && null != Payments.EMVItems)
+                {
+                    Payments.EMVItems.ForEach(item => 
+                    {
+                        if (null == item.Transaction) return;
+                        emv.Add(item.Transaction);
+                    });
+                }
+                var qrCode = new List<SCWQRCodeTransaction>();                 
+                if (null != Payments && null != Payments.QRCodeItems)
+                {
+                    Payments.QRCodeItems.ForEach(item =>
+                    {
+                        if (null == item.Transaction) return;
+                        qrCode.Add(item.Transaction);
+                    });
+                }
+
+                // find lane attendances.
+                var jobs = new List<SCWJob>();
+                if (null != Jobs && null != Jobs.PlazaGroupJobs)
+                {
+                    Jobs.PlazaGroupJobs.ForEach(job =>
+                    {
+                        if (null == job.Job) return;
+                        jobs.Add(job.Job);
+                    });
+                }
+
+                var plazas = Plaza.GetPlazaGroupPlazas(PlazaGroup).Value();
+                int plazaId = (null != plazas && plazas.Count > 0) ? plazas[0].SCWPlazaId : -1;
+
+                if (plazaId == -1)
+                {
+                    med.Info("declare error: Cannot search plaza id.");
+                    return;
+                }
+
+                // Create declare json file.
+                // send to server
+                SCWDeclare declare = Entry.ToServer(networkId, currencies, coupons, cardAllows,
+                    jobs, emv, qrCode, plazaId);
+                // send.
+                SCWMQService.Instance.WriteQueue(declare);
+
+                // Update local database status.
+                Entry.Status = 1; // generated json file OK.
+                Entry.LastUpdate = DateTime.Now;
+                Models.RevenueEntry.Save(Entry);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+
+        /// <summary>
         /// Load Exists Revenue Entry.
         /// </summary>
         /// <param name="entry"></param>
@@ -1630,6 +1789,63 @@ namespace DMT.Services
             */
             return ret;
         }
+
+        #endregion
+
+        #region Report Medels
+
+        /// <summary>
+        /// Checks all information to build Revenue Slip report is loaded.
+        /// </summary>
+        public bool CanBuildRevenueSlipReport
+        {
+            get
+            {
+                return (null != UserShift &&
+                    null != PlazaGroup &&
+                    null != RevenueShift &&
+                    null != Entry);
+            }
+        }
+        /// <summary>
+        /// Gets RevenueSlip ReportModel.
+        /// </summary>
+        /// <returns></returns>
+        public RdlcReportModel GetRevenueSlipReportModel()
+        {
+            Assembly assembly = this.GetType().Assembly;
+            RdlcReportModel inst = new RdlcReportModel();
+            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
+            inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
+                inst.Definition.EmbededReportName);
+            // clear reprot datasource.
+            inst.DataSources.Clear();
+
+            List<RevenueEntry> items = new List<RevenueEntry>();
+            if (null != Entry)
+            {
+                items.Add(Entry);
+            }
+
+            // assign new data source
+            RdlcReportDataSource mainDS = new RdlcReportDataSource();
+            mainDS.Name = "main"; // the datasource name in the rdlc report.
+            mainDS.Items = items; // setup data source
+            // Add to datasources
+            inst.DataSources.Add(mainDS);
+
+            // Add parameters (if required).
+            DateTime today = DateTime.Now;
+            string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+            inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
+            string histText = (null != Entry && Entry.IsHistorical) ?
+                "(นำส่งย้อนหลัง)" : "";
+            inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
+
+            return inst;
+        }
+
+        #endregion
 
         #endregion
 
@@ -1941,45 +2157,6 @@ namespace DMT.Services
         /// Gets User Revenue Shift.
         /// </summary>
         public UserShiftRevenue RevenueShift { get; private set; }
-
-        #endregion
-
-
-        #region Report Medels
-
-        private RdlcReportModel GetReportModel()
-        {
-            Assembly assembly = this.GetType().Assembly;
-            RdlcReportModel inst = new RdlcReportModel();
-            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
-            inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
-                inst.Definition.EmbededReportName);
-            // clear reprot datasource.
-            inst.DataSources.Clear();
-            /*
-            List<RevenueEntry> items = new List<RevenueEntry>();
-            if (null != _revenueEntry)
-            {
-                items.Add(_revenueEntry);
-            }
-
-            // assign new data source
-            RdlcReportDataSource mainDS = new RdlcReportDataSource();
-            mainDS.Name = "main"; // the datasource name in the rdlc report.
-            mainDS.Items = items; // setup data source
-            // Add to datasources
-            inst.DataSources.Add(mainDS);
-
-            // Add parameters (if required).
-            DateTime today = DateTime.Now;
-            string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
-            inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
-            string histText = (null != _revenueEntry && _revenueEntry.IsHistorical) ?
-                "(นำส่งย้อนหลัง)" : "";
-            inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
-            */
-            return inst;
-        }
 
         #endregion
 

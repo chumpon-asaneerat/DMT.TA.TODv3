@@ -198,7 +198,7 @@
                                                    Background="CornflowerBlue"
                                                    Foreground="White"
                                                    Style="{StaticResource LabelText}"
-                                                   Text="{Binding UserId}"
+                                                   Text="{Binding CollectorId}"
                                                    TextAlignment="Center" />
                                         <TextBlock Width="10" />
                                         <TextBlock Width="100"
@@ -211,7 +211,7 @@
                                                    Background="CornflowerBlue"
                                                    Foreground="White"
                                                    Style="{StaticResource LabelText}"
-                                                   Text="{Binding FullNameTH}"
+                                                   Text="{Binding CollectorNameTH}"
                                                    TextAlignment="Center" />
                                     </StackPanel>
                                     <Grid Grid.Row="1"

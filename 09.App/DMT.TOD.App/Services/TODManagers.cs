@@ -477,6 +477,22 @@ namespace DMT.Services
         {
             _userShift = null;
         }
+        /// <summary>
+        /// Create New User Shift.
+        /// </summary>
+        /// <returns></returns>
+        public UserShift Create()
+        {
+            var inst = new UserShift();
+
+            if (null != Current.TSB) Current.TSB.AssignTo(inst);
+            if (null != Current.Shift) Current.Shift.AssignTo(inst);
+            if (null != Current.User) Current.User.AssignTo(inst);
+            inst.Begin = DateTime.Now;
+            inst.End = inst.Begin;
+
+            return inst;
+        }
 
         #endregion
 
@@ -596,20 +612,6 @@ namespace DMT.Services
 
         #endregion
 
-        class SelectionResult
-        {
-            public DateTime Begin { get; set; }
-            public DateTime End { get; set; }
-            public bool IsContinuous { get; set; }
-        }
-
-        private SelectionResult LoadJobs()
-        {
-            SelectionResult result = new SelectionResult();
-
-            return result;
-        }
-
         private void LoadTSBJobs()
         {
             UserShift usrShift = this.UserShift;
@@ -711,20 +713,6 @@ namespace DMT.Services
         #endregion
 
         #region Public Methods
-
-        public bool IsContinuous(params UserShift[] values)
-        {
-            bool result = false;
-
-            return result;
-        }
-
-        public bool IsContinuous(List<UserShift> values)
-        {
-            var userShifts = (null != values) ? values.ToArray() : new UserShift[] { };
-            return IsContinuous(userShifts);
-        }
-
 
         /// <summary>
         /// Refresh Jobs.

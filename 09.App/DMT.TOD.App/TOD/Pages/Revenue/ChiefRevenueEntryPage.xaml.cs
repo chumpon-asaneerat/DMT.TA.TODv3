@@ -46,19 +46,10 @@ namespace DMT.TOD.Pages.Revenue
 
         private RevenueEntryManager manager = new RevenueEntryManager();
 
+        private User _chief = null; // Supervisor
         /*
-        private User _user = null; // Supervisor
-        private User _selectUser = null; // Collector
-
-        private TSB _tsb = null;
-        private List<PlazaGroup> _plazaGroups = null;
-        private List<Plaza> _plazas = null;
-        private List<Models.Shift> _shifts = null;
-
         private UserShift _userShift = null;
         private UserShift _revenueShift = null;
-
-        private List<LaneJob> _jobs = null;
         */
         #endregion
 
@@ -77,22 +68,22 @@ namespace DMT.TOD.Pages.Revenue
 
         #region Combobox Handlers
 
-        private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == plazaGroup) return; // No Selection.
-            // Set Current Plaza Group.
-            if (null != manager.Current) manager.Current.PlazaGroup = plazaGroup; 
-
-            LoadTSBLanes();
-        }
-
         private void cbShifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var shift = cbShifts.SelectedItem as Models.Shift;
             if (null == shift) return; // No Selection.
             // Set Current Shift.
-            if (null != manager.Current) manager.Current.Shift = shift; 
+            if (null != manager.Current) manager.Current.Shift = shift;
+
+            LoadTSBLanes();
+        }
+
+        private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
+            if (null == plazaGroup) return; // No Selection.
+            // Set Current Plaza Group.
+            if (null != manager) manager.PlazaGroup = plazaGroup;
 
             LoadTSBLanes();
         }
@@ -226,16 +217,17 @@ namespace DMT.TOD.Pages.Revenue
 
         private void LoadTSBLanes()
         {
-            /*
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            var shift = cbShifts.SelectedItem as Models.Shift;
-            if (null == plazaGroup || null == shift)
-            {
-                return;
-            }
-
             grid.ItemsSource = null;
 
+            if (null == manager || null == manager.Jobs || null == manager.UserShifts) return;
+
+            manager.Jobs.OnlyJobInShift = false; // Show all jobs
+            manager.Jobs.UserShift = manager.UserShifts.Create();
+            manager.Jobs.PlazaGroup = manager.PlazaGroup;
+            manager.Jobs.Refresh();
+            grid.ItemsSource = manager.Jobs.PlazaGroupJobs;
+
+            /*
             int networkId = TODConfigManager.Instance.DMT.networkId;
 
             if (null == _jobs)
@@ -245,7 +237,6 @@ namespace DMT.TOD.Pages.Revenue
             }
             _jobs.Clear();
 
-            grid.ItemsSource = _jobs;
             */
         }
 
@@ -275,8 +266,8 @@ namespace DMT.TOD.Pages.Revenue
 
         private void ResetSelectUser()
         {
+            if (null != manager) manager.User = null;
             /*
-            _selectUser = null;
             txtSearchUserId.Text = string.Empty;
             txtUserId.Text = string.Empty;
             txtUserName.Text = string.Empty;
@@ -287,36 +278,34 @@ namespace DMT.TOD.Pages.Revenue
         {
             string userId = txtSearchUserId.Text.Trim();
             var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
-            if (!result.IsCanceled)
+            if (!result.IsCanceled && null != manager)
             {
-                /*
-                _selectUser = result.User;
-                if (null != _selectUser)
+                manager.User = result.User;
+                if (null != manager.User)
                 {
-                    txtUserId.Text = _selectUser.UserId;
-                    txtUserName.Text = _selectUser.FullNameTH;
+                    /*
+                    txtUserId.Text = manager.User.UserId;
+                    txtUserName.Text = manager.User.FullNameTH;
+                    */
                     txtSearchUserId.Text = string.Empty;
-                    LoadLanes();
                 }
                 else
                 {
+                    /*
                     txtUserId.Text = string.Empty;
                     txtUserName.Text = string.Empty;
-                    grid.ItemsSource = null; // setup null list.
+                    */
                 }
-                */
+                LoadTSBLanes();
             }
         }
 
-        private void CheckUserShift()
+        private void CreateUserShift()
         {
-            /*
-            _userShift = null;
-            if (null != _selectUser)
+            if (null != manager)
             {
-                _userShift = UserShift.GetUserShift(_selectUser.UserId).Value();
+                manager.UserShifts.IsCustom = true;
             }
-            */
         }
 
         #endregion
@@ -326,28 +315,18 @@ namespace DMT.TOD.Pages.Revenue
         /// <summary>
         /// Setup.
         /// </summary>
-        /// <param name="user"></param>
-        public void Setup(User user)
+        /// <param name="chief">The chief user.</param>
+        public void Setup(User chief)
         {
             tabs.SelectedIndex = 0;
 
-            manager.User = user;
-            Reset();
-
-            /*
-            _user = user;
-            if (null != _user)
+            _chief = chief;
+            if (null != manager)
             {
-                _shifts = Models.Shift.GetShifts().Value();
-
-                _tsb = TSB.GetCurrent().Value();
-                if (null != _tsb)
-                {
-                    _plazaGroups = PlazaGroup.GetTSBPlazaGroups(_tsb).Value();
-                }
+                manager.ByChief = true;
+                if (null != manager.UserShifts) manager.UserShifts.IsCustom = true;
             }
             Reset();
-            */
         }
 
         #endregion

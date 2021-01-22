@@ -89,8 +89,8 @@ namespace DMT.TOD.Pages.Revenue
         private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null != manager && null != manager.Current && null == plazaGroup) return;
-            manager.Current.PlazaGroup = plazaGroup;
+            if (null != manager && null == plazaGroup) return;
+            if (null != manager) manager.PlazaGroup = plazaGroup;
             RefreshJobList();
         }
 
@@ -312,6 +312,11 @@ namespace DMT.TOD.Pages.Revenue
             txtUserId2.DataContext = manager;
             txtUserName2.DataContext = manager;
         }
+
+
+
+
+
 
         public void CheckRevenueShift()
         {
@@ -749,7 +754,12 @@ namespace DMT.TOD.Pages.Revenue
         {
             tabs.SelectedIndex = 0;
 
-            manager.User = user;
+            if (null != manager)
+            {
+                manager.ByChief = false;
+                manager.User = user;
+            }
+
             Reset();
         }
 

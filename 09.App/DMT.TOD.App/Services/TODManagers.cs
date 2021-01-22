@@ -26,6 +26,9 @@ using RestSharp;
 
 namespace DMT.Services
 {
+    using scwOps = Services.Operations.SCW.TOD;
+
+
     #region TODAPI
 
     /// <summary>
@@ -58,11 +61,18 @@ namespace DMT.Services
             get { return PlazaGroup.GetTSBPlazaGroups(TODAPI.TSB).Value(); } 
         }
         /// <summary>
-        /// Gets TSB Plaza.
+        /// Gets TSB Plazas.
         /// </summary>
         public static List<Plaza> TSBPlazas
         {
             get { return Plaza.GetTSBPlazas(TSB).Value(); }
+        }
+        /// <summary>
+        /// Gets TSB Lanes.
+        /// </summary>
+        public static List<Lane> TSBLanes
+        {
+            get { return Lane.GetTSBLanes(TSB).Value(); }
         }
 
         #endregion
@@ -204,6 +214,7 @@ namespace DMT.Services
             // Clear Master Objects.
             TSBPlazaGroups = null;
             TSBPlazas = null;
+            TSBLanes = null;
             TSBShift = null;
             Chief = null;
             Shifts = null;
@@ -217,9 +228,10 @@ namespace DMT.Services
             TSB = TODAPI.TSB;
             if (null != TSB)
             {
-                // Load Plaza Groups and Plaza
+                // Load Plaza Groups, Plazas and Lanes
                 TSBPlazaGroups = TODAPI.TSBPlazaGroups;
                 TSBPlazas = TODAPI.TSBPlazas;
+                TSBLanes = TODAPI.TSBLanes;
                 // Get Current TSB Shift
                 TSBShift = TODAPI.TSBShift;
                 // Gets Chief
@@ -245,6 +257,11 @@ namespace DMT.Services
         /// Gets TSB Plazas.
         /// </summary>
         public List<Plaza> TSBPlazas { get; private set; }
+        /// <summary>
+        /// Gets TSB Lanes.
+        /// </summary>
+        public List<Lane> TSBLanes { get; private set; }
+
         /// <summary>
         /// Gets or set PlazaGroup.
         /// </summary>
@@ -343,6 +360,176 @@ namespace DMT.Services
 
     #endregion
 
+    #region UserShiftManager
+
+    /// <summary>
+    /// The UserShiftManager class.
+    /// </summary>
+    public class UserShiftManager
+    {
+        #region Internal Variables
+
+        private UserShift _userShift = null;
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        private UserShiftManager() : base()
+        {
+            IsCustom = false;
+        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="manager">The CurrentTSBManager instance.</param>
+        public UserShiftManager(CurrentTSBManager manager) : this()
+        {
+            Current = manager;
+            if (null != Current)
+            {
+                Current.UserChanged += Current_UserChanged;
+                Current.ShiftChanged += Current_ShiftChanged;
+                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
+            }
+        }
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~UserShiftManager()
+        {
+            if (null != Current)
+            {
+                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.ShiftChanged -= Current_ShiftChanged;
+                Current.UserChanged -= Current_UserChanged;
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        #region CurrentTSBManager Event Handlers
+
+        private void Current_UserChanged(object sender, EventArgs e)
+        {
+            if (null == Current || null == Current.User)
+            {
+                _userShift = null;
+            }
+            else
+            {
+                if (!IsCustom)
+                {
+                    _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
+                }
+                else
+                {
+                    // Create new instance.
+                    var inst = new UserShift();
+                    // Assign properties
+                    if (null != Current.TSB) Current.TSB.AssignTo(inst);
+                    if (null != Current.Shift) Current.Shift.AssignTo(inst);
+                    if (null != Current.User) Current.User.AssignTo(inst);
+
+                    // Update UserShiftId from exists one.
+                    if (null != _userShift) inst.UserShiftId = _userShift.UserShiftId;
+
+                    // Update Begin and End Date from exists one.
+                    inst.Begin = (null != _userShift) ? _userShift.Begin : new DateTime?();
+                    inst.End = (null != _userShift) ? _userShift.End : new DateTime?();
+
+                    // Update to current instance.
+                    _userShift = inst;
+                }
+            }
+            // Raise Event.
+            UserChanged.Call(sender, e);
+            UserShiftChanged.Call(this, EventArgs.Empty);
+        }
+
+        private void Current_ShiftChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            ShiftChanged.Call(sender, e);
+        }
+
+        private void Current_PlazaGroupChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            PlazaGroupChanged.Call(sender, e);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Refresh data.
+        /// </summary>
+        public void Refresh()
+        {
+            _userShift = null;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets Current TSB Manager.
+        /// </summary>
+        public CurrentTSBManager Current { get; private set; }
+        /// <summary>
+        /// Gets or sets is custom mode.
+        /// </summary>
+        public bool IsCustom { get; set; }
+        /// <summary>
+        /// Gets or sets Current User Shift.
+        /// </summary>
+        public UserShift Shift
+        {
+            get { return _userShift; }
+            set
+            {
+                if (!IsCustom) return;
+                _userShift = value;
+            }
+        }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
+
+        /// <summary>
+        /// The UserShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserShiftChanged;
+
+        #endregion
+    }
+
+    #endregion
+
     #region JobManager
 
     /// <summary>
@@ -350,10 +537,6 @@ namespace DMT.Services
     /// </summary>
     public class JobManager
     {
-        #region Internal Variables
-
-        #endregion
-
         #region Constructor and Destructor
 
         /// <summary>
@@ -413,21 +596,113 @@ namespace DMT.Services
 
         #endregion
 
+        class SelectionResult
+        {
+            public DateTime Begin { get; set; }
+            public DateTime End { get; set; }
+            public bool IsContinuous { get; set; }
+        }
+
+        private SelectionResult LoadJobs()
+        {
+            SelectionResult result = new SelectionResult();
+
+            return result;
+        }
+
         private void LoadTSBJobs()
         {
+            UserShift usrShift = this.UserShift;
+
             // Create new job list.
             if (null == AllJobs) AllJobs = new List<LaneJob>();
             AllJobs.Clear();
+
+            if (null == PlazaGroupJobs) PlazaGroupJobs = new List<LaneJob>();
+            PlazaGroupJobs.Clear();
+
+            if (null == usrShift) return; // No data assigned.
+
+            if (OnlyJobInShift)
+            {
+                if (!usrShift.Begin.HasValue) return;
+            }
+            bool isOnline = false;
+            var tsbPlazas = Current.TSBPlazas;
+            if (null != tsbPlazas)
+            {
+                tsbPlazas.ForEach(plaza =>
+                {
+                    // Load job for each user.
+                    var param = new SCWJobList();
+                    param.networkId = TODAPI.NetworkId;
+                    param.plazaId = plaza.SCWPlazaId;
+                    param.staffId = usrShift.UserId;
+
+                    var ret = scwOps.jobList(param);
+                    // Checks execute status.
+                    isOnline = (null != ret && null != ret.status && ret.status.code == "S200");
+                    if (isOnline && null != ret.list && ret.list.Count > 0)
+                    {
+                        var jobs = new List<LaneJob>();
+                        // Loop to find match job.
+                        ret.list.ForEach(job =>
+                        {
+                            if (OnlyJobInShift)
+                            {
+                                // Only job match match plaza id and 
+                                // BOJ DateTime is greater thant UserShift Begin DateTime.
+                                if (job.plazaId.Value == plaza.SCWPlazaId &&
+                                    job.bojDateTime.HasValue &&
+                                    usrShift.Begin.Value <= job.bojDateTime.Value)
+                                {
+                                    jobs.Add(new LaneJob(job, usrShift));
+                                }
+                            }
+                            else
+                            {
+                                // All Job match plaza id.
+                                if (job.plazaId.Value == plaza.SCWPlazaId &&
+                                    job.bojDateTime.HasValue)
+                                {
+                                    jobs.Add(new LaneJob(job, usrShift));
+                                }
+                            }
+                        });
+
+                        // sort by BOJ DateTime and assigned to jobs list.
+                        AllJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
+                    }
+                });
+
+                LoadPlazaGroupJobs();
+            }
         }
 
         private void LoadPlazaGroupJobs()
         {
-            LoadPlazaGroupJobs();
+            if (null == PlazaGroup) return;
+            if (null == PlazaGroupJobs) PlazaGroupJobs = new List<LaneJob>();
+            PlazaGroupJobs.Clear();
         }
 
         #endregion
 
         #region Public Methods
+
+        public bool IsContinuous(params UserShift[] values)
+        {
+            bool result = false;
+
+            return result;
+        }
+
+        public bool IsContinuous(List<UserShift> values)
+        {
+            var userShifts = (null != values) ? values.ToArray() : new UserShift[] { };
+            return IsContinuous(userShifts);
+        }
+
 
         /// <summary>
         /// Refresh Jobs.
@@ -446,13 +721,25 @@ namespace DMT.Services
         /// </summary>
         public CurrentTSBManager Current { get; private set; }
         /// <summary>
+        /// Gets or sets UserShift (used for AllJobs and PlazaGroupJobs).
+        /// </summary>
+        public UserShift UserShift { get; set; }
+        /// <summary>
         /// Gets All Jobs for specificed user on current shift.
         /// </summary>
         public List<LaneJob> AllJobs { get; private set; }
         /// <summary>
-        /// Gets Current Jobs for specificed user on current shift and plaza goup.
+        /// Gets or sets PlazaGroup (used for PlazaGroupJobs).
         /// </summary>
-        public List<LaneJob> CurrentJobs { get; private set; }
+        public PlazaGroup PlazaGroup { get; set; }
+        /// <summary>
+        /// Gets Current Jobs for specificed user on current shift and plaza group.
+        /// </summary>
+        public List<LaneJob> PlazaGroupJobs { get; private set; }
+        /// <summary>
+        /// Gets or sets show only job between User Shift Begin to End DateTime.
+        /// </summary>
+        public bool OnlyJobInShift { get; set; }
 
         #endregion
 
@@ -579,176 +866,6 @@ namespace DMT.Services
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
         public event System.EventHandler PlazaGroupChanged;
-
-        #endregion
-    }
-
-    #endregion
-
-    #region UserShiftManager
-
-    /// <summary>
-    /// The UserShiftManager class.
-    /// </summary>
-    public class UserShiftManager
-    {
-        #region Internal Variables
-
-        private UserShift _userShift = null;
-
-        #endregion
-
-        #region Constructor and Destructor
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        private UserShiftManager() : base() 
-        {
-            IsCustom = false;
-        }
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="manager">The CurrentTSBManager instance.</param>
-        public UserShiftManager(CurrentTSBManager manager) : this() 
-        {
-            Current = manager;
-            if (null != Current)
-            {
-                Current.UserChanged += Current_UserChanged;
-                Current.ShiftChanged += Current_ShiftChanged;
-                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
-            }
-        }
-        /// <summary>
-        /// Destructor
-        /// </summary>
-        ~UserShiftManager()
-        {
-            if (null != Current)
-            {
-                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
-                Current.ShiftChanged -= Current_ShiftChanged;
-                Current.UserChanged -= Current_UserChanged;
-            }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        #region CurrentTSBManager Event Handlers
-
-        private void Current_UserChanged(object sender, EventArgs e)
-        {
-            if (null == Current || null == Current.User)
-            {
-                _userShift = null;
-            }
-            else
-            {
-                if (!IsCustom)
-                {
-                    _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
-                }
-                else
-                {
-                    // Create new instance.
-                    var inst = new UserShift();
-                    // Assign properties
-                    if (null != Current.TSB) Current.TSB.AssignTo(inst);
-                    if (null != Current.Shift) Current.Shift.AssignTo(inst);
-                    if (null != Current.User) Current.User.AssignTo(inst);
-
-                    // Update UserShiftId from exists one.
-                    if (null != _userShift) inst.UserShiftId = _userShift.UserShiftId;
-                    
-                    // Update Begin and End Date from exists one.
-                    inst.Begin = (null != _userShift) ? _userShift.Begin : new DateTime ?();
-                    inst.End = (null != _userShift) ? _userShift.End : new DateTime?();
-
-                    // Update to current instance.
-                    _userShift = inst;
-                }
-            }
-            // Raise Event.
-            UserChanged.Call(sender, e);
-            UserShiftChanged.Call(this, EventArgs.Empty);
-        }
-
-        private void Current_ShiftChanged(object sender, EventArgs e)
-        {
-            // Raise Event.
-            ShiftChanged.Call(sender, e);
-        }
-
-        private void Current_PlazaGroupChanged(object sender, EventArgs e)
-        {
-            // Raise Event.
-            PlazaGroupChanged.Call(sender, e);
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Refresh data.
-        /// </summary>
-        public void Refresh()
-        {
-            _userShift = null;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets Current TSB Manager.
-        /// </summary>
-        public CurrentTSBManager Current { get; private set; }
-        /// <summary>
-        /// Gets or sets is custom mode.
-        /// </summary>
-        public bool IsCustom { get; set; }
-        /// <summary>
-        /// Gets or sets Current User Shift.
-        /// </summary>
-        public UserShift Shift 
-        { 
-            get { return _userShift; } 
-            set
-            {
-                if (!IsCustom) return;
-                _userShift = value;
-            }
-        }
-
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        /// The UserChanged Event Handler.
-        /// </summary>
-        public event System.EventHandler UserChanged;
-        /// <summary>
-        /// The ShiftChanged Event Handler.
-        /// </summary>
-        public event System.EventHandler ShiftChanged;
-        /// <summary>
-        /// The PlazaGroupChanged Event Handler.
-        /// </summary>
-        public event System.EventHandler PlazaGroupChanged;
-
-        /// <summary>
-        /// The UserShiftChanged Event Handler.
-        /// </summary>
-        public event System.EventHandler UserShiftChanged;
 
         #endregion
     }
@@ -917,9 +1034,9 @@ namespace DMT.Services
             this.RevenueDate = new DateTime?(_now);
 
             if (null != Current) Current.Refresh();
+            if (null != UserShifts) UserShifts.Refresh();
             if (null != Jobs) Jobs.Refresh();
             if (null != Payments) Payments.Refresh();
-            if (null != UserShifts) UserShifts.Refresh();
         }
 
         #endregion

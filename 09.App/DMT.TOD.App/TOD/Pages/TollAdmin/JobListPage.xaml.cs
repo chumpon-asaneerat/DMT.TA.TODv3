@@ -38,11 +38,7 @@ namespace DMT.TOD.Pages.TollAdmin
         #region Internal Variables
 
         private User _user = null;
-        private List<UserShift> _usershifts = null;
-        private TSB _tsb = null;
-        private List<Plaza> _plazas = null;
-        private List<Lane> _lanes = null;
-        private List<LaneJob> _jobs = null;
+        private JobManager jobMgr = new JobManager(new CurrentTSBManager());
 
         #endregion
 
@@ -81,64 +77,19 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private void RefreshUserShifts()
         {
-            lstUsers.ItemsSource = null;
-
-            // Gets User Shifts that not closed.
-            _usershifts = UserShift.GetUnCloseUserShifts().Value();
-
-            lstUsers.ItemsSource = _usershifts;
-
+            lstUsers.ItemsSource = null; // Reset.
+            lstUsers.ItemsSource = TODAPI.UnCloseUserShifts;
             lstUsers.SelectedIndex = -1; // Set SelectedIndex will refresh job list.
         }
 
-        private void RefreshJobList(UserShift userShift)
+        private void RefreshJobList(UserShift value)
         {
             lstLaneJobs.ItemsSource = null;
-            if (null == userShift || !userShift.Begin.HasValue) return; // no selection.
-
-            int networkId = TODConfigManager.Instance.DMT.networkId;
-
-            if (null == _jobs)
-            {
-                // Create new job list.
-                _jobs = new List<LaneJob>();
-            }
-            _jobs.Clear();
-
-            var alljobs = new List<LaneJob>();
-            // Gets jobs from each plaza on selected UserShift.
-            _plazas.ForEach(plaza => 
-            {
-                // Load job for each user.
-                var param = new SCWJobList();
-                param.networkId = networkId;
-                param.plazaId = plaza.SCWPlazaId;
-                param.staffId = userShift.UserId;
-
-                var ret = scwOps.jobList(param);
-                if (null != ret && null != ret.list && ret.list.Count > 0)
-                {
-                    ret.list.ForEach(job =>
-                    {
-                        // Maps Lanes to get access more info for binding.
-                        // Note: SCW return only laneId so its cannot display more information so we need to map on 
-                        // local lane data.
-                        var matchLane = _lanes.Find(lane =>
-                        {
-                            return job.plazaId == lane.SCWPlazaId && job.laneId == lane.LaneNo && job.bojDateTime.Value >= userShift.Begin.Value;
-                        });
-                        if (null != matchLane)
-                        {
-                            alljobs.Add(new LaneJob(job, matchLane, userShift));
-                        }
-                    });
-                }
-            });
-
-            // sort and assigned to jobs list.
-            _jobs.AddRange(alljobs.OrderBy(x => x.Begin).ToArray());
-
-            lstLaneJobs.ItemsSource = _jobs;
+            if (null == value || !value.Begin.HasValue) return; // no selection.
+            jobMgr.OnlyJobInShift = true;
+            jobMgr.UserShift = value;
+            jobMgr.Refresh();
+            lstLaneJobs.ItemsSource = jobMgr.AllJobs;
         }
 
         #endregion
@@ -154,12 +105,6 @@ namespace DMT.TOD.Pages.TollAdmin
             _user = user;
             if (null != _user)
             {
-                // Get Current TSB and related plazas, lanes.
-                _tsb = TSB.GetCurrent().Value();
-                if (null == _tsb) return;
-                _plazas = Plaza.GetTSBPlazas(_tsb.TSBId).Value();
-                _lanes = Lane.GetTSBLanes(_tsb.TSBId).Value();
-
                 // Load User Shifts.
                 RefreshUserShifts();
             }

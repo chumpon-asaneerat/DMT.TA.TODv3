@@ -6,6 +6,9 @@ using System.Windows.Controls;
 
 using NLib.Services;
 
+using DMT.Models;
+using DMT.Models.ExtensionMethods;
+using DMT.Services;
 using DMT.Windows;
 
 #endregion
@@ -41,6 +44,19 @@ namespace DMT.TOD.Pages.Menu
 
             var user = signinWin.User;
 
+            if (null != user)
+            {
+                // Check User shift.
+                var usrshf = UserShift.GetUserShift(TODAPI.TSB.TSBId, user.UserId).Value();
+                if (null != usrshf)
+                {
+                    var win = TODApp.Windows.MessageBox;
+                    win.Setup("พนักงานเปิดกะแล้ว กรุณาป้อนรายได้ให้เสร็จสิ้นก่อน", "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    return;
+                }
+            }
+
             // Begin of Shift Page
             var jobWindow = TODApp.Windows.BOS;
             jobWindow.Setup(user);
@@ -50,6 +66,7 @@ namespace DMT.TOD.Pages.Menu
             }
         }
 
+        // TEST - PASSED.
         private void cmdCollectorRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
             // ป้อนรายได้
@@ -58,6 +75,19 @@ namespace DMT.TOD.Pages.Menu
             if (signinWin.ShowDialog() == false) return;
 
             var user = signinWin.User;
+
+            if (null != user)
+            {
+                // Check User shift.
+                var usrshf = UserShift.GetUserShift(TODAPI.TSB.TSBId, user.UserId).Value();
+                if (null == usrshf)
+                {
+                    var win = TODApp.Windows.MessageBox;
+                    win.Setup("ไม่พบกะพนักงาน กรุณาเปิดกะก่อนเข้าทำงานที่ช่องทาง", "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    return;
+                }
+            }
 
             // Collector Revenue Entry Page
             var page = TODApp.Pages.CollectorRevenueEntry;

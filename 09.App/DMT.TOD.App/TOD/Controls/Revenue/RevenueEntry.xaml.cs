@@ -34,7 +34,7 @@ namespace DMT.TOD.Controls.Revenue
 
         #region Internal Variables
 
-        private Models.RevenueEntry entry = null;
+        private RevenueEntryManager manager = null;
 
         #endregion
 
@@ -51,21 +51,19 @@ namespace DMT.TOD.Controls.Revenue
         /// <summary>
         /// Setup.
         /// </summary>
-        /// <param name="value">The Revenue Entry.</param>
-        /// <param name="tsb"></param>
-        /// <param name="plazas"></param>
-        public void Setup(Models.RevenueEntry value, TSB tsb, List<Plaza> plazas)
+        /// <param name="value">The RevenueEntryManager instance.</param>
+        public void Setup(RevenueEntryManager value)
         {
-            entry = value;
-            this.DataContext = entry;
+            manager = value;
+            this.DataContext = manager.Entry;
 
-            this.trafficRevenue.Setup(entry);
-            this.otherRevenue.Setup(entry);
-            this.freePass.Setup(entry);
-            this.couponSold.Setup(entry);
-            this.couponUsage.Setup(entry);
-            this.emvEntry.Setup(entry, tsb, plazas);
-            this.qrcodeEntry.Setup(entry, tsb, plazas);
+            this.trafficRevenue.Setup(manager);
+            this.otherRevenue.Setup(manager);
+            this.freePass.Setup(manager);
+            this.couponSold.Setup(manager);
+            this.couponUsage.Setup(manager);
+            this.emvEntry.Setup(manager);
+            this.qrcodeEntry.Setup(manager);
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

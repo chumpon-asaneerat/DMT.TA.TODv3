@@ -172,37 +172,24 @@ namespace DMT.TOD.Pages.Revenue
 
             #endregion
 
-            /*
-            entry.Setup(null, null, null); // Reset Context.
+            #region Check Has Revenue Shift (for collector)
 
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == plazaGroup)
+            manager.CheckRevenueShift();
+
+            if (null != manager.RevenueShift)
             {
-            }
-
-            CheckRevenueShift(); // Check Revenue Shift.
-
-            if (null != _revenueShift)
-            {
-                if (_revenueShift.RevenueDate.HasValue)
+                if (manager.RevenueShift.RevenueDate.HasValue &&
+                    manager.RevenueShift.RevenueDate.Value != DateTime.MinValue)
                 {
                     var win = TODApp.Windows.MessageBox;
                     win.Setup("กะของพนักงานนี้ ถูกป้อนรายได้แล้ว", "DMT - Tour of Duty");
                     win.ShowDialog();
                     return;
                 }
-                if (_SCWOnline && (_currJobs == null || _currJobs.Count <= 0))
-                {
-                    // Online but no jobs on current plaza group.
-                    var win = TODApp.Windows.MessageBox;
-                    win.Setup("ไม่พบข้อมูลเลนที่ยังไม่ถูกป้อนรายได้", "DMT - Tour of Duty");
-                    win.ShowDialog();
-                    return;
-                }
             }
             else
             {
-                if (_issNewRevenueShift)
+                if (manager.IsNewRevenueShift)
                 {
                     var win = TODApp.Windows.MessageBox;
                     win.Setup("ไม่สามารถนำส่งรายได้ เนื่องจากไม่พบข้อมูลการทำงาน", "DMT - Tour of Duty");
@@ -218,7 +205,26 @@ namespace DMT.TOD.Pages.Revenue
                 }
             }
 
-            if (!IsReturnBag())
+            #endregion
+
+            #region Check Jobs if online
+
+            if (null != manager.Jobs && 
+                manager.Jobs.SCWOnline && 
+                (manager.Jobs.PlazaGroupJobs == null || manager.Jobs.PlazaGroupJobs.Count <= 0))
+            {
+                // Online but no jobs on current plaza group.
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ไม่พบข้อมูลเลนที่ยังไม่ถูกป้อนรายได้", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+
+            #endregion
+
+            #region Check Return Bag
+
+            if (!manager.IsReturnBag())
             {
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("ระบบตรวจพบว่ายังไม่มีการคืนถุงเงิน กรุณาคืนถุงเงินก่อนป้อนรายได้.", "DMT - Tour of Duty");
@@ -226,14 +232,18 @@ namespace DMT.TOD.Pages.Revenue
                 return;
             }
 
-            if (!PrepareRevenueEntry())
+            #endregion
+
+            if (!manager.NewRevenueEntry())
             {
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("ไม่พบข้อมูลกะรายได้ของพนักงาน หรือไม่พบข้อมูลที่เกี่ยวข้อง", "DMT - Tour of Duty");
                 win.ShowDialog();
                 return;
             }
-            */
+
+            entry.Setup(manager); // Reset Context.
+
             // All check condition OK.
             tabs.SelectedIndex = 1; // goto next tab.
         }
@@ -265,7 +275,7 @@ namespace DMT.TOD.Pages.Revenue
             if (!PrepareReport())
             {
                 var win = TODApp.Windows.MessageBox;
-                win.Setup("พบปัญหาในการเตรียมข้อมูลสำหรับจัดพิมพ์", "DMT - Tour of Duty");
+                win.Setup("พบปัญหาในการเตรียมข้อมูล สำหรับจัดพิมพ์", "DMT - Tour of Duty");
                 win.ShowDialog();
                 return;
             }
@@ -328,138 +338,6 @@ namespace DMT.TOD.Pages.Revenue
 
 
 
-        public void CheckRevenueShift()
-        {
-            /*
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            if (null == _userShift || null == plazaGroup) return;
-            _issNewRevenueShift = false;
-            _revenueShift = UserShiftRevenue.GetPlazaRevenue(_userShift, plazaGroup).Value();
-            if (null == _revenueShift)
-            {
-                string msg = "User Revenue Shift not found. Create New!!.";
-                med.Info(msg);
-
-                // Create new if not found.
-                _revenueShift = UserShiftRevenue.CreatePlazaRevenue(_userShift, plazaGroup).Value();
-                _issNewRevenueShift = true;
-            }
-            else
-            {
-                string msg = "User Revenue Shift found.";
-                med.Info(msg);
-            }
-            */
-        }
-
-        private string CreateLaneList()
-        {
-            return (null != manager && null != manager.Jobs) ? manager.Jobs.GetLaneString(false) : string.Empty;
-        }
-
-        private bool IsReturnBag()
-        {
-            bool ret = true;
-
-            // TODO: Need TA.
-            /*
-            var usrSearch = Search.UserCredits.GetActiveById.Create(
-                this.UserShift.UserId, this.PlazaGroup.PlazaGroupId);
-            var userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
-            if (null != userCredit && userCredit.State == UserCreditBalance.StateTypes.Completed)
-            {
-                ret = true;
-            }
-            ret = false;
-            */
-            return ret;
-        }
-
-        private bool PrepareRevenueEntry()
-        {
-            /*
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            txtShiftName.Text = (null != _userShift) ? _userShift.ShiftNameTH : string.Empty;
-
-            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
-            txtPlazaName.Text = (null != plazaGroup) ? plazaGroup.PlazaGroupNameTH : string.Empty;
-
-            txtUserId2.Text = (null != _userShift) ? _userShift.UserId : string.Empty;
-            txtUserName2.Text = (null != _userShift) ? _userShift.FullNameTH : string.Empty;
-
-            if (null == _user || null == _supervisor) return false;
-            if (null == _userShift || null == plazaGroup) return false;
-
-            // Create new Revenue Entry.
-            _revenueEntry = new Models.RevenueEntry();
-
-            // Is historical
-            _revenueEntry.IsHistorical = false;
-            // assigned plaza group.
-            _revenueEntry.PlazaGroupId = plazaGroup.PlazaGroupId;
-            // update object properties.
-            plazaGroup.AssignTo(_revenueEntry); // assigned plaza group name (EN/TH)
-            _userShift.AssignTo(_revenueEntry); // assigned user shift
-
-            // assigned date after sync object(s) to RevenueEntry.
-            _revenueEntry.EntryDate = _entryDate; // assigned Entry date.
-            var dtNow = DateTime.Now;
-            _revenueEntry.RevenueDate = new DateTime(
-                _revDate.Value.Year, _revDate.Value.Month, _revDate.Value.Day,
-                dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
-
-            // Create Lane list (comma seperate string).
-            _revenueEntry.Lanes = CreateLaneList().Trim();
-
-            // Find begin/end of revenue.
-            DateTime begin = _userShift.Begin.Value; // Begin time used start of shift.
-            DateTime end = DateTime.Now; // End time used printed date
-
-            if (!_revenueEntry.ShiftBegin.HasValue || _revenueEntry.ShiftBegin.Value == DateTime.MinValue)
-            {
-                _revenueEntry.ShiftBegin = begin;
-            }
-            if (!_revenueEntry.ShiftEnd.HasValue || _revenueEntry.ShiftEnd == DateTime.MinValue)
-            {
-                _revenueEntry.ShiftEnd = end;
-            }
-
-            // Update Colllector data,
-            _revenueEntry.CollectorNameEN = _user.FullNameEN;
-            _revenueEntry.CollectorNameTH = _user.FullNameTH;
-            // Update Chief data,
-            _revenueEntry.SupervisorId = _supervisor.UserId;
-            _revenueEntry.SupervisorNameEN = _supervisor.FullNameEN;
-            _revenueEntry.SupervisorNameTH = _supervisor.FullNameTH;
-
-            // TODO: Need TA
-            // Check User Credit to get BagNo and BeltNo.
-            //_userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(search).Value();
-            if (null != _userCredit)
-            {
-                string msg = string.Format("User Credit found. BagNo: {0}, BeltNo: {1}",
-                    _userCredit.BagNo, _userCredit.BeltNo);
-                med.Info(msg);
-
-                _revenueEntry.BagNo = _userCredit.BagNo;
-                _revenueEntry.BeltNo = _userCredit.BeltNo;
-            }
-            else
-            {
-                string msg = "User Credit not found.";
-                med.Info(msg);
-
-                _revenueEntry.BagNo = string.Empty;
-                _revenueEntry.BeltNo = string.Empty;
-            }
-
-            entry.Setup(_revenueEntry, _tsb, _plazas);
-            */
-            return true;
-        }
 
         private RdlcReportModel GetReportModel()
         {

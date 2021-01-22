@@ -33,7 +33,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         #region Internal Variables
 
-        private Models.RevenueEntry entry = null;
+        private RevenueEntryManager manager = null;
 
         #endregion
 
@@ -42,11 +42,11 @@ namespace DMT.TOD.Controls.Revenue.Elements
         /// <summary>
         /// Setup.
         /// </summary>
-        /// <param name="value">The Revenue Entry.</param>
-        public void Setup(Models.RevenueEntry value)
+        /// <param name="value">The RevenueEntryManager instance.</param>
+        public void Setup(RevenueEntryManager value)
         {
-            entry = value;
-            this.DataContext = entry;
+            manager = value;
+            this.DataContext = (null != manager) ? manager.Entry : null;
         }
 
         #endregion

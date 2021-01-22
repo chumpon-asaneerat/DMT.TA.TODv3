@@ -680,6 +680,8 @@ namespace DMT.Services
 
                 LoadPlazaGroupJobs();
             }
+
+            SCWOnline = isOnline; // Update public property.
         }
 
         private void LoadPlazaGroupJobs()
@@ -759,6 +761,34 @@ namespace DMT.Services
             return laneList;
         }
 
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets Current TSB Manager.
+        /// </summary>
+        public CurrentTSBManager Current { get; private set; }
+        /// <summary>
+        /// Gets or sets UserShift (used for AllJobs and PlazaGroupJobs).
+        /// </summary>
+        public UserShift UserShift { get; set; }
+        /// <summary>
+        /// Gets All Jobs for specificed user on current shift.
+        /// </summary>
+        public List<LaneJob> AllJobs { get; private set; }
+        /// <summary>
+        /// Gets or sets PlazaGroup (used for PlazaGroupJobs).
+        /// </summary>
+        public PlazaGroup PlazaGroup { get; set; }
+        /// <summary>
+        /// Gets Current Jobs for specificed user on current shift and plaza group.
+        /// </summary>
+        public List<LaneJob> PlazaGroupJobs { get; private set; }
+        /// <summary>
+        /// Gets or sets show only job between User Shift Begin to End DateTime.
+        /// </summary>
+        public bool OnlyJobInShift { get; set; }
         /// <summary>
         /// Checks is user selection is continuous.
         /// </summary>
@@ -799,35 +829,10 @@ namespace DMT.Services
                 return isContinuous;
             }
         }
-
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
-        /// Gets Current TSB Manager.
+        /// Checks is SCW server is online.
         /// </summary>
-        public CurrentTSBManager Current { get; private set; }
-        /// <summary>
-        /// Gets or sets UserShift (used for AllJobs and PlazaGroupJobs).
-        /// </summary>
-        public UserShift UserShift { get; set; }
-        /// <summary>
-        /// Gets All Jobs for specificed user on current shift.
-        /// </summary>
-        public List<LaneJob> AllJobs { get; private set; }
-        /// <summary>
-        /// Gets or sets PlazaGroup (used for PlazaGroupJobs).
-        /// </summary>
-        public PlazaGroup PlazaGroup { get; set; }
-        /// <summary>
-        /// Gets Current Jobs for specificed user on current shift and plaza group.
-        /// </summary>
-        public List<LaneJob> PlazaGroupJobs { get; private set; }
-        /// <summary>
-        /// Gets or sets show only job between User Shift Begin to End DateTime.
-        /// </summary>
-        public bool OnlyJobInShift { get; set; }
+        public bool SCWOnline { get; set; }
 
         #endregion
 
@@ -1127,6 +1132,211 @@ namespace DMT.Services
             if (null != Payments) Payments.Refresh();
         }
 
+        public void CheckRevenueShift()
+        {
+            #region Check User Revenue Shift
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            IsNewRevenueShift = false;
+
+            UserShiftRevenue refShf;
+            if (!ByChief)
+            {
+                // Gets User Shift from Self.
+                refShf = UserShiftRevenue.GetPlazaRevenue(UserShift, PlazaGroup).Value();
+                if (null == refShf)
+                {
+                    string msg = "User Revenue Shift not found. Create New!!.";
+                    med.Info(msg);
+
+                    // Create new if not found.
+                    refShf = UserShiftRevenue.CreatePlazaRevenue(UserShift, PlazaGroup).Value();
+                    this.IsNewRevenueShift = true;
+                }
+                else
+                {
+                    string msg = "User Revenue Shift found.";
+                    med.Info(msg);
+                }
+            }
+            else
+            {
+                string msg = "User Shift is New so User Revenue Shift not found. Create New!!.";
+                med.Info(msg);
+
+                // Gets User Shift from Job Manager (In this case no UserShift so UserRevenueShift is new one).
+                refShf = UserShiftRevenue.CreatePlazaRevenue(Jobs.UserShift, PlazaGroup).Value();
+                this.IsNewRevenueShift = true;
+            }
+
+            RevenueShift = refShf; // Assign to public property.
+
+            #endregion
+        }
+
+        /// <summary>
+        /// Create New Revenue Entry.
+        /// </summary>
+        public bool NewRevenueEntry()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            #region Check Null objects
+
+            if (null == Current || null == UserShifts || null == Jobs || null == Payments)
+            {
+                string msg = "Cannot create RevenueEntry Some of Revenue Managers is null.";
+                med.Info(msg);
+                return false;
+            }
+
+            if (!ByChief && null == this.UserShift)
+            {
+                string msg = "User Shift (Revenue Entry Manager) Not found.";
+                med.Info(msg);
+                return false;
+            }
+
+            if (ByChief && null == Jobs.UserShift)
+            {
+                string msg = "User Shift (Job Manager) Not found.";
+                med.Info(msg);
+                return false;
+            }
+
+            #endregion
+
+            #region Revenue Entry
+
+            Entry = new RevenueEntry();
+            Entry.BagNo = string.Empty;
+            Entry.BeltNo = string.Empty;
+
+            bool success = UpdateRevenueEntry();
+
+
+            // TODO: Need TA
+            // Check User Credit to get BagNo and BeltNo.
+            //_userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(search).Value();
+            /*
+            if (null != _userCredit)
+            {
+                string msg = string.Format("User Credit found. BagNo: {0}, BeltNo: {1}",
+                    _userCredit.BagNo, _userCredit.BeltNo);
+                med.Info(msg);
+
+                Entry.BagNo = _userCredit.BagNo;
+                Entry.BeltNo = _userCredit.BeltNo;
+            }
+            else
+            {
+                string msg = "User Credit not found.";
+                med.Info(msg);
+
+                Entry.BagNo = string.Empty;
+                Entry.BeltNo = string.Empty;
+            }
+            */
+
+            #endregion
+
+            return success;
+        }
+
+        private bool UpdateRevenueEntry()
+        {
+            if (null == Entry || null == PlazaGroup) return false;
+            if (!ByChief)
+            {
+                if (null == UserShift) return false;
+            }
+            else
+            {
+                if (null == Jobs || null == Jobs.UserShift) return false;
+            }
+
+            // Check is historical
+            Entry.IsHistorical = ByChief;
+            // assigned plaza group.
+            Entry.PlazaGroupId = PlazaGroup.PlazaGroupId;
+            // update object properties.
+            PlazaGroup.AssignTo(Entry); // assigned plaza group name (EN/TH)
+
+            var usrshf = (!ByChief) ? UserShift : Jobs.UserShift;
+
+            usrshf.AssignTo(Entry); // assigned user shift
+
+            // assigned date after sync object(s) to RevenueEntry.
+            Entry.EntryDate = EntryDate; // assigned Entry date.
+            var dtNow = DateTime.Now;
+            Entry.RevenueDate = new DateTime(
+                RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
+                dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+
+            // Generate lane string.
+            Entry.Lanes = Jobs.GetLaneString(ByChief);
+
+            // Find begin/end of revenue.
+            DateTime begin = usrshf.Begin.Value; // Begin time used start of shift.
+            DateTime end = DateTime.Now; // End time used printed date
+
+            if (!Entry.ShiftBegin.HasValue || Entry.ShiftBegin.Value == DateTime.MinValue)
+            {
+                Entry.ShiftBegin = begin;
+            }
+            if (!Entry.ShiftEnd.HasValue || Entry.ShiftEnd == DateTime.MinValue)
+            {
+                Entry.ShiftEnd = end;
+            }
+
+            // Update Colllector data.
+            if (null != User)
+            {
+                Entry.CollectorNameEN = User.FullNameEN;
+                Entry.CollectorNameTH = User.FullNameTH;
+            }
+            // Update Chief data.
+            if (null != Chief)
+            {
+                Entry.SupervisorId = Chief.UserId;
+                Entry.SupervisorNameEN = Chief.FullNameEN;
+                Entry.SupervisorNameTH = Chief.FullNameTH;
+            }
+
+            return true;
+        }
+        /// <summary>
+        /// Load Exists Revenue Entry.
+        /// </summary>
+        /// <param name="entry"></param>
+        public void LoadRevenueEntry(RevenueEntry entry)
+        {
+            if (null == entry) return;
+            Entry = entry;
+        }
+        /// <summary>
+        /// Checks is return Bag.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsReturnBag()
+        {
+            bool ret = true;
+
+            // TODO: Need TA.
+            /*
+            var usrSearch = Search.UserCredits.GetActiveById.Create(
+                this.UserShift.UserId, this.PlazaGroup.PlazaGroupId);
+            var userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
+            if (null != userCredit && userCredit.State == UserCreditBalance.StateTypes.Completed)
+            {
+                ret = true;
+            }
+            ret = false;
+            */
+            return ret;
+        }
+
         #endregion
 
         #region Public Properties
@@ -1404,6 +1614,39 @@ namespace DMT.Services
             get { return (null != Current && null != Current.Chief) ? Current.Chief.FullNameTH : string.Empty; }
             set { }
         }
+
+        #endregion
+
+        #region Revenu Entry/User Revenue Shift
+
+        /// <summary>
+        /// Gets Revenue Entry.
+        /// </summary>
+        public RevenueEntry Entry { get; private set; }
+        /// <summary>
+        /// Checks is New Revenue Entry.
+        /// </summary>
+        public bool IsNewRevenueEntry
+        {
+            get
+            {
+                return (null == Entry ||
+                    Entry.RevenueId == string.Empty ||
+                    !Entry.EntryDate.HasValue ||
+                    Entry.EntryDate.Value == DateTime.MinValue ||
+                    !Entry.RevenueDate.HasValue ||
+                    Entry.RevenueDate.Value == DateTime.MinValue);
+            }
+        }
+
+        /// <summary>
+        /// Gets is new User Revenue Shift.
+        /// </summary>
+        public bool IsNewRevenueShift { get; private set; }
+        /// <summary>
+        /// Gets User Revenue Shift.
+        /// </summary>
+        public UserShiftRevenue RevenueShift { get; private set; }
 
         #endregion
 

@@ -38,7 +38,7 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         private TSB _tsb = null;
         private List<Plaza> _plazas = null;
-        private Models.RevenueEntry entry = null;
+        private RevenueEntryManager manager = null;
 
         private int rowCnt = 0;
         private decimal amtVal = 0;
@@ -49,9 +49,9 @@ namespace DMT.TOD.Controls.Revenue.Elements
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (null != entry)
+            if (null != manager && null != manager.Entry)
             {
-                if (entry.IsHistorical)
+                if (manager.Entry.IsHistorical)
                 {
                     LoadItems();
                 }
@@ -79,10 +79,10 @@ namespace DMT.TOD.Controls.Revenue.Elements
             List<LaneQRCode> items = new List<LaneQRCode>();
             List<LaneQRCode> sortList = new List<LaneQRCode>();
 
-            if (null != entry && null != _tsb && null != _plazas)
+            if (null != manager && null != manager.Entry && null != _tsb && null != _plazas)
             {
                 int networkId = TODConfigManager.Instance.DMT.networkId;
-                var userShift = UserShift.GetUserShift(entry.UserId).Value();
+                var userShift = UserShift.GetUserShift(manager.Entry.UserId).Value();
 
                 if (null != userShift && null != _plazas && _plazas.Count > 0)
                 {
@@ -150,10 +150,10 @@ namespace DMT.TOD.Controls.Revenue.Elements
         /// </summary>
         public void LoadItems()
         {
-            if (null == entry) return;
+            if (null == manager || null == manager.Entry) return;
 
-            DateTime dt1 = entry.ShiftBegin.Value;
-            DateTime dt2 = entry.ShiftEnd.Value;
+            DateTime dt1 = manager.Entry.ShiftBegin.Value;
+            DateTime dt2 = manager.Entry.ShiftEnd.Value;
 
             RefreshQRCODE(dt1, dt2);
         }
@@ -170,15 +170,11 @@ namespace DMT.TOD.Controls.Revenue.Elements
         /// <summary>
         /// Setup.
         /// </summary>
-        /// <param name="value">The Revenue Entry.</param>
-        /// <param name="tsb"></param>
-        /// <param name="plazas"></param>
-        public void Setup(Models.RevenueEntry value, TSB tsb, List<Plaza> plazas)
+        /// <param name="value">The RevenueEntryManager instance.</param>
+        public void Setup(RevenueEntryManager value)
         {
-            entry = value;
-            _tsb = tsb;
-            _plazas = plazas;
-            this.DataContext = entry;
+            manager = value;
+            this.DataContext = (null != manager) ? manager.Entry : null;
         }
 
         #endregion

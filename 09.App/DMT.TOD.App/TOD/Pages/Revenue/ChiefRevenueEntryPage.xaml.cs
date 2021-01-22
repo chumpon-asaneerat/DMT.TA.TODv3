@@ -249,6 +249,16 @@ namespace DMT.TOD.Pages.Revenue
 
             #endregion
 
+            if (!manager.NewRevenueEntry())
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ไม่พบข้อมูลกะรายได้ของพนักงาน หรือไม่พบข้อมูลที่เกี่ยวข้อง", "DMT - Tour of Duty");
+                win.ShowDialog();
+                return;
+            }
+
+            entry.Setup(manager); // Reset Context.
+
             // All check condition OK.
             tabs.SelectedIndex = 1;
         }

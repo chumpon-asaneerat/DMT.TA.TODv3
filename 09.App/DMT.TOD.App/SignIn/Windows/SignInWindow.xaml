@@ -12,6 +12,7 @@
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         Loaded="Window_Loaded"
+        PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         Unloaded="Window_Unloaded"

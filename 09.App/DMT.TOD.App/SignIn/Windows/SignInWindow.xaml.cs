@@ -59,6 +59,50 @@ namespace DMT.Windows
 
         #endregion
 
+        #region Window Handlers
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                bool canClose = false;
+
+                if (txtUserId.IsKeyboardFocused && string.IsNullOrEmpty(txtUserId.Text))
+                {
+                    canClose = true;
+                }
+                else if (txtPassword.IsKeyboardFocused && string.IsNullOrEmpty(txtPassword.Password))
+                {
+                    canClose = true;
+                }
+                else if (txtUserId2.IsKeyboardFocused && string.IsNullOrEmpty(txtUserId2.Text))
+                {
+                    canClose = true;
+                }
+                else if (txtPassword2.IsKeyboardFocused && string.IsNullOrEmpty(txtPassword2.Password))
+                {
+                    canClose = true;
+                }
+                else if (txtNewPassword.IsKeyboardFocused && string.IsNullOrEmpty(txtNewPassword.Password))
+                {
+                    canClose = true;
+                }
+                else if (txtConfirmPassword.IsKeyboardFocused && string.IsNullOrEmpty(txtConfirmPassword.Password))
+                {
+                    canClose = true;
+                }
+
+                if (canClose)
+                {
+                    e.Handled = true;
+                    SmartcardManager.Instance.Shutdown();
+                    DialogResult = false;
+                }
+            }
+        }
+
+        #endregion
+
         #region Smartcard Handler(s)
 
         private void Instance_UserChanged(object sender, EventArgs e)

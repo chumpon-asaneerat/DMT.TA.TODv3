@@ -200,6 +200,12 @@ namespace DMT.TOD.Pages.TollAdmin
                 // Load related lane data.
                 RefreshLanes();
             }
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                cbShifts.Focus();
+            }));
         }
 
         #endregion

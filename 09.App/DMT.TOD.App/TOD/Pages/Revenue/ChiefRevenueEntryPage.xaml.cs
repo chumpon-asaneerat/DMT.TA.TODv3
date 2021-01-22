@@ -15,6 +15,7 @@ using DMT.Services;
 
 using NLib.Services;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -418,6 +419,7 @@ namespace DMT.TOD.Pages.Revenue
         private void ResetSelectUser()
         {
             if (null != manager) manager.User = null;
+            txtSearchUserId.Text = string.Empty;
         }
 
         private void SearchUser()
@@ -535,6 +537,13 @@ namespace DMT.TOD.Pages.Revenue
                 if (null != manager.UserShifts) manager.UserShifts.IsCustom = true;
             }
             Reset();
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtSearchUserId.SelectAll();
+                txtSearchUserId.Focus();
+            }));
         }
 
         #endregion

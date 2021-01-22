@@ -350,6 +350,27 @@ namespace DMT.Controls.Utils
                     //ue.MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
                 }
             }
+            else if (e.Key == Key.Escape)
+            {
+                if (ue is TextBox)
+                {
+                    var txt = (ue as TextBox);
+                    if (null != txt && txt.Text.Trim().Length > 0)
+                    {
+                        txt.Text = string.Empty;
+                        e.Handled = true;
+                    }
+                }
+                else if (ue is PasswordBox)
+                {
+                    var txt = (ue as PasswordBox);
+                    if (null != txt && txt.Password.Trim().Length > 0)
+                    {
+                        txt.Password = string.Empty;
+                        e.Handled = true;
+                    }
+                }
+            }
         }
 
         /*

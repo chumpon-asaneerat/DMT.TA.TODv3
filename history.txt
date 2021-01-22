@@ -62,8 +62,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1034
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1033
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1032
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Implements TOD Manager classes #22.
+    - Implements Collector Revenue Entry #30.
+    - Implements Chief Revenue Entry #30.
+    - Add Focus Control Code in various pages/windows.
+  - DMT.Controls project.
+    - Update AttachProperties.cs supports ESC to clear text (TextBox/PasswordBox).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1031

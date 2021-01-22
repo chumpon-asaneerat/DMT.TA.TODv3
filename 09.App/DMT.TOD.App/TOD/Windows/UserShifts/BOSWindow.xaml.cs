@@ -9,6 +9,7 @@ using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -100,6 +101,12 @@ namespace DMT.TOD.Windows.UserShifts
                 txtID.Text = _user.UserId;
                 txtName.Text = _user.FullNameTH;
             }
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                cbShift.Focus();
+            }));
         }
 
         #endregion

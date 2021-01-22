@@ -11,6 +11,7 @@ using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -110,6 +111,12 @@ namespace DMT.TOD.Pages.TollAdmin
                 // Load User Shifts.
                 RefreshUserShifts();
             }
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                lstUsers.Focus();
+            }));
         }
 
         #endregion

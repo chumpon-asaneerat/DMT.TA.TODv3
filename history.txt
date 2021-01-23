@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1040
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1039
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1038
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Add EmptyRevenueSlipPage.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1037

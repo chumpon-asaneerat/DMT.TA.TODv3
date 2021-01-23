@@ -35,19 +35,19 @@
     <!--  CONST CARD IMAGES  -->
     <ImageBrush x:Key="BlackCard"
                 PresentationOptions:Freeze="True"
-                ImageSource="/DMT.Controls;component/Images/Cards/Card-Black.png" />
+                ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Black.png" />
     <ImageBrush x:Key="PurpleCard"
                 PresentationOptions:Freeze="True"
-                ImageSource="/DMT.Controls;component/Images/Cards/Card-Purple.png" />
+                ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Purple.png" />
     <ImageBrush x:Key="RedCard"
                 PresentationOptions:Freeze="True"
-                ImageSource="/DMT.Controls;component/Images/Cards/Card-Red.png" />
+                ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Red.png" />
     <ImageBrush x:Key="BlueCard"
                 PresentationOptions:Freeze="True"
-                ImageSource="/DMT.Controls;component/Images/Cards/Card-Blue.png" />
+                ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Blue.png" />
     <ImageBrush x:Key="GreenCard"
                 PresentationOptions:Freeze="True"
-                ImageSource="/DMT.Controls;component/Images/Cards/Card-Green.png" />
+                ImageSource="/DMT.Plaza.Simulator.App;component/Images/Cards/Card-Green.png" />
 
     <!--  LISTBOX STYLES  -->
     <Style x:Key="DMTListBox" TargetType="{x:Type ListBox}">

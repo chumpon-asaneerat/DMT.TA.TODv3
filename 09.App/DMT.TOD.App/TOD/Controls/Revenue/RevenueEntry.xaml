@@ -21,13 +21,13 @@
             <ScrollViewer HorizontalAlignment="Center"
                           VerticalAlignment="Stretch"
                           HorizontalContentAlignment="Center"
-                          VerticalContentAlignment="Stretch"
-                          HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
+                          VerticalContentAlignment="Center"
+                          HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Hidden">
                 <Grid x:Name="revGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5" />
@@ -75,7 +75,7 @@
                     <!--  TRAFFIC  -->
                     <Grid Grid.Row="1"
                           Grid.Column="1"
-                          VerticalAlignment="Top">
+                          VerticalAlignment="Stretch">
                         <local:TrafficEntry x:Name="trafficRevenue"
                                             Grid.Row="0"
                                             Margin="3"
@@ -85,7 +85,7 @@
                     <!--  OTHER/COUPON SOLD  -->
                     <Grid Grid.Row="1"
                           Grid.Column="2"
-                          VerticalAlignment="Top">
+                          VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="245" />
                             <RowDefinition Height="2" />
@@ -94,18 +94,20 @@
                         <local:OtherEntry x:Name="otherRevenue"
                                           Grid.Row="0"
                                           Margin="3"
+                                          VerticalAlignment="Stretch"
                                           Background="CornflowerBlue"
                                           Foreground="WhiteSmoke" />
                         <local:CouponRevenueEntry x:Name="couponSold"
                                                   Grid.Row="2"
                                                   Margin="3"
+                                                  VerticalAlignment="Stretch"
                                                   Background="Purple"
                                                   Foreground="WhiteSmoke" />
                     </Grid>
                     <!--  COUPON USAGE/FREE PASS  -->
                     <Grid Grid.Row="1"
                           Grid.Column="3"
-                          VerticalAlignment="Top">
+                          VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="245" />
                             <RowDefinition Height="2" />

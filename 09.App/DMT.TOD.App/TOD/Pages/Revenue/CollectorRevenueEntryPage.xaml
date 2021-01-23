@@ -8,7 +8,7 @@
              xmlns:rev="clr-namespace:DMT.TOD.Controls.Revenue"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450"
-             d:DesignWidth="800"
+             d:DesignWidth="1200"
              Loaded="UserControl_Loaded"
              mc:Ignorable="d">
     <UserControl.Resources>
@@ -148,114 +148,111 @@
                  BorderThickness="0"
                  Header="ป้อนรายได้"
                  Visibility="Collapsed">
-            <ScrollViewer Background="Silver"
-                          HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
-                <DockPanel HorizontalAlignment="Stretch"
+            <DockPanel HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       LastChildFill="True">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
-                           LastChildFill="True">
-                    <!--  BUTTONS  -->
-                    <DockPanel Height="60"
-                               HorizontalAlignment="Stretch"
-                               VerticalAlignment="Stretch"
-                               DockPanel.Dock="Bottom">
-                        <Grid Width="5" DockPanel.Dock="Left" />
-                        <ctrl:ImageButton x:Name="cmdBack2"
-                                          Click="cmdBack2_Click"
-                                          DockPanel.Dock="Left"
-                                          ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
-                        </ctrl:ImageButton>
-                        <Grid Width="5" DockPanel.Dock="Left" />
-                        <ctrl:ImageButton x:Name="cmdGotoRevenueEntryPreview"
-                                          Click="cmdGotoRevenueEntryPreview_Click"
-                                          DockPanel.Dock="Right"
-                                          ImageSource="/DMT.TOD.App;component/Images/Button/Money.png">
-                            <TextBlock Style="{StaticResource ImageButtonText}" Text="นำส่งรายได้" />
-                        </ctrl:ImageButton>
-                        <Grid Width="5" DockPanel.Dock="Right" />
-                    </DockPanel>
-                    <!--  WORK AREA  -->
-                    <DockPanel LastChildFill="True">
-                        <Border HorizontalAlignment="Stretch"
-                                Background="DimGray"
-                                BorderBrush="DimGray"
-                                BorderThickness="1"
-                                DockPanel.Dock="Top">
-                            <DockPanel HorizontalAlignment="Center" LastChildFill="True">
-                                <TextBlock Height="2" DockPanel.Dock="Top" />
-                                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                                    <TextBlock Width="120"
-                                               DockPanel.Dock="Left"
-                                               Style="{StaticResource LabelText}"
-                                               Text="วันที่ของรายได้ : "
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="txtRevDate2"
-                                               Width="120"
-                                               DockPanel.Dock="Left"
-                                               Foreground="Yellow"
-                                               Style="{StaticResource LabelText}"
-                                               Text="{Binding RevenueDateString}"
-                                               TextAlignment="Center" />
-                                    <TextBlock Width="50"
-                                               DockPanel.Dock="Left"
-                                               Style="{StaticResource LabelText}"
-                                               Text="กะ : "
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="txtShiftName"
-                                               Width="50"
-                                               DockPanel.Dock="Left"
-                                               Foreground="Yellow"
-                                               Style="{StaticResource LabelText}"
-                                               Text="{Binding ShiftNameTH}"
-                                               TextAlignment="Center" />
-                                    <TextBlock Width="120"
-                                               DockPanel.Dock="Left"
-                                               Style="{StaticResource LabelText}"
-                                               Text="รายได้ของด่าน : "
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="txtPlazaName"
-                                               Width="150"
-                                               Foreground="Yellow"
-                                               Style="{StaticResource LabelText}"
-                                               Text="{Binding PlazaGroupNameTH}" />
-                                    <Grid />
-                                </DockPanel>
-                                <TextBlock Height="2" DockPanel.Dock="Top" />
-                                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                                    <TextBlock Width="120"
-                                               DockPanel.Dock="Left"
-                                               Style="{StaticResource LabelText}"
-                                               Text="รหัสพนักงาน : "
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="txtUserId2"
-                                               Width="120"
-                                               DockPanel.Dock="Left"
-                                               Foreground="Yellow"
-                                               Style="{StaticResource LabelText}"
-                                               Text="{Binding CollectorId}"
-                                               TextAlignment="Center" />
-                                    <TextBlock Width="100"
-                                               DockPanel.Dock="Left"
-                                               Style="{StaticResource LabelText}"
-                                               Text="ชื่อพนักงาน : "
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="txtUserName2"
-                                               Width="250"
-                                               Foreground="Yellow"
-                                               Style="{StaticResource LabelText}"
-                                               Text="{Binding CollectorNameTH}"
-                                               TextAlignment="Center" />
-                                    <Grid />
-                                </DockPanel>
-                                <TextBlock Height="2" DockPanel.Dock="Top" />
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdBack2"
+                                      Click="cmdBack2_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdGotoRevenueEntryPreview"
+                                      Click="cmdGotoRevenueEntryPreview_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/Money.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="นำส่งรายได้" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                </DockPanel>
+                <!--  WORK AREA  -->
+
+                <DockPanel LastChildFill="True">
+                    <Border HorizontalAlignment="Stretch"
+                            Background="DimGray"
+                            BorderBrush="DimGray"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top">
+                        <DockPanel HorizontalAlignment="Center" LastChildFill="True">
+                            <TextBlock Height="2" DockPanel.Dock="Top" />
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                                <TextBlock Width="120"
+                                           DockPanel.Dock="Left"
+                                           Style="{StaticResource LabelText}"
+                                           Text="วันที่ของรายได้ : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtRevDate2"
+                                           Width="120"
+                                           DockPanel.Dock="Left"
+                                           Foreground="Yellow"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding RevenueDateString}"
+                                           TextAlignment="Center" />
+                                <TextBlock Width="50"
+                                           DockPanel.Dock="Left"
+                                           Style="{StaticResource LabelText}"
+                                           Text="กะ : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtShiftName"
+                                           Width="50"
+                                           DockPanel.Dock="Left"
+                                           Foreground="Yellow"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding ShiftNameTH}"
+                                           TextAlignment="Center" />
+                                <TextBlock Width="120"
+                                           DockPanel.Dock="Left"
+                                           Style="{StaticResource LabelText}"
+                                           Text="รายได้ของด่าน : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtPlazaName"
+                                           Width="150"
+                                           Foreground="Yellow"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding PlazaGroupNameTH}" />
                                 <Grid />
                             </DockPanel>
-                        </Border>
-                        <rev:RevenueEntry x:Name="entry" />
-                    </DockPanel>
+                            <TextBlock Height="2" DockPanel.Dock="Top" />
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                                <TextBlock Width="120"
+                                           DockPanel.Dock="Left"
+                                           Style="{StaticResource LabelText}"
+                                           Text="รหัสพนักงาน : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtUserId2"
+                                           Width="120"
+                                           DockPanel.Dock="Left"
+                                           Foreground="Yellow"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding CollectorId}"
+                                           TextAlignment="Center" />
+                                <TextBlock Width="100"
+                                           DockPanel.Dock="Left"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ชื่อพนักงาน : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtUserName2"
+                                           Width="250"
+                                           Foreground="Yellow"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding CollectorNameTH}"
+                                           TextAlignment="Center" />
+                                <Grid />
+                            </DockPanel>
+                            <TextBlock Height="2" DockPanel.Dock="Top" />
+                            <Grid />
+                        </DockPanel>
+                    </Border>
+                    <rev:RevenueEntry x:Name="entry" />
                 </DockPanel>
-            </ScrollViewer>
+            </DockPanel>
         </TabItem>
         <TabItem Background="Transparent"
                  BorderBrush="Transparent"

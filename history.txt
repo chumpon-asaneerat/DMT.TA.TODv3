@@ -65,8 +65,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1043
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1042
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1041
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Chief Revenue Entry Page (remove scroll viewer).
+    - Coollector Revenue Entry Page (remove scroll viewer).
+    - Fixed ScrollBar in RevenueEntry control #1.
+  - DMT.Plaza.Config.App project.
+    - Fixed bug in ListBoxStyle.xaml.
+  - DMT.Plaza.Simulator.App.Controls project.
+    - Fixed bug in ListBoxStyle.xaml.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1040

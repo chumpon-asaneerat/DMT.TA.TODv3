@@ -53,8 +53,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1047
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1046
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1045
-- 
+- DMTv2
+  - DMT.Local.WebClient project.
+    - Update PlazaOperations.Revenue.cs
+      - Change SyncJobList method (Cannot access model ToLocal because no direct db connection).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1044

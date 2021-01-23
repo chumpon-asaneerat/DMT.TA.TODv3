@@ -226,6 +226,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region Report Revenue Slip (Empty)
+
+            private static TOD.Pages.Reports.EmpytRevenueSlipPage _EmptyRevenueSlip;
+
+            /// <summary>Gets Report Revenue Slip (Empty) Page.</summary>
+            public static TOD.Pages.Reports.EmpytRevenueSlipPage EmptyRevenueSlip
+            {
+                get
+                {
+                    if (null == _EmptyRevenueSlip)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _EmptyRevenueSlip = new TOD.Pages.Reports.EmpytRevenueSlipPage();
+                        }
+                    }
+                    return _EmptyRevenueSlip;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

@@ -30,7 +30,11 @@ namespace DMT.TOD.Pages.Menu
 
         #endregion
 
+        #region Interna Variables
+
         private User _user = null;
+
+        #endregion
 
         #region Button Handlers
 
@@ -46,7 +50,10 @@ namespace DMT.TOD.Pages.Menu
 
         private void cmdEmptySlipReport_Click(object sender, RoutedEventArgs e)
         {
-
+            // Revenue Slip (Empty).
+            var page = TODApp.Pages.EmptyRevenueSlip;
+            page.Setup(_user);
+            PageContentManager.Instance.Current = page;
         }
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)

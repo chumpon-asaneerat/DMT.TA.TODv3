@@ -335,12 +335,9 @@ namespace DMT.TOD.Pages.Revenue
                 null == model.DataSources[0] || null == model.DataSources[0].Items)
             {
                 var win = TODApp.Windows.MessageBox;
-                win.Setup("No result found.", "DMT - Tour of Duty");
+                win.Setup("ไม่พบข้อมูลในการจัดพิมพ์รายงาน.", "DMT - Tour of Duty");
                 win.ShowDialog();
-                if (win.ShowDialog() == true)
-                {
-                    this.rptViewer.ClearReport();
-                }
+                this.rptViewer.ClearReport();
             }
             else
             {

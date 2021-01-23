@@ -59,8 +59,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1045
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1044
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1043
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Fixed ScrollBar in RevenueEntry control #3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1042

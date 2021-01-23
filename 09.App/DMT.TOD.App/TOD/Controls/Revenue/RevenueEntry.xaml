@@ -19,7 +19,7 @@
                  VerticalContentAlignment="Stretch"
                  Header="รายได้">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <Border HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
                     <!--  REQUIRE FIXED WIDTH AND HEIGHT TO MAKE SCROLLVIEWER WORK PROPERLY  -->
                     <Grid x:Name="revGrid"
                           HorizontalAlignment="Stretch"

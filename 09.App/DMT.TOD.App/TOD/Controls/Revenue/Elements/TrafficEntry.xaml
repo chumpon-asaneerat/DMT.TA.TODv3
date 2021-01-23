@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="500"
              d:DesignWidth="240"
+             BorderBrush="Silver"
+             BorderThickness="1"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
@@ -115,13 +117,13 @@
                             VerticalAlignment="Center"
                             Orientation="Vertical">
                     <TextBlock Height="5" />
-                    <TextBlock Margin="12, 0"
+                    <TextBlock Margin="12,0"
                                FontSize="{StaticResource EntryFontSize18}"
                                Foreground="{StaticResource EntryTextForeground}"
                                Text="หมายเหตุ"
                                TextAlignment="Left" />
                     <TextBox Height="75"
-                             Margin="10, 0"
+                             Margin="10,0"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Top"
                              AcceptsReturn="True"

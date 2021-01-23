@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="430"
              d:DesignWidth="380"
+             BorderBrush="Silver"
+             BorderThickness="1"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">

@@ -6,125 +6,116 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
              d:DesignHeight="600"
-             d:DesignWidth="1300"
+             d:DesignWidth="1100"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
     <TabControl x:Name="tabs"
                 Background="Transparent"
                 FontSize="18">
-        <TabItem HorizontalAlignment="Stretch"
-                 VerticalAlignment="Stretch"
+        <TabItem HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
                  HorizontalContentAlignment="Stretch"
                  VerticalContentAlignment="Stretch"
                  Header="รายได้">
-            <ScrollViewer HorizontalAlignment="Center"
-                          VerticalAlignment="Stretch"
-                          HorizontalContentAlignment="Center"
-                          VerticalContentAlignment="Center"
-                          HorizontalScrollBarVisibility="Hidden"
-                          VerticalScrollBarVisibility="Hidden">
-                <Grid x:Name="revGrid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5" />
-                        <ColumnDefinition Width="360" />
-                        <ColumnDefinition Width="360" />
-                        <ColumnDefinition Width="360" />
-                        <ColumnDefinition Width="5" />
-                    </Grid.ColumnDefinitions>
-                    <!--  BAG/BELT NO  -->
-                    <Grid Grid.Row="0"
-                          Grid.Column="1"
-                          Grid.ColumnSpan="3">
-                        <StackPanel Margin="5"
-                                    HorizontalAlignment="Center"
-                                    Orientation="Horizontal">
-                            <Grid Width="10" />
-                            <TextBlock Foreground="WhiteSmoke" Text="หมายเลขถุงเงิน" />
-                            <Grid Width="10" />
-                            <TextBox x:Name="txtBagNo"
-                                     Width="200"
-                                     util:FocusOptions.SelectAll="True"
-                                     util:KeyboardOptions.Enabled="True"
-                                     util:KeyboardOptions.EnterAsTab="True"
-                                     util:KeyboardOptions.LeftRightNavigation="True"
-                                     util:KeyboardOptions.UpDownNavigation="True"
-                                     Style="{StaticResource CommonTextBox}"
-                                     Text="{Binding BagNo}"
-                                     TextAlignment="Center" />
-                            <Grid Width="10" />
-                            <TextBlock Foreground="WhiteSmoke" Text="หมายเลขเข็มขัดนิรภัย" />
-                            <Grid Width="10" />
-                            <TextBox x:Name="txtBeltNo"
-                                     Width="200"
-                                     util:FocusOptions.SelectAll="True"
-                                     util:KeyboardOptions.Enabled="True"
-                                     util:KeyboardOptions.EnterAsTab="True"
-                                     util:KeyboardOptions.LeftRightNavigation="True"
-                                     util:KeyboardOptions.UpDownNavigation="True"
-                                     Style="{StaticResource CommonTextBox}"
-                                     Text="{Binding BeltNo}"
-                                     TextAlignment="Center" />
-                            <Grid Width="10" />
-                        </StackPanel>
-                    </Grid>
-                    <!--  TRAFFIC  -->
-                    <Grid Grid.Row="1"
-                          Grid.Column="1"
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Border HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <!--  REQUIRE FIXED WIDTH AND HEIGHT TO MAKE SCROLLVIEWER WORK PROPERLY  -->
+                    <Grid x:Name="revGrid"
+                          HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="240" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="240" />
+                            <RowDefinition Height="2" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition Width="360" />
+                            <ColumnDefinition Width="360" />
+                            <ColumnDefinition Width="360" />
+                            <ColumnDefinition Width="1" />
+                        </Grid.ColumnDefinitions>
+                        <!--  BAG/BELT NO  -->
+                        <Grid Grid.Row="0"
+                              Grid.Column="1"
+                              Grid.ColumnSpan="3">
+                            <StackPanel Margin="3"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <Grid Width="10" />
+                                <TextBlock Foreground="WhiteSmoke" Text="หมายเลขถุงเงิน" />
+                                <Grid Width="10" />
+                                <TextBox x:Name="txtBagNo"
+                                         Width="200"
+                                         util:FocusOptions.SelectAll="True"
+                                         util:KeyboardOptions.Enabled="True"
+                                         util:KeyboardOptions.EnterAsTab="True"
+                                         util:KeyboardOptions.LeftRightNavigation="True"
+                                         util:KeyboardOptions.UpDownNavigation="True"
+                                         Style="{StaticResource CommonTextBox}"
+                                         Text="{Binding BagNo}"
+                                         TextAlignment="Center" />
+                                <Grid Width="10" />
+                                <TextBlock Foreground="WhiteSmoke" Text="หมายเลขเข็มขัดนิรภัย" />
+                                <Grid Width="10" />
+                                <TextBox x:Name="txtBeltNo"
+                                         Width="200"
+                                         util:FocusOptions.SelectAll="True"
+                                         util:KeyboardOptions.Enabled="True"
+                                         util:KeyboardOptions.EnterAsTab="True"
+                                         util:KeyboardOptions.LeftRightNavigation="True"
+                                         util:KeyboardOptions.UpDownNavigation="True"
+                                         Style="{StaticResource CommonTextBox}"
+                                         Text="{Binding BeltNo}"
+                                         TextAlignment="Center" />
+                                <Grid Width="10" />
+                            </StackPanel>
+                        </Grid>
+                        <!--  TRAFFIC  -->
                         <local:TrafficEntry x:Name="trafficRevenue"
-                                            Grid.Row="0"
+                                            Grid.Row="1"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="1"
                                             Margin="3"
                                             Background="ForestGreen"
                                             Foreground="WhiteSmoke" />
-                    </Grid>
-                    <!--  OTHER/COUPON SOLD  -->
-                    <Grid Grid.Row="1"
-                          Grid.Column="2"
-                          VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="245" />
-                            <RowDefinition Height="2" />
-                            <RowDefinition Height="245" />
-                        </Grid.RowDefinitions>
+                        <!--  OTHER  -->
                         <local:OtherEntry x:Name="otherRevenue"
-                                          Grid.Row="0"
+                                          Grid.Row="2"
+                                          Grid.Column="2"
                                           Margin="3"
                                           VerticalAlignment="Stretch"
                                           Background="CornflowerBlue"
                                           Foreground="WhiteSmoke" />
+
+                        <!--  COUPON SOLD  -->
                         <local:CouponRevenueEntry x:Name="couponSold"
-                                                  Grid.Row="2"
+                                                  Grid.Row="4"
+                                                  Grid.Column="2"
                                                   Margin="3"
                                                   VerticalAlignment="Stretch"
                                                   Background="Purple"
                                                   Foreground="WhiteSmoke" />
-                    </Grid>
-                    <!--  COUPON USAGE/FREE PASS  -->
-                    <Grid Grid.Row="1"
-                          Grid.Column="3"
-                          VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="245" />
-                            <RowDefinition Height="2" />
-                            <RowDefinition Height="245" />
-                        </Grid.RowDefinitions>
+                        <!--  COUPON USAGE  -->
                         <local:CouponUsageEntry x:Name="couponUsage"
-                                                Grid.Row="0"
+                                                Grid.Row="2"
+                                                Grid.Column="3"
                                                 Margin="3"
                                                 Background="Purple"
                                                 Foreground="WhiteSmoke" />
+                        <!--  FREE PASS  -->
                         <local:CouponDMTEntry x:Name="freePass"
-                                              Grid.Row="2"
+                                              Grid.Row="4"
+                                              Grid.Column="3"
                                               Margin="3"
                                               Background="Purple"
                                               Foreground="WhiteSmoke" />
                     </Grid>
-                </Grid>
+                </Border>
             </ScrollViewer>
         </TabItem>
         <!--  EMV  -->

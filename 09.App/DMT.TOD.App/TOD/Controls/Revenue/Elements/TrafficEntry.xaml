@@ -115,13 +115,13 @@
                             VerticalAlignment="Center"
                             Orientation="Vertical">
                     <TextBlock Height="5" />
-                    <TextBlock Margin="12,2"
+                    <TextBlock Margin="12, 0"
                                FontSize="{StaticResource EntryFontSize18}"
                                Foreground="{StaticResource EntryTextForeground}"
                                Text="หมายเหตุ"
                                TextAlignment="Left" />
                     <TextBox Height="75"
-                             Margin="10,2"
+                             Margin="10, 0"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Top"
                              AcceptsReturn="True"

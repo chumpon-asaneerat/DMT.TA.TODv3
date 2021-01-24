@@ -130,6 +130,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Account\Controls\CreditEntry.xaml.cs">
+      <DependentUpon>CreditEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Pages\Menu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
     <Compile Include="StatusBar\AccountStatusBar.xaml.cs">
       <DependentUpon>AccountStatusBar.xaml</DependentUpon>
     </Compile>
+    <Page Include="Account\Controls\CreditEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Account\Pages\Menu\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -355,7 +362,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Account\Controls\" />
     <Folder Include="Account\Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

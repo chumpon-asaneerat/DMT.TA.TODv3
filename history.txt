@@ -41,8 +41,10 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1050
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1049
-- 
+- DMT.TAxTODv3
+  - Update Wpf.File.System.Watcher.Sample project #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1048

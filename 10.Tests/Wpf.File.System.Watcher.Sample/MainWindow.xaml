@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Wpf.FileSystemWatchers.Sample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -11,6 +12,7 @@
         Unloaded="Window_Unloaded"
         mc:Ignorable="d">
     <Window.Resources>
+        <sys:Double x:Key="DefaultFontSize14">14</sys:Double>
         <sys:Double x:Key="DefaultFontSize18">18</sys:Double>
     </Window.Resources>
     <DockPanel Margin="10" LastChildFill="True">
@@ -19,14 +21,28 @@
                     VerticalAlignment="Center"
                     DockPanel.Dock="Top"
                     Orientation="Horizontal">
-            <TextBlock FontSize="{StaticResource DefaultFontSize18}" Text="File Name :" />
+            <TextBlock VerticalAlignment="Center"
+                       FontSize="{StaticResource DefaultFontSize18}"
+                       Text="Path Name :" />
             <TextBlock Width="5" />
             <TextBlock x:Name="txtPath"
+                       VerticalAlignment="Center"
                        FontSize="{StaticResource DefaultFontSize18}"
-                       Text="" />
-            <TextBox x:Name="txtFileName"
-                     Width="200"
-                     FontSize="{StaticResource DefaultFontSize18}" />
+                       Text=""
+                       TextWrapping="WrapWithOverflow" />
+        </StackPanel>
+        <StackPanel Margin="5"
+                    VerticalAlignment="Center"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center"
+                       FontSize="{StaticResource DefaultFontSize18}"
+                       Text="File Name :" />
+            <TextBlock Width="5" />
+            <TextBlock x:Name="txtFileName"
+                       Width="200"
+                       VerticalAlignment="Center"
+                       FontSize="{StaticResource DefaultFontSize18}" />
         </StackPanel>
         <StackPanel Margin="5"
                     VerticalAlignment="Center"
@@ -36,12 +52,14 @@
             <TextBlock Width="5" />
             <Button x:Name="cmdStart"
                     Width="100"
+                    VerticalAlignment="Center"
                     Click="cmdStart_Click"
                     Content="Start"
                     FontSize="{StaticResource DefaultFontSize18}" />
             <TextBlock Width="5" />
             <Button x:Name="cmdShutdown"
                     Width="100"
+                    VerticalAlignment="Center"
                     Click="cmdShutdown_Click"
                     Content="Shutdown"
                     FontSize="{StaticResource DefaultFontSize18}" />
@@ -53,16 +71,26 @@
                     Orientation="Horizontal">
             <Button x:Name="cmdLoad"
                     Width="100"
+                    VerticalAlignment="Center"
                     Click="cmdLoad_Click"
                     Content="Load"
                     FontSize="{StaticResource DefaultFontSize18}" />
             <TextBlock Width="5" />
             <Button x:Name="cmdSave"
                     Width="100"
+                    VerticalAlignment="Center"
                     Click="cmdSave_Click"
                     Content="Save"
                     FontSize="{StaticResource DefaultFontSize18}" />
         </StackPanel>
-        <Grid />
+        <Border Margin="5"
+                BorderBrush="Silver"
+                BorderThickness="1">
+            <avalonEdit:TextEditor Name="editor"
+                                   FontSize="{StaticResource DefaultFontSize18}"
+                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                   ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                   SyntaxHighlighting="C#" />
+        </Border>
     </DockPanel>
 </Window>

@@ -24,5 +24,69 @@
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <!--  1 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT1Description}" />
+                    <TextBox Style="{StaticResource BHT1Amount}" />
+                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                </StackPanel>
+                <!--  2 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT2Description}" />
+                    <TextBox Style="{StaticResource BHT2Amount}" />
+                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                </StackPanel>
+                <!--  5 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT5Description}" />
+                    <TextBox Style="{StaticResource BHT5Amount}" />
+                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                </StackPanel>
+                <!--  10 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT10Description}" />
+                    <TextBox Style="{StaticResource BHT10Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+                <!--  20 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT20Description}" />
+                    <TextBox Style="{StaticResource BHT20Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+                <!--  50 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT50Description}" />
+                    <TextBox Style="{StaticResource BHT50Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+                <!--  100 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT100Description}" />
+                    <TextBox Style="{StaticResource BHT100Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+                <!--  500 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT500Description}" />
+                    <TextBox Style="{StaticResource BHT500Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+                <!--  1000 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT1000Description}" />
+                    <TextBox Style="{StaticResource BHT1000Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+                <!--  TOTAL BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHTTotalDescription}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource BHTTotalAmount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </DockPanel>
 </UserControl>

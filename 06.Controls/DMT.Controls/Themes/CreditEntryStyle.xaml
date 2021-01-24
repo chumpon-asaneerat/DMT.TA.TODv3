@@ -157,7 +157,7 @@
     </Style>
 
     <!--  EACH BANK NOTE AMOUNT UNIT  -->
-    <Style x:Key="ConinAmountUnitStyle"
+    <Style x:Key="CoinAmountUnitStyle"
            BasedOn="{StaticResource UnitStyle}"
            TargetType="TextBlock">
         <Setter Property="Text" Value="บาท" />

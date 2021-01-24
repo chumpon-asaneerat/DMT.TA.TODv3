@@ -25,14 +25,6 @@
           <DataField>BeltNo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ChiefNameEN">
-          <DataField>ChiefNameEN</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ChiefNameTH">
-          <DataField>ChiefNameTH</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="CollectorNameEN">
           <DataField>CollectorNameEN</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -91,7 +83,7 @@
         </Field>
         <Field Name="EntryDate">
           <DataField>EntryDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="EntryDateString">
           <DataField>EntryDateString</DataField>
@@ -109,12 +101,12 @@
           <DataField>FreePassUsageOther</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="FullNameEN">
-          <DataField>FullNameEN</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="IsHistorical">
+          <DataField>IsHistorical</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
-        <Field Name="FullNameTH">
-          <DataField>FullNameTH</DataField>
+        <Field Name="IsHistoricalDisplayText">
+          <DataField>IsHistoricalDisplayText</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Lanes">
@@ -123,7 +115,7 @@
         </Field>
         <Field Name="LastUpdate">
           <DataField>LastUpdate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="OtherBHTTotal">
           <DataField>OtherBHTTotal</DataField>
@@ -155,7 +147,7 @@
         </Field>
         <Field Name="RevenueDate">
           <DataField>RevenueDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="RevenueDateString">
           <DataField>RevenueDateString</DataField>
@@ -171,7 +163,7 @@
         </Field>
         <Field Name="ShiftBegin">
           <DataField>ShiftBegin</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="ShiftBeginDateString">
           <DataField>ShiftBeginDateString</DataField>
@@ -187,7 +179,7 @@
         </Field>
         <Field Name="ShiftEnd">
           <DataField>ShiftEnd</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="ShiftEndDateString">
           <DataField>ShiftEndDateString</DataField>

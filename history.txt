@@ -53,8 +53,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1057
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1056
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1055
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.Models project.
+    - Update datasource -> RevenueEntry model from (DMT.TOD.Models to DMT.Models).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1054

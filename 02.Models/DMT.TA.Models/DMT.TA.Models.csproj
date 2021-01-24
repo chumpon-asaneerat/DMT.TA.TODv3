@@ -190,5 +190,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaView.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Revenues\RevenueEntryView.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

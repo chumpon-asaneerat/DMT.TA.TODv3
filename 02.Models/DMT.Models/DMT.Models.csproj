@@ -123,6 +123,7 @@
     <Compile Include="Models\Plaza\Master\MCoupon.cs" />
     <Compile Include="Models\Plaza\Master\MCouponBook.cs" />
     <Compile Include="Models\Plaza\Master\MCurrency.cs" />
+    <Compile Include="Models\Plaza\Revenues\RevenueEntry.cs" />
     <Compile Include="Models\Plaza\Shifts\UserShift.cs" />
     <Compile Include="Models\Plaza\Users\UserAccess.cs" />
     <Compile Include="Models\SCW\Common.cs" />

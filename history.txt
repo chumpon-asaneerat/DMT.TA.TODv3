@@ -57,10 +57,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1055
 - 
 
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1054
-- 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1053
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Add RevenueEntry model.
+  - DMT.TA.Models project.
+    - Init Table RevenueEntry.
+    - Init View RevenueEntryView
+  - DMT.TOD.Models project.
+    - Remove RevenueEntry model.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1052

@@ -126,6 +126,8 @@ namespace DMT.Services
 
             Db.CreateTable<TSBShift>();
 
+            Db.CreateTable<RevenueEntry>(); // Collect all revenue entry from various TOD client (by plaza id).
+
             Db.CreateTable<TSBCreditTransaction>();
 
             Db.CreateTable<UserCreditBalance>();
@@ -1977,6 +1979,10 @@ namespace DMT.Services
             // Users - Embeded resource used . instead / to access sub contents.
             prefix = @"Users";
             InitView("UserView", 1, prefix);
+
+            // Revenues - Embeded resource used . instead / to access sub contents.
+            prefix = @"Revenues";
+            InitView("RevenueEntryView", 1, prefix);
 
             // Credits - Embeded resource used . instead / to access sub contents.
             prefix = @"Credits";

@@ -113,10 +113,55 @@ namespace DMT
         public static T LoadFromFile<T>(string fileName)
         {
             T result = default(T);
+
+            Stream stm = null;
+            int iRetry = 0;
+            int maxRetry = 5;
+
             try
             {
                 // TODO: Fixed problem when open/save with Notepad.
                 // deserialize JSON directly from a file
+                while (null == stm && iRetry < maxRetry)
+                {
+                    try
+                    {
+                        stm = new FileStream(fileName, FileMode.Open, FileAccess.Read,
+                            FileShare.Read);
+                    }
+                    catch (Exception ex2)
+                    {
+                        MethodBase med = MethodBase.GetCurrentMethod();
+                        ex2.Err(med);
+
+                        if (null != stm)
+                        {
+                            stm.Close();
+                            stm.Dispose();
+                        }
+                        stm = null;
+                        ++iRetry;
+
+                        ApplicationManager.Instance.Sleep(50);
+                    }
+                }
+
+                if (null != stm)
+                {
+                    using (StreamReader file = new StreamReader(stm))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        //serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                        serializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+                        serializer.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                        serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'";
+                        result = (T)serializer.Deserialize(file, typeof(T));
+
+                        file.Close();
+                        file.Dispose();
+                    }
+                }
+                /*
                 using (StreamReader file = File.OpenText(fileName))
                 {
                     JsonSerializer serializer = new JsonSerializer();
@@ -126,12 +171,20 @@ namespace DMT
                     serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'";
                     result = (T)serializer.Deserialize(file, typeof(T));
                 }
+                */
             }
             catch (Exception ex)
             {
                 result = default(T);
                 MethodBase med = MethodBase.GetCurrentMethod();
                 ex.Err(med);
+
+                if (null != stm)
+                {
+                    stm.Close();
+                    stm.Dispose();
+                }
+                stm = null;
             }
             return result;
         }

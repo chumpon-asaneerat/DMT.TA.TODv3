@@ -62,8 +62,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1054
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1053
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1052
-- 
+- DMT.TAxTODv3
+  - Update Wpf.File.System.Watcher.Sample project #4.
+  - DMT.Core project.
+    - NJson -> Update code in LoadFromFile method (fixed file in used in another process).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1051

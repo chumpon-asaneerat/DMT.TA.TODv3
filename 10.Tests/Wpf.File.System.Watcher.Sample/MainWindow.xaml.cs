@@ -363,7 +363,8 @@ namespace ICSharpCode.AvalonEdit.Folding
                 bool foundColon = false;
                 //for (int i = 0; i < line.Length; i++)
                 int i = 0;
-                //TODO buffer the characters so you can have the line contents on the stack too for the folding name (display text)
+                // Buffer the characters so you can have the line contents on the stack too 
+                // for the folding name (display text)
                 while (i < line.Length && !(foundText && foundColon))
                 {
                     char c = document.GetCharAt(offsetTracker + i);

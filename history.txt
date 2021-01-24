@@ -38,8 +38,39 @@
   - ป้อนรายได้ ย้อนหลัง
     - ป้อนได้หมด
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1050
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1060
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1059
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1058
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1057
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1056
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1055
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1054
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1053
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1052
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1051
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1050
+- Prepare history.txt
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1049

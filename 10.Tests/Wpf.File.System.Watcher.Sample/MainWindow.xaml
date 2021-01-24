@@ -43,6 +43,12 @@
                        Width="200"
                        VerticalAlignment="Center"
                        FontSize="{StaticResource DefaultFontSize18}" />
+            <TextBlock Width="5" />
+            <Button Content="Open Notepad" 
+                    x:Name="cmdOpenNotepad"
+                    Width="150"
+                    Click="cmdOpenNotepad_Click"
+                    FontSize="{StaticResource DefaultFontSize18}"/>
         </StackPanel>
         <StackPanel Margin="5"
                     VerticalAlignment="Center"

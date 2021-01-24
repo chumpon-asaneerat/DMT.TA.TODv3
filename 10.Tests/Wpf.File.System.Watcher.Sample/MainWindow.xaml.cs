@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Diagnostics;
 
 // NJson
 using DMT;
@@ -75,6 +76,16 @@ namespace Wpf.FileSystemWatchers.Sample
         #endregion
 
         #region Button Handlers
+
+        private void cmdOpenNotepad_Click(object sender, RoutedEventArgs e)
+        {
+            string fileName = FileName;
+            if (string.IsNullOrWhiteSpace(fileName)) return;
+            if (File.Exists(fileName))
+            {
+                Process.Start("notepad.exe", fileName);
+            }
+        }
 
         private void cmdStart_Click(Object sender, RoutedEventArgs e)
         {
@@ -193,6 +204,8 @@ namespace Wpf.FileSystemWatchers.Sample
 
             string fileName = FileName;
             if (string.IsNullOrEmpty(fileName)) return;
+            if (!File.Exists(fileName)) return;
+
             data = NJson.LoadFromFile<SampleJson>(fileName);
             if (null == data) return;
 

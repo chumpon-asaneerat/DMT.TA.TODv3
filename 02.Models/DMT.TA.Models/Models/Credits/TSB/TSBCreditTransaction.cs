@@ -118,6 +118,7 @@ namespace DMT.Models
         // เงินขอแลกเปลี่ยน 
         private decimal _ExchangeBHT = decimal.Zero;
 
+        private bool _hasRemark = false;
         private string _Remark = string.Empty;
 
         #endregion
@@ -321,6 +322,42 @@ namespace DMT.Models
         [JsonIgnore]
         [Ignore]
         public string Description { get; set; }
+        /// <summary>
+        /// Gets or sets has remark.
+        /// </summary>
+        [Category("Runtime")]
+        [Description("Gets or sets HasRemark.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("HasRemark")]
+        public bool HasRemark
+        {
+            get { return _hasRemark; }
+            set
+            {
+                if (_hasRemark != value)
+                {
+                    _hasRemark = value;
+                    // Raise event.
+                    this.RaiseChanged("HasRemark");
+                    this.RaiseChanged("RemarkVisibility");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Remark Visibility.
+        /// </summary>
+        [Category("Runtime")]
+        [Description("Gets or sets Remark Visibility.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        [PropertyMapName("RemarkVisibility")]
+        public System.Windows.Visibility RemarkVisibility
+        {
+            get { return (_hasRemark) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
+            set { }
+        }
 
         #endregion
 

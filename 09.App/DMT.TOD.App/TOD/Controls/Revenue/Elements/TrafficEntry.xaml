@@ -25,6 +25,7 @@
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <!--  ENTRY  -->
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <TextBlock Height="5" />
                 <!--  1 BHT  -->

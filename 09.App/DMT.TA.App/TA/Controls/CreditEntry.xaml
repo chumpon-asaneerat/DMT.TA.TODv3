@@ -25,6 +25,7 @@
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <!--  ENTRY  -->
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <!--  1 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
@@ -86,6 +87,35 @@
                     <TextBox IsEnabled="False" Style="{StaticResource BHTTotalAmount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
+            </StackPanel>
+            <!--  SEPERATOR  -->
+            <TextBlock Height="5" DockPanel.Dock="Top" />
+            <!--  REMARK  -->
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                <!--  REMARK  -->
+                <StackPanel HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical"
+                            Visibility="{Binding RemarkVisibility}">
+                    <TextBlock Height="5" />
+                    <TextBlock Margin="12,0"
+                               FontSize="{StaticResource EntryFontSize18}"
+                               Foreground="{StaticResource EntryTextForeground}"
+                               Text="หมายเหตุ"
+                               TextAlignment="Left" />
+                    <TextBox Height="75"
+                             Margin="10,0"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Top"
+                             AcceptsReturn="True"
+                             IsTabStop="False"
+                             Text="{Binding Remark}"
+                             TextAlignment="Left"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto" />
+                </StackPanel>
+                <!--  SEPERATOR  -->
+                <TextBlock Height="10" />
             </StackPanel>
         </StackPanel>
     </DockPanel>

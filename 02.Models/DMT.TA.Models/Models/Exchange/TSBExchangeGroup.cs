@@ -148,6 +148,8 @@ namespace DMT.Models
 		// Request Period (runtime)
 		private DateTime? _PeriodBegin = new DateTime?();
 		private DateTime? _PeriodEnd = new DateTime?();
+
+		private bool _hasRemark = false;
 		// Request Remark (runtime)
 		private string _Remark = string.Empty;
 
@@ -478,6 +480,42 @@ namespace DMT.Models
 		public bool CanExchange
 		{
 			get { return (_State == StateTypes.Approve); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets has remark.
+		/// </summary>
+		[Category("Runtime")]
+		[Description("Gets or sets HasRemark.")]
+		[ReadOnly(true)]
+		[Ignore]
+		[PropertyMapName("HasRemark")]
+		public bool HasRemark
+		{
+			get { return _hasRemark; }
+			set
+			{
+				if (_hasRemark != value)
+				{
+					_hasRemark = value;
+					// Raise event.
+					this.RaiseChanged("HasRemark");
+					this.RaiseChanged("RemarkVisibility");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Remark Visibility.
+		/// </summary>
+		[Category("Runtime")]
+		[Description("Gets or sets Remark Visibility.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		[PropertyMapName("RemarkVisibility")]
+		public System.Windows.Visibility RemarkVisibility
+		{
+			get { return (_hasRemark) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
 			set { }
 		}
 

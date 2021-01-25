@@ -4,17 +4,17 @@
     {
         static partial class TA
         {
-            static partial class Credit
+            static partial class Coupon
             {
-                static partial class User
+                static partial class TSB
                 {
-                    /// <summary>The Gets User Credit Balance action.</summary>
+                    /// <summary>The Gets TSB Coupon Balance action.</summary>
                     public static class Current
                     {
                         /// <summary>Gets route name.</summary>
                         public const string Name = "Current";
                         /// <summary>Gets route url.</summary>
-                        public const string Url = User.Url + @"/" + Name;
+                        public const string Url = TSB.Url + @"/" + Name;
                     }
                 }
             }

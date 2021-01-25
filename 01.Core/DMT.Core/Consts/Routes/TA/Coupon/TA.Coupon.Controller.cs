@@ -22,18 +22,6 @@
                     public const string Name = "TSB";
                     /// <summary>Gets route url.</summary>
                     public const string Url = Coupon.Url + @"/" + Name;
-
-                    /// <summary>The Coupon's TSB Transaction Controller.</summary>
-                    public static partial class Transaction
-                    {
-                        /// <summary>Gets controller name.</summary>
-                        public const string ControllerName = "TSBCouponTransactionManage";
-
-                        /// <summary>Gets route name.</summary>
-                        public const string Name = "Transaction";
-                        /// <summary>Gets route url.</summary>
-                        public const string Url = TSB.Url + @"/" + Name;
-                    }
                 }
 
                 /// <summary>The Coupon's User Controller.</summary>
@@ -46,18 +34,6 @@
                     public const string Name = "User";
                     /// <summary>Gets route url.</summary>
                     public const string Url = Coupon.Url + @"/" + Name;
-
-                    /// <summary>The Coupon's User Transaction Controller.</summary>
-                    public static partial class Transaction
-                    {
-                        /// <summary>Gets controller name.</summary>
-                        public const string ControllerName = "UserCouponTransactionManage";
-
-                        /// <summary>Gets route name.</summary>
-                        public const string Name = "Transaction";
-                        /// <summary>Gets route url.</summary>
-                        public const string Url = User.Url + @"/" + Name;
-                    }
                 }
             }
         }

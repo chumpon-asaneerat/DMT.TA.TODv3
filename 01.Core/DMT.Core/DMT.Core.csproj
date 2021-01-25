@@ -68,19 +68,13 @@
     <Compile Include="Consts\Routes\TAxTOD\Coupons\TAxTOD.Coupon.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TAA\TAxTOD.TAA.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TAxTOD.RouteConsts.cs" />
-    <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Transaction\Gets.cs" />
-    <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Transaction\Save.cs" />
-    <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Transaction\Gets.cs" />
-    <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Transaction\Save.cs" />
+    <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\TA.Coupon.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\TSB\Current.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\TSB\Transaction\Gets.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\TSB\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Cancel.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Save.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\User\Transaction\Gets.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\User\Transaction\Save.cs" />
     <Compile Include="Consts\Routes\TA\Credit\TA.Credit.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Lane\Gets.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Lane\Save.cs" />
@@ -110,7 +104,6 @@
     <Compile Include="Consts\Routes\TA\Shift\Actopms\TSB\Current.cs" />
     <Compile Include="Consts\Routes\TA\Shift\Actopms\User\Change.cs" />
     <Compile Include="Consts\Routes\TA\Shift\Actopms\User\Current.cs" />
-    <Compile Include="Consts\Routes\TA\Shift\Actopms\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Lane\Gets.cs" />
@@ -141,7 +134,6 @@
     <Compile Include="Consts\Routes\TOD\Shift\Actions\TSB\Current.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Change.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Current.cs" />
-    <Compile Include="Consts\Routes\TOD\Shift\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\TOD.Controller.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />

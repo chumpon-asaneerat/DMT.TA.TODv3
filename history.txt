@@ -41,8 +41,25 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1080
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1079
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update Routes (TA/TOD) #2.
+      - TA -> Coupons
+        - Add TSB -> Current
+        - Remove TSB -> Transactions
+        - Add User -> Current
+        - Remove User -> Transactions
+      - TA -> Credits
+        - Update TSB -> Current
+        - Remove TSB -> Transactions
+        - Update User -> Current
+        - Remove User -> Transactions
+      - TA -> User -> Shift
+        - Remove Searcn By Status.
+      - TOD -> User -> Shift
+        - Remove Searcn By Status.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1078

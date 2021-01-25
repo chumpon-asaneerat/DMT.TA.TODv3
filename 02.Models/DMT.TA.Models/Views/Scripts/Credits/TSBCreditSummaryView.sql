@@ -1,8 +1,12 @@
 ﻿CREATE VIEW TSBCreditSummaryView
 AS
 	SELECT TSB.TSBId
-		 , TSB.TSBNameEN
-		 , TSB.TSBNameTH
+		 , TSB.TSBNameEN, TSB.TSBNameTH
+		 , TSB.MaxCredit
+		 , TSB.LowLimitST25, TSB.LowLimitST50
+		 , TSB.LowLimitBHT1, TSB.LowLimitBHT2, TSB.LowLimitBHT5
+		 , TSB.LowLimitBHT10, TSB.LowLimitBHT20, TSB.LowLimitBHT50
+		 , TSB.LowLimitBHT100, TSB.LowLimitBHT500, TSB.LowLimitBHT1000
 		 /* User Credit Borrow (1) - Return (2) */
 		 , USER_TOTAL.UserBHTTotal
 		 /* TSB Credit Initial (0) + Received (1) +  ReplaceIn (12) - Exchange (2) - Return (3) - ReplaceOut (11) */

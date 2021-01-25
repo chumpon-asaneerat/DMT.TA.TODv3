@@ -90,6 +90,17 @@ namespace DMT.Models
         private string _TSBNameTH = string.Empty;
         // วงเงินอนุมัติ เป็นวงเงินที่ บ/ช กำหนดให้แต่ละด่าน เป็นค่าสูงสุดที่แต่ละด่านจะมีได้ โดยยอดนี้จะต้อง มากกว่าหรือเท่ากับ ยอดรวม + เงินยืมเพิ่ม
         private decimal _MaxCredit = decimal.Zero;
+        private decimal _LowLimitST25 = decimal.Zero;
+        private decimal _LowLimitST50 = decimal.Zero;
+        private decimal _LowLimitBHT1 = decimal.Zero;
+        private decimal _LowLimitBHT2 = decimal.Zero;
+        private decimal _LowLimitBHT5 = decimal.Zero;
+        private decimal _LowLimitBHT10 = decimal.Zero;
+        private decimal _LowLimitBHT20 = decimal.Zero;
+        private decimal _LowLimitBHT50 = decimal.Zero;
+        private decimal _LowLimitBHT100 = decimal.Zero;
+        private decimal _LowLimitBHT500 = decimal.Zero;
+        private decimal _LowLimitBHT1000 = decimal.Zero;
 
         // Supervisor
         private string _SupervisorId = string.Empty;
@@ -604,6 +615,275 @@ namespace DMT.Models
                 }
             }
         }
+
+        #region Credit (Low Limit)
+
+        /// <summary>
+        /// Gets or sets Low Limit for ST25.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for ST25.")]
+        [PropertyMapName("LowLimitST25")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitST25
+        {
+            get
+            {
+                return _LowLimitST25;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitST25 != value)
+                {
+                    _LowLimitST25 = value;
+                    this.RaiseChanged("LowLimitST25");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for ST50.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for ST50.")]
+        [PropertyMapName("LowLimitST50")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitST50
+        {
+            get
+            {
+                return _LowLimitST50;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitST50 != value)
+                {
+                    _LowLimitST50 = value;
+                    this.RaiseChanged("LowLimitST50");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT1.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT1.")]
+        [PropertyMapName("LowLimitBHT1")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT1
+        {
+            get
+            {
+                return _LowLimitBHT1;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT1 != value)
+                {
+                    _LowLimitBHT1 = value;
+                    this.RaiseChanged("LowLimitBHT1");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT2.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT2.")]
+        [PropertyMapName("LowLimitBHT2")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT2
+        {
+            get
+            {
+                return _LowLimitBHT2;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT2 != value)
+                {
+                    _LowLimitBHT2 = value;
+                    this.RaiseChanged("LowLimitBHT2");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT5.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT5.")]
+        [PropertyMapName("LowLimitBHT5")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT5
+        {
+            get
+            {
+                return _LowLimitBHT5;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT5 != value)
+                {
+                    _LowLimitBHT5 = value;
+                    this.RaiseChanged("LowLimitBHT5");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT10.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT10.")]
+        [PropertyMapName("LowLimitBHT10")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT10
+        {
+            get
+            {
+                return _LowLimitBHT10;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT10 != value)
+                {
+                    _LowLimitBHT10 = value;
+                    this.RaiseChanged("LowLimitBHT10");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT20.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT20.")]
+        [PropertyMapName("LowLimitBHT20")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT20
+        {
+            get
+            {
+                return _LowLimitBHT20;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT20 != value)
+                {
+                    _LowLimitBHT20 = value;
+                    this.RaiseChanged("LowLimitBHT20");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT50.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT50.")]
+        [PropertyMapName("LowLimitBHT50")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT50
+        {
+            get
+            {
+                return _LowLimitBHT50;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT50 != value)
+                {
+                    _LowLimitBHT50 = value;
+                    this.RaiseChanged("LowLimitBHT50");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT100.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT100.")]
+        [PropertyMapName("LowLimitBHT100")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT100
+        {
+            get
+            {
+                return _LowLimitBHT100;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT100 != value)
+                {
+                    _LowLimitBHT100 = value;
+                    this.RaiseChanged("LowLimitBHT100");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT500.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT500.")]
+        [PropertyMapName("LowLimitBHT500")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT500
+        {
+            get
+            {
+                return _LowLimitBHT500;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT500 != value)
+                {
+                    _LowLimitBHT500 = value;
+                    this.RaiseChanged("LowLimitBHT500");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Low Limit for BHT1000.
+        /// </summary>
+        [Category("Credits")]
+        [Description("Gets or sets Low Limit for BHT1.")]
+        [PropertyMapName("LowLimitBHT1000")]
+        [ReadOnly(true)]
+        [Ignore]
+        public virtual decimal LowLimitBHT1000
+        {
+            get
+            {
+                return _LowLimitBHT1000;
+            }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_LowLimitBHT1000 != value)
+                {
+                    _LowLimitBHT1000 = value;
+                    this.RaiseChanged("LowLimitBHT1000");
+                }
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -1265,6 +1545,110 @@ namespace DMT.Models
                 get { return base.MaxCredit; }
                 set { base.MaxCredit = value; }
             }
+
+            #region Credit (Low Limit)
+
+            /// <summary>
+            /// Gets or sets amount LowLimitST25
+            /// </summary>
+            [PropertyMapName("LowLimitST25")]
+            public override decimal LowLimitST25
+            {
+                get { return base.LowLimitST25; }
+                set { base.LowLimitST25 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitST50
+            /// </summary>
+            [PropertyMapName("LowLimitST50")]
+            public override decimal LowLimitST50
+            {
+                get { return base.LowLimitST50; }
+                set { base.LowLimitST50 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT1
+            /// </summary>
+            [PropertyMapName("LowLimitBHT1")]
+            public override decimal LowLimitBHT1
+            {
+                get { return base.LowLimitBHT1; }
+                set { base.LowLimitBHT1 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT2
+            /// </summary>
+            [PropertyMapName("LowLimitBHT2")]
+            public override decimal LowLimitBHT2
+            {
+                get { return base.LowLimitBHT2; }
+                set { base.LowLimitBHT2 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT5
+            /// </summary>
+            [PropertyMapName("LowLimitBHT5")]
+            public override decimal LowLimitBHT5
+            {
+                get { return base.LowLimitBHT5; }
+                set { base.LowLimitBHT5 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT10
+            /// </summary>
+            [PropertyMapName("LowLimitBHT10")]
+            public override decimal LowLimitBHT10
+            {
+                get { return base.LowLimitBHT10; }
+                set { base.LowLimitBHT10 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT20
+            /// </summary>
+            [PropertyMapName("LowLimitBHT20")]
+            public override decimal LowLimitBHT20
+            {
+                get { return base.LowLimitBHT20; }
+                set { base.LowLimitBHT20 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT50
+            /// </summary>
+            [PropertyMapName("LowLimitBHT50")]
+            public override decimal LowLimitBHT50
+            {
+                get { return base.LowLimitBHT50; }
+                set { base.LowLimitBHT50 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT100
+            /// </summary>
+            [PropertyMapName("LowLimitBHT100")]
+            public override decimal LowLimitBHT100
+            {
+                get { return base.LowLimitBHT100; }
+                set { base.LowLimitBHT100 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT500
+            /// </summary>
+            [PropertyMapName("LowLimitBHT500")]
+            public override decimal LowLimitBHT500
+            {
+                get { return base.LowLimitBHT500; }
+                set { base.LowLimitBHT500 = value; }
+            }
+            /// <summary>
+            /// Gets or sets amount LowLimitBHT1000
+            /// </summary>
+            [PropertyMapName("LowLimitBHT1000")]
+            public override decimal LowLimitBHT1000
+            {
+                get { return base.LowLimitBHT1000; }
+                set { base.LowLimitBHT1000 = value; }
+            }
+
+            #endregion
 
             #endregion
         }

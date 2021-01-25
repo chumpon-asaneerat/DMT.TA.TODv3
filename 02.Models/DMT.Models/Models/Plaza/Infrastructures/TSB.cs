@@ -384,7 +384,7 @@ namespace DMT.Models
         [Category("Credits")]
         [Description("Gets or sets Low Limit for BHT2.")]
         [PropertyMapName("LowLimitBHT2")]
-        public decimal BHT2LowLimit
+        public decimal LowLimitBHT2
         {
             get
             {

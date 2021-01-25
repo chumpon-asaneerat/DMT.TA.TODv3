@@ -27,8 +27,11 @@
                            Width="100"
                            FontSize="20"
                            Style="{StaticResource LabelText}"
-                           Text="{Binding MaxCredit}"
+                           Text="{Binding MaxCredit, StringFormat=N0}"
                            TextAlignment="Right" />
+                <TextBlock Width="80"
+                           Style="{StaticResource LabelText}"
+                           Text="บาท" />
             </StackPanel>
             <StackPanel Margin="1"
                         VerticalAlignment="Center"
@@ -42,8 +45,11 @@
                            Width="100"
                            FontSize="20"
                            Style="{StaticResource LabelText}"
-                           Text="{Binding CreditFlowBHTTotal}"
+                           Text="{Binding CreditFlowBHTTotal, StringFormat=N0}"
                            TextAlignment="Right" />
+                <TextBlock Width="80"
+                           Style="{StaticResource LabelText}"
+                           Text="บาท" />
             </StackPanel>
             <StackPanel Margin="1"
                         VerticalAlignment="Center"
@@ -55,10 +61,13 @@
                            TextAlignment="Right" />
                 <TextBlock x:Name="txtBalance"
                            Width="100"
-                           FontSize="24"
+                           FontSize="20"
                            Style="{StaticResource LabelText}"
-                           Text="{Binding GrandBHTTotal}"
+                           Text="{Binding GrandBHTTotal, StringFormat=N0}"
                            TextAlignment="Right" />
+                <TextBlock Width="80"
+                           Style="{StaticResource LabelText}"
+                           Text="บาท" />
             </StackPanel>
         </StackPanel>
         <balance:TSBCreditSummaryEntry x:Name="sumEntry"

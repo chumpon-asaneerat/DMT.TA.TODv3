@@ -62,8 +62,35 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1084
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1083
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1082
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update Routes (TA/TOD) #4.
+      - TA -> Credit -> User
+        - Cancel (Comment out).
+        - Save (Comment out).
+  - DMT.TA.Rest.Client project.
+    - Implements Shift.Operations #1.
+      - Add Shfit -> TSB -> Change (Comment Cout)
+      - Add Shfit -> TSB -> Current (Comment Cout)
+      - Add Shfit -> User -> Current (Comment Cout)
+      - Add Shfit -> User -> Current (Comment Cout)
+    - Implements Coupon.Operations #2.
+      - Add Coupon -> TSB - Current (Comment Out)
+      - Add Coupon -> User - Current (Comment Out)
+    - Implements Credit.Operations #2.
+      - Add Credit -> TSB - Current
+      - Add Credit -> User - Current
+  - DMT.TA.Rest.Server project.
+    - Implements Shift.Controller #1.
+      - TSB->Shift->Change (comment out).
+      - TSB->Shift->Current (comment out).
+      - User->Shift->Change (comment out).
+      - User->Shift->Current (comment out).
+      - User->Shift->Scarchs (remove).
+    - Implements Coupon.Controller #2.
+    - Implements Credit.Controller #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1081

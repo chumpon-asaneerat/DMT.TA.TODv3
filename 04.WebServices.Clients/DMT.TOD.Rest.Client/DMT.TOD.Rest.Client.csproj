@@ -79,10 +79,10 @@
     <Compile Include="Services\Security\Operations\User\Searchs.cs" />
     <Compile Include="Services\Security\Security.Operations.cs" />
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
-    <Compile Include="Services\Shift\Operations\TSB\Change.cs" />
+    <Compile Include="Services\Shift\Operations\TSB\CommentOut\Change.cs" />
     <Compile Include="Services\Shift\Operations\TSB\Current.cs" />
-    <Compile Include="Services\Shift\Operations\User\Change.cs" />
-    <Compile Include="Services\Shift\Operations\User\Current.cs" />
+    <Compile Include="Services\Shift\Operations\User\CommentOut\Change.cs" />
+    <Compile Include="Services\Shift\Operations\User\CommentOut\Current.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TOD.cs" />
   </ItemGroup>
@@ -101,6 +101,10 @@
     <ProjectReference Include="..\..\02.Models\DMT.Models\DMT.Models.csproj">
       <Project>{7d584f0a-920f-4be1-8652-3527fd7a5c27}</Project>
       <Name>DMT.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02.Models\DMT.TOD.Models\DMT.TOD.Models.csproj">
+      <Project>{c9b46736-c7e7-40dc-957f-be015e598300}</Project>
+      <Name>DMT.TOD.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\03.WebServices.Core\DMT.Rest.Client\DMT.Rest.Client.csproj">
       <Project>{26ba4314-6b80-4a59-9e0d-7c29919bbc6f}</Project>

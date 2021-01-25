@@ -8,8 +8,8 @@ namespace DMT.Services.Operations
 {
     static partial class TA
     {
-        /// <summary>The Shift Operations class.</summary>
-        public static partial class Shift
+        /// <summary>The Credit Operations class.</summary>
+        public static partial class Credit
         {
             /// <summary>The TSB's shift Operations class.</summary>
             public static partial class TSB { }

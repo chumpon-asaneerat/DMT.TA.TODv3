@@ -27,7 +27,7 @@
                            Width="100"
                            FontSize="20"
                            Style="{StaticResource LabelText}"
-                           Text="{Binding CashFlowBHTTotal}"
+                           Text="{Binding MaxCredit}"
                            TextAlignment="Right" />
             </StackPanel>
             <StackPanel Margin="1"
@@ -42,7 +42,7 @@
                            Width="100"
                            FontSize="20"
                            Style="{StaticResource LabelText}"
-                           Text="{Binding CashFlowBHTTotal}"
+                           Text="{Binding CreditFlowBHTTotal}"
                            TextAlignment="Right" />
             </StackPanel>
             <StackPanel Margin="1"

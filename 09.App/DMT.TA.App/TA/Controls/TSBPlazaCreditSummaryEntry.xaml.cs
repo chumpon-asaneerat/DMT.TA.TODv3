@@ -44,11 +44,13 @@ namespace DMT.TA.Controls
             _balance = TSBCreditBalance.GetCurrent().Value();
             if (null != _balance)
             {
+                this.DataContext = _balance;
                 this.balanceEntry.DataContext = _balance;
                 this.sumEntry.DataContext = _balance;
             }
             else
             {
+                this.DataContext = null;
                 this.balanceEntry.DataContext = null;
                 this.sumEntry.DataContext = null;
             }

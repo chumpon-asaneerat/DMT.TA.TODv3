@@ -83,7 +83,7 @@ namespace DMT.TA.Pages.Menu
         {
             // เงินยืมทอน (collector)
             var page = TAApp.Pages.CollectorCreditManage;
-            //page.RefreshPlazaInfo();
+            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 

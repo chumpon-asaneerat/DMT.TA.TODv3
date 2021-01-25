@@ -31,6 +31,10 @@ namespace DMT.TA.Pages.Credit
 
         #endregion
 
+        #region Internal Variables
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -52,6 +56,23 @@ namespace DMT.TA.Pages.Credit
             // Main Menu Page
             var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
+        }
+
+        private void Refresh()
+        {
+            plazaSummary.Setup(); // Call for refresh.
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        public void Setup()
+        {
+            Refresh();
         }
 
         #endregion

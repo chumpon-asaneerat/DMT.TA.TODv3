@@ -65,8 +65,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1063
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1062
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1061
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App
+    - Update CreditEntry Control #4.
+  - DMT.TA.App
+    - Update CreditEntry Control #4.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1060

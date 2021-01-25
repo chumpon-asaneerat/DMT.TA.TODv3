@@ -340,6 +340,21 @@ namespace DMT
         /// </summary>
         public static class Windows
         {
+            #region Credit
+
+            /// <summary>Gets Collector Credit Borrow Window.</summary>
+            public static TA.Windows.Credit.CollectorCreditBorrowWindow CollectorCreditBorrow
+            {
+                get
+                {
+                    var ret = new TA.Windows.Credit.CollectorCreditBorrowWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Internal Exchange
 
             /// <summary>Gets Internal Exchange Window.</summary>

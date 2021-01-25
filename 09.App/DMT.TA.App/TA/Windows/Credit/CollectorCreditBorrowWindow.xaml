@@ -1,0 +1,185 @@
+﻿<Window x:Class="DMT.TA.Windows.Credit.CollectorCreditBorrowWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
+        Title="พนักงานยืม เงินยืม-ทอน"
+        Width="800"
+        Height="600"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </Window.Resources>
+    <Grid Background="DimGray">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdOk"
+                                      Click="cmdOk_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdCancel"
+                                      Click="cmdCancel_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/OK2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <DockPanel LastChildFill="True">
+                    <!--  USER FILTER PANEL  -->
+                    <DockPanel Margin="10,0"
+                               VerticalAlignment="Center"
+                               DockPanel.Dock="Top"
+                               LastChildFill="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="2" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="180"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ค้นหา รหัสพนักงาน : "
+                                           TextAlignment="Right" />
+                                <TextBox x:Name="txtSearchUserId"
+                                         Width="175"
+                                         Height="25"
+                                         FontSize="{StaticResource InputFontSize18}"
+                                         KeyDown="txtSearchUserId_KeyDown"
+                                         Style="{StaticResource CommonTextBox}" />
+                                <TextBlock Width="10" />
+                                <Button x:Name="cmdUserSearch"
+                                        Width="150"
+                                        Height="30"
+                                        VerticalAlignment="Center"
+                                        Click="cmdUserSearch_Click"
+                                        Content="เลือกพนักงาน"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="3"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="180"
+                                           Style="{StaticResource LabelText}"
+                                           Text="รหัสพนักงาน : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtUserId"
+                                           Width="175"
+                                           Height="25"
+                                           Background="CornflowerBlue"
+                                           Foreground="White"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding CollectorId}"
+                                           TextAlignment="Center" />
+                                <TextBlock Width="10" />
+                                <TextBlock Width="100"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ชื่อพนักงาน : " />
+                                <TextBlock x:Name="txtUserName"
+                                           Width="240"
+                                           Height="25"
+                                           Background="CornflowerBlue"
+                                           Foreground="White"
+                                           Style="{StaticResource LabelText}"
+                                           Text="{Binding CollectorNameTH}"
+                                           TextAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="5"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <TextBlock Width="180"
+                                           Style="{StaticResource LabelText}"
+                                           Text="หมายเลขถุงเงิน : "
+                                           TextAlignment="Right" />
+                                <TextBox x:Name="txtBagNo"
+                                         Width="175"
+                                         Height="25"
+                                         util:FocusOptions.SelectAll="True"
+                                         util:KeyboardOptions.Enabled="True"
+                                         util:KeyboardOptions.EnterAsTab="True"
+                                         util:KeyboardOptions.LeftRightNavigation="True"
+                                         util:KeyboardOptions.UpDownNavigation="True"
+                                         FontSize="{StaticResource InputFontSize18}"
+                                         Style="{StaticResource CommonTextBox}"
+                                         Text="{Binding BagNo}"
+                                         TextAlignment="Center" />
+                                <TextBlock Width="10" />
+                                <TextBlock Width="165"
+                                           Foreground="WhiteSmoke"
+                                           Style="{StaticResource LabelText}"
+                                           Text="หมายเลขเข็มขัดนิรภัย : " />
+                                <TextBox x:Name="txtBeltNo"
+                                         Width="175"
+                                         Height="25"
+                                         util:FocusOptions.SelectAll="True"
+                                         util:KeyboardOptions.Enabled="True"
+                                         util:KeyboardOptions.EnterAsTab="True"
+                                         util:KeyboardOptions.LeftRightNavigation="True"
+                                         util:KeyboardOptions.UpDownNavigation="True"
+                                         FontSize="{StaticResource InputFontSize18}"
+                                         Style="{StaticResource CommonTextBox}"
+                                         Text="{Binding BeltNo}"
+                                         TextAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="5" DockPanel.Dock="Top" Background="Transparent" />
+                    <Grid />
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -12,19 +12,19 @@ using NLib.Reflection;
 
 #endregion
 
-namespace DMT.TA.Windows.Exchange
+namespace DMT.TA.Windows.Credit
 {
     /// <summary>
-    /// Interaction logic for InternalExchangeWindow.xaml
+    /// Interaction logic for CollectorCreditBorrowWindow.xaml
     /// </summary>
-    public partial class InternalExchangeWindow : Window
+    public partial class CollectorCreditBorrowWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public InternalExchangeWindow()
+        public CollectorCreditBorrowWindow()
         {
             InitializeComponent();
         }
@@ -33,10 +33,19 @@ namespace DMT.TA.Windows.Exchange
 
         #region Button Handlers
 
-        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
-            // Close Window and Goto Main Menu
+            DialogResult = true;
+        }
+
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
+        {
             DialogResult = false;
+        }
+
+        private void cmdUserSearch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion
@@ -53,5 +62,10 @@ namespace DMT.TA.Windows.Exchange
         }
 
         #endregion
+
+        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+        }
     }
 }

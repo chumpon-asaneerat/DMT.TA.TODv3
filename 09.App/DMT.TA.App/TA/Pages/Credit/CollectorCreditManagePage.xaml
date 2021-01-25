@@ -13,7 +13,7 @@
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
     </UserControl.Resources>
-    <Grid Background="Silver">
+    <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource PageMargin}" />
@@ -45,7 +45,8 @@
             <DockPanel Grid.Row="1"
                        Grid.Column="3"
                        HorizontalAlignment="Stretch"
-                       VerticalAlignment="Stretch">
+                       VerticalAlignment="Stretch"
+                       LastChildFill="True">
                 <!--  BUTTONS  -->
                 <DockPanel Height="60"
                            HorizontalAlignment="Stretch"
@@ -69,7 +70,9 @@
                 </DockPanel>
                 <!--  WORK AREA  -->
                 <ListBox x:Name="lstUsers"
-                         Grid.Row="0"
+                         Margin="0,5"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
                          ItemContainerStyle="{StaticResource DMTListBoxItemContainer}"
                          ItemsSource="{Binding}"
                          Style="{StaticResource SingleSelectWrapListBox}">
@@ -157,7 +160,6 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Grid />
             </DockPanel>
         </Grid>
     </Grid>

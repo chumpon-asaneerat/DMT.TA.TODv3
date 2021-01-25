@@ -62,8 +62,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1074
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1073
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1072
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Update TSB Credit UI #7.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1071

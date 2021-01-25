@@ -44,7 +44,7 @@ namespace DMT.TA.Pages.Credit
 
         private void cmdAddCollector_Click(object sender, RoutedEventArgs e)
         {
-
+            AddUserTransaction();
         }
 
         #endregion
@@ -61,6 +61,18 @@ namespace DMT.TA.Pages.Credit
         private void Refresh()
         {
             plazaSummary.Setup(); // Call for refresh.
+        }
+
+        private void AddUserTransaction()
+        {
+            var win = TAApp.Windows.CollectorCreditBorrow;
+            win.Owner = Application.Current.MainWindow;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            Refresh();
         }
 
         #endregion

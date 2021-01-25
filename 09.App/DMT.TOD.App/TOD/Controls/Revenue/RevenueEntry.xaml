@@ -47,7 +47,9 @@
                                         HorizontalAlignment="Center"
                                         Orientation="Horizontal">
                                 <Grid Width="10" />
-                                <TextBlock Foreground="WhiteSmoke" Text="หมายเลขถุงเงิน" />
+                                <TextBlock Foreground="WhiteSmoke"
+                                           Style="{StaticResource LabelText}"
+                                           Text="หมายเลขถุงเงิน" />
                                 <Grid Width="10" />
                                 <TextBox x:Name="txtBagNo"
                                          Width="200"
@@ -60,7 +62,9 @@
                                          Text="{Binding BagNo}"
                                          TextAlignment="Center" />
                                 <Grid Width="10" />
-                                <TextBlock Foreground="WhiteSmoke" Text="หมายเลขเข็มขัดนิรภัย" />
+                                <TextBlock Foreground="WhiteSmoke"
+                                           Style="{StaticResource LabelText}"
+                                           Text="หมายเลขเข็มขัดนิรภัย" />
                                 <Grid Width="10" />
                                 <TextBox x:Name="txtBeltNo"
                                          Width="200"

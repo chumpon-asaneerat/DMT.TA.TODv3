@@ -236,6 +236,9 @@
     <Compile Include="TA\Pages\Menu\ReportMenu.xaml.cs">
       <DependentUpon>ReportMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Credit\CollectorCreditBorrowWindow.xaml.cs">
+      <DependentUpon>CollectorCreditBorrowWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Exchange\InternalExchangeWindow.xaml.cs">
       <DependentUpon>InternalExchangeWindow.xaml</DependentUpon>
     </Compile>
@@ -389,6 +392,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TA\Windows\Credit\CollectorCreditBorrowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TA\Windows\Exchange\InternalExchangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -490,7 +497,9 @@
       <Name>DMT.Controls</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TA\Windows\Coupon\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Background\snartcard.png" />
     <Resource Include="Images\Button\Cancel.png" />

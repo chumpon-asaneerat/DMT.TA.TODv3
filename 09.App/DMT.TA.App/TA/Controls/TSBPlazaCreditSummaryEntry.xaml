@@ -5,17 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="500"
-             d:DesignWidth="300"
+             d:DesignWidth="320"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
     <DockPanel LastChildFill="True">
-        <StackPanel Background="DimGray"
+        <StackPanel HorizontalAlignment="Stretch"
+                    Background="DimGray"
                     DockPanel.Dock="Top"
                     Orientation="Vertical">
             <StackPanel Margin="2"
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Top"
                         Orientation="Horizontal">
@@ -30,10 +32,12 @@
                            Text="{Binding MaxCredit, StringFormat=N0}"
                            TextAlignment="Right" />
                 <TextBlock Width="80"
+                           Margin="5,0"
                            Style="{StaticResource LabelText}"
                            Text="บาท" />
             </StackPanel>
             <StackPanel Margin="1"
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Top"
                         Orientation="Horizontal">
@@ -48,10 +52,12 @@
                            Text="{Binding CreditFlowBHTTotal, StringFormat=N0}"
                            TextAlignment="Right" />
                 <TextBlock Width="80"
+                           Margin="5,0"
                            Style="{StaticResource LabelText}"
                            Text="บาท" />
             </StackPanel>
             <StackPanel Margin="1"
+                        HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Top"
                         Orientation="Horizontal">
@@ -66,6 +72,7 @@
                            Text="{Binding GrandBHTTotal, StringFormat=N0}"
                            TextAlignment="Right" />
                 <TextBlock Width="80"
+                           Margin="5,0"
                            Style="{StaticResource LabelText}"
                            Text="บาท" />
             </StackPanel>

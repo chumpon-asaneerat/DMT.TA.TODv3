@@ -30,5 +30,64 @@ namespace DMT.TA.Windows.Plaza
         }
 
         #endregion
+
+        #region Internal Variables
+
+        private TSBCreditBalance _creditBalance = null;
+        //TODO: Required Coupon Models.
+        //private TSBCouponBalance _couponBalance = null;
+
+        #endregion
+
+        #region Button Handlers
+
+        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void GotoMainMenu()
+        {
+            // Close Window and Goto Main Menu
+            DialogResult = false;
+        }
+
+        private void Refresh()
+        {
+            _creditBalance = TSBCreditBalance.GetCurrent().Value();
+            if (null == _creditBalance)
+            {
+                _creditBalance = new TSBCreditBalance(); // Create Empty Balance.
+            }
+
+            //if (null == _couponBalance)
+            //{
+            //    _couponBalance = new TSBCouponBalance();
+            //}
+
+            _creditBalance.Description = "เงินยืมทอนหมุนเวียนด่าน";
+            this.DataContext = _creditBalance;
+            this.creditBalanceEntry.Setup(_creditBalance);
+            //this.couponEntryEntry.Setup(_couponBalance);
+            this.creditSummaryEntry.Setup(_creditBalance);
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        public void Setup()
+        {
+            Refresh();
+        }
+
+        #endregion
     }
 }

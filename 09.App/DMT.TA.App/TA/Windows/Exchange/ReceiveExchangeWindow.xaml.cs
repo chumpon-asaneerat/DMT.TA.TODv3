@@ -30,5 +30,33 @@ namespace DMT.TA.Windows.Exchange
         }
 
         #endregion
+
+        #region Button Handlers
+
+        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void GotoMainMenu()
+        {
+            // Close Window and Goto Main Menu
+            DialogResult = false;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public void Setup()
+        {
+
+        }
+
+        #endregion
     }
 }

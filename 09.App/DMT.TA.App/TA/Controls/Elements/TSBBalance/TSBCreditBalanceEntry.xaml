@@ -20,7 +20,7 @@
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
                        Style="{StaticResource EntryHeaderCaption}"
-                       Text="ยอดที่สามารถยืมได้" />
+                       Text="{Binding Description}" />
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />

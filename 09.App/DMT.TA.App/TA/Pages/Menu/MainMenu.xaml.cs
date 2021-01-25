@@ -111,11 +111,12 @@ namespace DMT.TA.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdCheckBalance_Click(object sender, RoutedEventArgs e)
         {
             // เช็คยอดด่าน
             var win = TAApp.Windows.PlazaBalanceSummary;
-            //win.RefreshPlazaInfo();
+            win.Setup();
             win.ShowDialog();
         }
 

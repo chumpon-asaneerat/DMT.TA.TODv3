@@ -48,6 +48,7 @@ namespace DMT.TOD.Pages.Menu
 
         }
 
+        // TEST - PASSED.
         private void cmdEmptySlipReport_Click(object sender, RoutedEventArgs e)
         {
             // Revenue Slip (Empty).

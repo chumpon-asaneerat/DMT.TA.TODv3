@@ -42,18 +42,14 @@ namespace DMT.TA.Controls
         private void Refresh()
         {
             _balance = TSBCreditBalance.GetCurrent().Value();
-            if (null != _balance)
+            if (null == _balance)
             {
-                this.DataContext = _balance;
-                this.balanceEntry.DataContext = _balance;
-                this.sumEntry.DataContext = _balance;
+                _balance = new TSBCreditBalance(); // Create Empty Balance.
             }
-            else
-            {
-                this.DataContext = null;
-                this.balanceEntry.DataContext = null;
-                this.sumEntry.DataContext = null;
-            }
+            _balance.Description = "ยอดที่สามารถยืมได้";
+            this.DataContext = _balance;
+            this.balanceEntry.Setup(_balance);
+            this.sumEntry.Setup(_balance);
         }
 
         #endregion

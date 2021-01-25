@@ -1,9 +1,11 @@
 ﻿<Window x:Class="DMT.TA.Windows.Plaza.PlazaBalanceSummaryWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:balance="clr-namespace:DMT.TA.Controls.Elements.TSBBalance"
+        xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:DMT.TA.Windows.Plaza"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="เช็คยอดด่าน"
         Width="700"
         Height="550"
@@ -13,5 +15,108 @@
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d">
-    <Grid Background="DimGray" />
+    <Window.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </Window.Resources>
+    <Grid Background="DimGray">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdBack"
+                                      Click="cmdBack_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <Grid HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Background="DimGray">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="5" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="180" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="180" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <!--  MAX CREDIT  -->
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                            <TextBlock Width="230"
+                                       FontSize="28"
+                                       TextAlignment="Right"
+                                       Style="{StaticResource LabelText}"
+                                       Text="วงเงินหมุนเวียนด่าน : " />
+                            <TextBlock x:Name="txtBalance"
+                                       Width="160"
+                                       FontSize="28"
+                                       Style="{StaticResource LabelText}"
+                                       Foreground="Yellow"
+                                       Text="{Binding MaxCredit, StringFormat=N0}"
+                                       TextAlignment="Center" />
+                            <TextBlock Width="60"
+                                       FontSize="28"
+                                       TextAlignment="Center"
+                                       Style="{StaticResource LabelText}"
+                                       Text="บาท" />
+                        </StackPanel>
+                        <!--  CREDIT BALANCE  -->
+                        <balance:TSBCreditBalanceEntry x:Name="creditBalanceEntry"
+                                                       Grid.Row="3"
+                                                       Grid.RowSpan="3"
+                                                       Grid.Column="1"
+                                                       Background="Orange"
+                                                       IsEnabled="False" />
+                        <!--  COUPON BALANCE  -->
+                        <balance:TSBCouponBalanceEntry x:Name="couponBalanceEntry"
+                                                       Grid.Row="3"
+                                                       Grid.Column="3"
+                                                       Background="DarkRed"
+                                                       IsEnabled="False" />
+                        <!--  CREDIT SUMMARY  -->
+                        <balance:TSBCreditSummaryEntry x:Name="creditSummaryEntry"
+                                                       Grid.Row="5"
+                                                       Grid.Column="3"
+                                                       Background="Orange"
+                                                       IsEnabled="False" />
+                    </Grid>
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </Grid>
 </Window>

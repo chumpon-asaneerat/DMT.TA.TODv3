@@ -10,6 +10,15 @@
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  Force Merge related resource dictionary  -->
+                <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
+                <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <DockPanel>
         <Border DockPanel.Dock="Top">
             <Border.Background>
@@ -89,7 +98,6 @@
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                 </StackPanel>
-                <Grid />
             </StackPanel>
         </ScrollViewer>
         <!--  SEPERATOR  -->

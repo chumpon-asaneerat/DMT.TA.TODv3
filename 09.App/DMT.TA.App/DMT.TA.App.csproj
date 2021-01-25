@@ -191,6 +191,9 @@
     <Compile Include="TA\Controls\Elements\TSBBalance\TSBCreditSummaryEntry.xaml.cs">
       <DependentUpon>TSBCreditSummaryEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Controls\Elements\UserBalance\UserCreditBalanceEntry.xaml.cs">
+      <DependentUpon>UserCreditBalanceEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Controls\TSBCreditTransactionEntry.xaml.cs">
       <DependentUpon>TSBCreditTransactionEntry.xaml</DependentUpon>
     </Compile>
@@ -329,6 +332,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Controls\Elements\TSBBalance\TSBCreditSummaryEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Controls\Elements\UserBalance\UserCreditBalanceEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

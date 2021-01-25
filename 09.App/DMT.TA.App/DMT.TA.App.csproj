@@ -182,8 +182,11 @@
     <Compile Include="StatusBar\TAStatusBar.xaml.cs">
       <DependentUpon>TAStatusBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TA\Controls\CreditEntry.xaml.cs">
-      <DependentUpon>CreditEntry.xaml</DependentUpon>
+    <Compile Include="TA\Controls\TSBCreditEntry.xaml.cs">
+      <DependentUpon>TSBCreditEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TA\Controls\UserCreditEntry.xaml.cs">
+      <DependentUpon>UserCreditEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="TA\Pages\Coupon\CouponHistoryViewPage.xaml.cs">
       <DependentUpon>CouponHistoryViewPage.xaml</DependentUpon>
@@ -302,7 +305,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TA\Controls\CreditEntry.xaml">
+    <Page Include="TA\Controls\TSBCreditEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Controls\UserCreditEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

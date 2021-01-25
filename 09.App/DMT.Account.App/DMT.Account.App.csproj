@@ -130,8 +130,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Account\Controls\CreditEntry.xaml.cs">
-      <DependentUpon>CreditEntry.xaml</DependentUpon>
+    <Compile Include="Account\Controls\TSBCreditEntry.xaml.cs">
+      <DependentUpon>TSBCreditEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\Pages\Menu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -176,7 +176,7 @@
     <Compile Include="StatusBar\AccountStatusBar.xaml.cs">
       <DependentUpon>AccountStatusBar.xaml</DependentUpon>
     </Compile>
-    <Page Include="Account\Controls\CreditEntry.xaml">
+    <Page Include="Account\Controls\TSBCreditEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

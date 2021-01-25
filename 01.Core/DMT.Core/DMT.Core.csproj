@@ -105,7 +105,7 @@
     <Compile Include="Consts\Routes\TA\Security\Actions\User\Save.cs" />
     <Compile Include="Consts\Routes\TA\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TA\Security\TA.Security.Controller.cs" />
-    <Compile Include="Consts\Routes\TA\Shift\Common\Gets.cs" />
+    <Compile Include="Consts\Routes\TA\Shift\Actopms\Common\Gets.cs" />
     <Compile Include="Consts\Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Lane\Gets.cs" />

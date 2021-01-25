@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1079
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1078
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1077
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Client project.
+    - Implements TAMQService #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1076

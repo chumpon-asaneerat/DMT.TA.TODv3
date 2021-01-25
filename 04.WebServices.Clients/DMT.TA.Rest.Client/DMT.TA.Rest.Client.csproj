@@ -79,6 +79,7 @@
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TA.cs" />
+    <Compile Include="Services\TAMQService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

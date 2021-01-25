@@ -12,19 +12,19 @@ using DMT.Services;
 
 #endregion
 
-namespace DMT.TA.Controls
+namespace DMT.Account.Controls
 {
     /// <summary>
-    /// Interaction logic for TSBCreditEntry.xaml
+    /// Interaction logic for TSBCreditTransactionEntry.xaml
     /// </summary>
-    public partial class TSBCreditEntry : UserControl
+    public partial class TSBCreditTransactionEntry : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public TSBCreditEntry()
+        public TSBCreditTransactionEntry()
         {
             InitializeComponent();
         }
@@ -36,10 +36,8 @@ namespace DMT.TA.Controls
         /// <summary>
         /// Setup.
         /// </summary>
-        /// <param name="value">The TSB Credit Transaction.</param>
-        public void Setup(TSBCreditTransaction value)
-        {
-
+        public void Setup() 
+        { 
         }
 
         #endregion

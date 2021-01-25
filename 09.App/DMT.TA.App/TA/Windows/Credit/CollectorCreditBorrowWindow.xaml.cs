@@ -31,6 +31,12 @@ namespace DMT.TA.Windows.Credit
 
         #endregion
 
+        #region Internal Variables
+
+        private User _user = null;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
@@ -50,7 +56,36 @@ namespace DMT.TA.Windows.Credit
 
         #endregion
 
+        #region TextBox Handlers
+
+        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter ||
+                e.Key == System.Windows.Input.Key.Return)
+            {
+                SearchUser();
+                e.Handled = true;
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                ResetSelectUser();
+                e.Handled = true;
+            }
+        }
+
+        #endregion
+
         #region Private Methods
+
+        private void SearchUser()
+        {
+
+        }
+
+        private void ResetSelectUser()
+        {
+
+        }
 
         #endregion
 
@@ -62,10 +97,5 @@ namespace DMT.TA.Windows.Credit
         }
 
         #endregion
-
-        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-
-        }
     }
 }

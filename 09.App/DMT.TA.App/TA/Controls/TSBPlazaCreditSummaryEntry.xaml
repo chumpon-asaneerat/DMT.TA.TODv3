@@ -5,25 +5,65 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="500"
-             d:DesignWidth="240"
+             d:DesignWidth="300"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
              IsTabStop="False"
              mc:Ignorable="d">
     <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock Text="วงเงินอนุมัติ" />
+        <StackPanel Background="DimGray"
+                    DockPanel.Dock="Top"
+                    Orientation="Vertical">
+            <StackPanel Margin="1"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <TextBlock Width="120"
+                           Style="{StaticResource LabelText}"
+                           Text="วงเงินอนุมัติ"
+                           TextAlignment="Right" />
+                <TextBlock x:Name="txtMaxBalance"
+                           Width="100"
+                           FontSize="20"
+                           Style="{StaticResource LabelText}"
+                           Text="{Binding CashFlowBHTTotal}"
+                           TextAlignment="Right" />
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock Text="เงินหมุนเวียนด่าน" />
+            <StackPanel Margin="1"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <TextBlock Width="120"
+                           Style="{StaticResource LabelText}"
+                           Text="เงินหมุนเวียนด่าน"
+                           TextAlignment="Right" />
+                <TextBlock x:Name="txtCashFlow"
+                           Width="100"
+                           FontSize="20"
+                           Style="{StaticResource LabelText}"
+                           Text="{Binding CashFlowBHTTotal}"
+                           TextAlignment="Right" />
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock Text="ยอดคงเหลือ" />
+            <StackPanel Margin="1"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <TextBlock Width="120"
+                           Style="{StaticResource LabelText}"
+                           Text="ยอดคงเหลือ"
+                           TextAlignment="Right" />
+                <TextBlock x:Name="txtBalance"
+                           Width="100"
+                           FontSize="24"
+                           Style="{StaticResource LabelText}"
+                           Text="{Binding GrandBHTTotal}"
+                           TextAlignment="Right" />
             </StackPanel>
         </StackPanel>
-        <balance:TSBCreditSummaryEntry x:Name="sumEntry" DockPanel.Dock="Bottom" />
-        <balance:TSBCreditBalanceEntry x:Name="balanceEntry" />
+        <balance:TSBCreditSummaryEntry x:Name="sumEntry"
+                                       Background="Orange"
+                                       DockPanel.Dock="Bottom" />
+        <balance:TSBCreditBalanceEntry x:Name="balanceEntry" Background="Orange" />
     </DockPanel>
 </UserControl>

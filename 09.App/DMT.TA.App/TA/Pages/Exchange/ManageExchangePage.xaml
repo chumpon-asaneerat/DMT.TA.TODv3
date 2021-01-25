@@ -32,7 +32,7 @@
                     Margin="5"
                     BorderBrush="Silver"
                     BorderThickness="1">
-                <DockPanel Width="300"
+                <DockPanel Width="310"
                            VerticalAlignment="Stretch"
                            LastChildFill="True">
                     <Grid Background="DimGray" />

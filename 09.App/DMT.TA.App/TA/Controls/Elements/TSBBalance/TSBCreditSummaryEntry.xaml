@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="170"
-             d:DesignWidth="280"
+             d:DesignWidth="340"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
@@ -28,25 +28,25 @@
             <!--  ENTRY  -->
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <!--  Cash Flow BHT  -->
-                <StackPanel Style="{StaticResource EntryStackPanel}">
+                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource CreditFlowBHTTotalDescription}" />
                     <TextBox Style="{StaticResource CreditFlowBHTTotal}" />
                     <TextBlock Style="{StaticResource CreditFlowBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  Borrow BHT  -->
-                <StackPanel Style="{StaticResource EntryStackPanel}">
+                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BorrowBHTTotalDescription}" />
                     <TextBox Style="{StaticResource BorrowBHTTotal}" />
                     <TextBlock Style="{StaticResource BorrowBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  User Credit BHT  -->
-                <StackPanel Style="{StaticResource EntryStackPanel}">
+                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource UserBHTTotalDescription}" />
                     <TextBox Style="{StaticResource UserBHTTotal}" />
                     <TextBlock Style="{StaticResource UserBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  Grand Total BHT  -->
-                <StackPanel Style="{StaticResource EntryStackPanel}">
+                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource GrandBHTTotalDescription}" />
                     <TextBox Style="{StaticResource GrandBHTTotal}" />
                     <TextBlock Style="{StaticResource GrandBHTTotalUnitStyle}" />

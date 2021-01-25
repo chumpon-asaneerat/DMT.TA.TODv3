@@ -31,6 +31,10 @@ namespace DMT.TA.Controls.Elements.TSBBalance
 
         #endregion
 
+        #region Internal Variables
+
+        #endregion
+
         #region Public Methods
 
         public void Setup()

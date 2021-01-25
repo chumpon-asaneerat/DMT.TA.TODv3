@@ -31,6 +31,12 @@ namespace DMT.TA.Controls.Elements.TSBBalance
 
         #endregion
 
+        #region Internal Variables
+
+        private TSBCreditBalance _balance = null;
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -39,7 +45,12 @@ namespace DMT.TA.Controls.Elements.TSBBalance
         /// <param name="value">The TSB Credit Balance.</param>
         public void Setup(TSBCreditBalance value)
         {
+            _balance = value;
+            if (null != _balance)
+            {
 
+            }
+            this.DataContext = _balance;
         }
 
         #endregion

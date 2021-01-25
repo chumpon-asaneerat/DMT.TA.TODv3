@@ -31,11 +31,39 @@ namespace DMT.TA.Controls
 
         #endregion
 
+        #region Internal Variables
+
+        private TSBCreditBalance _balance = null;
+
+        #endregion
+
+        #region Private Methods
+
+        private void Refresh()
+        {
+            _balance = TSBCreditBalance.GetCurrent().Value();
+            if (null != _balance)
+            {
+                this.balanceEntry.DataContext = _balance;
+                this.sumEntry.DataContext = _balance;
+            }
+            else
+            {
+                this.balanceEntry.DataContext = null;
+                this.sumEntry.DataContext = null;
+            }
+        }
+
+        #endregion
+
         #region Public Methods
 
+        /// <summary>
+        /// Setup.
+        /// </summary>
         public void Setup()
         {
-
+            Refresh();
         }
 
         #endregion

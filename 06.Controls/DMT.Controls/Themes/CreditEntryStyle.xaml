@@ -22,61 +22,73 @@
     <Style x:Key="ST25Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="25 สตางค์" />
     </Style>
     <Style x:Key="ST50Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="50 สตางค์" />
     </Style>
     <Style x:Key="BHT1Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="1 บาท" />
     </Style>
     <Style x:Key="BHT2Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="2 บาท" />
     </Style>
     <Style x:Key="BHT5Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="5 บาท" />
     </Style>
     <Style x:Key="BHT10Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="10 บาท" />
     </Style>
     <Style x:Key="BHT20Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="20 บาท" />
     </Style>
     <Style x:Key="BHT50Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="50 บาท" />
     </Style>
     <Style x:Key="BHT100Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="100 บาท" />
     </Style>
     <Style x:Key="BHT500Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="500 บาท" />
     </Style>
     <Style x:Key="BHT1000Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="1000 บาท" />
     </Style>
     <Style x:Key="BHTTotalDescription"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="ยอดรวม" />
     </Style>
 

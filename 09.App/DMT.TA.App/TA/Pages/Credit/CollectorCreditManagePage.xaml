@@ -4,6 +4,7 @@
              xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:DMT.TA.Controls"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="700"
              d:DesignWidth="1000"
@@ -32,10 +33,12 @@
                     Margin="5"
                     BorderBrush="Silver"
                     BorderThickness="1">
-                <DockPanel Width="300"
+                <DockPanel Width="310"
                            VerticalAlignment="Stretch"
                            LastChildFill="True">
-                    <Grid Background="DimGray" />
+                    <Grid Background="DimGray">
+                        <local:TSBPlazaCreditSummaryEntry x:Name="plazaSummary" />
+                    </Grid>
                 </DockPanel>
             </Border>
             <!--  CLIENT AREA  -->

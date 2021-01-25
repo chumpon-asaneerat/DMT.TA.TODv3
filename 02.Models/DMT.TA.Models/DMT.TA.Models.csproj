@@ -88,10 +88,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Credits\TSB\TSBCreditBanalce.cs" />
-    <Compile Include="Models\Credits\TSB\TSBCreditTransaction.cs" />
-    <Compile Include="Models\Credits\User\UserCreditBalance.cs" />
-    <Compile Include="Models\Credits\User\UserCreditTransaction.cs" />
+    <Compile Include="Models\Credit\TSB\TSBCreditBanalce.cs" />
+    <Compile Include="Models\Credit\TSB\TSBCreditTransaction.cs" />
+    <Compile Include="Models\Credit\User\UserCreditBalance.cs" />
+    <Compile Include="Models\Credit\User\UserCreditTransaction.cs" />
     <Compile Include="Models\Exchange\TSBExchangeGroup.cs" />
     <Compile Include="Models\Exchange\TSBExchangeTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +113,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\Coupon\" />
     <Folder Include="Views\Scripts\Coupons\" />
   </ItemGroup>
   <ItemGroup>

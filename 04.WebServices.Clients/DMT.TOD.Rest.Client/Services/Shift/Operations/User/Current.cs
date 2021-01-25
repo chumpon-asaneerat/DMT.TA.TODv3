@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace DMT.Services.Operations
 {
+    /*
     static partial class TOD
     {
         static partial class Shift
@@ -25,4 +26,5 @@ namespace DMT.Services.Operations
             }
         }
     }
+    */
 }

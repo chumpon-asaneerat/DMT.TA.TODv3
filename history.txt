@@ -65,8 +65,33 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1083
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1082
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1081
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update Routes (TA/TOD) #3.
+      - TA -> TSB -> Shift
+        - Current (Comment out).
+      - TA -> User -> Shift
+        - Current (Comment out).
+      - TOD -> User -> Shift
+        - Change (Comment out).
+        - Current (Comment out).
+  - DMT.TA.Models project.
+    - Rename folder Coupons -> Coupon
+    - Rename folder Credits -> Credit
+  - DMT.TA.Rest.Client project.
+    - Implements Coupon.Operations #1.
+    - Implements Credit.Operations #1.
+  - DMT.TOD.Rest.Client project.
+    - Implements Shift.Operations #1.
+      - User->Shift->Change (comment out).
+      - User->Shift->Current (comment out).
+  - DMT.TOD.Rest.Server project.
+    - Implements Shift.Controller #1.
+      - User->Shift->Change (comment out).
+      - User->Shift->Current (comment out).
+      - User->Shift->Scarchs (remove).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1080

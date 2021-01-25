@@ -1,5 +1,6 @@
 ﻿namespace DMT
 {
+    /*
     static partial class RouteConsts
     {
         static partial class TOD
@@ -20,4 +21,5 @@
             }
         }
     }
+    */
 }

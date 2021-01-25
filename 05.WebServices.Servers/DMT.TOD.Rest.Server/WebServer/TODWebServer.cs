@@ -313,6 +313,7 @@ namespace DMT.Services
                 {
                     internal static void MapRoutes(HttpConfiguration config)
                     {
+                        /*
                         string controllerName, actionName, actionUrl;
 
                         // Set Controller Name.
@@ -327,6 +328,7 @@ namespace DMT.Services
                         actionName = RouteConsts.TOD.Shift.User.Change.Name;
                         actionUrl = RouteConsts.TOD.Shift.User.Change.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                        */
                     }
                 }
             }

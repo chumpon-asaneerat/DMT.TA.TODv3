@@ -9,6 +9,7 @@ using DMT.Models;
 
 namespace DMT.Services
 {
+    /*
     partial class Shift
     {
         partial class UserController
@@ -32,4 +33,5 @@ namespace DMT.Services
             }
         }
     }
+    */
 }

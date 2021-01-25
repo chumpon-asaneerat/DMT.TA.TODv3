@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Coupon\Coupon.Operations.cs" />
+    <Compile Include="Services\Credit\Credit.Operations.cs" />
     <Compile Include="Services\Infrastructure\Infrastructure.Operations.cs" />
     <Compile Include="Services\Infrastructure\Operations\Lane\Gets.cs" />
     <Compile Include="Services\Infrastructure\Operations\Lane\Save.cs" />
@@ -102,6 +104,11 @@
       <Name>DMT.Rest.Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\Coupon\Operations\" />
+    <Folder Include="Services\Credit\Operations\" />
+    <Folder Include="Services\Shift\Operations\TSB\" />
+    <Folder Include="Services\Shift\Operations\User\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

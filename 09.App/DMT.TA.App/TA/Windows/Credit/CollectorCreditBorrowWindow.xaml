@@ -7,8 +7,8 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
         Title="พนักงานยืม เงินยืม-ทอน"
-        Width="800"
-        Height="600"
+        Width="880"
+        Height="750"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -126,7 +126,7 @@
                                            Style="{StaticResource LabelText}"
                                            Text="ชื่อพนักงาน : " />
                                 <TextBlock x:Name="txtUserName"
-                                           Width="240"
+                                           Width="300"
                                            Height="25"
                                            Background="CornflowerBlue"
                                            Foreground="White"
@@ -144,7 +144,7 @@
                                            Text="หมายเลขถุงเงิน : "
                                            TextAlignment="Right" />
                                 <TextBox x:Name="txtBagNo"
-                                         Width="175"
+                                         Width="100"
                                          Height="25"
                                          util:FocusOptions.SelectAll="True"
                                          util:KeyboardOptions.Enabled="True"
@@ -155,13 +155,12 @@
                                          Style="{StaticResource CommonTextBox}"
                                          Text="{Binding BagNo}"
                                          TextAlignment="Center" />
-                                <TextBlock Width="10" />
+                                <TextBlock Width="15" />
                                 <TextBlock Width="165"
-                                           Foreground="WhiteSmoke"
                                            Style="{StaticResource LabelText}"
                                            Text="หมายเลขเข็มขัดนิรภัย : " />
                                 <TextBox x:Name="txtBeltNo"
-                                         Width="175"
+                                         Width="100"
                                          Height="25"
                                          util:FocusOptions.SelectAll="True"
                                          util:KeyboardOptions.Enabled="True"
@@ -172,11 +171,26 @@
                                          Style="{StaticResource CommonTextBox}"
                                          Text="{Binding BeltNo}"
                                          TextAlignment="Center" />
+                                <TextBlock Width="10" />
+                                <TextBlock Width="55"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ด่าน : " />
+                                <ComboBox Name="cbPlzaGroups"
+                                          Width="140"
+                                          Height="25"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center"
+                                          FontSize="{StaticResource InputFontSize18}"
+                                          ItemsSource="{Binding}" />
                             </StackPanel>
                         </Grid>
                     </DockPanel>
                     <!--  SEPERATOR  -->
-                    <TextBlock Height="5" DockPanel.Dock="Top" Background="Transparent" />
+                    <TextBlock Height="5"
+                               Background="Transparent"
+                               DockPanel.Dock="Top" />
                     <Grid />
                 </DockPanel>
             </DockPanel>

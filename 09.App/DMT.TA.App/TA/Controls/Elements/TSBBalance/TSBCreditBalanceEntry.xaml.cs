@@ -12,19 +12,19 @@ using DMT.Services;
 
 #endregion
 
-namespace DMT.TA.Controls
+namespace DMT.TA.Controls.Elements.TSBBalance
 {
     /// <summary>
-    /// Interaction logic for TSBCreditSummaryEntry.xaml
+    /// Interaction logic for TSBCreditBalanceEntry.xaml
     /// </summary>
-    public partial class TSBCreditSummaryEntry : UserControl
+    public partial class TSBCreditBalanceEntry : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public TSBCreditSummaryEntry()
+        public TSBCreditBalanceEntry()
         {
             InitializeComponent();
         }

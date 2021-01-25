@@ -15,16 +15,16 @@ using DMT.Services;
 namespace DMT.TA.Controls
 {
     /// <summary>
-    /// Interaction logic for TSBCreditBalanceEntry.xaml
+    /// Interaction logic for TSBPlazaCreditSummaryEntry.xaml
     /// </summary>
-    public partial class TSBCreditBalanceEntry : UserControl
+    public partial class TSBPlazaCreditSummaryEntry : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public TSBCreditBalanceEntry()
+        public TSBPlazaCreditSummaryEntry()
         {
             InitializeComponent();
         }
@@ -33,11 +33,7 @@ namespace DMT.TA.Controls
 
         #region Public Methods
 
-        /// <summary>
-        /// Setup.
-        /// </summary>
-        /// <param name="value">The TSB Credit Balance.</param>
-        public void Setup(TSBCreditBalance value)
+        public void Setup()
         {
 
         }

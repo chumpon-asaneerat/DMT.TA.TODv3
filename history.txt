@@ -56,8 +56,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1066
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1065
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1064
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Update TSBTransactionCreditEntry Control #7.
+    - Update TSBCreditBalanceEntry Control #2.
+    - Update TSBCreditSummaryEntry Control #2.
+    - Add TSBPlazaCreditSummaryEntry.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1063

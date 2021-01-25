@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="DMT.TA.Controls.Elements.TSBBalance.TSBCouponBalanceEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="170"
+             d:DesignWidth="240"
+             BorderBrush="Silver"
+             BorderThickness="1"
+             Focusable="False"
+             IsTabStop="False"
+             mc:Ignorable="d">
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0" Color="#7F323232" />
+                    <GradientStop Offset="1" Color="#7FAAAAAA" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock DockPanel.Dock="Left"
+                       Style="{StaticResource EntryHeaderCaption}"
+                       Text="ยอดคูปอง (ด่าน)" />
+        </Border>
+        <!--  SEPERATOR  -->
+        <TextBlock Height="5" DockPanel.Dock="Top" />
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <!--  ENTRY  -->
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <!--  Coupon 35 Count  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT1Description}" />
+                    <TextBox Style="{StaticResource BHT1Amount}" />
+                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                </StackPanel>
+                <!--  Coupon 80 Count  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT2Description}" />
+                    <TextBox Style="{StaticResource BHT2Amount}" />
+                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                </StackPanel>
+                <!--  Coupon Total Count  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT5Description}" />
+                    <TextBox Style="{StaticResource BHT5Amount}" />
+                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                </StackPanel>
+                <!--  Coupon Total BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource BHT10Description}" />
+                    <TextBox Style="{StaticResource BHT10Amount}" />
+                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                </StackPanel>
+            </StackPanel>
+            <!--  SEPERATOR  -->
+            <TextBlock Height="5" DockPanel.Dock="Top" />
+            <Grid />
+        </StackPanel>
+    </DockPanel>
+</UserControl>

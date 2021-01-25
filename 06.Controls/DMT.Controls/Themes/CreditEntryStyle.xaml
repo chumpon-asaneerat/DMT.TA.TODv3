@@ -172,4 +172,91 @@
            TargetType="TextBlock">
         <Setter Property="Text" Value="บาท" />
     </Style>
+
+    <!--  EACH BALANCE DESCRIPTION  -->
+    <Style x:Key="CreditFlowBHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="เงินหมุนเวียนด่าน" />
+    </Style>
+    <Style x:Key="BorrowBHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="เงินยืมเพิ่ม" />
+    </Style>
+    <Style x:Key="UserBHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="เงินยืมลงตู้" />
+    </Style>
+    <Style x:Key="AdditionalBHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+    <Style x:Key="GrandBHTTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+
+    <!--  EACH BALANCE AMOUNT (TEXTBOX)  -->
+    <Style x:Key="CreditFlowBHTTotal"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CreditFlowBHTTotal, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="BorrowBHTTotal"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding BorrowBHTTotal, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="UserBHTTotal"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding UserBHTTotal, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="AdditionalBHTTotal"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding AdditionalBHTTotal, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="GrandBHTTotal"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding GrandBHTTotal, StringFormat=N0}" />
+    </Style>
+
+    <!--  EACH BALANCE AMOUNT UNIT  -->
+    <Style x:Key="CreditFlowBHTTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+    <Style x:Key="BorrowBHTTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+    <Style x:Key="UserBHTTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+    <Style x:Key="AdditionalBHTTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+    <Style x:Key="GrandBHTTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+
 </ResourceDictionary>

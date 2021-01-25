@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="170"
-             d:DesignWidth="240"
+             d:DesignWidth="280"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
@@ -29,27 +29,27 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <!--  Cash Flow BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT1Description}" />
-                    <TextBox Style="{StaticResource BHT1Amount}" />
-                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                    <TextBlock Style="{StaticResource CreditFlowBHTTotalDescription}" />
+                    <TextBox Style="{StaticResource CreditFlowBHTTotal}" />
+                    <TextBlock Style="{StaticResource CreditFlowBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  Borrow BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT2Description}" />
-                    <TextBox Style="{StaticResource BHT2Amount}" />
-                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                    <TextBlock Style="{StaticResource BorrowBHTTotalDescription}" />
+                    <TextBox Style="{StaticResource BorrowBHTTotal}" />
+                    <TextBlock Style="{StaticResource BorrowBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  User Credit BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT5Description}" />
-                    <TextBox Style="{StaticResource BHT5Amount}" />
-                    <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                    <TextBlock Style="{StaticResource UserBHTTotalDescription}" />
+                    <TextBox Style="{StaticResource UserBHTTotal}" />
+                    <TextBlock Style="{StaticResource UserBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  Grand Total BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT10Description}" />
-                    <TextBox Style="{StaticResource BHT10Amount}" />
-                    <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                    <TextBlock Style="{StaticResource GrandBHTTotalDescription}" />
+                    <TextBox Style="{StaticResource GrandBHTTotal}" />
+                    <TextBlock Style="{StaticResource GrandBHTTotalUnitStyle}" />
                 </StackPanel>
             </StackPanel>
             <!--  SEPERATOR  -->

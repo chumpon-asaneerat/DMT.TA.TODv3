@@ -888,6 +888,7 @@ namespace DMT.Models
 					// Raise event.
 					this.RaiseChanged("UserBHTTotal");
 					this.RaiseChanged("CreditFlowBHTTotal");
+					this.RaiseChanged("GrandBHTTotal");
 				}
 			}
 		}
@@ -910,6 +911,7 @@ namespace DMT.Models
 					// Raise event.
 					this.RaiseChanged("ExchangeBHTTotal");
 					this.RaiseChanged("CreditFlowBHTTotal");
+					this.RaiseChanged("GrandBHTTotal");
 				}
 			}
 		}
@@ -932,6 +934,7 @@ namespace DMT.Models
 					// Raise event.
 					this.RaiseChanged("BorrowBHTTotal");
 					this.RaiseChanged("CreditFlowBHTTotal");
+					this.RaiseChanged("GrandBHTTotal");
 				}
 			}
 		}
@@ -954,6 +957,7 @@ namespace DMT.Models
 					// Raise event.
 					this.RaiseChanged("AdditionalBHTTotal");
 					this.RaiseChanged("CreditFlowBHTTotal");
+					this.RaiseChanged("GrandBHTTotal");
 				}
 			}
 		}
@@ -968,6 +972,22 @@ namespace DMT.Models
 		[PropertyMapName("CreditFlowBHTTotal")]
 		public decimal CreditFlowBHTTotal
 		{
+			// Need to check calculation
+			get { return _AdditionalBHTTotal + _BHTTotal + _UserBHTTotal; }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets grand total value in baht.
+		/// </summary>
+		[Category("Summary")]
+		[Description("Gets or sets grand total value in baht.")]
+		[ReadOnly(true)]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyMapName("GrandBHTTotal")]
+		public decimal GrandBHTTotal
+		{
+			// Need to check calculation
 			get { return _AdditionalBHTTotal + _BHTTotal + _UserBHTTotal; }
 			set { }
 		}

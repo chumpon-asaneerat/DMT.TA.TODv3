@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:DMT.TA.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="700"
              d:DesignWidth="1000"
@@ -68,6 +68,95 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
+                <ListBox x:Name="lstUsers"
+                         Grid.Row="0"
+                         ItemContainerStyle="{StaticResource DMTListBoxItemContainer}"
+                         ItemsSource="{Binding}"
+                         Style="{StaticResource SingleSelectWrapListBox}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="300"
+                                    Margin="5"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="1">
+                                <DockPanel Margin="3">
+                                    <Border Background="CornflowerBlue" DockPanel.Dock="Top">
+                                        <TextBlock Margin="3"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   Foreground="WhiteSmoke"
+                                                   Text="{Binding Path=FullNameTH}"
+                                                   TextAlignment="Center" />
+                                    </Border>
+                                    <DockPanel>
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    DockPanel.Dock="Right"
+                                                    Orientation="Vertical">
+                                            <Button x:Name="cmdReceivedBag"
+                                                    Width="100"
+                                                    Margin="3"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Content="รับถุงเงิน"
+                                                    FontSize="14"
+                                                    Foreground="Red"
+                                                    Visibility="{Binding ReceivedBagVisibility}" />
+                                            <Button x:Name="cmdReceived"
+                                                    Width="100"
+                                                    Margin="3"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Content="ยืมเงิน"
+                                                    FontSize="14" />
+                                            <Button x:Name="cmdReturn"
+                                                    Width="100"
+                                                    Margin="3"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Content="คืนเงิน"
+                                                    FontSize="14" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="20"
+                                                       Foreground="Yellow"
+                                                       TextAlignment="Center">
+                                                <Run Text="ID: " />
+                                                <Run Text="{Binding UserId}" />
+                                            </TextBlock>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="20"
+                                                       Foreground="Yellow"
+                                                       TextAlignment="Center">
+                                                <Run Text="เลขถุงเงิน: " />
+                                                <Run Text="{Binding BagNo}" />
+                                            </TextBlock>
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="24"
+                                                       Foreground="GreenYellow"
+                                                       TextAlignment="Center">
+                                                <Run Text="ยืมแล้ว" />
+                                                <Run Text="{Binding Path=BHTTotal, StringFormat={}{0:N0}}" />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <Grid />
             </DockPanel>
         </Grid>

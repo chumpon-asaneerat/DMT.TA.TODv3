@@ -170,6 +170,8 @@ namespace DMT.TA.Windows.Credit
 
         private void Reset(UserCreditBalance userBalance)
         {
+            if (null == manager) manager = new UserCreditBorrowManager();
+
             cbPlzaGroups.SelectedIndex = -1;
             LoadPlazaGroups();
 
@@ -203,7 +205,7 @@ namespace DMT.TA.Windows.Credit
 
         private void ResetSelectUser()
         {
-            manager.SetUser(null);
+            if (null != manager) manager.SetUser(null);
             txtSearchUserId.Text = string.Empty;
         }
 
@@ -231,6 +233,9 @@ namespace DMT.TA.Windows.Credit
         {
             bool ret = false;
             if (string.IsNullOrEmpty(txtBagNo.Text) || string.IsNullOrEmpty(txtBeltNo.Text))
+                return ret;
+
+            if (null == manager)
                 return ret;
 
             manager.PlazaGroup = cbPlzaGroups.SelectedItem as PlazaGroup;

@@ -33,7 +33,7 @@ namespace DMT.TA.Controls
 
         #region Internal Variables
 
-        private CurrentTSBManager _manager = new CurrentTSBManager();
+        private CurrentTSBManager _manager = null;
 
         #endregion
 
@@ -41,6 +41,7 @@ namespace DMT.TA.Controls
 
         private void Refresh()
         {
+            if (null == _manager) _manager = new CurrentTSBManager();
             _manager.Refresh();
 
             var _balance = _manager.Credit.TSBBalance;

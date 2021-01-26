@@ -33,7 +33,7 @@ namespace DMT.TA.Windows.Plaza
 
         #region Internal Variables
 
-        private CurrentTSBManager _manager = new CurrentTSBManager();
+        private CurrentTSBManager _manager = null;
         //TODO: Required Coupon Models.
         //private TSBCouponBalance _couponBalance = null;
 
@@ -58,9 +58,10 @@ namespace DMT.TA.Windows.Plaza
 
         private void Refresh()
         {
+            if (null == _manager) _manager = new CurrentTSBManager();
             _manager.Refresh();
-            var _balance = _manager.Credit.TSBBalance;
 
+            var _balance = _manager.Credit.TSBBalance;
             if (null == _balance)
             {
                 _balance = new TSBCreditBalance(); // Create Empty Balance.

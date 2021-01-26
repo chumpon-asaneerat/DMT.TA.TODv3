@@ -100,7 +100,17 @@
                                                    TextAlignment="Center" />
                                     </Border>
                                     <!--  SEPERATOR  -->
-                                    <TextBlock Height="5" DockPanel.Dock="Top" />
+                                    <TextBlock Height="2" DockPanel.Dock="Top" />
+                                    <!--  PLAZA GROUP NAME  -->
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               DockPanel.Dock="Top"
+                                               FontSize="20"
+                                               Foreground="ForestGreen"
+                                               Text="{Binding PlazaGroupNameTH}"
+                                               TextAlignment="Center" />
+                                    <!--  SEPERATOR  -->
+                                    <TextBlock Height="2" DockPanel.Dock="Top" />
                                     <!--  USER CREDIT CLIENT AREA  -->
                                     <DockPanel Margin="10,2" LastChildFill="True">
                                         <!--  SEPERATOR  -->

@@ -25,6 +25,7 @@
                     Background="DimGray"
                     DockPanel.Dock="Top"
                     Orientation="Vertical">
+            <!--  MAX CREDIT  -->
             <StackPanel Margin="2"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
@@ -45,6 +46,7 @@
                            Style="{StaticResource LabelText}"
                            Text="บาท" />
             </StackPanel>
+            <!--  CREDIT FLOW  -->
             <StackPanel Margin="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
@@ -65,6 +67,7 @@
                            Style="{StaticResource LabelText}"
                            Text="บาท" />
             </StackPanel>
+            <!--
             <StackPanel Margin="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
@@ -85,6 +88,9 @@
                            Style="{StaticResource LabelText}"
                            Text="บาท" />
             </StackPanel>
+            -->
+            <!--  SEPERATOR  -->
+            <TextBlock Height="2" DockPanel.Dock="Top" />
         </StackPanel>
         <balance:TSBCreditSummaryEntry x:Name="sumEntry"
                                        Background="Orange"

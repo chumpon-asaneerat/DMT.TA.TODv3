@@ -53,8 +53,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1107
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1106
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1105
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update TSBPlazaCreditSummary Control.
+    - Update CollectorCreditManagePage Page.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1104

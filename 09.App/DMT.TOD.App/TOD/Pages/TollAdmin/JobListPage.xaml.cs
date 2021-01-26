@@ -17,8 +17,6 @@ using System.Windows.Threading;
 
 namespace DMT.TOD.Pages.TollAdmin
 {
-    using scwOps = Services.Operations.SCW.TOD;
-
     /// <summary>
     /// Interaction logic for JobListPage.xaml
     /// </summary>
@@ -38,8 +36,7 @@ namespace DMT.TOD.Pages.TollAdmin
 
         #region Internal Variables
 
-        private User _user = null;
-        private JobManager jobMgr = new JobManager(new CurrentTSBManager());
+        private CurrentTSBManager manager = new CurrentTSBManager();
 
         #endregion
 
@@ -88,11 +85,12 @@ namespace DMT.TOD.Pages.TollAdmin
             lstLaneJobs.ItemsSource = null;
             if (null == value || !value.Begin.HasValue) return; // no selection.
             // Refresh jobs.
-            jobMgr.OnlyJobInShift = true;
-            jobMgr.UserShift = value;// assign selected user shift.
-            jobMgr.Refresh();
+            if (null == manager.Jobs) return;
+            manager.Jobs.OnlyJobInShift = true;
+            manager.Jobs.UserShift = value;// assign selected user shift.
+            manager.Jobs.Refresh();
             // Bind to ListView
-            lstLaneJobs.ItemsSource = jobMgr.AllJobs;
+            lstLaneJobs.ItemsSource = manager.Jobs.AllJobs;
         }
 
         #endregion
@@ -105,12 +103,8 @@ namespace DMT.TOD.Pages.TollAdmin
         /// <param name="user">The User instance.</param>
         public void Setup(User user)
         {
-            _user = user;
-            if (null != _user)
-            {
-                // Load User Shifts.
-                RefreshUserShifts();
-            }
+            // Load User Shifts.
+            RefreshUserShifts();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

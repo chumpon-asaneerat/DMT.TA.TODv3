@@ -405,7 +405,6 @@ namespace DMT.Services
 
         #region Public Events
 
-
         /// <summary>
         /// The PropertyChanged event.
         /// </summary>
@@ -620,7 +619,7 @@ namespace DMT.Services
     /// <summary>
     /// The JobManager class.
     /// </summary>
-    public class JobManager
+    public class JobManager : INotifyPropertyChanged
     {
         #region Constructor and Destructor
 
@@ -665,6 +664,10 @@ namespace DMT.Services
         {
             // Raise Event.
             UserChanged.Call(sender, e);
+
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
         }
 
         private void Current_ShiftChanged(object sender, EventArgs e)
@@ -677,6 +680,19 @@ namespace DMT.Services
         {
             // Raise Event.
             PlazaGroupChanged.Call(sender, e);
+        }
+
+        #endregion
+
+        #region Event Raisers
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
@@ -845,22 +861,80 @@ namespace DMT.Services
 
         #region Public Properties
 
+        #region Manager
+
         /// <summary>
         /// Gets Current TSB Manager.
         /// </summary>
         public CurrentTSBManager Current { get; private set; }
+
+        #endregion
+
+        #region UserShift and PlazaGroup
+
         /// <summary>
         /// Gets or sets UserShift (used for AllJobs and PlazaGroupJobs).
         /// </summary>
         public UserShift UserShift { get; set; }
         /// <summary>
-        /// Gets All Jobs for specificed user on current shift.
-        /// </summary>
-        public List<LaneJob> AllJobs { get; private set; }
-        /// <summary>
         /// Gets or sets PlazaGroup (used for PlazaGroupJobs).
         /// </summary>
         public PlazaGroup PlazaGroup { get; set; }
+
+        #endregion
+
+        #region User
+
+        /// <summary>
+        /// Gets or set User (Collector).
+        /// </summary>
+        public User User
+        {
+            get { return (null != Current) ? Current.User : null; }
+            set
+            {
+                if (null != Current)
+                {
+                    Current.User = value;
+                    RaiseChanged("CollectorId");
+                    RaiseChanged("CollectorNameEN");
+                    RaiseChanged("CollectorNameTH");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != Current) ? Current.CollectorId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != Current) ? Current.CollectorNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != Current) ? Current.CollectorNameTH : string.Empty; }
+            set { }
+        }
+
+        #endregion
+
+        #region Search Condition and Result
+
+        /// <summary>
+        /// Gets All Jobs for specificed user on current shift.
+        /// </summary>
+        public List<LaneJob> AllJobs { get; private set; }
         /// <summary>
         /// Gets Current Jobs for specificed user on current shift and plaza group.
         /// </summary>
@@ -916,7 +990,14 @@ namespace DMT.Services
 
         #endregion
 
+        #endregion
+
         #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// The UserChanged Event Handler.

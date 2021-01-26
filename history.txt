@@ -47,8 +47,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1089
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1088
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1087
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TAManager classes
+      - Update JobManager
+    - JobListPage
+      - Change manager variable JobManager to CurrentTSBManager.
+      - Update related code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1086

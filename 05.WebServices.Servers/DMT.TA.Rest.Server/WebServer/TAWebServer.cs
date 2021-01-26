@@ -296,9 +296,54 @@ namespace DMT.Services
 
                         // Set Controller Name.
                         controllerName = RouteConsts.Shift.User.ControllerName;
+
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                         */
                     }
                 }
+            }
+
+            internal static class Credit
+            {
+                internal static class TSB
+                {
+
+                }
+
+                internal static class User
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.TA.Credit.User.ControllerName;
+
+                        // Current
+                        actionName = RouteConsts.TA.Credit.User.Current.Name;
+                        actionUrl = RouteConsts.TA.Credit.User.Current.Url;
+
+                        // Save
+                        actionName = RouteConsts.TA.Credit.User.Save.Name;
+                        actionUrl = RouteConsts.TA.Credit.User.Save.Url;
+
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                    }
+                }
+            }
+
+            internal static class Coupon
+            {
+                internal static class TSB
+                {
+
+                }
+
+                internal static class User
+                {
+
+                }
+
             }
         }
 
@@ -329,6 +374,9 @@ namespace DMT.Services
             MapControllers.Shift.MapRoutes(config);
             // Shift (User)
             MapControllers.Shift.User.MapRoutes(config);
+
+            // Credit (User)
+            MapControllers.Credit.User.MapRoutes(config);
 
             #region Default Route (do not used)
 

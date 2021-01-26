@@ -97,6 +97,7 @@
     <Compile Include="WebServer\Controllers\Coupon\Coupon.Controller.cs" />
     <Compile Include="WebServer\Controllers\Credit\Actions\TSB\CommentOut\Current.cs" />
     <Compile Include="WebServer\Controllers\Credit\Actions\User\Current.cs" />
+    <Compile Include="WebServer\Controllers\Credit\Actions\User\Save.cs" />
     <Compile Include="WebServer\Controllers\Credit\Credit.Controller.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Gets.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Save.cs" />

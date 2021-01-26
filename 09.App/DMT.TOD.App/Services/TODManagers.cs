@@ -29,6 +29,7 @@ using RestSharp;
 namespace DMT.Services
 {
     using scwOps = Services.Operations.SCW.TOD;
+    using taaOps = Services.Operations.TA;
 
     #region TODAPI
 
@@ -1739,24 +1740,19 @@ namespace DMT.Services
             #region Revenue Entry
 
             Entry = new RevenueEntry();
-            Entry.BagNo = string.Empty;
-            Entry.BeltNo = string.Empty;
 
             bool success = UpdateRevenueEntry();
 
-
-            // TODO: Need TA
-            // Check User Credit to get BagNo and BeltNo.
-            //_userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(search).Value();
-            /*
-            if (null != _userCredit)
+            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup);
+            var usrCredit = taaOps.Credit.User.Current(search).Value();
+            if (null != usrCredit)
             {
                 string msg = string.Format("User Credit found. BagNo: {0}, BeltNo: {1}",
-                    _userCredit.BagNo, _userCredit.BeltNo);
+                    usrCredit.BagNo, usrCredit.BeltNo);
                 med.Info(msg);
 
-                Entry.BagNo = _userCredit.BagNo;
-                Entry.BeltNo = _userCredit.BeltNo;
+                Entry.BagNo = usrCredit.BagNo;
+                Entry.BeltNo = usrCredit.BeltNo;
             }
             else
             {
@@ -1766,7 +1762,6 @@ namespace DMT.Services
                 Entry.BagNo = string.Empty;
                 Entry.BeltNo = string.Empty;
             }
-            */
 
             #endregion
 
@@ -1868,16 +1863,14 @@ namespace DMT.Services
                 }
             }
 
-            // TODO: Need TA
-            /*
-            // Set UserCredits's Revenue Id
-            var usrSearch = Search.UserCredits.GetActiveById.Create(
-                _userShift.UserId, plazaGroup.PlazaGroupId);
-            UserCreditBalance userCredit = null;
-            userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
-            userCredit.RevenueId = this.RevenueEntry.RevenueId;
-            ops.Credits.SaveUserCreditBalance(userCredit);
-            */
+
+            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup);
+            var usrCredit = taaOps.Credit.User.Current(search).Value();
+            if (null != usrCredit)
+            {
+                usrCredit.RevenueId = Entry.RevenueId;
+                taaOps.Credit.User.Save(usrCredit);
+            }
 
             // Save Revenue Entry.
             var revInst = RevenueEntry.Save(Entry).Value();
@@ -1996,19 +1989,15 @@ namespace DMT.Services
         /// <returns></returns>
         public bool IsReturnBag()
         {
-            bool ret = true;
+            bool ret = false;
 
-            // TODO: Need TA.
-            /*
-            var usrSearch = Search.UserCredits.GetActiveById.Create(
-                this.UserShift.UserId, this.PlazaGroup.PlazaGroupId);
-            var userCredit = ops.Credits.GetNoRevenueEntryUserCreditBalanceById(usrSearch).Value();
-            if (null != userCredit && userCredit.State == UserCreditBalance.StateTypes.Completed)
+            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup);
+            var usrCredit = taaOps.Credit.User.Current(search).Value();
+            if (null != usrCredit && usrCredit.State == UserCreditBalance.StateTypes.Completed)
             {
                 ret = true;
             }
-            ret = false;
-            */
+
             return ret;
         }
 

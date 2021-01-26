@@ -75,6 +75,7 @@
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\CommentOut\Cancel.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\CommentOut\Save.cs" />
+    <Compile Include="Consts\Routes\TA\Credit\Actions\User\Save.cs" />
     <Compile Include="Consts\Routes\TA\Credit\TA.Credit.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Lane\Gets.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Lane\Save.cs" />

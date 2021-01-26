@@ -120,7 +120,6 @@ namespace DMT
 
             try
             {
-                // TODO: Fixed problem when open/save with Notepad.
                 // deserialize JSON directly from a file
                 while (null == stm && iRetry < maxRetry)
                 {

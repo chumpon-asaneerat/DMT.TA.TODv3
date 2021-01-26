@@ -13,14 +13,14 @@ namespace DMT.Services.Operations
             static partial class User
             {
                 /// <summary>
-                /// Gets Current User Credit Balance.
+                /// Gets Save User Credit Balance.
                 /// </summary>
                 /// <returns>Returns Current User Credit Balance instance.</returns>
-                public static NRestResult<Models.UserCreditBalance> Current(
-                    Models.Search.Credit.User.Current value)
+                public static NRestResult<Models.UserCreditBalance> Save(
+                    Models.UserCreditBalance value)
                 {
                     var ret = Execute<Models.UserCreditBalance>(
-                        RouteConsts.TA.Credit.User.Current.Url, value);
+                        RouteConsts.TA.Credit.User.Save.Url, value);
                     return ret;
                 }
             }

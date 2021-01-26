@@ -95,6 +95,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebServer\Controllers\Coupon\Coupon.Controller.cs" />
+    <Compile Include="WebServer\Controllers\Credit\Actions\TSB\CommentOut\Current.cs" />
+    <Compile Include="WebServer\Controllers\Credit\Actions\User\Current.cs" />
     <Compile Include="WebServer\Controllers\Credit\Credit.Controller.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Gets.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\Lane\Save.cs" />
@@ -178,10 +180,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WebServer\Controllers\Coupon\TSB\" />
-    <Folder Include="WebServer\Controllers\Coupon\User\" />
-    <Folder Include="WebServer\Controllers\Credit\TSB\" />
-    <Folder Include="WebServer\Controllers\Credit\User\" />
+    <Folder Include="WebServer\Controllers\Coupon\Actions\TSB\" />
+    <Folder Include="WebServer\Controllers\Coupon\Actions\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

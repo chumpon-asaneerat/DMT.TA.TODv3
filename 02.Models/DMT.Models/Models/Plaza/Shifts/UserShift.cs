@@ -849,23 +849,4 @@ namespace DMT.Models
     }
 
     #endregion
-
-    #region UserShiftCreate
-    /*
-    /// <summary>
-    /// The UserShiftCreate class.
-    /// </summary>
-    public class UserShiftCreate
-    {
-        /// <summary>
-        /// Gets or sets Shift.
-        /// </summary>
-        public Shift Shift { get; set; }
-        /// <summary>
-        /// Gets or sets User.
-        /// </summary>
-        public User User { get; set; }
-    }
-    */
-    #endregion
 }

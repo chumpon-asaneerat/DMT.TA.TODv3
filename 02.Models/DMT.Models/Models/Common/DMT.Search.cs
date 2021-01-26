@@ -27,143 +27,6 @@ namespace DMT.Models
 
     #endregion
 
-    #region Lane Attendance related
-    /*
-    partial class Search
-    {
-        public static class Lanes
-        {
-            public static class Current
-            {
-                public class AttendanceByLane : NSearch<AttendanceByLane>
-                {
-                    public Lane Lane { get; set; }
-
-                    public static AttendanceByLane Create(Lane lane)
-                    {
-                        var ret = new AttendanceByLane();
-                        ret.Lane = lane;
-                        return ret;
-                    }
-                }
-
-                public class PaymentByLane : NSearch<PaymentByLane>
-                {
-                    public Lane Lane { get; set; }
-
-                    public static PaymentByLane Create(Lane lane)
-                    {
-                        var ret = new PaymentByLane();
-                        ret.Lane = lane;
-                        return ret;
-                    }
-                }
-            }
-
-            public static class Attendances
-            {
-                public class ByDate : NSearch<ByDate>
-                {
-                    public DateTime Date { get; set; }
-
-                    public static ByDate Create(DateTime date)
-                    {
-                        var ret = new ByDate();
-                        ret.Date = date;
-                        return ret;
-                    }
-                }
-
-                public class ByUserShift : NSearch<ByUserShift>
-                {
-                    public UserShift Shift { get; set; }
-                    public PlazaGroup PlazaGroup { get; set; }
-                    public DateTime RevenueDate { get; set; }
-
-                    public static ByUserShift Create(UserShift shift, PlazaGroup plazaGroup,
-                        DateTime revenueDate)
-                    {
-                        var ret = new ByUserShift();
-                        ret.Shift = shift;
-                        ret.PlazaGroup = plazaGroup;
-                        ret.RevenueDate = revenueDate;
-                        return ret;
-                    }
-                }
-
-                public class ByLane : NSearch<ByLane>
-                {
-                    public Lane Lane { get; set; }
-
-                    public static ByLane Create(Lane lane)
-                    {
-                        var ret = new ByLane();
-                        ret.Lane = lane;
-                        return ret;
-                    }
-                }
-            }
-
-            public static class Payments
-            {
-                public class ByDate : NSearch<ByDate>
-                {
-                    public DateTime Date { get; set; }
-
-                    public static ByDate Create(DateTime date)
-                    {
-                        var ret = new ByDate();
-                        ret.Date = date;
-                        return ret;
-                    }
-                }
-
-                public class ByUserShift : NSearch<ByUserShift>
-                {
-                    public UserShift Shift { get; set; }
-
-                    public static ByUserShift Create(UserShift shift)
-                    {
-                        var ret = new ByUserShift();
-                        ret.Shift = shift;
-                        return ret;
-                    }
-                }
-
-                public class ByLane : NSearch<ByLane>
-                {
-                    public Lane Lane { get; set; }
-
-                    public static ByLane Create(Lane lane)
-                    {
-                        var ret = new ByLane();
-                        ret.Lane = lane;
-                        return ret;
-                    }
-                }
-            }
-        }
-
-        public static class Plaza
-        {
-            public class LaneByNo : NSearch<LaneByNo>
-            {
-                public string PlazaId { get; set; }
-                public int LaneNo { get; set; }
-
-                public static LaneByNo Create(string plazaId, int laneNo)
-                {
-                    var ret = new LaneByNo();
-                    ret.PlazaId = plazaId;
-                    ret.LaneNo = laneNo;
-                    return ret;
-                }
-            }
-        }
-    }
-    */
-    #endregion
-
     #region Revenues
     /*
     partial class Search
@@ -204,44 +67,110 @@ namespace DMT.Models
     */
     #endregion
 
-    #region UserCredit
-    /*
-    partial class Search
+    #region Search (Credit)
+
+    static partial class Search
     {
-        public class UserCredits
+        /// <summary>Credit Searchs.</summary>
+        public static partial class Credit
         {
-            public class GetActive : NSearch<GetActive>
+            /// <summary>TSB Credit Searchs.</summary>
+            public static partial class TSB
             {
-                public User User { get; set; }
-                public PlazaGroup PlazaGroup { get; set; }
 
-                public static GetActive Create(User user, PlazaGroup plazGroup)
-                {
-                    var ret = new GetActive();
-                    ret.User = user;
-                    ret.PlazaGroup = plazGroup;
-                    return ret;
-                }
             }
-            public class GetActiveById : NSearch<GetActive>
+            /// <summary>User Credit Searchs.</summary>
+            public static partial class User
             {
-                public string UserId { get; set; }
-                public string PlazaGroupId { get; set; }
+                #region Current
 
-                public static GetActiveById Create(string userId, string plazGroupId)
+                /// <summary>Gets Current User Credit (By PlazaGroup).</summary>
+                public class Current : NSearch<Current>
                 {
-                    var ret = new GetActiveById();
-                    ret.UserId = userId;
-                    ret.PlazaGroupId = plazGroupId;
-                    return ret;
+                    #region Public Properties
+
+                    /// <summary>
+                    /// Gets or sets User.
+                    /// </summary>
+                    public Models.User User { get; set; }
+                    /// <summary>
+                    /// Gets or sets Plaza Group.
+                    /// </summary>
+                    public Models.PlazaGroup PlazaGroup { get; set; }
+
+                    #endregion
+
+                    #region Static Method (Create)
+
+                    /// <summary>
+                    /// Create Search instance.
+                    /// </summary>
+                    /// <param name="user">The User.</param>
+                    /// <param name="plazaGroup">The Plaza Group.</param>
+                    /// <returns>Returns Search instance.</returns>
+                    public static Current Create(Models.User user,
+                        Models.PlazaGroup plazaGroup)
+                    {
+                        var ret = new Current();
+                        ret.User = user;
+                        ret.PlazaGroup = plazaGroup;
+                        return ret;
+                    }
+
+                    #endregion
                 }
+
+                #endregion
+
+                #region Comment out
+
+                /*
+                public class GetActiveById : NSearch<GetActive>
+                {
+                    public string UserId { get; set; }
+                    public string PlazaGroupId { get; set; }
+
+                    public static GetActiveById Create(string userId, string plazGroupId)
+                    {
+                        var ret = new GetActiveById();
+                        ret.UserId = userId;
+                        ret.PlazaGroupId = plazGroupId;
+                        return ret;
+                    }
+                }
+                */
+
+                #endregion
             }
         }
     }
-    */
+
+    #endregion
+
+    #region Search (Coupon)
+
+    static partial class Search
+    {
+        /// <summary>Coupon Searchs.</summary>
+        public static partial class Credit
+        {
+            /// <summary>TSB Coupon Searchs.</summary>
+            public static partial class TSB
+            {
+
+            }
+            /// <summary>User Coupon Searchs.</summary>
+            public static partial class User
+            {
+            }
+        }
+    }
+
+
     #endregion
 
     #region UserCoupon
+
     /*
     partial class Search
     {

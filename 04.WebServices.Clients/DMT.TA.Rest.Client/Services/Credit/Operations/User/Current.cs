@@ -16,9 +16,9 @@ namespace DMT.Services.Operations
                 /// Gets Current TSB Shift.
                 /// </summary>
                 /// <returns>Returns Current User Credit Balance instance.</returns>
-                public static NRestResult<Models.TSBShift> Current()
+                public static NRestResult<Models.UserCreditBalance> Current()
                 {
-                    var ret = Execute<Models.TSBShift>(
+                    var ret = Execute<Models.UserCreditBalance>(
                         RouteConsts.TA.Credit.User.Current.Url);
                     return ret;
                 }

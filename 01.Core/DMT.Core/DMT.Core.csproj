@@ -71,7 +71,7 @@
     <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\TA.Coupon.Controller.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\TSB\Current.cs" />
+    <Compile Include="Consts\Routes\TA\Credit\Actions\TSB\CommentOut\Current.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\CommentOut\Cancel.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\CommentOut\Save.cs" />

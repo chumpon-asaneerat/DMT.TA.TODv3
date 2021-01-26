@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace DMT.Services.Operations
 {
+    /*
     static partial class TA
     {
         static partial class Credit
@@ -25,4 +26,5 @@ namespace DMT.Services.Operations
             }
         }
     }
+    */
 }

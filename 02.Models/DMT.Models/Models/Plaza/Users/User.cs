@@ -1191,9 +1191,10 @@ namespace DMT.Models
 
 	#region Search (User)
 
-	partial class Search
+	static partial class Search
 	{
-		public static class User
+		/// <summary>User Searchs.</summary>
+		public static partial class User
 		{
 			#region ById
 
@@ -1228,8 +1229,8 @@ namespace DMT.Models
 				/// <param name="isExactMatch">Set to False for increment searth.</param>
 				/// <param name="roles">The list of role.</param>
 				/// <returns>Returns Search instance.</returns>
-				public static ById Create(string userId, 
-					bool isExactMatch = true, 
+				public static ById Create(string userId,
+					bool isExactMatch = true,
 					params string[] roles)
 				{
 					var ret = new ById();

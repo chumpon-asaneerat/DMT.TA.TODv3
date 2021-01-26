@@ -59,8 +59,21 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1085
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1084
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1083
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update DMT.Search.cs
+      - Add Credit class
+      - Add Coupon class
+  - DMT.TA.Models project.
+    - TSBCreditBalance
+      - Add Search class.
+    - UserCreditBalance
+      - Add Search class.
+  - DMT.TA.Rest.Client project.
+    - Implements Credit.Operations #3.
+      - Update Credit -> User - Current (change result type).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1082

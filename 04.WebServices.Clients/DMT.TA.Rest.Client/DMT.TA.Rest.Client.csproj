@@ -57,7 +57,7 @@
     <Compile Include="Services\Coupon\Operations\TSB\Current.cs" />
     <Compile Include="Services\Coupon\Operations\User\Current.cs" />
     <Compile Include="Services\Credit\Credit.Operations.cs" />
-    <Compile Include="Services\Credit\Operations\TSB\Current.cs" />
+    <Compile Include="Services\Credit\Operations\TSB\CommentOut\Current.cs" />
     <Compile Include="Services\Credit\Operations\User\Current.cs" />
     <Compile Include="Services\Infrastructure\Infrastructure.Operations.cs" />
     <Compile Include="Services\Infrastructure\Operations\Lane\Gets.cs" />

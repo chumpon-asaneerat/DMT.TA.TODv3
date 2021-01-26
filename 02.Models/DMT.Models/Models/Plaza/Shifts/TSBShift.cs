@@ -685,23 +685,4 @@ namespace DMT.Models
     }
 
     #endregion
-
-    #region TSBShiftCreate
-    /*
-    /// <summary>
-    /// The TSBShiftCreate class.
-    /// </summary>
-    public class TSBShiftCreate
-    {
-        /// <summary>
-        /// Gets or sets Shift.
-        /// </summary>
-        public Shift Shift { get; set; }
-        /// <summary>
-        /// Gets or sets User.
-        /// </summary>
-        public User User { get; set; }
-    }
-    */
-    #endregion
 }

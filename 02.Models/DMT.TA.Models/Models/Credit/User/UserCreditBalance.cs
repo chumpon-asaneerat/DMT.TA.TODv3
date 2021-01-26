@@ -1435,6 +1435,102 @@ namespace DMT.Models
 
         #region Static Methods
 
+        #region GetUserCreditBalances
+
+        /// <summary>
+        /// Gets All User Credit Balances (when balance status is not completed).
+        /// </summary>
+        /// <param name="tsb">The TSB instance.</param>
+        /// <returns>Returns List of User Credit Balance.</returns>
+        public static NDbResult<List<UserCreditBalance>> GetUserCreditBalances(TSB tsb) 
+        {
+            var result = new NDbResult<List<UserCreditBalance>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == tsb)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = @"
+                    SELECT *
+                      FROM UserCreditSummaryView
+                     WHERE TSBId = ? 
+                       AND (RevenueId IS NULL OR RevenueId = '')
+                       AND State <> ? ";
+
+                    var rets = NQuery.Query<FKs>(cmd,
+                        tsb.TSBId, StateTypes.Completed).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
+        #endregion
+
+        #region GetUserCreditBalance
+
+        public static void GetUserCreditBalance(User user, PlazaGroup plazaGroup) { }
+        public static void GetUserCreditBalance(string userId, string plazaGroupId) { }
+
+        #endregion
+
+        public static void SearchCompletedWithNoRevenue(User user, PlazaGroup plazaGroup) { }
+        public static void SearchCompletedWithNoRevenue(string userId, string plazaGroupId) { }
+
+        #region SaveUserCreditBalance
+
+        /// <summary>
+        /// Save User Credit Balance.
+        /// </summary>
+        /// <param name="value">The UserCreditBalance instance.</param>
+        /// <returns>Returns save UserCreditBalance instance.</returns>
+        public static NDbResult<UserCreditBalance> SaveUserCreditBalance(UserCreditBalance value)
+        {
+            NDbResult<UserCreditBalance> result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == value)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                // set date if not assigned.
+                if (!value.UserCreditDate.HasValue || value.UserCreditDate.Value == DateTime.MinValue)
+                {
+                    value.UserCreditDate = DateTime.Now;
+                }
+                result = Save(value);
+            }
+            return result;
+        }
+
+        #endregion
+
+
+
         /// <summary>
         /// Gets User Credit Balance (when balance status is not completed).
         /// </summary>
@@ -1582,80 +1678,6 @@ namespace DMT.Models
                 }
                 return result;
             }
-        }
-        /// <summary>
-        /// Gets All User Credit Balances (when balance status is not completed).
-        /// </summary>
-        /// <param name="tsb">The TSB instance.</param>
-        /// <returns>Returns List of User Credit Balance.</returns>
-        public static NDbResult<List<UserCreditBalance>> GetActiveUserCreditBalances(TSB tsb)
-        {
-            var result = new NDbResult<List<UserCreditBalance>>();
-            SQLiteConnection db = Default;
-            if (null == db)
-            {
-                result.DbConenctFailed();
-                return result;
-            }
-            if (null == tsb)
-            {
-                result.ParameterIsNull();
-                return result;
-            }
-            lock (sync)
-            {
-                MethodBase med = MethodBase.GetCurrentMethod();
-                try
-                {
-                    string cmd = @"
-                    SELECT *
-                      FROM UserCreditSummaryView
-                     WHERE TSBId = ? 
-                       AND (RevenueId IS NULL OR RevenueId = '')
-                       AND State <> ? ";
-
-                    var rets = NQuery.Query<FKs>(cmd,
-                        tsb.TSBId, StateTypes.Completed).ToList();
-                    var results = rets.ToModels();
-                    result.Success(results);
-                }
-                catch (Exception ex)
-                {
-                    med.Err(ex);
-                    result.Error(ex);
-                }
-                return result;
-            }
-        }
-        /// <summary>
-        /// Save User Credit Balance.
-        /// </summary>
-        /// <param name="value">The UserCreditBalance instance.</param>
-        /// <returns>Returns save UserCreditBalance instance.</returns>
-        public static NDbResult<UserCreditBalance> SaveUserCreditBalance(UserCreditBalance value)
-        {
-            NDbResult<UserCreditBalance> result = new NDbResult<UserCreditBalance>();
-            SQLiteConnection db = Default;
-            if (null == db)
-            {
-                result.DbConenctFailed();
-                return result;
-            }
-            if (null == value)
-            {
-                result.ParameterIsNull();
-                return result;
-            }
-            lock (sync)
-            {
-                // set date if not assigned.
-                if (!value.UserCreditDate.HasValue || value.UserCreditDate.Value == DateTime.MinValue)
-                {
-                    value.UserCreditDate = DateTime.Now;
-                }
-                result = Save(value);
-            }
-            return result;
         }
 
         #endregion

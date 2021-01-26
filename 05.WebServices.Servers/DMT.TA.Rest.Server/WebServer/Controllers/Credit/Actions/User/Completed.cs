@@ -14,9 +14,9 @@ namespace DMT.Services
         partial class UserController
         {
             [HttpPost]
-            [ActionName(RouteConsts.TA.Credit.User.Current.Name)]
+            [ActionName(RouteConsts.TA.Credit.User.Completed.Name)]
             //[AllowAnonymous]
-            public NDbResult<UserCreditBalance> Current([FromBody] Models.Search.Credit.User.Current value)
+            public NDbResult<UserCreditBalance> Completed([FromBody] Models.Search.Credit.User.Completed value)
             {
                 NDbResult<UserCreditBalance> ret;
                 if (null == value)
@@ -25,7 +25,7 @@ namespace DMT.Services
                     ret.ParameterIsNull();
                     return ret;
                 }
-                ret = UserCreditBalance.GetCurrentBalance(value.User, value.PlazaGroup);
+                ret = UserCreditBalance.GetCompletedBalance(value.User, value.PlazaGroup);
                 return ret;
             }
         }

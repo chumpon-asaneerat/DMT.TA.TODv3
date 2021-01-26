@@ -1032,7 +1032,7 @@ namespace DMT.Services
                 UserCreditTransaction.SaveUserCreditTransaction(Transaction);
 
                 // Check is total borrow is reach zero.
-                var inst = UserCreditBalance.GetActiveUserCreditBalanceById(
+                var inst = UserCreditBalance.GetCurrentBalance(
                     UserBalance.UserId, UserBalance.PlazaGroupId).Value();
                 if (null != inst)
                 {

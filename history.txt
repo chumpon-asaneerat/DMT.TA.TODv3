@@ -59,8 +59,32 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1105
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1104
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1103
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Add Credit -> User -> Completed route.
+    - Update Credit -> User -> Current route.
+  - DMT.Models project.
+    - Update DMT.Search #2.
+      - Update UserCreditBalance Search methods.
+  - DMT.TA.Models project.
+    - Update UserCreditBalance #3.
+  - DMT.TA.Rest.Server project.
+    - Add Completed MapRoute.
+    - Add Save MapRoute.
+  - DMT.TA.Rest.Client project.
+    - Add Completed Operation.
+  - DMT.TA.App project
+    - TAManager classes
+      - Update code use new UserCreditBalance static method.
+    - CollectorCreditManagePage
+      - Update code use new UserCreditBalance static method.
+  - DMT.TOD.App project
+    - TODManager classes
+      - RevenueEntryManager
+        - Update code use new UserCreditBalance static method.
+    - TrafficEntry control - Fixed laout bug.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1102

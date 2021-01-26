@@ -92,7 +92,7 @@ namespace DMT.TA.Pages.Credit
         {
             plazaSummary.Setup(); // Call for refresh.
 
-            var userCredits = UserCreditBalance.GetUserCreditBalances(TAAPI.TSB).Value();
+            var userCredits = UserCreditBalance.GetCurrentBalances(TAAPI.TSB).Value();
             lstUsers.ItemsSource = userCredits;
         }
 

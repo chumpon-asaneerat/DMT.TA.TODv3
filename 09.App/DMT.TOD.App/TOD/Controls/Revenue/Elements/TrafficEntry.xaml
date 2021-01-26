@@ -86,7 +86,7 @@
                 </StackPanel>
                 <!--  500 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT500Description}" />
+                    <TextBlock Style="{StaticResource TrafficBHT500Description}" />
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource TrafficBHT500Count}" />
                     <TextBlock Width="5" />

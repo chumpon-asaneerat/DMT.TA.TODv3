@@ -322,11 +322,16 @@ namespace DMT.Services
                         // Current
                         actionName = RouteConsts.TA.Credit.User.Current.Name;
                         actionUrl = RouteConsts.TA.Credit.User.Current.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                        // Completed
+                        actionName = RouteConsts.TA.Credit.User.Completed.Name;
+                        actionUrl = RouteConsts.TA.Credit.User.Completed.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
 
                         // Save
                         actionName = RouteConsts.TA.Credit.User.Save.Name;
                         actionUrl = RouteConsts.TA.Credit.User.Save.Url;
-
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }

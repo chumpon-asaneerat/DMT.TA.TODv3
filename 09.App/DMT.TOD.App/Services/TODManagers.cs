@@ -1604,6 +1604,36 @@ namespace DMT.Services
 
         #endregion
 
+        #region User Credit Methods
+
+        private UserCreditBalance CheckUserCredit()
+        {
+            UserCreditBalance usrCredit = null;
+            if (!ByChief)
+            {
+                var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
+                usrCredit = taaOps.Credit.User.Completed(search).Value();
+            }
+            else
+            {
+                // By chief create empty balance - update from Revenue Entry and save.
+                usrCredit = new UserCreditBalance();
+                usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
+                usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
+                usrCredit.BeltNo = (null != Entry) ? Entry.BeltNo : string.Empty;
+                usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
+                usrCredit.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
+                usrCredit.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
+                usrCredit.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
+                usrCredit.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
+                usrCredit.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
+                usrCredit.RevenueId = (null != Entry) ? Entry.RevenueId : string.Empty;
+            }
+            return usrCredit;
+        }
+
+        #endregion
+
         #region Revenue/Entry Date Check method(s)
 
         private void CheckRevenueDate()
@@ -1737,14 +1767,18 @@ namespace DMT.Services
 
             #endregion
 
+            #region Check User Credit Balance
+
+            var usrCredit = CheckUserCredit();
+
+            #endregion
+
             #region Revenue Entry
 
             Entry = new RevenueEntry();
 
             bool success = UpdateRevenueEntry();
 
-            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup, false);
-            var usrCredit = taaOps.Credit.User.Current(search).Value();
             if (null != usrCredit)
             {
                 string msg = string.Format("User Credit found. BagNo: {0}, BeltNo: {1}",
@@ -1863,9 +1897,8 @@ namespace DMT.Services
                 }
             }
 
-
-            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup, true);
-            var usrCredit = taaOps.Credit.User.Current(search).Value();
+            // Reload usrCredit for update Revenue Id.
+            var usrCredit = CheckUserCredit();
             if (null != usrCredit)
             {
                 usrCredit.RevenueId = Entry.RevenueId;
@@ -1991,8 +2024,7 @@ namespace DMT.Services
         {
             bool ret = false;
 
-            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup, true);
-            var usrCredit = taaOps.Credit.User.Current(search).Value();
+            var usrCredit = CheckUserCredit();
             if (null != usrCredit && usrCredit.State == UserCreditBalance.StateTypes.Completed)
             {
                 ret = true;

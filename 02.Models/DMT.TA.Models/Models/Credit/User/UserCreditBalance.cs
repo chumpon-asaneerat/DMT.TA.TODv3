@@ -1435,14 +1435,14 @@ namespace DMT.Models
 
         #region Static Methods
 
-        #region GetUserCreditBalances
+        #region GetCurrentBalances (State is not completed and Has No RevenueId)
 
         /// <summary>
         /// Gets All User Credit Balances (when balance status is not completed).
         /// </summary>
         /// <param name="tsb">The TSB instance.</param>
         /// <returns>Returns List of User Credit Balance.</returns>
-        public static NDbResult<List<UserCreditBalance>> GetUserCreditBalances(TSB tsb) 
+        public static NDbResult<List<UserCreditBalance>> GetCurrentBalances(TSB tsb) 
         {
             var result = new NDbResult<List<UserCreditBalance>>();
             SQLiteConnection db = Default;
@@ -1484,61 +1484,15 @@ namespace DMT.Models
 
         #endregion
 
-        #region GetUserCreditBalance
-
-        public static void GetUserCreditBalance(User user, PlazaGroup plazaGroup) { }
-        public static void GetUserCreditBalance(string userId, string plazaGroupId) { }
-
-        #endregion
-
-        public static void SearchCompletedWithNoRevenue(User user, PlazaGroup plazaGroup) { }
-        public static void SearchCompletedWithNoRevenue(string userId, string plazaGroupId) { }
-
-        #region SaveUserCreditBalance
+        #region GetCurrentBalance (State is not completed and Has No RevenueId)
 
         /// <summary>
-        /// Save User Credit Balance.
-        /// </summary>
-        /// <param name="value">The UserCreditBalance instance.</param>
-        /// <returns>Returns save UserCreditBalance instance.</returns>
-        public static NDbResult<UserCreditBalance> SaveUserCreditBalance(UserCreditBalance value)
-        {
-            NDbResult<UserCreditBalance> result = new NDbResult<UserCreditBalance>();
-            SQLiteConnection db = Default;
-            if (null == db)
-            {
-                result.DbConenctFailed();
-                return result;
-            }
-            if (null == value)
-            {
-                result.ParameterIsNull();
-                return result;
-            }
-            lock (sync)
-            {
-                // set date if not assigned.
-                if (!value.UserCreditDate.HasValue || value.UserCreditDate.Value == DateTime.MinValue)
-                {
-                    value.UserCreditDate = DateTime.Now;
-                }
-                result = Save(value);
-            }
-            return result;
-        }
-
-        #endregion
-
-
-
-        /// <summary>
-        /// Gets User Credit Balance (when balance status is not completed).
+        /// Gets User Credit Balance (when balance status is not completed and has no RevenueId).
         /// </summary>
         /// <param name="user">The User instance.</param>
         /// <param name="plazaGroup">The Plaza Group instance.</param>
         /// <returns>Returns User Credit Balance.</returns>
-        public static NDbResult<UserCreditBalance> GetActiveUserCreditBalance(
-            User user, PlazaGroup plazaGroup)
+        public static NDbResult<UserCreditBalance> GetCurrentBalance(User user, PlazaGroup plazaGroup) 
         {
             var result = new NDbResult<UserCreditBalance>();
             SQLiteConnection db = Default;
@@ -1554,49 +1508,16 @@ namespace DMT.Models
             }
             lock (sync)
             {
-                MethodBase med = MethodBase.GetCurrentMethod();
-                try
-                {
-                    string cmd = @"
-                    SELECT *
-                      FROM UserCreditSummaryView
-                     WHERE UserId = ?
-                       AND TSBId = ? 
-                       AND (RevenueId IS NULL OR RevenueId = '')
-                       AND State <> ? ";
-
-                    var ret = NQuery.Query<FKs>(cmd,
-                        user.UserId, plazaGroup.TSBId, StateTypes.Completed).FirstOrDefault();
-                    UserCreditBalance inst;
-                    if (null == ret)
-                    {
-                        inst = Create();
-                        plazaGroup.AssignTo(inst);
-                        user.AssignTo(inst);
-                        inst.State = StateTypes.Initial;
-                    }
-                    else
-                    {
-                        inst = ret.ToModel();
-                    }
-                    result.Success(inst);
-                }
-                catch (Exception ex)
-                {
-                    med.Err(ex);
-                    result.Error(ex);
-                }
-                return result;
+                return GetCurrentBalance(user.UserId, plazaGroup.PlazaGroupId);
             }
         }
         /// <summary>
-        /// Gets User Credit Balance by UserId and PlazaGroupId (when balance status is not completed).
+        /// Gets User Credit Balance (when balance status is not completed and has no RevenueId).
         /// </summary>
         /// <param name="userId">The User Id.</param>
         /// <param name="plazaGroupId">The Plaza Group Id.</param>
         /// <returns>Returns User Credit Balance.</returns>
-        public static NDbResult<UserCreditBalance> GetActiveUserCreditBalanceById(
-            string userId, string plazaGroupId)
+        public static NDbResult<UserCreditBalance> GetCurrentBalance(string userId, string plazaGroupId) 
         {
             var result = new NDbResult<UserCreditBalance>();
             SQLiteConnection db = Default;
@@ -1634,14 +1555,43 @@ namespace DMT.Models
                 return result;
             }
         }
+
+        #endregion
+
+        #region GetCompletedBalance (By State and Has No RevenueId)
+
         /// <summary>
-        /// Get No Revenue Entry UserCredit Balance By Id
+        /// Get Completed UserCredit Balance (when balance has no RevenueId).
+        /// </summary>
+        /// <param name="user">The User instance.</param>
+        /// <param name="plazaGroup">The Plaza Group instance.</param>
+        /// <returns>Returns User Credit Balance.</returns>
+        public static NDbResult<UserCreditBalance> GetCompletedBalance(User user, PlazaGroup plazaGroup) 
+        {
+            var result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == user || null == plazaGroup)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                return GetCompletedBalance(user.UserId, plazaGroup.PlazaGroupId);
+            }
+        }
+        /// <summary>
+        /// Get Completed UserCredit Balance (when balance has no RevenueId).
         /// </summary>
         /// <param name="userId">The User Id.</param>
         /// <param name="plazaGroupId">The Plaza Group Id.</param>
         /// <returns>Returns User Credit Balance.</returns>
-        public static NDbResult<UserCreditBalance> GetNoRevenueEntryUserCreditBalanceById(
-            string userId, string plazaGroupId)
+        public static NDbResult<UserCreditBalance> GetCompletedBalance(string userId, string plazaGroupId) 
         {
             var result = new NDbResult<UserCreditBalance>();
             SQLiteConnection db = Default;
@@ -1679,6 +1629,43 @@ namespace DMT.Models
                 return result;
             }
         }
+
+        #endregion
+
+        #region SaveUserCreditBalance
+
+        /// <summary>
+        /// Save User Credit Balance.
+        /// </summary>
+        /// <param name="value">The UserCreditBalance instance.</param>
+        /// <returns>Returns save UserCreditBalance instance.</returns>
+        public static NDbResult<UserCreditBalance> SaveUserCreditBalance(UserCreditBalance value)
+        {
+            NDbResult<UserCreditBalance> result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == value)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                // set date if not assigned.
+                if (!value.UserCreditDate.HasValue || value.UserCreditDate.Value == DateTime.MinValue)
+                {
+                    value.UserCreditDate = DateTime.Now;
+                }
+                result = Save(value);
+            }
+            return result;
+        }
+
+        #endregion
 
         #endregion
     }

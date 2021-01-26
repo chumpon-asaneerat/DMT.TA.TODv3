@@ -84,7 +84,10 @@ namespace DMT.Models
             {
                 #region Current
 
-                /// <summary>Gets Current User Credit (By PlazaGroup).</summary>
+                /// <summary>
+                /// Gets Current User Credit (By PlazaGroup). 
+                /// State is not complted and has No RevenueId.
+                /// </summary>
                 public class Current : NSearch<Current>
                 {
                     #region Public Properties
@@ -97,10 +100,6 @@ namespace DMT.Models
                     /// Gets or sets Plaza Group.
                     /// </summary>
                     public Models.PlazaGroup PlazaGroup { get; set; }
-                    /// <summary>
-                    /// Gets or sets to get only User Credit Balance that already Return Bag.
-                    /// </summary>
-                    public bool CompletedOnly { get; set; }
 
                     #endregion
 
@@ -111,16 +110,56 @@ namespace DMT.Models
                     /// </summary>
                     /// <param name="user">The User.</param>
                     /// <param name="plazaGroup">The Plaza Group.</param>
-                    /// <param name="completedOnly">True for gets only User Credit Balance that already Return Bag.</param>
                     /// <returns>Returns Search instance.</returns>
                     public static Current Create(Models.User user,
-                        Models.PlazaGroup plazaGroup,
-                        bool completedOnly)
+                        Models.PlazaGroup plazaGroup)
                     {
                         var ret = new Current();
                         ret.User = user;
                         ret.PlazaGroup = plazaGroup;
-                        ret.CompletedOnly = completedOnly;
+                        return ret;
+                    }
+
+                    #endregion
+                }
+
+                #endregion
+
+                #region Completed
+
+                /// <summary>
+                /// Gets Completed User Credit (By PlazaGroup). 
+                /// State is complted and has No RevenueId.
+                /// </summary>
+                public class Completed : NSearch<Completed>
+                {
+                    #region Public Properties
+
+                    /// <summary>
+                    /// Gets or sets User.
+                    /// </summary>
+                    public Models.User User { get; set; }
+                    /// <summary>
+                    /// Gets or sets Plaza Group.
+                    /// </summary>
+                    public Models.PlazaGroup PlazaGroup { get; set; }
+
+                    #endregion
+
+                    #region Static Method (Create)
+
+                    /// <summary>
+                    /// Create Search instance.
+                    /// </summary>
+                    /// <param name="user">The User.</param>
+                    /// <param name="plazaGroup">The Plaza Group.</param>
+                    /// <returns>Returns Search instance.</returns>
+                    public static Completed Create(Models.User user,
+                        Models.PlazaGroup plazaGroup)
+                    {
+                        var ret = new Completed();
+                        ret.User = user;
+                        ret.PlazaGroup = plazaGroup;
                         return ret;
                     }
 

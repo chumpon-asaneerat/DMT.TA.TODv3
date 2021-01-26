@@ -33,6 +33,17 @@ namespace DMT
                 "FINANCE", "SV",
                 "RAD_MGR", "RAD_SUP"
             };
+
+            /// <summary>Gets or sets Role for TC permission.</summary>
+            public static string[] TC = new string[]
+            {
+                "ADMINS",
+                "ACCOUNT",
+                "CTC_MGR", "CTC", "TC",
+                "MT_ADMIN", "MT_TECH",
+                "FINANCE", "SV",
+                "RAD_MGR", "RAD_SUP"
+            };
         }
 
         /// <summary>

@@ -44,15 +44,15 @@
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
                     <Grid Width="5" DockPanel.Dock="Left" />
-                    <ctrl:ImageButton x:Name="cmdOk"
-                                      Click="cmdOk_Click"
+                    <ctrl:ImageButton x:Name="cmdCancel"
+                                      Click="cmdCancel_Click"
                                       DockPanel.Dock="Left"
                                       ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdCancel"
-                                      Click="cmdCancel_Click"
+                    <ctrl:ImageButton x:Name="cmdOk"
+                                      Click="cmdOk_Click"
                                       DockPanel.Dock="Right"
                                       ImageSource="/DMT.TA.App;component/Images/Button/OK2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
@@ -75,11 +75,11 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2" />
-                                <RowDefinition Height="30" />
+                                <RowDefinition Height="32" />
                                 <RowDefinition Height="2" />
-                                <RowDefinition Height="30" />
+                                <RowDefinition Height="32" />
                                 <RowDefinition Height="2" />
-                                <RowDefinition Height="30" />
+                                <RowDefinition Height="32" />
                                 <RowDefinition Height="2" />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="1"
@@ -93,7 +93,7 @@
                                            TextAlignment="Right" />
                                 <TextBox x:Name="txtSearchUserId"
                                          Width="175"
-                                         Height="25"
+                                         Height="30"
                                          FontSize="{StaticResource InputFontSize18}"
                                          KeyDown="txtSearchUserId_KeyDown"
                                          Style="{StaticResource CommonTextBox}" />
@@ -118,7 +118,8 @@
                                            TextAlignment="Right" />
                                 <TextBlock x:Name="txtUserId"
                                            Width="175"
-                                           Height="25"
+                                           Height="30"
+                                           VerticalAlignment="Center"
                                            Background="CornflowerBlue"
                                            Foreground="White"
                                            Style="{StaticResource LabelText}"
@@ -129,8 +130,9 @@
                                            Style="{StaticResource LabelText}"
                                            Text="ชื่อพนักงาน : " />
                                 <TextBlock x:Name="txtUserName"
-                                           Width="300"
-                                           Height="25"
+                                           Width="314"
+                                           Height="30"
+                                           VerticalAlignment="Center"
                                            Background="CornflowerBlue"
                                            Foreground="White"
                                            Style="{StaticResource LabelText}"
@@ -148,7 +150,7 @@
                                            TextAlignment="Right" />
                                 <TextBox x:Name="txtBagNo"
                                          Width="100"
-                                         Height="25"
+                                         Height="30"
                                          util:FocusOptions.SelectAll="True"
                                          util:KeyboardOptions.Enabled="True"
                                          util:KeyboardOptions.EnterAsTab="True"
@@ -163,8 +165,9 @@
                                            Style="{StaticResource LabelText}"
                                            Text="หมายเลขเข็มขัดนิรภัย : " />
                                 <TextBox x:Name="txtBeltNo"
+                                         Margin="4,0,0,0"
                                          Width="100"
-                                         Height="25"
+                                         Height="30"
                                          util:FocusOptions.SelectAll="True"
                                          util:KeyboardOptions.Enabled="True"
                                          util:KeyboardOptions.EnterAsTab="True"
@@ -179,12 +182,13 @@
                                            Style="{StaticResource LabelText}"
                                            Text="ด่าน : " />
                                 <ComboBox Name="cbPlzaGroups"
-                                          Width="140"
-                                          Height="25"
+                                          Width="150"
+                                          Height="30"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
+                                          DisplayMemberPath="PlazaGroupNameTH"
                                           FontSize="{StaticResource InputFontSize18}"
                                           ItemsSource="{Binding}" />
                             </StackPanel>

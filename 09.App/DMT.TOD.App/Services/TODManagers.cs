@@ -160,7 +160,7 @@ namespace DMT.Services
     /// <summary>
     /// The CurrentTSBManager Manager Class.
     /// </summary>
-    public class CurrentTSBManager
+    public class CurrentTSBManager : INotifyPropertyChanged
     {
         #region Internal Variables
 
@@ -195,6 +195,15 @@ namespace DMT.Services
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private void RaiseUserChanged()
         {
@@ -361,12 +370,46 @@ namespace DMT.Services
 
                 // Raise Event.
                 RaiseUserChanged();
+
+                RaiseChanged("CollectorId");
+                RaiseChanged("CollectorNameEN");
+                RaiseChanged("CollectorNameTH");
             }
+        }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != User) ? User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != User) ? User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != User) ? User.FullNameTH : string.Empty; }
+            set { }
         }
 
         #endregion
 
         #region Public Events
+
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// The UserChanged Event Handler.
@@ -959,6 +1002,10 @@ namespace DMT.Services
         {
             // Raise Event.
             UserChanged.Call(sender, e);
+
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
         }
 
         private void Current_ShiftChanged(object sender, EventArgs e)
@@ -1209,7 +1256,7 @@ namespace DMT.Services
         /// </summary>
         public string CollectorId
         {
-            get { return (null != Current && null != Current.User) ? Current.User.UserId : string.Empty; }
+            get { return (null != Current) ? Current.CollectorId : string.Empty; }
             set { }
         }
         /// <summary>
@@ -1217,7 +1264,7 @@ namespace DMT.Services
         /// </summary>
         public string CollectorNameEN
         {
-            get { return (null != Current && null != Current.User) ? Current.User.FullNameEN : string.Empty; }
+            get { return (null != Current) ? Current.CollectorNameEN : string.Empty; }
             set { }
         }
         /// <summary>
@@ -1225,7 +1272,7 @@ namespace DMT.Services
         /// </summary>
         public string CollectorNameTH
         {
-            get { return (null != Current && null != Current.User) ? Current.User.FullNameTH : string.Empty; }
+            get { return (null != Current ) ? Current.CollectorNameTH : string.Empty; }
             set { }
         }
 
@@ -1366,6 +1413,10 @@ namespace DMT.Services
         {
             // Raise Event.
             UserChanged.Call(sender, e);
+
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
         }
 
         private void Current_ShiftChanged(object sender, EventArgs e)
@@ -2100,7 +2151,7 @@ namespace DMT.Services
         /// </summary>
         public string CollectorId
         {
-            get { return (null != Current && null != Current.User) ? Current.User.UserId : string.Empty; }
+            get { return (null != Current) ? Current.CollectorId : string.Empty; }
             set { }
         }
         /// <summary>
@@ -2108,7 +2159,7 @@ namespace DMT.Services
         /// </summary>
         public string CollectorNameEN
         {
-            get { return (null != Current && null != Current.User) ? Current.User.FullNameEN : string.Empty; }
+            get { return (null != Current) ? Current.CollectorNameEN : string.Empty; }
             set { }
         }
         /// <summary>
@@ -2116,9 +2167,10 @@ namespace DMT.Services
         /// </summary>
         public string CollectorNameTH
         {
-            get { return (null != Current && null != Current.User) ? Current.User.FullNameTH : string.Empty; }
+            get { return (null != Current) ? Current.CollectorNameTH : string.Empty; }
             set { }
         }
+
         /// <summary>
         /// Gets Current Chief.
         /// </summary>

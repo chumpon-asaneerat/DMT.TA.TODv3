@@ -21,8 +21,6 @@ using System.Windows.Threading;
 
 namespace DMT.TOD.Pages.TollAdmin
 {
-    using scwOps = Services.Operations.SCW.TOD;
-
     /// <summary>
     /// Interaction logic for EMVQRCodeListPage.xaml
     /// </summary>
@@ -45,10 +43,9 @@ namespace DMT.TOD.Pages.TollAdmin
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
 
-        private User _user = null;
         private string _laneFilter = string.Empty;
 
-        private PaymentManager paymentMgr = new PaymentManager(new CurrentTSBManager());
+        private CurrentTSBManager manager = new CurrentTSBManager();
 
         #endregion
 
@@ -179,19 +176,22 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private void Reset()
         {
-            paymentMgr.User = null;
-            paymentMgr.EnableLaneFilter = true;
+            manager.User = null;
+            if (null != manager && null != manager.Payments)
+            {
+                manager.Payments.EnableLaneFilter = true;
+            }
 
             dtEntryDate.DefaultValue = DateTime.Now;
             dtEntryDate.Value = DateTime.Now.Date;
             // Set Bindings User Selection.
-            txtUserId.DataContext = paymentMgr;
-            txtUserName.DataContext = paymentMgr;
+            txtUserId.DataContext = manager;
+            txtUserName.DataContext = manager;
         }
 
         private void ResetSelectUser()
         {
-            paymentMgr.User = null;
+            manager.User = null;
             txtSearchUserId.Text = string.Empty;
         }
 
@@ -199,10 +199,10 @@ namespace DMT.TOD.Pages.TollAdmin
         {
             string userId = txtSearchUserId.Text.Trim();
             var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
-            if (!result.IsCanceled && null != paymentMgr)
+            if (!result.IsCanceled && null != manager)
             {
-                paymentMgr.User = result.User;
-                if (null != paymentMgr.User)
+                manager.User = result.User;
+                if (null != manager.User)
                 {
                     txtSearchUserId.Text = string.Empty;
                 }
@@ -223,21 +223,21 @@ namespace DMT.TOD.Pages.TollAdmin
             DateTime dt1 = dtEntryDate.Value.Value.Date;
             DateTime dt2 = dt1.AddDays(1);
 
-            if (null == paymentMgr) return;
+            if (null != manager && null != manager.Payments) return;
 
-            paymentMgr.PaymentType = (rbEMV.IsChecked.Value) ? PaymentTypes.EMV : PaymentTypes.QRCode;
-            paymentMgr.Begin = dt1;
-            paymentMgr.End = dt2;
-            paymentMgr.Filter = _laneFilter;
-            paymentMgr.Refresh();
+            manager.Payments.PaymentType = (rbEMV.IsChecked.Value) ? PaymentTypes.EMV : PaymentTypes.QRCode;
+            manager.Payments.Begin = dt1;
+            manager.Payments.End = dt2;
+            manager.Payments.Filter = _laneFilter;
+            manager.Payments.Refresh();
 
             if (rbEMV.IsChecked.Value)
             {
-                grid.ItemsSource = paymentMgr.EMVItems;
+                grid.ItemsSource = manager.Payments.EMVItems;
             }
             else
             {
-                grid.ItemsSource = paymentMgr.QRCodeItems;
+                grid.ItemsSource = manager.Payments.QRCodeItems;
             }
         }
 
@@ -251,12 +251,6 @@ namespace DMT.TOD.Pages.TollAdmin
         /// <param name="user">The User instance.</param>
         public void Setup(User user)
         {
-            _user = user;
-            if (null != _user)
-            {
-
-            }
-
             Reset();
             ResetSelectUser();
             txtLaneNo.Text = string.Empty;

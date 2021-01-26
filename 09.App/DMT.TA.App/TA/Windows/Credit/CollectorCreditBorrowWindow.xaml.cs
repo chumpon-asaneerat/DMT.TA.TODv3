@@ -9,6 +9,7 @@ using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -33,7 +34,7 @@ namespace DMT.TA.Windows.Credit
 
         #region Internal Variables
 
-        private User _user = null;
+        private CurrentTSBManager manager = new CurrentTSBManager();
 
         #endregion
 
@@ -41,7 +42,63 @@ namespace DMT.TA.Windows.Credit
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if (null != manager && null == manager.User)
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("โปรดระบุ พนักงาน", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtSearchUserId.SelectAll();
+                    txtSearchUserId.Focus();
+                }));
+                return;
+            }
+            if (cbPlzaGroups.SelectedIndex == -1)
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("โปรดระบุ ด่าน", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    cbPlzaGroups.Focus();
+                }));
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtBagNo.Text))
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("โปรดระบุ หมายเลขถุงเงิน", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtBagNo.SelectAll();
+                    txtBagNo.Focus();
+                }));
+                return;
+            }
+            else if (string.IsNullOrEmpty(txtBeltNo.Text))
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("โปรดระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtBeltNo.SelectAll();
+                    txtBeltNo.Focus();
+                }));
+                return;
+            }
+
+            if (Save())
+            {
+                DialogResult = true;
+            }
         }
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
@@ -51,7 +108,7 @@ namespace DMT.TA.Windows.Credit
 
         private void cmdUserSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            SearchUser();
         }
 
         #endregion
@@ -77,26 +134,56 @@ namespace DMT.TA.Windows.Credit
 
         #region Private Methods
 
-        private void SearchUser()
+        private void LoadPlazaGroups()
         {
-            /*
-            string userId = txtSearchUserId.Text.Trim();
-            var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
-            if (!result.IsCanceled && null != paymentMgr)
+            cbPlzaGroups.ItemsSource = null;
+            if (null != manager && null != manager)
             {
-                paymentMgr.User = result.User;
-                if (null != paymentMgr.User)
-                {
-                    txtSearchUserId.Text = string.Empty;
-                }
-                RefreshEMV_QRCODE();
+                cbPlzaGroups.ItemsSource = manager.TSBPlazaGroups;
+                if (manager.TSBPlazaGroups.Count > 0) cbPlzaGroups.SelectedIndex = 0;
             }
-            */
+        }
+
+        private void Reset()
+        {
+            cbPlzaGroups.SelectedIndex = -1;
+            LoadPlazaGroups();
+
+            manager.User = null;
+            // Set Bindings User Selection.
+            txtUserId.DataContext = manager;
+            txtUserName.DataContext = manager;
         }
 
         private void ResetSelectUser()
         {
+            manager.User = null;
+            txtSearchUserId.Text = string.Empty;
+        }
 
+        private void SearchUser()
+        {
+            string userId = txtSearchUserId.Text.Trim();
+            var result = TAAPI.SearchUser(userId, TAApp.Permissions.TC);
+            if (!result.IsCanceled && null != manager)
+            {
+                manager.User = result.User;
+                if (null != manager.User)
+                {
+                    txtSearchUserId.Text = string.Empty;
+                }
+            }
+        }
+
+        private bool Save()
+        {
+            bool ret = false;
+            if (string.IsNullOrEmpty(txtBagNo.Text) || string.IsNullOrEmpty(txtBeltNo.Text))
+                return ret;
+
+            ret = true;
+
+            return ret;
         }
 
         #endregion
@@ -105,7 +192,7 @@ namespace DMT.TA.Windows.Credit
 
         public void Setup()
         {
-
+            Reset();
         }
 
         #endregion

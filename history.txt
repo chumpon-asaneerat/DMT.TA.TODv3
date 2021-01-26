@@ -50,8 +50,23 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1088
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1087
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1086
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TAApp class
+      - Add TC permission.
+    - TAManager classes
+      - Implements CurrentTSB #1.
+    - Implements CollectorCreditBorrowWindow #1
+  - DMT.TOD.App project
+    - TAManager classes
+      - Update CurrentTSBManager
+      - Update PaymentManager
+      - Update RevenueEntryManager
+    - EMVQRCodeListPage
+      - Change manager variable PaymentManager to CurrentTSBManager.
+      - Update related code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1085

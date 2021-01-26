@@ -65,8 +65,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1103
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1102
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1101
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update DMT.Search #1.
+      - Update UserCreditBalance Search methods.
+  - DMT.TA.Models project.
+    - Update UserCreditBalance #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1100

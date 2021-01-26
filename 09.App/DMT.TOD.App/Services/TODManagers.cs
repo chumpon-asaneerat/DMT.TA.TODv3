@@ -1743,7 +1743,7 @@ namespace DMT.Services
 
             bool success = UpdateRevenueEntry();
 
-            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup);
+            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup, false);
             var usrCredit = taaOps.Credit.User.Current(search).Value();
             if (null != usrCredit)
             {
@@ -1864,7 +1864,7 @@ namespace DMT.Services
             }
 
 
-            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup);
+            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup, true);
             var usrCredit = taaOps.Credit.User.Current(search).Value();
             if (null != usrCredit)
             {
@@ -1991,7 +1991,7 @@ namespace DMT.Services
         {
             bool ret = false;
 
-            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup);
+            var search = Models.Search.Credit.User.Current.Create(User, PlazaGroup, true);
             var usrCredit = taaOps.Credit.User.Current(search).Value();
             if (null != usrCredit && usrCredit.State == UserCreditBalance.StateTypes.Completed)
             {

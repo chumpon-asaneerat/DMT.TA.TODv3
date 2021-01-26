@@ -97,6 +97,10 @@ namespace DMT.Models
                     /// Gets or sets Plaza Group.
                     /// </summary>
                     public Models.PlazaGroup PlazaGroup { get; set; }
+                    /// <summary>
+                    /// Gets or sets to get only User Credit Balance that already Return Bag.
+                    /// </summary>
+                    public bool CompletedOnly { get; set; }
 
                     #endregion
 
@@ -107,13 +111,16 @@ namespace DMT.Models
                     /// </summary>
                     /// <param name="user">The User.</param>
                     /// <param name="plazaGroup">The Plaza Group.</param>
+                    /// <param name="completedOnly">True for gets only User Credit Balance that already Return Bag.</param>
                     /// <returns>Returns Search instance.</returns>
                     public static Current Create(Models.User user,
-                        Models.PlazaGroup plazaGroup)
+                        Models.PlazaGroup plazaGroup,
+                        bool completedOnly)
                     {
                         var ret = new Current();
                         ret.User = user;
                         ret.PlazaGroup = plazaGroup;
+                        ret.CompletedOnly = completedOnly;
                         return ret;
                     }
 

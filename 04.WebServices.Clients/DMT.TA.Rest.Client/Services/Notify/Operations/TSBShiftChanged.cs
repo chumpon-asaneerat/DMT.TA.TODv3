@@ -7,17 +7,17 @@ using DMT.Services;
 
 namespace DMT.Services.Operations
 {
-    static partial class TOD
+    static partial class TA
     {
         static partial class Notify
         {
             /// <summary>
-            /// Notify ShiftChanged.
+            /// Notify TSBShiftChanged.
             /// </summary>
             /// <returns>Returns NRestResult instance.</returns>
-            public static NRestResult ShiftChanged()
+            public static NRestResult TSBShiftChanged()
             {
-                var ret = Execute(RouteConsts.TOD.Notify.ShiftChanged.Url);
+                var ret = Execute(RouteConsts.TA.Notify.TSBShiftChanged.Url);
                 return ret;
             }
         }

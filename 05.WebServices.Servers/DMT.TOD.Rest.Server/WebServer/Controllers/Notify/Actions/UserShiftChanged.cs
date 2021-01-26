@@ -8,16 +8,16 @@ using DMT.Models;
 
 namespace DMT.Services
 {
-    partial class TANotifyController
+    partial class TODNotifyController
     {
         [HttpPost]
-        [ActionName(RouteConsts.TA.Notify.ShiftChanged.Name)]
+        [ActionName(RouteConsts.TOD.Notify.UserShiftChanged.Name)]
         //[AllowAnonymous]
-        public NDbResult ShiftChanged()
+        public NDbResult UserShiftChanged()
         {
             NDbResult result = new NDbResult();
             result.Success();
-            TANotifyService.Instance.RaiseShiftChanged();
+            TODNotifyService.Instance.RaiseUserShiftChanged();
             return result;
         }
     }

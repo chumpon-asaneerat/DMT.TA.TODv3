@@ -35,12 +35,12 @@ namespace DMT.Controls.Header
         {
             UpdateUI();
             RuntimeManager.Instance.TSBChanged += Instance_TSBChanged;
-            RuntimeManager.Instance.ShiftChanged += Instance_ShiftChanged;
+            RuntimeManager.Instance.TSBShiftChanged += Instance_TSBShiftChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            RuntimeManager.Instance.ShiftChanged -= Instance_ShiftChanged;
+            RuntimeManager.Instance.TSBShiftChanged -= Instance_TSBShiftChanged;
             RuntimeManager.Instance.TSBChanged -= Instance_TSBChanged;
         }
 
@@ -53,7 +53,7 @@ namespace DMT.Controls.Header
             UpdateUI();
         }
 
-        private void Instance_ShiftChanged(object sender, EventArgs e)
+        private void Instance_TSBShiftChanged(object sender, EventArgs e)
         {
             UpdateUI();
         }

@@ -64,9 +64,14 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TA.Notify.TSBChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
 
-                    // Shift Changed
-                    actionName = RouteConsts.TA.Notify.ShiftChanged.Name;
-                    actionUrl = RouteConsts.TA.Notify.ShiftChanged.Url;
+                    // TSB Shift Changed
+                    actionName = RouteConsts.TA.Notify.TSBShiftChanged.Name;
+                    actionUrl = RouteConsts.TA.Notify.TSBShiftChanged.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                    // User Shift Changed
+                    actionName = RouteConsts.TA.Notify.UserShiftChanged.Name;
+                    actionUrl = RouteConsts.TA.Notify.UserShiftChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }

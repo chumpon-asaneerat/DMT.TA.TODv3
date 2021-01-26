@@ -108,8 +108,9 @@
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Infrastructure.Controller.cs" />
     <Compile Include="WebServer\Controllers\Notify\Notify.Controller.cs" />
-    <Compile Include="WebServer\Controllers\Notify\Actions\ShiftChanged.cs" />
+    <Compile Include="WebServer\Controllers\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="WebServer\Controllers\Notify\Actions\TSBChanged.cs" />
+    <Compile Include="WebServer\Controllers\Notify\Actions\UserShiftChanged.cs" />
     <Compile Include="WebServer\Controllers\Security\Actions\Role\Gets.cs" />
     <Compile Include="WebServer\Controllers\Security\Actions\Role\Save.cs" />
     <Compile Include="WebServer\Controllers\Security\Actions\User\Gets.cs" />

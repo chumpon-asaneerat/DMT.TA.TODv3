@@ -82,9 +82,9 @@ namespace DMT.TOD.Pages.TollAdmin
                 if (ret.Ok && null != _user && null != _plazas && _plazas.Count > 0)
                 {
                     // Update TOD
-                    RuntimeManager.Instance.RaiseShiftChanged();
+                    RuntimeManager.Instance.RaiseTSBShiftChanged();
                     // Notify to TA
-                    taOps.ShiftChanged();
+                    taOps.TSBShiftChanged();
 
                     // send to server
                     var scw = new SCWSaveChiefDuty();

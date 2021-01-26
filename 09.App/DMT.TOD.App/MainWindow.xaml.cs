@@ -36,7 +36,8 @@ namespace DMT
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             TODNotifyService.Instance.TSBChanged += Instance_TSBChanged;
-            TODNotifyService.Instance.ShiftChanged += Instance_ShiftChanged;
+            TODNotifyService.Instance.TSBShiftChanged += Instance_TSBShiftChanged;
+            TODNotifyService.Instance.UserShiftChanged += Instance_UserShiftChanged;
 
             // Initial Page Content Manager
             PageContentManager.Instance.ContentChanged += new EventHandler(Instance_ContentChanged);
@@ -46,7 +47,7 @@ namespace DMT
             PageContentManager.Instance.Current = page;
 
             // Raise Event to notify TA App.
-            taOps.ShiftChanged();
+            taOps.TSBShiftChanged();
         }
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)
@@ -55,7 +56,8 @@ namespace DMT
             PageContentManager.Instance.Shutdown();
             PageContentManager.Instance.ContentChanged -= new EventHandler(Instance_ContentChanged);
 
-            TODNotifyService.Instance.ShiftChanged -= Instance_ShiftChanged;
+            TODNotifyService.Instance.UserShiftChanged -= Instance_UserShiftChanged;
+            TODNotifyService.Instance.TSBShiftChanged -= Instance_TSBShiftChanged;
             TODNotifyService.Instance.TSBChanged -= Instance_TSBChanged;
         }
 
@@ -77,9 +79,14 @@ namespace DMT
             RuntimeManager.Instance.RaiseTSBChanged();
         }
 
-        private void Instance_ShiftChanged(object sender, EventArgs e)
+        private void Instance_TSBShiftChanged(object sender, EventArgs e)
         {
-            RuntimeManager.Instance.RaiseShiftChanged();
+            RuntimeManager.Instance.RaiseUserShiftChanged();
+        }
+
+        private void Instance_UserShiftChanged(object sender, EventArgs e)
+        {
+            RuntimeManager.Instance.RaiseUserShiftChanged();
         }
 
         #endregion

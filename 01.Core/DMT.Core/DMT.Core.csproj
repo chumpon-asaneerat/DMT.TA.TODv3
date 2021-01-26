@@ -92,7 +92,8 @@
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\Save.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\TA.Infrastructure.Controller.cs" />
-    <Compile Include="Consts\Routes\TA\Notify\Actions\ShiftChanged.cs" />
+    <Compile Include="Consts\Routes\TA\Notify\Actions\UserShiftChanged.cs" />
+    <Compile Include="Consts\Routes\TA\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\TA.Notify.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Security\Actions\Role\Gets.cs" />
@@ -122,7 +123,8 @@
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\Save.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\TOD.Infrastructure.Controller.cs" />
-    <Compile Include="Consts\Routes\TOD\Notify\Actions\ShiftChanged.cs" />
+    <Compile Include="Consts\Routes\TOD\Notify\Actions\UserShiftChanged.cs" />
+    <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\TOD.Notify.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Security\Actions\Role\Gets.cs" />

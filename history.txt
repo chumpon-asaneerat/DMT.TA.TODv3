@@ -47,8 +47,45 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1109
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1108
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1107
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update TA/TOD Nofity Routes
+      - TSBShiftChange.
+      - UserShiftChange.
+  - DMT.TA.Rest.Client project.
+    - Update TA/TOD Nofity Operations
+      - TSBShiftChange.
+      - UserShiftChange.
+  - DMT.TOD.Rest.Client project.
+    - Update TA/TOD Nofity Operations
+      - TSBShiftChange.
+      - UserShiftChange.
+  - DMT.TA.Rest.Server project.
+    - Update TA/TOD Nofity Controller map routes.
+      - TSBShiftChange.
+      - UserShiftChange.
+  - DMT.TOD.Rest.Server project.
+    - Update TA/TOD Nofity Controller map routes.
+      - TSBShiftChange.
+      - UserShiftChange.
+  - DMT.TA.App project.
+    - Update Header Elements (Chief/Shift)
+      - TSBShiftChange.
+      - UserShiftChange.
+    - Update RuntimeManager
+      - Implements TSBShiftChange related code.
+      - Implements UserShiftChange related code.
+  - DMT.TOD.App project.
+    - Update Header Elements (Chief/Shift)
+      - TSBShiftChange.
+      - UserShiftChange.
+    - Update RuntimeManager
+      - Implements TSBShiftChange related code.
+      - Implements UserShiftChange related code.
+    - ChangeShift
+      - Implements TSBShiftChange related code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1106

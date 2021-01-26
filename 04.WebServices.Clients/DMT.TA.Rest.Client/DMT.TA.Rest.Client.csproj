@@ -76,8 +76,9 @@
     <Compile Include="Services\Infrastructure\Operations\TSB\Save.cs" />
     <Compile Include="Services\Infrastructure\Operations\TSB\SetActive.cs" />
     <Compile Include="Services\Notify\Notify.Operations.cs" />
-    <Compile Include="Services\Notify\Operations\ShiftChanged.cs" />
+    <Compile Include="Services\Notify\Operations\TSBShiftChanged.cs" />
     <Compile Include="Services\Notify\Operations\TSBChanged.cs" />
+    <Compile Include="Services\Notify\Operations\UserShiftChanged.cs" />
     <Compile Include="Services\Security\Operations\Role\Gets.cs" />
     <Compile Include="Services\Security\Operations\Role\Save.cs" />
     <Compile Include="Services\Security\Operations\User\Gets.cs" />

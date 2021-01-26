@@ -12,12 +12,12 @@ namespace DMT.Services.Operations
         static partial class Notify
         {
             /// <summary>
-            /// Notify ShiftChanged.
+            /// Notify UserShiftChanged.
             /// </summary>
             /// <returns>Returns NRestResult instance.</returns>
-            public static NRestResult ShiftChanged()
+            public static NRestResult UserShiftChanged()
             {
-                var ret = Execute(RouteConsts.TA.Notify.ShiftChanged.Url);
+                var ret = Execute(RouteConsts.TA.Notify.UserShiftChanged.Url);
                 return ret;
             }
         }

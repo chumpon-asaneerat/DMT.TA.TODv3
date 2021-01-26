@@ -53,8 +53,21 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1117
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1116
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1115
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - UserShift
+      - Change UserShiftId from int to Guid.
+      - Change UserShiftId from int to Guid.
+    - UserShiftRevenue
+      - Change UserShiftId from int to Guid.
+  - DMT.TA.Models project.
+    - Add UserShiftView
+    - Add UserShiftRevenueView
+  - DMT.TOD.Models project.
+    - Update UserShiftView
+    - Update UserShiftRevenueView
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1114

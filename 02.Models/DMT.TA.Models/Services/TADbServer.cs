@@ -125,6 +125,8 @@ namespace DMT.Services
             Db.CreateTable<UserAccess>();
 
             Db.CreateTable<TSBShift>();
+            Db.CreateTable<UserShift>();
+            Db.CreateTable<UserShiftRevenue>();
 
             Db.CreateTable<RevenueEntry>(); // Collect all revenue entry from various TOD client (by plaza id).
 
@@ -1983,6 +1985,8 @@ namespace DMT.Services
             // Shifts - Embeded resource used . instead / to access sub contents.
             prefix = @"Shifts";
             InitView("TSBShiftView", 1, prefix);
+            InitView("UserShiftView", 1, prefix);
+            InitView("UserShiftRevenueView", 1, prefix);
 
             // Revenues - Embeded resource used . instead / to access sub contents.
             prefix = @"Revenues";

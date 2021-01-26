@@ -31,7 +31,7 @@ namespace DMT.Models
 
         private Guid _PKId = Guid.NewGuid();
 
-        private int _UserShiftId = 0;
+        private Guid _UserShiftId = Guid.Empty;
 
         private string _TSBId = string.Empty;
         private string _TSBNameEN = string.Empty;
@@ -102,7 +102,7 @@ namespace DMT.Models
         [NotNull]
         [Indexed]
         [PropertyMapName("UserShiftId")]
-        public int UserShiftId
+        public Guid UserShiftId
         {
             get
             {

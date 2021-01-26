@@ -125,6 +125,7 @@
     <Compile Include="Models\Plaza\Master\MCurrency.cs" />
     <Compile Include="Models\Plaza\Revenues\RevenueEntry.cs" />
     <Compile Include="Models\Plaza\Shifts\UserShift.cs" />
+    <Compile Include="Models\Plaza\Shifts\UserShiftRevenue.cs" />
     <Compile Include="Models\Plaza\Users\UserAccess.cs" />
     <Compile Include="Models\SCW\Common.cs" />
     <Compile Include="Models\SCW\SCWCardAllowList.cs" />

@@ -80,14 +80,14 @@
                                 <RowDefinition Height="32" />
                                 <RowDefinition Height="2" />
                             </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="1"
+                            <StackPanel x:Name="panelSearch1"
+                                        Grid.Row="1"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
+                                        Height="32"
                                         Margin="0,0,0,2"
                                         VerticalAlignment="Center"
-                                        Orientation="Horizontal"
-                                        x:Name="panelSearch1"
-                                        Height="32">
+                                        Orientation="Horizontal">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
                                            Text="ค้นหา รหัสพนักงาน : "
@@ -108,14 +108,14 @@
                                         FontSize="{StaticResource InputFontSize18}"
                                         Style="{DynamicResource InlineButton}" />
                             </StackPanel>
-                            <StackPanel Grid.Row="2"
+                            <StackPanel x:Name="panelSearch2"
+                                        Grid.Row="2"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
+                                        Height="32"
                                         Margin="0,0,0,2"
                                         VerticalAlignment="Center"
-                                        Orientation="Horizontal"
-                                        x:Name="panelSearch2"
-                                        Height="32">
+                                        Orientation="Horizontal">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
                                            Text="รหัสพนักงาน : "
@@ -169,9 +169,9 @@
                                            Style="{StaticResource LabelText}"
                                            Text="หมายเลขเข็มขัดนิรภัย : " />
                                 <TextBox x:Name="txtBeltNo"
-                                         Margin="4,0,0,0"
                                          Width="100"
                                          Height="30"
+                                         Margin="4,0,0,0"
                                          util:FocusOptions.SelectAll="True"
                                          util:KeyboardOptions.Enabled="True"
                                          util:KeyboardOptions.EnterAsTab="True"

@@ -65,8 +65,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1093
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1092
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1091
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements CollectorCreditBorrowWindow #4
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1090

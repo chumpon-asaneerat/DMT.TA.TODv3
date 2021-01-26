@@ -61,6 +61,9 @@ namespace DMT.TA.Pages.Credit
         private void Refresh()
         {
             plazaSummary.Setup(); // Call for refresh.
+
+            var userCredits = UserCreditBalance.GetActiveUserCreditBalances(TAAPI.TSB).Value();
+            lstUsers.ItemsSource = userCredits;
         }
 
         private void AddUserTransaction()

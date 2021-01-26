@@ -1,4 +1,6 @@
-﻿#region Using
+﻿//#define SINGELTON_APP
+
+#region Using
 
 using System;
 using System.Windows;
@@ -62,10 +64,22 @@ namespace DMT
                 /* Setup Behaviors */
                 Behaviors = new NAppBehaviors()
                 {
+                    //***********************************************************************************
+                    // NOTE:
+                    //***********************************************************************************
+                    // WHEN Use in same PC required to change port number otherwiser app will die.
+                    //***********************************************************************************
+#if SINGELTON_APP
                     /* Set to true for allow only one instance of application can execute an runtime */
                     IsSingleAppInstance = true,
                     /* Set to true for enable Debuggers this value should always be true */
                     EnableDebuggers = true
+#else
+                    /* Set to true for allow only one instance of application can execute an runtime */
+                    IsSingleAppInstance = false,
+                    /* Set to true for enable Debuggers this value should always be true */
+                    EnableDebuggers = true
+#endif
                 }
             };
 

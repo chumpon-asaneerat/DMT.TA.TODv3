@@ -62,8 +62,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1114
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1113
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1112
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - App.xaml.cs update
+      - Set directive for SINGELTON_APP for allow to run app in multiple instance.
+        - Note. When used on same PC the port number must not be the same value.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1111

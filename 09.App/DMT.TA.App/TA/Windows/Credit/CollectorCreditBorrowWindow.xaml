@@ -75,18 +75,19 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2" />
-                                <RowDefinition Height="32" />
-                                <RowDefinition Height="2" />
-                                <RowDefinition Height="32" />
-                                <RowDefinition Height="2" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="32" />
                                 <RowDefinition Height="2" />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="1"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
+                                        Margin="0,0,0,2"
                                         VerticalAlignment="Center"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        x:Name="panelSearch1"
+                                        Height="32">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
                                            Text="ค้นหา รหัสพนักงาน : "
@@ -107,11 +108,14 @@
                                         FontSize="{StaticResource InputFontSize18}"
                                         Style="{DynamicResource InlineButton}" />
                             </StackPanel>
-                            <StackPanel Grid.Row="3"
+                            <StackPanel Grid.Row="2"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
+                                        Margin="0,0,0,2"
                                         VerticalAlignment="Center"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        x:Name="panelSearch2"
+                                        Height="32">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
                                            Text="รหัสพนักงาน : "
@@ -139,7 +143,7 @@
                                            Text="{Binding CollectorNameTH}"
                                            TextAlignment="Center" />
                             </StackPanel>
-                            <StackPanel Grid.Row="5"
+                            <StackPanel Grid.Row="3"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
                                         VerticalAlignment="Center"

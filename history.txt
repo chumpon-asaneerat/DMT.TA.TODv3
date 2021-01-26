@@ -41,8 +41,20 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1090
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1089
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - TSBCreditTransaction Fixed SaveTransaction (date validation).
+    - UserCreditBalance Fixed SaveUserCreditBalance (date validation).
+    - UserCreditTransaction Fixed SaveTransaction (date validation).
+  - DMT.TA.App project
+    - TAManager classes
+      - Implements CreditManager #2.
+        - Add UserCreditManager.
+        - Add UserCreditBorrowManager.
+        - Add UserCreditReturnManager.
+    - Implements CollectorCreditBorrowWindow #3
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1088

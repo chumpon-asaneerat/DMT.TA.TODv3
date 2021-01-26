@@ -515,12 +515,12 @@ namespace DMT.Services
                 tran.AmountBHT1 = 10000;
                 tran.AmountBHT2 = 10000;
                 tran.AmountBHT5 = 10000;
-                tran.AmountBHT10 = 10000;
-                tran.AmountBHT20 = 10000;
-                tran.AmountBHT50 = 10000;
-                tran.AmountBHT100 = 10000;
-                tran.AmountBHT500 = 10000;
-                tran.AmountBHT1000 = 10000;
+                tran.AmountBHT10 = 20000;
+                tran.AmountBHT20 = 25000;
+                tran.AmountBHT50 = 25000;
+                tran.AmountBHT100 = 30000;
+                tran.AmountBHT500 = 50000;
+                tran.AmountBHT1000 = 5000;
 
                 TSBCreditTransaction.SaveTransaction(tran);
             }
@@ -648,6 +648,344 @@ namespace DMT.Services
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
         public event System.EventHandler PlazaGroupChanged;
+
+        #endregion
+    }
+
+    #endregion
+
+    #region UserCreditManager (abstract)
+
+    /// <summary>
+    /// User Credit Manager (abstract) class.
+    /// </summary>
+    public abstract class UserCreditManager : INotifyPropertyChanged
+    {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public UserCreditManager() : base() { }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~UserCreditManager()
+        {
+            if (null != this.Transaction)
+            {
+                this.Transaction.PropertyChanged += Transaction_PropertyChanged;
+            }
+            this.Transaction = null;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        private void Transaction_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            this.Calc();
+        }
+
+        #endregion
+
+        #region Abstract Methods
+
+        protected abstract void Calc();
+
+        #endregion
+
+        #region Public Methods
+
+        public void Setup(UserCreditBalance current)
+        {
+            this.UserBalance = current;
+            this.IsNew = (null == this.UserBalance);
+            if (this.IsNew)
+            {
+                this.UserBalance = new UserCreditBalance();
+            }
+
+            this.Transaction = new UserCreditTransaction();
+
+            this.TSBBalance = TSBCreditBalance.GetCurrent().Value();
+            this.ResultBalance = new TSBCreditBalance();
+
+            this.TSBBalance.AssignTo(this.ResultBalance);
+
+
+            // Hook Event to recalcuate when transaction's property changed.
+            this.Transaction.PropertyChanged += Transaction_PropertyChanged;
+        }
+
+        public void SetUser(User user)
+        {
+            User = user;
+            if (null != User)
+            {
+                UserBalance.UserId = User.UserId;
+                UserBalance.FullNameEN = User.FullNameEN;
+                UserBalance.FullNameTH = User.FullNameTH;
+            }
+
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
+        }
+
+        public abstract bool Save();
+        public virtual bool HasNegative() { return false; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Plaza Group.
+        /// </summary>
+        public PlazaGroup PlazaGroup { get; set; }
+        /// <summary>
+        /// Gets or sets User.
+        /// </summary>
+        public User User { get; private set; }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != User) ? User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != User) ? User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != User) ? User.FullNameTH : string.Empty; }
+            set { }
+        }
+
+        /// <summary>
+        /// Checks is new UserBalance.
+        /// </summary>
+        public bool IsNew { get; private set; }
+        /// <summary>
+        /// Gets Current user credit (original).
+        /// </summary>
+        public UserCreditBalance UserBalance { get; private set; }
+        /// <summary>
+        /// Gets Editable Transaction.
+        /// </summary>
+        public UserCreditTransaction Transaction { get; private set; }
+        /// <summary>
+        /// Gets Current TSB Balance.
+        /// </summary>
+        public TSBCreditBalance TSBBalance { get; private set; }
+        /// <summary>
+        /// Gets result TSB Balance after apply transaction.
+        /// </summary>
+        public TSBCreditBalance ResultBalance { get; private set; }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+    }
+
+    #endregion
+
+    #region UserCreditBorrowManager
+
+    /// <summary>
+    /// User Credit Borrow Manager class.
+    /// </summary>
+    public class UserCreditBorrowManager : UserCreditManager
+    {
+        #region Override Methods
+
+        protected override void Calc()
+        {
+            if (null == ResultBalance || null == TSBBalance || null == Transaction)
+                return;
+
+            ResultBalance.AmountST25 = TSBBalance.AmountST25 - Transaction.AmountST25;
+            ResultBalance.AmountST50 = TSBBalance.AmountST50 - Transaction.AmountST50;
+            ResultBalance.AmountBHT1 = TSBBalance.AmountBHT1 - Transaction.AmountBHT1;
+            ResultBalance.AmountBHT2 = TSBBalance.AmountBHT2 - Transaction.AmountBHT2;
+            ResultBalance.AmountBHT5 = TSBBalance.AmountBHT5 - Transaction.AmountBHT5;
+            ResultBalance.AmountBHT10 = TSBBalance.AmountBHT10 - Transaction.AmountBHT10;
+            ResultBalance.AmountBHT20 = TSBBalance.AmountBHT20 - Transaction.AmountBHT20;
+            ResultBalance.AmountBHT50 = TSBBalance.AmountBHT50 - Transaction.AmountBHT50;
+            ResultBalance.AmountBHT100 = TSBBalance.AmountBHT100 - Transaction.AmountBHT100;
+            ResultBalance.AmountBHT500 = TSBBalance.AmountBHT500 - Transaction.AmountBHT500;
+            ResultBalance.AmountBHT1000 = TSBBalance.AmountBHT1000 - Transaction.AmountBHT1000;
+        }
+
+        public override bool HasNegative()
+        {
+            return (
+                ResultBalance.AmountST25 < 0 ||
+                ResultBalance.AmountST50 < 0 ||
+                ResultBalance.AmountBHT1 < 0 ||
+                ResultBalance.AmountBHT2 < 0 ||
+                ResultBalance.AmountBHT5 < 0 ||
+                ResultBalance.AmountBHT10 < 0 ||
+                ResultBalance.AmountBHT20 < 0 ||
+                ResultBalance.AmountBHT50 < 0 ||
+                ResultBalance.AmountBHT100 < 0 ||
+                ResultBalance.AmountBHT500 < 0 ||
+                ResultBalance.AmountBHT1000 < 0);
+        }
+
+        public override bool Save()
+        {
+            bool result = false;
+            // Check User Balance is already inserted
+            if (null != UserBalance && UserBalance.UserCreditId == 0)
+            {
+                // not inserted so insert new record.
+                if (string.IsNullOrWhiteSpace(UserBalance.UserId) && null != User)
+                {
+                    UserBalance.UserId = User.UserId;
+                    UserBalance.FullNameEN = User.FirstNameEN;
+                    UserBalance.FullNameTH = User.FirstNameTH;
+                }
+
+                if (null != PlazaGroup)
+                {
+                    UserBalance.TSBId = PlazaGroup.TSBId;
+                    UserBalance.PlazaGroupId = PlazaGroup.PlazaGroupId;
+                }
+                UserBalance.State = UserCreditBalance.StateTypes.Initial;
+                var newBalance = UserCreditBalance.SaveUserCreditBalance(UserBalance).Value();
+                int pkid = (null != newBalance) ? newBalance.UserCreditId : 0;
+                UserBalance.UserCreditId = pkid;
+            }
+            // Save User Credit Transaction.
+            if (null != Transaction && null != UserBalance)
+            {
+                Transaction.UserCreditId = UserBalance.UserCreditId;
+                Transaction.TransactionType = UserCreditTransaction.TransactionTypes.Borrow;
+                if (string.IsNullOrWhiteSpace(Transaction.TSBId))
+                {
+                    Transaction.TSBId = UserBalance.TSBId;
+                }
+                if (string.IsNullOrWhiteSpace(Transaction.PlazaGroupId))
+                {
+                    Transaction.PlazaGroupId = UserBalance.PlazaGroupId;
+                }
+                if (string.IsNullOrWhiteSpace(Transaction.UserId))
+                {
+                    Transaction.UserId = UserBalance.UserId;
+                    Transaction.FullNameEN = UserBalance.FullNameEN;
+                    Transaction.FullNameTH = UserBalance.FullNameTH;
+                }
+
+                UserCreditTransaction.SaveUserCreditTransaction(Transaction);
+
+                result = true; // save success.
+            }
+
+            return result;
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region UserCreditReturnManager
+
+    /// <summary>
+    /// User Credit Return Manager class.
+    /// </summary>
+    public class UserCreditReturnManager : UserCreditManager
+    {
+        #region Override Methods
+
+        protected override void Calc()
+        {
+            if (null == ResultBalance || null == TSBBalance || null == Transaction)
+                return;
+        }
+
+        public override bool Save()
+        {
+            var result = false;
+            if (null != Transaction && null != UserBalance)
+            {
+                Transaction.UserCreditId = UserBalance.UserCreditId;
+                Transaction.TransactionType = UserCreditTransaction.TransactionTypes.Return;
+
+                // Set TSB/PlazaGroup/User's Name (EN/TH).
+                if (string.IsNullOrWhiteSpace(Transaction.TSBId))
+                {
+                    Transaction.TSBId = UserBalance.TSBId;
+                }
+                if (string.IsNullOrWhiteSpace(Transaction.PlazaGroupId))
+                {
+                    Transaction.PlazaGroupId = UserBalance.PlazaGroupId;
+                }
+                if (string.IsNullOrWhiteSpace(Transaction.UserId))
+                {
+                    Transaction.UserId = UserBalance.UserId;
+                    Transaction.FullNameEN = UserBalance.FullNameEN;
+                    Transaction.FullNameTH = UserBalance.FullNameTH;
+                }
+
+                UserCreditTransaction.SaveUserCreditTransaction(Transaction);
+
+                // Check is total borrow is reach zero.
+                var inst = UserCreditBalance.GetActiveUserCreditBalanceById(
+                    UserBalance.UserId, UserBalance.PlazaGroupId).Value();
+                if (null != inst)
+                {
+                    if (inst.BHTTotal <= decimal.Zero)
+                    {
+                        // change source state.
+                        UserBalance.State = UserCreditBalance.StateTypes.Completed;
+                        UserCreditBalance.SaveUserCreditBalance(UserBalance);
+                    }
+                }
+
+                result = true;
+            }
+            return result;
+        }
+
+        public override bool HasNegative()
+        {
+            return (Transaction.BHTTotal > UserBalance.BHTTotal);
+        }
 
         #endregion
     }

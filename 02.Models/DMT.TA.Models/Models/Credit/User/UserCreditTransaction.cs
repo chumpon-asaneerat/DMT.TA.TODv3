@@ -1418,7 +1418,7 @@ namespace DMT.Models
 			}
 			else
 			{
-				if (value.TransactionDate == DateTime.MinValue)
+				if (!value.TransactionDate.HasValue || value.TransactionDate.Value == DateTime.MinValue)
 				{
 					value.TransactionDate = DateTime.Now;
 				}

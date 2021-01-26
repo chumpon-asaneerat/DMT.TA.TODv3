@@ -1638,7 +1638,7 @@ namespace DMT.Models
             lock (sync)
             {
                 // set date if not assigned.
-                if (value.UserCreditDate == DateTime.MinValue)
+                if (!value.UserCreditDate.HasValue || value.UserCreditDate.Value == DateTime.MinValue)
                 {
                     value.UserCreditDate = DateTime.Now;
                 }

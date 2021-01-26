@@ -67,7 +67,7 @@ namespace DMT.TA.Pages.Credit
         {
             var win = TAApp.Windows.CollectorCreditBorrow;
             win.Owner = Application.Current.MainWindow;
-            win.Setup();
+            win.Setup(null);
             if (win.ShowDialog() == false)
             {
                 return;

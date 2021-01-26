@@ -34,7 +34,8 @@ namespace DMT.TA.Windows.Credit
 
         #region Internal Variables
 
-        private CurrentTSBManager manager = new CurrentTSBManager();
+        //private CurrentTSBManager manager = new CurrentTSBManager();
+        private UserCreditBorrowManager manager = new UserCreditBorrowManager();
 
         #endregion
 
@@ -95,6 +96,16 @@ namespace DMT.TA.Windows.Credit
                 return;
             }
 
+            if (manager.HasNegative())
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup(
+                    "ไม่สามารถดำเนินการบันทึกข้อมูลได้ เนื่องจากระบบพบว่ามีการ ยอดการยืมเงินในบางรายการ เกินจำนวนที่่ด่านมีอยู่", 
+                    "DMT - Toll Admin");
+                win.ShowDialog();
+                return;
+            }
+
             if (Save())
             {
                 DialogResult = true;
@@ -139,45 +150,60 @@ namespace DMT.TA.Windows.Credit
             cbPlzaGroups.ItemsSource = null;
             if (null != manager && null != manager)
             {
-                cbPlzaGroups.ItemsSource = manager.TSBPlazaGroups;
-                if (manager.TSBPlazaGroups.Count > 0) cbPlzaGroups.SelectedIndex = 0;
+                var plazaGroups = TAAPI.TSBPlazaGroups;
+                cbPlzaGroups.ItemsSource = plazaGroups;
+                if (plazaGroups.Count > 0) cbPlzaGroups.SelectedIndex = 0;
             }
         }
 
-        private void Reset()
+        private void ShowUserSearchPanel()
+        {
+            panelSearch1.Visibility = Visibility.Visible;
+            panelSearch2.Visibility = Visibility.Visible;
+        }
+
+        private void HideUserSearchPanel()
+        {
+            panelSearch1.Visibility = Visibility.Collapsed;
+            panelSearch2.Visibility = Visibility.Collapsed;
+        }
+
+        private void Reset(UserCreditBalance userBalance)
         {
             cbPlzaGroups.SelectedIndex = -1;
             LoadPlazaGroups();
 
-            manager.User = null;
+            manager.SetUser(null);
             // Set Bindings User Selection.
             txtUserId.DataContext = manager;
             txtUserName.DataContext = manager;
 
-            manager.Refresh();
+            manager.Setup(userBalance);
 
-            // User Balance (Overall)
-            var usrBalance = new UserCreditBalance();
-            usrBalance.Description = "ยอดยืมปัจจุบัน";
-            usrBalance.HasRemark = false;
-            userBalanceEntry.DataContext = usrBalance;
+            if (manager.UserBalance.UserCreditId == 0)
+            {
+                ShowUserSearchPanel();
+            }
+            else HideUserSearchPanel();
 
-            // User Transaction
-            var usrTran = new UserCreditTransaction();
-            usrTran.Description = "ยืมเงิน";
-            usrTran.HasRemark = false;
-            usrTransactinEntry.DataContext = usrTran;
 
-            // TSB Balance
-            var tsbBalance = (null != manager.Credit) ? manager.Credit.TSBBalance : new TSBCreditBalance();
-            tsbBalance.Description = "ยอดด่านคงเหลือ";
-            tsbBalance.HasRemark = false;
-            tsbBalanceEntry.DataContext = tsbBalance;
+            this.DataContext = manager.UserBalance;
+
+            manager.UserBalance.Description = "ยอดยืมปัจจุบัน";
+            manager.UserBalance.HasRemark = false;
+            userBalanceEntry.DataContext = manager.UserBalance;
+
+            manager.Transaction.Description = "ยืมเงิน";
+            usrTransactinEntry.DataContext = manager.Transaction;
+
+            manager.ResultBalance.Description = "ยอดด่านคงเหลือ";
+            manager.ResultBalance.HasRemark = false;
+            tsbBalanceEntry.DataContext = manager.ResultBalance;
         }
 
         private void ResetSelectUser()
         {
-            manager.User = null;
+            manager.SetUser(null);
             txtSearchUserId.Text = string.Empty;
         }
 
@@ -187,10 +213,16 @@ namespace DMT.TA.Windows.Credit
             var result = TAAPI.SearchUser(userId, TAApp.Permissions.TC);
             if (!result.IsCanceled && null != manager)
             {
-                manager.User = result.User;
+                manager.SetUser(result.User);
                 if (null != manager.User)
                 {
                     txtSearchUserId.Text = string.Empty;
+
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBagNo.SelectAll();
+                        txtBagNo.Focus();
+                    }));
                 }
             }
         }
@@ -201,7 +233,11 @@ namespace DMT.TA.Windows.Credit
             if (string.IsNullOrEmpty(txtBagNo.Text) || string.IsNullOrEmpty(txtBeltNo.Text))
                 return ret;
 
-            ret = true;
+            manager.PlazaGroup = cbPlzaGroups.SelectedItem as PlazaGroup;
+            if (null == manager.PlazaGroup)
+                return ret;
+
+            ret = manager.Save();
 
             return ret;
         }
@@ -210,9 +246,14 @@ namespace DMT.TA.Windows.Credit
 
         #region Public Methods
 
-        public void Setup()
+        public void Setup(UserCreditBalance userBalance)
         {
-            Reset();
+            Reset(userBalance);
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtSearchUserId.Focus();
+            }));
         }
 
         #endregion

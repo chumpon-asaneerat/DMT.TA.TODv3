@@ -50,8 +50,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1098
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1097
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1096
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - UserCreditBalance
+      - Change ReceivedBagVisibility from Collapsed to Hidden.
+  - DMT.TA.App project
+    - Implements CollectorReceivedBagWindow #2
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1095

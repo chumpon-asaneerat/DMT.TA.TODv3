@@ -103,6 +103,9 @@ namespace DMT.TA.Pages.Credit
 
         private void ReceiveBag(UserCreditBalance balance)
         {
+            if (null == balance) 
+                return;
+
             var win = TAApp.Windows.CollectorReceivedBag;
             win.Owner = Application.Current.MainWindow;
             win.Setup(balance);
@@ -110,6 +113,11 @@ namespace DMT.TA.Pages.Credit
             {
                 return;
             }
+
+            // Change state after received bag and update to database.
+            balance.State = UserCreditBalance.StateTypes.Received;
+            UserCreditBalance.SaveUserCreditBalance(balance);
+
             Refresh();
         }
 

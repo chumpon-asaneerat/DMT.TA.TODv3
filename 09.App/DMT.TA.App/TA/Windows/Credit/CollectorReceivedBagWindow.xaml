@@ -10,8 +10,8 @@
         xmlns:usr="clr-namespace:DMT.TA.Controls.Elements.UserBalance"
         xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
         Title="รับถุงเงิน"
-        Width="850"
-        Height="680"
+        Width="600"
+        Height="400"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -60,7 +60,72 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <DockPanel LastChildFill="True">
+                    <!--  CURRENT USER CREDIT INFO  -->
+                    <StackPanel DockPanel.Dock="Top">
+                        <StackPanel Margin="5"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                            <TextBlock FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="WhiteSmoke"
+                                       Text="รับถุงเงิน หมายเลข :" />
+                            <TextBlock Width="5" />
+                            <TextBlock x:Name="txtBagID"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="Red" />
+                        </StackPanel>
+                        <StackPanel Margin="5"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                            <TextBlock FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="WhiteSmoke"
+                                       Text="จำนวนเงิน :" />
+                            <TextBlock Width="5" />
+                            <TextBlock x:Name="txtAmount"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="Red" />
+                            <TextBlock Width="5" />
+                            <TextBlock FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="WhiteSmoke"
+                                       Text="บาท" />
+                        </StackPanel>
+                    </StackPanel>
+                    <!--  USER/PASSWORD  -->
+                    <StackPanel DockPanel.Dock="Top">
+                        <StackPanel Width="300"
+                                    Margin="5"
+                                    Orientation="Vertical">
+                            <TextBlock Style="{StaticResource LabelText}" Text="กรุณาระบุรหัสพนักงาน 5 หลัก" />
+                            <TextBlock Height="5" />
+                            <TextBox x:Name="txtUserId"
+                                     Style="{StaticResource CommonTextBox}"
+                                     Text="" />
+                            <TextBlock Height="5" />
+                            <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่าน" />
+                            <TextBlock Height="5" />
+                            <PasswordBox x:Name="txtPassword"
+                                         PasswordChar="*"
+                                         Style="{StaticResource CommonPwdBox}" />
+                            <Grid Height="5" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="5" DockPanel.Dock="Top">
+                        <TextBlock Name="txtMsg"
+                                   FontSize="20"
+                                   FontWeight="ExtraBold"
+                                   Foreground="Red"
+                                   Text=""
+                                   TextAlignment="Center" />
+                    </StackPanel>
+                    <Grid />
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>

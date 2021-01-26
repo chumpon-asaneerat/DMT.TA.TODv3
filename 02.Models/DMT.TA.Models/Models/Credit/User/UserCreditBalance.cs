@@ -208,7 +208,7 @@ namespace DMT.Models
         [PropertyMapName("ReceivedBagVisibility")]
         public System.Windows.Visibility ReceivedBagVisibility
         {
-            get { return (_State == StateTypes.Initial) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
+            get { return (_State == StateTypes.Initial) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden; }
             set { }
         }
 

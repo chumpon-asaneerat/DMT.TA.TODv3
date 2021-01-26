@@ -204,6 +204,7 @@
                     <TextBlock Height="5"
                                Background="Transparent"
                                DockPanel.Dock="Top" />
+                    <!--  ENTRY  -->
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="10" />

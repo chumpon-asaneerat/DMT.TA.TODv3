@@ -312,6 +312,7 @@ namespace DMT
                     return ret;
                 }
             }
+
             /// <summary>Gets MessageBox Yes-No Window</summary>
             public static DMT.Windows.MessageBoxYesNoWindow MessageBoxYesNo
             {
@@ -322,6 +323,18 @@ namespace DMT
                     return ret;
                 }
             }
+
+            /// <summary>Gets MessageBox Yes-No 1 Window</summary>
+            public static DMT.Windows.MessageBoxYesNo1Window MessageBoxYesNo1
+            {
+                get
+                {
+                    var ret = new DMT.Windows.MessageBoxYesNo1Window();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
             /// <summary>Gets MessageBox Yes-No 2 Window</summary>
             public static DMT.Windows.MessageBoxYesNo2Window MessageBoxYesNo2
             {
@@ -332,6 +345,7 @@ namespace DMT
                     return ret;
                 }
             }
+
             /// <summary>Gets MessageBox Yes-No 3 Window</summary>
             public static DMT.Windows.MessageBoxYesNo3Window MessageBoxYesNo3
             {

@@ -33,13 +33,38 @@ namespace DMT.TA.Windows.Credit
 
         #region Internal Variables
 
+        private UserCreditReturnManager manager = null;
+
         #endregion
 
         #region Button Handlers
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
+            if (manager.HasNegative())
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup(
+                    "ไม่สามารถดำเนินการบันทึกข้อมูลได้ เนื่องจากระบบพบว่ามีการ คืนเงิน เกินจำนวนที่่ได้ยืมไป",
+                    "DMT - Toll Admin");
+                win.ShowDialog();
+                return;
+            }
+            if (null != manager.UserBalance && null != manager.Transaction)
+            {
+                string msg1 = "ยืนยันการคืนเงิน ยืมทอน";
+                string msg2 = manager.UserBalance.FullNameTH + " จำนวนเงิน " + manager.Transaction.BHTTotal.ToString("#,##0") + " บาท";
 
+                var win = TAApp.Windows.MessageBoxYesNo1;
+                win.Setup(msg1, msg2, true, "DMT - Toll Admin");
+                if (win.ShowDialog() == true)
+                {
+                    if (manager.Save())
+                    {
+                        this.DialogResult = true;
+                    }
+                }
+            }
         }
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
@@ -51,13 +76,29 @@ namespace DMT.TA.Windows.Credit
 
         #region Private Methods
 
+        private void Reset(UserCreditBalance userBalance)
+        {
+            if (null == manager) manager = new UserCreditReturnManager();
+
+            manager.Setup(userBalance);
+
+            this.DataContext = manager.UserBalance;
+
+            manager.UserBalance.Description = "ยอดยืมปัจจุบัน";
+            manager.UserBalance.HasRemark = false;
+            userBalanceEntry.DataContext = manager.UserBalance;
+
+            manager.Transaction.Description = "คืนเงิน";
+            usrTransactinEntry.DataContext = manager.Transaction;
+        }
+
         #endregion
 
         #region Public Methods
 
         public void Setup(UserCreditBalance balance)
         {
-
+            Reset(balance);
         }
 
         #endregion

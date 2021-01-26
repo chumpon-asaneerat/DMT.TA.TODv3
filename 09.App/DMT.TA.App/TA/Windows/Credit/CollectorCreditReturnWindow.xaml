@@ -10,8 +10,8 @@
         xmlns:usr="clr-namespace:DMT.TA.Controls.Elements.UserBalance"
         xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
         Title="พนักงานคืน เงินยืม-ทอน"
-        Width="850"
-        Height="680"
+        Width="600"
+        Height="650"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -60,7 +60,48 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <DockPanel LastChildFill="True">
+                    <Border DockPanel.Dock="Top">
+                        <!--  MESSAGE  -->
+                        <TextBlock x:Name="txtDescription"
+                                   Margin="2"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   DockPanel.Dock="Left"
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   Text="{Binding Description}"
+                                   TextAlignment="Center" />
+                    </Border>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="5"
+                               Background="Transparent"
+                               DockPanel.Dock="Top" />
+                    <!--  ENTRY  -->
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <usr:UserCreditBalanceEntry x:Name="userBalanceEntry"
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Background="CornflowerBlue" />
+                        <tran:UserCreditTransactionEntry x:Name="usrTransactinEntry"
+                                                         Grid.Row="3"
+                                                         Grid.Column="1"
+                                                         Background="DarkRed" />
+                    </Grid>
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>

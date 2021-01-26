@@ -34,8 +34,7 @@ namespace DMT.TA.Windows.Credit
 
         #region Internal Variables
 
-        //private CurrentTSBManager manager = new CurrentTSBManager();
-        private UserCreditBorrowManager manager = new UserCreditBorrowManager();
+        private UserCreditBorrowManager manager = null;
 
         #endregion
 

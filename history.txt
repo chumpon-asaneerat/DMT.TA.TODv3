@@ -47,8 +47,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1099
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1098
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1097
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Add New MessageBoxYesNo1
+  - DMT.TA.App project
+    - AccountApp add MessageBoxYesNo1
+  - DMT.TA.App project
+    - TAApp add MessageBoxYesNo1
+    - Implements CollectorCreditBorrowWindow #7
+    - Implements CollectorCreditReturnwWindow #2
+  - DMT.TOD.App project
+    - TODApp add MessageBoxYesNo1
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1096

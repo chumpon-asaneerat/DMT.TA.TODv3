@@ -79,7 +79,19 @@ namespace DMT.TA.Windows.Credit
 
         private void SearchUser()
         {
-
+            /*
+            string userId = txtSearchUserId.Text.Trim();
+            var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
+            if (!result.IsCanceled && null != paymentMgr)
+            {
+                paymentMgr.User = result.User;
+                if (null != paymentMgr.User)
+                {
+                    txtSearchUserId.Text = string.Empty;
+                }
+                RefreshEMV_QRCODE();
+            }
+            */
         }
 
         private void ResetSelectUser()

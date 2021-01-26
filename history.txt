@@ -56,8 +56,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1086
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1085
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1084
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Update UserSearchManager.cs.
+  - DMT.TA.App project
+    - Update UserSearchManager.cs.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1083

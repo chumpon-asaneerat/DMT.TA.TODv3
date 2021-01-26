@@ -8,6 +8,17 @@ using DMT.Services;
 namespace DMT.Controls
 {
     /// <summary>
+    /// The UserSearchResult Class.
+    /// </summary>
+    public class UserSearchResult
+    {
+        /// <summary>Gets or sets User.</summary>
+        public User User { get; set; }
+        /// <summary>Gets or sets is user cancel selection.</summary>
+        public bool IsCanceled { get; set; }
+    }
+
+    /// <summary>
     /// The User Search Manager helper controls.
     /// </summary>
     public class UserSearchManager
@@ -56,16 +67,18 @@ namespace DMT.Controls
         /// <param name="userId">The User Id.</param>
         /// <param name="roles">The Roles.</param>
         /// <returns></returns>
-        public User SelectUser(string userId, params string[] roles)
+        public UserSearchResult SelectUser(string userId, params string[] roles)
         {
-            User ret = null;
+            UserSearchResult ret = new UserSearchResult();
+            ret.User = null;
+            ret.IsCanceled = false;
 
             var users = User.FilterByUserId(userId, roles).Value();
             if (null != users)
             {
                 if (users.Count == 1)
                 {
-                    ret = users[0];
+                    ret.User = users[0];
                 }
                 else if (users.Count > 1)
                 {
@@ -74,15 +87,16 @@ namespace DMT.Controls
                     if (!string.IsNullOrEmpty(this.Title)) win.Title = this.Title;
                     // setup user list for selection.
                     win.Setup(users);
-                    if (win.ShowDialog() == false || null == win.SelectedUser)
+                    if (win.ShowDialog() == false)
                     {
                         // No user selected.
-                        ret = null;
+                        ret.User = null;
+                        ret.IsCanceled = true;
                     }
                     else
                     {
                         // User selected.
-                        ret = win.SelectedUser;
+                        ret.User = win.SelectedUser;
                     }
                 }
             }

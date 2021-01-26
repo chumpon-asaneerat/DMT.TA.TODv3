@@ -59,8 +59,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1115
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1114
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1113
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TSBShift
+      - Change TSBShiftId from int to Guid.
+  - DMT.Account.Models project.
+    - Add TSBShiftView
+  - DMT.TA.Models project.
+    - Add TSBShiftView
+  - DMT.TOD.Models project.
+    - Update TSBShiftView
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1112

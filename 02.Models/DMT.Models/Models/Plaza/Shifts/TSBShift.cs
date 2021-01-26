@@ -34,7 +34,7 @@ namespace DMT.Models
     {
         #region Intenral Variables
 
-        private int _TSBShiftId = 0;
+        private Guid _TSBShiftId = Guid.NewGuid();
 
         private string _TSBId = string.Empty;
         private string _TSBNameEN = string.Empty;
@@ -72,9 +72,9 @@ namespace DMT.Models
         [Category("Common")]
         [Description("Gets or sets PK Id.")]
         [ReadOnly(true)]
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         [PropertyMapName("TSBShiftId")]
-        public int TSBShiftId
+        public Guid TSBShiftId
         {
             get
             {

@@ -194,5 +194,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Revenues\RevenueEntryView.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\TSBShiftView.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

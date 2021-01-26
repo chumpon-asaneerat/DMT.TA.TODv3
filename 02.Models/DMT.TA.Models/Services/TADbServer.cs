@@ -1980,6 +1980,10 @@ namespace DMT.Services
             prefix = @"Users";
             InitView("UserView", 1, prefix);
 
+            // Shifts - Embeded resource used . instead / to access sub contents.
+            prefix = @"Shifts";
+            InitView("TSBShiftView", 1, prefix);
+
             // Revenues - Embeded resource used . instead / to access sub contents.
             prefix = @"Revenues";
             InitView("RevenueEntryView", 1, prefix);

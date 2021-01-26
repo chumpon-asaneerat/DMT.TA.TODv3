@@ -177,12 +177,20 @@ namespace DMT.Services
         /// </summary>
         public CurrentTSBManager() : base()
         {
+            this.Jobs = new JobManager(this);
+            this.Payments = new PaymentManager(this);
+            this.UserShifts = new UserShiftManager(this);
             Refresh();
         }
         /// <summary>
         /// Destructor
         /// </summary>
-        ~CurrentTSBManager() { }
+        ~CurrentTSBManager() 
+        {
+            this.UserShifts = null;
+            this.Payments = null;
+            this.Jobs = null;
+        }
 
         #endregion
 
@@ -240,11 +248,28 @@ namespace DMT.Services
             }
             // Init Shifts
             Shifts = TODAPI.Shifts;
+
+            if (null != UserShifts) UserShifts.Refresh();
+            if (null != Jobs) Jobs.Refresh();
+            if (null != Payments) Payments.Refresh();
         }
 
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets Job Manager.
+        /// </summary>
+        public JobManager Jobs { get; private set; }
+        /// <summary>
+        /// Gets Payment Manager.
+        /// </summary>
+        public PaymentManager Payments { get; private set; }
+        /// <summary>
+        /// Gets User Shift Manager.
+        /// </summary>
+        public UserShiftManager UserShifts { get; private set; }
 
         /// <summary>
         /// Gets Current TSB.
@@ -1305,16 +1330,10 @@ namespace DMT.Services
                 Current.UserChanged += Current_UserChanged;
                 Current.ShiftChanged += Current_ShiftChanged;
                 Current.PlazaGroupChanged += Current_PlazaGroupChanged;
-            }
-
-            Jobs = new JobManager(Current);
-
-            Payments = new PaymentManager(Current);
-
-            UserShifts = new UserShiftManager(Current);
-            if (null != UserShifts)
-            {
-                UserShifts.UserShiftChanged += UserShifts_UserShiftChanged;
+                if (null != Current.UserShifts)
+                {
+                    Current.UserShifts.UserShiftChanged += UserShifts_UserShiftChanged;
+                }
             }
 
             Refresh();
@@ -1324,13 +1343,13 @@ namespace DMT.Services
         /// </summary>
         ~RevenueEntryManager()
         {
-            if (null != UserShifts)
-            {
-                UserShifts.UserShiftChanged -= UserShifts_UserShiftChanged;
-            }
-
             if (null != Current)
             {
+                if (null != Current.UserShifts)
+                {
+                    Current.UserShifts.UserShiftChanged -= UserShifts_UserShiftChanged;
+                }
+
                 Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
                 Current.ShiftChanged -= Current_ShiftChanged;
                 Current.UserChanged -= Current_UserChanged;
@@ -1430,9 +1449,6 @@ namespace DMT.Services
             this.RevenueDate = new DateTime?(_now);
 
             if (null != Current) Current.Refresh();
-            if (null != UserShifts) UserShifts.Refresh();
-            if (null != Jobs) Jobs.Refresh();
-            if (null != Payments) Payments.Refresh();
         }
 
         #endregion
@@ -1867,15 +1883,15 @@ namespace DMT.Services
         /// <summary>
         /// Gets Job Manager.
         /// </summary>
-        public JobManager Jobs { get; private set; }
+        public JobManager Jobs { get { return (null != Current) ? Current.Jobs : null; } }
         /// <summary>
         /// Gets Payment Manager.
         /// </summary>
-        public PaymentManager Payments { get; private set; }
+        public PaymentManager Payments { get { return (null != Current) ? Current.Payments : null; } }
         /// <summary>
         /// Gets User Shift Manager.
         /// </summary>
-        public UserShiftManager UserShifts { get; private set; }
+        public UserShiftManager UserShifts { get { return (null != Current) ? Current.UserShifts : null; } }
 
         #endregion
 

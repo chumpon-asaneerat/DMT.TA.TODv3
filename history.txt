@@ -53,8 +53,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1087
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1086
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1085
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Move Jobs, Payments, UserShifts from RevenueEntryManager to CurrentTSBManager.
+    - Update related code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1084

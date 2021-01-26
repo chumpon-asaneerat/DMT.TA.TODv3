@@ -701,6 +701,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of .25 baht coin.")]
 		[PropertyMapName("AmountST25")]
+		[Ignore]
 		[PropertyOrder(21)]
 		public virtual decimal AmountST25
 		{
@@ -725,6 +726,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of .50 baht coin.")]
 		[PropertyMapName("AmountST50")]
+		[Ignore]
 		[PropertyOrder(22)]
 		public virtual decimal AmountST50
 		{
@@ -750,6 +752,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 1 baht coin.")]
 		[PropertyMapName("AmountBHT1")]
+		[Ignore]
 		[PropertyOrder(23)]
 		public virtual decimal AmountBHT1
 		{
@@ -775,6 +778,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 2 baht coin.")]
 		[PropertyMapName("AmountBHT2")]
+		[Ignore]
 		[PropertyOrder(24)]
 		public virtual decimal AmountBHT2
 		{
@@ -800,6 +804,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 5 baht coin.")]
 		[PropertyMapName("AmountBHT5")]
+		[Ignore]
 		[PropertyOrder(25)]
 		public virtual decimal AmountBHT5
 		{
@@ -825,6 +830,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 10 baht coin.")]
 		[PropertyMapName("AmountBHT10")]
+		[Ignore]
 		[PropertyOrder(26)]
 		public virtual decimal AmountBHT10
 		{
@@ -850,6 +856,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 20 baht bill.")]
 		[PropertyMapName("AmountBHT20")]
+		[Ignore]
 		[PropertyOrder(27)]
 		public virtual decimal AmountBHT20
 		{
@@ -875,6 +882,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 50 baht bill.")]
 		[PropertyMapName("AmountBHT50")]
+		[Ignore]
 		[PropertyOrder(28)]
 		public virtual decimal AmountBHT50
 		{
@@ -900,6 +908,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 100 baht bill.")]
 		[PropertyMapName("AmountBHT100")]
+		[Ignore]
 		[PropertyOrder(29)]
 		public virtual decimal AmountBHT100
 		{
@@ -925,6 +934,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 500 baht bill.")]
 		[PropertyMapName("AmountBHT500")]
+		[Ignore]
 		[PropertyOrder(30)]
 		public virtual decimal AmountBHT500
 		{
@@ -950,6 +960,7 @@ namespace DMT.Models
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets amount of 1000 baht bill.")]
 		[PropertyMapName("AmountBHT1000")]
+		[Ignore]
 		[PropertyOrder(31)]
 		public virtual decimal AmountBHT1000
 		{

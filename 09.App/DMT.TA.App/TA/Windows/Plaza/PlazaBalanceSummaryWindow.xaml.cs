@@ -33,7 +33,7 @@ namespace DMT.TA.Windows.Plaza
 
         #region Internal Variables
 
-        private TSBCreditBalance _creditBalance = null;
+        private CurrentTSBManager _manager = new CurrentTSBManager();
         //TODO: Required Coupon Models.
         //private TSBCouponBalance _couponBalance = null;
 
@@ -58,10 +58,12 @@ namespace DMT.TA.Windows.Plaza
 
         private void Refresh()
         {
-            _creditBalance = TSBCreditBalance.GetCurrent().Value();
-            if (null == _creditBalance)
+            _manager.Refresh();
+            var _balance = _manager.Credit.TSBBalance;
+
+            if (null == _balance)
             {
-                _creditBalance = new TSBCreditBalance(); // Create Empty Balance.
+                _balance = new TSBCreditBalance(); // Create Empty Balance.
             }
 
             //if (null == _couponBalance)
@@ -69,11 +71,14 @@ namespace DMT.TA.Windows.Plaza
             //    _couponBalance = new TSBCouponBalance();
             //}
 
-            _creditBalance.Description = "เงินยืมทอนหมุนเวียนด่าน";
-            this.DataContext = _creditBalance;
-            this.creditBalanceEntry.Setup(_creditBalance);
-            //this.couponEntryEntry.Setup(_couponBalance);
-            this.creditSummaryEntry.Setup(_creditBalance);
+            _balance.Description = "เงินยืมทอนหมุนเวียนด่าน";
+            this.DataContext = _balance;
+            this.creditBalanceEntry.Setup(_balance);
+            
+            //this.couponBalanceEntry.Setup(_couponBalance);
+            this.couponBalanceEntry.Setup();
+
+            this.creditSummaryEntry.Setup(_balance);
         }
 
         #endregion

@@ -59,8 +59,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1095
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1094
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1093
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - TSBCreditBalane -> add all amount properties [Ignore] attribute.
+    - UserCreditBalane -> add all amount properties [Ignore] attribute.
+  - DMT.TA.App project
+    - TSBPlazaCreditSummary -> Replace using CurrentTSBManager.
+    - TSBPlazaCreditSummaryEntry -> Replace using CurrentTSBManager.
+    - TAAPI -> TSB Check MaxCredit, LowLimit and auto create init values.
+  - DMT.TOD.App project
+    - TODAPI -> TSB Check MaxCredit, LowLimit and auto create init values.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1092

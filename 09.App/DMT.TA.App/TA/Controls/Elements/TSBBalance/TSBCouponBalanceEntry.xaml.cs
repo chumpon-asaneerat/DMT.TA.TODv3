@@ -39,7 +39,7 @@ namespace DMT.TA.Controls.Elements.TSBBalance
 
         public void Setup()
         {
-
+            this.DataContext = null; // TODO: Need Coupon Models.
         }
 
         #endregion

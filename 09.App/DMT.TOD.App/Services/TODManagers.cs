@@ -51,8 +51,75 @@ namespace DMT.Services
         /// Gets Current TSB.
         /// </summary>
         public static TSB TSB 
-        { 
-            get { return TSB.GetCurrent().Value(); } 
+        {
+            get
+            {
+                var obj = TSB.GetCurrent().Value();
+                bool needSave = false;
+                if (obj.MaxCredit <= decimal.Zero)
+                {
+                    obj.MaxCredit = 200000;
+                    needSave = true;
+                }
+                if (obj.LowLimitST25 <= decimal.Zero)
+                {
+                    obj.LowLimitST25 = 100;
+                    needSave = true;
+                }
+                if (obj.LowLimitST50 <= decimal.Zero)
+                {
+                    obj.LowLimitST50 = 100;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT1 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT1 = 1000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT2 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT2 = 1000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT5 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT5 = 1000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT10 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT10 = 2000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT20 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT20 = 2000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT50 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT50 = 2000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT100 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT100 = 2000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT500 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT500 = 2000;
+                    needSave = true;
+                }
+                if (obj.LowLimitBHT1000 <= decimal.Zero)
+                {
+                    obj.LowLimitBHT1000 = 2000;
+                    needSave = true;
+                }
+                if (needSave) TSB.SaveTSB(obj);
+
+                return obj;
+            }
         }
         /// <summary>
         /// Gets TSB PlazaGroups.

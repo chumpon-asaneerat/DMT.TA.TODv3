@@ -140,6 +140,7 @@
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                         <!--  TOPMOST BORDER FOR SELECTION  -->
+                        <!--  Need to set IsHitTestVisible to false for let mouse passthrough  -->
                         <Border Name="item_select_cover"
                                 Margin="2"
                                 HorizontalAlignment="Stretch"
@@ -147,6 +148,7 @@
                                 Background="{DynamicResource ListBoxItemSelectedBackground}"
                                 BorderThickness="0"
                                 CornerRadius="12"
+                                IsHitTestVisible="False"
                                 Opacity=".1"
                                 Visibility="Hidden" />
                     </Grid>

@@ -364,6 +364,28 @@ namespace DMT
                 }
             }
 
+            /// <summary>Gets Collector Credit Return Window.</summary>
+            public static TA.Windows.Credit.CollectorCreditReturnWindow CollectorCreditReturn
+            {
+                get
+                {
+                    var ret = new TA.Windows.Credit.CollectorCreditReturnWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            /// <summary>Gets Collector Received Bag Window.</summary>
+            public static TA.Windows.Credit.CollectorReceivedBagWindow CollectorReceivedBag
+            {
+                get
+                {
+                    var ret = new TA.Windows.Credit.CollectorReceivedBagWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
             #endregion
 
             #region Internal Exchange

@@ -243,6 +243,12 @@
     <Compile Include="TA\Windows\Credit\CollectorCreditBorrowWindow.xaml.cs">
       <DependentUpon>CollectorCreditBorrowWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Credit\CollectorCreditReturnWindow.xaml.cs">
+      <DependentUpon>CollectorCreditReturnWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TA\Windows\Credit\CollectorReceivedBagWindow.xaml.cs">
+      <DependentUpon>CollectorReceivedBagWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Exchange\InternalExchangeWindow.xaml.cs">
       <DependentUpon>InternalExchangeWindow.xaml</DependentUpon>
     </Compile>
@@ -401,6 +407,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Windows\Credit\CollectorCreditBorrowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Credit\CollectorCreditReturnWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Credit\CollectorReceivedBagWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

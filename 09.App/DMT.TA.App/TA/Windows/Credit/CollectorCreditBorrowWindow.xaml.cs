@@ -43,7 +43,7 @@ namespace DMT.TA.Windows.Credit
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
-            if (null != manager && null == manager.User)
+            if (null != manager && null == manager.UserBalance)
             {
                 var win = TAApp.Windows.MessageBox;
                 win.Setup("โปรดระบุ พนักงาน", "DMT - Toll Admin");

@@ -53,8 +53,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1097
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1096
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1095
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Fixed ListBox Style.
+  - DMT.Plaza.Config.App project
+    - Fixed ListBox Style.
+  - DMT.Plaza.Simulator.App project
+    - Fixed ListBox Style.
+  - DMT.TA.App project
+    - Implements CollectorCreditBorrowWindow #6
+    - Implements CollectorCreditReturnwWindow #1
+    - Implements CollectorReceivedBagWindow #1
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1094

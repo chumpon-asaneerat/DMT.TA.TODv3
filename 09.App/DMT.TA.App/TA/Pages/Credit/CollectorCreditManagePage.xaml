@@ -13,12 +13,9 @@
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
         <!--  CONST LISTBOX COLORS  -->
-        <SolidColorBrush x:Key="ListBoxItemSelectedBorderBrush"
-                     Color="DarkOrange" />
-        <SolidColorBrush x:Key="ListBoxItemSelectedBackground"
-                     Color="Orange" />
-        <SolidColorBrush x:Key="ListBoxItemSelectedForground"
-                     Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="ListBoxItemSelectedBorderBrush" Color="DarkOrange" />
+        <SolidColorBrush x:Key="ListBoxItemSelectedBackground" Color="Orange" />
+        <SolidColorBrush x:Key="ListBoxItemSelectedForground" Color="WhiteSmoke" />
     </UserControl.Resources>
     <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -86,15 +83,15 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border Width="300"
-                                    Padding="1"
-                                    BorderThickness="1"
-                                    CornerRadius="8"
+                                    Background="Silver"
                                     BorderBrush="Black"
-                                    Background="Silver">
+                                    BorderThickness="1"
+                                    CornerRadius="8">
                                 <DockPanel>
-                                    <!-- COLLECTOR NAME  -->
-                                    <Border Background="CornflowerBlue" DockPanel.Dock="Top"
-                                            CornerRadius="8,8,0,0">
+                                    <!--  COLLECTOR NAME  -->
+                                    <Border Background="CornflowerBlue"
+                                            CornerRadius="8,8,0,0"
+                                            DockPanel.Dock="Top">
                                         <TextBlock HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    FontSize="18"
@@ -102,14 +99,13 @@
                                                    Text="{Binding Path=FullNameTH}"
                                                    TextAlignment="Center" />
                                     </Border>
-                                    <!-- SEPERATOR -->
+                                    <!--  SEPERATOR  -->
                                     <TextBlock Height="5" DockPanel.Dock="Top" />
-                                    <!-- USER CREDIT CLIENT AREA  -->
-                                    <DockPanel LastChildFill="True"
-                                               Margin="10,2">
-                                        <!-- SEPERATOR -->
+                                    <!--  USER CREDIT CLIENT AREA  -->
+                                    <DockPanel Margin="10,2" LastChildFill="True">
+                                        <!--  SEPERATOR  -->
                                         <TextBlock Height="5" DockPanel.Dock="Bottom" />
-                                        <!-- BUTTONS  -->
+                                        <!--  BUTTONS  -->
                                         <StackPanel HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     DockPanel.Dock="Right"
@@ -117,26 +113,29 @@
                                             <Button x:Name="cmdReceivedBag"
                                                     Width="100"
                                                     Margin="3"
+                                                    Click="cmdReceivedBag_Click"
                                                     Content="รับถุงเงิน"
                                                     Foreground="Red"
-                                                    Visibility="{Binding ReceivedBagVisibility}"
-                                                    Style="{DynamicResource InlineButton}"/>
-                                            <Button x:Name="cmdReceived"
+                                                    Style="{DynamicResource InlineButton}"
+                                                    Visibility="{Binding ReceivedBagVisibility}" />
+                                            <Button x:Name="cmdBorrow"
                                                     Width="100"
                                                     Margin="3"
+                                                    Click="cmdBorrow_Click"
                                                     Content="ยืมเงิน"
-                                                    Style="{DynamicResource InlineButton}"/>
+                                                    Style="{DynamicResource InlineButton}" />
                                             <Button x:Name="cmdReturn"
                                                     Width="100"
                                                     Margin="3"
+                                                    Click="cmdReturn_Click"
                                                     Content="คืนเงิน"
-                                                    Style="{DynamicResource InlineButton}"/>
+                                                    Style="{DynamicResource InlineButton}" />
                                         </StackPanel>
-                                        <!-- USER CREDIT INFO  -->
-                                        <StackPanel Orientation="Vertical"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center">
-                                            <!-- USER ID  -->
+                                        <!--  USER CREDIT INFO  -->
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Vertical">
+                                            <!--  USER ID  -->
                                             <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontSize="20"
@@ -145,7 +144,7 @@
                                                 <Run Text="ID: " />
                                                 <Run Text="{Binding UserId}" />
                                             </TextBlock>
-                                            <!-- BAG NO  -->
+                                            <!--  BAG NO  -->
                                             <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontSize="20"
@@ -154,7 +153,7 @@
                                                 <Run Text="เลขถุงเงิน: " />
                                                 <Run Text="{Binding BagNo}" />
                                             </TextBlock>
-                                            <!-- TOTAL BORROW BHT  -->
+                                            <!--  TOTAL BORROW BHT  -->
                                             <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontSize="24"
@@ -164,7 +163,7 @@
                                                 <Run Text="{Binding Path=BHTTotal, StringFormat={}{0:N0}}" />
                                             </TextBlock>
                                         </StackPanel>
-                                        <Grid/>
+                                        <Grid />
                                     </DockPanel>
                                 </DockPanel>
                             </Border>

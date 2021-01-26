@@ -44,8 +44,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1120
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1119
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1118
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update CollectorReceivedBagWindow 
+      - Supports FocusOptions, KeyboardOptions.
+      - Add Check Empty User/Password and some check.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1117

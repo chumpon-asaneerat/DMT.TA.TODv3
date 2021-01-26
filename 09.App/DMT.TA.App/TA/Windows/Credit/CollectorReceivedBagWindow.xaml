@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
         Title="รับถุงเงิน"
         Width="600"
         Height="400"
@@ -101,12 +102,22 @@
                             <TextBlock Style="{StaticResource LabelText}" Text="กรุณาระบุรหัสพนักงาน 5 หลัก" />
                             <TextBlock Height="5" />
                             <TextBox x:Name="txtUserId"
+                                     util:FocusOptions.SelectAll="True"
+                                     util:KeyboardOptions.Enabled="True"
+                                     util:KeyboardOptions.EnterAsTab="True"
+                                     util:KeyboardOptions.LeftRightNavigation="False"
+                                     util:KeyboardOptions.UpDownNavigation="True"
                                      Style="{StaticResource CommonTextBox}"
                                      Text="" />
                             <TextBlock Height="5" />
                             <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่าน" />
                             <TextBlock Height="5" />
                             <PasswordBox x:Name="txtPassword"
+                                         util:FocusOptions.SelectAll="True"
+                                         util:KeyboardOptions.Enabled="True"
+                                         util:KeyboardOptions.EnterAsTab="True"
+                                         util:KeyboardOptions.LeftRightNavigation="False"
+                                         util:KeyboardOptions.UpDownNavigation="True"
                                          PasswordChar="*"
                                          Style="{StaticResource CommonPwdBox}" />
                             <Grid Height="5" />

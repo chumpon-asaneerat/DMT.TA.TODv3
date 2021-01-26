@@ -11,6 +11,7 @@ using DMT.Services;
 
 using NLib.Services;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -44,7 +45,7 @@ namespace DMT.TA.Windows.Credit
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
             ShutdownService();
-            DialogResult = true;
+            CheckUser();
         }
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
@@ -82,14 +83,63 @@ namespace DMT.TA.Windows.Credit
 
         #region Check User
 
+        private void CheckUser()
+        {
+            string userId = txtUserId.Text.Trim();
+            string pwd = txtPassword.Password.Trim();
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                txtMsg.Text = "กรุณาป้อนรหัสพนักงาน";
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtUserId.SelectAll();
+                    txtUserId.Focus();
+                }));
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(pwd))
+            {
+                txtMsg.Text = "กรุณาป้อนรหัสผ่าน";
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtPassword.SelectAll();
+                    txtPassword.Focus();
+                }));
+                return;
+            }
+
+            var md5 = Utils.MD5.Encrypt(pwd);
+            var user = User.GetByLogIn(userId, md5).Value();
+
+            if (null == user)
+            {
+                txtMsg.Text = "ไม่พบข้อมูลพนักงาน ตามรหัสที่ระบุ กรุณาใส่รหัสพนักงานใหม่";
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtUserId.SelectAll();
+                    txtUserId.Focus();
+                }));
+                return;
+            }
+
+            CheckUser(user);
+        }
+
         private void CheckUser(User user)
         {
-
-            if (null == user || (null != user && user.UserId != _userId))
+            if (string.IsNullOrEmpty(_userId) ||  null == user || (null != user && user.UserId != _userId))
             {
                 txtMsg.Text = "รหัสพนักงานไม่ตรงกับ พนักงานที่รับถุงเงิน";
-                txtUserId.SelectAll();
-                txtUserId.Focus();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtUserId.SelectAll();
+                    txtUserId.Focus();
+                }));
+
                 return;
             }
 
@@ -114,6 +164,11 @@ namespace DMT.TA.Windows.Credit
             txtMsg.Text = string.Empty;
             txtBagID.Text = msg1;
             txtAmount.Text = msg2;
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtUserId.Focus();
+            }));
         }
 
         #endregion

@@ -158,7 +158,7 @@ namespace DMT.Services
     #region CurrentTSBManager
 
     /// <summary>
-    /// The CurrentTSBManager Manager Class.
+    /// The CurrentTSBManager Class.
     /// </summary>
     public class CurrentTSBManager : INotifyPropertyChanged
     {

@@ -153,6 +153,26 @@ namespace DMT.TA.Windows.Credit
             // Set Bindings User Selection.
             txtUserId.DataContext = manager;
             txtUserName.DataContext = manager;
+
+            manager.Refresh();
+
+            // User Balance (Overall)
+            var usrBalance = new UserCreditBalance();
+            usrBalance.Description = "ยอดยืมปัจจุบัน";
+            usrBalance.HasRemark = false;
+            userBalanceEntry.DataContext = usrBalance;
+
+            // User Transaction
+            var usrTran = new UserCreditTransaction();
+            usrTran.Description = "ยืมเงิน";
+            usrTran.HasRemark = false;
+            usrTransactinEntry.DataContext = usrTran;
+
+            // TSB Balance
+            var tsbBalance = (null != manager.Credit) ? manager.Credit.TSBBalance : new TSBCreditBalance();
+            tsbBalance.Description = "ยอดด่านคงเหลือ";
+            tsbBalance.HasRemark = false;
+            tsbBalanceEntry.DataContext = tsbBalance;
         }
 
         private void ResetSelectUser()

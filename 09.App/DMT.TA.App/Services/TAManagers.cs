@@ -158,7 +158,7 @@ namespace DMT.Services
     #region CurrentTSBManager
 
     /// <summary>
-    /// The CurrentTSBManager Manager Class.
+    /// The CurrentTSBManager Class.
     /// </summary>
     public class CurrentTSBManager : INotifyPropertyChanged
     {
@@ -178,13 +178,15 @@ namespace DMT.Services
         public CurrentTSBManager() : base()
         {
             Refresh();
+
+            this.Credit = new CreditManager(this);
         }
         /// <summary>
         /// Destructor
         /// </summary>
         ~CurrentTSBManager()
         {
-
+            this.Credit = null;
         }
 
         #endregion
@@ -252,11 +254,18 @@ namespace DMT.Services
             }
             // Init Shifts
             Shifts = TAAPI.Shifts;
+
+            if (null != this.Credit) this.Credit.Refresh();
         }
 
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets Credit Manager.
+        /// </summary>
+        public CreditManager Credit { get; private set; }
 
         /// <summary>
         /// Gets Current TSB.
@@ -383,6 +392,244 @@ namespace DMT.Services
 
         #region Public Events
 
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// The UserChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler UserChanged;
+        /// <summary>
+        /// The ShiftChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler ShiftChanged;
+        /// <summary>
+        /// The PlazaGroupChanged Event Handler.
+        /// </summary>
+        public event System.EventHandler PlazaGroupChanged;
+
+        #endregion
+    }
+
+    #endregion
+
+    #region CreditManager
+
+    /// <summary>
+    /// The CreditManager Class.
+    /// </summary>
+    public class CreditManager : INotifyPropertyChanged
+    {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        private CreditManager() : base()
+        {
+
+        }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="manager">The CurrentTSBManager instance.</param>
+        public CreditManager(CurrentTSBManager manager) : this()
+        {
+            Current = manager;
+            if (null != Current)
+            {
+                Current.UserChanged += Current_UserChanged;
+                Current.ShiftChanged += Current_ShiftChanged;
+                Current.PlazaGroupChanged += Current_PlazaGroupChanged;
+            }
+        }
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~CreditManager()
+        {
+            if (null != Current)
+            {
+                Current.PlazaGroupChanged -= Current_PlazaGroupChanged;
+                Current.ShiftChanged -= Current_ShiftChanged;
+                Current.UserChanged -= Current_UserChanged;
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        #region CurrentTSBManager Event Handlers
+
+        private void Current_UserChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            UserChanged.Call(sender, e);
+
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
+        }
+
+        private void Current_ShiftChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            ShiftChanged.Call(sender, e);
+        }
+
+        private void Current_PlazaGroupChanged(object sender, EventArgs e)
+        {
+            // Raise Event.
+            PlazaGroupChanged.Call(sender, e);
+        }
+
+        #endregion
+
+        #region Event Raisers
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Credit Methods
+
+        private void CheckInitBalance()
+        {
+            var tran = TSBCreditTransaction.GetInitialTransaction().Value();
+            if (null != tran && tran.BHTTotal == decimal.Zero)
+            {
+                tran.AmountBHT1 = 10000;
+                tran.AmountBHT2 = 10000;
+                tran.AmountBHT5 = 10000;
+                tran.AmountBHT10 = 10000;
+                tran.AmountBHT20 = 10000;
+                tran.AmountBHT50 = 10000;
+                tran.AmountBHT100 = 10000;
+                tran.AmountBHT500 = 10000;
+                tran.AmountBHT1000 = 10000;
+
+                TSBCreditTransaction.SaveTransaction(tran);
+            }
+        }
+
+        private void LoadCredits()
+        {
+            CheckInitBalance();
+            var balance = Models.TSBCreditBalance.GetCurrent().Value();
+            if (null == TSBBalance)
+            {
+                TSBBalance = balance;
+            }
+            else
+            {
+                // Update values.
+                balance.AssignTo(TSBBalance);
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Refresh Jobs.
+        /// </summary>
+        public void Refresh()
+        {
+            LoadCredits();
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #region Manager
+
+        /// <summary>
+        /// Gets Current TSB Manager.
+        /// </summary>
+        public CurrentTSBManager Current { get; private set; }
+
+        #endregion
+
+        #region User
+
+        /// <summary>
+        /// Gets or set User (Collector).
+        /// </summary>
+        public User User
+        {
+            get { return (null != Current) ? Current.User : null; }
+            set
+            {
+                if (null != Current)
+                {
+                    Current.User = value;
+                    RaiseChanged("CollectorId");
+                    RaiseChanged("CollectorNameEN");
+                    RaiseChanged("CollectorNameTH");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != Current) ? Current.CollectorId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != Current) ? Current.CollectorNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != Current) ? Current.CollectorNameTH : string.Empty; }
+            set { }
+        }
+
+        #endregion
+
+        #region TSB Credit
+
+        /// <summary>
+        /// Gets TSB Balance.
+        /// </summary>
+        public TSBCreditBalance TSBBalance { get; private set; }
+
+        #endregion
+
+        #region User Credit
+
+        #endregion
+
+        #endregion
+
+        #region Public Events
 
         /// <summary>
         /// The PropertyChanged event.

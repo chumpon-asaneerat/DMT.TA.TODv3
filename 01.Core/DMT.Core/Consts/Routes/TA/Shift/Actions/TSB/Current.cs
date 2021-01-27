@@ -1,25 +1,23 @@
 ﻿namespace DMT
 {
-    /*
     static partial class RouteConsts
     {
         static partial class TA
         {
-            static partial class Credit
+            static partial class Shift
             {
-                static partial class User
+                static partial class TSB
                 {
-                    /// <summary>The Save User Credit Balance action.</summary>
-                    public static class Save
+                    /// <summary>The Gets Current TSB Shift action.</summary>
+                    public static class Current
                     {
                         /// <summary>Gets route name.</summary>
-                        public const string Name = "Save";
+                        public const string Name = "Current";
                         /// <summary>Gets route url.</summary>
-                        public const string Url = User.Url + @"/" + Name;
+                        public const string Url = TSB.Url + @"/" + Name;
                     }
                 }
             }
         }
     }
-    */
 }

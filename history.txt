@@ -56,8 +56,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1136
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1135
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1134
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - TA Routes
+      - TA->Credit->TSB Remove all routes.
+      - TA->Credit->User Remove Cancel route.
+      - TA->Shift->TSB Remove Change route.
+      - TA->Shift->User Remove all routes.
+      - TA->Notify Remove UserShiftChanged route.
+    - TOD Routes
+      - TOD->Shift->TSB Remove all routes.
+      - TOD->Shift->User Remove all routes.
+      - TOD->Notify Remove UserShiftChanged route.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1133

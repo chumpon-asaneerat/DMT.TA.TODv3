@@ -11,39 +11,6 @@
                 public const string ControllerName = "TODShift";
                 /// <summary>Gets base controller url.</summary>
                 public const string Url = TOD.Url + @"/" + ControllerName;
-
-                // Url: api/shift/tsb
-                /// <summary>The Shift's TSB Controller.</summary>
-                public static partial class TSB
-                {
-                    /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "TODTSBShiftManage";
-
-                    /// <summary>Gets route name.</summary>
-                    public const string Name = "TSB";
-                    /// <summary>Gets route url.</summary>
-                    public const string Url = Shift.Url + @"/" + Name;
-                }
-
-                // Url: api/shift/user
-                /// <summary>The Shift's User Controller.</summary>
-                public static partial class User
-                {
-                    /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "TODUserShiftManage";
-
-                    /// <summary>Gets route name.</summary>
-                    public const string Name = "TSB";
-                    /// <summary>Gets route url.</summary>
-                    public const string Url = Shift.Url + @"/" + Name;
-
-                    /// <summary>The Seacch class.</summary>
-                    public static partial class Search
-                    {
-                        /// <summary>Gets route url.</summary>
-                        public const string Url = User.Url + @"/Search";
-                    }
-                }
             }
         }
     }

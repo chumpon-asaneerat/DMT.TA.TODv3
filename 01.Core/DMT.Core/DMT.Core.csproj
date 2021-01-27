@@ -71,11 +71,8 @@
     <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\TA.Coupon.Controller.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\TSB\CommentOut\Current.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\User\CommentOut\Cancel.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Completed.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Current.cs" />
-    <Compile Include="Consts\Routes\TA\Credit\Actions\User\CommentOut\Save.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Save.cs" />
     <Compile Include="Consts\Routes\TA\Credit\TA.Credit.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\Lane\Gets.cs" />
@@ -92,7 +89,6 @@
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\Save.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\TA\Infrastructure\TA.Infrastructure.Controller.cs" />
-    <Compile Include="Consts\Routes\TA\Notify\Actions\UserShiftChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TA\Notify\TA.Notify.Controller.cs" />
@@ -103,10 +99,6 @@
     <Compile Include="Consts\Routes\TA\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TA\Security\TA.Security.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Shift\Actions\Common\Gets.cs" />
-    <Compile Include="Consts\Routes\TA\Shift\Actions\TSB\CommentOut\Change.cs" />
-    <Compile Include="Consts\Routes\TA\Shift\Actions\TSB\CommentOut\Current.cs" />
-    <Compile Include="Consts\Routes\TA\Shift\Actions\User\CommentOut\Change.cs" />
-    <Compile Include="Consts\Routes\TA\Shift\Actions\User\CommentOut\Current.cs" />
     <Compile Include="Consts\Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TA\TA.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\Lane\Gets.cs" />
@@ -123,7 +115,6 @@
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\Save.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Consts\Routes\TOD\Infrastructure\TOD.Infrastructure.Controller.cs" />
-    <Compile Include="Consts\Routes\TOD\Notify\Actions\UserShiftChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\Actions\TSBChanged.cs" />
     <Compile Include="Consts\Routes\TOD\Notify\TOD.Notify.Controller.cs" />
@@ -134,10 +125,7 @@
     <Compile Include="Consts\Routes\TOD\Security\Actions\User\Searchs.cs" />
     <Compile Include="Consts\Routes\TOD\Security\TOD.Security.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\Actions\Common\Gets.cs" />
-    <Compile Include="Consts\Routes\TOD\Shift\Actions\TSB\CommentOut\Change.cs" />
-    <Compile Include="Consts\Routes\TOD\Shift\Actions\TSB\Current.cs" />
-    <Compile Include="Consts\Routes\TOD\Shift\Actions\User\CommentOut\Change.cs" />
-    <Compile Include="Consts\Routes\TOD\Shift\Actions\User\CommentOut\Current.cs" />
+    <Compile Include="Consts\Routes\TA\Shift\Actions\TSB\Current.cs" />
     <Compile Include="Consts\Routes\TOD\Shift\TOD.Shift.Controller.cs" />
     <Compile Include="Consts\Routes\TOD\TOD.Controller.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />

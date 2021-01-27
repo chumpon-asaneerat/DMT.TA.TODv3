@@ -123,7 +123,6 @@ namespace DMT
             // Init NotifyService event.
             TANotifyService.Instance.TSBChanged += TSBChanged;
             TANotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
-            TANotifyService.Instance.UserShiftChanged += UserShiftChanged;
 
             Window window = null;
             window = new MainWindow();
@@ -142,7 +141,6 @@ namespace DMT
             // Release NotifyService event.
             TANotifyService.Instance.TSBChanged -= TSBChanged;
             TANotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
-            TANotifyService.Instance.UserShiftChanged -= UserShiftChanged;
 
             // Shutdown File Watcher.
             TAUIConfigManager.Instance.Shutdown();
@@ -191,11 +189,6 @@ namespace DMT
         private void TSBShiftChanged(object sender, EventArgs e)
         {
             RuntimeManager.Instance.RaiseTSBShiftChanged();
-        }
-
-        private void UserShiftChanged(object sender, EventArgs e)
-        {
-            RuntimeManager.Instance.RaiseUserShiftChanged();
         }
     }
 }

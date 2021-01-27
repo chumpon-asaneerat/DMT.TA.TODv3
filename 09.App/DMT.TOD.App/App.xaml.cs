@@ -137,7 +137,6 @@ namespace DMT
             // Set NotifyService
             TODNotifyService.Instance.TSBChanged += TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
-            TODNotifyService.Instance.UserShiftChanged += UserShiftChanged;
 
             Window window = null;
             window = new MainWindow();
@@ -156,7 +155,6 @@ namespace DMT
             // Release NotifyService event.
             TODNotifyService.Instance.TSBChanged -= TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
-            TODNotifyService.Instance.UserShiftChanged -= UserShiftChanged;
 
             // Shutdown File Watcher.
             TODUIConfigManager.Instance.Shutdown();
@@ -205,11 +203,6 @@ namespace DMT
         private void TSBShiftChanged(object sender, EventArgs e)
         {
             RuntimeManager.Instance.RaiseTSBShiftChanged();
-        }
-
-        private void UserShiftChanged(object sender, EventArgs e)
-        {
-            RuntimeManager.Instance.RaiseUserShiftChanged();
         }
     }
 }

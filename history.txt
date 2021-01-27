@@ -47,8 +47,25 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1139
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1138
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1137
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - App.xaml.cs 
+      - Remove all code related to  UserShiftChanged.
+    - RuntimeManager 
+      - Remove UserShiftChanged method and event.
+    - MainWindow.xaml.cs
+      - Remove TANotifyService related code.
+    - HeaderChief.xaml.cs
+      - Replace Get Current TSB from TOD Web Service to Local Database.
+  - DMT.TOD.App
+    - App.xaml.cs 
+      - Remove all code related to  UserShiftChanged.
+    - RuntimeManager 
+      - Remove UserShiftChanged method and event.
+    - MainWindow.xaml.cs
+      - Remove TODNotifyService related code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1136

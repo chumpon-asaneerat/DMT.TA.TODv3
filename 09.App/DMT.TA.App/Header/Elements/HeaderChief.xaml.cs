@@ -12,8 +12,6 @@ using DMT.Services;
 
 namespace DMT.Controls.Header
 {
-    using TODOps = Services.Operations.TOD;
-
     /// <summary>
     /// Interaction logic for HeaderChief.xaml
     /// </summary>
@@ -64,7 +62,7 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            var shift = TODOps.Shift.TSB.Current().Value();
+            var shift = TSB.GetCurrent().Value();
             if (null == shift)
             {
                 txtSupervisorId.Text = "รหัสหัวหน้าด่าน : ";

@@ -47,8 +47,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1129
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1128
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1127
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - UserCreditBalance model all amount allow negative value (becuse this is summary from view not entry).
+    - TSBCreditBalance model all amount allow negative value (becuse this is summary from view not entry).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1126

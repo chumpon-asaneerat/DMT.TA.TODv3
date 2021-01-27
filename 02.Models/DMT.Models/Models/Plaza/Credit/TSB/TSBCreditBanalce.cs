@@ -708,7 +708,6 @@ namespace DMT.Models
 			get { return _AmtST25; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtST25 != value)
 				{
 					_AmtST25 = value;
@@ -733,7 +732,6 @@ namespace DMT.Models
 			get { return _AmtST50; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtST50 != value)
 				{
 					_AmtST50 = value;
@@ -759,7 +757,6 @@ namespace DMT.Models
 			get { return _AmtBHT1; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT1 != value)
 				{
 					_AmtBHT1 = value;
@@ -785,7 +782,6 @@ namespace DMT.Models
 			get { return _AmtBHT2; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT2 != value)
 				{
 					_AmtBHT2 = value;
@@ -811,7 +807,6 @@ namespace DMT.Models
 			get { return _AmtBHT5; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT5 != value)
 				{
 					_AmtBHT5 = value;
@@ -837,7 +832,6 @@ namespace DMT.Models
 			get { return _AmtBHT10; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT10 != value)
 				{
 					_AmtBHT10 = value;
@@ -863,7 +857,6 @@ namespace DMT.Models
 			get { return _AmtBHT20; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT20 != value)
 				{
 					_AmtBHT20 = value;
@@ -889,7 +882,6 @@ namespace DMT.Models
 			get { return _AmtBHT50; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT50 != value)
 				{
 					_AmtBHT50 = value;
@@ -915,7 +907,6 @@ namespace DMT.Models
 			get { return _AmtBHT100; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT100 != value)
 				{
 					_AmtBHT100 = value;
@@ -941,7 +932,6 @@ namespace DMT.Models
 			get { return _AmtBHT500; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT500 != value)
 				{
 					_AmtBHT500 = value;
@@ -967,7 +957,6 @@ namespace DMT.Models
 			get { return _AmtBHT1000; }
 			set
 			{
-				if (value < decimal.Zero) return;
 				if (_AmtBHT1000 != value)
 				{
 					_AmtBHT1000 = value;

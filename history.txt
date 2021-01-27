@@ -44,8 +44,23 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1140
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1139
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1138
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - ApplicationConfigs.cs
+      - TAAppPlazaConfig class -> Remove TODApp property and related code.
+    - TAConfigManager class
+      - Remove ITODAppConfig interface from class declaration.
+      - Remove TODApp property and related code.
+  - DMT.TA.Rest.Server project.
+    - TAWebServer class
+      - Remove Code related to access TODApp from TAConfigManager (comment out for used later).
+  - DMT.TA.App project
+    - TODAppStatus.xaml
+      - Remove Code related to access TODApp from TAConfigManager (comment out for used later).
+    - App.xaml.cs
+      - Remove Code related to access TODApp from TAConfigManager (comment out for used later).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1137

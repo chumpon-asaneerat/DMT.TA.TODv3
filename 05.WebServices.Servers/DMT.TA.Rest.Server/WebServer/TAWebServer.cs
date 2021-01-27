@@ -455,8 +455,11 @@ namespace DMT.Services
             Operations.TAxTOD.Config = TAConfigManager.Instance;
             Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
             // TOD
+            // TODO: Need Check TOD App Implements
+            /*
             Operations.TOD.Config = TAConfigManager.Instance;
             Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
+            */
 
             // RabbitMQ
             RabbitMQService.Instance.Shutdown();
@@ -489,8 +492,11 @@ namespace DMT.Services
             Operations.TAxTOD.Config = TAConfigManager.Instance;
             Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
             // TOD
+            // TODO: Need Check TOD App Implements
+            /*
             Operations.TOD.Config = TAConfigManager.Instance;
             Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
+            */
 
             // Start database server.
             TALocalDbServer.Instance.Start();

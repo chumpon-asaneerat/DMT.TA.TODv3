@@ -380,7 +380,7 @@ namespace DMT.Configurations
     /// TA Config Manager class.
     /// </summary>
     public class TAConfigManager : JsonConfigFileManger<TAAppPlazaConfig>,
-        IDMTConfig, ISCWConfig, ITAxTODConfig, ITAAppConfig, ITODAppConfig
+        IDMTConfig, ISCWConfig, ITAxTODConfig, ITAAppConfig
     {
         #region Static Instance Access
 
@@ -495,17 +495,6 @@ namespace DMT.Configurations
             {
                 if (null == Value) LoadConfig();
                 return (null != Value) ? Value.TAApp : null;
-            }
-        }
-        /// <summary>
-        /// Gets TODApp Config.
-        /// </summary>
-        public TODAppWebServiceConfig TODApp
-        {
-            get
-            {
-                if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TODApp : null;
             }
         }
 

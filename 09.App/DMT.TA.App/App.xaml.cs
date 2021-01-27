@@ -99,7 +99,10 @@ namespace DMT
             TAConfigManager.Instance.LoadConfig();
             TAConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
             // Setup config reference to all rest client class.
+            // TODO: Need Check TOD App Implements
+            /*
             Services.Operations.TOD.Config = TAConfigManager.Instance;
+            */
             Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
 
             Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
@@ -171,7 +174,10 @@ namespace DMT
         {
             // When Service Config file changed.
             // Update all related service operations.
+            // TODO: Need Check TOD App Implements
+            /*
             Services.Operations.TOD.Config = TAConfigManager.Instance;
+            */
             Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
 
             Services.Operations.TAxTOD.Config = TODConfigManager.Instance;

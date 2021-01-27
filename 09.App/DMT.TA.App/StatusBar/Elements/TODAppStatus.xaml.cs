@@ -38,8 +38,12 @@ namespace DMT.Controls.StatusBar
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            // TODO: Need Check TOD App Implements
+            /*
             string host = (null != TAConfigManager.Instance.TODApp && null != TAConfigManager.Instance.TODApp.Service) ?
                 TAConfigManager.Instance.TODApp.Service.HostName : "unknown";
+            */
+            string host = "127.0.0.1";
             int interval = (null != TAUIConfigManager.Instance.TODApp) ?
                 TAUIConfigManager.Instance.TODApp.IntervalSeconds : 5;
             if (interval < 0) interval = 5;
@@ -116,8 +120,12 @@ namespace DMT.Controls.StatusBar
         {
             if (null != ping)
             {
+                // TODO: Need Check TOD App Implements
+                /*
                 string host = (null != TAConfigManager.Instance.TODApp && null != TAConfigManager.Instance.TODApp.Service) ?
                     TAConfigManager.Instance.TODApp.Service.HostName : "unknown";
+                */
+                string host = "127.0.0.1";
                 int interval = (null != TAUIConfigManager.Instance.TODApp) ?
                     TAUIConfigManager.Instance.TODApp.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;

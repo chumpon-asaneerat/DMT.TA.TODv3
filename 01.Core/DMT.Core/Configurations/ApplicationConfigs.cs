@@ -159,7 +159,6 @@ namespace DMT.Configurations
             this.RabbitMQ = new RabbitMQServiceConfig();
             this.TAxTOD = new TAxTODWebServiceConfig();
             this.TAApp = new TAAppWebServiceConfig();
-            this.TODApp = new TODAppWebServiceConfig();
         }
 
         #endregion
@@ -233,16 +232,6 @@ namespace DMT.Configurations
                 code += string.Format("TAApp: {0}",
                     this.TAApp.GetString()) + Environment.NewLine;
             }
-            // TOD Application (Plaza)
-            if (null == this.TODApp)
-            {
-                code += "TODApp: null" + Environment.NewLine;
-            }
-            else
-            {
-                code += string.Format("TODApp: {0}",
-                    this.TODApp.GetString()) + Environment.NewLine;
-            }
             return code;
         }
 
@@ -270,10 +259,6 @@ namespace DMT.Configurations
         /// Gets or sets TA App Service Config (local server).
         /// </summary>
         public TAAppWebServiceConfig TAApp { get; set; }
-        /// <summary>
-        /// Gets or sets TOD App Service Config (local server).
-        /// </summary>
-        public TODAppWebServiceConfig TODApp { get; set; }
 
         #endregion
     }

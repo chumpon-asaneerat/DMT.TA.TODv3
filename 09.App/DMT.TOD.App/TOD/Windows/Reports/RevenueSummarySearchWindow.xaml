@@ -8,7 +8,7 @@
         xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="บันทึกสรุปการส่งเงินประจำวัน"
         Width="600"
-        Height="250"
+        Height="300"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -41,16 +41,18 @@
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
                     <TextBlock Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdCancel"
+                    <ctrl:ImageButton x:Name="cmdOK"
+                                      Click="cmdOK_Click"
                                       DockPanel.Dock="Right"
-                                      ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/OK2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                     </ctrl:ImageButton>
                     <TextBlock Width="5" DockPanel.Dock="Left" />
-                    <ctrl:ImageButton x:Name="cmdBack"
+                    <ctrl:ImageButton x:Name="cmdCancel"
+                                      Click="cmdCancel_Click"
                                       DockPanel.Dock="Left"
-                                      ImageSource="/DMT.TOD.App;component/Images/Button/Home.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>

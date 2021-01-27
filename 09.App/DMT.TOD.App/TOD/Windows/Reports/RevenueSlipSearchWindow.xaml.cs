@@ -37,6 +37,20 @@ namespace DMT.TOD.Windows.Reports
 
         #endregion
 
+        #region Button Handlers
+
+        private void cmdOK_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        #endregion
+
         #region Private Methods
 
         #endregion

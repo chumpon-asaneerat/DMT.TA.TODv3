@@ -300,6 +300,33 @@ namespace DMT
 
             #endregion
 
+            #region Reports
+
+            /// <summary>Gets Revenue Slip Search Window.</summary>
+            public static DMT.TOD.Windows.Reports.RevenueSlipSearchWindow RevenueSlipSearch
+            {
+                get
+                {
+                    var ret = new DMT.TOD.Windows.Reports.RevenueSlipSearchWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            /// <summary>Gets Revenue Summary Search Window.</summary>
+            public static DMT.TOD.Windows.Reports.RevenueSummarySearchWindow RevenueSummarySearch
+            {
+                get
+                {
+                    var ret = new DMT.TOD.Windows.Reports.RevenueSummarySearchWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+
             #region MessageBox(s)
 
             /// <summary>Gets MessageBox Window.</summary>

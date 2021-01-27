@@ -40,12 +40,20 @@ namespace DMT.TOD.Pages.Menu
 
         private void cmdRevenueSlipReport_Click(object sender, RoutedEventArgs e)
         {
-
+            var win = TODApp.Windows.RevenueSlipSearch;
+            win.Setup();
+            if (win.ShowDialog() == false) return;
+            
+            //PageContentManager.Instance.Current = page;
         }
 
         private void cmdRevenueSummaryReport_Click(object sender, RoutedEventArgs e)
         {
+            var win = TODApp.Windows.RevenueSummarySearch;
+            win.Setup();
+            if (win.ShowDialog() == false) return;
 
+            //PageContentManager.Instance.Current = page;
         }
 
         // TEST - PASSED.

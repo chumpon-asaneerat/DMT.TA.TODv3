@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="บันทึกสรุปการส่งเงินประจำวัน"
         Width="600"
         Height="250"

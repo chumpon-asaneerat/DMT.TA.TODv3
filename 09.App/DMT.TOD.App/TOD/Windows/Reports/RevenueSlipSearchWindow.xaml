@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="นำส่งรายได้ย้อนหลัง"
-        Width="550"
-        Height="510"
+        Width="600"
+        Height="450"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -39,13 +39,13 @@
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
-                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <TextBlock Width="5" DockPanel.Dock="Right" />
                     <ctrl:ImageButton x:Name="cmdCancel"
                                       DockPanel.Dock="Right"
                                       ImageSource="/DMT.TOD.App;component/Images/Button/Cancel2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                     </ctrl:ImageButton>
-                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <TextBlock Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdBack"
                                       DockPanel.Dock="Left"
                                       ImageSource="/DMT.TOD.App;component/Images/Button/Home.png">

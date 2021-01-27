@@ -59,8 +59,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1155
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1154
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1153
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - Update RevenueSummarySearchWindow #5.
+    - Update RevenueSlipSearchWindow #5.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1152

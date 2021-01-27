@@ -41,8 +41,20 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1140
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1139
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project.
+    - TALocalDbServer
+      - Tables
+        - Remove UserShift
+        - Remove UserShiftRevenue
+      - View Scripts
+        - Remove UserShiftRevenueView.sql
+        - Remove UserShiftView.sql
+  - DMT.TA.App project
+    - TAAPI class
+      - Remove UnCloseUserShifts static property
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1138

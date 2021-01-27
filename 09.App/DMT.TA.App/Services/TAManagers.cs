@@ -169,18 +169,6 @@ namespace DMT.Services
 
         #endregion
 
-        #region UserShifts
-
-        /// <summary>
-        /// Gets Unclose User Shifts.
-        /// </summary>
-        public static List<UserShift> UnCloseUserShifts
-        {
-            get { return UserShift.GetUnCloseUserShifts().Value(); }
-        }
-
-        #endregion
-
         #endregion
 
         #region Static Methods

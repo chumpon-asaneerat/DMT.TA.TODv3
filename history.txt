@@ -50,8 +50,35 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1138
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1137
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1136
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server
+    - TA Actions
+      - TA->Credit->TSB Remove all Actions.
+      - TA->Shift->TSB Remove Change Action.
+      - TA->Shift->User Remove all Actions.
+      - TA->Notify Remove UserShiftChanged Action.
+    - TANotifyService.cs
+      - Remove RaiseUserShiftChanged method.
+      - Remove UserShiftChanged event.
+    - TAWebServer.cs
+      - Remove Notify UserShiftChanged map route.
+      - Remove Shift->TSB all map routes
+      - Remove Shift->User all map routes
+      - Remove Credit->TSB all map routes
+  - DMT.TOD.Rest.Server
+    - TOD Actions
+      - TOD->Shift->TSB Remove all Actions.
+      - TOD->Shift->User Remove all Actions.
+      - TOD->Notify Remove UserShiftChanged Action.
+    - TODNotifyService.cs
+      - Remove RaiseUserShiftChanged method.
+      - Remove UserShiftChanged event.
+    - TODWebServer.cs
+      - Remove Notify UserShiftChanged map route.
+      - Remove Shift->TSB all map routes
+      - Remove Shift->User all map routes
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1135

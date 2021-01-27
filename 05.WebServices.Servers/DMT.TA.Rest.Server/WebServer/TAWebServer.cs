@@ -68,11 +68,6 @@ namespace DMT.Services
                     actionName = RouteConsts.TA.Notify.TSBShiftChanged.Name;
                     actionUrl = RouteConsts.TA.Notify.TSBShiftChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
-
-                    // User Shift Changed
-                    actionName = RouteConsts.TA.Notify.UserShiftChanged.Name;
-                    actionUrl = RouteConsts.TA.Notify.UserShiftChanged.Url;
-                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }
 
@@ -225,6 +220,7 @@ namespace DMT.Services
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }
+
                 internal static class User
                 {
                     internal static void MapRoutes(HttpConfiguration config)
@@ -291,27 +287,10 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TA.Shift.Gets.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
-
-                internal static class User
-                {
-                    internal static void MapRoutes(HttpConfiguration config)
-                    {
-                        /*
-                        string controllerName, actionName, actionUrl;
-
-                        // Set Controller Name.
-                        controllerName = RouteConsts.Shift.User.ControllerName;
-
-                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
-                        */
-                    }
-                }
             }
 
             internal static class Credit
             {
-                internal static class TSB { }
-
                 internal static class User
                 {
                     internal static void MapRoutes(HttpConfiguration config)
@@ -372,8 +351,6 @@ namespace DMT.Services
 
             // Shift
             MapControllers.Shift.MapRoutes(config);
-            // Shift (User)
-            MapControllers.Shift.User.MapRoutes(config);
 
             // Credit (User)
             MapControllers.Credit.User.MapRoutes(config);

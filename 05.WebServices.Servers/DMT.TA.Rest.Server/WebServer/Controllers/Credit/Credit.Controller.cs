@@ -13,20 +13,11 @@ namespace DMT.Services
     /// </summary>
     public partial class Credit
     {
-        /// <summary>The TSB Controller class.</summary>
-        [Authorize]
-        public partial class TSBController : ApiController { }
-
         /// <summary>The User Controller class.</summary>
         [Authorize]
         public partial class UserController : ApiController { }
     }
 
-    // Exports nested class to controller(s)
-    /// <summary>
-    /// The TSB Credit's Manage Controller class.
-    /// </summary>
-    public class TAATSBCreditManageController : Credit.TSBController { }
     /// <summary>
     /// The User Credit's Manage Controller class.
     /// </summary>

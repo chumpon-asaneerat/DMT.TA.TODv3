@@ -9,20 +9,18 @@ using DMT.Models;
 
 namespace DMT.Services
 {
-    /*
-    partial class Credit
+    partial class Shift
     {
         partial class TSBController
         {
             [HttpPost]
-            [ActionName(RouteConsts.TA.Credit.TSB.Current.Name)]
+            [ActionName(RouteConsts.TA.Shift.TSB.Current.Name)]
             //[AllowAnonymous]
-            public NDbResult<TSBCreditBalance> Current()
+            public NDbResult<TSBShift> Current()
             {
-                var ret = TSBCreditBalance.GetCurrent();
+                var ret = TSBShift.GetTSBShift();
                 return ret;
             }
         }
     }
-    */
 }

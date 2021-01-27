@@ -72,13 +72,6 @@ namespace DMT.Services
         {
             TSBShiftChanged.Call(this, EventArgs.Empty);
         }
-        /// <summary>
-        /// Raise User Shift Changed event.
-        /// </summary>
-        public void RaiseUserShiftChanged()
-        {
-            UserShiftChanged.Call(this, EventArgs.Empty);
-        }
 
         #endregion
 
@@ -92,10 +85,6 @@ namespace DMT.Services
         /// The TSBShiftChanged Event Handler
         /// </summary>
         public event EventHandler TSBShiftChanged;
-        /// <summary>
-        /// The UserShiftChanged Event Handler
-        /// </summary>
-        public event EventHandler UserShiftChanged;
 
         #endregion
     }

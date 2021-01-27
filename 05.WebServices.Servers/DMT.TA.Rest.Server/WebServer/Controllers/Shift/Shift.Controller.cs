@@ -20,10 +20,6 @@ namespace DMT.Services
         /// <summary>The TSB Controller class.</summary>
         [Authorize]
         public partial class TSBController : ApiController { }
-
-        /// <summary>The User Controller class.</summary>
-        [Authorize]
-        public partial class UserController : ApiController { }
     }
 
     // Exports nested class to controller(s)
@@ -35,8 +31,4 @@ namespace DMT.Services
     /// The TSB Shift's Manage Controller class.
     /// </summary>
     public class TAATSBShiftManageController : Shift.TSBController { }
-    /// <summary>
-    /// The User Shift's Manage Controller class.
-    /// </summary>
-    public class TAAUserShiftManageController : Shift.UserController { }
 }

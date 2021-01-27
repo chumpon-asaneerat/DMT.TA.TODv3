@@ -72,7 +72,7 @@
                             <TextBlock x:Name="txtBagID"
                                        FontSize="30"
                                        FontWeight="Bold"
-                                       Foreground="Red" />
+                                       Foreground="Yellow" />
                         </StackPanel>
                         <StackPanel Margin="5"
                                     HorizontalAlignment="Center"
@@ -82,12 +82,12 @@
                                        FontWeight="Bold"
                                        Foreground="WhiteSmoke"
                                        Text="จำนวนเงิน :" />
-                            <TextBlock Width="5" />
+                            <TextBlock Width="10" />
                             <TextBlock x:Name="txtAmount"
                                        FontSize="30"
                                        FontWeight="Bold"
-                                       Foreground="Red" />
-                            <TextBlock Width="5" />
+                                       Foreground="Yellow" />
+                            <TextBlock Width="10" />
                             <TextBlock FontSize="30"
                                        FontWeight="Bold"
                                        Foreground="WhiteSmoke"
@@ -115,9 +115,10 @@
                             <PasswordBox x:Name="txtPassword"
                                          util:FocusOptions.SelectAll="True"
                                          util:KeyboardOptions.Enabled="True"
-                                         util:KeyboardOptions.EnterAsTab="True"
+                                         util:KeyboardOptions.EnterAsTab="False"
                                          util:KeyboardOptions.LeftRightNavigation="False"
                                          util:KeyboardOptions.UpDownNavigation="True"
+                                         KeyDown="txtPassword_KeyDown"
                                          PasswordChar="*"
                                          Style="{StaticResource CommonPwdBox}" />
                             <Grid Height="5" />
@@ -127,7 +128,7 @@
                         <TextBlock Name="txtMsg"
                                    FontSize="20"
                                    FontWeight="ExtraBold"
-                                   Foreground="Red"
+                                   Foreground="DarkOrange"
                                    Text=""
                                    TextAlignment="Center" />
                     </StackPanel>

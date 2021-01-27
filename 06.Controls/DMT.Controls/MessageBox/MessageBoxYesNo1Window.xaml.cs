@@ -66,20 +66,15 @@ namespace DMT.Windows
         /// Setup.
         /// </summary>
         /// <param name="msg1"></param>
-        /// <param name="msg2"></param>
-        /// <param name="red"></param>
+        /// <param name="userName"></param>
+        /// <param name="amount"></param>
         /// <param name="head"></param>
-        public void Setup(string msg1, string msg2, bool red, string head)
+        public void Setup(string msg1, string userName, string amount, string head)
         {
             this.Title = head;
             txtMsg1.Text = msg1;
-            txtMsg2.Text = msg2;
-
-            if (red)
-            {
-                txtMsg1.Foreground = new SolidColorBrush(Colors.Red);
-                txtMsg2.Foreground = new SolidColorBrush(Colors.Red);
-            }
+            txtUserName.Text = userName;
+            txtAmount.Text = amount;
 
             // Focus on Ok button.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

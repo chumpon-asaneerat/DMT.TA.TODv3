@@ -40,6 +40,19 @@ namespace DMT.TA.Windows.Credit
 
         #endregion
 
+        #region TextBox Handlers
+
+        private void txtPassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter || e.Key == System.Windows.Input.Key.Return)
+            {
+                CheckUser();
+                e.Handled = true;
+            }
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)

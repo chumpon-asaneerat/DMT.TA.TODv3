@@ -86,13 +86,17 @@
                                FontSize="30"
                                Style="{StaticResource TextMessageStyle}"
                                TextWrapping="Wrap" />
-                    <TextBlock x:Name="txtMsg2"
-                               Grid.Row="2"
+                    <TextBlock Grid.Row="3"
                                Grid.Column="1"
                                Margin="3"
                                FontSize="30"
                                Style="{StaticResource TextMessageStyle}"
-                               TextWrapping="Wrap" />
+                               TextWrapping="Wrap">
+                        <Run x:Name="txtUserName" Foreground="Yellow" />
+                        <Run Text=" จำนวนเงิน " />
+                        <Run x:Name="txtAmount" Foreground="DarkOrange" />
+                        <Run Text=" บาท " />
+                    </TextBlock>
                 </Grid>
             </DockPanel>
         </Grid>

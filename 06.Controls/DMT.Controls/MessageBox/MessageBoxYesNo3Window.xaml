@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Width="600"
-        Height="280"
+        Height="300"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         PreviewKeyDown="Window_PreviewKeyDown"

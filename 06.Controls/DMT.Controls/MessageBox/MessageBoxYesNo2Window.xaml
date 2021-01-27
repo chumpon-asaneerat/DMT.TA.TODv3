@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Width="600"
-        Height="220"
+        Height="300"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         PreviewKeyDown="Window_PreviewKeyDown"
@@ -72,7 +72,7 @@
                     <!--  LINE 1  -->
                     <TextBlock x:Name="txtMsg1"
                                DockPanel.Dock="Top"
-                               Foreground="Black"
+                               Foreground="WhiteSmoke"
                                Style="{StaticResource TextMessageStyle}" />
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
@@ -81,16 +81,16 @@
                                 VerticalAlignment="Center"
                                 Orientation="Horizontal">
                         <TextBlock x:Name="txtMsg2"
-                                   Foreground="Red"
+                                   Foreground="DarkOrange"
                                    Style="{StaticResource TextMessageStyle}" />
                         <TextBlock x:Name="txtMsg3"
-                                   Foreground="Black"
+                                   Foreground="WhiteSmoke"
                                    Style="{StaticResource TextMessageStyle}" />
                         <TextBlock x:Name="txtMsg4"
-                                   Foreground="Red"
+                                   Foreground="DarkOrange"
                                    Style="{StaticResource TextMessageStyle}" />
                         <TextBlock x:Name="txtMsg5"
-                                   Foreground="Black"
+                                   Foreground="WhiteSmoke"
                                    Style="{StaticResource TextMessageStyle}" />
                     </StackPanel>
                 </DockPanel>

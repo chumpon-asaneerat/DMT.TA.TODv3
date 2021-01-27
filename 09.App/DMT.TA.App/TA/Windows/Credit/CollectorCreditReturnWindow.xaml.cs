@@ -53,10 +53,11 @@ namespace DMT.TA.Windows.Credit
             if (null != manager.UserBalance && null != manager.Transaction)
             {
                 string msg1 = "ยืนยันการคืนเงิน ยืมทอน";
-                string msg2 = manager.UserBalance.FullNameTH + " จำนวนเงิน " + manager.Transaction.BHTTotal.ToString("#,##0") + " บาท";
+                string usr = manager.UserBalance.FullNameTH;
+                string amt = manager.Transaction.BHTTotal.ToString("n0");
 
                 var win = TAApp.Windows.MessageBoxYesNo1;
-                win.Setup(msg1, msg2, true, "DMT - Toll Admin");
+                win.Setup(msg1, usr, amt, "DMT - Toll Admin");
                 if (win.ShowDialog() == true)
                 {
                     if (manager.Save())

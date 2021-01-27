@@ -44,8 +44,31 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1130
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1129
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1128
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - MessageBox Windows
+      - MessageBoxWindow
+        - Change Height from 250 to 300.
+      - MessageBoxYesNo1Window
+        - Change Color Red to DarkOrange
+        - Split txtMsg2 to txtUserName and txtAmount.
+        - txtUserName set Color to Yellow
+        - txtAmount set Color to DarkOrange
+      - MessageBoxYesNo2Window
+        - Change Height from 220 to 300.
+        - Change Color Red to DarkOrange
+        - Change Color Black to WhiteSmoke
+      - MessageBoxYesNo3Window
+        - Change Height from 220 to 300.
+      - MessageBoxYesNoWindow
+        - Change Height from 220 to 300.
+  - DMT.TA.App project
+    - CollectorReceivedBagWindow
+      - Add KeyDown Handler for Password Box.
+      - Change BagNo, Amount Color from Red to Yellow
+      - Change Error Message Color from Red to DarkOrange
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1127

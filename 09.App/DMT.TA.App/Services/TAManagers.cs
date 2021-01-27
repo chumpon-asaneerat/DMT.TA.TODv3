@@ -952,9 +952,23 @@ namespace DMT.Services
                     UserBalance.TSBId = PlazaGroup.TSBId;
                     UserBalance.PlazaGroupId = PlazaGroup.PlazaGroupId;
                 }
-                UserBalance.State = UserCreditBalance.StateTypes.Initial;
+
+                var exist = UserCreditBalance.GetCurrentBalance(UserBalance.UserId, UserBalance.PlazaGroupId).Value();
+                if (null != exist && exist.UserCreditId != 0)
+                {
+                    // Already exist so used exist id instead.
+                    UserBalance.UserCreditId = exist.UserCreditId;
+                    UserBalance.State = exist.State; // Update Balance State.
+                }
+                else
+                {
+                    // Not exist so set Balance State to initial.
+                    UserBalance.State = UserCreditBalance.StateTypes.Initial;
+                }
+                // Save.
                 var newBalance = UserCreditBalance.SaveUserCreditBalance(UserBalance).Value();
                 int pkid = (null != newBalance) ? newBalance.UserCreditId : 0;
+                // Resync Id.
                 UserBalance.UserCreditId = pkid;
             }
             // Save User Credit Transaction.

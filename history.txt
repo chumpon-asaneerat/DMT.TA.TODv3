@@ -65,8 +65,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1123
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1122
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1121
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - UserCreditBorrowManager class add Check exist UserCredit when Save via both Add Collector or Borrow.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1120

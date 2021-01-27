@@ -25,12 +25,12 @@ namespace DMT
                     public const string Url = Coupon.Url + @"/" + Name;
                 }
 
-                // Url: /api/users/coupons/getlist
+                // Url: /api/users/coupons/getlist2
                 /// <summary>The Gets Class.</summary>
                 public static partial class Gets
                 {
                     /// <summary>Gets route name.</summary>
-                    public const string Name = "getlist";
+                    public const string Name = "getlist2";
                     /// <summary>Gets route url.</summary>
                     public const string Url = Coupon.Url + @"/" + Name;
                 }

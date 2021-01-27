@@ -62,8 +62,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1134
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1133
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1132
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TODManagers
+      - PaymentManager
+        - LoadEMVItems, LoadQRCodeItems - Add check code for Current.UserShifts and Current.TSBPlazas.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1131

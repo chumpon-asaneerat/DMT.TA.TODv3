@@ -1208,13 +1208,13 @@ namespace DMT.Services
             List<LaneEMV> items = new List<LaneEMV>();
             List<LaneEMV> sortList = new List<LaneEMV>();
 
-            if (null != User && null != Current && null != Current.TSB && null != Current.TSBPlazas)
+            if (null != User && null != Current && null != 
+                Current.TSB && null != Current.UserShifts && null != Current.TSBPlazas)
             {
                 var plazas = (null != PlazaGroup) ?
                     Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
 
                 int networkId = TODAPI.NetworkId;
-                //var userShift = UserShift.GetUserShift(User.UserId).Value();
                 var userShift = Current.UserShifts.Shift;
 
                 if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
@@ -1277,13 +1277,13 @@ namespace DMT.Services
             List<LaneQRCode> items = new List<LaneQRCode>();
             List<LaneQRCode> sortList = new List<LaneQRCode>();
 
-            if (null != User && null != Current && null != Current.TSB)
+            if (null != User && null != Current && 
+                null != Current.TSB && null != Current.UserShifts && null != Current.TSBPlazas)
             {
                 var plazas = (null != PlazaGroup) ? 
                     Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
 
                 int networkId = TODAPI.NetworkId;
-                //var userShift = UserShift.GetUserShift(User.UserId).Value();
                 var userShift = Current.UserShifts.Shift;
 
                 if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)

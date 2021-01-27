@@ -233,6 +233,9 @@
     <Compile Include="TOD\Pages\Menu\ReportMenu.xaml.cs">
       <DependentUpon>ReportMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TOD\Windows\Reports\RevenueSlipSearchWindow.xaml.cs">
+      <DependentUpon>RevenueSlipSearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TOD\Windows\UserShifts\BOSWindow.xaml.cs">
       <DependentUpon>BOSWindow.xaml</DependentUpon>
     </Compile>
@@ -371,6 +374,10 @@
     <Page Include="TOD\Pages\Menu\ReportMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TOD\Windows\Reports\RevenueSlipSearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TOD\Windows\UserShifts\BOSWindow.xaml">
       <SubType>Designer</SubType>

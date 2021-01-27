@@ -268,7 +268,7 @@ namespace DMT.Models
         {
             base.DbConenctFailed();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Unknown Error.
@@ -277,7 +277,7 @@ namespace DMT.Models
         {
             base.UnknownError();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Parameter Is Null Error.
@@ -286,7 +286,7 @@ namespace DMT.Models
         {
             base.ParameterIsNull();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Success.
@@ -297,7 +297,7 @@ namespace DMT.Models
         {
             base.Success();
             this.data = (null != data) ? data : DefaultData();
-            this.@out = (null != output) ? output : DefaultOutput();
+            this.Output = (null != output) ? output : DefaultOutput();
         }
         /// <summary>
         /// Set Error.
@@ -307,7 +307,7 @@ namespace DMT.Models
         {
             base.Error(ex);
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
 
         #endregion
@@ -326,17 +326,24 @@ namespace DMT.Models
             get { return (null != this.data); }
             set { }
         }
-
+        /// <summary>
+        /// Gets Output Instance (for serialized).
+        /// </summary>
+        public O @out { get; set; }
         /// <summary>
         /// Gets Output Instance.
         /// </summary>
-        public O @out { get; set; }
+        public O Output
+        { 
+            get { return this.@out; }
+            set { this.@out = value; } 
+        }
         /// <summary>
         /// Checks if has ouput (not null)
         /// </summary>
         public bool HasOutput 
         { 
-            get { return (null != this.@out); }
+            get { return (null != this.Output); }
             set { }
         }
 
@@ -439,8 +446,8 @@ namespace DMT.Models
             where T : new()
             where O : new()
         {
-            O ret = (null != value && !value.errors.hasError && null != value.@out) ?
-                value.@out : DefaultOutput<O>();
+            O ret = (null != value && !value.errors.hasError && null != value.Output) ?
+                value.Output : DefaultOutput<O>();
             return ret;
         }
 

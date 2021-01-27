@@ -217,7 +217,7 @@ namespace DMT.Services
                         else
                         {
                             ret.data = (null != obj) ? obj.data : NDbResult<TReturn, TOut>.DefaultData();
-                            ret.@out = (null != obj) ? obj.@out : NDbResult<TReturn, TOut>.DefaultOutput();
+                            ret.Output = (null != obj) ? obj.Output : NDbResult<TReturn, TOut>.DefaultOutput();
                         }
                     }
                     else

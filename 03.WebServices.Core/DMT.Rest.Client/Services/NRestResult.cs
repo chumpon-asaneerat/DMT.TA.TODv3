@@ -319,10 +319,7 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NRestResult() : base() 
-        {
-            this.@out = DefaultOutput();
-        }
+        public NRestResult() : base() { }
 
         #endregion
 
@@ -335,7 +332,7 @@ namespace DMT.Services
         {
             base.RestConenctFailed();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Web Service (REST API) Response Error.
@@ -344,7 +341,7 @@ namespace DMT.Services
         {
             base.RestResponseError();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Web Service (REST API) Invalid Config Error.
@@ -353,7 +350,7 @@ namespace DMT.Services
         {
             base.RestInvalidConfig();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Unknown Error.
@@ -362,7 +359,7 @@ namespace DMT.Services
         {
             base.UnknownError();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Parameter Is Null Error.
@@ -371,7 +368,7 @@ namespace DMT.Services
         {
             base.ParameterIsNull();
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
         /// <summary>
         /// Set Success.
@@ -382,7 +379,7 @@ namespace DMT.Services
         {
             base.Success();
             this.data = (null != data) ? data : DefaultData();
-            this.@out = (null != output) ? output : DefaultOutput();
+            this.Output = (null != output) ? output : DefaultOutput();
         }
         /// <summary>
         /// Set Error.
@@ -392,7 +389,7 @@ namespace DMT.Services
         {
             base.Error(ex);
             this.data = DefaultData();
-            this.@out = DefaultOutput();
+            this.Output = DefaultOutput();
         }
 
         #endregion
@@ -413,15 +410,23 @@ namespace DMT.Services
         }
 
         /// <summary>
-        /// Gets Output Instance.
+        /// Gets Output Instance (for serialized).
         /// </summary>
         public O @out { get; set; }
+        /// <summary>
+        /// Gets Output Instance.
+        /// </summary>
+        public O Output
+        {
+            get { return this.@out; }
+            set { this.@out = value; }
+        }
         /// <summary>
         /// Checks if has ouput (not null).
         /// </summary>
         public bool HasOutput 
         { 
-            get { return (null != this.@out); }
+            get { return (null != this.Output); }
             set { }
         }
 
@@ -548,7 +553,7 @@ namespace DMT.Services
                 ret.data = value.data;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
-                ret.@out = value.@out;
+                ret.Output = value.Output;
             }
             else
             {
@@ -601,8 +606,8 @@ namespace DMT.Services
             where T : new()
             where O : new()
         {
-            O ret = (null != value && !value.errors.hasError && null != value.@out) ?
-                value.@out : DefaultOutput<O>();
+            O ret = (null != value && !value.errors.hasError && null != value.Output) ?
+                value.Output : DefaultOutput<O>();
             return ret;
         }
 

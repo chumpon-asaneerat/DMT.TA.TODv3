@@ -50,7 +50,7 @@ namespace DMT.Simulator.Pages
             if (null != para)
             {
                 var ret = taServerops.Coupon.Gets(para);
-                pGrid2.SelectedObject = ret.@out;
+                pGrid2.SelectedObject = ret.Output;
                 grid.ItemsSource = ret.Value();
             }
         }

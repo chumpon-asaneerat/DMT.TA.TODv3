@@ -39,14 +39,6 @@ namespace DMT.Models
         [PropertyMapName("Price")]
         public decimal? Price { get; set; }
 
-        /// <summary>Gets or sets CouponStatus.</summary>
-        [PropertyMapName("CouponStatus")]
-        public int? CouponStatus { get; set; }
-
-        /// <summary>Gets or sets LaneId.</summary>
-        [PropertyMapName("LaneId")]
-        public string LaneId { get; set; }
-
         /// <summary>Gets or sets UserId.</summary>
         [PropertyMapName("UserId")]
         public string UserId { get; set; }
@@ -55,6 +47,10 @@ namespace DMT.Models
         [PropertyMapName("UserReceiveDate")]
         public DateTime? UserReceiveDate { get; set; }
 
+        /// <summary>Gets or sets CouponStatus.</summary>
+        [PropertyMapName("CouponStatus")]
+        public int? CouponStatus { get; set; }
+
         /// <summary>Gets or sets SoldDate.</summary>
         [PropertyMapName("SoldDate")]
         public DateTime? SoldDate { get; set; }
@@ -62,6 +58,10 @@ namespace DMT.Models
         /// <summary>Gets or sets SoldBy.</summary>
         [PropertyMapName("SoldBy")]
         public string SoldBy { get; set; }
+
+        /// <summary>Gets or sets LaneId.</summary>
+        [PropertyMapName("LaneId")]
+        public string LaneId { get; set; }
 
         /// <summary>Gets or sets FinishFlag.</summary>
         [PropertyMapName("FinishFlag")]
@@ -74,6 +74,26 @@ namespace DMT.Models
         /// <summary>Gets or sets SapChooseDate.</summary>
         [PropertyMapName("SapChooseDate")]
         public DateTime? SapChooseDate { get; set; }
+
+        /// <summary>Gets or sets SAPSysSerial.</summary>
+        [PropertyMapName("SAPSysSerial")]
+        public string SAPSysSerial { get; set; }
+
+        /// <summary>Gets or sets SAPWhsCode.</summary>
+        [PropertyMapName("SAPWhsCode")]
+        public string SAPWhsCode { get; set; }
+
+        /// <summary>Gets or sets TollWayId.</summary>
+        [PropertyMapName("TollWayId")]
+        public int? TollWayId { get; set; }
+
+        /// <summary>Gets or sets SAPItemName.</summary>
+        [PropertyMapName("SAPItemName")]
+        public string SAPItemName { get; set; }
+
+        /// <summary>Gets or sets sendtaflag.</summary>
+        [PropertyMapName("sendtaflag")]
+        public int? sendtaflag { get; set; }
     }
 
     static partial class Search
@@ -108,6 +128,15 @@ namespace DMT.Models
                     /// </summary>
                     public int? Coupontype { get; set; }
 
+                    /// <summary>
+                    /// Gets or sets PageNum.
+                    /// </summary>
+                    public int? PageNum { get; set; }
+                    /// <summary>
+                    /// Gets or sets RowsPerPage.
+                    /// </summary>
+                    public int? RowsPerPage { get; set; }
+
                     #endregion
 
                     #region Static Method (Create)
@@ -119,15 +148,20 @@ namespace DMT.Models
                     /// <param name="userId">The User Id.</param>
                     /// <param name="transactionType">The Transaction Type.</param>
                     /// <param name="coupontype">The Coupon Type.</param>
+                    /// <param name="pageNum">The Page No.</param>
+                    /// <param name="rowsPerPage">The Rows Per Page.</param>
                     /// <returns>Returns Search instance.</returns>
                     public static Gets Create(string tsbId, string userId = null, 
-                        int? transactionType = null, int? coupontype = null)
+                        int? transactionType = null, int? coupontype = null,
+                        int? pageNum = 1, int? rowsPerPage = 20)
                     {
                         var ret = new Gets();
                         ret.TSBId = tsbId;
                         ret.UserId = userId;
                         ret.TransactionType = transactionType;
                         ret.Coupontype = coupontype;
+                        ret.PageNum = pageNum;
+                        ret.RowsPerPage = rowsPerPage;
                         return ret;
                     }
 

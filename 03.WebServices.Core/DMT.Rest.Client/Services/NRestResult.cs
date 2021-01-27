@@ -39,6 +39,37 @@ namespace DMT.Services
 
     #endregion
 
+    #region NRestOut
+
+    /// <summary>
+    /// The NRestOut class.
+    /// </summary>
+    public class NRestOut
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets PageNum.
+        /// </summary>
+        public int? PageNum { get; set; }
+        /// <summary>
+        /// Gets or sets RowsPerPage.
+        /// </summary>
+        public int? RowsPerPage { get; set; }
+        /// <summary>
+        /// Gets or sets TotalRecords.
+        /// </summary>
+        public int? TotalRecords { get; set; }
+        /// <summary>
+        /// Gets or sets MaxPage.
+        /// </summary>
+        public int? MaxPage { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
     #region NRestResult
 
     /// <summary>
@@ -299,7 +330,7 @@ namespace DMT.Services
         {
             base.RestConenctFailed();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.Out = DefaultOutput();
         }
         /// <summary>
         /// Set Web Service (REST API) Response Error.
@@ -308,7 +339,7 @@ namespace DMT.Services
         {
             base.RestResponseError();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.Out = DefaultOutput();
         }
         /// <summary>
         /// Set Web Service (REST API) Invalid Config Error.
@@ -317,7 +348,7 @@ namespace DMT.Services
         {
             base.RestInvalidConfig();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.Out = DefaultOutput();
         }
         /// <summary>
         /// Set Unknown Error.
@@ -326,7 +357,7 @@ namespace DMT.Services
         {
             base.UnknownError();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.Out = DefaultOutput();
         }
         /// <summary>
         /// Set Parameter Is Null Error.
@@ -335,7 +366,7 @@ namespace DMT.Services
         {
             base.ParameterIsNull();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.Out = DefaultOutput();
         }
         /// <summary>
         /// Set Success.
@@ -346,7 +377,7 @@ namespace DMT.Services
         {
             base.Success();
             this.data = (null != data) ? data : DefaultData();
-            this.output = (null != output) ? output : DefaultOutput();
+            this.Out = (null != output) ? output : DefaultOutput();
         }
         /// <summary>
         /// Set Error.
@@ -356,7 +387,7 @@ namespace DMT.Services
         {
             base.Error(ex);
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.Out = DefaultOutput();
         }
 
         #endregion
@@ -379,13 +410,13 @@ namespace DMT.Services
         /// <summary>
         /// Gets Output Instance.
         /// </summary>
-        public O output { get; set; }
+        public O Out { get; set; }
         /// <summary>
         /// Checks if has ouput (not null).
         /// </summary>
         public bool HasOutput 
         { 
-            get { return (null != this.output); }
+            get { return (null != this.Out); }
             set { }
         }
 
@@ -512,7 +543,7 @@ namespace DMT.Services
                 ret.data = value.data;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
-                ret.output = value.output;
+                ret.Out = value.output;
             }
             else
             {
@@ -565,8 +596,8 @@ namespace DMT.Services
             where T : new()
             where O : new()
         {
-            O ret = (null != value && !value.errors.hasError && null != value.output) ?
-                value.output : DefaultOutput<O>();
+            O ret = (null != value && !value.errors.hasError && null != value.Out) ?
+                value.Out : DefaultOutput<O>();
             return ret;
         }
 

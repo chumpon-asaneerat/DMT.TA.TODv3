@@ -59,8 +59,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1145
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1144
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1143
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update TAServerCouponTransaction.cs
+      - Update TAServerCouponTransaction class properties.
+      - Update Coupon->Get Search class
+        - Add PageNum property
+        - Add RowsPerPage property
+  - DMT.Rest.Client project
+    - Add NRestOut class
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1142

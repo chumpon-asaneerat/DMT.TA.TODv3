@@ -249,7 +249,9 @@ namespace DMT.TOD.Pages.Revenue
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("กรุณาระบุ หมายเลขถุงเงิน", "DMT - Tour of Duty");
                 win.ShowDialog();
+
                 entry.FocusBagNo();
+
                 return;
             }
             if (!entry.HasBeltNo)
@@ -257,7 +259,9 @@ namespace DMT.TOD.Pages.Revenue
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("กรุณาระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Tour of Duty");
                 win.ShowDialog();
+
                 entry.FocusBeltNo();
+
                 return;
             }
 
@@ -389,7 +393,8 @@ namespace DMT.TOD.Pages.Revenue
                 win.Setup("กะปัจจุบันยังป้อนรายได้ไม่ครบ ต้องการป้อนรายได้ต่อหรือไม่ ?", "DMT - Tour of Duty");
                 if (win.ShowDialog() == true)
                 {
-                    Setup(manager.User); // Goback to first page.
+                    var user = manager.User;
+                    Setup(user); // Goback to first page.
                 }
                 else
                 {

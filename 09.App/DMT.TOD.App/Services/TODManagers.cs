@@ -1214,7 +1214,8 @@ namespace DMT.Services
                     Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
 
                 int networkId = TODAPI.NetworkId;
-                var userShift = UserShift.GetUserShift(User.UserId).Value();
+                //var userShift = UserShift.GetUserShift(User.UserId).Value();
+                var userShift = Current.UserShifts.Shift;
 
                 if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
                 {
@@ -1282,7 +1283,8 @@ namespace DMT.Services
                     Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
 
                 int networkId = TODAPI.NetworkId;
-                var userShift = UserShift.GetUserShift(User.UserId).Value();
+                //var userShift = UserShift.GetUserShift(User.UserId).Value();
+                var userShift = Current.UserShifts.Shift;
 
                 if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
                 {

@@ -160,6 +160,8 @@ namespace DMT.TOD.Controls.Revenue
         /// </summary>
         public void FocusBagNo()
         {
+            if (tabs.SelectedIndex != 0) tabs.SelectedIndex = 0;
+
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
                 txtBagNo.Focus();
@@ -171,6 +173,8 @@ namespace DMT.TOD.Controls.Revenue
         /// </summary>
         public void FocusBeltNo()
         {
+            if (tabs.SelectedIndex != 0) tabs.SelectedIndex = 0;
+
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
                 txtBeltNo.Focus();

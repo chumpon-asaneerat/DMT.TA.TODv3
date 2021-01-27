@@ -65,8 +65,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1133
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1132
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1131
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - RevenueEntry Control
+      - Add auto change tab when need focus on BagNo, BeltNo.
+    - TODManagers
+      - PaymentManager
+        - LoadEMVItems, LoadQRCodeItems - UserShift now get from CurrentTSBManager.
+    - ChiefRevenueEntry Page
+      - Update code to set User After print and need to enter another Revenue Entry.
+    - CollectorRevenueEntry Page
+      - Update code to set User After print and need to enter another Revenue Entry.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1130

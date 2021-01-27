@@ -99,6 +99,9 @@
     <Compile Include="Simulator\Pages\LaneActivityPage.xaml.cs">
       <DependentUpon>LaneActivityPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Simulator\Pages\TAServerGetCoupon.xaml.cs">
+      <DependentUpon>TAServerGetCoupon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Simulator\Windows\PaymentWindow.xaml.cs">
       <DependentUpon>PaymentWindow.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
     <Page Include="Simulator\Pages\LaneActivityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Simulator\Pages\TAServerGetCoupon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Simulator\Windows\PaymentWindow.xaml">
       <SubType>Designer</SubType>
@@ -267,6 +274,10 @@
     <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TA.Rest.Client\DMT.TA.Rest.Client.csproj">
       <Project>{b0d8bcd7-ce8f-41b9-9ad1-0d2b0be7e45d}</Project>
       <Name>DMT.TA.Rest.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TAxTOD.Rest.Client\DMT.TAxTOD.Rest.Client.csproj">
+      <Project>{78d73003-864f-4c0e-81f2-21f721388f4d}</Project>
+      <Name>DMT.TAxTOD.Rest.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\04.WebServices.Clients\DMT.TOD.Rest.Client\DMT.TOD.Rest.Client.csproj">
       <Project>{cda29d61-9f4f-46f2-a256-81a32b1d7e52}</Project>

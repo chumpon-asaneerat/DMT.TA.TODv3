@@ -89,6 +89,9 @@ namespace DMT
         private void cmdTSBLaneSoldCoupon_Click(object sender, RoutedEventArgs e)
         {
             //PageContentManager.Instance.Current = new Simulator.Pages.TSBLaneSoldCouponPage();
+            var page = SimApp.Pages.TAServerGetCoupon;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void cmdTSBPlazaSoldCoupon_Click(object sender, RoutedEventArgs e)

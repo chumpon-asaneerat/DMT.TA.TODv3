@@ -108,6 +108,10 @@ namespace DMT
 
             Services.Operations.SCW.Config = PlazaAppConfigManager.Instance;
             Services.Operations.SCW.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.TAxTOD.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
             PlazaAppConfigManager.Instance.Start(); // Start File Watcher.
 
             Window window = null;
@@ -152,6 +156,9 @@ namespace DMT
 
             Services.Operations.SCW.Config = PlazaAppConfigManager.Instance;
             Services.Operations.SCW.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
+
+            Services.Operations.TAxTOD.Config = PlazaAppConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = PlazaAppConfigManager.Instance; // required for NetworkId
         }
 
         private void SetupExceptionHandling()

@@ -268,7 +268,7 @@ namespace DMT.Models
         {
             base.DbConenctFailed();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.@out = DefaultOutput();
         }
         /// <summary>
         /// Set Unknown Error.
@@ -277,7 +277,7 @@ namespace DMT.Models
         {
             base.UnknownError();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.@out = DefaultOutput();
         }
         /// <summary>
         /// Set Parameter Is Null Error.
@@ -286,7 +286,7 @@ namespace DMT.Models
         {
             base.ParameterIsNull();
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.@out = DefaultOutput();
         }
         /// <summary>
         /// Set Success.
@@ -297,7 +297,7 @@ namespace DMT.Models
         {
             base.Success();
             this.data = (null != data) ? data : DefaultData();
-            this.output = (null != output) ? output : DefaultOutput();
+            this.@out = (null != output) ? output : DefaultOutput();
         }
         /// <summary>
         /// Set Error.
@@ -307,7 +307,7 @@ namespace DMT.Models
         {
             base.Error(ex);
             this.data = DefaultData();
-            this.output = DefaultOutput();
+            this.@out = DefaultOutput();
         }
 
         #endregion
@@ -330,13 +330,13 @@ namespace DMT.Models
         /// <summary>
         /// Gets Output Instance.
         /// </summary>
-        public O output { get; set; }
+        public O @out { get; set; }
         /// <summary>
         /// Checks if has ouput (not null)
         /// </summary>
         public bool HasOutput 
         { 
-            get { return (null != this.output); }
+            get { return (null != this.@out); }
             set { }
         }
 
@@ -439,8 +439,8 @@ namespace DMT.Models
             where T : new()
             where O : new()
         {
-            O ret = (null != value && !value.errors.hasError && null != value.output) ?
-                value.output : DefaultOutput<O>();
+            O ret = (null != value && !value.errors.hasError && null != value.@out) ?
+                value.@out : DefaultOutput<O>();
             return ret;
         }
 

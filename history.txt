@@ -53,8 +53,22 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1147
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1146
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1145
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update NDbResult class
+      - Change Output property name to @out property name.
+  - DMT.Rest.Client project
+    - Update NDbResult class
+      - Change Output property name to @out property name.
+    - Update NRestClient class
+      - Change Output property name to @out property name.
+    - Update NRestResult class
+      - Change Output property name to @out property name.
+  - DMT.Plaza.Simulator.App project
+    - Add TAServerGetCoupon Page
+    - Update App.xaml.cs -> Add TAxTOD Operation code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1144

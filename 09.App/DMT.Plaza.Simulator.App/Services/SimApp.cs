@@ -66,6 +66,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region Bank Note Entry
+
+            private static Simulator.Pages.TAServerGetCoupon _TAServerGetCoupon;
+
+            /// <summary>Gets TAServer Get Coupon Page.</summary>
+            public static Simulator.Pages.TAServerGetCoupon TAServerGetCoupon
+            {
+                get
+                {
+                    if (null == _TAServerGetCoupon)
+                    {
+                        lock (typeof(SimApp))
+                        {
+                            _TAServerGetCoupon = new Simulator.Pages.TAServerGetCoupon();
+                        }
+                    }
+                    return _TAServerGetCoupon;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

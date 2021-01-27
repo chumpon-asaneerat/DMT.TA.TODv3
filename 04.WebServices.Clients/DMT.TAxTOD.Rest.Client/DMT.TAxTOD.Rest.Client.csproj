@@ -58,6 +58,7 @@
     <Compile Include="Services\Coupon\Coupon.Operations.cs" />
     <Compile Include="Services\TAA\TAA.Operations.cs" />
     <Compile Include="Services\TAxTOD.cs" />
+    <Compile Include="Services\TCT\TCT.Operations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

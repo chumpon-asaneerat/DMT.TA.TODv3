@@ -56,8 +56,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1146
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1145
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1144
-- 
+- DMT.TAxTODv3
+  - DMT.TAxTOD.Rest.Client project
+    - TCT Operations
+      - Add GetUserCoupons operation
+      - Add SoldCoupon operation
+    - Coupon Operations
+      - Update GetUserCoupons Operations
+        - Gets -> Add NRestOut in result.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1143

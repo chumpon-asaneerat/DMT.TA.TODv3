@@ -65,8 +65,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1143
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1142
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1141
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - TAxTOD.RouteConsts
+      - TCT class
+        - Add GetUserCoupons route.
+        - Add SoldCoupon route.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1140

@@ -30,6 +30,8 @@ namespace DMT
                 public const string Url = TAxTOD.Url + @"/taa";
             }
 
+            /// <summary>The TCT class.</summary>
+            public static partial class TCT { }
         }
     }
 }

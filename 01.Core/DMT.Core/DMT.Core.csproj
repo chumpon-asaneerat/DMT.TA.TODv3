@@ -68,6 +68,7 @@
     <Compile Include="Consts\Routes\TAxTOD\Coupons\TAxTOD.Coupon.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TAA\TAxTOD.TAA.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TAxTOD.RouteConsts.cs" />
+    <Compile Include="Consts\Routes\TAxTOD\TCT\TAxTOD.TCT.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Current.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\TA.Coupon.Controller.cs" />

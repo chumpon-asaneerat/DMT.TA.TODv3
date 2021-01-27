@@ -30,13 +30,13 @@ namespace DMT.Services
     /// <summary>
     /// The TSB Shift's Manage Controller class.
     /// </summary>
-    public class ShiftController : Shift.CommonController { }
+    public class TODShiftController : Shift.CommonController { }
     /// <summary>
     /// The TSB Shift's Manage Controller class.
     /// </summary>
-    public class TSBShiftManageController : Shift.TSBController { }
+    public class TODTSBShiftManageController : Shift.TSBController { }
     /// <summary>
     /// The User Shift's Manage Controller class.
     /// </summary>
-    public class UserShiftManageController : Shift.UserController { }
+    public class TODUserShiftManageController : Shift.UserController { }
 }

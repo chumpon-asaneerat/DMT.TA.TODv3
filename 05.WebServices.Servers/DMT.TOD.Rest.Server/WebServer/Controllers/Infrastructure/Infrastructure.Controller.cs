@@ -34,17 +34,17 @@ namespace DMT.Services
     /// <summary>
     /// The Infrastructure's TSB Manage Controller class.
     /// </summary>
-    public class TSBManageController : Infrastructure.TSBController { }
+    public class TODTSBManageController : Infrastructure.TSBController { }
     /// <summary>
     /// The Infrastructure's PlazaGroup Manage Controller class.
     /// </summary>
-    public class PlazaGroupManageController : Infrastructure.PlazaGroupController { }
+    public class TODPlazaGroupManageController : Infrastructure.PlazaGroupController { }
     /// <summary>
     /// The Infrastructure's Plaza Manage Controller class.
     /// </summary>
-    public class PlazaManageController : Infrastructure.PlazaController { }
+    public class TODPlazaManageController : Infrastructure.PlazaController { }
     /// <summary>
     /// The Infrastructure's Lane Manage Controller class.
     /// </summary>
-    public class LaneManageController : Infrastructure.LaneController { }
+    public class TODLaneManageController : Infrastructure.LaneController { }
 }

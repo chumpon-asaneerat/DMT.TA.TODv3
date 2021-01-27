@@ -103,6 +103,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\ModelExtensionMethods.cs" />
     <Compile Include="ExtensionMethods\NullableType.ExtensionMethods.cs" />
     <Compile Include="Models\Common\DMT.Search.cs" />
     <Compile Include="Models\Common\DMTModelBase.cs" />
@@ -114,6 +115,12 @@
     <Compile Include="Models\Common\Utils.cs" />
     <Compile Include="Models\Plaza\Configuration\UniqueCode.cs" />
     <Compile Include="Models\Plaza\Configuration\ViewHistory.cs" />
+    <Compile Include="Models\Plaza\Credit\TSB\TSBCreditBanalce.cs" />
+    <Compile Include="Models\Plaza\Credit\TSB\TSBCreditTransaction.cs" />
+    <Compile Include="Models\Plaza\Credit\User\UserCreditBalance.cs" />
+    <Compile Include="Models\Plaza\Credit\User\UserCreditTransaction.cs" />
+    <Compile Include="Models\Plaza\Exchange\TSBExchangeGroup.cs" />
+    <Compile Include="Models\Plaza\Exchange\TSBExchangeTransaction.cs" />
     <Compile Include="Models\Plaza\Infrastructures\Lane.cs" />
     <Compile Include="Models\Plaza\Infrastructures\Plaza.cs" />
     <Compile Include="Models\Plaza\Infrastructures\PlazaGroup.cs" />
@@ -162,7 +169,9 @@
       <Name>DMT.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Plaza\Coupon\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\runtimes\*.*" /Y/D/E

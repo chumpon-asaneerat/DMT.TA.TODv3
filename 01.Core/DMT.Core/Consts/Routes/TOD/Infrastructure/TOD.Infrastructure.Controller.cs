@@ -16,7 +16,7 @@
                 public static partial class TSB
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "TSBManage";
+                    public const string ControllerName = "TODTSBManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "TSB";
@@ -28,7 +28,7 @@
                 public static partial class PlazaGroup
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "PlazaGroupManage";
+                    public const string ControllerName = "TODPlazaGroupManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "PlazaGroup";
@@ -47,7 +47,7 @@
                 public static partial class Plaza
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "PlazaManage";
+                    public const string ControllerName = "TODPlazaManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "Plaza";
@@ -66,7 +66,7 @@
                 public static partial class Lane
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "LaneManage";
+                    public const string ControllerName = "TODLaneManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "Lane";

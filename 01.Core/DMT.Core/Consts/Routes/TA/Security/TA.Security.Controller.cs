@@ -16,7 +16,7 @@
                 public static partial class Role
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "RoleManage";
+                    public const string ControllerName = "TAARoleManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "Role";
@@ -28,7 +28,7 @@
                 public static partial class User
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "UserManage";
+                    public const string ControllerName = "TAAUserManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "User";

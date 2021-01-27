@@ -8,7 +8,7 @@
             public static partial class Shift
             {
                 /// <summary>Gets controller name.</summary>
-                public const string ControllerName = "Shift";
+                public const string ControllerName = "TAAShift";
                 /// <summary>Gets base controller url.</summary>
                 public const string Url = TA.Url + @"/" + ControllerName;
 
@@ -17,7 +17,7 @@
                 public static partial class TSB
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "TSBShiftManage";
+                    public const string ControllerName = "TAATSBShiftManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "TSB";
@@ -30,7 +30,7 @@
                 public static partial class User
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "UserShiftManage";
+                    public const string ControllerName = "TAAUserShiftManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "TSB";

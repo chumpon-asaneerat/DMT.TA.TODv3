@@ -26,9 +26,9 @@ namespace DMT.Services
     /// <summary>
     /// The TSB Credit's Manage Controller class.
     /// </summary>
-    public class TSBCreditManageController : Credit.TSBController { }
+    public class TAATSBCreditManageController : Credit.TSBController { }
     /// <summary>
     /// The User Credit's Manage Controller class.
     /// </summary>
-    public class UserCreditManageController : Credit.UserController { }
+    public class TAAUserCreditManageController : Credit.UserController { }
 }

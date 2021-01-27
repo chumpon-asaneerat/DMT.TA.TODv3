@@ -26,9 +26,9 @@ namespace DMT.Services
     /// <summary>
     /// The TSB Coupon's Manage Controller class.
     /// </summary>
-    public class TSBCouponManageController : Coupon.TSBController { }
+    public class TAATSBCouponManageController : Coupon.TSBController { }
     /// <summary>
     /// The User Coupon's Manage Controller class.
     /// </summary>
-    public class UserCouponManageController : Coupon.UserController { }
+    public class TAAUserCouponManageController : Coupon.UserController { }
 }

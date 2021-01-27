@@ -41,8 +41,19 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1120
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1119
-- 
+- DMT.TAxTODv3
+  - Web Service MAJOR BUG FIXED
+    - All Controller Name in BOTH TA/TOD Changed (cannot be same name even in another webservice)
+      - DMT.Core project.
+      - DMT.Models project.
+      - DMT.TA.Models project.
+      - DMT.TOD.Models project.
+      - DMT.TA.Rest.Client project.
+      - DMT.TOD.Rest.Client project.
+      - DMT.TA.Rest.Server project.
+      - DMT.TOD.Rest.Server project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1118

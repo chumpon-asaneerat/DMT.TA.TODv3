@@ -310,10 +310,7 @@ namespace DMT.Services
 
             internal static class Credit
             {
-                internal static class TSB
-                {
-
-                }
+                internal static class TSB { }
 
                 internal static class User
                 {
@@ -344,16 +341,9 @@ namespace DMT.Services
 
             internal static class Coupon
             {
-                internal static class TSB
-                {
+                internal static class TSB { }
 
-                }
-
-                internal static class User
-                {
-
-                }
-
+                internal static class User { }
             }
         }
 

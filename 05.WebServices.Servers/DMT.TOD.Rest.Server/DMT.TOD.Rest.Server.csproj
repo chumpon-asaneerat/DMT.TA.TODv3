@@ -142,10 +142,6 @@
       <Project>{7d584f0a-920f-4be1-8652-3527fd7a5c27}</Project>
       <Name>DMT.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\02.Models\DMT.TA.Models\DMT.TA.Models.csproj">
-      <Project>{3765dc14-2c59-445f-8e73-efc7a59709e4}</Project>
-      <Name>DMT.TA.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\02.Models\DMT.TOD.Models\DMT.TOD.Models.csproj">
       <Project>{c9b46736-c7e7-40dc-957f-be015e598300}</Project>
       <Name>DMT.TOD.Models</Name>

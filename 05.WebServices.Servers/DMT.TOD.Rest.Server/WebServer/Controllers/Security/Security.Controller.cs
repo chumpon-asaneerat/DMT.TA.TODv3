@@ -26,9 +26,9 @@ namespace DMT.Services
     /// <summary>
     /// The Security's Role Manage Controller class.
     /// </summary>
-    public class RoleManageController : Security.RoleController { }
+    public class TODRoleManageController : Security.RoleController { }
     /// <summary>
     /// The Security's User Manage Controller class.
     /// </summary>
-    public class UserManageController : Security.UserController { }
+    public class TODUserManageController : Security.UserController { }
 }

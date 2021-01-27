@@ -16,7 +16,7 @@
                 public static partial class TSB
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "TSBCouponManage";
+                    public const string ControllerName = "TAATSBCouponManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "TSB";
@@ -28,7 +28,7 @@
                 public static partial class User
                 {
                     /// <summary>Gets controller name.</summary>
-                    public const string ControllerName = "UserCouponManage";
+                    public const string ControllerName = "TAAUserCouponManage";
 
                     /// <summary>Gets route name.</summary>
                     public const string Name = "User";

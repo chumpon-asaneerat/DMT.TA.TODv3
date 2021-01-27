@@ -18,28 +18,28 @@ using DMT.Services;
 
 namespace DMT.Services
 {
-    using ops = Services.Operations.TA; // reference to static class.
+    using ops = Services.Operations.TOD; // reference to static class.
 
     /// <summary>
-    /// The TA Message Queue Service class.
+    /// The TOD Message Queue Service class.
     /// </summary>
-    public class TAMQService : JsonMessageTransferService
+    public class TODMQService : JsonMessageTransferService
     {
         #region Singelton
 
-        private static TAMQService _instance = null;
+        private static TODMQService _instance = null;
         /// <summary>
         /// Singelton Access.
         /// </summary>
-        public static TAMQService Instance
+        public static TODMQService Instance
         {
             get
             {
                 if (null == _instance)
                 {
-                    lock (typeof(TAMQService))
+                    lock (typeof(TODMQService))
                     {
-                        _instance = new TAMQService();
+                        _instance = new TODMQService();
                     }
                 }
                 return _instance;
@@ -53,11 +53,11 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        private TAMQService() : base() { }
+        private TODMQService() : base() { }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~TAMQService()
+        ~TODMQService()
         {
             Shutdown();
         }
@@ -156,7 +156,7 @@ namespace DMT.Services
         /// <summary>
         /// Gets Folder Name (sub directory name).
         /// </summary>
-        protected override string FolderName { get { return "taa.ws.msgs"; } }
+        protected override string FolderName { get { return "tod.ws.msgs"; } }
         /// <summary>
         /// Process Json (string).
         /// </summary>

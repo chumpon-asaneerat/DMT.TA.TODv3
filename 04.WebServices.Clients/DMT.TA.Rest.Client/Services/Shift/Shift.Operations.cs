@@ -13,9 +13,6 @@ namespace DMT.Services.Operations
         {
             /// <summary>The TSB's shift Operations class.</summary>
             public static partial class TSB { }
-
-            /// <summary>The User's shift Operations class.</summary>
-            public static partial class User { }
         }
     }
 }

@@ -53,8 +53,24 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1137
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1136
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1135
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Client project
+    - TA Operations
+      - TA->Credit->TSB Remove all Operations.
+      - TA->Shift->TSB Remove Change Operation.
+      - TA->Shift->User Remove all Operations.
+      - TA->Notify Remove UserShiftChanged Operation.
+    - Services
+      - TAMQService -> Change target folder name.
+  - DMT.TOD.Rest.Client project
+    - TOD Operations
+      - TOD->Shift->TSB Remove all Operations.
+      - TOD->Shift->User Remove all Operations.
+      - TOD->Notify Remove UserShiftChanged Operation.
+    - Services
+      - Add TODMQService.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1134

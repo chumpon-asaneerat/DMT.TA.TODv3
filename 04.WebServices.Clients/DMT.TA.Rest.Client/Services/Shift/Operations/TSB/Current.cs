@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DMT.Services.Operations
 {
-    static partial class TOD
+    static partial class TA
     {
         static partial class Shift
         {
@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
                 public static NRestResult<Models.TSBShift> Current()
                 {
                     var ret = Execute<Models.TSBShift>(
-                        RouteConsts.TOD.Shift.TSB.Current.Url);
+                        RouteConsts.TA.Shift.TSB.Current.Url);
                     return ret;
                 }
             }

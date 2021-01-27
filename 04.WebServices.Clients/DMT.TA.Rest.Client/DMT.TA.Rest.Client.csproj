@@ -57,7 +57,6 @@
     <Compile Include="Services\Coupon\Operations\TSB\Current.cs" />
     <Compile Include="Services\Coupon\Operations\User\Current.cs" />
     <Compile Include="Services\Credit\Credit.Operations.cs" />
-    <Compile Include="Services\Credit\Operations\TSB\CommentOut\Current.cs" />
     <Compile Include="Services\Credit\Operations\User\Completed.cs" />
     <Compile Include="Services\Credit\Operations\User\Current.cs" />
     <Compile Include="Services\Credit\Operations\User\Save.cs" />
@@ -78,7 +77,6 @@
     <Compile Include="Services\Notify\Notify.Operations.cs" />
     <Compile Include="Services\Notify\Operations\TSBShiftChanged.cs" />
     <Compile Include="Services\Notify\Operations\TSBChanged.cs" />
-    <Compile Include="Services\Notify\Operations\UserShiftChanged.cs" />
     <Compile Include="Services\Security\Operations\Role\Gets.cs" />
     <Compile Include="Services\Security\Operations\Role\Save.cs" />
     <Compile Include="Services\Security\Operations\User\Gets.cs" />
@@ -86,10 +84,7 @@
     <Compile Include="Services\Security\Operations\User\Searchs.cs" />
     <Compile Include="Services\Security\Security.Operations.cs" />
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
-    <Compile Include="Services\Shift\Operations\TSB\CommentOut\Change.cs" />
-    <Compile Include="Services\Shift\Operations\TSB\CommentOut\Current.cs" />
-    <Compile Include="Services\Shift\Operations\User\CommentOut\Change.cs" />
-    <Compile Include="Services\Shift\Operations\User\CommentOut\Current.cs" />
+    <Compile Include="Services\Shift\Operations\TSB\Current.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TA.cs" />
     <Compile Include="Services\TAMQService.cs" />

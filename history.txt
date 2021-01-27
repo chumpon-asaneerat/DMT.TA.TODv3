@@ -59,8 +59,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1125
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1124
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1123
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TODManager classes
+      - JobManager
+        - Change whatever OnlyJobInShift value is PlazaGroupJobs will refresh in all case.
+      - PaymentManager
+        - Update LoadEMVItems Used Begin/End from property instead of UserShift.
+        - Update LoadQRCideItems Used Begin/End from property instead of UserShift.
+    - RevenutEntry control
+      - Update Setup method
+        - ByChief -> Filter Begin, End from Selected Jobs.
+        - ByCollector -> Begin, End used from RevenueEntry ShiftBegin, ShiftEnd.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1122

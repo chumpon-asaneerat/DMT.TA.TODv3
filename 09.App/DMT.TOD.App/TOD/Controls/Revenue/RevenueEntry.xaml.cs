@@ -53,8 +53,62 @@ namespace DMT.TOD.Controls.Revenue
                 this.DataContext = manager.Entry;
 
                 // Load EMV/QR Code
-                DateTime dt1 = manager.Entry.ShiftBegin.Value;
-                DateTime dt2 = manager.Entry.ShiftEnd.Value;
+                DateTime dt1 = DateTime.MinValue;
+                DateTime dt2 = DateTime.MinValue;
+                if (manager.ByChief)
+                {
+                    if (null != manager.Jobs && null != 
+                        manager.Jobs.PlazaGroupJobs && manager.Jobs.PlazaGroupJobs.Count > 0)
+                    {
+                        int idx;
+                        int iCnt = manager.Jobs.PlazaGroupJobs.Count;
+
+                        // Find begin date.
+                        idx = 0;
+                        while (dt1 == DateTime.MinValue && idx < iCnt)
+                        {
+                            var job = manager.Jobs.PlazaGroupJobs[idx];
+                            if (null == job || !job.Selected)
+                            {
+                                idx++;
+                                continue;
+                            }
+                            if (job.Begin.HasValue) dt1 = job.Begin.Value;
+                            else if (job.End.HasValue) dt1 = job.End.Value;
+
+                            if (dt1 != DateTime.MinValue) break;
+                            
+                            idx++;
+                        }
+                        // Find end date.
+                        idx = iCnt - 1;
+                        while (dt2 == DateTime.MinValue && idx >= 0)
+                        {
+                            var job = manager.Jobs.PlazaGroupJobs[idx];
+                            if (null == job || !job.Selected)
+                            {
+                                idx--;
+                                continue;
+                            }
+                            if (job.End.HasValue) dt2 = job.End.Value;
+                            else if (job.Begin.HasValue) dt2 = job.Begin.Value;
+
+                            if (dt2 != DateTime.MinValue) break;
+
+                            idx--;
+                        }
+                    }
+                    else
+                    {
+                        dt1 = manager.Entry.ShiftBegin.Value;
+                        dt2 = manager.Entry.ShiftEnd.Value;
+                    }
+                }
+                else
+                {
+                    dt1 = manager.Entry.ShiftBegin.Value;
+                    dt2 = manager.Entry.ShiftEnd.Value;
+                }
 
                 manager.Payments.EnableLaneFilter = false;
                 manager.Payments.PlazaGroup = manager.PlazaGroup;

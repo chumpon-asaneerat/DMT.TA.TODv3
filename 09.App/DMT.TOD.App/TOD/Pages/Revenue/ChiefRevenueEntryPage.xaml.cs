@@ -73,7 +73,7 @@ namespace DMT.TOD.Pages.Revenue
             // Set Current Shift.
             if (null != manager.Current) manager.Current.Shift = shift;
 
-            LoadTSBLanes();
+            RefreshJobList();
         }
 
         private void cbPlazas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -83,7 +83,7 @@ namespace DMT.TOD.Pages.Revenue
             // Set Current Plaza Group.
             if (null != manager) manager.PlazaGroup = plazaGroup;
 
-            LoadTSBLanes();
+            RefreshJobList();
         }
 
         #endregion
@@ -141,7 +141,7 @@ namespace DMT.TOD.Pages.Revenue
             else if (e.Key == System.Windows.Input.Key.Escape)
             {
                 ResetSelectUser();
-                LoadTSBLanes();
+                RefreshJobList();
                 e.Handled = true;
             }
         }
@@ -365,7 +365,7 @@ namespace DMT.TOD.Pages.Revenue
                 cbShifts.ItemsSource = manager.Current.Shifts;
                 if (manager.Current.Shifts.Count > 0) cbShifts.SelectedIndex = 0;
             }
-            LoadTSBLanes();
+            RefreshJobList();
         }
 
         private void LoadPlazaGroups()
@@ -376,19 +376,22 @@ namespace DMT.TOD.Pages.Revenue
                 cbPlazas.ItemsSource = manager.Current.TSBPlazaGroups;
                 if (manager.Current.TSBPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
             }
-            LoadTSBLanes();
+            RefreshJobList();
         }
 
-        private void LoadTSBLanes()
+        private void RefreshJobList()
         {
             grid.ItemsSource = null;
 
-            if (null == manager || null == manager.Jobs || null == manager.UserShifts) return;
+            var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
 
+            if (null == manager || null == manager.Jobs || null == manager.UserShifts || null == plazaGroup) return;
+            // Refresh jobs.
             manager.Jobs.OnlyJobInShift = false; // Show all jobs
             manager.Jobs.UserShift = manager.UserShifts.Create();
-            manager.Jobs.PlazaGroup = manager.PlazaGroup;
+            manager.Jobs.PlazaGroup = plazaGroup; // assign selected plaza group.
             manager.Jobs.Refresh();
+
             grid.ItemsSource = manager.Jobs.PlazaGroupJobs;
         }
 
@@ -433,7 +436,7 @@ namespace DMT.TOD.Pages.Revenue
                 {
                     txtSearchUserId.Text = string.Empty;
                 }
-                LoadTSBLanes();
+                RefreshJobList();
             }
         }
 

@@ -839,7 +839,8 @@ namespace DMT.Services
                 }
                 else
                 {
-                    PlazaGroupJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
+                    //PlazaGroupJobs.AddRange(jobs.OrderBy(x => x.Begin).ToArray());
+                    LoadPlazaGroupJobs();
                 }
             }
 
@@ -1215,7 +1216,7 @@ namespace DMT.Services
                 int networkId = TODAPI.NetworkId;
                 var userShift = UserShift.GetUserShift(User.UserId).Value();
 
-                if (null != userShift && userShift.Begin.HasValue && null != plazas && plazas.Count > 0)
+                if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
                 {
                     plazas.ForEach(plaza =>
                     {
@@ -1232,7 +1233,7 @@ namespace DMT.Services
                             emvList.list.ForEach(item =>
                             {
                                 if (item.trxDateTime.HasValue &&
-                                    userShift.Begin.Value <= item.trxDateTime.Value)
+                                    Begin.Value <= item.trxDateTime.Value)
                                 {
                                     items.Add(new LaneEMV(item));
                                 }
@@ -1283,7 +1284,7 @@ namespace DMT.Services
                 int networkId = TODAPI.NetworkId;
                 var userShift = UserShift.GetUserShift(User.UserId).Value();
 
-                if (null != userShift && userShift.Begin.HasValue && null != plazas && plazas.Count > 0)
+                if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
                 {
                     plazas.ForEach(plaza =>
                     {
@@ -1300,7 +1301,7 @@ namespace DMT.Services
                             emvList.list.ForEach(item =>
                             {
                                 if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
-                                    userShift.Begin.Value <= item.trxDateTime.Value)
+                                    Begin.Value <= item.trxDateTime.Value)
                                 {
                                     items.Add(new LaneQRCode(item));
                                 }

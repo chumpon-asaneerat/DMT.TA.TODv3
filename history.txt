@@ -50,8 +50,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1128
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1127
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1126
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - RevenutEntry control
+      - Update Setup method
+        - ByChief -> Filter Begin, End from Selected Jobs (Fixed) not TESTED.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1125

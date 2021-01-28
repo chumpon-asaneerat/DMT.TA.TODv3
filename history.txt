@@ -62,8 +62,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1194
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1193
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1192
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements CouponSyncService #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1191

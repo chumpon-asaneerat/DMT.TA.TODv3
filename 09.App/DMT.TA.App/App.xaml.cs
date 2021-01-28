@@ -124,6 +124,9 @@ namespace DMT
             TANotifyService.Instance.TSBChanged += TSBChanged;
             TANotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
 
+            // Start coupon sync service.
+            CouponSyncService.Instance.Start();
+
             Window window = null;
             window = new MainWindow();
 
@@ -138,6 +141,9 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // Shutdown coupon sync service.
+            CouponSyncService.Instance.Shutdown();
+
             // Release NotifyService event.
             TANotifyService.Instance.TSBChanged -= TSBChanged;
             TANotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;

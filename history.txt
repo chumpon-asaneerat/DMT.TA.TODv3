@@ -44,8 +44,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1180
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1179
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1178
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - StatusBarConfig change default IntervalSeconds to 60.
+  - DMT.Account.App project
+    - TAServerStatus -> Add code call WS IsAlive
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1177

@@ -29,8 +29,8 @@ namespace DMT.Models
 	[JsonObject(MemberSerialization.OptOut)]
 	public class IsAliveResult
 	{
-		/// <summary>Gets or sets Last Update.</summary>
-		[PropertyMapName("TimeStamp")]
+		/// <summary>Gets or sets Time Stamp.</summary>
+		//[PropertyMapName("TimeStamp")]
 		public DateTime? TimeStamp { get; set; }
 	}
 

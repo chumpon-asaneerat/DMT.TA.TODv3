@@ -25,7 +25,7 @@ namespace DMT.Configurations
         public StatusBarConfig() : base()
         {
             this.Visible = false;
-            this.IntervalSeconds = 5;
+            this.IntervalSeconds = 60;
         }
 
         #endregion

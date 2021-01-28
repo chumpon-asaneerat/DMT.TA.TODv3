@@ -50,8 +50,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1178
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1177
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1176
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Client project.
+    - Implements Notify->IsAlive Operation
+  - DMT.TOD.Rest.Client project.
+    - Implements Notify->IsAlive Operation
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1175

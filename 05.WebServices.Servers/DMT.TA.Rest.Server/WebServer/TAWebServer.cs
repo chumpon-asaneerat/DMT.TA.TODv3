@@ -64,9 +64,14 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TA.Notify.TSBChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
 
-                    // TSB Shift Changed
-                    actionName = RouteConsts.TA.Notify.TSBShiftChanged.Name;
-                    actionUrl = RouteConsts.TA.Notify.TSBShiftChanged.Url;
+                    // Register
+                    actionName = RouteConsts.TA.Notify.Register.Name;
+                    actionUrl = RouteConsts.TA.Notify.Register.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                    // Unregister
+                    actionName = RouteConsts.TA.Notify.Unregister.Name;
+                    actionUrl = RouteConsts.TA.Notify.Unregister.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }
@@ -520,6 +525,9 @@ namespace DMT.Services
                 med.Info("TA App local nofify service failed."); 
             }
 
+            // Start Client Manager.
+            TODClientManager.Instance.Start();
+
             // Start SCWMQ service.
             SCWMQService.Instance.Start();
             med.Info("SCWMQ Service start.");
@@ -552,6 +560,9 @@ namespace DMT.Services
             // Shutdown SCWMQ service.
             SCWMQService.Instance.Shutdown();
             med.Info("SCWMQ Service shutdown.");
+
+            // Shutdown Client Manager.
+            TODClientManager.Instance.Shutdown();
 
             if (null != server)
             {

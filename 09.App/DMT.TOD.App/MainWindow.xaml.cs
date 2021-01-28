@@ -41,9 +41,6 @@ namespace DMT
             // Init Main Menu
             var page = TODApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
-
-            // Raise Event to notify TA App.
-            taOps.TSBShiftChanged();
         }
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)

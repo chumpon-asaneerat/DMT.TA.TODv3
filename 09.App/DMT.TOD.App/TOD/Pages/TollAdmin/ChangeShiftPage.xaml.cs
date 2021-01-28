@@ -84,9 +84,6 @@ namespace DMT.TOD.Pages.TollAdmin
                     // Update TOD
                     RuntimeManager.Instance.RaiseTSBShiftChanged();
 
-                    // TODO: Notify to TA may need to remove.
-                    taOps.TSBShiftChanged();
-
                     // write to TA App message queue.
                     TAMQService.Instance.WriteQueue(inst);
 

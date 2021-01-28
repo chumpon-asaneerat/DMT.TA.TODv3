@@ -47,8 +47,33 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1169
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1168
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1167
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - TA->Notify routes
+      - Remove TSBShiftChanged route
+      - Add Register route
+      - Add Unregister route
+  - DMT.TA.Rest.Client project
+    - TA->Notify Operations
+      - Remove TSBShiftChanged operation
+      - Add Register operation
+      - Add Unregister operation
+  - DMT.TA.Rest.Server project
+    - TODClientManager
+      - Implements Register method.
+      - Implements Unregister method.
+    - TA->Notify actions
+      - Remove TSBShiftChanged action
+      - Add Register action
+      - Add Unregister action
+    - TAWebServer
+      - Remove map route for TSBShiftChanged action
+      - Add map route for Register action
+      - Add map route for Unregister action
+  - DMT.TOD.App project
+    - Remove all code related to TA TSBShiftChanged.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1166

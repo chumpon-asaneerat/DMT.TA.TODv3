@@ -112,9 +112,6 @@ namespace DMT
             Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
             TAConfigManager.Instance.Start(); // Start File Watcher.
 
-            // Start SCWMQ
-            Services.SCWMQService.Instance.Start();
-
             // Start App Notify Server.
             appServ = new Services.TAWebServer();
             appServ.Start();
@@ -154,9 +151,6 @@ namespace DMT
                 appServ.Shutdown();
             }
             appServ = null;
-
-            // Shutdown SCWMQ
-            Services.SCWMQService.Instance.Shutdown();
 
             // Shutdown log manager
             LogManager.Instance.Shutdown();

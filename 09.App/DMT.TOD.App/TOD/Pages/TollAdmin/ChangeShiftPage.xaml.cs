@@ -83,17 +83,21 @@ namespace DMT.TOD.Pages.TollAdmin
                 {
                     // Update TOD
                     RuntimeManager.Instance.RaiseTSBShiftChanged();
-                    // Notify to TA
+
+                    // TODO: Notify to TA may need to remove.
                     taOps.TSBShiftChanged();
 
-                    // send to server
+                    // write to TA App message queue.
+                    TAMQService.Instance.WriteQueue(inst);
+
+                    // send to SCW server
                     var scw = new SCWSaveChiefDuty();
                     scw.networkId = networkId;
                     scw.plazaId = Convert.ToInt32(_plazas[0].SCWPlazaId);
                     scw.staffId = _user.UserId;
                     scw.staffTypeId = 1;
                     scw.beginDateTime = inst.Begin;
-                    // send.
+                    // write to queue.
                     SCWMQService.Instance.WriteQueue(scw);
                 }
             }

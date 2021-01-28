@@ -50,8 +50,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1168
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1167
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1166
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Client project
+    - Implements TAMQService #1.
+  - DMT.TOD.Rest.Server project
+    - TODWebServer
+      - Add code to start/shutdown TAMQ service.
+  - DMT.TA.App project
+    - App.xaml.cs - Remove all MQ Services (Start/Shutdown) because already handle by WebServer.
+  - DMT.TOD.App project
+    - App.xaml.cs - Remove all MQ Services (Start/Shutdown) because already handle by WebServer.
+    - Change Shift Window (TSB Change Shift)
+      - Add code Write TSBShift to TAMQ.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1165

@@ -480,6 +480,10 @@ namespace DMT.Services
             SCWMQService.Instance.Start();
             med.Info("SCWMQ Service start.");
 
+            // Start TAMQService service.
+            TAMQService.Instance.Start();
+            med.Info("TAMQService Service start.");
+
             // Start rabbit service.
             RabbitMQService.Instance.RabbitMQ = TODConfigManager.Instance.RabbitMQ;
             RabbitMQService.Instance.Start();
@@ -505,6 +509,10 @@ namespace DMT.Services
             // Shutdown Rabbit MQ Service.
             RabbitMQService.Instance.Shutdown();
             med.Info("RabbitMQ Client service disconnected.");
+
+            // Shutdown TAMQService service.
+            TAMQService.Instance.Shutdown();
+            med.Info("TAMQService Service shutdown.");
 
             // Shutdown SCWMQ service.
             SCWMQService.Instance.Shutdown();

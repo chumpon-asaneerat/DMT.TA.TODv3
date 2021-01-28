@@ -101,30 +101,6 @@ namespace DMT.Services
             */
         }
 
-        private void SendChangeUserShift(string fullFileName, Models.UserShift value)
-        {
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            /*
-            var ret = ops.Security.loginAudit(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
-            */
-        }
-
         private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -169,7 +145,7 @@ namespace DMT.Services
             // Extract File Name.
             if (string.IsNullOrEmpty(fullFileName)) return; // skip if file name is empty.
 
-            if (fullFileName.Contains("tsbshift"))
+            if (fullFileName.Contains("tsb.shift.change"))
             {
                 try
                 {
@@ -184,22 +160,7 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
-            else if (fullFileName.Contains("usershift"))
-            {
-                try
-                {
-                    var value = jsonString.FromJson<Models.UserShift>();
-                    SendChangeUserShift(fullFileName, value);
-                }
-                catch (Exception ex)
-                {
-                    // Parse Error.
-                    med.Err(ex);
-                    med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
-                }
-            }
-            else if (fullFileName.Contains("revenueentry"))
+            else if (fullFileName.Contains("revenue.entry"))
             {
                 try
                 {
@@ -241,18 +202,7 @@ namespace DMT.Services
         public void WriteQueue(Models.TSBShift value)
         {
             if (null == value) return;
-            string fileName = GetFileName("tsbshift");
-            string msg = value.ToJson(false);
-            WriteFile(fileName, msg);
-        }
-        /// <summary>
-        /// Write Queue.
-        /// </summary>
-        /// <param name="value">The UserShift instance.</param>
-        public void WriteQueue(Models.UserShift value)
-        {
-            if (null == value) return;
-            string fileName = GetFileName("usershift");
+            string fileName = GetFileName("tsb.shift.change");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }
@@ -263,7 +213,7 @@ namespace DMT.Services
         public void WriteQueue(Models.RevenueEntry value)
         {
             if (null == value) return;
-            string fileName = GetFileName("revenueentry");
+            string fileName = GetFileName("revenue.entry");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

@@ -23,6 +23,10 @@ namespace DMT
         /// Gets or sets Current TODAppWebServiceConfig.
         /// </summary>
         public static TODAppWebServiceConfig Config { get; set; }
+        /// <summary>
+        /// Gets or sets IsRegistered.
+        /// </summary>
+        public static bool IsRegistered { get; set; }
 
         /// <summary>
         /// Permissions Static class.

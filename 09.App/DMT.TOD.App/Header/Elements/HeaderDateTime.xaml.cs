@@ -14,6 +14,8 @@ using DMT.Services;
 
 namespace DMT.Controls.Header
 {
+    using wsOps = Services.Operations.SCW.Security;
+
     /// <summary>
     /// Interaction logic for HeaderDateTime.xaml
     /// </summary>
@@ -31,8 +33,12 @@ namespace DMT.Controls.Header
 
         #endregion
 
+        private SolidColorBrush OnlineColor = new SolidColorBrush(Colors.Transparent);
+        private SolidColorBrush OfflineColor = new SolidColorBrush(Colors.Maroon);
+
         private DispatcherTimer timer = null;
         private NLib.Components.PingManager ping = null;
+        private bool isOnline = false;
 
         #region Loaded/Unloaded
 
@@ -50,6 +56,7 @@ namespace DMT.Controls.Header
             ping.Interval = interval * 1000;
             ping.Start();
 
+            CallWS();
             UpdateUI();
 
             timer = new DispatcherTimer();
@@ -91,11 +98,13 @@ namespace DMT.Controls.Header
             if (null != e.Reply && 
                 e.Reply.Status == System.Net.NetworkInformation.IPStatus.Success)
             {
-                borderDT.Background = new SolidColorBrush(Colors.Transparent);
+                // Call WS
+                //CallWS();
+                isOnline = true;
             }
             else
             {
-                borderDT.Background = new SolidColorBrush(Colors.Maroon);
+                isOnline = false;
             }
         }
 
@@ -131,18 +140,31 @@ namespace DMT.Controls.Header
                 // Restart ping service.
                 ping.Start();
             }
+            CallWS();
             UpdateUI();
         }
 
         private void UI_ConfigChanged(object sender, EventArgs e)
         {
+            CallWS();
             UpdateUI();
         }
 
         #endregion
 
+        private void CallWS()
+        {
+            // Do not call because Statusbar is already called.
+            /*
+            var ret = wsOps.passwordExpiresDays();
+            isOnline = (null != ret && null != ret.status &&
+                !string.IsNullOrEmpty(ret.status.code) && ret.status.code == "S200");
+            */
+        }
+
         private void UpdateUI()
         {
+            borderDT.Background = (isOnline) ? OnlineColor : OfflineColor;
             DateTime dt = DateTime.Now;
             txtCurrentDate.Text = dt.ToThaiDateTimeString("dd/MM/yyyy");
             txtCurrentTime.Text = dt.ToThaiDateTimeString("HH:mm:ss");

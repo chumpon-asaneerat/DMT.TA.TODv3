@@ -62,8 +62,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1184
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1183
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1182
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - HeaderDateTime -> Add code call WS passswordExpireDays (but not used - ping only)
+  - DMT.TA.App project
+    - HeaderDateTime -> Add code call WS passswordExpireDays (but not used - ping only)
+  - DMT.TOD.App project
+    - HeaderDateTime -> Add code call WS passswordExpireDays (but not used - ping only)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1181

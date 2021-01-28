@@ -98,6 +98,7 @@ namespace DMT.Services
         public void Register(TODAppWebServiceConfig value)
         {
             if (null == value) return;
+            // TODO: Implements Register client.
         }
 
         #endregion
@@ -111,6 +112,7 @@ namespace DMT.Services
         public void Unregister(TODAppWebServiceConfig value)
         {
             if (null == value) return;
+            // TODO: Implements Unregister client.
         }
 
         #endregion

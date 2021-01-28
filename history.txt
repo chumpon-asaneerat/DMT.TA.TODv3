@@ -53,8 +53,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1197
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1196
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1195
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Add Coupon->Received route.
+  - DMT.TAxTOD.Rest.Client project.
+    - Add Coupon->Received Operation.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1194

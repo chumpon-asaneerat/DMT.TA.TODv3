@@ -34,6 +34,16 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = Coupon.Url + @"/" + Name;
                 }
+
+                // Url: /api/TA/coupons/updatereceive
+                /// <summary>The Received Class.</summary>
+                public static partial class Received
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "Received";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = Coupon.Url + @"/" + Name;
+                }
             }
         }
     }

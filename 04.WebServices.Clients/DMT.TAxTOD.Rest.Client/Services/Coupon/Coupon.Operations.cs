@@ -38,6 +38,19 @@ namespace DMT.Services.Operations
                     RouteConsts.TAxTOD.Coupon.Save.Url, value);
                 return ret;
             }
+
+            /// <summary>
+            /// Execute Received api.
+            /// </summary>
+            /// <param name="couponSN">The coupon serial number.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult Save(
+                string couponSN)
+            {
+                var ret = Execute(
+                    RouteConsts.TAxTOD.Coupon.Received.Url, new { serialNo = couponSN });
+                return ret;
+            }
         }
     }
 }

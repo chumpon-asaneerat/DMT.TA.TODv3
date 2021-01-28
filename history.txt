@@ -50,8 +50,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1198
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1197
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1196
-- 
+- DMT.TAxTODv3
+  - DMT.TAxTOD.Rest.Client project.
+    - Update Coupon->Received Operation - fixed bug.
+  - DMT.TA.App project
+    - Implements CouponSyncService #4.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1195

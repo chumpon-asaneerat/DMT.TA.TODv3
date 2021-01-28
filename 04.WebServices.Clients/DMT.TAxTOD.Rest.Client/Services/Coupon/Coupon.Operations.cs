@@ -44,8 +44,7 @@ namespace DMT.Services.Operations
             /// </summary>
             /// <param name="couponSN">The coupon serial number.</param>
             /// <returns>Returns instance of NRestResult.</returns>
-            public static NRestResult Save(
-                string couponSN)
+            public static NRestResult Received(string couponSN)
             {
                 var ret = Execute(
                     RouteConsts.TAxTOD.Coupon.Received.Url, new { serialNo = couponSN });

@@ -147,8 +147,16 @@ namespace DMT.Services
                             int iMax = output.TotalRecords.Value;
                             for (int i = 0; i < iMax; i++)
                             {
+                                var coupon = coupons[i];
+
+                                // Update to database
 
 
+                                var status = couponOps.Received(coupon.SerialNo);
+                                if (status.Ok)
+                                {
+
+                                }
                             }
                         }
                     }

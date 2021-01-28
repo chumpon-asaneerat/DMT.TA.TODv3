@@ -45,7 +45,7 @@ namespace DMT.TOD.Pages.TollAdmin
 
         private string _laneFilter = string.Empty;
 
-        private CurrentTSBManager manager = new CurrentTSBManager();
+        private CurrentTSBManager manager = null;
 
         #endregion
 
@@ -228,8 +228,9 @@ namespace DMT.TOD.Pages.TollAdmin
             DateTime dt1 = dtEntryDate.Value.Value.Date;
             DateTime dt2 = dt1.AddDays(1);
 
-            if (null != manager && null != manager.Payments) return;
+            if (null == manager || null == manager.Payments) return;
 
+            manager.Payments.ViewMode = ViewModes.TSB; // View all.
             manager.Payments.PaymentType = (rbEMV.IsChecked.Value) ? PaymentTypes.EMV : PaymentTypes.QRCode;
             manager.Payments.Begin = dt1;
             manager.Payments.End = dt2;
@@ -256,6 +257,11 @@ namespace DMT.TOD.Pages.TollAdmin
         /// <param name="user">The User instance.</param>
         public void Setup(User user)
         {
+            if (null == manager)
+            {
+                manager = new CurrentTSBManager();
+            }
+
             Reset();
             ResetSelectUser();
             txtLaneNo.Text = string.Empty;

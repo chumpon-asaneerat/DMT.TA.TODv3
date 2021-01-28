@@ -47,7 +47,7 @@ namespace DMT.TOD.Pages.Revenue
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         //private CultureInfo culture = new CultureInfo("th-TH");
 
-        private RevenueEntryManager manager = new RevenueEntryManager();
+        private RevenueEntryManager manager = null;
 
         #endregion
 
@@ -413,6 +413,11 @@ namespace DMT.TOD.Pages.Revenue
         /// <param name="user"></param>
         public void Setup(User user)
         {
+            if (null == manager)
+            {
+                manager = new RevenueEntryManager();
+            }
+
             tabs.SelectedIndex = 0;
 
             if (null != manager)

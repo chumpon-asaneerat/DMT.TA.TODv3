@@ -100,9 +100,12 @@ namespace DMT.TOD.Pages.TollAdmin
             if (null == value || !value.Begin.HasValue) return; // no selection.
             // Refresh jobs.
             if (null == manager || null == manager.Jobs) return;
+
+            manager.Jobs.ViewMode = ViewModes.TSB; // View all.
             manager.Jobs.OnlyJobInShift = true;
             manager.Jobs.UserShift = value;// assign selected user shift.
             manager.Jobs.Refresh();
+
             // Bind to ListView
             lstLaneJobs.ItemsSource = manager.Jobs.AllJobs;
         }
@@ -117,7 +120,10 @@ namespace DMT.TOD.Pages.TollAdmin
         /// <param name="user">The User instance.</param>
         public void Setup(User user)
         {
-            manager = new CurrentTSBManager();
+            if (null == manager)
+            {
+                manager = new CurrentTSBManager();
+            }
 
             // Load User Shifts.
             RefreshUserShifts();

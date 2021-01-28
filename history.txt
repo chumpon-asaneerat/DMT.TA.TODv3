@@ -65,8 +65,28 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1163
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1162
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1161
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TODManager
+      - TODAPI 
+        - Change method name GetPlazaGroupPlazas to GetTODPlazaGroupPlazas.
+        - Add GetTSBPlazaGroupPlazas static method
+      - JobManager
+        - Update LoadTSBJobs method.
+        - Update LoadPlazaGroupJobs method.
+      - PaymentManager
+        - Update LoadEMVItems method.
+        - Update LoadQRcodeItems method.
+    - EMVQRcodeViewPage
+      - Set Payments ViewMode to TSB.
+    - JobListViewPage
+      - Set Jobs ViewMode to TSB.
+    - ChiefRevenueEntryPage
+      - Add Check create manager at runtime only once.
+    - CollectorRevenueEntryPage
+      - Add Check create manager at runtime only once.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1160

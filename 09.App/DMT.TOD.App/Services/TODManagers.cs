@@ -348,7 +348,21 @@ namespace DMT.Services
             return results;
         }
 
-        public static List<Plaza> GetPlazaGroupPlazas(PlazaGroup value)
+        public static List<Plaza> GetTSBPlazaGroupPlazas(PlazaGroup value)
+        {
+            List<Plaza> results;
+            if (null == value)
+            {
+                results = new List<Plaza>();
+            }
+            else
+            {
+                results = Plaza.GetPlazaGroupPlazas(value).Value();
+            }
+            return results;
+        }
+
+        public static List<Plaza> GetTODPlazaGroupPlazas(PlazaGroup value)
         {
             List<Plaza> results = new List<Plaza>();
             if (null == value) return results;
@@ -995,7 +1009,7 @@ namespace DMT.Services
                 if (!usrShift.Begin.HasValue) return;
             }
             bool isOnline = false;
-            var tsbPlazas = Current.TSBPlazas;
+            var tsbPlazas =  (ViewMode == ViewModes.TSB) ? Current.TSBPlazas : Current.TODPlazas;
             if (null != tsbPlazas)
             {
                 var jobs = new List<LaneJob>();
@@ -1064,7 +1078,9 @@ namespace DMT.Services
 
             if (null == PlazaGroup) return;
 
-            var plazagroupPlazas = Plaza.GetPlazaGroupPlazas(PlazaGroup).Value();
+            //var plazagroupPlazas = Plaza.GetPlazaGroupPlazas(PlazaGroup).Value();
+            var plazagroupPlazas = (ViewMode == ViewModes.TSB) ? 
+                TODAPI.GetTSBPlazaGroupPlazas(PlazaGroup) : TODAPI.GetTODPlazaGroupPlazas(PlazaGroup);
 
             if (null == plazagroupPlazas || null == AllJobs || AllJobs.Count <= 0)
                 return;
@@ -1410,11 +1426,21 @@ namespace DMT.Services
             List<LaneEMV> items = new List<LaneEMV>();
             List<LaneEMV> sortList = new List<LaneEMV>();
 
-            if (null != User && null != Current && null != 
-                Current.TSB && null != Current.UserShifts && null != Current.TSBPlazas)
+            if (null != User && null != Current && null !=
+                Current.TSB && null != Current.UserShifts)
             {
-                var plazas = (null != PlazaGroup) ?
-                    Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
+
+                List<Plaza> plazas;
+                if (null == PlazaGroup)
+                {
+                    plazas = (ViewMode == ViewModes.TSB) ?
+                        Current.TSBPlazas : Current.TODPlazas;
+                }
+                else
+                {
+                    plazas = (ViewMode == ViewModes.TSB) ?
+                        TODAPI.GetTSBPlazaGroupPlazas(PlazaGroup) : TODAPI.GetTODPlazaGroupPlazas(PlazaGroup);
+                }
 
                 int networkId = TODAPI.NetworkId;
                 var userShift = Current.UserShifts.Shift;
@@ -1445,25 +1471,25 @@ namespace DMT.Services
                     });
 
                     sortList = items.OrderBy(o => o.TrxDateTime).Distinct().ToList();
+                }
 
-                    if (EnableLaneFilter)
+                if (EnableLaneFilter)
+                {
+                    // Filter By Lane
+                    var filter = GetLaneFilter();
+                    if (filter.HasValue)
                     {
-                        // Filter By Lane
-                        var filter = GetLaneFilter();
-                        if (filter.HasValue)
-                        {
-                            // Filter only specificed lane no.
-                            results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
-                        }
-                        else
-                        {
-                            results.AddRange(sortList.ToArray());
-                        }
+                        // Filter only specificed lane no.
+                        results = sortList.Where(o => o.LaneNo == filter.Value).ToList();
                     }
                     else
                     {
                         results.AddRange(sortList.ToArray());
                     }
+                }
+                else
+                {
+                    results.AddRange(sortList.ToArray());
                 }
             }
 
@@ -1480,10 +1506,19 @@ namespace DMT.Services
             List<LaneQRCode> sortList = new List<LaneQRCode>();
 
             if (null != User && null != Current && 
-                null != Current.TSB && null != Current.UserShifts && null != Current.TSBPlazas)
+                null != Current.TSB && null != Current.UserShifts)
             {
-                var plazas = (null != PlazaGroup) ? 
-                    Plaza.GetPlazaGroupPlazas(PlazaGroup).Value() : Current.TSBPlazas;
+                List<Plaza> plazas;
+                if (null == PlazaGroup)
+                {
+                    plazas = (ViewMode == ViewModes.TSB) ?
+                        Current.TSBPlazas : Current.TODPlazas;
+                }
+                else
+                {
+                    plazas = (ViewMode == ViewModes.TSB) ?
+                        TODAPI.GetTSBPlazaGroupPlazas(PlazaGroup) : TODAPI.GetTODPlazaGroupPlazas(PlazaGroup);
+                }
 
                 int networkId = TODAPI.NetworkId;
                 var userShift = Current.UserShifts.Shift;

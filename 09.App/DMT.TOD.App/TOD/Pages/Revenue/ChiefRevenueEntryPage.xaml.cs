@@ -45,7 +45,7 @@ namespace DMT.TOD.Pages.Revenue
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
 
-        private RevenueEntryManager manager = new RevenueEntryManager();
+        private RevenueEntryManager manager = null;
 
         private User _chief = null; // Supervisor
 
@@ -531,6 +531,11 @@ namespace DMT.TOD.Pages.Revenue
         /// <param name="chief">The chief user.</param>
         public void Setup(User chief)
         {
+            if (null == manager)
+            {
+                manager = new RevenueEntryManager();
+            }
+
             tabs.SelectedIndex = 0;
 
             _chief = chief;

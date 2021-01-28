@@ -47,8 +47,25 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1179
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1178
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1177
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Add IsAliveResult model.
+  - DMT.TA.Rest.Client project.
+    - Update Notify->IsAlive Operation change return type.
+  - DMT.TOD.Rest.Client project.
+    - Update Notify->IsAlive Operation change return type.
+  - DMT.TAxTOD.Rest.Client project.
+    - Update TAA->IsAlive Operation change return type.
+  - DMT.TA.Rest.Server project.
+    - Implements Notify->IsAlive Action
+    - TAWebServer
+      - Update map route for Notify->IsAlive Action
+  - DMT.TOD.Rest.Server project.
+    - Implements Notify->IsAlive Action
+    - TODWebServer
+      - Update map route for Notify->IsAlive Action
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1176

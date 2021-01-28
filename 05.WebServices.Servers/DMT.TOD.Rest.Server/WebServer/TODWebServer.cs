@@ -69,6 +69,11 @@ namespace DMT.Services
                     actionName = RouteConsts.TOD.Notify.TSBShiftChanged.Name;
                     actionUrl = RouteConsts.TOD.Notify.TSBShiftChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                    // IsAlive
+                    actionName = RouteConsts.TOD.Notify.IsAlive.Name;
+                    actionUrl = RouteConsts.TOD.Notify.IsAlive.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }
 

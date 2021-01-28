@@ -107,6 +107,7 @@
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\Save.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="WebServer\Controllers\Infrastructure\Infrastructure.Controller.cs" />
+    <Compile Include="WebServer\Controllers\Notify\Actions\IsAlive.cs" />
     <Compile Include="WebServer\Controllers\Notify\Notify.Controller.cs" />
     <Compile Include="WebServer\Controllers\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="WebServer\Controllers\Notify\Actions\TSBChanged.cs" />

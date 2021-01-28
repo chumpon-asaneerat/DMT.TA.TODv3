@@ -18,9 +18,9 @@ namespace DMT.Services.Operations
             /// </summary>
             /// <param name="value">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
-            public static NRestResult IsAlive()
+            public static NRestResult<Models.IsAliveResult> IsAlive()
             {
-                var ret = Execute<TAServerCouponTransaction>(
+                var ret = Execute<Models.IsAliveResult>(
                     RouteConsts.TAxTOD.TAA.IsAlive.Url, new { });
                 return ret;
             }

@@ -113,6 +113,7 @@
     <Compile Include="Models\Common\NTables.cs" />
     <Compile Include="Models\Common\UICommands.cs" />
     <Compile Include="Models\Common\Utils.cs" />
+    <Compile Include="Models\Plaza\Common\IsAliveResult.cs" />
     <Compile Include="Models\Plaza\Configuration\UniqueCode.cs" />
     <Compile Include="Models\Plaza\Configuration\ViewHistory.cs" />
     <Compile Include="Models\Plaza\Coupon\Common\Enums.cs" />

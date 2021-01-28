@@ -28,6 +28,7 @@ namespace DMT.Configurations
             this.AppInfo = new StatusBarConfig() { Visible = true };
             this.ClientInfo = new StatusBarConfig() { Visible = true };
             this.LocalDb = new StatusBarConfig() { Visible = true };
+            this.RabbitMQ = new StatusBarConfig() { Visible = false };
             this.SCW = new StatusBarConfig() { Visible = false };
             this.TAApp = new StatusBarConfig() { Visible = false };
         }
@@ -42,6 +43,8 @@ namespace DMT.Configurations
         public StatusBarConfig ClientInfo { get; set; }
         /// <summary>Gets or sets LocalDb status bar.</summary>
         public StatusBarConfig LocalDb { get; set; }
+        /// <summary>Gets or sets RabbitMQ status bar.</summary>
+        public StatusBarConfig RabbitMQ { get; set; }
         /// <summary>Gets or sets SCW status bar.</summary>
         public StatusBarConfig SCW { get; set; }
         /// <summary>Gets or sets TA App status bar.</summary>
@@ -180,6 +183,17 @@ namespace DMT.Configurations
             {
                 if (null == Value || null == Value.StatusBars) LoadConfig();
                 return (null != Value && null != Value.StatusBars) ? Value.StatusBars.LocalDb : null;
+            }
+        }
+        /// <summary>
+        /// Gets RabbitMQ Config.
+        /// </summary>
+        public StatusBarConfig RabbitMQ
+        {
+            get
+            {
+                if (null == Value || null == Value.StatusBars) LoadConfig();
+                return (null != Value && null != Value.StatusBars) ? Value.StatusBars.RabbitMQ : null;
             }
         }
         /// <summary>

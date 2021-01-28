@@ -59,8 +59,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1185
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1184
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1183
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Update UIConfigs.cs -> Add RabbitMQ property.
+    - Add RabbitMQStatus control.
+  - DMT.TA.App project
+    - Update UIConfigs.cs -> Add RabbitMQ property.
+    - Add RabbitMQStatus control.
+  - DMT.TOD.App project
+    - Update UIConfigs.cs -> Add RabbitMQ property.
+    - Add RabbitMQStatus control.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1182

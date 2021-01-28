@@ -170,6 +170,9 @@
     <Compile Include="StatusBar\Elements\ClientInfoStatus.xaml.cs">
       <DependentUpon>ClientInfoStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusBar\Elements\RabbitMQStatus.xaml.cs">
+      <DependentUpon>RabbitMQStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatusBar\Elements\SCWStatus.xaml.cs">
       <DependentUpon>SCWStatus.xaml</DependentUpon>
     </Compile>
@@ -293,6 +296,10 @@
     <Page Include="StatusBar\Elements\ClientInfoStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatusBar\Elements\RabbitMQStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatusBar\Elements\SCWStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -453,6 +460,10 @@
     <ProjectReference Include="..\..\02.Models\DMT.TOD.Models\DMT.TOD.Models.csproj">
       <Project>{c9b46736-c7e7-40dc-957f-be015e598300}</Project>
       <Name>DMT.TOD.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\03.WebServices.Core\DMT.RabbitMQ.Client\DMT.RabbitMQ.Client.csproj">
+      <Project>{37616cb2-8712-4767-b165-76f046cfc68b}</Project>
+      <Name>DMT.RabbitMQ.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\03.WebServices.Core\DMT.Rest.Client\DMT.Rest.Client.csproj">
       <Project>{26ba4314-6b80-4a59-9e0d-7c29919bbc6f}</Project>

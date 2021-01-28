@@ -258,6 +258,11 @@ namespace DMT.Models.ExtensionMethods
     {
         #region Coupons
 
+        /// <summary>
+        /// Convert to Local Model.
+        /// </summary>
+        /// <param name="value">The TAServerCouponTransaction instance.</param>
+        /// <returns>Returns TSBCouponTransaction instance.</returns>
         public static TSBCouponTransaction ToLocal(this TAServerCouponTransaction value)
         {
             if (null == value) return null;
@@ -266,13 +271,22 @@ namespace DMT.Models.ExtensionMethods
             inst.TransactionDate = value.TransactionDate.Value();
             inst.TransactionType = (TSBCouponTransactionTypes)value.CouponStatus.Value();
             inst.CouponId = value.SerialNo;
+            // Server Fields
             inst.CouponPK = value.CouponPK.Value();
+            inst.SapChooseFlag = value.SapChooseFlag.Value();
+            inst.SapChooseDate = value.SapChooseDate.Value();
+            inst.SAPSysSerial = value.SAPSysSerial;
+            inst.SAPWhsCode = value.SAPWhsCode;
+            inst.TollWayId = value.TollWayId.Value();
+            inst.SAPItemName = value.SAPItemName;
+            inst.sendtaflag = value.sendtaflag.Value();
+
             inst.CouponType = (CouponType)value.CouponType.Value();
             inst.FinishFlag = (TSBCouponFinishedFlags)value.FinishFlag.Value();
             inst.Price = value.Price.Value();
             inst.SoldBy = value.SoldBy;
             var soldUsr = (!string.IsNullOrWhiteSpace(value.SoldBy)) ?
-                User.GetUser(value.SoldBy).Value() : null;
+                User.GetByUserId(value.SoldBy).Value() : null;
             if (null != soldUsr)
             {
                 inst.SoldByFullNameEN = soldUsr.FullNameEN;
@@ -290,7 +304,7 @@ namespace DMT.Models.ExtensionMethods
             {
                 inst.UserId = value.UserId;
                 var user = (!string.IsNullOrWhiteSpace(value.UserId)) ?
-                    User.GetUser(value.UserId).Value() : null;
+                    User.GetByUserId(value.UserId).Value() : null;
                 if (null != user)
                 {
                     inst.FullNameEN = user.FullNameEN;
@@ -302,6 +316,11 @@ namespace DMT.Models.ExtensionMethods
             return inst;
         }
 
+        /// <summary>
+        /// Convert to Local Model list.
+        /// </summary>
+        /// <param name="values">The list of TAServerCouponTransaction.</param>
+        /// <returns>Returns List of TSBCouponTransaction</returns>
         public static List<TSBCouponTransaction> ToLocals(this List<TAServerCouponTransaction> values)
         {
             var rets = new List<TSBCouponTransaction>();
@@ -316,21 +335,35 @@ namespace DMT.Models.ExtensionMethods
 
         }
 
+        /// <summary>
+        /// Convert to Server Model.
+        /// </summary>
+        /// <param name="value">The TSBCouponTransaction instance.</param>
+        /// <returns>Returns TAServerCouponTransaction instance.</returns>
         public static TAServerCouponTransaction ToServer(this TSBCouponTransaction value)
         {
             if (null == value) return null;
 
             var inst = new TAServerCouponTransaction();
 
-            inst.TransactionDate = value.TransactionDate.Value();
+            inst.TransactionDate = value.TransactionDate;
             inst.CouponStatus = (int)value.TransactionType;
             inst.SerialNo = value.CouponId;
-            inst.CouponPK = value.CouponPK.Value();
+            // Server Fields
+            inst.CouponPK = value.CouponPK;
+            inst.SapChooseFlag = value.SapChooseFlag;
+            inst.SapChooseDate = value.SapChooseDate;
+            inst.SAPSysSerial = value.SAPSysSerial;
+            inst.SAPWhsCode = value.SAPWhsCode;
+            inst.TollWayId = value.TollWayId;
+            inst.SAPItemName = value.SAPItemName;
+            //inst.sendtaflag = value.sendtaflag;
+
             inst.CouponType = (int)value.CouponType;
             inst.FinishFlag = (int)value.FinishFlag;
-            inst.Price = value.Price.Value();
+            inst.Price = value.Price;
             inst.SoldBy = value.SoldBy;
-            inst.SoldDate = value.SoldDate.Value();
+            inst.SoldDate = value.SoldDate;
             inst.TSBId = value.TSBId;
             if (value.TransactionType == TSBCouponTransactionTypes.Stock)
             {
@@ -340,11 +373,16 @@ namespace DMT.Models.ExtensionMethods
             {
                 inst.UserId = value.UserId;
             }
-            inst.UserReceiveDate = value.UserReceiveDate.Value();
+            inst.UserReceiveDate = value.UserReceiveDate;
 
             return inst;
         }
 
+        /// <summary>
+        /// Convert to Server Model list.
+        /// </summary>
+        /// <param name="values">The list of TSBCouponTransaction.</param>
+        /// <returns>Returns list of TAServerCouponTransaction.</returns>
         public static List<TAServerCouponTransaction> ToServers(this List<TSBCouponTransaction> values)
         {
             var rets = new List<TAServerCouponTransaction>();

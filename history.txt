@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1200
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1199
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1198
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update TAxTODExtensionMethods #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1197

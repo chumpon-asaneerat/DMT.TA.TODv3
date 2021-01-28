@@ -56,8 +56,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1166
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1165
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1164
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - CollectorRevenueEntryPage
+      - Add variable to keep current user to used when config change.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1163

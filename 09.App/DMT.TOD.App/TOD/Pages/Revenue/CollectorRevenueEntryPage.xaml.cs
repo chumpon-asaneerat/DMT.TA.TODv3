@@ -47,6 +47,7 @@ namespace DMT.TOD.Pages.Revenue
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         //private CultureInfo culture = new CultureInfo("th-TH");
 
+        private User _user = null;
         private RevenueEntryManager manager = null;
 
         #endregion
@@ -71,8 +72,10 @@ namespace DMT.TOD.Pages.Revenue
 
         private void Instance_ConfigChanged(object sender, EventArgs e)
         {
-            var usr = (null != manager) ? manager.User : null;
-            Setup(usr); // Reload.
+            // Re assign User because when config change the CurrentTSBManager will reset all data
+            // before this handler.
+            if (null != manager) manager.User = _user;
+            Setup(_user); // Reload.
         }
 
         #endregion
@@ -445,6 +448,12 @@ namespace DMT.TOD.Pages.Revenue
             }
 
             tabs.SelectedIndex = 0;
+
+            _user = user;
+            if (null != _user)
+            {
+
+            }
 
             if (null != manager)
             {

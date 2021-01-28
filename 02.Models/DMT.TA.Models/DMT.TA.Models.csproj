@@ -106,9 +106,7 @@
       <Name>DMT.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Scripts\Coupons\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -189,6 +187,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Shifts\TSBShiftView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponBalanceView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponLaneBalanceView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponSoldByLaneBalanceView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponSoldByTSBBalanceView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponStockBalanceView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponSummarryView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponTransactionView.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

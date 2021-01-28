@@ -33,59 +33,14 @@ namespace DMT.Models
 	//[Table("TSBCouponTransaction")]
 	public class TSBCouponTransaction : NTable<TSBCouponTransaction>
 	{
-		#region Enum
-
-		/// <summary>
-		/// The Transaction Types Enum.
-		/// </summary>
-		public enum TransactionTypes : int
-		{
-			/// <summary>
-			/// Cancel or Remove
-			/// </summary>
-			CancelOrRemove = 0,
-			/// <summary>
-			/// TSB Stock
-			/// </summary>
-			Stock = 1,
-			/// <summary>
-			/// Borrow By User on Lane
-			/// </summary>
-			Lane = 2,
-			/// <summary>
-			/// Sold By User on Lane
-			/// </summary>
-			SoldByLane = 3,
-			/// <summary>
-			/// Sold By Supervisor on TSB
-			/// </summary>
-			SoldByTSB = 4
-		}
-		/// <summary>
-		/// The Finished Flags Enum.
-		/// </summary>
-		public enum FinishedFlags : int
-		{
-			/// <summary>
-			/// Completed
-			/// </summary>
-			Completed = 0,
-			/// <summary>
-			/// Avaliable
-			/// </summary>
-			Avaliable = 1
-		}
-
-		#endregion
-
 		#region Internal Variables
 
 		// server pk.
-		private int _CouponPK = 0;
+		private int? _CouponPK = new int?();
 
 		private int _TransactionId = 0;
 		private DateTime _TransactionDate = DateTime.MinValue;
-		private TransactionTypes _TransactionType = TransactionTypes.Stock;
+		private TSBCouponTransactionTypes _TransactionType = TSBCouponTransactionTypes.Stock;
 
 		// Coupon 
 		private string _CouponId = string.Empty;
@@ -106,7 +61,7 @@ namespace DMT.Models
 		private string _SoldByFullNameEN = string.Empty;
 		private string _SoldByFullNameTH = string.Empty;
 
-		private FinishedFlags _FinishFlag = FinishedFlags.Avaliable;
+		private TSBCouponFinishedFlags _FinishFlag = TSBCouponFinishedFlags.Avaliable;
 
 		private int _Status = 0;
 		private DateTime _LastUpdate = DateTime.MinValue;
@@ -139,8 +94,8 @@ namespace DMT.Models
 		{
 			get 
 			{
-				bool isSold = TransactionType == TransactionTypes.SoldByLane || 
-					TransactionType == TransactionTypes.SoldByTSB;
+				bool isSold = TransactionType == TSBCouponTransactionTypes.SoldByLane || 
+					TransactionType == TSBCouponTransactionTypes.SoldByTSB;
 				return (!isSold) ? BlackForeground : RedForeground; 
 			}
 			set { }
@@ -157,7 +112,7 @@ namespace DMT.Models
 		[Description(" Gets or sets CouponPK.")]
 		[ReadOnly(true)]
 		[PropertyMapName("CouponPK")]
-		public int CouponPK
+		public int? CouponPK
 		{
 			get
 			{
@@ -172,6 +127,69 @@ namespace DMT.Models
 				}
 			}
 		}
+
+		/// <summary>
+		/// Gets or sets SapChooseFlag.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SapChooseFlag.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SapChooseFlag")]
+		public int? SapChooseFlag { get; set; }
+
+		/// <summary>
+		/// Gets or sets SapChooseDate.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SapChooseDate.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SapChooseDate")]
+		public DateTime? SapChooseDate { get; set; }
+
+		/// <summary>
+		/// Gets or sets SAPSysSerial.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SAPSysSerial.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SAPSysSerial")]
+		public string SAPSysSerial { get; set; }
+
+		/// <summary>
+		/// Gets or sets SAPWhsCode.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SAPWhsCode.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SAPWhsCode")]
+		public string SAPWhsCode { get; set; }
+
+		/// <summary>
+		/// Gets or sets TollWayId.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets TollWayId.")]
+		[ReadOnly(true)]
+		[PropertyMapName("TollWayId")]
+		public int? TollWayId { get; set; }
+
+		/// <summary>
+		/// Gets or sets SAPItemName.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SAPItemName.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SAPItemName")]
+		public string SAPItemName { get; set; }
+
+		/// <summary>
+		/// Gets or sets sendtaflag.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets sendtaflag.")]
+		[ReadOnly(true)]
+		[PropertyMapName("sendtaflag")]
+		public int? sendtaflag { get; set; }
 
 		#endregion
 
@@ -283,7 +301,7 @@ namespace DMT.Models
 		[Description("Gets or sets Transaction Type.")]
 		[ReadOnly(true)]
 		[PropertyMapName("TransactionType")]
-		public TransactionTypes TransactionType
+		public TSBCouponTransactionTypes TransactionType
 		{
 			get { return _TransactionType; }
 			set
@@ -303,7 +321,7 @@ namespace DMT.Models
 		[Description("Gets or sets Is Finished (0: Completed, 1: Avaliable).")]
 		[ReadOnly(true)]
 		[PropertyMapName("FinishFlag")]
-		public virtual FinishedFlags FinishFlag
+		public virtual TSBCouponFinishedFlags FinishFlag
 		{
 			get
 			{

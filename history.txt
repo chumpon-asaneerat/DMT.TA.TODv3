@@ -56,8 +56,32 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1176
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1175
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1174
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TSBCouponTransaction
+      - Add Server related properties.
+  - DMT.TA.Models project.
+    - Add Coupon (TSB) View scripts
+      - TSBCouponTransactionView.sql
+      - TSBCouponSummarryView.sql
+      - TSBCouponStockBalanceView.sql
+      - TSBCouponSoldByTSBBalanceView.sql
+      - TSBCouponSoldByLaneBalanceView.sql
+      - TSBCouponLaneBalanceView.sql
+      - TSBCouponBalanceView.sql
+    - TADbServer.cs
+      - Init Tables
+        - TSBCouponTransaction
+      - Init Views
+        - TSBCouponTransactionView
+        - TSBCouponSummarryView
+        - TSBCouponStockBalanceView
+        - TSBCouponSoldByTSBBalanceView
+        - TSBCouponSoldByLaneBalanceView
+        - TSBCouponLaneBalanceView
+        - TSBCouponBalanceView
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1173

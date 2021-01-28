@@ -136,7 +136,7 @@ namespace DMT.Services
             Db.CreateTable<TSBExchangeGroup>();
             Db.CreateTable<TSBExchangeTransaction>();
 
-            //Db.CreateTable<TSBCouponTransaction>();
+            Db.CreateTable<TSBCouponTransaction>();
 
             ////Db.CreateTable<UserCouponBalance>();
             //Db.CreateTable<UserCouponTransaction>();
@@ -2015,17 +2015,18 @@ namespace DMT.Services
             InitView("TSBCreditSummaryView", 1, prefix);
 
             // Coupons - Embeded resource used . instead / to access sub contents.
-            /*
             prefix = @"Coupons";
             InitView("TSBCouponTransactionView", 1, prefix);
 
+            InitView("TSBCouponSummarryView", 1, prefix);
             InitView("TSBCouponStockBalanceView", 1, prefix);
             InitView("TSBCouponLaneBalanceView", 1, prefix);
             InitView("TSBCouponSoldByLaneBalanceView", 1, prefix);
             InitView("TSBCouponSoldByTSBBalanceView", 1, prefix);
+
             InitView("TSBCouponBalanceView", 1, prefix);
 
-            InitView("TSBCouponSummarryView", 1, prefix);
+            /*
             InitView("UserCoupon35SummaryView", 1, prefix);
             InitView("UserCoupon80SummaryView", prefix);
             InitView("UserCouponSummaryView", 1, prefix);

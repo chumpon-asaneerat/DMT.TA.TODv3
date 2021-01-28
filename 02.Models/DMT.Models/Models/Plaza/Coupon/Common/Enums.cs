@@ -38,4 +38,54 @@ namespace DMT.Models
     }
 
     #endregion
+
+    #region TSB Coupon Transaction Types
+
+    /// <summary>
+    /// The TSB Transaction Types Enum.
+    /// </summary>
+    public enum TSBCouponTransactionTypes : int
+    {
+        /// <summary>
+        /// Cancel or Remove
+        /// </summary>
+        CancelOrRemove = 0,
+        /// <summary>
+        /// TSB Stock
+        /// </summary>
+        Stock = 1,
+        /// <summary>
+        /// Borrow By User on Lane
+        /// </summary>
+        Lane = 2,
+        /// <summary>
+        /// Sold By User on Lane
+        /// </summary>
+        SoldByLane = 3,
+        /// <summary>
+        /// Sold By Supervisor on TSB
+        /// </summary>
+        SoldByTSB = 4
+    }
+
+    #endregion
+
+    #region TSB Coupon Finished Flags
+
+    /// <summary>
+    /// The TSB Coupon Finished Flags Enum.
+    /// </summary>
+    public enum TSBCouponFinishedFlags : int
+    {
+        /// <summary>
+        /// Completed
+        /// </summary>
+        Completed = 0,
+        /// <summary>
+        /// Avaliable
+        /// </summary>
+        Avaliable = 1
+    }
+
+    #endregion
 }

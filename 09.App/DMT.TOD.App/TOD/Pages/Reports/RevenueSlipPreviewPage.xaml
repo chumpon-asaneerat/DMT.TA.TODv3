@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DMT.TOD.Pages.Reports.EmpytRevenueSlipPage"
+﻿<UserControl x:Class="DMT.TOD.Pages.Reports.RevenueSlipPreviewPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"

@@ -95,6 +95,7 @@ namespace DMT.TOD.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdChiefRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
             // ป้อนรายได้ย้อนหลัง

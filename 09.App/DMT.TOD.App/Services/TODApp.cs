@@ -257,6 +257,43 @@ namespace DMT
                 }
             }
 
+
+            private static TOD.Pages.Reports.RevenueSlipPreviewPage _RevenueSlipPreview;
+
+            /// <summary>Gets Report Revenue Slip Page.</summary>
+            public static TOD.Pages.Reports.RevenueSlipPreviewPage RevenueSlipPreview
+            {
+                get
+                {
+                    if (null == _RevenueSlipPreview)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _RevenueSlipPreview = new TOD.Pages.Reports.RevenueSlipPreviewPage();
+                        }
+                    }
+                    return _RevenueSlipPreview;
+                }
+            }
+
+            private static TOD.Pages.Reports.DailyRevenueSummaryPreviewPage _DailyRevenueSummaryPreview;
+
+            /// <summary>Gets Report Daily Revenue Summary Page.</summary>
+            public static TOD.Pages.Reports.DailyRevenueSummaryPreviewPage DailyRevenueSummaryPreview
+            {
+                get
+                {
+                    if (null == _DailyRevenueSummaryPreview)
+                    {
+                        lock (typeof(TODApp))
+                        {
+                            _DailyRevenueSummaryPreview = new TOD.Pages.Reports.DailyRevenueSummaryPreviewPage();
+                        }
+                    }
+                    return _DailyRevenueSummaryPreview;
+                }
+            }
+
             #endregion
         }
 

@@ -47,8 +47,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1189
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1188
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1187
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Add DaulyRevenueSummaryPreviewPage
+    - Add RevenueSlipPreviewPage
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1186

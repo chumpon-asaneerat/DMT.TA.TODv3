@@ -209,8 +209,14 @@
     <Compile Include="TOD\Controls\Revenue\RevenueEntry.xaml.cs">
       <DependentUpon>RevenueEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TOD\Pages\Reports\DailyRevenueSummaryPreviewPage.xaml.cs">
+      <DependentUpon>DailyRevenueSummaryPreviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TOD\Pages\Reports\EmpytRevenueSlipPage.xaml.cs">
       <DependentUpon>EmpytRevenueSlipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TOD\Pages\Reports\RevenueSlipPreviewPage.xaml.cs">
+      <DependentUpon>RevenueSlipPreviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TOD\Pages\Revenue\ChiefRevenueEntryPage.xaml.cs">
       <DependentUpon>ChiefRevenueEntryPage.xaml</DependentUpon>
@@ -349,7 +355,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TOD\Pages\Reports\DailyRevenueSummaryPreviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TOD\Pages\Reports\EmpytRevenueSlipPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Pages\Reports\RevenueSlipPreviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

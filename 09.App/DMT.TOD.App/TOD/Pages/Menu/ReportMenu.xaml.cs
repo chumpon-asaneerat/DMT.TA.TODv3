@@ -38,6 +38,7 @@ namespace DMT.TOD.Pages.Menu
 
         #region Button Handlers
 
+        // TEST - PASSED.
         private void cmdRevenueSlipReport_Click(object sender, RoutedEventArgs e)
         {
             var win = TODApp.Windows.RevenueSlipSearch;
@@ -51,9 +52,12 @@ namespace DMT.TOD.Pages.Menu
                 msg.ShowDialog();
                 return;
             }
-            //PageContentManager.Instance.Current = page;
+            var page = TODApp.Pages.RevenueSlipPreview;
+            page.Setup(_user, win.SelectedEntry);
+            PageContentManager.Instance.Current = page;
         }
 
+        // TEST - PASSED.
         private void cmdRevenueSummaryReport_Click(object sender, RoutedEventArgs e)
         {
             var win = TODApp.Windows.RevenueSummarySearch;
@@ -67,7 +71,9 @@ namespace DMT.TOD.Pages.Menu
                 msg.ShowDialog();
                 return;
             }
-            //PageContentManager.Instance.Current = page;
+            var page = TODApp.Pages.DailyRevenueSummaryPreview;
+            page.Setup(_user, win.Revenues);
+            PageContentManager.Instance.Current = page;
         }
 
         // TEST - PASSED.

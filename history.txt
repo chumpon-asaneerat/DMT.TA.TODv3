@@ -53,8 +53,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1187
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1186
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1185
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Update AccountStatusBar -> Add RabbitMQStatus control.
+  - DMT.TA.App project
+    - Update TAStatusBar -> Add RabbitMQStatus control.
+  - DMT.TOD.App project
+    - Update TODStatusBar -> Add RabbitMQStatus control.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1184

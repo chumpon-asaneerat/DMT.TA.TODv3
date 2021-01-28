@@ -9,6 +9,7 @@
              mc:Ignorable="d">
     <DockPanel Background="DimGray" LastChildFill="True">
         <ctrl:LocalDbStatus DockPanel.Dock="Left" />
+        <ctrl:RabbitMQStatus DockPanel.Dock="Left" />
         <ctrl:SCWStatus DockPanel.Dock="Left" />
         <ctrl:TAServerStatus DockPanel.Dock="Left" />
         <ctrl:TODAppStatus DockPanel.Dock="Left" />

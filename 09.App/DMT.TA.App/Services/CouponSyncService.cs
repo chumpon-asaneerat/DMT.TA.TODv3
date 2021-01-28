@@ -134,7 +134,25 @@ namespace DMT.Services
             IsSync = true;
             try
             {
+                var search = Search.TAxTOD.Coupon.Gets.Create(TAAPI.TSB.TSBId, null, null, null, 1, 20);
+                var ret = couponOps.Gets(search);
+                if (ret.Ok)
+                {
+                    var coupons = ret.data;
+                    var output = ret.Output;
+                    if (null != output && null != coupons)
+                    {
+                        if (output.TotalRecords.HasValue && output.TotalRecords.Value > 0)
+                        {
+                            int iMax = output.TotalRecords.Value;
+                            for (int i = 0; i < iMax; i++)
+                            {
 
+
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

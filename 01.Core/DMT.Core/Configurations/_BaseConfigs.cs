@@ -496,12 +496,9 @@ namespace DMT.Configurations
                 UserName = "DMTUSER",
                 Password = "DMTPASS"
             };
-            // Init blank plazas
-            this.Plazas = new List<TODPlazaConfig>()
-            {
-                new TODPlazaConfig() { PlazaId = 0 },
-                new TODPlazaConfig() { PlazaId = 0 }
-            };
+            Plazas = new List<TODPlazaConfig>();
+            Plazas.Add(new TODPlazaConfig() { PlazaId = 0 });
+            Plazas.Add(new TODPlazaConfig() { PlazaId = 0 });
         }
 
         #endregion
@@ -540,6 +537,7 @@ namespace DMT.Configurations
         /// <summary>
         /// Gets or sets Plazas.
         /// </summary>
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<TODPlazaConfig> Plazas { get; set; }
 
         #endregion

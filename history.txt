@@ -65,8 +65,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1173
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1172
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1171
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - TODAppWebServiceConfig add attribute for overwrite object creation of List.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1170

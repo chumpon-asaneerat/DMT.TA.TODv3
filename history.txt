@@ -41,8 +41,13 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1190
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1189
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update ListViewStyle.xaml -> Add RevenueEntry related data template.
+  - DMT.TOD.App project
+    - Update RevenueSlipSearchWindow.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1188

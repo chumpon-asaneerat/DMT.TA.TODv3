@@ -126,13 +126,13 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="120"
-                                                DisplayMemberBinding="{Binding Path=UserId}"
+                                                CellTemplate="{StaticResource UserId}"
                                                 Header="รหัสพนักงาน" />
                                 <GridViewColumn Width="300"
-                                                DisplayMemberBinding="{Binding Path=CollectorNameTH}"
+                                                CellTemplate="{StaticResource CollectorNameTH}"
                                                 Header="ชื่อพนักงาน" />
                                 <GridViewColumn Width="200"
-                                                DisplayMemberBinding="{Binding Path=IsHistoricalDisplayText}"
+                                                CellTemplate="{StaticResource IsHistoricalDisplayText}"
                                                 Header="หมายเหตุ" />
                             </GridView>
                         </ListView.View>

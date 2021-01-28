@@ -377,4 +377,21 @@
                    TextAlignment="Right" />
     </DataTemplate>
 
+    <!--  Common for Revenue Entry  -->
+    <DataTemplate x:Key="CollectorNameEN">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CollectorNameEN}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="CollectorNameTH">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CollectorNameTH}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="IsHistoricalDisplayText">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding IsHistoricalDisplayText}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+
 </ResourceDictionary>

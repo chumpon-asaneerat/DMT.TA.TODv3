@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 
 //using NLib.Services;
+using DMT.Configurations;
 using DMT.Models;
 using DMT.Services;
 
@@ -18,6 +19,11 @@ namespace DMT
     /// </summary>
     public static class TODApp
     {
+        /// <summary>
+        /// Gets or sets Current TODAppWebServiceConfig.
+        /// </summary>
+        public static TODAppWebServiceConfig Config { get; set; }
+
         /// <summary>
         /// Permissions Static class.
         /// </summary>

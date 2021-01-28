@@ -44,8 +44,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1170
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1169
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1168
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TAApp.cs
+      - Add Config static proeprty.
+    - App.xaml.cs
+      - Add Register/Unregister to TA App.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1167

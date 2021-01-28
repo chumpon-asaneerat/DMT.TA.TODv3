@@ -65,8 +65,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1183
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1182
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1181
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - SCWStatus -> Add code call WS passswordExpireDays
+  - DMT.TA.App project
+    - SCWStatus -> Add code call WS passswordExpireDays
+  - DMT.TOD.App project
+    - SCWStatus -> Add code call WS passswordExpireDays
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1180

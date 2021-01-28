@@ -13,6 +13,8 @@ using DMT.Services;
 
 namespace DMT.Controls.StatusBar
 {
+    using wsOps = Services.Operations.SCW.Security;
+
     /// <summary>
     /// Interaction logic for SCWStatus.xaml
     /// </summary>
@@ -50,6 +52,7 @@ namespace DMT.Controls.StatusBar
             ping.Interval = interval * 1000;
             ping.Start();
 
+            CallWS();
             UpdateUI();
 
             timer = new DispatcherTimer();
@@ -91,7 +94,8 @@ namespace DMT.Controls.StatusBar
             if (null != e.Reply &&
                 e.Reply.Status == System.Net.NetworkInformation.IPStatus.Success)
             {
-                isOnline = true;
+                // Call WS
+                CallWS();
             }
             else
             {
@@ -131,15 +135,24 @@ namespace DMT.Controls.StatusBar
                 // Restart ping service.
                 ping.Start();
             }
+            CallWS();
             UpdateUI();
         }
 
         private void UI_ConfigChanged(object sender, EventArgs e)
         {
+            CallWS();
             UpdateUI();
         }
 
         #endregion
+
+        private void CallWS()
+        {
+            var ret = wsOps.passwordExpiresDays();
+            isOnline = (null != ret && null != ret.status &&
+                !string.IsNullOrEmpty(ret.status.code) && ret.status.code == "S200");
+        }
 
         private void UpdateUI()
         {

@@ -248,4 +248,119 @@ namespace DMT.Models.ExtensionMethods
     #endregion
 
     #endregion
+
+    #region TAxTOD Server <-> Local Extension Methods
+
+    /// <summary>
+    /// The TAxTOD Extension Methods
+    /// </summary>
+    public static class TAxTODExtensionMethods
+    {
+        #region Coupons
+
+        public static TSBCouponTransaction ToLocal(this TAServerCouponTransaction value)
+        {
+            if (null == value) return null;
+            var inst = new TSBCouponTransaction();
+
+            inst.TransactionDate = value.TransactionDate.Value();
+            inst.TransactionType = (TSBCouponTransactionTypes)value.CouponStatus.Value();
+            inst.CouponId = value.SerialNo;
+            inst.CouponPK = value.CouponPK.Value();
+            inst.CouponType = (CouponType)value.CouponType.Value();
+            inst.FinishFlag = (TSBCouponFinishedFlags)value.FinishFlag.Value();
+            inst.Price = value.Price.Value();
+            inst.SoldBy = value.SoldBy;
+            var soldUsr = (!string.IsNullOrWhiteSpace(value.SoldBy)) ?
+                User.GetUser(value.SoldBy).Value() : null;
+            if (null != soldUsr)
+            {
+                inst.SoldByFullNameEN = soldUsr.FullNameEN;
+                inst.SoldByFullNameTH = soldUsr.FullNameTH;
+            }
+            inst.SoldDate = value.SoldDate.Value();
+            inst.TSBId = value.TSBId;
+            if (inst.TransactionType == TSBCouponTransactionTypes.Stock)
+            {
+                inst.UserId = string.Empty;
+                inst.FullNameEN = string.Empty;
+                inst.FullNameTH = string.Empty;
+            }
+            else
+            {
+                inst.UserId = value.UserId;
+                var user = (!string.IsNullOrWhiteSpace(value.UserId)) ?
+                    User.GetUser(value.UserId).Value() : null;
+                if (null != user)
+                {
+                    inst.FullNameEN = user.FullNameEN;
+                    inst.FullNameTH = user.FullNameTH;
+                }
+            }
+            inst.UserReceiveDate = value.UserReceiveDate.Value();
+
+            return inst;
+        }
+
+        public static List<TSBCouponTransaction> ToLocals(this List<TAServerCouponTransaction> values)
+        {
+            var rets = new List<TSBCouponTransaction>();
+            if (null != values)
+            {
+                values.ForEach(inst =>
+                {
+                    rets.Add(inst.ToLocal());
+                });
+            }
+            return rets;
+
+        }
+
+        public static TAServerCouponTransaction ToServer(this TSBCouponTransaction value)
+        {
+            if (null == value) return null;
+
+            var inst = new TAServerCouponTransaction();
+
+            inst.TransactionDate = value.TransactionDate.Value();
+            inst.CouponStatus = (int)value.TransactionType;
+            inst.SerialNo = value.CouponId;
+            inst.CouponPK = value.CouponPK.Value();
+            inst.CouponType = (int)value.CouponType;
+            inst.FinishFlag = (int)value.FinishFlag;
+            inst.Price = value.Price.Value();
+            inst.SoldBy = value.SoldBy;
+            inst.SoldDate = value.SoldDate.Value();
+            inst.TSBId = value.TSBId;
+            if (value.TransactionType == TSBCouponTransactionTypes.Stock)
+            {
+                inst.UserId = string.Empty;
+            }
+            else
+            {
+                inst.UserId = value.UserId;
+            }
+            inst.UserReceiveDate = value.UserReceiveDate.Value();
+
+            return inst;
+        }
+
+        public static List<TAServerCouponTransaction> ToServers(this List<TSBCouponTransaction> values)
+        {
+            var rets = new List<TAServerCouponTransaction>();
+            if (null != values)
+            {
+                values.ForEach(inst =>
+                {
+                    rets.Add(inst.ToServer());
+                });
+            }
+            return rets;
+
+        }
+
+        #endregion
+    }
+
+    #endregion
 }

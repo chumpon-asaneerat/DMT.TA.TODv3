@@ -59,8 +59,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1175
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1174
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1173
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Add Enums.cs -> CouponType
+    - Add TSBCouponBalance.cs
+    - Add TSBCouponSummary.cs
+    - Add TSBCouponTransaction.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1172

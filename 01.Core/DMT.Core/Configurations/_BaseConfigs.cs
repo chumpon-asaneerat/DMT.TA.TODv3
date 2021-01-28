@@ -1,6 +1,7 @@
 ﻿#region Using
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -439,6 +440,39 @@ namespace DMT.Configurations
 
     #endregion
 
+
+    #region TODAppWebServiceConfig (For TOD App Web Service)
+
+    /// <summary>
+    /// The TODPlazaConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class TODPlazaConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TODPlazaConfig() : base() 
+        {
+            this.PlazaId = string.Empty;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Plaza Id.
+        /// </summary>
+        public string PlazaId { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
     #region TODAppWebServiceConfig (For TOD App Web Service)
 
     /// <summary>
@@ -461,6 +495,12 @@ namespace DMT.Configurations
                 PortNumber = 9002,
                 UserName = "DMTUSER",
                 Password = "DMTPASS"
+            };
+            // Init blank plazas
+            this.Plazas = new List<TODPlazaConfig>()
+            {
+                new TODPlazaConfig() { PlazaId = "" },
+                new TODPlazaConfig() { PlazaId = "" }
             };
         }
 
@@ -497,6 +537,10 @@ namespace DMT.Configurations
         /// Gets or sets Http service.
         /// </summary>
         public WebServiceConfig Service { get; set; }
+        /// <summary>
+        /// Gets or sets Plazas.
+        /// </summary>
+        public List<TODPlazaConfig> Plazas { get; set; }
 
         #endregion
     }

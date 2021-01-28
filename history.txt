@@ -47,8 +47,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1159
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1158
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1157
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - _BaseConfig.cs
+      - Add TODPlazaConfig class.
+      - Update TODAppWebServiceConfig add Plazas property (for keep list of allow plazas).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1156

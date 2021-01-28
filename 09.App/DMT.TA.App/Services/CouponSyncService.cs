@@ -9,6 +9,7 @@ using System.IO;
 //using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Reflection;
+using System.Windows.Threading;
 
 using DMT.Configurations;
 using DMT.Controls;
@@ -28,9 +29,31 @@ using RestSharp;
 
 namespace DMT.Services
 {
-    using taServerops = Services.Operations.TAxTOD; // reference to static class.
+    using couponOps = Services.Operations.TAxTOD.Coupon; // reference to static class.
 
     #region EventHandler and EventArgs
+
+    /// <summary>
+    /// The Progress EventArgs class.
+    /// </summary>
+    public class ProgressEventArgs
+    {
+        /// <summary>
+        /// Gets or sets current value.
+        /// </summary>
+        public int Current { get; set; }
+        /// <summary>
+        /// Gets or sets max value.
+        /// </summary>
+        public int Max { get; set; }
+    }
+
+    /// <summary>
+    /// The Progress EventHandler.
+    /// </summary>
+    /// <param name="sender">The Sender instance.</param>
+    /// <param name="e">The EventArgs instance.</param>
+    public delegate void ProgressEventHandler(object sender, ProgressEventArgs e);
 
     #endregion
 
@@ -66,6 +89,8 @@ namespace DMT.Services
 
         #region Internal Variables
 
+        private DispatcherTimer _timer = null;
+
         #endregion
 
         #region Constructor and Destructor
@@ -84,6 +109,43 @@ namespace DMT.Services
 
         #endregion
 
+        #region Timer Handler
+
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            if (IsSync) return; // on sync ignore.
+            Sync();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void RaiseProgressEvent(int current, int max)
+        {
+            OnProgress.Call(this, new ProgressEventArgs() { Current = current, Max = max });
+        }
+
+        private void Sync()
+        {
+            if (IsSync) return;
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            IsSync = true;
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+
+            IsSync = false;
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -91,21 +153,48 @@ namespace DMT.Services
         /// </summary>
         public void Start()
         {
-
+            this.IsRunning = true;
+            if (null == _timer) _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Tick += _timer_Tick;
+            _timer.Start();
         }
+
         /// <summary>
         /// Shutdown.
         /// </summary>
         public void Shutdown()
         {
-
+            this.IsRunning = false;
+            if (null != _timer)
+            {
+                _timer.Tick -= _timer_Tick;
+                _timer.Stop();
+            }
+            _timer = null;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets is on sync.
+        /// </summary>
+        public bool IsSync { get; private set; }
+        /// <summary>
+        /// Gets is service running.
+        /// </summary>
+        public bool IsRunning { get; private set; }
 
         #endregion
 
         #region Public Events
 
-
+        /// <summary>
+        /// OnProgress event.
+        /// </summary>
+        public event ProgressEventHandler OnProgress;
 
         #endregion
     }

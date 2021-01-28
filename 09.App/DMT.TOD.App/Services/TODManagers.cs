@@ -430,6 +430,8 @@ namespace DMT.Services
         /// </summary>
         public CurrentTSBManager() : base()
         {
+            TODConfigManager.Instance.ConfigChanged += Instance_ConfigChanged;
+
             this.Jobs = new JobManager(this);
             this.Payments = new PaymentManager(this);
             this.UserShifts = new UserShiftManager(this);
@@ -440,6 +442,7 @@ namespace DMT.Services
         /// </summary>
         ~CurrentTSBManager() 
         {
+            TODConfigManager.Instance.ConfigChanged -= Instance_ConfigChanged;
             this.UserShifts = null;
             this.Payments = null;
             this.Jobs = null;
@@ -449,6 +452,10 @@ namespace DMT.Services
 
         #region Private Methods
 
+        private void Instance_ConfigChanged(object sender, EventArgs e)
+        {
+            Refresh();
+        }
         /// <summary>
         /// Raise Property Changed Event.
         /// </summary>
@@ -1035,19 +1042,53 @@ namespace DMT.Services
                                 // Only job match match plaza id and 
                                 // BOJ DateTime is greater thant UserShift Begin DateTime.
                                 if (job.plazaId.Value == plaza.SCWPlazaId &&
+                                    job.jobNo.HasValue &&
+                                    job.laneId.HasValue &&
                                     job.bojDateTime.HasValue &&
                                     usrShift.Begin.Value <= job.bojDateTime.Value)
                                 {
-                                    jobs.Add(new LaneJob(job, usrShift));
+                                    // Check duplicate.
+                                    var exist = jobs.Find(item =>
+                                    {
+                                        var found = (item.JobNo.Value == job.jobNo.Value &&
+                                            item.LaneNo.Value == job.laneId.Value &&
+                                            item.Begin.Value == job.bojDateTime.Value);
+                                        return found;
+                                    });
+                                    if (null == exist)
+                                    {
+                                        jobs.Add(new LaneJob(job, usrShift));
+                                    }
+                                    else
+                                    {
+                                        //Console.WriteLine("Detected duplicate job.");
+                                    }
                                 }
                             }
                             else
                             {
                                 // All Job match plaza id.
                                 if (job.plazaId.Value == plaza.SCWPlazaId &&
+                                    job.jobNo.HasValue &&
+                                    job.laneId.HasValue &&
                                     job.bojDateTime.HasValue)
                                 {
-                                    jobs.Add(new LaneJob(job, usrShift));
+                                    // Check duplicate.
+                                    var exist = jobs.Find(item =>
+                                    {
+                                        var found = (item.JobNo.Value == job.jobNo.Value &&
+                                            item.LaneNo.Value == job.laneId.Value &&
+                                            item.Begin.Value == job.bojDateTime.Value);
+                                        return found;
+                                    });
+                                    if (null == exist)
+                                    {
+                                        jobs.Add(new LaneJob(job, usrShift));
+                                    }
+                                    else
+                                    {
+                                        //Console.WriteLine("Detected duplicate job.");
+                                    }
                                 }
                             }
                         });
@@ -1091,10 +1132,27 @@ namespace DMT.Services
                 {
                     AllJobs.ForEach(job =>
                     {
-                        if (job.PlazaGroupId == plaza.PlazaGroupId)
+                        // Match Selected Plaza Group Id and all required data is not null.
+                        if (job.PlazaGroupId == plaza.PlazaGroupId &&
+                            job.JobNo.HasValue && job.LaneNo.HasValue && job.Begin.HasValue)
                         {
-                            // Match Selected Plaza Group Id.
-                            PlazaGroupJobs.Add(job);
+                            // Check Duplicate
+                            var exist = PlazaGroupJobs.Find(item =>
+                            {
+                                var found = (item.JobNo.Value == job.JobNo.Value &&
+                                    item.LaneNo.Value == job.LaneNo.Value &&
+                                    item.Begin.Value == job.Begin.Value);
+                                return found;
+                            });
+
+                            if (null == exist)
+                            {
+                                PlazaGroupJobs.Add(job);
+                            }
+                            else
+                            {
+                                //Console.WriteLine("Detected duplicate job.");
+                            }
                         }
                     });
                 });

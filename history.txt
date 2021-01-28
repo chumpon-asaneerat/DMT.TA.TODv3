@@ -62,8 +62,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1164
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1163
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1162
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TODManager
+      - CurrentTSBManager
+        - Hook/Unhook Config Changed Handler.
+      - JobManager
+        - Update LoadTSBJobs method - add check LaneJob duplicate.
+        - Update LoadPlazaGroupJobs method - add check LaneJob duplicate.
+    - ChiefRevenueEntryPage
+      - Hook/Unhook Config Changed Handler.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1161

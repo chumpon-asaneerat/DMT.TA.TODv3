@@ -51,7 +51,7 @@ namespace DMT.TOD.Pages.Revenue
 
         #endregion
 
-        #region Loaded
+        #region Loaded/Unload
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -60,6 +60,22 @@ namespace DMT.TOD.Pages.Revenue
             dtRevDate.CultureInfo = culture;
             //Thread.CurrentThread.CurrentCulture = culture;
             //Thread.CurrentThread.CurrentUICulture = culture;
+
+            TODConfigManager.Instance.ConfigChanged += Instance_ConfigChanged;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            TODConfigManager.Instance.ConfigChanged -= Instance_ConfigChanged;
+        }
+
+        #endregion
+
+        #region Config Changed Handler
+
+        private void Instance_ConfigChanged(object sender, EventArgs e)
+        {
+            Setup(_chief); // Reload.
         }
 
         #endregion

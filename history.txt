@@ -53,8 +53,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1177
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1176
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1175
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Add TA->Notify Route
+      - Add IsAlive route.
+    - Add TOD->Notify Route
+      - Add IsAlive route.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1174

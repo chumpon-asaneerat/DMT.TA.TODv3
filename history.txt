@@ -59,8 +59,26 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1165
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1164
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1163
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TODManager
+      - PaymentManager
+        - Update LoadQRcodeItems method - fixed bug.
+    - ChiefRevenueEntryPage
+      - LoadPlazaGroups method -> Change TSBPlazaGroups to TODPlazaGroups
+      - RefreshJobList method -> Force ViewMode to TOD.
+    - CollectorRevenueEntryPage
+      - Hook/Unhook Config Changed Handler.
+      - LoadPlazaGroups method -> Change TSBPlazaGroups to TODPlazaGroups
+      - RefreshJobList method -> Force ViewMode to TOD.
+    - EMVQRcodeViewPage
+      - Add Amount column.
+    - EMVEntry Control
+      - Add Amount column.
+    - QRcodeEntry Control
+      - Add Amount column.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1162

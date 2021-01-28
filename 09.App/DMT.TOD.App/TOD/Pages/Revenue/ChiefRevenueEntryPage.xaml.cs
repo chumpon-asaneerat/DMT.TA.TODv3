@@ -393,8 +393,8 @@ namespace DMT.TOD.Pages.Revenue
             cbPlazas.ItemsSource = null;
             if (null != manager && null != manager.Current)
             {
-                cbPlazas.ItemsSource = manager.Current.TSBPlazaGroups;
-                if (manager.Current.TSBPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+                cbPlazas.ItemsSource = manager.Current.TODPlazaGroups;
+                if (manager.Current.TODPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
             }
             RefreshJobList();
         }
@@ -406,7 +406,9 @@ namespace DMT.TOD.Pages.Revenue
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
 
             if (null == manager || null == manager.Jobs || null == manager.UserShifts || null == plazaGroup) return;
+
             // Refresh jobs.
+            manager.Jobs.ViewMode = ViewModes.TOD; // Show by PlazaId in TOD config Only
             manager.Jobs.OnlyJobInShift = false; // Show all jobs
             manager.Jobs.UserShift = manager.UserShifts.Create();
             manager.Jobs.PlazaGroup = plazaGroup; // assign selected plaza group.
@@ -416,6 +418,8 @@ namespace DMT.TOD.Pages.Revenue
         }
 
         #endregion
+
+        #region Reset
 
         private void Reset()
         {
@@ -439,6 +443,10 @@ namespace DMT.TOD.Pages.Revenue
             txtUserName2.DataContext = manager;
         }
 
+        #endregion
+
+        #region User related methods
+
         private void ResetSelectUser()
         {
             if (null != manager) manager.User = null;
@@ -459,6 +467,10 @@ namespace DMT.TOD.Pages.Revenue
                 RefreshJobList();
             }
         }
+
+        #endregion
+
+        #region Report methods
 
         private bool PrepareReport()
         {
@@ -536,6 +548,8 @@ namespace DMT.TOD.Pages.Revenue
                 }
             }
         }
+
+        #endregion
 
         #endregion
 

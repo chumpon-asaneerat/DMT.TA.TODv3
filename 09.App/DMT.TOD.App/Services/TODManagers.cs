@@ -264,6 +264,10 @@ namespace DMT.Services
 
         #region TOD PlazaGroup/Plaza methods
 
+        /// <summary>
+        /// Get TOD's PlazaGroups.
+        /// </summary>
+        /// <returns>Returns list of PlazaGroup.</returns>
         public static List<PlazaGroup> GetTODPlazaGroups()
         {
             List<PlazaGroup> results = new List<PlazaGroup>();
@@ -292,7 +296,10 @@ namespace DMT.Services
 
             return results;
         }
-
+        /// <summary>
+        /// Get TOD's Plazas
+        /// </summary>
+        /// <returns>Returns list of Plaza.</returns>
         public static List<Plaza> GetTODPlazas()
         {
             List<Plaza> results = new List<Plaza>();
@@ -315,7 +322,10 @@ namespace DMT.Services
 
             return results;
         }
-
+        /// <summary>
+        /// Get TOD's Lanes
+        /// </summary>
+        /// <returns>Returns list of Lane.</returns>
         public static List<Lane> GetTODLanes()
         {
             List<Lane> results = new List<Lane>();
@@ -347,7 +357,11 @@ namespace DMT.Services
 
             return results;
         }
-
+        /// <summary>
+        /// Get TSB PlazaGroup's Plazas
+        /// </summary>
+        /// <param name="value">The PlazaGroup instance.</param>
+        /// <returns>Returns list of Plaza.</returns>
         public static List<Plaza> GetTSBPlazaGroupPlazas(PlazaGroup value)
         {
             List<Plaza> results;
@@ -361,7 +375,11 @@ namespace DMT.Services
             }
             return results;
         }
-
+        /// <summary>
+        /// Get TOD PlazaGroup's Plazas.
+        /// </summary>
+        /// <param name="value">The PlazaGroup instance.</param>
+        /// <returns>Returns list of Plaza.</returns>
         public static List<Plaza> GetTODPlazaGroupPlazas(PlazaGroup value)
         {
             List<Plaza> results = new List<Plaza>();
@@ -1592,12 +1610,12 @@ namespace DMT.Services
                         param.staffId = userShift.UserId;
                         param.startDateTime = Begin;
                         param.endDateTime = End;
-                        var emvList = scwOps.qrcodeTransactionList(param);
-                        if (null != emvList && null != emvList.list)
+                        var qrcodeList = scwOps.qrcodeTransactionList(param);
+                        if (null != qrcodeList && null != qrcodeList.list)
                         {
-                            emvList.list.ForEach(item =>
+                            qrcodeList.list.ForEach(item =>
                             {
-                                if (item.trxDateTime.HasValue && userShift.Begin.HasValue &&
+                                if (item.trxDateTime.HasValue &&
                                     Begin.Value <= item.trxDateTime.Value)
                                 {
                                     items.Add(new LaneQRCode(item));

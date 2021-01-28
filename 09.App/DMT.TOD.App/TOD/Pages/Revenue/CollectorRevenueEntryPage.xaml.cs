@@ -51,12 +51,28 @@ namespace DMT.TOD.Pages.Revenue
 
         #endregion
 
-        #region Loaded
+        #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //Thread.CurrentThread.CurrentCulture = culture;
             //Thread.CurrentThread.CurrentUICulture = culture;
+            TODConfigManager.Instance.ConfigChanged += Instance_ConfigChanged;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            TODConfigManager.Instance.ConfigChanged -= Instance_ConfigChanged;
+        }
+
+        #endregion
+
+        #region Config Changed Handler
+
+        private void Instance_ConfigChanged(object sender, EventArgs e)
+        {
+            var usr = (null != manager) ? manager.User : null;
+            Setup(usr); // Reload.
         }
 
         #endregion
@@ -288,8 +304,8 @@ namespace DMT.TOD.Pages.Revenue
             cbPlazas.ItemsSource = null;
             if (null != manager && null != manager.Current)
             {
-                cbPlazas.ItemsSource = manager.Current.TSBPlazaGroups;
-                if (manager.Current.TSBPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+                cbPlazas.ItemsSource = manager.Current.TODPlazaGroups;
+                if (manager.Current.TODPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
             }
         }
 
@@ -299,7 +315,9 @@ namespace DMT.TOD.Pages.Revenue
 
             var plazaGroup = cbPlazas.SelectedItem as PlazaGroup;
             if (null == manager || null == manager.UserShift || null == plazaGroup) return;
+
             // Refresh jobs.
+            manager.Jobs.ViewMode = ViewModes.TOD; // Show by PlazaId in TOD config Only
             manager.Jobs.OnlyJobInShift = true;
             manager.Jobs.UserShift = manager.UserShift; // assign current user shift.
             manager.Jobs.PlazaGroup = plazaGroup; // assign selected plaza group.
@@ -309,6 +327,8 @@ namespace DMT.TOD.Pages.Revenue
         }
 
         #endregion
+
+        #region Reset
 
         private void Reset()
         {
@@ -328,6 +348,10 @@ namespace DMT.TOD.Pages.Revenue
             txtUserId2.DataContext = manager;
             txtUserName2.DataContext = manager;
         }
+
+        #endregion
+
+        #region Report methods
 
         private bool PrepareReport()
         {
@@ -402,6 +426,8 @@ namespace DMT.TOD.Pages.Revenue
                 }
             }
         }
+
+        #endregion
 
         #endregion
 

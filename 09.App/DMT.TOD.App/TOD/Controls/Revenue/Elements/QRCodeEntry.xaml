@@ -106,6 +106,9 @@
                         <GridViewColumn Width="150"
                                         CellTemplate="{StaticResource ApproveCode}"
                                         Header="Approval Code" />
+                        <GridViewColumn Width="120"
+                                        CellTemplate="{StaticResource Amount}"
+                                        Header="จำนวนเงิน" />
                         <GridViewColumn Width="110"
                                         CellTemplate="{StaticResource TrxDateString}"
                                         Header="วันที่" />

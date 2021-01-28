@@ -36,7 +36,21 @@ namespace DMT.TOD.Pages.TollAdmin
 
         #region Internal Variables
 
-        private CurrentTSBManager manager = new CurrentTSBManager();
+        private CurrentTSBManager manager;
+
+        #endregion
+
+        #region Loaded/Unloaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         #endregion
 
@@ -85,7 +99,7 @@ namespace DMT.TOD.Pages.TollAdmin
             lstLaneJobs.ItemsSource = null;
             if (null == value || !value.Begin.HasValue) return; // no selection.
             // Refresh jobs.
-            if (null == manager.Jobs) return;
+            if (null == manager || null == manager.Jobs) return;
             manager.Jobs.OnlyJobInShift = true;
             manager.Jobs.UserShift = value;// assign selected user shift.
             manager.Jobs.Refresh();
@@ -103,6 +117,8 @@ namespace DMT.TOD.Pages.TollAdmin
         /// <param name="user">The User instance.</param>
         public void Setup(User user)
         {
+            manager = new CurrentTSBManager();
+
             // Load User Shifts.
             RefreshUserShifts();
 

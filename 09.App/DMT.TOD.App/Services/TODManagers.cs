@@ -125,23 +125,27 @@ namespace DMT.Services
         /// <summary>
         /// Gets TSB PlazaGroups.
         /// </summary>
-        public static List<PlazaGroup> TSBPlazaGroups 
-        { 
-            get { return PlazaGroup.GetTSBPlazaGroups(TODAPI.TSB).Value(); } 
+        public static List<PlazaGroup> TSBPlazaGroups
+        {
+            //get { return PlazaGroup.GetTSBPlazaGroups(TODAPI.TSB).Value(); }
+            get { return GetTODPlazaGroups(); }
         }
         /// <summary>
         /// Gets TSB Plazas.
         /// </summary>
         public static List<Plaza> TSBPlazas
         {
-            get { return Plaza.GetTSBPlazas(TSB).Value(); }
+            //get { return Plaza.GetTSBPlazas(TSB).Value(); }
+            get { return GetTODPlazas(); }
         }
         /// <summary>
         /// Gets TSB Lanes.
         /// </summary>
         public static List<Lane> TSBLanes
         {
-            get { return Lane.GetTSBLanes(TSB).Value(); }
+            //get { return Lane.GetTSBLanes(TSB).Value(); }
+            get { return GetTODLanes(); }
+
         }
 
         #endregion
@@ -186,6 +190,8 @@ namespace DMT.Services
 
         #region Static Methods
 
+        #region User
+
         /// <summary>
         /// Search User By partial User Id.
         /// </summary>
@@ -202,6 +208,120 @@ namespace DMT.Services
             UserSearchManager.Instance.Title = title;
             return UserSearchManager.Instance.SelectUser(userId, permissions);
         }
+
+        #endregion
+
+        #region TOD PlazaGroup/Plaza methods
+
+        public static List<PlazaGroup> GetTODPlazaGroups()
+        {
+            List<PlazaGroup> results = new List<PlazaGroup>();
+
+            var plazas = (null != TODConfigManager.Instance.TODApp) ?
+                TODConfigManager.Instance.TODApp.Plazas : null;
+            if (null != plazas && plazas.Count > 0)
+            {
+                plazas.ForEach(plaza =>
+                {
+                    if (null == plaza && plaza.PlazaId <= 0) return;
+                    var match = Plaza.GetPlazaBySCWPlazaId(plaza.PlazaId).Value();
+                    if (null != match && match.PlazaGroupId != string.Empty)
+                    {
+                        var exist = results.Find(plazagroup => 
+                        { 
+                            return plazagroup.PlazaGroupId == match.PlazaGroupId; 
+                        });
+                        if (null != exist) return; // already exist.
+
+                        var group = PlazaGroup.GetPlazaGroup(match.PlazaGroupId).Value();
+                        if (null != group) results.Add(group);
+                    }
+                });
+            }
+
+            return results;
+        }
+
+        public static List<Plaza> GetTODPlazas()
+        {
+            List<Plaza> results = new List<Plaza>();
+
+            var plazas = (null != TODConfigManager.Instance.TODApp) ?
+                TODConfigManager.Instance.TODApp.Plazas : null;
+            if (null != plazas && plazas.Count > 0)
+            {
+                plazas.ForEach(plaza =>
+                {
+                    if (null == plaza && plaza.PlazaId <= 0) return;
+                    var match = Plaza.GetPlazaBySCWPlazaId(plaza.PlazaId).Value();
+                    // Check match plaza group.
+                    if (null != match)
+                    {
+                        results.Add(match);
+                    }
+                });
+            }
+
+            return results;
+        }
+
+        public static List<Lane> GetTODLanes()
+        {
+            List<Lane> results = new List<Lane>();
+
+            var plazas = (null != TODConfigManager.Instance.TODApp) ?
+                TODConfigManager.Instance.TODApp.Plazas : null;
+            if (null != plazas && plazas.Count > 0)
+            {
+                plazas.ForEach(plaza =>
+                {
+                    if (null == plaza && plaza.PlazaId <= 0) return;
+                    var match = Plaza.GetPlazaBySCWPlazaId(plaza.PlazaId).Value();
+                    if (null == match) return;
+                    var lanes = Lane.GetPlazaLanes(match).Value();
+                    if (null != lanes && lanes.Count > 0)
+                    {
+                        lanes.ForEach(lane => 
+                        {
+                            var exist = results.Find(eachLan => 
+                            {
+                                return eachLan.LaneId == lane.LaneId;
+                            });
+                            if (null != exist) return; // Already exists.
+                            results.Add(lane);
+                        });
+                    }
+                });
+            }
+
+            return results;
+        }
+
+        public static List<Plaza> GetPlazaGroupPlazas(PlazaGroup value)
+        {
+            List<Plaza> results = new List<Plaza>();
+            if (null == value) return results;
+
+            var plazas = (null != TODConfigManager.Instance.TODApp) ?
+                TODConfigManager.Instance.TODApp.Plazas : null;
+            if (null != plazas && plazas.Count > 0)
+            {
+                plazas.ForEach(plaza => 
+                {
+                    if (null == plaza && plaza.PlazaId <= 0) return;
+                    var match = Plaza.GetPlazaBySCWPlazaId(plaza.PlazaId).Value();
+                    // Check match plaza group.
+                    if (null != match && match.PlazaGroupId == value.PlazaGroupId)
+                    {
+                        results.Add(match);
+                    }
+                });
+            }
+
+            return results;
+        }
+
+        #endregion
 
         #endregion
 

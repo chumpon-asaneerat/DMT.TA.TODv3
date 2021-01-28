@@ -456,7 +456,7 @@ namespace DMT.Configurations
         /// </summary>
         public TODPlazaConfig() : base() 
         {
-            this.PlazaId = string.Empty;
+            this.PlazaId = 0;
         }
 
         #endregion
@@ -466,7 +466,7 @@ namespace DMT.Configurations
         /// <summary>
         /// Gets or sets Plaza Id.
         /// </summary>
-        public string PlazaId { get; set; }
+        public int PlazaId { get; set; }
 
         #endregion
     }
@@ -499,8 +499,8 @@ namespace DMT.Configurations
             // Init blank plazas
             this.Plazas = new List<TODPlazaConfig>()
             {
-                new TODPlazaConfig() { PlazaId = "" },
-                new TODPlazaConfig() { PlazaId = "" }
+                new TODPlazaConfig() { PlazaId = 0 },
+                new TODPlazaConfig() { PlazaId = 0 }
             };
         }
 

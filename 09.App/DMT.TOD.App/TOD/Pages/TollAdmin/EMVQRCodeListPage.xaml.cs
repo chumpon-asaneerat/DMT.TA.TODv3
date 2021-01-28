@@ -49,7 +49,7 @@ namespace DMT.TOD.Pages.TollAdmin
 
         #endregion
 
-        #region Loaded
+        #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -57,6 +57,11 @@ namespace DMT.TOD.Pages.TollAdmin
             dtEntryDate.CultureInfo = culture;
             //Thread.CurrentThread.CurrentCulture = culture;
             //Thread.CurrentThread.CurrentUICulture = culture;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion

@@ -44,8 +44,24 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1160
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1159
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1158
-- 
+  - DMT.Core project
+    - _BaseConfig.cs
+      - TODPlazaConfig class change PlazaId to int (like SCWPlazaId).
+  - DMT.TOD.App project
+    - TODManager
+      - TODAPI 
+        - Add GetTODPlazaGroups static method.
+        - Add GetTODPlazas static method.
+        - Add GetTODLanes static method.
+        - TSBPlazaGroups property -> Use GetTODPlazaGroups method.
+        - TSBPlazas property -> Use GetTODPlazas method.
+        - TSBLanes property -> Use GetTODLanes method.
+    - EMVQRcodeViewPage
+      - Add Unload handler
+    - JobListViewPage
+      - Add Loaded/Unload handler
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1157

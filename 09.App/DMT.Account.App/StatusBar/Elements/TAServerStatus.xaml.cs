@@ -13,7 +13,7 @@ using DMT.Services;
 
 namespace DMT.Controls.StatusBar
 {
-    using taServerOps = Services.Operations.TAxTOD.TAA;
+    using wsOps = Services.Operations.TAxTOD.TAA;
 
     /// <summary>
     /// Interaction logic for TAServerStatus.xaml
@@ -135,6 +135,7 @@ namespace DMT.Controls.StatusBar
                 // Restart ping service.
                 ping.Start();
             }
+            CallWS();
             UpdateUI();
         }
 
@@ -148,9 +149,9 @@ namespace DMT.Controls.StatusBar
 
         private void CallWS()
         {
-            var ret = taServerOps.IsAlive();
+            var ret = wsOps.IsAlive();
             isOnline = (ret.Ok) ? ret.Value().TimeStamp.HasValue : false;
-            if (isOnline) Console.WriteLine(ret.Value().TimeStamp.Value.ToString("HH:mm:ss.fff"));
+            //if (isOnline) Console.WriteLine(ret.Value().TimeStamp.Value.ToString("HH:mm:ss.fff"));
         }
 
         private void UpdateUI()

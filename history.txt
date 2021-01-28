@@ -41,8 +41,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1180
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1179
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TAServerStatus -> Add code call WS IsAlive
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1178

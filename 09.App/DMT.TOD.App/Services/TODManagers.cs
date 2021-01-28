@@ -31,6 +31,33 @@ namespace DMT.Services
     using scwOps = Services.Operations.SCW.TOD;
     using taaOps = Services.Operations.TA;
 
+    #region ViewModes Enum
+
+    /// <summary>
+    /// The ViewModes Enum
+    /// </summary>
+    public enum ViewModes
+    {
+        TSB,
+        TOD
+    }
+
+    #endregion
+
+    #region PaymentTypes Enum
+
+    /// <summary>
+    /// The PaymentTypes Enum
+    /// </summary>
+    public enum PaymentTypes
+    {
+        EMV,
+        QRCode,
+        Both
+    }
+
+    #endregion
+
     #region TODAPI
 
     /// <summary>
@@ -127,23 +154,47 @@ namespace DMT.Services
         /// </summary>
         public static List<PlazaGroup> TSBPlazaGroups
         {
-            //get { return PlazaGroup.GetTSBPlazaGroups(TODAPI.TSB).Value(); }
-            get { return GetTODPlazaGroups(); }
+            get { return PlazaGroup.GetTSBPlazaGroups(TODAPI.TSB).Value(); }
         }
         /// <summary>
         /// Gets TSB Plazas.
         /// </summary>
         public static List<Plaza> TSBPlazas
         {
-            //get { return Plaza.GetTSBPlazas(TSB).Value(); }
-            get { return GetTODPlazas(); }
+            get { return Plaza.GetTSBPlazas(TSB).Value(); }
         }
         /// <summary>
         /// Gets TSB Lanes.
         /// </summary>
         public static List<Lane> TSBLanes
         {
-            //get { return Lane.GetTSBLanes(TSB).Value(); }
+            get { return Lane.GetTSBLanes(TSB).Value(); }
+
+        }
+
+        #endregion
+
+        #region TOD
+
+        /// <summary>
+        /// Gets TOD PlazaGroups.
+        /// </summary>
+        public static List<PlazaGroup> TODPlazaGroups
+        {
+            get { return GetTODPlazaGroups(); }
+        }
+        /// <summary>
+        /// Gets TOD Plazas.
+        /// </summary>
+        public static List<Plaza> TODPlazas
+        {
+            get { return GetTODPlazas(); }
+        }
+        /// <summary>
+        /// Gets TOD Lanes.
+        /// </summary>
+        public static List<Lane> TODLanes
+        {
             get { return GetTODLanes(); }
 
         }
@@ -418,9 +469,14 @@ namespace DMT.Services
         public void Refresh()
         {
             // Clear Master Objects.
+            TODPlazaGroups = null;
+            TODPlazas = null;
+            TODLanes = null;
+
             TSBPlazaGroups = null;
             TSBPlazas = null;
             TSBLanes = null;
+
             TSBShift = null;
             Chief = null;
             Shifts = null;
@@ -438,6 +494,10 @@ namespace DMT.Services
                 TSBPlazaGroups = TODAPI.TSBPlazaGroups;
                 TSBPlazas = TODAPI.TSBPlazas;
                 TSBLanes = TODAPI.TSBLanes;
+
+                TODPlazaGroups = TODAPI.TODPlazaGroups;
+                TODPlazas = TODAPI.TODPlazas;
+                TODLanes = TODAPI.TODLanes;
                 // Get Current TSB Shift
                 TSBShift = TODAPI.TSBShift;
                 // Gets Chief
@@ -467,6 +527,8 @@ namespace DMT.Services
         /// Gets User Shift Manager.
         /// </summary>
         public UserShiftManager UserShifts { get; private set; }
+
+        #region TSB/Plaza/PlazaGroups
 
         /// <summary>
         /// Gets Current TSB.
@@ -514,6 +576,28 @@ namespace DMT.Services
         /// Gets PlazaGroup Plazas.
         /// </summary>
         public List<Plaza> PlazaGroupPlazas { get; private set; }
+
+        #endregion
+
+        #region TOD
+
+        /// <summary>
+        /// Gets TOD Plaza Groups.
+        /// </summary>
+        public List<PlazaGroup> TODPlazaGroups { get; private set; }
+        /// <summary>
+        /// Gets TOD Plazas.
+        /// </summary>
+        public List<Plaza> TODPlazas { get; private set; }
+        /// <summary>
+        /// Gets TOD Lanes.
+        /// </summary>
+        public List<Lane> TODLanes { get; private set; }
+
+        #endregion
+
+        #region Shift/TSBShift
+
         /// <summary>
         /// Gets Shifts.
         /// </summary>
@@ -539,6 +623,9 @@ namespace DMT.Services
                 RaiseShiftChanged();
             }
         }
+
+        #endregion
+
         /// <summary>
         /// Gets Current Chief
         /// </summary>
@@ -814,7 +901,10 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        private JobManager() : base() { }
+        private JobManager() : base() 
+        {
+            ViewMode = ViewModes.TOD;
+        }
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -1121,6 +1211,10 @@ namespace DMT.Services
         #region Search Condition and Result
 
         /// <summary>
+        /// Gets or set View Mode.
+        /// </summary>
+        public ViewModes ViewMode { get; set; }
+        /// <summary>
         /// Gets All Jobs for specificed user on current shift.
         /// </summary>
         public List<LaneJob> AllJobs { get; private set; }
@@ -1206,20 +1300,6 @@ namespace DMT.Services
 
     #endregion
 
-    #region PaymentTypes Enum
-
-    /// <summary>
-    /// The PaymentTypes Enum
-    /// </summary>
-    public enum PaymentTypes
-    {
-        EMV,
-        QRCode,
-        Both
-    }
-
-    #endregion
-
     #region PaymentManager
 
     /// <summary>
@@ -1232,15 +1312,17 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        private PaymentManager() : base() { }
+        private PaymentManager() : base() 
+        {
+            EnableLaneFilter = false;
+            ViewMode = ViewModes.TOD;
+        }
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="manager">The CurrentTSBManager instance.</param>
         public PaymentManager(CurrentTSBManager manager) : this()
         {
-            EnableLaneFilter = false;
-
             Current = manager;
             if (null != Current)
             {
@@ -1556,6 +1638,10 @@ namespace DMT.Services
         /// Gets or sets Payment type.
         /// </summary>
         public PaymentTypes PaymentType { get; set; }
+        /// <summary>
+        /// Gets or set View Mode.
+        /// </summary>
+        public ViewModes ViewMode { get; set; }
         /// <summary>
         /// Gets or sets Begin DateTime.
         /// </summary>

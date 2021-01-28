@@ -41,8 +41,25 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1160
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1159
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TODManager
+      - TODAPI 
+        - TSBPlazaGroups property -> Use method from Model.
+        - TSBPlazas property -> Use method from Model.
+        - TSBLanes property -> Use method from Model.
+        - TODPlazaGroups property -> Use GetTODPlazaGroups method.
+        - TODPlazas property -> Use GetTODPlazas method.
+        - TODLanes property -> Use GetTODLanes method.
+      - CurrentTSBManager
+        - Add TODPlazaGroups property
+        - Add TODPlazas property
+        - Add TODLanes property
+      - Add ViewModes enum.
+      - JobManager Add ViewMode proeprty.
+      - PaymentManager Add ViewMode proeprty.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1158

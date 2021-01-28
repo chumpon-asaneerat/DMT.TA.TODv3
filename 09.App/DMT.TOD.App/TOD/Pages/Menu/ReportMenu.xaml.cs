@@ -41,18 +41,32 @@ namespace DMT.TOD.Pages.Menu
         private void cmdRevenueSlipReport_Click(object sender, RoutedEventArgs e)
         {
             var win = TODApp.Windows.RevenueSlipSearch;
-            win.Setup();
+            win.Setup(_user);
             if (win.ShowDialog() == false) return;
-            
+            if (win.SelectedEntry == null)
+            {
+                // No Selected Entry.
+                var msg = TODApp.Windows.MessageBox;
+                msg.Setup("ไม่พบรายการ ในวันที่เลือก", "DMT - Tour of Duty");
+                msg.ShowDialog();
+                return;
+            }
             //PageContentManager.Instance.Current = page;
         }
 
         private void cmdRevenueSummaryReport_Click(object sender, RoutedEventArgs e)
         {
             var win = TODApp.Windows.RevenueSummarySearch;
-            win.Setup();
+            win.Setup(_user);
             if (win.ShowDialog() == false) return;
-
+            if (win.Revenues == null)
+            {
+                // No Result found.
+                var msg = TODApp.Windows.MessageBox;
+                msg.Setup("ไม่พบรายการ ในวันที่เลือก", "DMT - Tour of Duty");
+                msg.ShowDialog();
+                return;
+            }
             //PageContentManager.Instance.Current = page;
         }
 

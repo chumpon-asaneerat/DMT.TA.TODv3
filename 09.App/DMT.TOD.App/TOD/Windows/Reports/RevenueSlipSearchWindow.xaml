@@ -7,10 +7,11 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="นำส่งรายได้ย้อนหลัง"
-        Width="600"
+        Width="750"
         Height="450"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        Loaded="Window_Loaded"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
@@ -57,7 +58,86 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Background="CornflowerBlue"
+                            BorderBrush="CornflowerBlue"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="20"
+                                   Foreground="WhiteSmoke"
+                                   Text="บันทึกสรุปการส่งเงินประจำวัน" />
+                    </Border>
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="1"
+                               Margin="5"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource LabelText}"
+                               Text="วันที่"
+                               TextAlignment="Right" />
+                    <xceed:DateTimePicker x:Name="dtDate"
+                                          Grid.Row="3"
+                                          Grid.Column="2"
+                                          Grid.ColumnSpan="2"
+                                          Width="175"
+                                          Margin="5"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          FontSize="{StaticResource InputFontSize18}"
+                                          Format="Custom"
+                                          FormatString="dd/MM/yyyy"
+                                          ShowButtonSpinner="False"
+                                          TimePickerAllowSpin="False"
+                                          TimePickerShowButtonSpinner="False"
+                                          TimePickerVisibility="Collapsed"
+                                          ValueChanged="dtDate_ValueChanged" />
+                    <ListView x:Name="grid"
+                              Grid.Row="5"
+                              Grid.Column="1"
+                              Grid.ColumnSpan="3"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              MouseDoubleClick="grid_MouseDoubleClick"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding Path=UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="300"
+                                                DisplayMemberBinding="{Binding Path=CollectorNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                                <GridViewColumn Width="200"
+                                                DisplayMemberBinding="{Binding Path=IsHistoricalDisplayText}"
+                                                Header="หมายเหตุ" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
             </DockPanel>
         </Grid>
     </Grid>

@@ -62,8 +62,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1214
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1213
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1212
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Simulator.App project
+    - Update TaskOperations.cs #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1211

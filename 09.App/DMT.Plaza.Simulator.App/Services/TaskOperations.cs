@@ -10,5 +10,13 @@ using System.Threading.Tasks;
 
 namespace DMT.Services
 {
+    public class AsyncOperation
+    {
 
+    }
+
+    public class Operation
+    {
+
+    }
 }

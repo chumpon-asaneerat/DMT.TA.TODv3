@@ -41,8 +41,10 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1200
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1199
-- 
+- DMT.TAxTODv3
+  - Prepare TOD/TA for deploy.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1198

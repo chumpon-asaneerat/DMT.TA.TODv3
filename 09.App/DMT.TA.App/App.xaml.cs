@@ -1,4 +1,6 @@
-﻿#region Using
+﻿//#define ENABLE_COUPON_SYNC_SERVICE
+
+#region Using
 
 using System;
 using System.Windows;
@@ -125,8 +127,9 @@ namespace DMT
             TANotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
 
             // Start coupon sync service.
+#if ENABLE_COUPON_SYNC_SERVICE
             CouponSyncService.Instance.Start();
-
+#endif
             Window window = null;
             window = new MainWindow();
 
@@ -142,8 +145,9 @@ namespace DMT
         protected override void OnExit(ExitEventArgs e)
         {
             // Shutdown coupon sync service.
+#if ENABLE_COUPON_SYNC_SERVICE
             CouponSyncService.Instance.Shutdown();
-
+#endif
             // Release NotifyService event.
             TANotifyService.Instance.TSBChanged -= TSBChanged;
             TANotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;

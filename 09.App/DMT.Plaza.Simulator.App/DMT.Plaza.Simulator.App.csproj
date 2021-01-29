@@ -98,6 +98,7 @@
     <Compile Include="Models\Lane.Models.cs" />
     <Compile Include="Services\CouponSyncService.cs" />
     <Compile Include="Services\SimApp.cs" />
+    <Compile Include="Services\TaskOperations.cs" />
     <Compile Include="Simulator\Controls\Credit\Entry\CreditAmountEntry.xaml.cs">
       <DependentUpon>CreditAmountEntry.xaml</DependentUpon>
     </Compile>

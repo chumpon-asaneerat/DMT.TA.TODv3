@@ -67,7 +67,7 @@ namespace DMT
 
             #endregion
 
-            #region Bank Note Entry
+            #region TA Server Get Coupon
 
             private static Simulator.Pages.TAServerGetCoupon _TAServerGetCoupon;
 
@@ -84,6 +84,28 @@ namespace DMT
                         }
                     }
                     return _TAServerGetCoupon;
+                }
+            }
+
+            #endregion
+
+            #region TA Server Sync Service
+
+            private static Simulator.Pages.TAServerCouponSyncPage _TAServerCouponSync;
+
+            /// <summary>Gets TAS erver Sunc Coupon Page.</summary>
+            public static Simulator.Pages.TAServerCouponSyncPage TAServerCouponSync
+            {
+                get
+                {
+                    if (null == _TAServerCouponSync)
+                    {
+                        lock (typeof(SimApp))
+                        {
+                            _TAServerCouponSync = new Simulator.Pages.TAServerCouponSyncPage();
+                        }
+                    }
+                    return _TAServerCouponSync;
                 }
             }
 

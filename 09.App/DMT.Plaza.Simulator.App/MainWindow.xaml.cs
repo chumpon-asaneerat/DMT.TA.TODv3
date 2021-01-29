@@ -96,7 +96,9 @@ namespace DMT
 
         private void cmdTSBPlazaSoldCoupon_Click(object sender, RoutedEventArgs e)
         {
-
+            var page = SimApp.Pages.TAServerCouponSync;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         #endregion

@@ -108,6 +108,9 @@
     <Compile Include="Simulator\Pages\LaneActivityPage.xaml.cs">
       <DependentUpon>LaneActivityPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Simulator\Pages\TAServerCouponSyncPage.xaml.cs">
+      <DependentUpon>TAServerCouponSyncPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Simulator\Pages\TAServerGetCoupon.xaml.cs">
       <DependentUpon>TAServerGetCoupon.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
     <Page Include="Simulator\Pages\LaneActivityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Simulator\Pages\TAServerCouponSyncPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Simulator\Pages\TAServerGetCoupon.xaml">
       <SubType>Designer</SubType>

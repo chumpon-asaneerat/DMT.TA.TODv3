@@ -33,6 +33,7 @@
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
+                <!-- 
                 <Fluent:RibbonGroupBox Header="Users">
                     <Fluent:Button x:Name="cmdUserView"
                                    Width="75"
@@ -51,7 +52,9 @@
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
+                -->
                 <Fluent:RibbonGroupBox Header="Coupons">
+                    <!--
                     <Fluent:Button x:Name="cmdTSBCouponView"
                                    Width="75"
                                    Header="Test Entry"
@@ -60,6 +63,7 @@
                             <Image Source="Images/Reports/slip_06.png" />
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
+                    -->
                     <Fluent:Button x:Name="cmdTSBLaneSoldCoupon"
                                    Width="75"
                                    Header="TA Server Coupon"
@@ -70,9 +74,8 @@
                     </Fluent:Button>
                     <Fluent:Button x:Name="cmdTSBPlazaSoldCoupon"
                                    Width="75"
-                                   Header="Sold (Plaza)"
-                                   Click="cmdTSBPlazaSoldCoupon_Click"
-                                   Visibility="Collapsed">
+                                   Header="Sync Coupon (TA Server)"
+                                   Click="cmdTSBPlazaSoldCoupon_Click">
                         <Fluent:Button.LargeIcon>
                             <Image Source="Images/Reports/slip_06.png" />
                         </Fluent:Button.LargeIcon>

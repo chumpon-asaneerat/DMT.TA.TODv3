@@ -353,7 +353,7 @@ MigrationBackup/
 .ionide/
 
 # nlib
-**/Nlib/Core/*
+Core/Logs/*.cs
 
 
 

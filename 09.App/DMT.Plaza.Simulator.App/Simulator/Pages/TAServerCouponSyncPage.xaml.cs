@@ -35,6 +35,41 @@ namespace DMT.Simulator.Pages
 
         #endregion
 
+        #region Internal Variables
+
+        #endregion
+
+        #region Loaded/Unloaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmdStart.IsEnabled = true;
+            cmdShutdown.IsEnabled = !cmdStart.IsEnabled;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Button Handlers
+
+        private void cmdStart_Click(object sender, RoutedEventArgs e)
+        {
+            cmdStart.IsEnabled = false;
+            cmdShutdown.IsEnabled = !cmdStart.IsEnabled;
+        }
+
+        private void cmdShutdown_Click(object sender, RoutedEventArgs e)
+        {
+            cmdStart.IsEnabled = true;
+            cmdShutdown.IsEnabled = !cmdStart.IsEnabled;
+        }
+
+        #endregion
+
         #region Private Methods
 
         #endregion

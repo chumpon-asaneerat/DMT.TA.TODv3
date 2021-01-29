@@ -41,8 +41,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1210
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1209
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Simulator.App project
+    - Update TAServerCouponSyncPage #3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1208

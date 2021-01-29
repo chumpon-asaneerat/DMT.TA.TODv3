@@ -45,6 +45,8 @@ namespace DMT.Simulator.Pages
         {
             cmdStart.IsEnabled = true;
             cmdShutdown.IsEnabled = !cmdStart.IsEnabled;
+
+            progress.Value = 0;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -60,17 +62,29 @@ namespace DMT.Simulator.Pages
         {
             cmdStart.IsEnabled = false;
             cmdShutdown.IsEnabled = !cmdStart.IsEnabled;
+            Start();
         }
 
         private void cmdShutdown_Click(object sender, RoutedEventArgs e)
         {
             cmdStart.IsEnabled = true;
             cmdShutdown.IsEnabled = !cmdStart.IsEnabled;
+            Shutdown();
         }
 
         #endregion
 
         #region Private Methods
+
+        private void Start()
+        {
+
+        }
+
+        private void Shutdown()
+        {
+
+        }
 
         #endregion
 

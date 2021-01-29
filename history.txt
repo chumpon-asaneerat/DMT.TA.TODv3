@@ -50,8 +50,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1208
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1207
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1206
-- 
+- DMT.TAxTODv3
+  - DMTv2 update gitignore (Fixed NLib/Core/Logs/LogManager.cs not sync to github)
+  - DMT.TAxTODv1 update gitignore (Fixed NLib/Core/Logs/LogManager.cs not sync to github)
+  - DMT.TAxTODv2 update gitignore (Fixed NLib/Core/Logs/LogManager.cs not sync to github)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1205

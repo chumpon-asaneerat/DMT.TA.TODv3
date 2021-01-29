@@ -58,6 +58,14 @@
     <Reference Include="Microsoft.Xaml.Behaviors">
       <HintPath>..\..\References\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.5.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -88,6 +96,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Lane.Models.cs" />
+    <Compile Include="Services\CouponSyncService.cs" />
     <Compile Include="Services\SimApp.cs" />
     <Compile Include="Simulator\Controls\Credit\Entry\CreditAmountEntry.xaml.cs">
       <DependentUpon>CreditAmountEntry.xaml</DependentUpon>

@@ -29,6 +29,8 @@ x86/*
 bld/
 [Bb]in/
 [Oo]bj/
+!Core/[Ll]ogs/*
+!/00.NLib/NLib/Core/*
 [Ll]og/
 [Ll]ogs/
 [Ee]xecutable/
@@ -351,9 +353,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-
-# nlib
-!**/Core/Logs/*.cs
-
-
 

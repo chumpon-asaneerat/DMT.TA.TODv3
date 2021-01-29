@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1209
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1208
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1207
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - MainMenu Add Padding in Group Header TextBlock
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1206

@@ -33,9 +33,11 @@ bld/
 [Ll]ogs/
 [Ee]xecutable/
 [Ee]xecutables/
-!Core/[Ll]ogs/
-!Core/[Ll]ogs/*
-!Core/[Ll]ogs/**/
+
+#NLib
+!00.NLib/Nlib/Core/[Ll]ogs/
+!00.NLib/Nlib/Core/[Ll]ogs/*
+!00.NLib/Nlib/Core/[Ll]ogs/**/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

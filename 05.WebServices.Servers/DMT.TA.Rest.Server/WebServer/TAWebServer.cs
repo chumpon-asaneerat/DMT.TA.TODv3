@@ -537,6 +537,9 @@ namespace DMT.Services
             SCWMQService.Instance.Start();
             med.Info("SCWMQ Service start.");
 
+            // Start TAxTOD MQ Service
+            TAxTODMQService.Instance.Start();
+
             // Start rabbit service.
             RabbitMQService.Instance.RabbitMQ = TAConfigManager.Instance.RabbitMQ;
             RabbitMQService.Instance.Start();
@@ -561,6 +564,9 @@ namespace DMT.Services
             // Shutdown Rabbit MQ Service.
             RabbitMQService.Instance.Shutdown();
             med.Info("RabbitMQ Client service disconnected.");
+
+            // Shutdown TAxTOD MQ Service
+            TAxTODMQService.Instance.Shutdown();
 
             // Shutdown SCWMQ service.
             SCWMQService.Instance.Shutdown();

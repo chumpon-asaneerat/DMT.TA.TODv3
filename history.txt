@@ -44,8 +44,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1230
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1229
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1228
-- 
+- DMT.TAxTODv3
+  - DMT.TAxTOD.Models project
+    - Add TACouponReceived.cs
+  - DMT.TAxTOD.Rest.Client project.
+    - Add TAxTODMQ service.
+      - Implements method for TAServerCouponTransaction.
+      - Implements method for TAServerCouponReceived.
+  - DMT.TA.Rest.Server project.
+    - TAWebServer
+      - Add Start/Shutdown TAxTODMQ Service.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1227

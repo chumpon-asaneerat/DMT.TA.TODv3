@@ -158,6 +158,7 @@
     <Compile Include="Models\Plaza\Shifts\Shift.cs" />
     <Compile Include="Models\Plaza\Shifts\TSBShift.cs" />
     <Compile Include="Models\SCW\UIModels.cs" />
+    <Compile Include="Models\TAxTOD\TACouponReveiced.cs" />
     <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
     <Compile Include="Models\Plaza\Users\Role.cs" />

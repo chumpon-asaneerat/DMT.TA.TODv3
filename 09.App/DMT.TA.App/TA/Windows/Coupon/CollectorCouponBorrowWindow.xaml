@@ -127,7 +127,7 @@
                                   ItemsSource="{Binding}"
                                   KeyDown="lv35Stock_KeyDown"
                                   MouseDoubleClick="lv35Stock_MouseDoubleClick"
-                                  Style="{StaticResource SingleSelectListView}">
+                                  Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
@@ -179,7 +179,7 @@
                                   ItemsSource="{Binding}"
                                   KeyDown="lv35User_KeyDown"
                                   MouseDoubleClick="lv35User_MouseDoubleClick"
-                                  Style="{StaticResource SingleSelectListView}">
+                                  Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
@@ -229,7 +229,7 @@
                                   ItemsSource="{Binding}"
                                   KeyDown="lv80Stock_KeyDown"
                                   MouseDoubleClick="lv80Stock_MouseDoubleClick"
-                                  Style="{StaticResource SingleSelectListView}">
+                                  Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
@@ -281,7 +281,7 @@
                                   ItemsSource="{Binding}"
                                   KeyDown="lv80User_KeyDown"
                                   MouseDoubleClick="lv80User_MouseDoubleClick"
-                                  Style="{StaticResource SingleSelectListView}">
+                                  Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"

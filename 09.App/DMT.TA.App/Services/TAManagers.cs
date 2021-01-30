@@ -1094,6 +1094,28 @@ namespace DMT.Services
             {
                 // Assign Original value.
                 TransactionType = value.TransactionType;
+                if (TransactionType == TSBCouponTransactionTypes.Lane)
+                {
+                    UserId = value.UserId;
+                }
+                else if (TransactionType == TSBCouponTransactionTypes.SoldByLane)
+                {
+                    UserId = value.SoldBy;
+                }
+                else if (TransactionType == TSBCouponTransactionTypes.SoldByTSB)
+                {
+                    UserId = value.SoldBy;
+                }
+                else if (TransactionType == TSBCouponTransactionTypes.Stock)
+                {
+
+                }
+                else
+                {
+                    // Cancel or Remove.
+                }
+                ReceiveDate = value.UserReceiveDate;
+                SoldDate = value.SoldDate;
             }
         }
 
@@ -1115,8 +1137,21 @@ namespace DMT.Services
             set { }
         }
 
+        /// <summary>Gets Coupon Type.</summary>
+        public CouponType CouponType
+        { 
+            get { return (null != Transaction) ? Transaction.CouponType : CouponType.Unknown; }
+            set { }
+        }
+
         /// <summary>Gets or sets TransactionType.</summary>
         public TSBCouponTransactionTypes TransactionType { get; set; }
+        /// <summary>Gets or sets UserId.</summary>
+        public string UserId { get; set; }
+        /// <summary>Gets or sets Receive datetime.</summary>
+        public DateTime? ReceiveDate { get; set; }
+        /// <summary>Gets or sets Receive datetime.</summary>
+        public DateTime? SoldDate { get; set; }
 
         #endregion
     }
@@ -1161,31 +1196,30 @@ namespace DMT.Services
         {
             PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        private void LoadCoupons()
+        /// <summary>
+        /// Load Coupons.
+        /// </summary>
+        protected void LoadCoupons()
         {
-            if (null == Stock35) Stock35 = new ObservableCollection<TSBCouponItem>();
-            Stock35.Clear();
-
-            if (null == User35) User35 = new ObservableCollection<TSBCouponItem>();
-            User35.Clear();
-
-            if (null == Stock80) Stock80 = new ObservableCollection<TSBCouponItem>();
-            Stock80.Clear();
-
-            if (null == User80) User80 = new ObservableCollection<TSBCouponItem>();
-            User80.Clear();
-
-            if (null == User) return;
-            var coupons = TSBCouponTransaction.GetTSBCouponTransactions(TAAPI.TSB).Value();
-            if (null != coupons && coupons.Count > 0)
+            if (null == Coupons) Coupons = new List<TSBCouponItem>();
+            Coupons.Clear();
+            if (null != User)
             {
-                coupons.ForEach(coupon => 
-                { 
-                    
-                });
+                var coupons = TSBCouponTransaction.GetTSBCouponTransactions(TAAPI.TSB).Value();
+                if (null != coupons && coupons.Count > 0)
+                {
+                    coupons.ForEach(coupon =>
+                    {
+                        Coupons.Add(new TSBCouponItem(coupon));
+                    });
+                }
             }
+            OnLoadCoupons();
         }
+        /// <summary>
+        /// On Load Coupons.
+        /// </summary>
+        protected virtual void OnLoadCoupons() { }
 
         #endregion
 
@@ -1214,15 +1248,10 @@ namespace DMT.Services
             {
                 LoadCoupons();
             }
-
             RaiseChanged("CollectorId");
             RaiseChanged("CollectorNameEN");
             RaiseChanged("CollectorNameTH");
         }
-
-        #endregion
-
-        #region Coupons
 
         #endregion
 
@@ -1263,13 +1292,10 @@ namespace DMT.Services
 
         #endregion
 
-        #region Coupon Collections properties
+        #region Coupons
 
-        public ObservableCollection<TSBCouponItem> Stock35 { get; private set; }
-        public ObservableCollection<TSBCouponItem> Stock80 { get; private set; }
-
-        public ObservableCollection<TSBCouponItem> User35 { get; private set; }
-        public ObservableCollection<TSBCouponItem> User80 { get; private set; }
+        /// <summary>Gets all Coupons on current TSB.</summary>
+        public List<TSBCouponItem> Coupons { get; private set; }
 
         #endregion
 
@@ -1306,6 +1332,120 @@ namespace DMT.Services
         }
 
         #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Refresh.
+        /// </summary>
+        public void Refresh()
+        {
+            LoadCoupons();
+        }
+
+        #region For Borrow/Return between Stock-Lane
+
+        /// <summary>
+        /// Borrow from Stock back to Lane User.
+        /// </summary>
+        /// <param name="item"></param>
+        public void Borrow(TSBCouponItem item)
+        {
+            if (null == item) return;
+        }
+        /// <summary>
+        /// Retrun from Lane back to stock.
+        /// </summary>
+        /// <param name="item"></param>
+        public void Return(TSBCouponItem item)
+        {
+            if (null == item) return;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets all 35 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C35Stocks 
+        {
+            get 
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                        item.CouponType == CouponType.BHT35
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 35 BHT Coupons on Lane by current User.</summary>
+        public List<TSBCouponItem> C35Lanes
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        item.CouponType == CouponType.BHT35
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 80 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C80Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                        item.CouponType == CouponType.BHT80
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 80 BHT Coupons on Lane by current User.</summary>
+        public List<TSBCouponItem> C80Lanes
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        item.CouponType == CouponType.BHT80
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
     }
 
     #endregion
@@ -1320,6 +1460,13 @@ namespace DMT.Services
         #region Override Methods
 
         /// <summary>
+        /// On Load Coupons.
+        /// </summary>
+        protected override void OnLoadCoupons()
+        {
+            if (null == Coupons) return;
+        }
+        /// <summary>
         /// Save.
         /// </summary>
         /// <returns>Returns true if sace success.</returns>
@@ -1327,6 +1474,10 @@ namespace DMT.Services
         {
             return false;
         }
+
+        #endregion
+
+        #region Public Properties
 
         #endregion
     }

@@ -28,6 +28,10 @@ namespace DMT.Models
     public enum CouponType : int
     {
         /// <summary>
+        /// Unknown
+        /// </summary>
+        Unknown = 0,
+        /// <summary>
         /// Coupon 35 BHT
         /// </summary>
         BHT35 = 35,

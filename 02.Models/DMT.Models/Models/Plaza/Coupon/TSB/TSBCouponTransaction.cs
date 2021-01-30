@@ -54,9 +54,9 @@ namespace DMT.Models
 		private string _UserId = string.Empty;
 		private string _FullNameEN = string.Empty;
 		private string _FullNameTH = string.Empty;
-		private DateTime _UserReceivedDate = DateTime.MinValue;
+		private DateTime? _UserReceivedDate = new DateTime?();
 		// Sold
-		private DateTime _SoldDate = DateTime.MinValue;
+		private DateTime? _SoldDate = new DateTime?();
 		private string _SoldBy = string.Empty;
 		private string _SoldByFullNameEN = string.Empty;
 		private string _SoldByFullNameTH = string.Empty;
@@ -496,7 +496,7 @@ namespace DMT.Models
 		[Description(" Gets or sets User Receive Date")]
 		[ReadOnly(true)]
 		[PropertyMapName("UserReceiveDate")]
-		public DateTime UserReceiveDate
+		public DateTime? UserReceiveDate
 		{
 			get
 			{
@@ -506,7 +506,8 @@ namespace DMT.Models
 			{
 				if (_UserReceivedDate != value)
 				{
-					_UserReceivedDate = value;
+					_UserReceivedDate = (value.HasValue && value.Value != DateTime.MinValue) ?
+						value : new DateTime?();
 					this.RaiseChanged("UserReceiveDate");
 					this.RaiseChanged("UserReceiveDateString");
 					this.RaiseChanged("UserReceiveTimeString");
@@ -526,7 +527,8 @@ namespace DMT.Models
 		{
 			get
 			{
-				var ret = (this.UserReceiveDate == DateTime.MinValue) ? "" : this.UserReceiveDate.ToThaiDateTimeString("dd/MM/yyyy");
+				var ret = (!this.UserReceiveDate.HasValue || this.UserReceiveDate.Value == DateTime.MinValue) ?
+					string.Empty : this.UserReceiveDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
 				return ret;
 			}
 			set { }
@@ -543,7 +545,8 @@ namespace DMT.Models
 		{
 			get
 			{
-				var ret = (this.UserReceiveDate == DateTime.MinValue) ? "" : this.UserReceiveDate.ToThaiTimeString();
+				var ret = (!this.UserReceiveDate.HasValue || this.UserReceiveDate.Value == DateTime.MinValue) ?
+					string.Empty : this.UserReceiveDate.Value.ToThaiTimeString();
 				return ret;
 			}
 			set { }
@@ -560,7 +563,8 @@ namespace DMT.Models
 		{
 			get
 			{
-				var ret = (this.UserReceiveDate == DateTime.MinValue) ? "" : this.UserReceiveDate.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				var ret = (!this.UserReceiveDate.HasValue || this.UserReceiveDate.Value == DateTime.MinValue) ?
+					string.Empty : this.UserReceiveDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
 				return ret;
 			}
 			set { }
@@ -646,7 +650,7 @@ namespace DMT.Models
 		[Description(" Gets or sets Sold Date")]
 		[ReadOnly(true)]
 		[PropertyMapName("SoldDate")]
-		public DateTime SoldDate
+		public DateTime? SoldDate
 		{
 			get
 			{
@@ -656,7 +660,8 @@ namespace DMT.Models
 			{
 				if (_SoldDate != value)
 				{
-					_SoldDate = value;
+					_SoldDate = (value.HasValue && value.Value != DateTime.MinValue) ? 
+						value : new DateTime?();
 					this.RaiseChanged("SoldDate");
 					this.RaiseChanged("SoldDateString");
 					this.RaiseChanged("SoldTimeString");
@@ -676,7 +681,8 @@ namespace DMT.Models
 		{
 			get
 			{
-				var ret = (this.SoldDate == DateTime.MinValue) ? "" : this.SoldDate.ToThaiDateTimeString("dd/MM/yyyy");
+				var ret = (!this.SoldDate.HasValue || this.SoldDate.Value == DateTime.MinValue) ?
+					string.Empty : this.SoldDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
 				return ret;
 			}
 			set { }
@@ -693,7 +699,8 @@ namespace DMT.Models
 		{
 			get
 			{
-				var ret = (this.SoldDate == DateTime.MinValue) ? "" : this.SoldDate.ToThaiTimeString();
+				var ret = (!this.SoldDate.HasValue || this.SoldDate.Value == DateTime.MinValue) ?
+					string.Empty : this.SoldDate.Value.ToThaiTimeString();
 				return ret;
 			}
 			set { }
@@ -710,7 +717,8 @@ namespace DMT.Models
 		{
 			get
 			{
-				var ret = (this.SoldDate == DateTime.MinValue) ? "" : this.SoldDate.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				var ret = (!this.SoldDate.HasValue || this.SoldDate.Value == DateTime.MinValue) ?
+					string.Empty : this.SoldDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
 				return ret;
 			}
 			set { }

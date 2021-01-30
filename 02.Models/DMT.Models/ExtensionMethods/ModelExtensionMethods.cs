@@ -292,7 +292,7 @@ namespace DMT.Models.ExtensionMethods
                 inst.SoldByFullNameEN = soldUsr.FullNameEN;
                 inst.SoldByFullNameTH = soldUsr.FullNameTH;
             }
-            inst.SoldDate = value.SoldDate.Value();
+            inst.SoldDate = value.SoldDate;
             inst.TSBId = value.TSBId;
             if (inst.TransactionType == TSBCouponTransactionTypes.Stock)
             {
@@ -311,7 +311,7 @@ namespace DMT.Models.ExtensionMethods
                     inst.FullNameTH = user.FullNameTH;
                 }
             }
-            inst.UserReceiveDate = value.UserReceiveDate.Value();
+            inst.UserReceiveDate = value.UserReceiveDate;
 
             return inst;
         }

@@ -53,8 +53,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1217
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1216
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1215
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Implements ReceiveCouponPage #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1214

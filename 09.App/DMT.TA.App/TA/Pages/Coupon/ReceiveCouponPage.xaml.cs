@@ -9,6 +9,7 @@ using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -46,7 +47,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdUserSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            SearchUser();
         }
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
@@ -65,7 +66,18 @@ namespace DMT.TA.Pages.Coupon
 
         private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-
+            if (e.Key == System.Windows.Input.Key.Enter ||
+                e.Key == System.Windows.Input.Key.Return)
+            {
+                SearchUser();
+                e.Handled = true;
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                ResetSelectUser();
+                RefreshCoupons();
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -77,6 +89,46 @@ namespace DMT.TA.Pages.Coupon
             // Main Menu Page
             var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
+        }
+
+        private void Reset()
+        {
+            manager.User = null;
+            if (null != manager)
+            {
+
+            }
+
+            txtToday.Text = DateTime.Now.Date.ToThaiDateTimeString("dd/MM/yyyy");
+            // Set Bindings User Selection.
+            txtUserId.DataContext = manager;
+            txtUserName.DataContext = manager;
+        }
+
+        private void ResetSelectUser()
+        {
+            manager.User = null;
+            txtSearchUserId.Text = string.Empty;
+        }
+
+        private void SearchUser()
+        {
+            string userId = txtSearchUserId.Text.Trim();
+            var result = TAAPI.SearchUser(userId, TAApp.Permissions.TC);
+            if (!result.IsCanceled && null != manager)
+            {
+                manager.User = result.User;
+                if (null != manager.User)
+                {
+                    txtSearchUserId.Text = string.Empty;
+                }
+                RefreshCoupons();
+            }
+        }
+
+        private void RefreshCoupons()
+        {
+
         }
 
         #endregion
@@ -94,6 +146,16 @@ namespace DMT.TA.Pages.Coupon
             {
 
             }
+
+            Reset();
+            ResetSelectUser();
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtSearchUserId.SelectAll();
+                txtSearchUserId.Focus();
+            }));
         }
 
         #endregion

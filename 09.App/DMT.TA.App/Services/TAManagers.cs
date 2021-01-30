@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.IO;
@@ -1069,7 +1070,57 @@ namespace DMT.Services
 
     #endregion
 
-    #region TSB Coupon Manager classes
+    #region TSB Coupon Manager related classes
+
+    /// <summary>
+    /// The TSB Coupon Item class.
+    /// </summary>
+    public class TSBCouponItem
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        private TSBCouponItem() : base() { }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="value">The Original TSBTransaction.</param>
+        public TSBCouponItem(TSBCouponTransaction value) : this() 
+        {
+            Transaction = value;
+            if (null != value)
+            {
+                // Assign Original value.
+                TransactionType = value.TransactionType;
+            }
+        }
+
+        #endregion
+
+        #region Override Methods
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets Original TSB Transaction.</summary>
+        public TSBCouponTransaction Transaction { get; private set; }
+
+        /// <summary>Gets CouponId.</summary>
+        public string CouponId
+        {
+            get { return (null != Transaction) ? Transaction.CouponId : string.Empty; }
+            set { }
+        }
+
+        /// <summary>Gets or sets TransactionType.</summary>
+        public TSBCouponTransactionTypes TransactionType { get; set; }
+
+        #endregion
+    }
+
 
     #region TSBCouponManager (abstract)
 
@@ -1113,7 +1164,27 @@ namespace DMT.Services
 
         private void LoadCoupons()
         {
+            if (null == Stock35) Stock35 = new ObservableCollection<TSBCouponItem>();
+            Stock35.Clear();
+
+            if (null == User35) User35 = new ObservableCollection<TSBCouponItem>();
+            User35.Clear();
+
+            if (null == Stock80) Stock80 = new ObservableCollection<TSBCouponItem>();
+            Stock80.Clear();
+
+            if (null == User80) User80 = new ObservableCollection<TSBCouponItem>();
+            User80.Clear();
+
             if (null == User) return;
+            var coupons = TSBCouponTransaction.GetTSBCouponTransactions(TAAPI.TSB).Value();
+            if (null != coupons && coupons.Count > 0)
+            {
+                coupons.ForEach(coupon => 
+                { 
+                    
+                });
+            }
         }
 
         #endregion
@@ -1129,6 +1200,8 @@ namespace DMT.Services
         #endregion
 
         #region Public Method
+
+        #region User
 
         /// <summary>
         /// Set Current User.
@@ -1146,6 +1219,12 @@ namespace DMT.Services
             RaiseChanged("CollectorNameEN");
             RaiseChanged("CollectorNameTH");
         }
+
+        #endregion
+
+        #region Coupons
+
+        #endregion
 
         #endregion
 
@@ -1185,6 +1264,12 @@ namespace DMT.Services
         #endregion
 
         #region Coupon Collections properties
+
+        public ObservableCollection<TSBCouponItem> Stock35 { get; private set; }
+        public ObservableCollection<TSBCouponItem> Stock80 { get; private set; }
+
+        public ObservableCollection<TSBCouponItem> User35 { get; private set; }
+        public ObservableCollection<TSBCouponItem> User80 { get; private set; }
 
         #endregion
 

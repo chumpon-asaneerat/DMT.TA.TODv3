@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="พนักงานคืนคูปอง"
-        Width="900"
-        Height="450"
+        Width="960"
+        Height="480"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -17,7 +17,8 @@
     <Window.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
-        <sys:Double x:Key="PanelWidth">170</sys:Double>
+        <GridLength x:Key="ListViewPanelWidth">200</GridLength>
+        <GridLength x:Key="ButtonPanelWidth">50</GridLength>
     </Window.Resources>
     <Grid HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch"
@@ -62,12 +63,47 @@
                 <!--  SEPERATOR  -->
                 <TextBlock Height="10" DockPanel.Dock="Bottom" />
                 <!--  WORK AREA  -->
-                <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="{StaticResource ListViewPanelWidth}" />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="{StaticResource ButtonPanelWidth}" />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="{StaticResource ListViewPanelWidth}" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="{StaticResource ListViewPanelWidth}" />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="{StaticResource ButtonPanelWidth}" />
+                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="{StaticResource ListViewPanelWidth}" />
+                        <ColumnDefinition Width="3" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="5" />
+                    </Grid.RowDefinitions>
+                    <!--  HEADER FOR COUPON 35  -->
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="5"
+                            Margin="3,5"
+                            VerticalAlignment="Center"
+                            Background="CornflowerBlue">
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="คูปอง 35 บาท"
+                                   TextAlignment="Center" />
+                    </Border>
                     <!--  COUPON 35 STOCK  -->
-                    <DockPanel LastChildFill="True">
+                    <DockPanel Grid.Row="3"
+                               Grid.Column="1"
+                               LastChildFill="True">
                         <!--  Filter Panel  -->
-                        <StackPanel Width="{StaticResource PanelWidth}"
-                                    Height="30"
+                        <StackPanel Height="30"
                                     Margin="5,0"
                                     DockPanel.Dock="Top"
                                     Orientation="Horizontal">
@@ -92,16 +128,22 @@
                                   MouseDoubleClick="lv35Stock_MouseDoubleClick"
                                   Style="{StaticResource SingleSelectListView}">
                             <ListView.View>
-                                <GridView />
+                                <GridView>
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource CouponId}"
+                                                    Header="รายการคูปองทั้งหมด" />
+                                </GridView>
                             </ListView.View>
                         </ListView>
                     </DockPanel>
                     <!--  COUPON 35 MOVE BUTTONS  -->
-                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="3"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
                         <Button x:Name="cmd35StockToUser"
                                 Width="50"
                                 Height="50"
-                                Margin="5"
                                 Click="cmd35StockToUser_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/next.png" />
@@ -110,17 +152,17 @@
                         <Button x:Name="cmd35UserToStock"
                                 Width="50"
                                 Height="50"
-                                Margin="5"
                                 Click="cmd35UserToStock_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/back.png" />
                         </Button>
                     </StackPanel>
                     <!--  COUPON 35 USER  -->
-                    <DockPanel LastChildFill="True">
+                    <DockPanel Grid.Row="3"
+                               Grid.Column="5"
+                               LastChildFill="True">
                         <!--  EMPTY PANEL  -->
-                        <StackPanel Width="{StaticResource PanelWidth}"
-                                    Height="30"
+                        <StackPanel Height="30"
                                     Margin="5,0"
                                     DockPanel.Dock="Top"
                                     Orientation="Horizontal" />
@@ -138,17 +180,32 @@
                                   MouseDoubleClick="lv35User_MouseDoubleClick"
                                   Style="{StaticResource SingleSelectListView}">
                             <ListView.View>
-                                <GridView />
+                                <GridView>
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource CouponId}"
+                                                    Header="รายการจ่าย พก" />
+                                </GridView>
                             </ListView.View>
                         </ListView>
                     </DockPanel>
-                    <!--  SEPERATOR  -->
-                    <TextBlock Width="10" />
+                    <!--  HEADER FOR COUPON 80  -->
+                    <Border Grid.Row="1"
+                            Grid.Column="7"
+                            Grid.ColumnSpan="5"
+                            Margin="3,5"
+                            VerticalAlignment="Center"
+                            Background="CornflowerBlue">
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="คูปอง 80 บาท"
+                                   TextAlignment="Center" />
+                    </Border>
                     <!--  COUPON 80 STOCK  -->
-                    <DockPanel LastChildFill="True">
+                    <DockPanel Grid.Row="3"
+                               Grid.Column="7"
+                               LastChildFill="True">
                         <!--  Filter Panel  -->
-                        <StackPanel Width="{StaticResource PanelWidth}"
-                                    Height="30"
+                        <StackPanel Height="30"
                                     Margin="5,0"
                                     DockPanel.Dock="Top"
                                     Orientation="Horizontal">
@@ -173,16 +230,22 @@
                                   MouseDoubleClick="lv80Stock_MouseDoubleClick"
                                   Style="{StaticResource SingleSelectListView}">
                             <ListView.View>
-                                <GridView />
+                                <GridView>
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource CouponId}"
+                                                    Header="รายการคูปองทั้งหมด" />
+                                </GridView>
                             </ListView.View>
                         </ListView>
                     </DockPanel>
                     <!--  COUPON 80 MOVE BUTTONS  -->
-                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="9"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
                         <Button x:Name="cmd80StockToUser"
                                 Width="50"
                                 Height="50"
-                                Margin="5"
                                 Click="cmd80StockToUser_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/next.png" />
@@ -191,17 +254,17 @@
                         <Button x:Name="cmd80UserToStock"
                                 Width="50"
                                 Height="50"
-                                Margin="5"
                                 Click="cmd80UserToStock_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/back.png" />
                         </Button>
                     </StackPanel>
                     <!--  COUPON 80 USER  -->
-                    <DockPanel LastChildFill="True">
+                    <DockPanel Grid.Row="3"
+                               Grid.Column="11"
+                               LastChildFill="True">
                         <!--  EMPTY PANEL  -->
-                        <StackPanel Width="{StaticResource PanelWidth}"
-                                    Height="30"
+                        <StackPanel Height="30"
                                     Margin="5,0"
                                     DockPanel.Dock="Top"
                                     Orientation="Horizontal" />
@@ -219,11 +282,15 @@
                                   MouseDoubleClick="lv80User_MouseDoubleClick"
                                   Style="{StaticResource SingleSelectListView}">
                             <ListView.View>
-                                <GridView />
+                                <GridView>
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource CouponId}"
+                                                    Header="รายการจ่าย พก" />
+                                </GridView>
                             </ListView.View>
                         </ListView>
                     </DockPanel>
-                </StackPanel>
+                </Grid>
             </DockPanel>
         </Grid>
     </Grid>

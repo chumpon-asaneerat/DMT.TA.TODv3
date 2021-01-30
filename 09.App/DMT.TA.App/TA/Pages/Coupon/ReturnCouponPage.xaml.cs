@@ -31,11 +31,29 @@ namespace DMT.TA.Pages.Coupon
 
         #endregion
 
+        #region Internal Variables
+
+        private User _chief = null;
+        private TSBCouponReturnManager manager = null;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();
+        }
+
+        private void cmdReturn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (sender as Button);
+            var tran = (null != button) ? button.DataContext as TSBCouponSummary : null;
+            if (null == manager || null == tran) return;
+            var user = User.GetByUserId(tran.UserId).Value();
+            if (null == user) return;
+            manager.SetUser(user);
+            ReturnCoupon();
         }
 
         #endregion
@@ -47,6 +65,57 @@ namespace DMT.TA.Pages.Coupon
             // Main Menu Page
             var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
+        }
+
+        private void Reset()
+        {
+            if (null == manager) manager = new TSBCouponReturnManager();
+            manager.SetUser(null);
+            if (null != manager)
+            {
+
+            }
+        }
+
+        private void ReturnCoupon()
+        {
+            if (null == manager || null == manager.User) return;
+            var win = TAApp.Windows.CollectorCouponReturn;
+            win.Owner = Application.Current.MainWindow;
+            win.Setup(manager);
+            win.ShowDialog();
+            Reset();
+            RefreshCoupons();
+        }
+
+        private void RefreshCoupons()
+        {
+            grid.ItemsSource = null;
+            var summaries = TSBCouponSummary.GetTSBCouponSummaries(TAAPI.TSB).Value();
+            if (null != summaries)
+            {
+                grid.ItemsSource = summaries;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup/
+        /// </summary>
+        /// <param name="chief">The current user.</param>
+        public void Setup(User chief)
+        {
+            _chief = chief;
+            if (null != _chief)
+            {
+
+            }
+
+            Reset();
+            RefreshCoupons();
         }
 
         #endregion

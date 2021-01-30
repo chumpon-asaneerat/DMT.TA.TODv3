@@ -12,7 +12,7 @@
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
     </UserControl.Resources>
-    <Grid Background="Silver">
+    <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource PageMargin}" />
@@ -43,7 +43,69 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <DockPanel LastChildFill="True">
+                    <Border Margin="10,1"
+                            Background="CornflowerBlue"
+                            BorderBrush="Silver"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top">
+                        <TextBlock Margin="5,3"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="ข้อมูลการคืนคูปอง" />
+                    </Border>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
+                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                    <!--  LIST VIEW  -->
+                    <ListView x:Name="grid"
+                              Margin="10,1"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="300"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CountCouponBHT35}"
+                                                Header="จำนวนเล่ม (35 บาท)" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CountCouponBHT80}"
+                                                Header="จำนวนเล่ม (80 บาท)" />
+                                <!--  BUTTON (EDIT/PRINT)  -->
+                                <GridViewColumn Width="155" Header="คำสั่ง">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="3"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                <TextBlock Width="5" />
+                                                <Button x:Name="cmdReturn"
+                                                        Width="120"
+                                                        Height="30"
+                                                        Click="cmdReturn_Click"
+                                                        CommandParameter="{Binding}"
+                                                        Content="คืน"
+                                                        FontSize="{StaticResource InputFontSize18}"
+                                                        Style="{DynamicResource InlineButton}" />
+                                                <TextBlock Width="5" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>

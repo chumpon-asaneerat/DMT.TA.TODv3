@@ -62,8 +62,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1234
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1233
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1232
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update ListViewStyle.xaml.cs.
+  - DMT.TA.App project
+    - Implements ReceiveCouponPage #8.
+    - Implements ReturnCouponPage #8.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1231

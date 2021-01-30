@@ -44,6 +44,17 @@
                 </DockPanel>
                 <!--  WORK AREA  -->
                 <DockPanel LastChildFill="True">
+                    <Border Margin="10,1"
+                            Background="CornflowerBlue"
+                            BorderBrush="Silver"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top">
+                        <TextBlock Margin="5,3"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="ข้อมูลการรับคูปอง" />
+                    </Border>
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
                     <StackPanel Margin="10,1"
@@ -169,45 +180,39 @@
                                 <GridViewColumn Width="300"
                                                 CellTemplate="{StaticResource FullNameTH}"
                                                 Header="ชื่อพนักงาน" />
-                                <!--  ADD CELL TEMPLATE FOR COUPON 35, 80 COUNT  -->
-
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CountCouponBHT35}"
+                                                Header="จำนวนเล่ม (35 บาท)" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CountCouponBHT80}"
+                                                Header="จำนวนเล่ม (80 บาท)" />
                                 <!--  BUTTON (EDIT/PRINT)  -->
-                                <GridViewColumn Width="150" Header="">
+                                <GridViewColumn Width="300" Header="คำสั่ง">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="3"
+                                                        HorizontalAlignment="Stretch"
                                                         VerticalAlignment="Center"
                                                         Orientation="Horizontal">
-                                                <Grid Width="5" />
+                                                <TextBlock Width="5" />
                                                 <Button x:Name="cmdEdit"
-                                                        Width="100"
+                                                        Width="120"
                                                         Height="30"
                                                         Click="cmdEdit_Click"
                                                         CommandParameter="{Binding}"
                                                         Content="แก้ไข"
                                                         FontSize="{StaticResource InputFontSize18}"
                                                         Style="{DynamicResource InlineButton}" />
-                                                <Grid Width="5" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Width="150" Header="">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Margin="3"
-                                                        VerticalAlignment="Center"
-                                                        Orientation="Horizontal">
-                                                <Grid Width="5" />
+                                                <TextBlock Width="5" />
                                                 <Button x:Name="cmdPrint"
-                                                        Width="100"
+                                                        Width="120"
                                                         Height="30"
                                                         Click="cmdPrint_Click"
                                                         CommandParameter="{Binding}"
                                                         Content="พิมพ์รายการ"
                                                         FontSize="{StaticResource InputFontSize18}"
                                                         Style="{DynamicResource InlineButton}" />
-                                                <Grid Width="5" />
+                                                <TextBlock Width="5" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

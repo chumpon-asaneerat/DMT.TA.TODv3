@@ -88,6 +88,7 @@ namespace DMT.TA.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - รับคูปอง (collector)
         private void cmdUserBorrowCoupon_Click(object sender, RoutedEventArgs e)
         {
             // รับคูปอง (collector)
@@ -96,11 +97,12 @@ namespace DMT.TA.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - คืนคูปอง (collector)
         private void cmdUserReturnCoupon_Click(object sender, RoutedEventArgs e)
         {
             // คืนคูปอง (collector)
             var page = TAApp.Pages.ReturnCoupon;
-            //page.Setup(TAApp.User.Current);
+            page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 

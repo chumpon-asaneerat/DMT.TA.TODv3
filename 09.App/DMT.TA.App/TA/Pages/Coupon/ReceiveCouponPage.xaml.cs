@@ -58,6 +58,12 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
+            Button button = (sender as Button);
+            var tran = (null != button) ? button.DataContext as TSBCouponSummary : null;
+            if (null == manager || null == tran) return;
+            var user = User.GetByUserId(tran.UserId).Value();
+            if (null == user) return;
+            manager.SetUser(user);
             BorrownCoupon();
         }
 
@@ -143,10 +149,7 @@ namespace DMT.TA.Pages.Coupon
             var win = TAApp.Windows.CollectorCouponBorrow;
             win.Owner = Application.Current.MainWindow;
             win.Setup(manager);
-            if (win.ShowDialog() == false)
-            {
-                return;
-            }
+            win.ShowDialog();
             Reset();
             ResetSelectUser();
             RefreshCoupons();
@@ -158,10 +161,7 @@ namespace DMT.TA.Pages.Coupon
             var win = TAApp.Windows.CollectorCouponBorrow;
             win.Owner = Application.Current.MainWindow;
             win.Setup(manager);
-            if (win.ShowDialog() == false)
-            {
-                return;
-            }
+            win.ShowDialog();
             Reset();
             ResetSelectUser();
             RefreshCoupons();

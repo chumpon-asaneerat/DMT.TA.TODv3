@@ -394,4 +394,10 @@
                    TextAlignment="Left" />
     </DataTemplate>
 
+    <!--  Common for Coupon BORROW/RETURN  -->
+    <DataTemplate x:Key="CouponId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CouponId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
 </ResourceDictionary>

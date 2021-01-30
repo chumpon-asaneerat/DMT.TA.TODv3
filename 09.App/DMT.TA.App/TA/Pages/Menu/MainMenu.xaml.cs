@@ -29,27 +29,30 @@ namespace DMT.TA.Pages.Menu
 
         #region Button Handlers
 
+        // OK - ยืม/แลก เงินยืมทอนฝ่ายบัญชี
         private void cmdRequestExchange_Click(object sender, RoutedEventArgs e)
         {
             // ยืม/แลก เงินยืมทอนฝ่ายบัญชี
             var page = TAApp.Pages.RequestExchange;
-            //page.Setup(TAApp.User.Current);
+            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - คืนเงินยืมทอนฝ่ายบัญชี
         private void cmdReturnExchange_Click(object sender, RoutedEventArgs e)
         {
             // คืนเงินยืมทอนฝ่ายบัญชี
             var page = TAApp.Pages.ManageExchange;
-            //page.Setup(TAApp.User.Current);
+            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - แลกเงินหมุนเวียนในด่าน
         private void cmdInHouseExchange_Click(object sender, RoutedEventArgs e)
         {
             // แลกเงินหมุนเวียนในด่าน
             var page = TAApp.Pages.InternalExchange;
-            //page.Setup(TAApp.User.Current);
+            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 

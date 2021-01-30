@@ -54,6 +54,23 @@ namespace DMT.TA.Pages.Exchange
             PageContentManager.Instance.Current = page;
         }
 
+        private void Refresh()
+        {
+            plazaSummary.Setup(); // Call for refresh.
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        public void Setup()
+        {
+            Refresh();
+        }
+
         #endregion
     }
 }

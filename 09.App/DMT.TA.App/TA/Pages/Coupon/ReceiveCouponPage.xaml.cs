@@ -35,6 +35,7 @@ namespace DMT.TA.Pages.Coupon
         #region Internal Variables
 
         private User _chief = null;
+        private TSBCouponBorrowManager manager = null;
 
         #endregion
 
@@ -98,7 +99,8 @@ namespace DMT.TA.Pages.Coupon
 
         private void Reset()
         {
-            manager.User = null;
+            if (null == manager) manager = new TSBCouponBorrowManager();
+            manager.SetUser(null);
             if (null != manager)
             {
 
@@ -112,7 +114,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void ResetSelectUser()
         {
-            manager.User = null;
+            if (null != manager) manager.SetUser(null);
             txtSearchUserId.Text = string.Empty;
             cmdAppend.IsEnabled = false;
         }
@@ -123,7 +125,7 @@ namespace DMT.TA.Pages.Coupon
             var result = TAAPI.SearchUser(userId, TAApp.Permissions.TC);
             if (!result.IsCanceled && null != manager)
             {
-                manager.User = result.User;
+                manager.SetUser(result.User);
                 if (null != manager.User)
                 {
                     txtSearchUserId.Text = string.Empty;

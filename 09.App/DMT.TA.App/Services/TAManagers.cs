@@ -1203,6 +1203,15 @@ namespace DMT.Services
     {
         #region Override Methods
 
+        /// <summary>
+        /// Save.
+        /// </summary>
+        /// <returns>Returns true if sace success.</returns>
+        public override bool Save()
+        {
+            return false;
+        }
+
         #endregion
     }
 
@@ -1216,6 +1225,15 @@ namespace DMT.Services
     public class TSBCouponRetrunManager : TSBCouponManager
     {
         #region Override Methods
+
+        /// <summary>
+        /// Save.
+        /// </summary>
+        /// <returns>Returns true if sace success.</returns>
+        public override bool Save()
+        {
+            return false;
+        }
 
         #endregion
     }

@@ -1108,11 +1108,12 @@ namespace DMT.Services
                 }
                 else if (TransactionType == TSBCouponTransactionTypes.Stock)
                 {
-
+                    UserId = string.Empty;
                 }
                 else
                 {
                     // Cancel or Remove.
+                    UserId = string.Empty;
                 }
                 ReceiveDate = value.UserReceiveDate;
                 SoldDate = value.SoldDate;
@@ -1335,6 +1336,8 @@ namespace DMT.Services
 
         #region Public Methods
 
+        #region Refresh
+
         /// <summary>
         /// Refresh.
         /// </summary>
@@ -1342,6 +1345,8 @@ namespace DMT.Services
         {
             LoadCoupons();
         }
+
+        #endregion
 
         #region For Borrow/Return between Stock-Lane
 
@@ -1368,6 +1373,8 @@ namespace DMT.Services
 
         #region Public Properties
 
+        /// <summary>Gets or set 35 BHT Coupon Filter.</summary>
+        public string C35StockFilter { get; set; }
         /// <summary>Gets all 35 BHT Coupons in Stock of current TSB.</summary>
         public List<TSBCouponItem> C35Stocks 
         {
@@ -1377,10 +1384,22 @@ namespace DMT.Services
 
                 var results = Coupons.FindAll(item =>
                 {
-                    bool ret = (
-                        item.TransactionType == TSBCouponTransactionTypes.Stock &&
-                        item.CouponType == CouponType.BHT35
-                    );
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C35StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT35
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.UserId.Contains(C35StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT35
+                        );
+                    }
                     return ret;
                 }).OrderBy(x => x.CouponId).ToList();
 
@@ -1406,6 +1425,9 @@ namespace DMT.Services
                 return results;
             }
         }
+
+        /// <summary>Gets or set 80 BHT Coupon Filter.</summary>
+        public string C80StockFilter { get; set; }
         /// <summary>Gets all 80 BHT Coupons in Stock of current TSB.</summary>
         public List<TSBCouponItem> C80Stocks
         {
@@ -1415,10 +1437,22 @@ namespace DMT.Services
 
                 var results = Coupons.FindAll(item =>
                 {
-                    bool ret = (
-                        item.TransactionType == TSBCouponTransactionTypes.Stock &&
-                        item.CouponType == CouponType.BHT80
-                    );
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C80StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT80
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.UserId.Contains(C80StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT80
+                        );
+                    }
                     return ret;
                 }).OrderBy(x => x.CouponId).ToList();
 
@@ -1450,12 +1484,12 @@ namespace DMT.Services
 
     #endregion
 
-    #region TSBCouponRetrunManager
+    #region TSBCouponReturnManager
 
     /// <summary>
     /// TSB Coupon Return Manager class.
     /// </summary>
-    public class TSBCouponRetrunManager : TSBCouponManager
+    public class TSBCouponReturnManager : TSBCouponManager
     {
         #region Override Methods
 
@@ -1477,7 +1511,28 @@ namespace DMT.Services
 
         #endregion
 
+        #region Public Methods
+
+        #region Refresh
+
+        /// <summary>
+        /// Refresh.
+        /// </summary>
+        public void Refresh()
+        {
+            LoadCoupons();
+        }
+
+        #endregion
+
+        #endregion
+
         #region Public Properties
+
+        /// <summary>Gets or set 35 BHT Coupon Sold By Lane Filter.</summary>
+        public string C35SoldByLaneFilter { get; set; }
+        /// <summary>Gets or set 80 BHT Coupon Sold By Lane Filter.</summary>
+        public string C80SoldByLaneFilter { get; set; }
 
         #endregion
     }

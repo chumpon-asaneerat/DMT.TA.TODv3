@@ -117,15 +117,15 @@
                         <!--  SEPERATOR  -->
                         <TextBlock Height="10" DockPanel.Dock="Top" />
                         <!--  COUPON 35 STOCK LISTVIEW  -->
-                        <ListView x:Name="lv35Stock"
+                        <ListView x:Name="lv35SoldByLane"
                                   Margin="5,0"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   FontSize="{StaticResource InputFontSize18}"
                                   ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                                   ItemsSource="{Binding}"
-                                  KeyDown="lv35Stock_KeyDown"
-                                  MouseDoubleClick="lv35Stock_MouseDoubleClick"
+                                  KeyDown="lv35SoldByLane_KeyDown"
+                                  MouseDoubleClick="lv35SoldByLane_MouseDoubleClick"
                                   Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
@@ -141,18 +141,18 @@
                                 Grid.Column="3"
                                 VerticalAlignment="Center"
                                 Orientation="Vertical">
-                        <Button x:Name="cmd35StockToUser"
+                        <Button x:Name="cmd35SoldToOnHand"
                                 Width="50"
                                 Height="50"
-                                Click="cmd35StockToUser_Click"
+                                Click="cmd35SoldToOnHand_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/next.png" />
                         </Button>
                         <TextBlock Height="20" />
-                        <Button x:Name="cmd35UserToStock"
+                        <Button x:Name="cmd35OnHandToSold"
                                 Width="50"
                                 Height="50"
-                                Click="cmd35UserToStock_Click"
+                                Click="cmd35OnHandToSold_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/back.png" />
                         </Button>
@@ -169,15 +169,15 @@
                         <!--  SEPERATOR  -->
                         <TextBlock Height="10" DockPanel.Dock="Top" />
                         <!--  COUPON 35 USER LISTVIEW  -->
-                        <ListView x:Name="lv35User"
+                        <ListView x:Name="lv35OnLane"
                                   Margin="5,0"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   FontSize="{StaticResource InputFontSize18}"
                                   ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                                   ItemsSource="{Binding}"
-                                  KeyDown="lv35User_KeyDown"
-                                  MouseDoubleClick="lv35User_MouseDoubleClick"
+                                  KeyDown="lv35OnLane_KeyDown"
+                                  MouseDoubleClick="lv35OnLane_MouseDoubleClick"
                                   Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
@@ -219,15 +219,15 @@
                         <!--  SEPERATOR  -->
                         <TextBlock Height="10" DockPanel.Dock="Top" />
                         <!--  COUPON 35 STOCK LISTVIEW  -->
-                        <ListView x:Name="lv80Stock"
+                        <ListView x:Name="lv80SoldByLane"
                                   Margin="5,0"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   FontSize="{StaticResource InputFontSize18}"
                                   ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                                   ItemsSource="{Binding}"
-                                  KeyDown="lv80Stock_KeyDown"
-                                  MouseDoubleClick="lv80Stock_MouseDoubleClick"
+                                  KeyDown="lv80SoldByLane_KeyDown"
+                                  MouseDoubleClick="lv80SoldByLane_MouseDoubleClick"
                                   Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>
@@ -243,18 +243,18 @@
                                 Grid.Column="9"
                                 VerticalAlignment="Center"
                                 Orientation="Vertical">
-                        <Button x:Name="cmd80StockToUser"
+                        <Button x:Name="cmd80SoldToOnHand"
                                 Width="50"
                                 Height="50"
-                                Click="cmd80StockToUser_Click"
+                                Click="cmd80SoldToOnHand_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/next.png" />
                         </Button>
                         <TextBlock Height="20" />
-                        <Button x:Name="cmd80UserToStock"
+                        <Button x:Name="cmd80OnHandToSold"
                                 Width="50"
                                 Height="50"
-                                Click="cmd80UserToStock_Click"
+                                Click="cmd80OnHandToSold_Click"
                                 Style="{StaticResource InlineButton}">
                             <Image Source="/DMT.TA.App;component/Images/Button/back.png" />
                         </Button>
@@ -271,15 +271,15 @@
                         <!--  SEPERATOR  -->
                         <TextBlock Height="10" DockPanel.Dock="Top" />
                         <!--  COUPON 35 USER LISTVIEW  -->
-                        <ListView x:Name="lv80User"
+                        <ListView x:Name="lv80OnLane"
                                   Margin="5,0"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
                                   FontSize="{StaticResource InputFontSize18}"
                                   ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                                   ItemsSource="{Binding}"
-                                  KeyDown="lv80User_KeyDown"
-                                  MouseDoubleClick="lv80User_MouseDoubleClick"
+                                  KeyDown="lv80OnLane_KeyDown"
+                                  MouseDoubleClick="lv80OnLane_MouseDoubleClick"
                                   Style="{StaticResource ExtendedSelectListView}">
                             <ListView.View>
                                 <GridView>

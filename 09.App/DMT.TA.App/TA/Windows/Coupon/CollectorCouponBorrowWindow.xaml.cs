@@ -53,6 +53,88 @@ namespace DMT.TA.Windows.Coupon
 
         #endregion
 
+        #region TextBox Handlers
+
+        private void txtCoupon35Filter_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtCoupon80Filter_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Button (Move) Handlers
+
+        private void cmd35StockToUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmd35UserToStock_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmd80StockToUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmd80UserToStock_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region ListView Handlers
+
+        private void lv35Stock_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void lv35Stock_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void lv35User_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void lv35User_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void lv80Stock_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void lv80Stock_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void lv80User_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void lv80User_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void LoadUserCoupons()

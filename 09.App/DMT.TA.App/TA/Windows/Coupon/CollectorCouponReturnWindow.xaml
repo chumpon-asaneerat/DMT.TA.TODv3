@@ -1,13 +1,13 @@
 ﻿<Window x:Class="DMT.TA.Windows.Coupon.CollectorCouponReturnWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
         Title="พนักงานคืนคูปอง"
         Width="900"
-        Height="650"
+        Height="450"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -17,8 +17,11 @@
     <Window.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+        <sys:Double x:Key="PanelWidth">170</sys:Double>
     </Window.Resources>
-    <Grid Background="DimGray">
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource PageMargin}" />
@@ -32,7 +35,8 @@
             </Grid.RowDefinitions>
             <DockPanel Grid.Row="1"
                        Grid.Column="1"
-                       HorizontalAlignment="Stretch"
+                       Margin="10"
+                       HorizontalAlignment="Center"
                        VerticalAlignment="Stretch">
                 <!--  BUTTONS  -->
                 <DockPanel Height="60"
@@ -55,8 +59,171 @@
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>
+                <!--  SEPERATOR  -->
+                <TextBlock Height="10" DockPanel.Dock="Bottom" />
                 <!--  WORK AREA  -->
-                <Grid />
+                <StackPanel Orientation="Horizontal">
+                    <!--  COUPON 35 STOCK  -->
+                    <DockPanel LastChildFill="True">
+                        <!--  Filter Panel  -->
+                        <StackPanel Width="{StaticResource PanelWidth}"
+                                    Height="30"
+                                    Margin="5,0"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LabelText}" Text="ค้นหา" />
+                            <TextBlock Width="10" />
+                            <TextBox x:Name="txtCoupon35Filter"
+                                     Width="120"
+                                     KeyDown="txtCoupon35Filter_KeyDown"
+                                     Style="{StaticResource CommonTextBox}" />
+                        </StackPanel>
+                        <!--  SEPERATOR  -->
+                        <TextBlock Height="10" DockPanel.Dock="Top" />
+                        <!--  COUPON 35 STOCK LISTVIEW  -->
+                        <ListView x:Name="lv35Stock"
+                                  Margin="5,0"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  KeyDown="lv35Stock_KeyDown"
+                                  MouseDoubleClick="lv35Stock_MouseDoubleClick"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView />
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                    <!--  COUPON 35 MOVE BUTTONS  -->
+                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <Button x:Name="cmd35StockToUser"
+                                Width="50"
+                                Height="50"
+                                Margin="5"
+                                Click="cmd35StockToUser_Click"
+                                Style="{StaticResource InlineButton}">
+                            <Image Source="/DMT.TA.App;component/Images/Button/next.png" />
+                        </Button>
+                        <TextBlock Height="20" />
+                        <Button x:Name="cmd35UserToStock"
+                                Width="50"
+                                Height="50"
+                                Margin="5"
+                                Click="cmd35UserToStock_Click"
+                                Style="{StaticResource InlineButton}">
+                            <Image Source="/DMT.TA.App;component/Images/Button/back.png" />
+                        </Button>
+                    </StackPanel>
+                    <!--  COUPON 35 USER  -->
+                    <DockPanel LastChildFill="True">
+                        <!--  EMPTY PANEL  -->
+                        <StackPanel Width="{StaticResource PanelWidth}"
+                                    Height="30"
+                                    Margin="5,0"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal" />
+                        <!--  SEPERATOR  -->
+                        <TextBlock Height="10" DockPanel.Dock="Top" />
+                        <!--  COUPON 35 USER LISTVIEW  -->
+                        <ListView x:Name="lv35User"
+                                  Margin="5,0"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  KeyDown="lv35User_KeyDown"
+                                  MouseDoubleClick="lv35User_MouseDoubleClick"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView />
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Width="10" />
+                    <!--  COUPON 80 STOCK  -->
+                    <DockPanel LastChildFill="True">
+                        <!--  Filter Panel  -->
+                        <StackPanel Width="{StaticResource PanelWidth}"
+                                    Height="30"
+                                    Margin="5,0"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource LabelText}" Text="ค้นหา" />
+                            <TextBlock Width="10" />
+                            <TextBox x:Name="txtCoupon80Filter"
+                                     Width="120"
+                                     KeyDown="txtCoupon80Filter_KeyDown"
+                                     Style="{StaticResource CommonTextBox}" />
+                        </StackPanel>
+                        <!--  SEPERATOR  -->
+                        <TextBlock Height="10" DockPanel.Dock="Top" />
+                        <!--  COUPON 35 STOCK LISTVIEW  -->
+                        <ListView x:Name="lv80Stock"
+                                  Margin="5,0"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  KeyDown="lv80Stock_KeyDown"
+                                  MouseDoubleClick="lv80Stock_MouseDoubleClick"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView />
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                    <!--  COUPON 80 MOVE BUTTONS  -->
+                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <Button x:Name="cmd80StockToUser"
+                                Width="50"
+                                Height="50"
+                                Margin="5"
+                                Click="cmd80StockToUser_Click"
+                                Style="{StaticResource InlineButton}">
+                            <Image Source="/DMT.TA.App;component/Images/Button/next.png" />
+                        </Button>
+                        <TextBlock Height="20" />
+                        <Button x:Name="cmd80UserToStock"
+                                Width="50"
+                                Height="50"
+                                Margin="5"
+                                Click="cmd80UserToStock_Click"
+                                Style="{StaticResource InlineButton}">
+                            <Image Source="/DMT.TA.App;component/Images/Button/back.png" />
+                        </Button>
+                    </StackPanel>
+                    <!--  COUPON 80 USER  -->
+                    <DockPanel LastChildFill="True">
+                        <!--  EMPTY PANEL  -->
+                        <StackPanel Width="{StaticResource PanelWidth}"
+                                    Height="30"
+                                    Margin="5,0"
+                                    DockPanel.Dock="Top"
+                                    Orientation="Horizontal" />
+                        <!--  SEPERATOR  -->
+                        <TextBlock Height="10" DockPanel.Dock="Top" />
+                        <!--  COUPON 35 USER LISTVIEW  -->
+                        <ListView x:Name="lv80User"
+                                  Margin="5,0"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  KeyDown="lv80User_KeyDown"
+                                  MouseDoubleClick="lv80User_MouseDoubleClick"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView />
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                </StackPanel>
             </DockPanel>
         </Grid>
     </Grid>

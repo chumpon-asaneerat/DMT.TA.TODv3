@@ -104,11 +104,10 @@ namespace DMT
             // TODO: Need Check TOD App Implements
             /*
             Services.Operations.TOD.Config = TAConfigManager.Instance;
-            */
             Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-
-            Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
-            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
+            */
+            Services.Operations.TAxTOD.Config = TAConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
 
             Services.Operations.SCW.Config = TAConfigManager.Instance;
             Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
@@ -181,11 +180,10 @@ namespace DMT
             // TODO: Need Check TOD App Implements
             /*
             Services.Operations.TOD.Config = TAConfigManager.Instance;
-            */
             Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-
-            Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
-            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
+            */
+            Services.Operations.TAxTOD.Config = TAConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
 
             Services.Operations.SCW.Config = TAConfigManager.Instance;
             Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId

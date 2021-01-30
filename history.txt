@@ -47,8 +47,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1239
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1238
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1237
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - TODAppPlazaConfig remove TAxTOD related code.
+    - TODConfigManager remove TAxTOD related code.
+  - DMT.TOD.Rest.Server project.
+    - TODWebServer remove TAxTOD related code.
+  - DMT.TA.App project.
+    - App.xaml.cs remove fixed bug reference code to TOD Config -> TA Config.
+  - DMT.TOD.App project.
+    - App.xaml.cs remove TAxTOD related code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1236

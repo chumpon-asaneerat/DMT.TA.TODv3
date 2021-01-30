@@ -118,9 +118,6 @@ namespace DMT
             Services.Operations.TA.Config = TODConfigManager.Instance;
             Services.Operations.TA.DMT = TODConfigManager.Instance; // required for NetworkId
 
-            Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
-            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
-
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
             TODConfigManager.Instance.Start(); // Start File Watcher.
@@ -198,9 +195,6 @@ namespace DMT
             // Update all related service operations.
             Services.Operations.TA.Config = TODConfigManager.Instance;
             Services.Operations.TA.DMT = TODConfigManager.Instance; // required for NetworkId
-
-            Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
-            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
 
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId

@@ -50,6 +50,11 @@ namespace DMT.TA.Pages.Coupon
             SearchUser();
         }
 
+        private void cmdAppend_Click(object sender, RoutedEventArgs e)
+        {
+            AppendUser();
+        }
+
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
 
@@ -109,6 +114,7 @@ namespace DMT.TA.Pages.Coupon
         {
             manager.User = null;
             txtSearchUserId.Text = string.Empty;
+            cmdAppend.IsEnabled = false;
         }
 
         private void SearchUser()
@@ -124,6 +130,14 @@ namespace DMT.TA.Pages.Coupon
                 }
                 RefreshCoupons();
             }
+
+            bool hasUser = (null != manager && null != manager.User);
+            cmdAppend.IsEnabled = hasUser;
+        }
+
+        private void AppendUser()
+        {
+
         }
 
         private void RefreshCoupons()

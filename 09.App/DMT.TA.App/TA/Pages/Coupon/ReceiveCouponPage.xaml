@@ -103,6 +103,15 @@
                                         Content="เลือกพนักงาน"
                                         FontSize="{StaticResource InputFontSize18}"
                                         Style="{DynamicResource InlineButton}" />
+                                <TextBlock Width="50" />
+                                <Button x:Name="cmdAppend"
+                                        Width="150"
+                                        Height="30"
+                                        VerticalAlignment="Center"
+                                        Click="cmdAppend_Click"
+                                        Content="เพิ่มพนักงาน"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                                         Grid.RowSpan="3"

@@ -1531,8 +1531,119 @@ namespace DMT.Services
 
         /// <summary>Gets or set 35 BHT Coupon Sold By Lane Filter.</summary>
         public string C35SoldByLaneFilter { get; set; }
+        /// <summary>Gets all 35 BHT Coupons in Sold by current user.</summary>
+        public List<TSBCouponItem> C35UserSolds
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0 || null == User)
+                    return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C35SoldByLaneFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.SoldByLane &&
+                            item.CouponType == CouponType.BHT35 &&
+                            item.UserId == User.UserId
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.UserId.Contains(C35SoldByLaneFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.SoldByLane &&
+                            item.CouponType == CouponType.BHT35 &&
+                            item.UserId == User.UserId
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 35 BHT Coupons on Lane by current User.</summary>
+        public List<TSBCouponItem> C35UserOnHands
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0 || null == User)
+                    return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        item.CouponType == CouponType.BHT35 &&
+                        item.UserId == User.UserId
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
         /// <summary>Gets or set 80 BHT Coupon Sold By Lane Filter.</summary>
         public string C80SoldByLaneFilter { get; set; }
+        /// <summary>Gets all 80 BHT Coupons in Sold by current user.</summary>
+        public List<TSBCouponItem> C80UserSolds
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0 || null == User) 
+                    return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C80SoldByLaneFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.SoldByLane &&
+                            item.CouponType == CouponType.BHT80 &&
+                            item.UserId == User.UserId
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.UserId.Contains(C80SoldByLaneFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.SoldByLane &&
+                            item.CouponType == CouponType.BHT80 &&
+                            item.UserId == User.UserId
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 80 BHT Coupons on Lane by current User.</summary>
+        public List<TSBCouponItem> C80UserOnHands
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0 || null == User)
+                    return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        item.CouponType == CouponType.BHT80 &&
+                            item.UserId == User.UserId
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
 
         #endregion
     }

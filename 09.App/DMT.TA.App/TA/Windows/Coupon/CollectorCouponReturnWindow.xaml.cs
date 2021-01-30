@@ -216,8 +216,8 @@ namespace DMT.TA.Windows.Coupon
 
             manager.C35SoldByLaneFilter = txtCoupon35Filter.Text.Trim();
 
-            lv35SoldByLane.ItemsSource = manager.C35Stocks;
-            lv35OnLane.ItemsSource = manager.C35Lanes;
+            lv35SoldByLane.ItemsSource = manager.C35UserSolds;
+            lv35OnLane.ItemsSource = manager.C35UserOnHands;
         }
 
         private void UpadteC80ListViews()
@@ -227,8 +227,8 @@ namespace DMT.TA.Windows.Coupon
 
             manager.C80SoldByLaneFilter = txtCoupon80Filter.Text.Trim();
 
-            lv80SoldByLane.ItemsSource = manager.C80Stocks;
-            lv80OnLane.ItemsSource = manager.C80Lanes;
+            lv80SoldByLane.ItemsSource = manager.C80UserSolds;
+            lv80OnLane.ItemsSource = manager.C80UserOnHands;
         }
 
         private void UpadteListViews()

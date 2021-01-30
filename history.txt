@@ -50,17 +50,26 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1228
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1227
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1226
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Windows
+      - Implements CollectorCouponBorrowWindow #6. 
+      - Implements CollectorCouponReturnWindow #6. 
+    - TAManagers Update #7
+      - Update TSBCouponManager
+      - Update TSBCouponBorrowManager
+      - Update TSBCouponRetrunManager
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1225
 - DMT.TAxTODv3
   - DMT.TA.App project
     - Windows
-      - Implements CollectorCouponBorrowWindow #4. 
-      - Implements CollectorCouponReturnWindow #4. 
-    - TAManagers Update #5
+      - Implements CollectorCouponBorrowWindow #5. 
+      - Implements CollectorCouponReturnWindow #5. 
+    - TAManagers Update #6
       - Update TSBCouponManager
       - Update TSBCouponBorrowManager
       - Update TSBCouponRetrunManager

@@ -79,6 +79,7 @@ namespace DMT.TA.Pages.Menu
             */
         }
 
+        // OK - เงินยืมทอน (collector)
         private void cmdUserCreditManage_Click(object sender, RoutedEventArgs e)
         {
             // เงินยืมทอน (collector)
@@ -91,7 +92,7 @@ namespace DMT.TA.Pages.Menu
         {
             // รับคูปอง (collector)
             var page = TAApp.Pages.ReceiveCoupon;
-            //page.Setup(TAApp.User.Current);
+            page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 

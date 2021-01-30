@@ -50,8 +50,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1238
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1237
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1236
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - SCWWebServiceConfig
+      - Set default IP to 172.30.192.9, Port 8000
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1235

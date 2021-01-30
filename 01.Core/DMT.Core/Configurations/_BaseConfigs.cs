@@ -266,8 +266,8 @@ namespace DMT.Configurations
             this.Service = new WebServiceConfig()
             {
                 Protocol = "http",
-                HostName = "localhost",
-                PortNumber = 3000,
+                HostName = "172.30.52.61",
+                PortNumber = 8000,
                 UserName = "DMTUSER",
                 Password = "DMTPASS"
             };

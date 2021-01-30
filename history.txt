@@ -53,8 +53,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1237
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1236
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1235
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - TAxTODWebServiceConfig
+      - Set default IP to 172.30.52.61, Port 8000
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1234

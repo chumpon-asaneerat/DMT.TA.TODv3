@@ -501,8 +501,8 @@ namespace DMT.Configurations
                 Password = "DMTPASS"
             };
             Plazas = new List<TODPlazaConfig>();
-            Plazas.Add(new TODPlazaConfig() { PlazaId = 0 });
-            Plazas.Add(new TODPlazaConfig() { PlazaId = 0 });
+            Plazas.Add(new TODPlazaConfig() { PlazaId = 15 });
+            Plazas.Add(new TODPlazaConfig() { PlazaId = 16 });
         }
 
         #endregion

@@ -1151,6 +1151,8 @@ namespace DMT.Services
 
         #region Public Properties
 
+        #region User related properties
+
         /// <summary>
         /// Gets or sets User.
         /// </summary>
@@ -1179,6 +1181,12 @@ namespace DMT.Services
             get { return (null != User) ? User.FullNameTH : string.Empty; }
             set { }
         }
+
+        #endregion
+
+        #region Coupon Collections properties
+
+        #endregion
 
         #endregion
 

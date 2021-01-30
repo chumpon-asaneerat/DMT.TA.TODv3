@@ -244,6 +244,12 @@
     <Compile Include="TA\Pages\Menu\ReportMenu.xaml.cs">
       <DependentUpon>ReportMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Coupon\CollectorCouponBorrowWindow.xaml.cs">
+      <DependentUpon>CollectorCouponBorrowWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TA\Windows\Coupon\CollectorCouponReturnWindow.xaml.cs">
+      <DependentUpon>CollectorCouponReturnWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Credit\CollectorCreditBorrowWindow.xaml.cs">
       <DependentUpon>CollectorCreditBorrowWindow.xaml</DependentUpon>
     </Compile>
@@ -414,6 +420,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TA\Windows\Coupon\CollectorCouponBorrowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Coupon\CollectorCouponReturnWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TA\Windows\Credit\CollectorCreditBorrowWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -531,9 +545,7 @@
       <Name>DMT.Controls</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TA\Windows\Coupon\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Background\snartcard.png" />
     <Resource Include="Images\Button\Cancel.png" />

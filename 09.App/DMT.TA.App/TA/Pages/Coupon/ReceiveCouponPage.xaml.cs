@@ -58,7 +58,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            BorrownCoupon();
         }
 
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
@@ -139,12 +139,34 @@ namespace DMT.TA.Pages.Coupon
 
         private void AppendUser()
         {
+            if (null == manager || null == manager.User) return;
+            var win = TAApp.Windows.CollectorCouponBorrow;
+            win.Owner = Application.Current.MainWindow;
+            win.Setup(manager);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            RefreshCoupons();
+        }
 
+        private void BorrownCoupon()
+        {
+            if (null == manager || null == manager.User) return;
+            var win = TAApp.Windows.CollectorCouponBorrow;
+            win.Owner = Application.Current.MainWindow;
+            win.Setup(manager);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            RefreshCoupons();
         }
 
         private void RefreshCoupons()
         {
-
+            grid.ItemsSource = null;
+            if (null == manager || null == manager.User) return;
         }
 
         #endregion

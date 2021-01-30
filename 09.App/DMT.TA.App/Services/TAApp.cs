@@ -388,6 +388,32 @@ namespace DMT
 
             #endregion
 
+            #region Coupon
+
+            /// <summary>Gets Collector Coupon Borrow Window.</summary>
+            public static TA.Windows.Coupon.CollectorCouponBorrowWindow CollectorCouponBorrow
+            {
+                get
+                {
+                    var ret = new TA.Windows.Coupon.CollectorCouponBorrowWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            /// <summary>Gets Collector Coupon Return Window.</summary>
+            public static TA.Windows.Coupon.CollectorCouponReturnWindow CollectorCouponReturn
+            {
+                get
+                {
+                    var ret = new TA.Windows.Coupon.CollectorCouponReturnWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Internal Exchange
 
             /// <summary>Gets Internal Exchange Window.</summary>

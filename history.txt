@@ -56,8 +56,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1236
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1235
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1234
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - Set Active TSB to ANUSORN SATHAN.
+  - DMT.TOD.Models project
+    - Set Active TSB to ANUSORN SATHAN.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1233

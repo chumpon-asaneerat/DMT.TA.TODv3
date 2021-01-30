@@ -379,7 +379,7 @@ namespace DMT.Services
             item.TSBId = "311";
             item.TSBNameEN = "DIN DAENG";
             item.TSBNameTH = "ดินแดง";
-            item.Active = true;
+            item.Active = false;
             if (!TSB.Exists(item)) TSB.Save(item);
             // init default credit value.
             InitTSBCreditInitializeTransaction(item);
@@ -1507,7 +1507,7 @@ namespace DMT.Services
             item.TSBId = "319";
             item.TSBNameEN = "ANUSORN SATHAN";
             item.TSBNameTH = "อนุสรน์สถาน";
-            item.Active = false;
+            item.Active = true;
             if (!TSB.Exists(item)) TSB.Save(item);
             // init default credit value.
             InitTSBCreditInitializeTransaction(item);

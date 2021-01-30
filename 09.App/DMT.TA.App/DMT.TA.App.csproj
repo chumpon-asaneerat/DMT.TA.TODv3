@@ -184,6 +184,9 @@
     <Compile Include="StatusBar\Elements\TODAppStatus.xaml.cs">
       <DependentUpon>TODAppStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusBar\Elements\TSBCouponSyncStatus.xaml.cs">
+      <DependentUpon>TSBCouponSyncStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatusBar\TAStatusBar.xaml.cs">
       <DependentUpon>TAStatusBar.xaml</DependentUpon>
     </Compile>
@@ -339,6 +342,10 @@
     <Page Include="StatusBar\Elements\TODAppStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatusBar\Elements\TSBCouponSyncStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatusBar\TAStatusBar.xaml">
       <Generator>MSBuild:Compile</Generator>

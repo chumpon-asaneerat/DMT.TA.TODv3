@@ -7,7 +7,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="พนักงานรับคูปอง"
         Width="960"
-        Height="450"
+        Height="500"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -82,7 +82,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5" />
-                        <RowDefinition Height="30" />
+                        <RowDefinition Height="45" />
                         <RowDefinition Height="5" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="5" />
@@ -91,10 +91,11 @@
                     <Border Grid.Row="1"
                             Grid.Column="1"
                             Grid.ColumnSpan="5"
-                            Margin="3,5"
+                            Margin="0"
                             VerticalAlignment="Center"
                             Background="CornflowerBlue">
-                        <TextBlock VerticalAlignment="Center"
+                        <TextBlock Height="28"
+                                   VerticalAlignment="Center"
                                    Style="{StaticResource LabelText}"
                                    Text="คูปอง 35 บาท"
                                    TextAlignment="Center" />
@@ -112,7 +113,7 @@
                             <TextBlock Width="10" />
                             <TextBox x:Name="txtCoupon35Filter"
                                      Width="120"
-                                     KeyDown="txtCoupon35Filter_KeyDown"
+                                     KeyUp="txtCoupon35Filter_KeyUp"
                                      Style="{StaticResource CommonTextBox}" />
                         </StackPanel>
                         <!--  SEPERATOR  -->
@@ -193,10 +194,11 @@
                     <Border Grid.Row="1"
                             Grid.Column="7"
                             Grid.ColumnSpan="5"
-                            Margin="3,5"
+                            Margin="0"
                             VerticalAlignment="Center"
                             Background="CornflowerBlue">
-                        <TextBlock VerticalAlignment="Center"
+                        <TextBlock Height="28"
+                                   VerticalAlignment="Center"
                                    Style="{StaticResource LabelText}"
                                    Text="คูปอง 80 บาท"
                                    TextAlignment="Center" />
@@ -214,7 +216,7 @@
                             <TextBlock Width="10" />
                             <TextBox x:Name="txtCoupon80Filter"
                                      Width="120"
-                                     KeyDown="txtCoupon80Filter_KeyDown"
+                                     KeyUp="txtCoupon80Filter_KeyUp"
                                      Style="{StaticResource CommonTextBox}" />
                         </StackPanel>
                         <!--  SEPERATOR  -->

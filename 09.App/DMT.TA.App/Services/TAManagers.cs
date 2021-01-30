@@ -1072,6 +1072,8 @@ namespace DMT.Services
 
     #region TSB Coupon Manager related classes
 
+    #region TSBCouponItem
+
     /// <summary>
     /// The TSB Coupon Item class.
     /// </summary>
@@ -1124,6 +1126,40 @@ namespace DMT.Services
 
         #region Override Methods
 
+        /// <summary>
+        /// GetHashCode
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            var code = string.Empty;
+            if (null != Transaction) code = Transaction.CouponId;
+            return code.GetHashCode();
+        }
+        /// <summary>
+        /// Equals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (null == obj || !(obj is TSBCouponItem))
+                return false;
+            var target = obj as TSBCouponItem;
+            if (null == target) return false;
+
+            return GetHashCode() == target.GetHashCode();
+        }
+        /// <summary>
+        /// ToString.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            if (null != Transaction) return Transaction.CouponId;
+            return string.Empty;
+        }
+
         #endregion
 
         #region Public Properties
@@ -1157,6 +1193,7 @@ namespace DMT.Services
         #endregion
     }
 
+    #endregion
 
     #region TSBCouponManager (abstract)
 
@@ -1176,13 +1213,11 @@ namespace DMT.Services
         /// </summary>
         ~TSBCouponManager()
         {
-            /*
-            if (null != this.Transaction)
+            if (null == Coupons)
             {
-                this.Transaction.PropertyChanged += Transaction_PropertyChanged;
+                Coupons.Clear();
             }
-            this.Transaction = null;
-            */
+            Coupons = null;
         }
 
         #endregion
@@ -1356,7 +1391,10 @@ namespace DMT.Services
         /// <param name="item"></param>
         public void Borrow(TSBCouponItem item)
         {
-            if (null == item) return;
+            if (null == item || null == User) return;
+            item.TransactionType = TSBCouponTransactionTypes.Lane;
+            item.UserId = User.UserId;
+            item.ReceiveDate = DateTime.Now;
         }
         /// <summary>
         /// Retrun from Lane back to stock.
@@ -1364,7 +1402,10 @@ namespace DMT.Services
         /// <param name="item"></param>
         public void Return(TSBCouponItem item)
         {
-            if (null == item) return;
+            if (null == item || null == User) return;
+            item.TransactionType = TSBCouponTransactionTypes.Stock;
+            item.UserId = string.Empty;
+            item.ReceiveDate = new DateTime?();
         }
 
         #endregion
@@ -1395,7 +1436,7 @@ namespace DMT.Services
                     else
                     {
                         ret = (
-                            item.UserId.Contains(C35StockFilter) &&
+                            item.CouponId.Contains(C35StockFilter) &&
                             item.TransactionType == TSBCouponTransactionTypes.Stock &&
                             item.CouponType == CouponType.BHT35
                         );
@@ -1448,7 +1489,7 @@ namespace DMT.Services
                     else
                     {
                         ret = (
-                            item.UserId.Contains(C80StockFilter) &&
+                            item.CouponId.Contains(C80StockFilter) &&
                             item.TransactionType == TSBCouponTransactionTypes.Stock &&
                             item.CouponType == CouponType.BHT80
                         );
@@ -1553,7 +1594,7 @@ namespace DMT.Services
                     else
                     {
                         ret = (
-                            item.UserId.Contains(C35SoldByLaneFilter) &&
+                            item.CouponId.Contains(C35SoldByLaneFilter) &&
                             item.TransactionType == TSBCouponTransactionTypes.SoldByLane &&
                             item.CouponType == CouponType.BHT35 &&
                             item.UserId == User.UserId
@@ -1611,7 +1652,7 @@ namespace DMT.Services
                     else
                     {
                         ret = (
-                            item.UserId.Contains(C80SoldByLaneFilter) &&
+                            item.CouponId.Contains(C80SoldByLaneFilter) &&
                             item.TransactionType == TSBCouponTransactionTypes.SoldByLane &&
                             item.CouponType == CouponType.BHT80 &&
                             item.UserId == User.UserId

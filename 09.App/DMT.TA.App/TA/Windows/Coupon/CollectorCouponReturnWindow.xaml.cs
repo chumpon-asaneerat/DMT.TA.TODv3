@@ -35,6 +35,9 @@ namespace DMT.TA.Windows.Coupon
 
         #region Internal Variables
 
+        private string last35Filter = string.Empty;
+        private string last80Filter = string.Empty;
+
         private TSBCouponReturnManager manager = null;
 
         #endregion
@@ -55,33 +58,87 @@ namespace DMT.TA.Windows.Coupon
 
         #region TextBox Handlers
 
-        private void txtCoupon35Filter_KeyDown(object sender, KeyEventArgs e)
+        private void txtCoupon35Filter_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {
-                UpadteC35ListViews();
+                var item = HasSingleItem(lv35SoldByLane);
+                if (null != item)
+                {
+                    txtCoupon35Filter.Text = string.Empty;
+                    last35Filter = string.Empty;
+
+                    //manager.XXX
+
+                    UpadteC35ListViews();
+                }
                 e.Handled = true;
             }
             else if (e.Key == Key.Escape)
             {
                 txtCoupon35Filter.Text = string.Empty;
+                last35Filter = string.Empty;
                 UpadteC35ListViews();
                 e.Handled = true;
             }
+            else if (e.Key == Key.Right)
+            {
+                e.Handled = true;
+
+                // Focus on search textbox.
+                txtCoupon80Filter.SelectAll();
+                txtCoupon80Filter.Focus();
+            }
+            else
+            {
+                if (last35Filter != txtCoupon35Filter.Text)
+                {
+                    last35Filter = txtCoupon35Filter.Text;
+                    UpadteC35ListViews();
+                    e.Handled = true;
+                }
+            }
         }
 
-        private void txtCoupon80Filter_KeyDown(object sender, KeyEventArgs e)
+        private void txtCoupon80Filter_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {
-                UpadteListViews();
+                var item = HasSingleItem(lv80SoldByLane);
+                if (null != item)
+                {
+                    txtCoupon80Filter.Text = string.Empty;
+                    last80Filter = string.Empty;
+
+                    //manager.XXX
+
+                    UpadteC80ListViews();
+                }
                 e.Handled = true;
             }
             else if (e.Key == Key.Escape)
             {
                 txtCoupon80Filter.Text = string.Empty;
+                last80Filter = string.Empty;
                 UpadteC80ListViews();
                 e.Handled = true;
+            }
+            else if (e.Key == Key.Left)
+            {
+                e.Handled = true;
+
+                // Focus on search textbox.
+                txtCoupon35Filter.SelectAll();
+                txtCoupon35Filter.Focus();
+            }
+            else
+            {
+                if (last80Filter != txtCoupon80Filter.Text)
+                {
+                    last80Filter = txtCoupon80Filter.Text;
+                    UpadteC80ListViews();
+                    e.Handled = true;
+                }
             }
         }
 
@@ -173,6 +230,15 @@ namespace DMT.TA.Windows.Coupon
 
         #region Private Methods
 
+        private TSBCouponItem HasSingleItem(ListView lv)
+        {
+            if (null == lv) return null;
+            var items = lv.SelectedItems;
+            if (null != items && items.Count == 1)
+                return items[0] as TSBCouponItem;
+            return null; // no items or item is more than one.
+        }
+
         private void MoveToOnHand35()
         {
             var items = lv35SoldByLane.SelectedItems;
@@ -253,6 +319,13 @@ namespace DMT.TA.Windows.Coupon
                 manager.Refresh();
                 UpadteListViews();
             }
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtCoupon35Filter.SelectAll();
+                txtCoupon35Filter.Focus();
+            }));
         }
 
         #endregion

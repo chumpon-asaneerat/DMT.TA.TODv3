@@ -29,8 +29,6 @@ using RestSharp;
 
 namespace DMT.Services
 {
-    using scwOps = Services.Operations.SCW.TOD;
-
     #region TAAPI
 
     /// <summary>
@@ -1089,7 +1087,7 @@ namespace DMT.Services
         /// Constructor.
         /// </summary>
         /// <param name="value">The Original TSBTransaction.</param>
-        public TSBCouponItem(TSBCouponTransaction value) : this() 
+        public TSBCouponItem(TSBCouponTransaction value) : this()
         {
             Transaction = value;
             if (null != value)
@@ -1118,7 +1116,9 @@ namespace DMT.Services
                     UserId = string.Empty;
                 }
                 ReceiveDate = value.UserReceiveDate;
+                SoldBy = value.SoldBy;
                 SoldDate = value.SoldDate;
+                FinishFlag = value.FinishFlag;
             }
         }
 
@@ -1162,6 +1162,170 @@ namespace DMT.Services
 
         #endregion
 
+        #region Public Methods
+
+        private bool UserIdChanged()
+        {
+            if (null == Transaction) return false;
+            string val1 = Transaction.UserId;
+            string val2 = UserId;
+
+            if (string.IsNullOrEmpty(val1) && string.IsNullOrEmpty(val2))
+            {
+                return false; // Both is null.
+            }
+            else if (!string.IsNullOrEmpty(val1) && string.IsNullOrEmpty(val2))
+            {
+                return true; // val1 is null, val2 has value
+            }
+            else if (string.IsNullOrEmpty(val1) && !string.IsNullOrEmpty(val2))
+            {
+                return true; // val1 is has value, val2 is null
+            }
+            else
+            {
+                return (string.CompareOrdinal(val1, val2) != 0);
+            }
+        }
+
+        private bool ReceivedDateChanged()
+        {
+            if (null == Transaction) return false;
+            DateTime? val1 = Transaction.UserReceiveDate;
+            DateTime? val2 = ReceiveDate;
+            if (!val1.HasValue && !val2.HasValue)
+            {
+                return false; // Both is null.
+            }
+            else if (!val1.HasValue && val2.HasValue)
+            {
+                return true; // val1 is null, val2 has value
+            }
+            else if (val1.HasValue && !val2.HasValue)
+            {
+                return true; // val1 is has value, val2 is null
+            }
+            else
+            {
+                return (val1.Value != val2.Value);
+            }
+        }
+
+        private bool SoldByChanged()
+        {
+            if (null == Transaction) return false;
+            string id1 = Transaction.SoldBy;
+            string id2 = SoldBy;
+
+            if (string.IsNullOrEmpty(id1) && string.IsNullOrEmpty(id2))
+            {
+                return false;
+            }
+            else if (!string.IsNullOrEmpty(id1) && string.IsNullOrEmpty(id2))
+            {
+                return true;
+            }
+            else if (string.IsNullOrEmpty(id1) && !string.IsNullOrEmpty(id2))
+            {
+                return true;
+            }
+            else
+            {
+                return (string.CompareOrdinal(id1, id2) != 0);
+            }
+        }
+
+        private bool SoldDateChanged()
+        {
+            if (null == Transaction) return false;
+            DateTime? val1 = Transaction.SoldDate;
+            DateTime? val2 = SoldDate;
+            if (!val1.HasValue && !val2.HasValue)
+            {
+                return false; // Both is null.
+            }
+            else if (!val1.HasValue && val2.HasValue)
+            {
+                return true; // val1 is null, val2 has value
+            }
+            else if (val1.HasValue && !val2.HasValue)
+            {
+                return true; // val1 is has value, val2 is null
+            }
+            else
+            {
+                return (val1.Value != val2.Value);
+            }
+        }
+
+        public bool HasChanged()
+        {
+            bool ret = false;
+            if (null != Transaction)
+            {
+                bool bTransactionType = (Transaction.TransactionType != TransactionType);
+
+                bool bUserId = UserIdChanged();
+                bool bUserReceiveDate = ReceivedDateChanged();
+                bool bSoldBy = SoldByChanged();
+                bool bSoldDate = SoldDateChanged();
+
+                bool bFinishFlag = (Transaction.FinishFlag != FinishFlag);
+
+                if (bTransactionType ||
+                    bUserId || bUserReceiveDate ||
+                    bSoldBy || bSoldDate ||
+                    bFinishFlag)
+                {
+                    ret = true;
+                }
+            }
+            return ret;
+        }
+        /// <summary>
+        /// Apply Changes.
+        /// </summary>
+        public void ApplyChanges()
+        {
+            if (null != Transaction)
+            {
+                Transaction.TransactionType = TransactionType;
+                Transaction.UserId = UserId;
+                Transaction.UserReceiveDate = ReceiveDate;
+                Transaction.SoldBy = SoldBy;
+                Transaction.SoldDate = SoldDate;
+                Transaction.FinishFlag = FinishFlag;
+            }
+        }
+        /// <summary>
+        /// Convert to Server Model.
+        /// </summary>
+        /// <returns>Returns server model instance.</returns>
+        public TAServerCouponTransaction ToServer()
+        {
+            return (null != Transaction) ? Transaction.ToServer() : null;
+        }
+        /// <summary>
+        /// Save.
+        /// </summary>
+        public void Save()
+        {
+            if (HasChanged())
+            {
+                ApplyChanges(); // apply changed
+                // Save to database
+                TSBCouponTransaction.Save(Transaction);
+                // Write Queue
+                TAServerCouponTransaction tran = ToServer();
+                if (null != tran)
+                {
+                    TAxTODMQService.Instance.WriteQueue(tran);
+                }
+            }
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>Gets Original TSB Transaction.</summary>
@@ -1176,19 +1340,23 @@ namespace DMT.Services
 
         /// <summary>Gets Coupon Type.</summary>
         public CouponType CouponType
-        { 
+        {
             get { return (null != Transaction) ? Transaction.CouponType : CouponType.Unknown; }
             set { }
         }
 
         /// <summary>Gets or sets TransactionType.</summary>
         public TSBCouponTransactionTypes TransactionType { get; set; }
-        /// <summary>Gets or sets UserId.</summary>
+        /// <summary>Gets or sets UserId (received).</summary>
         public string UserId { get; set; }
         /// <summary>Gets or sets Receive datetime.</summary>
         public DateTime? ReceiveDate { get; set; }
+        /// <summary>Gets or sets SoldBy (User).</summary>
+        public string SoldBy { get; set; }
         /// <summary>Gets or sets Receive datetime.</summary>
         public DateTime? SoldDate { get; set; }
+        /// <summary>Gets or sets Finished Flag.</summary>
+        public TSBCouponFinishedFlags FinishFlag { get; set; }
 
         #endregion
     }
@@ -1364,7 +1532,14 @@ namespace DMT.Services
         /// <returns>Returns true if sace success.</returns>
         public override bool Save()
         {
-            return false;
+            if (null == Coupons || Coupons.Count <= 0) return true;
+
+            Coupons.ForEach(coupon =>
+            {
+                if (null != coupon) coupon.Save();
+            });
+
+            return true;
         }
 
         #endregion

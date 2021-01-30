@@ -64,7 +64,7 @@ namespace DMT.Models
 		private TSBCouponFinishedFlags _FinishFlag = TSBCouponFinishedFlags.Avaliable;
 
 		private int _Status = 0;
-		private DateTime _LastUpdate = DateTime.MinValue;
+		private DateTime? _LastUpdate = new DateTime?();
 
 		#endregion
 
@@ -813,10 +813,10 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Status (DC)
+		#region Status
 
 		/// <summary>
-		/// Gets or sets Status (1 = Sync, 0 = Unsync, etc..)
+		/// Gets or sets Status
 		/// </summary>
 		[Category("DataCenter")]
 		[Description("Gets or sets Status (1 = Sync, 0 = Unsync, etc..)")]
@@ -838,13 +838,13 @@ namespace DMT.Models
 			}
 		}
 		/// <summary>
-		/// Gets or sets LastUpdated (Sync to DC).
+		/// Gets or sets LastUpdated.
 		/// </summary>
 		[Category("DataCenter")]
-		[Description("Gets or sets LastUpdated (Sync to DC).")]
+		[Description("Gets or sets LastUpdated.")]
 		[ReadOnly(true)]
 		[PropertyMapName("LastUpdate", typeof(TSBCouponTransaction))]
-		public DateTime LastUpdate
+		public DateTime? LastUpdate
 		{
 			get { return _LastUpdate; }
 			set

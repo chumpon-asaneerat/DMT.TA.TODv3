@@ -41,8 +41,21 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1230
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1229
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - JsonMessageTransferService update code read file (replace using FileStream).
+  - DMT.Models project
+    - TSBCouponTransaction change LastUpdate from DateTime to DateTime?.
+  - DMT.TA.App project
+    - Windows
+      - Implements CollectorCouponBorrowWindow #8. 
+      - Implements CollectorCouponReturnWindow #8. 
+    - TAManagers Update #9
+      - Update TSBCouponManager
+      - Update TSBCouponBorrowManager
+      - Update TSBCouponRetrunManager
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1228

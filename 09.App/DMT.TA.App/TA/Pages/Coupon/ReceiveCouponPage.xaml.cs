@@ -99,7 +99,7 @@ namespace DMT.TA.Pages.Coupon
 
             }
 
-            txtToday.Text = DateTime.Now.Date.ToThaiDateTimeString("dd/MM/yyyy");
+            txtToday.Text = DateTime.Now.Date.ToThaiDateTimeString("yyyy/MM/dd HH:mm");
             // Set Bindings User Selection.
             txtUserId.DataContext = manager;
             txtUserName.DataContext = manager;

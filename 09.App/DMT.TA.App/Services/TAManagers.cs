@@ -470,17 +470,13 @@ namespace DMT.Services
 
     #endregion
 
-    #region CreditManager
+    #region CreditManager (TSB)
 
     /// <summary>
     /// The CreditManager Class.
     /// </summary>
     public class CreditManager : INotifyPropertyChanged
     {
-        #region Internal Variables
-
-        #endregion
-
         #region Constructor and Destructor
 
         /// <summary>
@@ -678,10 +674,6 @@ namespace DMT.Services
 
         #endregion
 
-        #region User Credit
-
-        #endregion
-
         #endregion
 
         #region Public Events
@@ -709,6 +701,8 @@ namespace DMT.Services
 
     #endregion
 
+    #region User Credit Manager classes
+
     #region UserCreditManager (abstract)
 
     /// <summary>
@@ -716,10 +710,6 @@ namespace DMT.Services
     /// </summary>
     public abstract class UserCreditManager : INotifyPropertyChanged
     {
-        #region Internal Variables
-
-        #endregion
-
         #region Constructor and Destructor
 
         /// <summary>
@@ -740,7 +730,7 @@ namespace DMT.Services
 
         #endregion
 
-        #region Private Methods
+        #region Private/Protected Methods
 
         /// <summary>
         /// Raise Property Changed Event.
@@ -751,7 +741,6 @@ namespace DMT.Services
             PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
         private void Transaction_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             this.Calc();
@@ -761,12 +750,24 @@ namespace DMT.Services
 
         #region Abstract Methods
 
+        /// <summary>
+        /// Calculate.
+        /// </summary>
         protected abstract void Calc();
+        /// <summary>
+        /// Save.
+        /// </summary>
+        /// <returns>Returns true if sace success.</returns>
+        public abstract bool Save();
 
         #endregion
 
         #region Public Methods
 
+        /// <summary>
+        /// Setup Current User Credit Balance.
+        /// </summary>
+        /// <param name="current">The User Credit Balance instance.</param>
         public void Setup(UserCreditBalance current)
         {
             this.UserBalance = current;
@@ -787,7 +788,10 @@ namespace DMT.Services
             // Hook Event to recalcuate when transaction's property changed.
             this.Transaction.PropertyChanged += Transaction_PropertyChanged;
         }
-
+        /// <summary>
+        /// Set Current User.
+        /// </summary>
+        /// <param name="user">The User instance.</param>
         public void SetUser(User user)
         {
             User = user;
@@ -802,8 +806,10 @@ namespace DMT.Services
             RaiseChanged("CollectorNameEN");
             RaiseChanged("CollectorNameTH");
         }
-
-        public abstract bool Save();
+        /// <summary>
+        /// Checks has negative amount.
+        /// </summary>
+        /// <returns></returns>
         public virtual bool HasNegative() { return false; }
 
         #endregion
@@ -1058,6 +1064,163 @@ namespace DMT.Services
 
         #endregion
     }
+
+    #endregion
+
+    #endregion
+
+    #region TSB Coupon Manager classes
+
+    #region TSBCouponManager (abstract)
+
+    /// <summary>
+    /// TSB Coupon Manager (abstract) class.
+    /// </summary>
+    public abstract class TSBCouponManager : INotifyPropertyChanged
+    {
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TSBCouponManager() : base() { }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~TSBCouponManager()
+        {
+            /*
+            if (null != this.Transaction)
+            {
+                this.Transaction.PropertyChanged += Transaction_PropertyChanged;
+            }
+            this.Transaction = null;
+            */
+        }
+
+        #endregion
+
+        #region Private/Protected Methods
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void LoadCoupons()
+        {
+            if (null == User) return;
+        }
+
+        #endregion
+
+        #region Abstract Methods
+
+        /// <summary>
+        /// Save.
+        /// </summary>
+        /// <returns>Returns true if sace success.</returns>
+        public abstract bool Save();
+
+        #endregion
+
+        #region Public Method
+
+        /// <summary>
+        /// Set Current User.
+        /// </summary>
+        /// <param name="user">The User instance.</param>
+        public void SetUser(User user)
+        {
+            User = user;
+            if (null != User)
+            {
+                LoadCoupons();
+            }
+
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets User.
+        /// </summary>
+        public User User { get; private set; }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != User) ? User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != User) ? User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != User) ? User.FullNameTH : string.Empty; }
+            set { }
+        }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TSBCouponBorrowManager
+
+    /// <summary>
+    /// TSB Coupon Borrow Manager class.
+    /// </summary>
+    public class TSBCouponBorrowManager : TSBCouponManager
+    {
+        #region Override Methods
+
+        #endregion
+    }
+
+    #endregion
+
+    #region TSBCouponRetrunManager
+
+    /// <summary>
+    /// TSB Coupon Return Manager class.
+    /// </summary>
+    public class TSBCouponRetrunManager : TSBCouponManager
+    {
+        #region Override Methods
+
+        #endregion
+    }
+
+    #endregion
 
     #endregion
 }

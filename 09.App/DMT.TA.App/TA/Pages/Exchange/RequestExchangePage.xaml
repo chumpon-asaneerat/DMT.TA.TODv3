@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:DMT.TA.Controls"
              d:DesignHeight="700"
              d:DesignWidth="1000"
              mc:Ignorable="d">
@@ -12,7 +13,7 @@
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
     </UserControl.Resources>
-    <Grid Background="Silver">
+    <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource PageMargin}" />
@@ -35,7 +36,9 @@
                 <DockPanel Width="310"
                            VerticalAlignment="Stretch"
                            LastChildFill="True">
-                    <Grid Background="DimGray" />
+                    <Grid Background="DimGray">
+                        <local:TSBPlazaCreditSummaryEntry x:Name="plazaSummary" />
+                    </Grid>
                 </DockPanel>
             </Border>
             <!--  CLIENT AREA  -->

@@ -1094,29 +1094,13 @@ namespace DMT.Services
             {
                 // Assign Original value.
                 TransactionType = value.TransactionType;
-                if (TransactionType == TSBCouponTransactionTypes.Lane)
-                {
-                    UserId = value.UserId;
-                }
-                else if (TransactionType == TSBCouponTransactionTypes.SoldByLane)
-                {
-                    UserId = value.SoldBy;
-                }
-                else if (TransactionType == TSBCouponTransactionTypes.SoldByTSB)
-                {
-                    UserId = value.SoldBy;
-                }
-                else if (TransactionType == TSBCouponTransactionTypes.Stock)
-                {
-                    UserId = string.Empty;
-                }
-                else
-                {
-                    // Cancel or Remove.
-                    UserId = string.Empty;
-                }
+                UserId = value.UserId;
+                FullNameEN = value.FullNameEN;
+                FullNameTH = value.FullNameTH;
                 ReceiveDate = value.UserReceiveDate;
                 SoldBy = value.SoldBy;
+                SoldByFullNameEN = value.SoldByFullNameEN;
+                SoldByFullNameTH = value.SoldByFullNameTH;
                 SoldDate = value.SoldDate;
                 FinishFlag = value.FinishFlag;
             }
@@ -1124,45 +1108,7 @@ namespace DMT.Services
 
         #endregion
 
-        #region Override Methods
-
-        /// <summary>
-        /// GetHashCode
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            var code = string.Empty;
-            if (null != Transaction) code = Transaction.CouponId;
-            return code.GetHashCode();
-        }
-        /// <summary>
-        /// Equals.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            if (null == obj || !(obj is TSBCouponItem))
-                return false;
-            var target = obj as TSBCouponItem;
-            if (null == target) return false;
-
-            return GetHashCode() == target.GetHashCode();
-        }
-        /// <summary>
-        /// ToString.
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            if (null != Transaction) return Transaction.CouponId;
-            return string.Empty;
-        }
-
-        #endregion
-
-        #region Public Methods
+        #region Private Methods
 
         private bool UserIdChanged()
         {
@@ -1258,6 +1204,52 @@ namespace DMT.Services
             }
         }
 
+        #endregion
+
+        #region Override Methods
+
+        /// <summary>
+        /// GetHashCode
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            var code = string.Empty;
+            if (null != Transaction) code = Transaction.CouponId;
+            return code.GetHashCode();
+        }
+        /// <summary>
+        /// Equals.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (null == obj || !(obj is TSBCouponItem))
+                return false;
+            var target = obj as TSBCouponItem;
+            if (null == target) return false;
+
+            return GetHashCode() == target.GetHashCode();
+        }
+        /// <summary>
+        /// ToString.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            if (null != Transaction) return Transaction.CouponId;
+            return string.Empty;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Has Changed.
+        /// </summary>
+        /// <returns></returns>
         public bool HasChanged()
         {
             bool ret = false;
@@ -1291,8 +1283,12 @@ namespace DMT.Services
             {
                 Transaction.TransactionType = TransactionType;
                 Transaction.UserId = UserId;
+                Transaction.FullNameEN = FullNameEN;
+                Transaction.FullNameTH = FullNameTH;
                 Transaction.UserReceiveDate = ReceiveDate;
                 Transaction.SoldBy = SoldBy;
+                Transaction.SoldByFullNameEN = SoldByFullNameEN;
+                Transaction.SoldByFullNameTH = SoldByFullNameTH;
                 Transaction.SoldDate = SoldDate;
                 Transaction.FinishFlag = FinishFlag;
             }
@@ -1349,10 +1345,18 @@ namespace DMT.Services
         public TSBCouponTransactionTypes TransactionType { get; set; }
         /// <summary>Gets or sets UserId (received).</summary>
         public string UserId { get; set; }
+        /// <summary>Gets or sets FullNameEH (received).</summary>
+        public string FullNameEN { get; set; }
+        /// <summary>Gets or sets FullNameTH (received).</summary>
+        public string FullNameTH { get; set; }
         /// <summary>Gets or sets Receive datetime.</summary>
         public DateTime? ReceiveDate { get; set; }
         /// <summary>Gets or sets SoldBy (User).</summary>
         public string SoldBy { get; set; }
+        /// <summary>Gets or sets SoldByFullNameEH (received).</summary>
+        public string SoldByFullNameEN { get; set; }
+        /// <summary>Gets or sets SoldByFullNameTH (received).</summary>
+        public string SoldByFullNameTH { get; set; }
         /// <summary>Gets or sets Receive datetime.</summary>
         public DateTime? SoldDate { get; set; }
         /// <summary>Gets or sets Finished Flag.</summary>
@@ -1569,6 +1573,8 @@ namespace DMT.Services
             if (null == item || null == User) return;
             item.TransactionType = TSBCouponTransactionTypes.Lane;
             item.UserId = User.UserId;
+            item.FullNameEN = User.FullNameEN;
+            item.FullNameTH = User.FullNameTH;
             item.ReceiveDate = DateTime.Now;
         }
         /// <summary>
@@ -1580,6 +1586,8 @@ namespace DMT.Services
             if (null == item || null == User) return;
             item.TransactionType = TSBCouponTransactionTypes.Stock;
             item.UserId = string.Empty;
+            item.FullNameEN = string.Empty;
+            item.FullNameTH = string.Empty;
             item.ReceiveDate = new DateTime?();
         }
 

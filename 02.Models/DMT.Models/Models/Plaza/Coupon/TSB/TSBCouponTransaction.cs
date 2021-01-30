@@ -103,96 +103,6 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Server
-
-		/// <summary>
-		/// Gets or sets CouponPK.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets CouponPK.")]
-		[ReadOnly(true)]
-		[PropertyMapName("CouponPK")]
-		public int? CouponPK
-		{
-			get
-			{
-				return _CouponPK;
-			}
-			set
-			{
-				if (_CouponPK != value)
-				{
-					_CouponPK = value;
-					this.RaiseChanged("CouponPK");
-				}
-			}
-		}
-
-		/// <summary>
-		/// Gets or sets SapChooseFlag.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets SapChooseFlag.")]
-		[ReadOnly(true)]
-		[PropertyMapName("SapChooseFlag")]
-		public int? SapChooseFlag { get; set; }
-
-		/// <summary>
-		/// Gets or sets SapChooseDate.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets SapChooseDate.")]
-		[ReadOnly(true)]
-		[PropertyMapName("SapChooseDate")]
-		public DateTime? SapChooseDate { get; set; }
-
-		/// <summary>
-		/// Gets or sets SAPSysSerial.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets SAPSysSerial.")]
-		[ReadOnly(true)]
-		[PropertyMapName("SAPSysSerial")]
-		public string SAPSysSerial { get; set; }
-
-		/// <summary>
-		/// Gets or sets SAPWhsCode.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets SAPWhsCode.")]
-		[ReadOnly(true)]
-		[PropertyMapName("SAPWhsCode")]
-		public string SAPWhsCode { get; set; }
-
-		/// <summary>
-		/// Gets or sets TollWayId.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets TollWayId.")]
-		[ReadOnly(true)]
-		[PropertyMapName("TollWayId")]
-		public int? TollWayId { get; set; }
-
-		/// <summary>
-		/// Gets or sets SAPItemName.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets SAPItemName.")]
-		[ReadOnly(true)]
-		[PropertyMapName("SAPItemName")]
-		public string SAPItemName { get; set; }
-
-		/// <summary>
-		/// Gets or sets sendtaflag.
-		/// </summary>
-		[Category("Server")]
-		[Description(" Gets or sets sendtaflag.")]
-		[ReadOnly(true)]
-		[PropertyMapName("sendtaflag")]
-		public int? sendtaflag { get; set; }
-
-		#endregion
-
 		#region Common
 
 		/// <summary>
@@ -336,6 +246,96 @@ namespace DMT.Models
 				}
 			}
 		}
+
+		#endregion
+
+		#region Server
+
+		/// <summary>
+		/// Gets or sets CouponPK.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets CouponPK.")]
+		[ReadOnly(true)]
+		[PropertyMapName("CouponPK")]
+		public int? CouponPK
+		{
+			get
+			{
+				return _CouponPK;
+			}
+			set
+			{
+				if (_CouponPK != value)
+				{
+					_CouponPK = value;
+					this.RaiseChanged("CouponPK");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets SapChooseFlag.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SapChooseFlag.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SapChooseFlag")]
+		public int? SapChooseFlag { get; set; }
+
+		/// <summary>
+		/// Gets or sets SapChooseDate.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SapChooseDate.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SapChooseDate")]
+		public DateTime? SapChooseDate { get; set; }
+
+		/// <summary>
+		/// Gets or sets SAPSysSerial.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SAPSysSerial.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SAPSysSerial")]
+		public string SAPSysSerial { get; set; }
+
+		/// <summary>
+		/// Gets or sets SAPWhsCode.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SAPWhsCode.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SAPWhsCode")]
+		public string SAPWhsCode { get; set; }
+
+		/// <summary>
+		/// Gets or sets TollWayId.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets TollWayId.")]
+		[ReadOnly(true)]
+		[PropertyMapName("TollWayId")]
+		public int? TollWayId { get; set; }
+
+		/// <summary>
+		/// Gets or sets SAPItemName.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets SAPItemName.")]
+		[ReadOnly(true)]
+		[PropertyMapName("SAPItemName")]
+		public string SAPItemName { get; set; }
+
+		/// <summary>
+		/// Gets or sets sendtaflag.
+		/// </summary>
+		[Category("Server")]
+		[Description(" Gets or sets sendtaflag.")]
+		[ReadOnly(true)]
+		[PropertyMapName("sendtaflag")]
+		public int? sendtaflag { get; set; }
 
 		#endregion
 

@@ -65,8 +65,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1233
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1232
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1231
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update TAxTODExtensionMethods.
+    - TSBCouponTransaction move code order.
+  - DMT.TA.App project
+    - Windows
+    - Implements ReceiveCouponPage #8.
+    - TAManagers Update #9
+      - Update TSBCouponManager
+      - Update TSBCouponBorrowManager
+      - Update TSBCouponRetrunManager
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1230

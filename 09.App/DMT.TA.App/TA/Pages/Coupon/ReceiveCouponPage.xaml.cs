@@ -147,6 +147,8 @@ namespace DMT.TA.Pages.Coupon
             {
                 return;
             }
+            Reset();
+            ResetSelectUser();
             RefreshCoupons();
         }
 
@@ -160,13 +162,19 @@ namespace DMT.TA.Pages.Coupon
             {
                 return;
             }
+            Reset();
+            ResetSelectUser();
             RefreshCoupons();
         }
 
         private void RefreshCoupons()
         {
             grid.ItemsSource = null;
-            if (null == manager || null == manager.User) return;
+            var summaries = TSBCouponSummary.GetTSBCouponSummaries(TAAPI.TSB).Value();
+            if (null != summaries)
+            {
+                grid.ItemsSource = summaries;
+            }
         }
 
         #endregion
@@ -187,6 +195,7 @@ namespace DMT.TA.Pages.Coupon
 
             Reset();
             ResetSelectUser();
+            RefreshCoupons();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

@@ -272,14 +272,14 @@ namespace DMT.Models.ExtensionMethods
             inst.TransactionType = (TSBCouponTransactionTypes)value.CouponStatus.Value();
             inst.CouponId = value.SerialNo;
             // Server Fields
-            inst.CouponPK = value.CouponPK.Value();
-            inst.SapChooseFlag = value.SapChooseFlag.Value();
-            inst.SapChooseDate = value.SapChooseDate.Value();
+            inst.CouponPK = value.CouponPK;
+            inst.SapChooseFlag = value.SapChooseFlag;
+            inst.SapChooseDate = value.SapChooseDate;
             inst.SAPSysSerial = value.SAPSysSerial;
             inst.SAPWhsCode = value.SAPWhsCode;
-            inst.TollWayId = value.TollWayId.Value();
+            inst.TollWayId = value.TollWayId;
             inst.SAPItemName = value.SAPItemName;
-            inst.sendtaflag = value.sendtaflag.Value();
+            inst.sendtaflag = value.sendtaflag;
 
             inst.CouponType = (CouponType)value.CouponType.Value();
             inst.FinishFlag = (TSBCouponFinishedFlags)value.FinishFlag.Value();

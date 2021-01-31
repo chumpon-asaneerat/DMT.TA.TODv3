@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1249
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1248
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1247
-- 
+- DMT.TAxTODv3
+  - JsonMessageTransferService -> Used original code due to cannot move file between reading need
+    to read all data first and close filestream then call move later.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1246

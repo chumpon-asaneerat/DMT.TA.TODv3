@@ -59,6 +59,9 @@ namespace DMT.Services
                 if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
                 files.ForEach(file =>
                 {
+                    //TODO: 
+                    // JsonMessageTransferService -> Used original code due to cannot move file between reading need
+                    // to read all data first and close filestream then call move later.
                     //FileStream fs = null;
                     try
                     {

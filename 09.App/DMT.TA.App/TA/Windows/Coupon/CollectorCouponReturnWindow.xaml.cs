@@ -46,6 +46,10 @@ namespace DMT.TA.Windows.Coupon
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
+            if (null != manager)
+            {
+                manager.Save();
+            }
             DialogResult = true;
         }
 

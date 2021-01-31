@@ -1730,7 +1730,15 @@ namespace DMT.Services
         /// <returns>Returns true if sace success.</returns>
         public override bool Save()
         {
-            return false;
+            if (null == Coupons || Coupons.Count <= 0) return true;
+
+            Coupons.ForEach(coupon =>
+            {
+                // Required to check Transaction Type = Lane should set UserId to null for Update to Stock
+                if (null != coupon) coupon.Save();
+            });
+
+            return true;
         }
 
         #endregion

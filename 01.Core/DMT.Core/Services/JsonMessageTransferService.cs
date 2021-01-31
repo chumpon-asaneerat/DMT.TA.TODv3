@@ -59,9 +59,12 @@ namespace DMT.Services
                 if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
                 files.ForEach(file =>
                 {
-                    FileStream fs = null;
+                    //FileStream fs = null;
                     try
                     {
+                        string json = File.ReadAllText(file);
+                        ProcessJson(file, json);
+                        /*
                         fs = new FileStream(file, FileMode.Open, FileAccess.Read,
                             FileShare.Read);
                         {
@@ -75,6 +78,7 @@ namespace DMT.Services
                                 reader.Dispose();
                             }
                         }
+                        */
                     }
                     catch (Exception ex2)
                     {
@@ -82,6 +86,7 @@ namespace DMT.Services
                         MoveToInvalid(file);
                         med.Err(ex2);
                     }
+                    /*
                     if (null != fs)
                     {
                         try
@@ -92,6 +97,7 @@ namespace DMT.Services
                         catch { }
                     }
                     fs = null;
+                    */
                 });
             }
             catch (Exception ex)

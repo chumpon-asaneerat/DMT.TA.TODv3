@@ -22,7 +22,7 @@ namespace DMT
                     /// <summary>Gets route name.</summary>
                     public const string Name = "save";
                     /// <summary>Gets route url.</summary>
-                    public const string Url = Coupon.Url + @"/" + Name;
+                    public const string Url = @"/api/users/coupons/save";
                 }
 
                 // Url: /api/users/coupons/getlist2
@@ -32,7 +32,7 @@ namespace DMT
                     /// <summary>Gets route name.</summary>
                     public const string Name = "getlist2";
                     /// <summary>Gets route url.</summary>
-                    public const string Url = Coupon.Url + @"/" + Name;
+                    public const string Url = @"/api/users/coupons/getlist2";
                 }
 
                 // Url: /api/TA/coupons/updatereceive
@@ -42,7 +42,7 @@ namespace DMT
                     /// <summary>Gets route name.</summary>
                     public const string Name = "Received";
                     /// <summary>Gets route url.</summary>
-                    public const string Url = Coupon.Url + @"/" + Name;
+                    public const string Url = @"/api/TA/coupons/updatereceive";
                 }
             }
         }

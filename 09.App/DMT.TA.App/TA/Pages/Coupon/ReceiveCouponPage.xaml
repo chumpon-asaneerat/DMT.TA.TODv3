@@ -4,6 +4,7 @@
              xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:nlib="clr-namespace:NLib.Wpf.Controls;assembly=NLib.Reports"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450"
              d:DesignWidth="800"
@@ -12,216 +13,263 @@
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
     </UserControl.Resources>
-    <Grid Background="DimGray">
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource PageMargin}" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="{StaticResource PageMargin}" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource PageMargin}" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="{StaticResource PageMargin}" />
-            </Grid.RowDefinitions>
-            <DockPanel Grid.Row="1"
-                       Grid.Column="1"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Stretch">
-                <!--  BUTTONS  -->
-                <DockPanel Height="60"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Stretch"
-                           DockPanel.Dock="Bottom">
-                    <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdBack"
-                                      Click="cmdBack_Click"
-                                      DockPanel.Dock="Right"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
-                    </ctrl:ImageButton>
-                    <Grid />
-                </DockPanel>
-                <!--  WORK AREA  -->
-                <DockPanel LastChildFill="True">
-                    <Border Margin="10,1"
-                            Background="CornflowerBlue"
-                            BorderBrush="Silver"
-                            BorderThickness="1"
-                            DockPanel.Dock="Top">
-                        <TextBlock Margin="5,3"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Style="{StaticResource LabelText}"
-                                   Text="ข้อมูลการรับคูปอง" />
-                    </Border>
-                    <!--  SEPERATOR  -->
-                    <TextBlock Height="10" DockPanel.Dock="Top" />
-                    <StackPanel Margin="10,1"
-                                DockPanel.Dock="Top"
-                                Orientation="Horizontal">
-                        <TextBlock Width="180"
-                                   Style="{StaticResource LabelText}"
-                                   Text="วันที่ : "
-                                   TextAlignment="Right" />
-                        <TextBlock x:Name="txtToday"
-                                   Margin="2,0"
-                                   Foreground="Yellow"
-                                   Style="{StaticResource LabelText}"
-                                   Text="29/012564" />
-                    </StackPanel>
-                    <!--  USER FILTER PANEL  -->
-                    <DockPanel Height="75"
-                               Margin="10,1"
-                               VerticalAlignment="Center"
-                               DockPanel.Dock="Top"
-                               LastChildFill="True">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="1"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        VerticalAlignment="Center"
+    <TabControl x:Name="tabs"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                SelectedIndex="0">
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="รับคูปอง"
+                 Visibility="Collapsed">
+            <Grid Background="DimGray">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource PageMargin}" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{StaticResource PageMargin}" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{StaticResource PageMargin}" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="{StaticResource PageMargin}" />
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="1"
+                               Grid.Column="1"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch">
+                        <!--  BUTTONS  -->
+                        <DockPanel Height="60"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   DockPanel.Dock="Bottom">
+                            <Grid Width="5" DockPanel.Dock="Right" />
+                            <ctrl:ImageButton x:Name="cmdBack"
+                                              Click="cmdBack_Click"
+                                              DockPanel.Dock="Right"
+                                              ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                            </ctrl:ImageButton>
+                            <Grid />
+                        </DockPanel>
+                        <!--  WORK AREA  -->
+                        <DockPanel LastChildFill="True">
+                            <Border Margin="10,1"
+                                    Background="CornflowerBlue"
+                                    BorderBrush="Silver"
+                                    BorderThickness="1"
+                                    DockPanel.Dock="Top">
+                                <TextBlock Margin="5,3"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource LabelText}"
+                                           Text="ข้อมูลการรับคูปอง" />
+                            </Border>
+                            <!--  SEPERATOR  -->
+                            <TextBlock Height="10" DockPanel.Dock="Top" />
+                            <StackPanel Margin="10,1"
+                                        DockPanel.Dock="Top"
                                         Orientation="Horizontal">
                                 <TextBlock Width="180"
                                            Style="{StaticResource LabelText}"
-                                           Text="ค้นหา รหัสพนักงาน : "
+                                           Text="วันที่ : "
                                            TextAlignment="Right" />
-                                <TextBox x:Name="txtSearchUserId"
-                                         Width="175"
-                                         FontSize="{StaticResource InputFontSize18}"
-                                         KeyDown="txtSearchUserId_KeyDown"
-                                         Style="{StaticResource CommonTextBox}" />
-                                <TextBlock Width="10" />
-                                <Button x:Name="cmdUserSearch"
-                                        Width="150"
-                                        Height="30"
-                                        VerticalAlignment="Center"
-                                        Click="cmdUserSearch_Click"
-                                        Content="เลือกพนักงาน"
-                                        FontSize="{StaticResource InputFontSize18}"
-                                        Style="{DynamicResource InlineButton}" />
-                                <TextBlock Width="50" />
-                                <Button x:Name="cmdAppend"
-                                        Width="150"
-                                        Height="30"
-                                        VerticalAlignment="Center"
-                                        Click="cmdAppend_Click"
-                                        Content="เพิ่มพนักงาน"
-                                        FontSize="{StaticResource InputFontSize18}"
-                                        Style="{DynamicResource InlineButton}" />
+                                <TextBlock x:Name="txtToday"
+                                           Margin="2,0"
+                                           Foreground="Yellow"
+                                           Style="{StaticResource LabelText}"
+                                           Text="29/012564" />
                             </StackPanel>
-                            <StackPanel Grid.Row="2"
-                                        Grid.RowSpan="3"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock Width="175"
-                                           Style="{StaticResource LabelText}"
-                                           Text="รหัสพนักงาน : "
-                                           TextAlignment="Right" />
-                                <TextBlock Width="5" />
-                                <TextBlock x:Name="txtUserId"
-                                           Width="175"
-                                           Height="25"
-                                           Background="CornflowerBlue"
-                                           Foreground="White"
-                                           Style="{StaticResource LabelText}"
-                                           Text="{Binding CollectorId}"
-                                           TextAlignment="Center" />
-                                <TextBlock Width="10" />
-                                <TextBlock Width="100"
-                                           Style="{StaticResource LabelText}"
-                                           Text="ชื่อพนักงาน : " />
-                                <TextBlock x:Name="txtUserName"
-                                           Width="250"
-                                           Height="25"
-                                           Background="CornflowerBlue"
-                                           Foreground="White"
-                                           Style="{StaticResource LabelText}"
-                                           Text="{Binding CollectorNameTH}"
-                                           TextAlignment="Center" />
-                            </StackPanel>
-                            <Grid Grid.Row="1"
-                                  Grid.RowSpan="4"
-                                  Grid.Column="3" />
-                        </Grid>
+                            <!--  USER FILTER PANEL  -->
+                            <DockPanel Height="75"
+                                       Margin="10,1"
+                                       VerticalAlignment="Center"
+                                       DockPanel.Dock="Top"
+                                       LastChildFill="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="1"
+                                                Grid.RowSpan="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                        <TextBlock Width="180"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="ค้นหา รหัสพนักงาน : "
+                                                   TextAlignment="Right" />
+                                        <TextBox x:Name="txtSearchUserId"
+                                                 Width="175"
+                                                 FontSize="{StaticResource InputFontSize18}"
+                                                 KeyDown="txtSearchUserId_KeyDown"
+                                                 Style="{StaticResource CommonTextBox}" />
+                                        <TextBlock Width="10" />
+                                        <Button x:Name="cmdUserSearch"
+                                                Width="150"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Click="cmdUserSearch_Click"
+                                                Content="เลือกพนักงาน"
+                                                FontSize="{StaticResource InputFontSize18}"
+                                                Style="{DynamicResource InlineButton}" />
+                                        <TextBlock Width="50" />
+                                        <Button x:Name="cmdAppend"
+                                                Width="150"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Click="cmdAppend_Click"
+                                                Content="เพิ่มพนักงาน"
+                                                FontSize="{StaticResource InputFontSize18}"
+                                                Style="{DynamicResource InlineButton}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2"
+                                                Grid.RowSpan="3"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                        <TextBlock Width="175"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="รหัสพนักงาน : "
+                                                   TextAlignment="Right" />
+                                        <TextBlock Width="5" />
+                                        <TextBlock x:Name="txtUserId"
+                                                   Width="175"
+                                                   Height="25"
+                                                   Background="CornflowerBlue"
+                                                   Foreground="White"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="{Binding CollectorId}"
+                                                   TextAlignment="Center" />
+                                        <TextBlock Width="10" />
+                                        <TextBlock Width="100"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="ชื่อพนักงาน : " />
+                                        <TextBlock x:Name="txtUserName"
+                                                   Width="250"
+                                                   Height="25"
+                                                   Background="CornflowerBlue"
+                                                   Foreground="White"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="{Binding CollectorNameTH}"
+                                                   TextAlignment="Center" />
+                                    </StackPanel>
+                                    <Grid Grid.Row="1"
+                                          Grid.RowSpan="4"
+                                          Grid.Column="3" />
+                                </Grid>
+                            </DockPanel>
+                            <!--  SEPERATOR  -->
+                            <TextBlock Height="10" DockPanel.Dock="Top" />
+                            <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
+                            <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                            <!--  LIST VIEW  -->
+                            <ListView x:Name="grid"
+                                      Margin="10,1"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                      ItemsSource="{Binding}"
+                                      Style="{StaticResource SingleSelectListView}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="120"
+                                                        CellTemplate="{StaticResource UserId}"
+                                                        Header="รหัสพนักงาน" />
+                                        <GridViewColumn Width="300"
+                                                        CellTemplate="{StaticResource FullNameTH}"
+                                                        Header="ชื่อพนักงาน" />
+                                        <GridViewColumn Width="200"
+                                                        CellTemplate="{StaticResource CountCouponBHT35}"
+                                                        Header="จำนวนเล่ม (35 บาท)" />
+                                        <GridViewColumn Width="200"
+                                                        CellTemplate="{StaticResource CountCouponBHT80}"
+                                                        Header="จำนวนเล่ม (80 บาท)" />
+                                        <!--  BUTTON (EDIT/PRINT)  -->
+                                        <GridViewColumn Width="300" Header="คำสั่ง">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="3"
+                                                                HorizontalAlignment="Stretch"
+                                                                VerticalAlignment="Center"
+                                                                Orientation="Horizontal">
+                                                        <TextBlock Width="5" />
+                                                        <Button x:Name="cmdEdit"
+                                                                Width="120"
+                                                                Height="30"
+                                                                Click="cmdEdit_Click"
+                                                                CommandParameter="{Binding}"
+                                                                Content="แก้ไข"
+                                                                FontSize="{StaticResource InputFontSize18}"
+                                                                Style="{DynamicResource InlineButton}" />
+                                                        <TextBlock Width="5" />
+                                                        <Button x:Name="cmdPrintPreview"
+                                                                Width="120"
+                                                                Height="30"
+                                                                Click="cmdPrintPreview_Click"
+                                                                CommandParameter="{Binding}"
+                                                                Content="พิมพ์รายการ"
+                                                                FontSize="{StaticResource InputFontSize18}"
+                                                                Style="{DynamicResource InlineButton}" />
+                                                        <TextBlock Width="5" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
                     </DockPanel>
-                    <!--  SEPERATOR  -->
-                    <TextBlock Height="10" DockPanel.Dock="Top" />
-                    <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
-                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
-                    <!--  LIST VIEW  -->
-                    <ListView x:Name="grid"
-                              Margin="10,1"
-                              FontSize="{StaticResource InputFontSize18}"
-                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
-                              ItemsSource="{Binding}"
-                              Style="{StaticResource SingleSelectListView}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource UserId}"
-                                                Header="รหัสพนักงาน" />
-                                <GridViewColumn Width="300"
-                                                CellTemplate="{StaticResource FullNameTH}"
-                                                Header="ชื่อพนักงาน" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource CountCouponBHT35}"
-                                                Header="จำนวนเล่ม (35 บาท)" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource CountCouponBHT80}"
-                                                Header="จำนวนเล่ม (80 บาท)" />
-                                <!--  BUTTON (EDIT/PRINT)  -->
-                                <GridViewColumn Width="300" Header="คำสั่ง">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Margin="3"
-                                                        HorizontalAlignment="Stretch"
-                                                        VerticalAlignment="Center"
-                                                        Orientation="Horizontal">
-                                                <TextBlock Width="5" />
-                                                <Button x:Name="cmdEdit"
-                                                        Width="120"
-                                                        Height="30"
-                                                        Click="cmdEdit_Click"
-                                                        CommandParameter="{Binding}"
-                                                        Content="แก้ไข"
-                                                        FontSize="{StaticResource InputFontSize18}"
-                                                        Style="{DynamicResource InlineButton}" />
-                                                <TextBlock Width="5" />
-                                                <Button x:Name="cmdPrint"
-                                                        Width="120"
-                                                        Height="30"
-                                                        Click="cmdPrint_Click"
-                                                        CommandParameter="{Binding}"
-                                                        Content="พิมพ์รายการ"
-                                                        FontSize="{StaticResource InputFontSize18}"
-                                                        Style="{DynamicResource InlineButton}" />
-                                                <TextBlock Width="5" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 Header="ยืนยันการป้อนรายได้"
+                 Visibility="Collapsed">
+            <ScrollViewer Background="Silver"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!--  BUTTONS  -->
+                    <DockPanel Height="60"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               DockPanel.Dock="Bottom">
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdCancel"
+                                          DockPanel.Dock="Left"
+                                          Click="cmdCancel_Click"
+                                          ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdPrint"
+                                          DockPanel.Dock="Right"
+                                          Click="cmdPrint_Click"
+                                          ImageSource="/DMT.TA.App;component/Images/Button/Printer3.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="พิมพ์" />
+                        </ctrl:ImageButton>
+                        <Grid Width="5" DockPanel.Dock="Right" />
+                    </DockPanel>
+                    <!--  WORK AREA  -->
+                    <nlib:WpfReportViewer x:Name="rptViewer" Margin="2" />
                 </DockPanel>
-            </DockPanel>
-        </Grid>
-    </Grid>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
 </UserControl>

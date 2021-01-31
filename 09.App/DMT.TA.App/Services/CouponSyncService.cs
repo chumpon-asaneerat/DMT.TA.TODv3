@@ -24,6 +24,7 @@ using NLib.Reports.Rdlc;
 using NLib.Reflection;
 
 using RestSharp;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -114,7 +115,7 @@ namespace DMT.Services
         private void _timer_Tick(object sender, EventArgs e)
         {
             if (IsSync) return; // on sync ignore.
-            Sync();
+            SyncCouponFromServer();
         }
 
         #endregion
@@ -126,7 +127,16 @@ namespace DMT.Services
             OnProgress.Call(this, new ProgressEventArgs() { Current = current, Max = max });
         }
 
-        private void Sync()
+
+        private NRestResult<List<TAServerCouponTransaction>, NRestOut> GetTransactions(
+            int pageNo, int rowsPerPage)
+        {
+            var search = Search.TAxTOD.Coupon.Gets.Create(TAAPI.TSB.TSBId, null, null, null, 0, pageNo, rowsPerPage);
+            var ret = couponOps.Gets(search);
+            return ret;
+        }
+
+        private void InternalSyncCouponFromServer()
         {
             if (IsSync) return;
 
@@ -134,33 +144,60 @@ namespace DMT.Services
             IsSync = true;
             try
             {
-                var search = Search.TAxTOD.Coupon.Gets.Create(TAAPI.TSB.TSBId, null, null, null, 1, 20);
-                var ret = couponOps.Gets(search);
-                if (ret.Ok)
+                int iCurrent = 0;
+                int iMaxPage = 100;
+                int iRowsPerPage = 10;
+
+                RaiseProgressEvent(0, 100); // Reset Progress.
+
+                #region Find Max Records
+
+                var maxRet = GetTransactions(1, iRowsPerPage);
+                if (null == maxRet || !maxRet.Ok ||
+                    null == maxRet.Output || !maxRet.Output.MaxPage.HasValue)
                 {
-                    var coupons = ret.data;
-                    var output = ret.Output;
-                    if (null != output && null != coupons)
-                    {
-                        if (output.TotalRecords.HasValue && output.TotalRecords.Value > 0)
-                        {
-                            int iMax = output.TotalRecords.Value;
-                            for (int i = 0; i < iMax; i++)
-                            {
-                                var coupon = coupons[i];
-
-                                // Update to database
-
-
-                                var status = couponOps.Received(coupon.SerialNo);
-                                if (status.Ok)
-                                {
-
-                                }
-                            }
-                        }
-                    }
+                    IsSync = false;
+                    return;
                 }
+                iMaxPage = maxRet.Output.MaxPage.Value;
+                if (iMaxPage <= 0)
+                {
+                    IsSync = false;
+                    return;
+                }
+
+                #endregion
+
+                while (iCurrent < iMaxPage && this.IsRunning)
+                {
+                    RaiseProgressEvent(iCurrent, iMaxPage); // Update current Progress.
+
+                    // read only first because when update to total page will change each time.
+                    var pageRet = GetTransactions(1, iRowsPerPage);
+                    if (null == pageRet || !pageRet.Ok ||
+                        null == pageRet.Output) break;
+                    var taCoupons = pageRet.data;
+                    var output = pageRet.Output;
+                    if (null != output && null != taCoupons)
+                    {
+                        var coupons = taCoupons.ToLocals();
+                        if (coupons != null)
+                        {
+                            var saveRet = TSBCouponTransaction.SyncTransactions(coupons);
+                            if (saveRet.Failed) break;
+                            // OK so send update back to TA Server
+                            coupons.ForEach(coupon =>
+                            {
+                                couponOps.Received(coupon.CouponId);
+                                RaiseProgressEvent(iCurrent, iMaxPage); // Update current Progress.
+                            });
+                        }
+                        RaiseProgressEvent(iCurrent, iMaxPage); // Update current Progress.
+                    }
+                    ++iCurrent;
+                }
+
+                RaiseProgressEvent(0, 100); // Reset Progress.
             }
             catch (Exception ex)
             {
@@ -168,6 +205,17 @@ namespace DMT.Services
             }
 
             IsSync = false;
+        }
+
+
+        private async void InternalSyncCouponFromServerAsync() // returns void
+        {
+            await Task.Run(InternalSyncCouponFromServer);
+        }
+
+        private void SyncCouponFromServer() // not blocks, not waits
+        {
+            InternalSyncCouponFromServerAsync();
         }
 
         #endregion
@@ -180,6 +228,7 @@ namespace DMT.Services
         public void Start()
         {
             this.IsRunning = true;
+            this.IsSync = false;
             if (null == _timer) _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(5);
             _timer.Tick += _timer_Tick;
@@ -191,6 +240,7 @@ namespace DMT.Services
         /// </summary>
         public void Shutdown()
         {
+            this.IsSync = false;
             this.IsRunning = false;
             if (null != _timer)
             {

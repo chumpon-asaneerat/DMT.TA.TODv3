@@ -136,6 +136,10 @@ namespace DMT.Models
                     /// Gets or sets RowsPerPage.
                     /// </summary>
                     public int? RowsPerPage { get; set; }
+                    /// <summary>
+                    /// Gets or sets flag (null for get all, 0 for get only new).
+                    /// </summary>
+                    public int? flag { get; set; }
 
                     #endregion
 
@@ -148,11 +152,13 @@ namespace DMT.Models
                     /// <param name="userId">The User Id.</param>
                     /// <param name="transactionType">The Transaction Type.</param>
                     /// <param name="coupontype">The Coupon Type.</param>
+                    /// <param name="flag">flag (null for get all, 0 for get only new).</param>
                     /// <param name="pageNum">The Page No.</param>
                     /// <param name="rowsPerPage">The Rows Per Page.</param>
                     /// <returns>Returns Search instance.</returns>
                     public static Gets Create(string tsbId, string userId = null, 
                         int? transactionType = null, int? coupontype = null,
+                        int? flag = 0,
                         int? pageNum = 1, int? rowsPerPage = 20)
                     {
                         var ret = new Gets();
@@ -160,6 +166,7 @@ namespace DMT.Models
                         ret.UserId = userId;
                         ret.TransactionType = transactionType;
                         ret.Coupontype = coupontype;
+                        ret.flag = flag;
                         ret.PageNum = pageNum;
                         ret.RowsPerPage = rowsPerPage;
                         return ret;

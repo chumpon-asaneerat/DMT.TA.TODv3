@@ -1,4 +1,4 @@
-﻿//#define ENABLE_COUPON_SYNC_SERVICE
+﻿#define ENABLE_COUPON_SYNC_SERVICE
 
 #region Using
 

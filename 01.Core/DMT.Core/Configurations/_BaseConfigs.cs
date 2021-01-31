@@ -334,7 +334,7 @@ namespace DMT.Configurations
                 Protocol = "http",
                 //HostName = "172.30.192.9",
                 //PortNumber = 8110,
-                HostName = "172.30.192.9",
+                HostName = "172.30.52.71",
                 PortNumber = 8000,
                 UserName = "DMTUSER",
                 Password = "DMTPASS"

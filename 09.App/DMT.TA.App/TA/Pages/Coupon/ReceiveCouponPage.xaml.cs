@@ -67,9 +67,19 @@ namespace DMT.TA.Pages.Coupon
             BorrownCoupon();
         }
 
+        private void cmdPrintPreview_Click(object sender, RoutedEventArgs e)
+        {
+            GotoPrintPreview();
+        }
+
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
+        {
+            CancelPreview();
+        }
+
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            Print();
         }
 
         #endregion
@@ -101,6 +111,16 @@ namespace DMT.TA.Pages.Coupon
             // Main Menu Page
             var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
+        }
+
+        private void GotoPrintPreview()
+        {
+            PreparePreview();
+        }
+
+        private void CancelPreview()
+        {
+            tabs.SelectedIndex = 0;
         }
 
         private void Reset()
@@ -177,6 +197,16 @@ namespace DMT.TA.Pages.Coupon
             }
         }
 
+        private void PreparePreview()
+        {
+            tabs.SelectedIndex = 1;
+        }
+
+        private void Print()
+        {
+
+        }
+
         #endregion
 
         #region Public Methods
@@ -192,6 +222,8 @@ namespace DMT.TA.Pages.Coupon
             {
 
             }
+
+            tabs.SelectedIndex = 0;
 
             Reset();
             ResetSelectUser();

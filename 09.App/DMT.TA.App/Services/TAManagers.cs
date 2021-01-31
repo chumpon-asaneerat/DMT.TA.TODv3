@@ -1585,6 +1585,7 @@ namespace DMT.Services
         {
             if (null == item || null == User) return;
             item.TransactionType = TSBCouponTransactionTypes.Stock;
+            // TODO: need to set string to null instead of string.Empty
             item.UserId = string.Empty;
             item.FullNameEN = string.Empty;
             item.FullNameTH = string.Empty;
@@ -1736,6 +1737,38 @@ namespace DMT.Services
         #endregion
 
         #region Public Methods
+
+        #region For Sold/Unsold Stock-Lane
+
+        /// <summary>
+        /// Set As Unsold by lane for return back to Stock.
+        /// </summary>
+        /// <param name="item"></param>
+        public void UnsoldByLane(TSBCouponItem item)
+        {
+            if (null == item || null == User) return;
+            item.TransactionType = TSBCouponTransactionTypes.Lane;
+            item.UserId = User.UserId;
+            item.FullNameEN = User.FullNameEN;
+            item.FullNameTH = User.FullNameTH;
+            item.ReceiveDate = DateTime.Now;
+        }
+        /// <summary>
+        /// Set As Sold By Lane.
+        /// </summary>
+        /// <param name="item"></param>
+        public void SoldByLane(TSBCouponItem item)
+        {
+            if (null == item || null == User) return;
+            item.TransactionType = TSBCouponTransactionTypes.Stock;
+            // TODO: need to set string to null instead of string.Empty
+            item.UserId = string.Empty;
+            item.FullNameEN = string.Empty;
+            item.FullNameTH = string.Empty;
+            item.ReceiveDate = new DateTime?();
+        }
+
+        #endregion
 
         #region Refresh
 

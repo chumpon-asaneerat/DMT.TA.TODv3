@@ -68,7 +68,7 @@ namespace DMT.TA.Windows.Coupon
                     txtCoupon35Filter.Text = string.Empty;
                     last35Filter = string.Empty;
 
-                    //manager.XXX
+                    manager.UnsoldByLane(item);
 
                     UpadteC35ListViews();
                 }
@@ -110,7 +110,7 @@ namespace DMT.TA.Windows.Coupon
                     txtCoupon80Filter.Text = string.Empty;
                     last80Filter = string.Empty;
 
-                    //manager.XXX
+                    manager.UnsoldByLane(item);
 
                     UpadteC80ListViews();
                 }
@@ -245,6 +245,12 @@ namespace DMT.TA.Windows.Coupon
             if (null == items || items.Count <= 0) return;
             if (null == manager) return;
 
+            foreach (TSBCouponItem item in items)
+            {
+                if (null == item) continue;
+                manager.UnsoldByLane(item);
+            }
+
             UpadteC35ListViews();
         }
 
@@ -253,6 +259,12 @@ namespace DMT.TA.Windows.Coupon
             var items = lv35OnLane.SelectedItems;
             if (null == items || items.Count <= 0) return;
             if (null == manager) return;
+
+            foreach (TSBCouponItem item in items)
+            {
+                if (null == item) continue;
+                manager.SoldByLane(item);
+            }
 
             UpadteC35ListViews();
         }
@@ -263,6 +275,12 @@ namespace DMT.TA.Windows.Coupon
             if (null == items || items.Count <= 0) return;
             if (null == manager) return;
 
+            foreach (TSBCouponItem item in items)
+            {
+                if (null == item) continue;
+                manager.UnsoldByLane(item);
+            }
+
             UpadteC80ListViews();
         }
 
@@ -271,6 +289,12 @@ namespace DMT.TA.Windows.Coupon
             var items = lv80OnLane.SelectedItems;
             if (null == items || items.Count <= 0) return;
             if (null == manager) return;
+
+            foreach (TSBCouponItem item in items)
+            {
+                if (null == item) continue;
+                manager.SoldByLane(item);
+            }
 
             UpadteC80ListViews();
         }

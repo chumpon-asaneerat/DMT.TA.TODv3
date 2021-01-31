@@ -1585,10 +1585,9 @@ namespace DMT.Services
         {
             if (null == item || null == User) return;
             item.TransactionType = TSBCouponTransactionTypes.Stock;
-            // TODO: need to set string to null instead of string.Empty
-            item.UserId = string.Empty;
-            item.FullNameEN = string.Empty;
-            item.FullNameTH = string.Empty;
+            item.UserId = null;
+            item.FullNameEN = null;
+            item.FullNameTH = null;
             item.ReceiveDate = new DateTime?();
         }
 
@@ -1748,10 +1747,17 @@ namespace DMT.Services
         {
             if (null == item || null == User) return;
             item.TransactionType = TSBCouponTransactionTypes.Lane;
+            item.SoldBy = null;
+            item.SoldByFullNameEN = null;
+            item.SoldByFullNameTH = null;
+            item.SoldDate = new DateTime?();
+            // User information should not change until save call.
+            /*
             item.UserId = User.UserId;
             item.FullNameEN = User.FullNameEN;
             item.FullNameTH = User.FullNameTH;
             item.ReceiveDate = DateTime.Now;
+            */
         }
         /// <summary>
         /// Set As Sold By Lane.
@@ -1761,11 +1767,17 @@ namespace DMT.Services
         {
             if (null == item || null == User) return;
             item.TransactionType = TSBCouponTransactionTypes.Stock;
-            // TODO: need to set string to null instead of string.Empty
-            item.UserId = string.Empty;
-            item.FullNameEN = string.Empty;
-            item.FullNameTH = string.Empty;
+            // User information should not change until save call.
+            /*
+            item.UserId = null;
+            item.FullNameEN = null;
+            item.FullNameTH = null;
             item.ReceiveDate = new DateTime?();
+            */
+            item.SoldBy = User.UserId;
+            item.SoldByFullNameEN = User.FullNameEN;
+            item.SoldByFullNameTH = User.FullNameTH;
+            item.SoldDate = new DateTime?(DateTime.Now);
         }
 
         #endregion

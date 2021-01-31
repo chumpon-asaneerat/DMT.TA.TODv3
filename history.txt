@@ -65,8 +65,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1253
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1252
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1251
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TAManagers Update #13
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1250

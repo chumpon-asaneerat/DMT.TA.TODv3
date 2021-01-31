@@ -1774,7 +1774,7 @@ namespace DMT.Services
         public void SoldByLane(TSBCouponItem item)
         {
             if (null == item || null == User) return;
-            item.TransactionType = TSBCouponTransactionTypes.Stock;
+            item.TransactionType = TSBCouponTransactionTypes.SoldByLane;
             // User information should not change until save call.
             /*
             item.UserId = null;
@@ -1787,6 +1787,35 @@ namespace DMT.Services
             item.SoldByFullNameTH = User.FullNameTH;
             item.SoldDate = new DateTime?(DateTime.Now);
         }
+
+        #endregion
+
+        #region MarkAsCompleted/ReturnToStock
+
+        public void MarkCompleted()
+        {
+            if (null == Coupons) return;
+            Coupons.ForEach(item =>
+            {
+                if (item.TransactionType != TSBCouponTransactionTypes.SoldByLane)
+                    return;
+                item.FinishFlag = 0;
+            });
+        }
+
+        public void ReturnToStock()
+        {
+            if (null == Coupons) return;
+            Coupons.ForEach(item =>
+            {
+                if (item.TransactionType != TSBCouponTransactionTypes.Lane)
+                    return;
+                item.TransactionType = TSBCouponTransactionTypes.Stock;
+                item.UserId = null;
+                item.ReceiveDate = new DateTime?();
+            });
+        }
+
 
         #endregion
 

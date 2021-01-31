@@ -59,8 +59,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1255
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1254
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1253
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TAManagers Update #15
+    - Implements ReceiveCouponPage #11.
+    - Implements ReturnCouponPage #11.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1252

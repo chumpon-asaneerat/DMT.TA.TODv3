@@ -48,6 +48,8 @@ namespace DMT.TA.Windows.Coupon
         {
             if (null != manager)
             {
+                manager.MarkCompleted();
+                manager.ReturnToStock();
                 manager.Save();
             }
             DialogResult = true;

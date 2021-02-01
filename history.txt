@@ -56,8 +56,22 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1256
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1255
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1254
-- 
+- DMT.TAxTODv3
+  - Note #1
+    - Databases
+      - Setup all new TSB/PlazaGroup/Plaza/Lane.
+    - TOD
+      - TODManagers
+        - Payments
+          - EMV/QRCODE - remove use UserId from UserShift (use User from manager itself instead).
+      - Update Config to show custom TSB Name.
+    - TA
+      - TODxTO IsAlive status bar need to why show offline when start a few seconds.
+      - Coupon
+        - ListView load items -> need to include SoldByTSB, SoldByLane depend on each screen.
+        - Add Color to display sold coupon (SoldByTSB, SoldByLane) and update logic in ListView move items.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1253

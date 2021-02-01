@@ -53,8 +53,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1257
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1256
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1255
-- 
+- DMT.TAxTODv3
+  - Note #2
+    - TA
+      - CouponSyncService.
+        - If local coupons is zero force sync.
+        - Add button Sync on Received Coupon/Return Coupon/TSB Sold Coupon.
+      - Coupon
+        - Check Bug when another collector Borrow Coupon the coupon that alread assign to the first collector
+          is shown in list.
+        - Supports Print Borrow Coupon.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1254

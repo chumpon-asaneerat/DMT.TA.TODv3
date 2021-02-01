@@ -1635,12 +1635,13 @@ namespace DMT.Services
         {
             get
             {
-                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
 
                 var results = Coupons.FindAll(item =>
                 {
                     bool ret = (
                         item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        item.UserId == User.UserId &&
                         item.CouponType == CouponType.BHT35
                     );
                     return ret;
@@ -1688,12 +1689,13 @@ namespace DMT.Services
         {
             get
             {
-                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
 
                 var results = Coupons.FindAll(item =>
                 {
                     bool ret = (
                         item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        item.UserId == User.UserId &&
                         item.CouponType == CouponType.BHT80
                     );
                     return ret;

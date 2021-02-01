@@ -50,8 +50,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1258
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1257
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1256
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - NTable.cs -> Change Red/Black SolidBrush color from protected to public
+  - DMT.Controls project
+    - Update ListViewStyle.xaml.cs
+      -> CouponId data template - binding Foreground property.
+  - DMT.TA.App project
+    - TAManagers Update #15
+    - Implements ReceiveCouponPage #12.
+    - Implements ReturnCouponPage #12.
+    - Update CollectorCreditManagePage -> Change Forground Color.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1255

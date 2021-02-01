@@ -59,8 +59,10 @@ namespace DMT.Models
     {
         #region Static Resources
 
-        protected static SolidColorBrush RedForeground = new SolidColorBrush(Colors.Red);
-        protected static SolidColorBrush BlackForeground = new SolidColorBrush(Colors.Black);
+        /// <summary>The Red Foreground Brush</summary>
+        public static SolidColorBrush RedForeground = new SolidColorBrush(Colors.Red);
+        /// <summary>The Black Foreground Brush</summary>
+        public static SolidColorBrush BlackForeground = new SolidColorBrush(Colors.Black);
 
         #endregion
 

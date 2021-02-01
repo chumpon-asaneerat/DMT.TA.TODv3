@@ -24,6 +24,7 @@ using NLib.Reports.Rdlc;
 using NLib.Reflection;
 
 using RestSharp;
+using System.Windows.Media;
 
 #endregion
 
@@ -1340,6 +1341,12 @@ namespace DMT.Services
             get { return (null != Transaction) ? Transaction.CouponType : CouponType.Unknown; }
             set { }
         }
+        /// <summary>Gets Foreground Color.</summary>
+        public SolidColorBrush Foreground
+        {
+            get { return (null != Transaction) ? Transaction.Foreground : TSBCouponTransaction.BlackForeground; }
+            set { }
+        }
 
         /// <summary>Gets or sets TransactionType.</summary>
         public TSBCouponTransactionTypes TransactionType { get; set; }
@@ -1755,7 +1762,10 @@ namespace DMT.Services
         /// <param name="item"></param>
         public void UnsoldByLane(TSBCouponItem item)
         {
-            if (null == item || null == User) return;
+            if (null == item || null == item.Transaction || null == User) return;
+            // Not allow if original is sold
+            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Lane) return;
+
             item.TransactionType = TSBCouponTransactionTypes.Lane;
             item.SoldBy = null;
             item.SoldByFullNameEN = null;
@@ -1775,7 +1785,10 @@ namespace DMT.Services
         /// <param name="item"></param>
         public void SoldByLane(TSBCouponItem item)
         {
-            if (null == item || null == User) return;
+            if (null == item || null == item.Transaction || null == User) return;
+            // Not allow if original not on lane
+            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Lane) return;
+
             item.TransactionType = TSBCouponTransactionTypes.SoldByLane;
             // User information should not change until save call.
             /*
@@ -1799,6 +1812,8 @@ namespace DMT.Services
             if (null == Coupons) return;
             Coupons.ForEach(item =>
             {
+                if (item.UserId != User.UserId) 
+                    return; // Not coupon for current user.
                 if (item.TransactionType != TSBCouponTransactionTypes.SoldByLane)
                     return;
                 item.FinishFlag = 0;
@@ -1810,6 +1825,8 @@ namespace DMT.Services
             if (null == Coupons) return;
             Coupons.ForEach(item =>
             {
+                if (item.UserId != User.UserId)
+                    return; // Not coupon for current user.
                 if (item.TransactionType != TSBCouponTransactionTypes.Lane)
                     return;
                 item.TransactionType = TSBCouponTransactionTypes.Stock;

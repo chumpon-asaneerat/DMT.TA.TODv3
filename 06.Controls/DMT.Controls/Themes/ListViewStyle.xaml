@@ -398,6 +398,7 @@
     <DataTemplate x:Key="CouponId">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding CouponId}"
+                   Foreground="{Binding Foreground}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="CountCouponBHT35">

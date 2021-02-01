@@ -106,7 +106,7 @@
                                                VerticalAlignment="Center"
                                                DockPanel.Dock="Top"
                                                FontSize="20"
-                                               Foreground="ForestGreen"
+                                               Foreground="Black"
                                                Text="{Binding PlazaGroupNameTH}"
                                                TextAlignment="Center" />
                                     <!--  SEPERATOR  -->
@@ -149,7 +149,7 @@
                                             <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontSize="20"
-                                                       Foreground="Yellow"
+                                                       Foreground="Black"
                                                        TextAlignment="Center">
                                                 <Run Text="ID: " />
                                                 <Run Text="{Binding UserId}" />
@@ -158,7 +158,7 @@
                                             <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontSize="20"
-                                                       Foreground="Yellow"
+                                                       Foreground="Black"
                                                        TextAlignment="Center">
                                                 <Run Text="เลขถุงเงิน: " />
                                                 <Run Text="{Binding BagNo}" />
@@ -167,7 +167,7 @@
                                             <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        FontSize="24"
-                                                       Foreground="GreenYellow"
+                                                       Foreground="Black"
                                                        TextAlignment="Center">
                                                 <Run Text="ยืมแล้ว" />
                                                 <Run Text="{Binding Path=BHTTotal, StringFormat={}{0:N0}}" />

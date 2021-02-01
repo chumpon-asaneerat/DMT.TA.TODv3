@@ -47,8 +47,25 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1259
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1258
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1257
-- 
+- DMT.TAxTODv3
+  - Note #3
+    - Databases
+      - Setup all new TSB/PlazaGroup/Plaza/Lane.
+    - TOD
+      - TODManagers
+        - Payments
+          - EMV/QRCODE - remove use UserId from UserShift (use User from manager itself instead).
+      - Update Config to show custom TSB Name.
+    - TA
+      - CouponSyncService.
+        - If local coupons is zero force sync.
+        - Add button Sync on Received Coupon/Return Coupon/TSB Sold Coupon.
+      - TODxTO IsAlive status bar need to why show offline when start a few seconds.
+      - Coupon
+        - ListView load items -> need to include SoldByTSB, SoldByLane depend on each screen.
+        - Supports Print Borrow Coupon.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1256

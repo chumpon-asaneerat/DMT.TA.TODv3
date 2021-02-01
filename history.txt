@@ -44,8 +44,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1260
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1259
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1258
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Add DataSrouce for CollectorCouponReceived report.
+    - Add CollectorCouponReceived.rdlc
+    - TAManagers Update #16
+    - Implements ReceiveCouponPage #13.
+    - Implements ReturnCouponPage #13.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1257

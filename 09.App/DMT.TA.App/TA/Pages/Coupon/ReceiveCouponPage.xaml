@@ -219,6 +219,7 @@
                                                                 Width="120"
                                                                 Height="30"
                                                                 Click="cmdPrintPreview_Click"
+                                                                IsEnabled="{Binding }"
                                                                 CommandParameter="{Binding}"
                                                                 Content="พิมพ์รายการ"
                                                                 FontSize="{StaticResource InputFontSize18}"

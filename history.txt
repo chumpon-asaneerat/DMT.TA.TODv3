@@ -41,8 +41,34 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1260
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1259
-- 
+- DMT.TAxTODv3
+  - Note #4
+    - Databases
+      - Setup all new TSB/PlazaGroup/Plaza/Lane.
+    - TOD
+      - Collector BOS -> default select shift by time
+        1 - 5:00-13:00
+        2 - 13:00 - 21:00
+        3 - 21:00 - 05:00 
+      - TODManagers
+        - Payments
+          - EMV/QRCODE - remove use UserId from UserShift (use User from manager itself instead).
+      - Update Config to show custom TSB Name.
+    - TA
+      - CouponSyncService.
+        - If local coupons is zero force sync.
+        - Add button Sync on Received Coupon/Return Coupon/TSB Sold Coupon.
+      - CollectorCreditManagePage
+        - Change Label Color to Black.
+        - Change Date Color to Navy.
+      - TODxTO IsAlive status bar need to why show offline when start a few seconds.
+      - Coupon
+        - ListView load items -> need to include SoldByTSB, SoldByLane depend on each screen.
+        - Borrow Coupon Window Show Current User
+        - Borrow Coupon Window Show Coupon Sold (on right side with red foreground and cannot move).
+        - Return Coupon Window Show Current User
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1258

@@ -53,8 +53,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1277
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1276
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1275
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - ChiefRevenueEntryPage - Add default print document name.
+    - CollectorRevenueEntryPage - Add default print document name.
+    - DailyRevenueSummaryPreviewPage - Add default print document name.
+    - EmpytRevenueSlipPage - Add default print document name.
+    - RevenueSlipPreviewPage - Add default print document name.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1274

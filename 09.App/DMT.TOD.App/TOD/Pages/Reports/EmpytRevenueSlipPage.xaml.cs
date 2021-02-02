@@ -66,7 +66,7 @@ namespace DMT.TOD.Pages.Reports
 
         private void Print()
         {
-            this.rptViewer.Print();
+            this.rptViewer.Print(ReportDisplayName);
             GotoReportMenu();
         }
 
@@ -74,10 +74,19 @@ namespace DMT.TOD.Pages.Reports
 
         #region Report methods
 
+        private string ReportDisplayName
+        {
+            get { return "revenue.form." + DateTime.Now.ToThaiDateTimeString("ddMMyyyyHHmmssfff"); }
+        }
+
         private RdlcReportModel GetReportModel()
         {
             Assembly assembly = this.GetType().Assembly;
             RdlcReportModel inst = new RdlcReportModel();
+
+            // Set Display Name (default file name).
+            inst.DisplayName = ReportDisplayName;
+
             inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlipNull.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);

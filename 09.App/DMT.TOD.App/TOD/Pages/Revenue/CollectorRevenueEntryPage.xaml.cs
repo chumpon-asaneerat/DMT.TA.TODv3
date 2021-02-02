@@ -356,6 +356,11 @@ namespace DMT.TOD.Pages.Revenue
 
         #region Report methods
 
+        private string ReportDisplayName
+        {
+            get { return "revenue." + DateTime.Now.ToThaiDateTimeString("ddMMyyyyHHmmssfff"); }
+        }
+
         private bool PrepareReport()
         {
             if (null == manager || !manager.CanBuildRevenueSlipReport) return false;
@@ -372,6 +377,9 @@ namespace DMT.TOD.Pages.Revenue
             }
             else
             {
+                // Set Display Name (default file name).
+                model.DisplayName = ReportDisplayName;
+
                 this.rptViewer.LoadReport(model);
             }
 
@@ -406,7 +414,7 @@ namespace DMT.TOD.Pages.Revenue
                 manager.Entry.EntryDate.HasValue && manager.Entry.EntryDate.Value != DateTime.MinValue)
             {
                 // print reports only date exists.
-                this.rptViewer.Print();
+                this.rptViewer.Print(ReportDisplayName);
             }
 
             if (!hasActivitied || null == manager.User)

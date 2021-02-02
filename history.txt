@@ -50,8 +50,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1288
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1287
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1286
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Client project.
+    - Add Coupon Operations
+      - Current (comment out until implement UserCouponBalance model).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1285

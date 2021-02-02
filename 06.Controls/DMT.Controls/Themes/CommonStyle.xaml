@@ -88,17 +88,15 @@
                         </Trigger>
 
                         <Trigger Property="IsReadOnly" Value="True">
-                            <Setter TargetName="bg" Property="Opacity" Value=".5" />
                             <Setter TargetName="bg" Property="Background" Value="{StaticResource TextBoxDisableBackground}" />
                             <Setter Property="Foreground" Value="{StaticResource TextBoxDisableForeground}" />
-                            <Setter Property="Opacity" Value="1" />
+                            <Setter Property="Background" Value="{StaticResource TextBoxDisableBackground}" />
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="bg" Property="Opacity" Value=".5" />
                             <Setter TargetName="bg" Property="Background" Value="{StaticResource TextBoxDisableBackground}" />
                             <Setter Property="Foreground" Value="{StaticResource TextBoxDisableForeground}" />
-                            <Setter Property="Opacity" Value="1" />
+                            <Setter Property="Background" Value="{StaticResource TextBoxDisableBackground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -143,10 +141,9 @@
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="bg" Property="Opacity" Value=".5" />
                             <Setter TargetName="bg" Property="Background" Value="{StaticResource TextBoxDisableBackground}" />
                             <Setter Property="Foreground" Value="{StaticResource TextBoxDisableForeground}" />
-                            <Setter Property="Opacity" Value="1" />
+                            <Setter Property="Background" Value="{StaticResource TextBoxDisableBackground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -169,7 +166,7 @@
         <Setter Property="SnapsToDevicePixels" Value="False" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <!-- 
+        <!--
         <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=Foreground}" />
         -->
         <Setter Property="Template">
@@ -180,10 +177,10 @@
                             <Border x:Name="Border"
                                     Width="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=FontSize}"
                                     Height="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=FontSize}"
+                                    Margin="0,1"
                                     Background="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=Background}"
                                     BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=CheckBox}, Path=Foreground}"
                                     BorderThickness="2"
-                                    Margin="0,1"
                                     ClipToBounds="True">
                                 <!--
                                 <Border.Effect>
@@ -239,7 +236,8 @@
                                      Background="Transparent"
                                      Cursor="Hand">
                         <BulletDecorator.Bullet>
-                            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}" Height="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                                  Height="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
                                   Margin="0,1">
                                 <!--  Define size of the Bullet  -->
                                 <!--  The two borders  -->

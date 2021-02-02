@@ -23,8 +23,13 @@
         <Border DockPanel.Dock="Top">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0" Color="#7F323232" />
-                    <GradientStop Offset="1" Color="#7FAAAAAA" />
+                    <GradientStop Offset="0" Color="#2F333333" />
+                    <GradientStop Offset="0.05" Color="#2FFFFFFF" />
+                    <GradientStop Offset="0.10" Color="#7FFFFFFF" />
+                    <GradientStop Offset="0.50" Color="#00FFFFFF" />
+                    <GradientStop Offset="0.90" Color="#7FFFFFFF" />
+                    <GradientStop Offset="0.95" Color="#2FFFFFFF" />
+                    <GradientStop Offset="1" Color="#2F000000" />
                 </LinearGradientBrush>
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
@@ -37,27 +42,27 @@
             <!--  ENTRY  -->
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                 <!--  Cash Flow BHT  -->
-                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource CreditFlowBHTTotalDescription}" />
-                    <TextBox Style="{StaticResource CreditFlowBHTTotal}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource CreditFlowBHTTotal}" />
                     <TextBlock Style="{StaticResource CreditFlowBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  Borrow BHT  -->
-                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BorrowBHTTotalDescription}" />
-                    <TextBox Style="{StaticResource BorrowBHTTotal}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource BorrowBHTTotal}" />
                     <TextBlock Style="{StaticResource BorrowBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  User Credit BHT  -->
-                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource UserBHTTotalDescription}" />
-                    <TextBox Style="{StaticResource UserBHTTotal}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource UserBHTTotal}" />
                     <TextBlock Style="{StaticResource UserBHTTotalUnitStyle}" />
                 </StackPanel>
                 <!--  Grand Total BHT  -->
-                <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource GrandBHTTotalDescription}" />
-                    <TextBox Style="{StaticResource GrandBHTTotal}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource GrandBHTTotal}" />
                     <TextBlock Style="{StaticResource GrandBHTTotalUnitStyle}" />
                 </StackPanel>
             </StackPanel>

@@ -231,7 +231,8 @@
                         <tran:UserCreditTransactionEntry x:Name="usrTransactinEntry"
                                                          Grid.Row="3"
                                                          Grid.Column="1"
-                                                         Background="DarkRed" />
+                                                         Background="DarkRed"
+                                                         Foreground="WhiteSmoke" />
                     </Grid>
                 </DockPanel>
             </DockPanel>

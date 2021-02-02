@@ -14,8 +14,13 @@
         <Border DockPanel.Dock="Top">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0" Color="#7F323232" />
-                    <GradientStop Offset="1" Color="#7FAAAAAA" />
+                    <GradientStop Offset="0" Color="#2F333333" />
+                    <GradientStop Offset="0.05" Color="#2FFFFFFF" />
+                    <GradientStop Offset="0.10" Color="#7FFFFFFF" />
+                    <GradientStop Offset="0.50" Color="#00FFFFFF" />
+                    <GradientStop Offset="0.90" Color="#7FFFFFFF" />
+                    <GradientStop Offset="0.95" Color="#2FFFFFFF" />
+                    <GradientStop Offset="1" Color="#2F000000" />
                 </LinearGradientBrush>
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
@@ -120,7 +125,6 @@
                     <TextBlock Height="5" />
                     <TextBlock Margin="12,0"
                                FontSize="{StaticResource EntryFontSize18}"
-                               Foreground="{StaticResource EntryTextForeground}"
                                Text="หมายเหตุ"
                                TextAlignment="Left" />
                     <TextBox Height="75"

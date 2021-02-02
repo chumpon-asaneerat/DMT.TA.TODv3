@@ -79,21 +79,21 @@
                                     Orientation="Horizontal">
                             <TextBlock Width="230"
                                        FontSize="28"
-                                       TextAlignment="Right"
                                        Style="{StaticResource LabelText}"
-                                       Text="วงเงินหมุนเวียนด่าน : " />
+                                       Text="วงเงินหมุนเวียนด่าน : "
+                                       TextAlignment="Right" />
                             <TextBlock x:Name="txtBalance"
                                        Width="160"
                                        FontSize="28"
-                                       Style="{StaticResource LabelText}"
                                        Foreground="Yellow"
+                                       Style="{StaticResource LabelText}"
                                        Text="{Binding MaxCredit, StringFormat=N0}"
                                        TextAlignment="Center" />
                             <TextBlock Width="60"
                                        FontSize="28"
-                                       TextAlignment="Center"
                                        Style="{StaticResource LabelText}"
-                                       Text="บาท" />
+                                       Text="บาท"
+                                       TextAlignment="Center" />
                         </StackPanel>
                         <!--  CREDIT BALANCE  -->
                         <balance:TSBCreditBalanceEntry x:Name="creditBalanceEntry"
@@ -101,19 +101,19 @@
                                                        Grid.RowSpan="3"
                                                        Grid.Column="1"
                                                        Background="Orange"
-                                                       IsEnabled="False" />
+                                                       Foreground="Black" />
                         <!--  COUPON BALANCE  -->
                         <balance:TSBCouponBalanceEntry x:Name="couponBalanceEntry"
                                                        Grid.Row="3"
                                                        Grid.Column="3"
                                                        Background="DarkRed"
-                                                       IsEnabled="False" />
+                                                       Foreground="WhiteSmoke" />
                         <!--  CREDIT SUMMARY  -->
                         <balance:TSBCreditSummaryEntry x:Name="creditSummaryEntry"
                                                        Grid.Row="5"
                                                        Grid.Column="3"
                                                        Background="Orange"
-                                                       IsEnabled="False" />
+                                                       Foreground="Black" />
                     </Grid>
                 </Grid>
             </DockPanel>

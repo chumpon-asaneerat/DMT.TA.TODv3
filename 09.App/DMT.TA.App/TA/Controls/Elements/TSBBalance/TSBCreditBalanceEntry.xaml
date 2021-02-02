@@ -23,8 +23,13 @@
         <Border DockPanel.Dock="Top">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0" Color="#7F323232" />
-                    <GradientStop Offset="1" Color="#7FAAAAAA" />
+                    <GradientStop Offset="0" Color="#2F333333" />
+                    <GradientStop Offset="0.05" Color="#2FFFFFFF" />
+                    <GradientStop Offset="0.10" Color="#7FFFFFFF" />
+                    <GradientStop Offset="0.50" Color="#00FFFFFF" />
+                    <GradientStop Offset="0.90" Color="#7FFFFFFF" />
+                    <GradientStop Offset="0.95" Color="#2FFFFFFF" />
+                    <GradientStop Offset="1" Color="#2F000000" />
                 </LinearGradientBrush>
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
@@ -38,61 +43,61 @@
                 <!--  ENTRY  -->
                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                     <!--  1 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT1Description}" />
-                        <TextBox Style="{StaticResource BHT1Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT1Amount}" />
                         <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                     </StackPanel>
                     <!--  2 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT2Description}" />
-                        <TextBox Style="{StaticResource BHT2Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT2Amount}" />
                         <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                     </StackPanel>
                     <!--  5 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT5Description}" />
-                        <TextBox Style="{StaticResource BHT5Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT5Amount}" />
                         <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                     </StackPanel>
                     <!--  10 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT10Description}" />
-                        <TextBox Style="{StaticResource BHT10Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT10Amount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  20 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT20Description}" />
-                        <TextBox Style="{StaticResource BHT20Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT20Amount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  50 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT50Description}" />
-                        <TextBox Style="{StaticResource BHT50Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT50Amount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  100 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT100Description}" />
-                        <TextBox Style="{StaticResource BHT100Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT100Amount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  500 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT500Description}" />
-                        <TextBox Style="{StaticResource BHT500Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT500Amount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  1000 BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHT1000Description}" />
-                        <TextBox Style="{StaticResource BHT1000Amount}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource BHT1000Amount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  TOTAL BHT  -->
-                    <StackPanel IsEnabled="False" Style="{StaticResource EntryStackPanel}">
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource BHTTotalDescription}" />
                         <TextBox IsEnabled="False" Style="{StaticResource BHTTotalAmount}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />

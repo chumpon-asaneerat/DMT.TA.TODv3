@@ -94,7 +94,10 @@
         </StackPanel>
         <balance:TSBCreditSummaryEntry x:Name="sumEntry"
                                        Background="Orange"
-                                       DockPanel.Dock="Bottom" />
-        <balance:TSBCreditBalanceEntry x:Name="balanceEntry" Background="Orange" />
+                                       DockPanel.Dock="Bottom"
+                                       Foreground="Black" />
+        <balance:TSBCreditBalanceEntry x:Name="balanceEntry"
+                                       Background="Orange"
+                                       Foreground="Black" />
     </DockPanel>
 </UserControl>

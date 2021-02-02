@@ -94,7 +94,7 @@
                                           Margin="3"
                                           VerticalAlignment="Stretch"
                                           Background="CornflowerBlue"
-                                          Foreground="WhiteSmoke" />
+                                          Foreground="Black" />
 
                         <!--  COUPON SOLD  -->
                         <local:CouponRevenueEntry x:Name="couponSold"
@@ -129,8 +129,8 @@
                  Header="EMV">
             <local:EMVEntry x:Name="emvEntry"
                             Margin="3"
-                            Background="Gainsboro"
-                            Foreground="WhiteSmoke" />
+                            Background="CornflowerBlue"
+                            Foreground="Black" />
         </TabItem>
         <!--  QR CODE  -->
         <TabItem x:Name="tabQRCode"
@@ -140,7 +140,7 @@
             <local:QRCodeEntry x:Name="qrcodeEntry"
                                Margin="3"
                                Background="Orange"
-                               Foreground="WhiteSmoke" />
+                               Foreground="Black" />
         </TabItem>
     </TabControl>
 </UserControl>

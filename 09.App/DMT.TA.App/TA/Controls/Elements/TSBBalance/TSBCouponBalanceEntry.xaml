@@ -39,25 +39,25 @@
                 <!--  Coupon 35 Count  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT1Description}" />
-                    <TextBox Style="{StaticResource BHT1Amount}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource BHT1Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  Coupon 80 Count  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT2Description}" />
-                    <TextBox Style="{StaticResource BHT2Amount}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource BHT2Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  Coupon Total Count  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT5Description}" />
-                    <TextBox Style="{StaticResource BHT5Amount}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource BHT5Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  Coupon Total BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT10Description}" />
-                    <TextBox Style="{StaticResource BHT10Amount}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource BHT10Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
             </StackPanel>

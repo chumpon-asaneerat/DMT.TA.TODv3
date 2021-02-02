@@ -346,10 +346,12 @@ namespace DMT.TA.Windows.Coupon
         public void Setup(TSBCouponBorrowManager value)
         {
             manager = value;
-            txtCurrentUser.Text = string.Empty;
+            txtCurrentUserId.DataContext = null;
+            txtCurrentUserName.DataContext = null;
             if (null != manager && null != manager.User)
             {
-                txtCurrentUser.Text = manager.User.FullNameTH;
+                txtCurrentUserId.DataContext = manager.User;
+                txtCurrentUserName.DataContext = manager.User;
                 manager.Refresh();
                 UpadteListViews();
             }

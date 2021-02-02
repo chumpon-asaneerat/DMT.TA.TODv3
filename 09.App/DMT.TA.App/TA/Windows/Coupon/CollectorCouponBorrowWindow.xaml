@@ -64,14 +64,39 @@
                 <!--  SEPERATOR  -->
                 <TextBlock Height="10" DockPanel.Dock="Bottom" />
                 <!--  Current User  -->
-                <TextBlock x:Name="txtCurrentUser"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Center"
-                           DockPanel.Dock="Top"
-                           FontSize="20"
-                           Style="{StaticResource LabelText}"
-                           Text="Mr 1 User"
-                           TextAlignment="Center" />
+                <StackPanel HorizontalAlignment="Center"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+                    <TextBlock Width="120"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Style="{StaticResource LabelText}"
+                               Text="รหัสพนักงาน"
+                               TextAlignment="Right" />
+                    <TextBlock x:Name="txtCurrentUserId"
+                               Width="120"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Foreground="Yellow"
+                               Style="{StaticResource LabelText}"
+                               Text="{Binding UserId}"
+                               TextAlignment="Center" />
+                    <TextBlock Width="20" />
+                    <TextBlock Width="150"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Style="{StaticResource LabelText}"
+                               Text="ชื่อพนักงาน"
+                               TextAlignment="Right" />
+                    <TextBlock x:Name="txtCurrentUserName"
+                               Width="240"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Foreground="Yellow"
+                               Style="{StaticResource LabelText}"
+                               Text="{Binding FullNameTH}"
+                               TextAlignment="Center" />
+                </StackPanel>
                 <!--  WORK AREA  -->
                 <Grid>
                     <Grid.ColumnDefinitions>

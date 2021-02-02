@@ -189,6 +189,19 @@ namespace DMT.Services
             UserSearchManager.Instance.Title = title;
             return UserSearchManager.Instance.SelectUser(userId, permissions);
         }
+        /// <summary>
+        /// Gets TSB Coupon Balance Summary.
+        /// </summary>
+        /// <returns></returns>
+        public static TSBCouponBalance GetTSBCouponBalance()
+        {
+            var ret = TSBCouponBalance.GetTSBBalance().Value();
+            if (null == ret)
+            {
+                ret = new TSBCouponBalance();
+            }
+            return ret;
+        }
 
         #endregion
 
@@ -321,7 +334,14 @@ namespace DMT.Services
         /// Gets Credit Manager.
         /// </summary>
         public CreditManager Credit { get; private set; }
-
+        /// <summary>
+        /// Gets Current TSB Coupon Balance
+        /// </summary>
+        public TSBCouponBalance TSBCouponBalance
+        {
+            get { return TAAPI.GetTSBCouponBalance();  }
+            set { }
+        }
         /// <summary>
         /// Gets Current TSB.
         /// </summary>

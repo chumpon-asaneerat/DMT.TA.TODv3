@@ -37,9 +37,13 @@ namespace DMT.TA.Controls.Elements.TSBBalance
 
         #region Public Methods
 
-        public void Setup()
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="value">The Current TSB Coupon Balance.</param>
+        public void Setup(TSBCouponBalance value)
         {
-            this.DataContext = null; // TODO: Need Coupon Models.
+            this.DataContext = value;
         }
 
         #endregion

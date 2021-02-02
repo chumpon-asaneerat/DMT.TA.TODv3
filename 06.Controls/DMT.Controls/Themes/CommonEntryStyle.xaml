@@ -43,7 +43,7 @@
     <Style x:Key="BankNoteCountStyle"
            BasedOn="{StaticResource CommonTextBox}"
            TargetType="TextBox">
-        <Setter Property="Width" Value="80" />
+        <Setter Property="Width" Value="100" />
         <Setter Property="FontSize" Value="{StaticResource EntryFontSize18}" />
         <Setter Property="TextAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -60,7 +60,7 @@
     <Style x:Key="BankNoteAmountStyle"
            BasedOn="{StaticResource CommonTextBox}"
            TargetType="TextBox">
-        <Setter Property="Width" Value="80" />
+        <Setter Property="Width" Value="100" />
         <Setter Property="FontSize" Value="{StaticResource EntryFontSize18}" />
         <Setter Property="TextAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -83,5 +83,39 @@
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="Margin" Value="5,2" />
         <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!--  COUPON COUNT (TEXTBOX)  -->
+    <Style x:Key="CouponCountStyle"
+           BasedOn="{StaticResource CommonTextBox}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="100" />
+        <Setter Property="FontSize" Value="{StaticResource EntryFontSize18}" />
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="util:FocusOptions.SelectAll" Value="True" />
+        <Setter Property="util:KeyboardOptions.Enabled" Value="True" />
+        <Setter Property="util:KeyboardOptions.EnterAsTab" Value="True" />
+        <Setter Property="util:KeyboardOptions.UpDownNavigation" Value="True" />
+        <Setter Property="util:KeyboardOptions.LeftRightNavigation" Value="True" />
+    </Style>
+
+    <!--  COUPON AMOUNT (TEXTBOX)  -->
+    <Style x:Key="CouponAmountStyle"
+           BasedOn="{StaticResource CommonTextBox}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="100" />
+        <Setter Property="FontSize" Value="{StaticResource EntryFontSize18}" />
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="util:FocusOptions.SelectAll" Value="True" />
+        <Setter Property="util:KeyboardOptions.Enabled" Value="True" />
+        <Setter Property="util:KeyboardOptions.EnterAsTab" Value="True" />
+        <Setter Property="util:KeyboardOptions.UpDownNavigation" Value="True" />
+        <Setter Property="util:KeyboardOptions.LeftRightNavigation" Value="True" />
     </Style>
 </ResourceDictionary>

@@ -53,8 +53,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1287
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1286
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1285
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update all Entry Style -> TextBox set width to 100
+    - Add Coupon Entry Style(s).
+    - Update TSBCouponBalanceEntry control.
+    - Update PlazaBalanceSummaryWindow -> Update TSBCouponBalance code.
+    - Update CollectorCouponBorrowWindow -> Show both UserId, FullNameTH.
+    - Update CollectorCouponReturnWindow -> Show both UserId, FullNameTH.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1284

@@ -9,4 +9,85 @@
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <!--  COMMON COUPON DESCRIPTION  -->
+    <Style x:Key="CouponDescriptionStyle" TargetType="TextBlock">
+        <Setter Property="Width" Value="80" />
+        <Setter Property="FontSize" Value="{StaticResource EntryFontSize18}" />
+        <!--
+        <Setter Property="Foreground" Value="{DynamicResource EntryTextForeground}" />
+        -->
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="5,2" />
+    </Style>
+
+    <!--  EACH PLAZA COUPON DESCRIPTION  -->
+    <Style x:Key="C35CountDescription"
+           BasedOn="{StaticResource CouponDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="35 บาท" />
+    </Style>
+    <Style x:Key="C80CountDescription"
+           BasedOn="{StaticResource CouponDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="80 บาท" />
+    </Style>
+    <Style x:Key="TotalCountDescription"
+           BasedOn="{StaticResource CouponDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="จำนวนรวม" />
+    </Style>
+    <Style x:Key="TotalAmountDescription"
+           BasedOn="{StaticResource CouponDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+
+    <!--  EACH PLAZA COUPON COUNT/AMOUNT (TEXTBOX)  -->
+    <Style x:Key="CouponBHT35"
+           BasedOn="{StaticResource CouponCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CouponBHT35, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="CouponBHT80"
+           BasedOn="{StaticResource CouponCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CouponBHT80, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="CouponTotal"
+           BasedOn="{StaticResource CouponCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CouponTotal, StringFormat=N0}" />
+    </Style>
+    <Style x:Key="CouponBHTTotal"
+           BasedOn="{StaticResource CouponAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CouponBHTTotal, StringFormat=N0}" />
+    </Style>
+
+    <!--  EACH COUPON UNIT  -->
+    <Style x:Key="C35CountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="เล่ม" />
+    </Style>
+    <Style x:Key="C80CountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="เล่ม" />
+    </Style>
+    <Style x:Key="TotalCountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="เล่ม" />
+    </Style>
+    <Style x:Key="TotalAmountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="บาท" />
+    </Style>
 </ResourceDictionary>

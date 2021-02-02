@@ -44,8 +44,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1280
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1279
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1278
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Set Large Calendar
+      - ChiefRevenueEntryPage
+      - EMVQRCodeListPage
+      - RevenueSlipSearchWindow
+      - RevenueSummarySearchWindow
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1277

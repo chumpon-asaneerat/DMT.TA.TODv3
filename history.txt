@@ -47,8 +47,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1289
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1288
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1287
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Implements UserCouponBalance #1.
+  - DMT.TA.Rest.Client project.
+    - Update Coupon Operations
+      - Current (uncomment).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1286

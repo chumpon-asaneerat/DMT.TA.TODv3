@@ -10,7 +10,6 @@ namespace DMT.Services.Operations
     {
         static partial class Coupon
         {
-            /*
             static partial class User
             {
                 /// <summary>
@@ -24,7 +23,6 @@ namespace DMT.Services.Operations
                     return ret;
                 }
             }
-            */
         }
     }
 }

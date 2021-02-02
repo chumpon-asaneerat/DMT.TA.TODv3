@@ -15,8 +15,10 @@ namespace DMT.Services.Operations
                 /// <summary>
                 /// Gets Current User Balance.
                 /// </summary>
+                /// <param name="value">The Search parameter.</param>
                 /// <returns>Returns Current User Coupon Balance instance.</returns>
-                public static NRestResult<Models.UserCouponBalance> Current(Models.User value)
+                public static NRestResult<Models.UserCouponBalance> Current(
+                    Models.Search.Coupon.User.Current value)
                 {
                     var ret = Execute<Models.UserCouponBalance>(
                         RouteConsts.TA.Coupon.User.Current.Url, value);

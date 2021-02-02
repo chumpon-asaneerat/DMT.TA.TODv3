@@ -44,8 +44,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1290
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1289
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1288
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Implements UserCouponBalance #2.
+    - Implements Search.Coupon.User.Create class.
+  - DMT.TA.Rest.Client project.
+    - Update Coupon Operations -> Change parameter type.
+  - DMT.TA.Rest.Server project.
+    - Implements Coupon Action
+      - Implements Current Action #1.
+    - TAWebServer
+      - Add MapRoute for Coupon->User->Current.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1287

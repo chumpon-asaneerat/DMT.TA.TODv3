@@ -332,7 +332,21 @@ namespace DMT.Services
             {
                 internal static class TSB { }
 
-                internal static class User { }
+                internal static class User 
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.TA.Coupon.User.ControllerName;
+
+                        // Current
+                        actionName = RouteConsts.TA.Coupon.User.Current.Name;
+                        actionUrl = RouteConsts.TA.Coupon.User.Current.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                    }
+                }
             }
         }
 
@@ -364,6 +378,8 @@ namespace DMT.Services
 
             // Credit (User)
             MapControllers.Credit.User.MapRoutes(config);
+            // Coupon (User)
+            MapControllers.Coupon.User.MapRoutes(config);
 
             #region Default Route (do not used)
 

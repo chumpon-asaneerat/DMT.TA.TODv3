@@ -198,7 +198,7 @@ namespace DMT.Models
     static partial class Search
     {
         /// <summary>Coupon Searchs.</summary>
-        public static partial class Credit
+        public static partial class Coupon
         {
             /// <summary>TSB Coupon Searchs.</summary>
             public static partial class TSB
@@ -208,6 +208,40 @@ namespace DMT.Models
             /// <summary>User Coupon Searchs.</summary>
             public static partial class User
             {
+                #region Current
+
+                /// <summary>
+                /// Gets Current User Coupon Balance. 
+                /// </summary>
+                public class Current : NSearch<Current>
+                {
+                    #region Public Properties
+
+                    /// <summary>
+                    /// Gets or sets User.
+                    /// </summary>
+                    public Models.User User { get; set; }
+
+                    #endregion
+
+                    #region Static Method (Create)
+
+                    /// <summary>
+                    /// Create Search instance.
+                    /// </summary>
+                    /// <param name="user">The User.</param>
+                    /// <returns>Returns Search instance.</returns>
+                    public static Current Create(Models.User user)
+                    {
+                        var ret = new Current();
+                        ret.User = user;
+                        return ret;
+                    }
+
+                    #endregion
+                }
+
+                #endregion
             }
         }
     }

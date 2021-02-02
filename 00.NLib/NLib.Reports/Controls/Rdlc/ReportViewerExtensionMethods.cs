@@ -35,6 +35,7 @@ namespace NLib.Controls
 
             rptViewer.ProcessingMode = ProcessingMode.Local;
             LocalReport lr = rptViewer.LocalReport;
+            lr.DisplayName = reportSource.DisplayName;
 
             if (null != reportSource && null != reportSource.Definition &&
                 null != reportSource.Definition.RdlcInstance &&
@@ -133,12 +134,14 @@ namespace NLib.Controls
         /// Print Report to specificed printer.
         /// </summary>
         /// <param name="rptViewer">The instance of Report Viewer Control.</param>
+        /// <param name="documentName">The document name.</param>
         /// <param name="printerName">The target printer name.</param>
         /// <param name="fromPage">-1 for print all</param>
         /// <param name="toPage">-1 for print all</param>
         /// <param name="noOfCopies">The Number of Copies.</param>
         /// <returns>Returns instance of RdlcPrintResult.</returns>
         public static RdlcPrintResult PrintTo(this ReportViewer rptViewer, 
+            string documentName,
             string printerName,
             int fromPage = -1, int toPage = -1, 
             short noOfCopies = 1)
@@ -170,6 +173,7 @@ namespace NLib.Controls
             try
             {
                 LocalReport lr = rptViewer.LocalReport;
+                lr.DisplayName = documentName;
                 ReportPageSettings settings = lr.GetDefaultPageSettings();
 
                 if (null == settings)
@@ -245,7 +249,7 @@ namespace NLib.Controls
                 #endregion
 
                 prt = new LocalReportRenderer();
-                prt.Print(lr, printerName, pageSettings, noOfCopies);
+                prt.Print(lr, documentName, printerName, pageSettings, noOfCopies);
 
                 result.Success = true;
                 result.Message = "Print Success.";

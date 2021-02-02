@@ -87,7 +87,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
         {
-            Print();
+            Print(ReportDisplayName);
         }
 
         #endregion
@@ -227,10 +227,19 @@ namespace DMT.TA.Pages.Coupon
             }
         }
 
+        private string ReportDisplayName 
+        { 
+            get { return "coupon." + DateTime.Now.ToThaiDateTimeString("ddMMyyyyHHmmssfff"); }
+        }
+
         private RdlcReportModel GetReportModel(TSBCouponSummary summary)
         {
             Assembly assembly = this.GetType().Assembly;
             RdlcReportModel inst = new RdlcReportModel();
+
+            // Set Display Name (default file name).
+            inst.DisplayName = ReportDisplayName;
+
             inst.Definition.EmbededReportName = "DMT.TA.Reports.CollectorCouponReceived.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
@@ -304,10 +313,10 @@ namespace DMT.TA.Pages.Coupon
             return inst;
         }
 
-        private void Print()
+        private void Print(string documentName)
         {
             // print reports.
-            this.rptViewer.Print();
+            this.rptViewer.Print(documentName);
             Setup(_chief); // Go back to tab 1
         }
 

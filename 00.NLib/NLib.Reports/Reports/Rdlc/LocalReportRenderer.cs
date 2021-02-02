@@ -212,11 +212,12 @@ namespace NLib.Reports.Rdlc
         /// Print.
         /// </summary>
         /// <param name="report"></param>
+        /// <param name="documentName"></param>
         /// <param name="printerName"></param>
         /// <param name="pageSettings"></param>
         /// <param name="noOfCopies"></param>
         /// <returns></returns>
-        public bool Print(LocalReport report, string printerName,
+        public bool Print(LocalReport report, string documentName, string printerName,
             LocalReportPageSettings pageSettings, short noOfCopies = 1)
         {
             RdlcMessageService.Instance.SendMessage("Begin Render/Print process");
@@ -275,6 +276,8 @@ namespace NLib.Reports.Rdlc
             //    printDoc.DefaultPageSettings.PrinterSettings.FromPage = pageSettings.FromPage;
             //if (pageSettings.ToPage != -1)
             //    printDoc.DefaultPageSettings.PrinterSettings.ToPage = pageSettings.ToPage;
+
+            printDoc.DocumentName = documentName; // Set document name.
 
             // Hook handlers
             printDoc.PrintPage += new PrintPageEventHandler(PrintPage);

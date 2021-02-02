@@ -338,6 +338,10 @@ namespace NLib.Reports.Rdlc
         /// Gets the parameter list.
         /// </summary>
         public List<RdlcReportParameter> Parameters { get; private set; }
+        /// <summary>
+        /// Gets or sets current document display name.
+        /// </summary>
+        public string DisplayName { get; set; }
 
         #endregion
     }

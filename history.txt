@@ -56,8 +56,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1276
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1275
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1274
-- 
+- DMT.TAxTODv3
+  - NLib.Reprots project
+    - Add supports set display name (document name).
+    - Ported to to DMT.TAxTODv4
+  - DMT.TA.App project
+    - ReceiveCouponPage - Add default print document name.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1273

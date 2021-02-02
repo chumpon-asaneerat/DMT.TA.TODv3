@@ -148,15 +148,17 @@ namespace NLib.Wpf.Controls
         /// <summary>
         /// Print.
         /// </summary>
+        /// <param name="documentName">The document name.</param>
         /// <param name="fromPage">-1 for print all</param>
         /// <param name="toPage">-1 for print all</param>
         /// <param name="noOfCopies">The Number of Copies.</param>
         /// <param name="raiseEvent">True for raise event after print finished.</param>
         /// <returns>Returns true if success.</returns>
-        public bool Print(int fromPage = -1, int toPage = -1,
+        public bool Print(string documentName, int fromPage = -1, int toPage = -1,
             short noOfCopies = 1, bool raiseEvent = true)
         {
             RdlcPrintResult result = rptViewer.PrintTo(
+                documentName,
                 _printerName, fromPage, toPage, noOfCopies);
 
             if (result.Success)
@@ -180,7 +182,8 @@ namespace NLib.Wpf.Controls
         /// <summary>
         /// Print To.
         /// </summary>
-        public void PrintTo()
+        /// <param name="documentName">The document name.</param>
+        public void PrintTo(string documentName)
         {
             int errCnt = 0;
             int fromPage = -1;
@@ -207,7 +210,7 @@ namespace NLib.Wpf.Controls
                     }
 
                     // Print but not raise event.
-                    if (!this.Print(fromPage, toPage, noOfCopies, false))
+                    if (!this.Print(documentName, fromPage, toPage, noOfCopies, false))
                     {
                         ++errCnt;
                     }

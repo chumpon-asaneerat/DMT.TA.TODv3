@@ -62,8 +62,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1284
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1283
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1282
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - EMV/QRCode fixed allow to view all jobs (outside current user shift).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1281

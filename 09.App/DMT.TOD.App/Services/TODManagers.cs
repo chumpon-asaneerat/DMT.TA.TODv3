@@ -1503,7 +1503,7 @@ namespace DMT.Services
             List<LaneEMV> sortList = new List<LaneEMV>();
 
             if (null != User && null != Current && null !=
-                Current.TSB && null != Current.UserShifts)
+                Current.TSB)
             {
 
                 List<Plaza> plazas;
@@ -1521,7 +1521,7 @@ namespace DMT.Services
                 int networkId = TODAPI.NetworkId;
                 var userShift = Current.UserShifts.Shift;
 
-                if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
+                if (Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
                 {
                     plazas.ForEach(plaza =>
                     {
@@ -1529,7 +1529,7 @@ namespace DMT.Services
                         SCWEMVTransactionList param = new SCWEMVTransactionList();
                         param.networkId = networkId;
                         param.plazaId = pzId;
-                        param.staffId = userShift.UserId;
+                        param.staffId = User.UserId;
                         param.startDateTime = Begin;
                         param.endDateTime = End;
                         var emvList = scwOps.emvTransactionList(param);
@@ -1582,7 +1582,7 @@ namespace DMT.Services
             List<LaneQRCode> sortList = new List<LaneQRCode>();
 
             if (null != User && null != Current && 
-                null != Current.TSB && null != Current.UserShifts)
+                null != Current.TSB)
             {
                 List<Plaza> plazas;
                 if (null == PlazaGroup)
@@ -1597,9 +1597,8 @@ namespace DMT.Services
                 }
 
                 int networkId = TODAPI.NetworkId;
-                var userShift = Current.UserShifts.Shift;
 
-                if (null != userShift && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
+                if (null != User && Begin.HasValue && End.HasValue && null != plazas && plazas.Count > 0)
                 {
                     plazas.ForEach(plaza =>
                     {
@@ -1607,7 +1606,7 @@ namespace DMT.Services
                         SCWQRCodeTransactionList param = new SCWQRCodeTransactionList();
                         param.networkId = networkId;
                         param.plazaId = pzId;
-                        param.staffId = userShift.UserId;
+                        param.staffId = User.UserId;
                         param.startDateTime = Begin;
                         param.endDateTime = End;
                         var qrcodeList = scwOps.qrcodeTransactionList(param);

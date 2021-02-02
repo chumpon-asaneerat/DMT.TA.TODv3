@@ -344,8 +344,10 @@ namespace DMT.TA.Windows.Coupon
         public void Setup(TSBCouponReturnManager value)
         {
             manager = value;
+            txtCurrentUser.Text = string.Empty;
             if (null != manager && null != manager.User)
             {
+                txtCurrentUser.Text = manager.User.FullNameTH;
                 manager.Refresh();
                 UpadteListViews();
             }

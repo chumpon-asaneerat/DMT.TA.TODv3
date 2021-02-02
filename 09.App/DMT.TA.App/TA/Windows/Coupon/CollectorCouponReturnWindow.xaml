@@ -62,6 +62,15 @@
                 </DockPanel>
                 <!--  SEPERATOR  -->
                 <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                <!--  Current User  -->
+                <TextBlock x:Name="txtCurrentUser"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           DockPanel.Dock="Top"
+                           FontSize="20"
+                           Style="{StaticResource LabelText}"
+                           Text="Mr 1 User"
+                           TextAlignment="Center" />
                 <!--  WORK AREA  -->
                 <Grid>
                     <Grid.ColumnDefinitions>

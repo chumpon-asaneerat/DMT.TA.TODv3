@@ -16,7 +16,7 @@
     <!--  TEXT BOX COLORS  -->
     <SolidColorBrush x:Key="EntryTextForeground"
                      PresentationOptions:Freeze="True"
-                     Color="WhiteSmoke" />
+                     Color="Black" />
 
     <!--  ENTRY STACK PANEL STYLE  -->
     <Style x:Key="EntryStackPanel" TargetType="StackPanel">

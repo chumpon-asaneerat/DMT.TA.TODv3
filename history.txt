@@ -56,8 +56,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1266
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1265
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1264
-- 
+- DMT.TAxTODv3
+  - Update CommonEntryStyle.xaml.cs
+    - Update EntryTextForeground to Black.
+  - Update ListViewStyle.xaml.cs
+    - Change all Foreground to Black.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1263

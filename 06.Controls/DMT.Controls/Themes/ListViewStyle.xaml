@@ -23,14 +23,14 @@
 
     <SolidColorBrush x:Key="ListViewItemSelectedForground"
                      PresentationOptions:Freeze="True"
-                     Color="WhiteSmoke" />
+                     Color="Black" />
     <SolidColorBrush x:Key="ListViewItemSelectedBackground"
                      PresentationOptions:Freeze="True"
                      Color="Orange" />
 
     <SolidColorBrush x:Key="ListViewItemMouseOverForground"
                      PresentationOptions:Freeze="True"
-                     Color="WhiteSmoke" />
+                     Color="Black" />
     <SolidColorBrush x:Key="ListViewItemMouseOverBackground"
                      PresentationOptions:Freeze="True"
                      Opacity=".75"
@@ -38,7 +38,7 @@
 
     <SolidColorBrush x:Key="ListViewItemDisableForground"
                      PresentationOptions:Freeze="True"
-                     Color="White" />
+                     Color="Black" />
     <SolidColorBrush x:Key="ListViewItemDisableBackground"
                      PresentationOptions:Freeze="True"
                      Color="Silver" />

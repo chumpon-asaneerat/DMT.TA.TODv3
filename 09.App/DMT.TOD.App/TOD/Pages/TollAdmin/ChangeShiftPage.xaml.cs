@@ -189,6 +189,12 @@ namespace DMT.TOD.Pages.TollAdmin
                 DateTime dt = DateTime.Now;
                 var shifts = Models.Shift.GetShifts().Value();
                 cbShifts.ItemsSource = shifts;
+                // Auto Select shift by time of day.
+                int autoIdx = -1;
+                if (null != shifts && shifts.Count > 0)
+                    autoIdx = shifts.FindIndex(shift => { return shift.CheckIsCurrent(); });
+                if (autoIdx != -1) cbShifts.SelectedIndex = autoIdx;
+
                 // Get Current TSB and related plazas, lanes.
                 _tsb = TSB.GetCurrent().Value();
                 if (null == _tsb) return;

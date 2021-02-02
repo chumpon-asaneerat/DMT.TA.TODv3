@@ -141,7 +141,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource StockCouponId}"
                                                     Header="รายการคูปองทั้งหมด" />
                                 </GridView>
                             </ListView.View>
@@ -193,7 +193,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource LaneCouponId}"
                                                     Header="รายการจ่าย พก" />
                                 </GridView>
                             </ListView.View>
@@ -244,7 +244,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource StockCouponId}"
                                                     Header="รายการคูปองทั้งหมด" />
                                 </GridView>
                             </ListView.View>
@@ -296,7 +296,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource LaneCouponId}"
                                                     Header="รายการจ่าย พก" />
                                 </GridView>
                             </ListView.View>

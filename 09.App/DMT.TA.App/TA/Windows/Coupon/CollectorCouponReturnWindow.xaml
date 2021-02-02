@@ -140,7 +140,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource SoldByLaneCouponId}"
                                                     Header="รายการคูปองที่ขายได้" />
                                 </GridView>
                             </ListView.View>
@@ -192,7 +192,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource ReturnToStockCouponId}"
                                                     Header="รายการคูปองที่รับคืน" />
                                 </GridView>
                             </ListView.View>
@@ -243,7 +243,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource SoldByLaneCouponId}"
                                                     Header="รายการคูปองที่ขายได้" />
                                 </GridView>
                             </ListView.View>
@@ -295,7 +295,7 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource CouponId}"
+                                                    CellTemplate="{StaticResource ReturnToStockCouponId}"
                                                     Header="รายการคูปองที่รับคืน" />
                                 </GridView>
                             </ListView.View>

@@ -1578,6 +1578,11 @@ namespace DMT.Services
         public void Borrow(TSBCouponItem item)
         {
             if (null == item || null == User) return;
+
+            // Not allow if original is SoldByLane or SoldByTSB
+            if (item.Transaction.TransactionType == TSBCouponTransactionTypes.SoldByLane ||
+                item.Transaction.TransactionType == TSBCouponTransactionTypes.SoldByTSB) return;
+
             item.TransactionType = TSBCouponTransactionTypes.Lane;
             item.UserId = User.UserId;
             item.FullNameEN = User.FullNameEN;
@@ -1591,6 +1596,11 @@ namespace DMT.Services
         public void Return(TSBCouponItem item)
         {
             if (null == item || null == User) return;
+
+            // Not allow if original is SoldByLane or SoldByTSB
+            if (item.Transaction.TransactionType == TSBCouponTransactionTypes.SoldByLane ||
+                item.Transaction.TransactionType == TSBCouponTransactionTypes.SoldByTSB) return;
+
             item.TransactionType = TSBCouponTransactionTypes.Stock;
             item.UserId = null;
             item.FullNameEN = null;
@@ -1647,7 +1657,8 @@ namespace DMT.Services
                 var results = Coupons.FindAll(item =>
                 {
                     bool ret = (
-                        item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        (item.TransactionType == TSBCouponTransactionTypes.Lane || 
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByLane) &&
                         item.UserId == User.UserId &&
                         item.CouponType == CouponType.BHT35
                     );
@@ -1701,7 +1712,8 @@ namespace DMT.Services
                 var results = Coupons.FindAll(item =>
                 {
                     bool ret = (
-                        item.TransactionType == TSBCouponTransactionTypes.Lane &&
+                        (item.TransactionType == TSBCouponTransactionTypes.Lane ||
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByLane) &&
                         item.UserId == User.UserId &&
                         item.CouponType == CouponType.BHT80
                     );
@@ -1763,8 +1775,9 @@ namespace DMT.Services
         public void UnsoldByLane(TSBCouponItem item)
         {
             if (null == item || null == item.Transaction || null == User) return;
-            // Not allow if original is sold
-            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Lane) return;
+            // Not allow if original is sold or soldbylant
+            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Lane &&
+                item.Transaction.TransactionType != TSBCouponTransactionTypes.SoldByLane) return;
 
             item.TransactionType = TSBCouponTransactionTypes.Lane;
             item.SoldBy = null;
@@ -1786,8 +1799,9 @@ namespace DMT.Services
         public void SoldByLane(TSBCouponItem item)
         {
             if (null == item || null == item.Transaction || null == User) return;
-            // Not allow if original not on lane
-            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Lane) return;
+            // Not allow if original not on lane or soldbylant
+            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Lane &&
+                item.Transaction.TransactionType != TSBCouponTransactionTypes.SoldByLane) return;
 
             item.TransactionType = TSBCouponTransactionTypes.SoldByLane;
             // User information should not change until save call.
@@ -1831,10 +1845,11 @@ namespace DMT.Services
                     return;
                 item.TransactionType = TSBCouponTransactionTypes.Stock;
                 item.UserId = null;
+                item.FullNameEN = null;
+                item.FullNameTH = null;
                 item.ReceiveDate = new DateTime?();
             });
         }
-
 
         #endregion
 

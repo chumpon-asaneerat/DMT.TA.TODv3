@@ -41,8 +41,34 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1270
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1269
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml.cs
+      - Update CouponId related datatemplate.
+        - Remove CouponId datatemplate
+        - For User Borrow Coupon
+          - Add StockCouponId datatemplate
+          - Add LaneCouponId datatemplate
+        - For User Return Coupon
+          - Add SoldByLaneCouponId datatemplate
+          - Add ReturnToStockCouponId datatemplate
+        - For TSB Sold Coupon
+          - Add TSBStockCouponId datatemplate
+          - Add SoldByTSBCouponId datatemplate
+  - DMT.TA.App project.
+    - Update TAManager.cs
+      - Update TSBCouponBorrowManager
+        - Update Borrow/Return method
+        - Update C35Lanes/C80Lanes property
+      - Update TSBCouponReturnManager
+        - Update UnsoldByLane/SoldByLane method
+        - Update ReturnToStock method.
+      - Update CollectorCouponBorrowWindow
+        - Change ListViews Data Template.
+      - Update CollectorCouponReturnWindow
+        - Change ListView sData Template.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1268

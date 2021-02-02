@@ -25,7 +25,7 @@ namespace DMT.Services
                     ret.ParameterIsNull();
                     return ret;
                 }
-                ret = UserCouponBalance.GetUserBalance();
+                ret = UserCouponBalance.GetUserBalance(value.User);
                 return ret;
             }
         }

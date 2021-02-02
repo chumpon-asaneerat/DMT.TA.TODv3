@@ -366,10 +366,11 @@ namespace DMT.Models
 		/// <summary>
 		/// Gets Active User Coupon balance.
 		/// </summary>
+		/// <param name="user">The target User to get balance.</param>
 		/// <returns>
 		/// Returns Current Active User Coupon balance. If not found returns null.
 		/// </returns>
-		public static NDbResult<UserCouponBalance> GetUserBalance()
+		public static NDbResult<UserCouponBalance> GetUserBalance(User user)
 		{
 			var result = new NDbResult<UserCouponBalance>();
 			SQLiteConnection db = Default;
@@ -379,20 +380,21 @@ namespace DMT.Models
 				return result;
 			}
 			var tsb = TSB.GetCurrent().Value();
-			if (null == tsb)
+			if (null == tsb || null == user)
 			{
 				result.ParameterIsNull();
 				return result;
 			}
-			result = GetUserBalance(tsb);
+			result = GetUserBalance(tsb, user);
 			return result;
 		}
 		/// <summary>
 		/// Gets User Coupon Balance.
 		/// </summary>
 		/// <param name="tsb">The target TSB to get balance.</param>
+		/// <param name="user">The target User to get balance.</param>
 		/// <returns>Returns User Coupon balance. If TSB not found returns null.</returns>
-		public static NDbResult<UserCouponBalance> GetUserBalance(TSB tsb)
+		public static NDbResult<UserCouponBalance> GetUserBalance(TSB tsb, User user)
 		{
 			var result = new NDbResult<UserCouponBalance>();
 			SQLiteConnection db = Default;
@@ -401,7 +403,7 @@ namespace DMT.Models
 				result.DbConenctFailed();
 				return result;
 			}
-			if (null == tsb)
+			if (null == tsb || null == user)
 			{
 				result.ParameterIsNull();
 				return result;

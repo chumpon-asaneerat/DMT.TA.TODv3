@@ -103,6 +103,11 @@ namespace DMT.TOD.Windows.UserShifts
                 DateTime dt = DateTime.Now;
                 var shifts = Models.Shift.GetShifts().Value();
                 cbShift.ItemsSource = shifts;
+                // Auto Select shift by time of day.
+                int autoIdx = -1;
+                if (null != shifts && shifts.Count > 0)
+                    autoIdx = shifts.FindIndex(shift => { return shift.CheckIsCurrent(); });
+                if (autoIdx != -1) cbShift.SelectedIndex = autoIdx;
 
                 _tsb = TSB.GetCurrent().Value();
                 if (null != _tsb)

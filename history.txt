@@ -28,8 +28,16 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1300
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1299
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Remove Search.Coupon.User.Create class.
+    - Add Search.Coupon.User.Sold class.
+  - DMT.TA.Rest.Client
+    - Update TA->Coupon->User operation.
+      - Remove Current
+      - Add Sold
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1298

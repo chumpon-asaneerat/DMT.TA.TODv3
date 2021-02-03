@@ -13,15 +13,15 @@ namespace DMT.Services.Operations
             static partial class User
             {
                 /// <summary>
-                /// Gets Current User Balance.
+                /// Gets User Coupon Sold Balance.
                 /// </summary>
                 /// <param name="value">The Search parameter.</param>
-                /// <returns>Returns Current User Coupon Balance instance.</returns>
-                public static NRestResult<Models.UserCouponBalance> Current(
-                    Models.Search.Coupon.User.Current value)
+                /// <returns>Returns User Coupon Sold Balance instance.</returns>
+                public static NRestResult<Models.UserCouponBalance> Sold(
+                    Models.Search.Coupon.User.Sold value)
                 {
                     var ret = Execute<Models.UserCouponBalance>(
-                        RouteConsts.TA.Coupon.User.Current.Url, value);
+                        RouteConsts.TA.Coupon.User.Sold.Url, value);
                     return ret;
                 }
             }

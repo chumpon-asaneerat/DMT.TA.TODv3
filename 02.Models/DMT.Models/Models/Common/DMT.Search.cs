@@ -211,9 +211,9 @@ namespace DMT.Models
                 #region Current
 
                 /// <summary>
-                /// Gets Current User Coupon Balance. 
+                /// Gets User Coupon Sold Balance. 
                 /// </summary>
-                public class Current : NSearch<Current>
+                public class Sold : NSearch<Sold>
                 {
                     #region Public Properties
 
@@ -241,9 +241,9 @@ namespace DMT.Models
                     /// <param name="start">The Start Time (to check SoldDate).</param>
                     /// <param name="end">The End Time (to check SoldDate).</param>
                     /// <returns>Returns Search instance.</returns>
-                    public static Current Create(Models.User user, DateTime? start, DateTime? end)
+                    public static Sold Create(Models.User user, DateTime? start, DateTime? end)
                     {
-                        var ret = new Current();
+                        var ret = new Sold();
                         ret.User = user;
                         ret.Start = start;
                         ret.End = end;

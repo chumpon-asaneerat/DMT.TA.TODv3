@@ -59,29 +59,10 @@ namespace DMT.Services
                 if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
                 files.ForEach(file =>
                 {
-                    //TODO: 
-                    // JsonMessageTransferService -> Used original code due to cannot move file between reading need
-                    // to read all data first and close filestream then call move later.
-                    //FileStream fs = null;
                     try
                     {
-                        string json = File.ReadAllText(file);
+                        string json = ReadAllText(file);
                         ProcessJson(file, json);
-                        /*
-                        fs = new FileStream(file, FileMode.Open, FileAccess.Read,
-                            FileShare.Read);
-                        {
-                            using (StreamReader reader = new StreamReader(fs))
-                            {
-                                string json = reader.ReadToEnd();
-
-                                ProcessJson(file, json);
-
-                                reader.Close();
-                                reader.Dispose();
-                            }
-                        }
-                        */
                     }
                     catch (Exception ex2)
                     {
@@ -89,18 +70,6 @@ namespace DMT.Services
                         MoveToInvalid(file);
                         med.Err(ex2);
                     }
-                    /*
-                    if (null != fs)
-                    {
-                        try
-                        {
-                            fs.Close();
-                            fs.Dispose();
-                        }
-                        catch { }
-                    }
-                    fs = null;
-                    */
                 });
             }
             catch (Exception ex)
@@ -122,6 +91,76 @@ namespace DMT.Services
         /// Gets Folder Name (sub directory name).
         /// </summary>
         protected abstract string FolderName { get; }
+
+        #endregion
+
+        #region File Read
+
+        /// <summary>
+        /// Read All Text from target file.
+        /// </summary>
+        /// <param name="fileName">The target full file name.</param>
+        /// <returns>Returns text in target file.</returns>
+        protected virtual string ReadAllText(string fileName)
+        {
+            string text = string.Empty;
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            FileStream fs = null;
+
+            #region Open File Steram (for read)
+
+            try
+            {
+                fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                text = string.Empty;
+            }
+
+            #endregion
+
+            #region Read File Content
+
+            try
+            {
+                if (null != fs)
+                {
+                    using (StreamReader reader = new StreamReader(fs))
+                    {
+                        text = reader.ReadToEnd();
+                        reader.Close();
+                        reader.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex2)
+            {
+                med.Err(ex2);
+                text = string.Empty;
+            }
+
+            #endregion
+
+            #region Close File Steram
+
+            if (null != fs)
+            {
+                try
+                {
+                    fs.Close();
+                    fs.Dispose();
+                }
+                catch { }
+            }
+            fs = null;
+
+            #endregion
+
+            return text;
+        }
 
         #endregion
 
@@ -251,7 +290,7 @@ namespace DMT.Services
             // Init Scanning Timer
             _scanning = false;
             _timer = new Timer();
-            _timer.Interval = 1000;
+            _timer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
             _timer.Elapsed += _timer_Elapsed;
             _timer.Start();
 
@@ -262,7 +301,6 @@ namespace DMT.Services
         /// </summary>
         public void Shutdown()
         {
-            //MethodBase med = MethodBase.GetCurrentMethod();
             // Free Scanning Timer 
             try
             {

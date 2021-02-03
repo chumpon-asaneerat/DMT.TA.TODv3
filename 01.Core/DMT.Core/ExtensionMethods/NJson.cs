@@ -94,6 +94,18 @@ namespace DMT
                     serializer.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'";
                     serializer.Serialize(file, value);
+
+                    try 
+                    {
+                        file.Flush();
+                        file.Close();
+                        file.Dispose();
+                    }
+                    catch (Exception ex2)
+                    {
+                        MethodBase med = MethodBase.GetCurrentMethod();
+                        ex2.Err(med);
+                    }
                 }
             }
             catch (Exception ex)
@@ -166,14 +178,19 @@ namespace DMT
                 result = default(T);
                 MethodBase med = MethodBase.GetCurrentMethod();
                 ex.Err(med);
+            }
 
-                if (null != stm)
+            if (null != stm)
+            {
+                try
                 {
                     stm.Close();
                     stm.Dispose();
                 }
-                stm = null;
+                catch { }
             }
+            stm = null;
+
             return result;
         }
         /// <summary>

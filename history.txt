@@ -59,8 +59,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1295
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1294
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1293
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Updete NJson.cs
+      - LoadFromFile method.
+      - SaveToFile method.
+    - JsonMessageTransferService
+      - Update code for ReadAllText from target file.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1292

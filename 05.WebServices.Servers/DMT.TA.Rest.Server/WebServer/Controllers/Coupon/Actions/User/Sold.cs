@@ -14,9 +14,9 @@ namespace DMT.Services
         partial class UserController
         {
             [HttpPost]
-            [ActionName(RouteConsts.TA.Coupon.User.Current.Name)]
+            [ActionName(RouteConsts.TA.Coupon.User.Sold.Name)]
             //[AllowAnonymous]
-            public NDbResult<UserCouponBalance> Current([FromBody] Models.Search.Coupon.User.Current value)
+            public NDbResult<UserCouponBalance> Sold([FromBody] Models.Search.Coupon.User.Sold value)
             {
                 NDbResult<UserCouponBalance> ret;
                 if (null == value)
@@ -25,7 +25,7 @@ namespace DMT.Services
                     ret.ParameterIsNull();
                     return ret;
                 }
-                ret = UserCouponBalance.GetUserBalance(value.User);
+                ret = UserCouponBalance.GetCouponSoldBalance(value.User, value.Start, value.End);
                 return ret;
             }
         }

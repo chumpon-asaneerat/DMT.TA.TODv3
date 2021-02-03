@@ -52,8 +52,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1303
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1302
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1301
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server
+    - Update TA->Coupon->User Actions.
+      - Remove Current
+      - Add Sold
+    - TAWebServer
+      - Update TA->Coupon->User map routes
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1300

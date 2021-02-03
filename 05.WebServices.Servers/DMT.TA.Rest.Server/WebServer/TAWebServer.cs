@@ -342,8 +342,8 @@ namespace DMT.Services
                         controllerName = RouteConsts.TA.Coupon.User.ControllerName;
 
                         // Current
-                        actionName = RouteConsts.TA.Coupon.User.Current.Name;
-                        actionUrl = RouteConsts.TA.Coupon.User.Current.Url;
+                        actionName = RouteConsts.TA.Coupon.User.Sold.Name;
+                        actionUrl = RouteConsts.TA.Coupon.User.Sold.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }

@@ -221,6 +221,14 @@ namespace DMT.Models
                     /// Gets or sets User.
                     /// </summary>
                     public Models.User User { get; set; }
+                    /// <summary>
+                    /// Gets or sets Start Time (to check SoldDate).
+                    /// </summary>
+                    public DateTime? Start { get; set; }
+                    /// <summary>
+                    /// Gets or sets End Time (to check SoldDate).
+                    /// </summary>
+                    public DateTime? End { get; set; }
 
                     #endregion
 
@@ -230,11 +238,15 @@ namespace DMT.Models
                     /// Create Search instance.
                     /// </summary>
                     /// <param name="user">The User.</param>
+                    /// <param name="start">The Start Time (to check SoldDate).</param>
+                    /// <param name="end">The End Time (to check SoldDate).</param>
                     /// <returns>Returns Search instance.</returns>
-                    public static Current Create(Models.User user)
+                    public static Current Create(Models.User user, DateTime? start, DateTime? end)
                     {
                         var ret = new Current();
                         ret.User = user;
+                        ret.Start = start;
+                        ret.End = end;
                         return ret;
                     }
 

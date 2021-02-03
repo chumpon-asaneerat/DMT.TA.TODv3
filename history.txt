@@ -46,8 +46,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1305
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1304
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1303
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - Update TSBCouponSummarryView.sql #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1302

@@ -14,6 +14,8 @@ using NLib.IO;
 
 namespace DMT.Services
 {
+    // TODO: Need to implements common class to provide each message to generate file, read data from file and process data
+
     using ops = Services.Operations.SCW; // reference to static class.
 
     /// <summary>

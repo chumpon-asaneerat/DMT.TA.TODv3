@@ -2,8 +2,6 @@
   - Supervisor Sold coupon should print reports.
   - Implements User credit history view.
   - Implements Coupon borrows/returns view.
-  - Collect Borrow Credit replace message box.
-  - Collect Credit History need User information in search screen.
   - Request 
     - Check if both total side (left/right) is match.
     - Need to check with TSB max balance.
@@ -18,25 +16,14 @@
       transaction to used in TSBCreditSummary view later.
     - PlazaOperations.Exchange.cs (Local.WebClient) need to check why save to invalid column.
   - ใบเสร็จขายคูปอง ที่ TA ขาดเรื่อง Running Number
-  - TA มีปัญหาตอนบันทึกช้าถ้าข้อมูลเยอะ ๆ
   - หลังป้อนรายได้ควร update กลับไปยัง UserCredit/RevenueShift ด้วย
   - Note
-    - Json File Generator and Scanner
-      - TODxTA
-        ->Generate (SoldCoupon, etc..)
-        ->Scanning
-    - Simulator 
-      - Lane Simulator
-        - BOJ/EOJ (Lane) Operation.
-        - EMV/QRCode (Lane) Operation.
     - รับถุงเงิน ถ้าไม่เปิดกะให้ auto เปิดกะให้
     - ถ้ารับถุงที่ 2 มีกะเปิดแล้ว รับได้ แต่ต้องผูก plaza group (IN/OUT)
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
   - ป้อนรายได้ ปกติ
     - ถ้าต่อ Service ไม่ได้ หรือยอด คูปองเป็น 0 ยอมให้ Key
-  - ป้อนรายได้ ย้อนหลัง
-    - ป้อนได้หมด
 --------------------------------------------------------------------------------------------
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1300
 - 
@@ -53,11 +40,19 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1297
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1296
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1295
-- 
+- DMT.TAxTODv3
+  - Update history.txt -> update note.
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1294
-- 
+- DMT.TAxTODv3
+  - RabbitMQService - add todo
+  - SCWMQService - add todo
+  - TAxTODMQService - add todo
+  - TAMQService - add todo
+  - TODMQService - add todo
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1293

@@ -18,6 +18,8 @@ using DMT.Services;
 
 namespace DMT.Services
 {
+    // TODO: Need to implements common class to provide each message to generate file, read data from file and process data
+
     using ops = Services.Operations.TA; // reference to static class.
 
     /// <summary>

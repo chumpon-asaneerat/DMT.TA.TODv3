@@ -548,7 +548,7 @@ namespace DMT.Models
                 {
                     //CouponBHT35
                     //CouponBHT80
-                    //CouponBHTTotal
+                    //Price
 
                     string cmd = @"
                         SELECT * 

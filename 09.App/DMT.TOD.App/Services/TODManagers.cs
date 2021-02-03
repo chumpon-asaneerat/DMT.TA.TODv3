@@ -1953,6 +1953,20 @@ namespace DMT.Services
 
         #endregion
 
+        #region Coupon Sold Methods
+
+        private UserCouponBalance CheckSoldCoupon()
+        {
+            UserCouponBalance usrCouponSold = null;
+            if (!ByChief)
+            {
+
+            }
+            return usrCouponSold;
+        }
+
+        #endregion
+
         #region Revenue/Entry Date Check method(s)
 
         private void CheckRevenueDate()
@@ -2095,6 +2109,28 @@ namespace DMT.Services
             #region Revenue Entry
 
             Entry = new RevenueEntry();
+
+            if (!ByChief)
+            {
+                // Check User Coupon Sold Balance
+                var usrSold = CheckSoldCoupon();
+                if (null != usrSold)
+                {
+                    Entry.CouponSoldEnable = false;
+                    Entry.CouponSoldBHT35 = usrSold.CouponBHT35;
+                    Entry.CouponSoldBHT80 = usrSold.CouponBHT80;
+                    //Entry.CouponSoldBHT35Total = ;
+                    //Entry.CouponSoldBHT80Total;
+                }
+                else
+                {
+                    Entry.CouponSoldEnable = true;
+                }
+            }
+            else
+            {
+                Entry.CouponSoldEnable = true;
+            }
 
             bool success = UpdateRevenueEntry();
 

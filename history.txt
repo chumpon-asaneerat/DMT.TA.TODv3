@@ -49,8 +49,16 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1304
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1303
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1302
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - RevenueEntry model
+      - Add CouponSoldEnable (runtime only) property.
+  - DMT.TOD.App project
+    - Implements Revenue Entry CouponSold Supports #1.
+      - Update CollectorRevenueEntryPage
+      - Update RevenueEntryManager
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1301

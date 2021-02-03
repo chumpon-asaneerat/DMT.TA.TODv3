@@ -31,8 +31,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1300
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1299
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1298
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Update TA->Coupon->User route.
+      - Remove Current
+      - Add Sold
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1297

@@ -70,7 +70,7 @@
     <Compile Include="Consts\Routes\TAxTOD\TAxTOD.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TAxTOD\TCT\TAxTOD.TCT.RouteConsts.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\Actions\TSB\Current.cs" />
-    <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Current.cs" />
+    <Compile Include="Consts\Routes\TA\Coupon\Actions\User\Sold.cs" />
     <Compile Include="Consts\Routes\TA\Coupon\TA.Coupon.Controller.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Completed.cs" />
     <Compile Include="Consts\Routes\TA\Credit\Actions\User\Current.cs" />

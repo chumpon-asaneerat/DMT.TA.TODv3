@@ -51,7 +51,7 @@ AS
       FROM TSBCouponTransactionView A
      WHERE (    A.UserId IS NOT NULL
             AND A.UserId <> '')
-       --AND A.FinishFlag = 1 -- Avaliable.
+       AND A.FinishFlag = 1 -- Avaliable.
      GROUP BY A.TSBId
             , A.UserId
             --, A.UserReceiveDate

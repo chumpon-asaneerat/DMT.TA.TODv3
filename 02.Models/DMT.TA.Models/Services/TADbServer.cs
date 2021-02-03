@@ -2023,7 +2023,12 @@ namespace DMT.Services
             InitView("TSBCouponLaneBalanceView", 1, prefix);
             InitView("TSBCouponSoldByLaneBalanceView", 1, prefix);
             InitView("TSBCouponSoldByTSBBalanceView", 1, prefix);
-
+            // !!! Required 
+            // - TSBCouponSummarryView
+            // - TSBCouponStockBalanceView
+            // - TSBCouponLaneBalanceView
+            // - TSBCouponSoldByLaneBalanceView
+            // - TSBCouponSoldByTSBBalanceView
             InitView("TSBCouponBalanceView", 1, prefix);
 
             /*

@@ -49,8 +49,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1314
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1313
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1312
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - Remove UserCouponBalanceView.sql
+    - Remove UserCouponSoldBalanceView.sql
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1311

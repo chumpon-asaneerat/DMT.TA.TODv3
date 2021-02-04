@@ -2034,17 +2034,6 @@ namespace DMT.Services
             // - TSBCouponSoldByTSBBalanceView
             InitView("TSBCouponBalanceView", 1, prefix);
 
-            /*
-            InitView("UserCouponBalanceView", 1, prefix);
-
-            InitView("UserCouponSoldBalanceView", 1, prefix);
-
-            InitView("UserCoupon35SummaryView", 1, prefix);
-            InitView("UserCoupon80SummaryView", prefix);
-            InitView("UserCouponSummaryView", 1, prefix);
-            InitView("UserCouponTransactionView", 1, prefix);
-            */
-
             // Exchanges - Embeded resource used . instead / to access sub contents.
             prefix = @"Exchanges";
             InitView("TSBExchangeGroupView", 1, prefix);

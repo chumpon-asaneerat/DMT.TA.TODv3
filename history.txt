@@ -43,8 +43,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1316
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1315
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1314
-- 
+- DMT.TAxTODv3
+  - Add sample server coupon data structure.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1313

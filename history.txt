@@ -25,8 +25,39 @@
   - ป้อนรายได้ ปกติ
     - ถ้าต่อ Service ไม่ได้ หรือยอด คูปองเป็น 0 ยอมให้ Key
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1310
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1320
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1319
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1318
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1317
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1316
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1315
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1314
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1313
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1312
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1311
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1310
+- Prepare history.txt
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1309

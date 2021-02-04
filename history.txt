@@ -28,8 +28,12 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1310
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1309
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project
+    - Add TSBCouponSoldByTSBTransactionView.sql
+    - Add TSBCouponSoldByLaneTransactionView.sql
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1308

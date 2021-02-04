@@ -54,8 +54,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1343
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1342
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1341
-- 
+- DMT.TAxTODv3
+  - Note #9
+    - Databases
+      - Setup all new TSB/PlazaGroup/Plaza/Lane.
+      - Coupon need LaneeId/LaneNo
+    - TOD
+      - Update Config to show custom TSB Name.
+    - TA
+      - CouponSyncService.
+        - If local coupons is zero force sync.
+        - Add button Sync on Received Coupon/Return Coupon/TSB Sold Coupon.
+      - TODxTO IsAlive status bar need to why show offline when start a few seconds.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1340

@@ -42,8 +42,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1337
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1336
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1335
-- 
+- DMT.TAxTODv4
+  - Ported SmartcardM1Test from DMT.TAxTODv3
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1334

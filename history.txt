@@ -30,8 +30,10 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1340
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1339
-- 
+- DMT.TAxTODv4
+  - Ported DMT.Plaza.Simulator.App from DMT.TAxTODv3
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1338

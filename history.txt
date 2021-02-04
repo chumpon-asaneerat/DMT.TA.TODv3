@@ -39,8 +39,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1328
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1327
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1326
-- 
+- DMT.TAxTODv4
+  - Ported DMT.RabbitMQ.Client from DMT.TAxTODv3
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1325

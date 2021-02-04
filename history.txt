@@ -24,6 +24,7 @@
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
   - ป้อนรายได้ ปกติ
     - ถ้าต่อ Service ไม่ได้ หรือยอด คูปองเป็น 0 ยอมให้ Key
+  - URGENT: All coupon realted classes required LandId, LaneNo.
 --------------------------------------------------------------------------------------------
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1320
 - 
@@ -40,8 +41,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1317
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1316
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1315
-- 
+- DMT.TAxTODv3
+  history.txt update note.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1314

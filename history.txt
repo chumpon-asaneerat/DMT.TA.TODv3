@@ -27,8 +27,39 @@
   - URGENT: All coupon realted classes required LandId, LaneNo.
   - Bug TOD: Send Revenue to SCW -> RevenueDate is duplicate (but bagno is not same).
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1320
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1330
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1329
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1328
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1327
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1326
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1325
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1324
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1323
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1322
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1321
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1320
+- Prepare history.txt
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1319

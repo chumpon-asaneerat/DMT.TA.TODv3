@@ -8,6 +8,8 @@ using NLib.Reflection;
 
 namespace DMT.Models
 {
+    // TODO: Need LaneId, LaneNo
+
     /// <summary>The TAServerCouponTransaction class.</summary>
     public class TAServerCouponTransaction
     {

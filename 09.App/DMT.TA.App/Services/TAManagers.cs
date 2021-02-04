@@ -1091,6 +1091,8 @@ namespace DMT.Services
 
     #region TSB Coupon Manager related classes
 
+    // TODO: Need LaneId, LaneNo
+
     #region TSBCouponItem
 
     /// <summary>
@@ -1394,6 +1396,8 @@ namespace DMT.Services
 
     #endregion
 
+    // TODO: Need LaneId, LaneNo
+
     #region TSBCouponManager (abstract)
 
     /// <summary>
@@ -1547,6 +1551,8 @@ namespace DMT.Services
     }
 
     #endregion
+
+    // TODO: Need LaneId, LaneNo
 
     #region TSBCouponBorrowManager
 
@@ -1748,6 +1754,8 @@ namespace DMT.Services
     }
 
     #endregion
+
+    // TODO: Need LaneId, LaneNo
 
     #region TSBCouponReturnManager
 

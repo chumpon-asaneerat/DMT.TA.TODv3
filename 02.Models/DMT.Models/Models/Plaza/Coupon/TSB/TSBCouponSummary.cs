@@ -22,6 +22,8 @@ using System.Windows.Ink;
 
 namespace DMT.Models
 {
+	// TODO: Need LaneId, LaneNo
+
 	#region TSBCouponSummary (For Query only)
 
 	/// <summary>

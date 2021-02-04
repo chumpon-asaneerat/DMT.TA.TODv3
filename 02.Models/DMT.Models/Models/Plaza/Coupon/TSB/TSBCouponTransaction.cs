@@ -22,6 +22,8 @@ using System.Reflection;
 
 namespace DMT.Models
 {
+	// TODO: Need LaneId, LaneNo
+
 	#region TSBCouponTransaction
 
 	/// <summary>

@@ -70,7 +70,7 @@
     <Compile Include="Configurations\_Interfaces\04.ITAxTODConfig.cs" />
     <Compile Include="Configurations\_Interfaces\05.ITAAppConfig.cs" />
     <Compile Include="Configurations\_Interfaces\06.ITODAppConfig.cs" />
-    <Compile Include="Configurations\Configs\UI\UIConfigs.cs" />
+    <Compile Include="Configurations\Configs\UI\StatusBarConfig.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
     <Compile Include="Routes\RouteConsts.cs" />

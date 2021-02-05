@@ -41,8 +41,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1367
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1366
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1365
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Seperate ConfigManager.cs classes to individual files.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1364

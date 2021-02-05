@@ -57,6 +57,11 @@
     <Compile Include="Configurations\Configs\App\02.TODAppPlazaConfig.cs" />
     <Compile Include="Configurations\Configs\App\03.AccountAppPlazaConfig.cs" />
     <Compile Include="Configurations\Configs\App\04.PlazaAppConfig.cs" />
+    <Compile Include="Configurations\Manager\00.JsonConfigFileManger.cs" />
+    <Compile Include="Configurations\Manager\01.TAConfigManager.cs" />
+    <Compile Include="Configurations\Manager\02.TODConfigManager.cs" />
+    <Compile Include="Configurations\Manager\03.AccountConfigManager.cs" />
+    <Compile Include="Configurations\Manager\04.PlazaAppConfigManager.cs" />
     <Compile Include="Configurations\_Base\01.DMTConfig.cs" />
     <Compile Include="Configurations\_Base\02.WebServiceConfig.cs" />
     <Compile Include="Configurations\_Base\03.RabbitMQServiceConfig.cs" />
@@ -151,7 +156,6 @@
     <Compile Include="ExtensionMethods\RangeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Cmd.cs" />
-    <Compile Include="Configurations\Manager\ConfigManager.cs" />
     <Compile Include="Services\JsonMessageTransferService.cs" />
     <None Include="v1\Configurations\ApplicationConfigs.cs" />
     <None Include="v1\Configurations\ApplicationInferfaces.cs" />

@@ -35,8 +35,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1369
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1368
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1367
-- 
+- DMT.TAxTODv4
+  - DMT.Core project.
+    - Remove Routes folder from Consts folder.
+    - Ported Routes classes from DMT.TAxTODv3
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1366

@@ -54,9 +54,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\Configs\App\ApplicationConfigs.cs" />
+    <Compile Include="Configurations\_Base\01.DMTConfig.cs" />
+    <Compile Include="Configurations\_Base\02.WebServiceConfig.cs" />
+    <Compile Include="Configurations\_Base\03.RabbitMQServiceConfig.cs" />
+    <Compile Include="Configurations\_Base\04.TAxTODWebServiceConfig.cs" />
+    <Compile Include="Configurations\_Base\05.SCWWebServiceConfig.cs" />
+    <Compile Include="Configurations\_Base\06.TAAppWebServiceConfig.cs" />
+    <Compile Include="Configurations\_Base\07.TODAppWebServiceConfig.cs" />
     <Compile Include="Configurations\_Interfaces\ApplicationInferfaces.cs" />
     <Compile Include="Configurations\Configs\UI\UIConfigs.cs" />
-    <Compile Include="Configurations\_Base\_BaseConfigs.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
     <Compile Include="Routes\RouteConsts.cs" />

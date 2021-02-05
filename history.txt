@@ -25,7 +25,6 @@
   - ป้อนรายได้ ปกติ
     - ถ้าต่อ Service ไม่ได้ หรือยอด คูปองเป็น 0 ยอมให้ Key
   - URGENT: All coupon realted classes required LandId, LaneNo.
-  - Bug TOD: Send Revenue to SCW -> RevenueDate is duplicate (but bagno is not same).
 --------------------------------------------------------------------------------------------
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1350
 - 
@@ -48,8 +47,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1345
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1344
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1343
-- 
+- DMT.TAxTODv3
+  - Update history.txt note.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1342

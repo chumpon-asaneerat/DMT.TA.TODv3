@@ -50,8 +50,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1374
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1373
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1372
-- 
+- DMT.TAxTODv3
+  - Add DMT.Plaza.Models project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1371

@@ -41,8 +41,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1347
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1346
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1345
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models
+    - Temporary remove view related to UserCouponBalance.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1344

@@ -2018,8 +2018,8 @@ namespace DMT.Services
             prefix = @"Coupons";
             InitView("TSBCouponTransactionView", 1, prefix);
 
-            InitView("TSBCouponSoldByTSBTransactionView", 1, prefix);
-            InitView("TSBCouponSoldByLaneTransactionView", 1, prefix);
+            //InitView("TSBCouponSoldByTSBTransactionView", 1, prefix);
+            //InitView("TSBCouponSoldByLaneTransactionView", 1, prefix);
 
             InitView("TSBCouponSummarryView", 1, prefix);
             InitView("TSBCouponStockBalanceView", 1, prefix);

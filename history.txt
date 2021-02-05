@@ -47,8 +47,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1375
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1374
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1373
-- 
+- DMT.TAxTODv3
+  - Unload DMT.Account.Models project.
+  - Unload DMT.Plaza.Models project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1372

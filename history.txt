@@ -53,8 +53,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1373
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1372
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1371
-- 
+- DMT.TAxTODv4
+  - DMT.TOD.App project.
+    - App.xaml.cs
+      - Restore code -> comment out un implements code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1370

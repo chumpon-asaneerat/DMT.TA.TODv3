@@ -53,7 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\Configs\App\ApplicationConfigs.cs" />
+    <Compile Include="Configurations\Configs\App\01.TAAppPlazaConfig.cs" />
+    <Compile Include="Configurations\Configs\App\02.TODAppPlazaConfig.cs" />
+    <Compile Include="Configurations\Configs\App\03.AccountAppPlazaConfig.cs" />
+    <Compile Include="Configurations\Configs\App\04.PlazaAppConfig.cs" />
     <Compile Include="Configurations\_Base\01.DMTConfig.cs" />
     <Compile Include="Configurations\_Base\02.WebServiceConfig.cs" />
     <Compile Include="Configurations\_Base\03.RabbitMQServiceConfig.cs" />

@@ -430,6 +430,9 @@ namespace DMT.TOD.Pages.Revenue
             cbShifts.SelectedIndex = -1;
             LoadShifts();
 
+            // Setup entry date.
+            manager.EntryDate = DateTime.Now;
+
             // Set Bindings On Tab - Date Selection.
             dtEntryDate.DataContext = manager;
             dtRevDate.DataContext = manager;

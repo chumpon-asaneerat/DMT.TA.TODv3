@@ -338,6 +338,10 @@ namespace DMT.TOD.Pages.Revenue
             // Reset Plaza.
             cbPlazas.SelectedIndex = -1;
             LoadPlazaGroups();
+
+            // Setup entry date.
+            manager.EntryDate = DateTime.Now;
+
             // Load Job.
             RefreshJobList();
 

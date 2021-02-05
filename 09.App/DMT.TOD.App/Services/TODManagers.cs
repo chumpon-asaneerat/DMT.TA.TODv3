@@ -2113,23 +2113,25 @@ namespace DMT.Services
             if (!ByChief)
             {
                 // Check User Coupon Sold Balance
+                /*
                 var usrSold = CheckSoldCoupon();
                 if (null != usrSold)
                 {
-                    Entry.CouponSoldEnable = false;
-                    Entry.CouponSoldBHT35 = usrSold.CouponBHT35;
-                    Entry.CouponSoldBHT80 = usrSold.CouponBHT80;
+                    //Entry.CouponSoldEnable = false;
+                    //Entry.CouponSoldBHT35 = usrSold.CouponBHT35;
+                    //Entry.CouponSoldBHT80 = usrSold.CouponBHT80;
                     //Entry.CouponSoldBHT35Total = ;
                     //Entry.CouponSoldBHT80Total;
                 }
                 else
                 {
-                    Entry.CouponSoldEnable = true;
+                    //Entry.CouponSoldEnable = true;
                 }
+                */
             }
             else
             {
-                Entry.CouponSoldEnable = true;
+                //Entry.CouponSoldEnable = true;
             }
 
             bool success = UpdateRevenueEntry();
@@ -2579,7 +2581,16 @@ namespace DMT.Services
         public DateTime? EntryDate 
         {
             get { return _EntryDate; }
-            set { }
+            set 
+            {
+                if (_EntryDate != value)
+                {
+                    _EntryDate = value;
+                    RaiseChanged("EntryDate");
+                    RaiseChanged("EntryDateString");
+                    RaiseChanged("EntryDateTimeString");
+                }
+            }
         }
         /// <summary>
         /// Gets Entry Date String.

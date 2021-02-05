@@ -51,8 +51,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1344
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1343
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1342
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - Bug fixed Revenue Entry -> Entry date not update.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1341

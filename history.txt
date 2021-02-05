@@ -50,8 +50,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1364
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1363
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1362
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Seperate ApplicationInferfaces.cs interfaces  to individual files.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1361

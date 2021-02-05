@@ -39,7 +39,7 @@
                                       Click="cmdPrint_Click"
                                       DockPanel.Dock="Right"
                                       ImageSource="/DMT.TOD.App;component/Images/Button/Printer3.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="พิมพิ์" />
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="พิมพ์" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdCancel"

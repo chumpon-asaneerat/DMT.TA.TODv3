@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1346
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1345
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1344
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - All preview print button fixed misspell text (3 reports).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1343

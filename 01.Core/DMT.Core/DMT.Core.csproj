@@ -155,7 +155,7 @@
     <Compile Include="ExtensionMethods\NJson.cs" />
     <Compile Include="ExtensionMethods\RangeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Cmd.cs" />
+    <Compile Include="Services\CommandLine.cs" />
     <Compile Include="Services\JsonMessageTransferService.cs" />
     <None Include="v1\Configurations\ApplicationConfigs.cs" />
     <None Include="v1\Configurations\ApplicationInferfaces.cs" />

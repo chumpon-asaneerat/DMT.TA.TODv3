@@ -32,8 +32,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1370
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1369
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1368
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Rename cmd.cs to CommandLine.cs
+- DMT.TAxTODv4
+  - DMT.Core project.
+    - Rename cmd.cs to CommandLine.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1367

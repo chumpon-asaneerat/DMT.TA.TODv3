@@ -53,10 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\ApplicationConfigs.cs" />
-    <Compile Include="Configurations\ApplicationInferfaces.cs" />
-    <Compile Include="Configurations\UIConfigs.cs" />
-    <Compile Include="Configurations\_BaseConfigs.cs" />
+    <Compile Include="Configurations\Configs\App\ApplicationConfigs.cs" />
+    <Compile Include="Configurations\_Interfaces\ApplicationInferfaces.cs" />
+    <Compile Include="Configurations\Configs\UI\UIConfigs.cs" />
+    <Compile Include="Configurations\_Base\_BaseConfigs.cs" />
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="Consts\ErrorConsts.cs" />
     <Compile Include="Routes\RouteConsts.cs" />
@@ -137,7 +137,7 @@
     <Compile Include="ExtensionMethods\RangeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Cmd.cs" />
-    <Compile Include="Configurations\ConfigManager.cs" />
+    <Compile Include="Configurations\Manager\ConfigManager.cs" />
     <Compile Include="Services\JsonMessageTransferService.cs" />
     <None Include="v1\Configurations\ApplicationConfigs.cs" />
     <None Include="v1\Configurations\ApplicationInferfaces.cs" />

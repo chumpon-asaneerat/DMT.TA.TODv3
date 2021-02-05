@@ -29,8 +29,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1360
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1359
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Restructure Configurations files and folders.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1358

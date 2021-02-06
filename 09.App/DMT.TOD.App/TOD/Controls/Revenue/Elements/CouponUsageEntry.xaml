@@ -48,6 +48,14 @@
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
                 </StackPanel>
+                <!--  COUPON 60 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource CouponUsage60Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource CouponUsageBHT60}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
+                </StackPanel>
                 <!--  COUPON 70 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource CouponUsage70Description}" />

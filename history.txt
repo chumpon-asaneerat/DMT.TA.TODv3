@@ -53,8 +53,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1413
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1412
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1411
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update RevenueEntryStyle.xaml
+      - Add Coupon Usage 60 BHT
+  - DMT.TOD.App project
+    - Update CouponUsageEntry supports Coupon Usage 60 BHT
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1410

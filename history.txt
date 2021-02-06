@@ -32,8 +32,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1400
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1399
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1398
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #5.
+    - All SCW models (no changed).
+  - DMT.TAxTODv3 -> Remove UIModels.cs.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1397

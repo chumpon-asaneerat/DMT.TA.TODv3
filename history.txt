@@ -38,8 +38,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1378
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1377
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1376
-- 
+- DMT.TAxTODv4
+  - DMT.TOD.App project
+    - Refactor TODApp.cs #2
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1375

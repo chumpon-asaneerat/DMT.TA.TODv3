@@ -35,8 +35,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1379
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1378
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1377
-- 
+- DMT.TAxTODv4
+  - DMT.TA.App project
+    - Refactor TAApp.cs #2
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1376

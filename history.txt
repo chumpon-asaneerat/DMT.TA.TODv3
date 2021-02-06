@@ -29,8 +29,10 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1390
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1389
-- 
+- DMT.TAxTODv4
+  - Rebuild all projects - Success.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1388

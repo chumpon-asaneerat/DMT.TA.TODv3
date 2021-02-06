@@ -41,8 +41,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1397
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1396
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1395
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #2.
+    - Role model (add check parameter is null).
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1394

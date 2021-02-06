@@ -215,6 +215,11 @@ namespace DMT.Models
 				result.DbConenctFailed();
 				return result;
 			}
+			if (string.IsNullOrWhiteSpace(roleId))
+			{
+				result.ParameterIsNull();
+				return result;
+			}
 			lock (sync)
 			{
 				MethodBase med = MethodBase.GetCurrentMethod();
@@ -266,6 +271,11 @@ namespace DMT.Models
 				result.DbConenctFailed();
 				return result;
 			}
+			if (null == value)
+			{
+				result.ParameterIsNull();
+				return result;
+			}
 			lock (sync)
 			{
 				MethodBase med = MethodBase.GetCurrentMethod();
@@ -288,53 +298,5 @@ namespace DMT.Models
 		#endregion
 	}
 
-	#endregion
-
-	#region Search (Role)
-	/*
-	partial class Search
-	{
-		/// <summary>
-		/// Search (Role).
-		/// </summary>
-		public static class Roles
-		{
-			#region ById
-
-			/// <summary>
-			/// Seach Role By Role Id.
-			/// </summary>
-			public class ById : NSearch<ById>
-			{
-				#region Public Properties
-
-				/// <summary>
-				/// Gets or sets Role Id.
-				/// </summary>
-				public string RoleId { get; set; }
-
-				#endregion
-
-				#region Static Method (Create)
-
-				/// <summary>
-				/// Create Search instance.
-				/// </summary>
-				/// <param name="roleId">The Role Id.</param>
-				/// <returns>Returns Search instance.</returns>
-				public static ById Create(string roleId)
-				{
-					var ret = new ById();
-					ret.RoleId = roleId;
-					return ret;
-				}
-
-				#endregion
-			}
-
-			#endregion
-		}
-	}
-	*/
 	#endregion
 }

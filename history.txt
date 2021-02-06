@@ -32,8 +32,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1410
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1409
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1408
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Models project.
+    - Rework PlazaDbServer.cs.
+- DMT.TAxTODv4
+  - DMT.Plaza.Models project.
+    - Ported PlazaDbServer.cs from DMT.TAxTODv3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1407

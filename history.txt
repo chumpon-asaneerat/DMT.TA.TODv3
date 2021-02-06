@@ -41,8 +41,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1417
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1416
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1415
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Models project refactor #3.
+    - Add View Scripts (LaneView.sql, PlazaGroupView.sql, PlazaView.sql)
+  - DMT.Plaza.Models project refactor #3.
+    - Add View Scripts (LaneView.sql, PlazaGroupView.sql, PlazaView.sql)
+  - DMT.TA.Models project refactor #3.
+    - Add View Scripts (LaneView.sql, PlazaGroupView.sql, PlazaView.sql)
+  - DMT.TOD.Models project refactor #3.
+    - Add View Scripts (LaneView.sql, PlazaGroupView.sql, PlazaView.sql)
+- DMT.TAxTODv3
+  - DMT.Plaza.Models project refactor #3.
+    - Add View Scripts (LaneView.sql, PlazaGroupView.sql, PlazaView.sql)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1414

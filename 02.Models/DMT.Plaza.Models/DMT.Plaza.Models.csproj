@@ -109,14 +109,17 @@
       <Name>DMT.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Scripts\Infrastructures\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Users\UserView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Infrastructures\LaneView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaGroupView.sql" />
+    <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaView.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

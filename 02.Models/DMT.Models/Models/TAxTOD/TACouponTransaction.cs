@@ -10,13 +10,13 @@ namespace DMT.Models
 {
     // Server data result.
     /*
-   {
+    {
       "RowNo": "1",
-      "CouponPK": 16,
-      "TransactionDate": "2020-11-16T10:16:18.910Z",
-      "TSBId": "319",
+      "CouponPK": 8,
+      "TransactionDate": "2020-11-16T10:16:18.893Z",
+      "TSBId": "09",
       "CouponType": "35",
-      "SerialNo": "ข003997",
+      "SerialNo": "ข003954",
       "Price": 665,
       "UserId": "",
       "UserReceiveDate": null,
@@ -27,14 +27,13 @@ namespace DMT.Models
       "FinishFlag": "1",
       "SapChooseFlag": "1",
       "SapChooseDate": null,
-      "SAPSysSerial": 742111,
+      "SAPSysSerial": 742068,
       "SAPWhsCode": "CAS",
       "TollWayId": 9,
       "SAPItemName": "Coupon 35 Baht",
-      "sendtaflag": "1"
+      "sendtaflag": "0"
     }
     */
-    // TODO: Need LaneId, LaneNo
 
     /// <summary>The TAServerCouponTransaction class.</summary>
     public class TAServerCouponTransaction

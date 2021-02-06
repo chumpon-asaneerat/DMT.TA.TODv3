@@ -53,8 +53,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1403
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1402
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1401
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #7.
+    - TAxTOD models
+      - TACouponReveiced (no changed).
+      - TACouponTransaction (rechecked LandId is already mapped).
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1400

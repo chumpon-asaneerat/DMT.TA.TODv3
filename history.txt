@@ -50,8 +50,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1384
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1383
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1382
-- 
+- DMT.TAxTODv4
+  - DMT.TA.App project
+    - Refactor TAApp.cs #3
+    - Pages
+      - Refactor MainMenu #1.
+      - Refactor ReportMenu #1.
+      - Refactor ConfigMenu #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1381

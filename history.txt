@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1386
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1385
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1384
-- 
+- DMT.TAxTODv4
+  - DMT.TA.App project
+    - Refactor Header controls and elements #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1383

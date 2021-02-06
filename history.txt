@@ -35,8 +35,23 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1409
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1408
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1407
-- 
+- DMT.TAxTODv3
+  - DMT.Account.Models project.
+    - Update InitMCoupon method.
+  - DMT.Plaza.Models project.
+    - Add UserView.sql
+    - Update InitMCoupon method.
+    - Init UserView.
+  - DMT.TA.Models project.
+    - Update InitMCoupon method.
+  - DMT.TOD.Models project.
+    - Update InitMCoupon method.
+- DMT.TAxTODv4
+  - DMT.Account.Models project.
+    - Update InitMCoupon method.
+    - Remove all Infrastructure related methods.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1406

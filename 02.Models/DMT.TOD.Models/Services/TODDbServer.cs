@@ -297,6 +297,14 @@ namespace DMT.Services
             item = new MCoupon()
             {
                 couponId = 3,
+                couponValue = 60,
+                abbreviation = "60",
+                description = "60 บาท"
+            };
+            if (!MCoupon.Exists(item)) MCoupon.Save(item);
+            item = new MCoupon()
+            {
+                couponId = 4,
                 couponValue = 70,
                 abbreviation = "70",
                 description = "70 บาท"
@@ -304,7 +312,7 @@ namespace DMT.Services
             if (!MCoupon.Exists(item)) MCoupon.Save(item);
             item = new MCoupon()
             {
-                couponId = 4,
+                couponId = 5,
                 couponValue = 80,
                 abbreviation = "80",
                 description = "80 บาท"

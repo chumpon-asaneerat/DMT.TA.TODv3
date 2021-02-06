@@ -44,8 +44,26 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1416
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1415
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1414
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Models project refactor #2.
+    - Update AccountDbServer.cs
+      - Init TSB/PlazaGroup/Plaza/Lane table.
+      - Update InitRoleAndUsers -> Set password date for all users.
+  - DMT.Plaza.Models project refactor #2.
+    - Update PlazaDbServer.cs
+      - Init TSB/PlazaGroup/Plaza/Lane table.
+      - Update InitRoleAndUsers -> Set password date for all users.
+  - DMT.TA.Models project refactor #2.
+    - Update TADbServer.cs
+      - Init TSB/PlazaGroup/Plaza/Lane table.
+      - Update InitRoleAndUsers -> Set password date for all users.
+  - DMT.TOD.Models project refactor #2.
+    - Update TODDbServer.cs
+      - Init TSB/PlazaGroup/Plaza/Lane table.
+      - Update InitRoleAndUsers -> Set password date for all users.
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1413

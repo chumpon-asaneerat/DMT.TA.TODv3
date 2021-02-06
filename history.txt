@@ -35,8 +35,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1389
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1388
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1387
-- 
+- DMT.TAxTODv4
+  - DMT.TA.App project
+    - Refactor StatusBar controls and elements #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1386

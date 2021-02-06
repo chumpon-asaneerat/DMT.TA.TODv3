@@ -32,8 +32,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1420
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1419
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1418
-- 
+- DMT.TAxTODv4
+  - DMT.Core project
+    - Implements JsonTypeMQService #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1417

@@ -41,8 +41,20 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1407
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1406
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1405
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Models project refactor #1.
+    - Add UserView.sql
+  - DMT.Plaza.Models project refactor #1.
+    - Add UserView.sql
+  - DMT.TA.Models project refactor #1.
+    - Add UserView.sql
+  - DMT.TOD.Models project refactor #1.
+    - Add UserView.sql
+  - DMT.TAxTODv3
+    - DMT.Plaza.Models project
+      - Add UserView.sql
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1404

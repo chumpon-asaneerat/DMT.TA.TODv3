@@ -111,10 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Scripts\Infrastructures\" />
-    <Folder Include="Views\Scripts\Users\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Users\UserView.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

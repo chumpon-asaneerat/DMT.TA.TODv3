@@ -50,8 +50,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1404
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1403
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1402
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #8.
+    - DMT.Search.cs - ported (comment out some code until related model is ported).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1401

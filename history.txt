@@ -26,8 +26,43 @@
     - ถ้าต่อ Service ไม่ได้ หรือยอด คูปองเป็น 0 ยอมให้ Key
   - URGENT: All coupon realted classes required LandId, LaneNo.
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1410
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1420
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1419
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1418
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1417
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1416
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1415
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1414
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1413
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1412
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1411
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1410
+- Prepare history.txt
+- DMT.TAxTODv3
+  - DMT.Models project
+    - SCWExtensionMethods
+      - ToServer method - Add supports Coupon Usage 60 BHT
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1409

@@ -162,6 +162,7 @@ namespace DMT.Models.ExtensionMethods
             // Coupon Usage (coupon)
             inst.couponTotalAmount = (value.CouponUsageBHT30 * 30) +
                 (value.CouponUsageBHT35 * 35) +
+                (value.CouponUsageBHT60 * 60) +
                 (value.CouponUsageBHT70 * 70) +
                 (value.CouponUsageBHT80 * 80);
             inst.couponList = new List<SCWDeclareCoupon>();
@@ -177,6 +178,7 @@ namespace DMT.Models.ExtensionMethods
             {
                 addToCouponList(inst.couponList, 30, value.CouponUsageBHT30);
                 addToCouponList(inst.couponList, 35, value.CouponUsageBHT35);
+                addToCouponList(inst.couponList, 60, value.CouponUsageBHT60);
                 addToCouponList(inst.couponList, 70, value.CouponUsageBHT70);
                 addToCouponList(inst.couponList, 80, value.CouponUsageBHT80);
             }

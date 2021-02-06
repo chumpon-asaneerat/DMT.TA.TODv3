@@ -392,6 +392,11 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
+            if (null == value)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
             lock (sync)
             {
                 MethodBase med = MethodBase.GetCurrentMethod();

@@ -41,8 +41,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1377
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1376
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1375
-- 
+- DMT.TAxTODv4
+  - DMT.Account.App project
+    - Refactor AccountApp.cs #1
+  - DMT.Plaza.Simulatir.App project
+    - Refactor SimApp.cs #1
+  - DMT.TA.App project
+    - Refactor TAApp.cs #1
+  - DMT.TOD.App project
+    - Refactor TODApp.cs #1
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1374

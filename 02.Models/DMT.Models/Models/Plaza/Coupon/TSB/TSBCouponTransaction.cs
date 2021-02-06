@@ -48,7 +48,6 @@ namespace DMT.Models
       "sendtaflag": "1"
     }
     */
-    // TODO: Need LaneId, LaneNo
 
     #region TSBCouponTransaction
 
@@ -83,6 +82,10 @@ namespace DMT.Models
         private string _FullNameEN = string.Empty;
         private string _FullNameTH = string.Empty;
         private DateTime? _UserReceivedDate = new DateTime?();
+
+        // Lane
+        private string _LaneId = string.Empty;
+
         // Sold
         private DateTime? _SoldDate = new DateTime?();
         private string _SoldBy = string.Empty;
@@ -596,6 +599,34 @@ namespace DMT.Models
                 return ret;
             }
             set { }
+        }
+
+        #endregion
+
+        #region Lane
+
+        /// <summary>
+        /// Gets or sets LaneId
+        /// </summary>
+        [Category("Sold")]
+        [Description("Gets or sets LaneId")]
+        [ReadOnly(true)]
+        [MaxLength(10)]
+        [PropertyMapName("LaneId")]
+        public virtual string LaneId
+        {
+            get
+            {
+                return _LaneId;
+            }
+            set
+            {
+                if (_LaneId != value)
+                {
+                    _LaneId = value;
+                    this.RaiseChanged("LaneId");
+                }
+            }
         }
 
         #endregion

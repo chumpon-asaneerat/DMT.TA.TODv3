@@ -284,6 +284,9 @@ namespace DMT.Models.ExtensionMethods
             inst.CouponType = (CouponType)value.CouponType.Value();
             inst.FinishFlag = (TSBCouponFinishedFlags)value.FinishFlag.Value();
             inst.Price = value.Price.Value();
+
+            inst.LaneId = value.LaneId;
+
             inst.SoldBy = value.SoldBy;
             var soldUsr = (!string.IsNullOrWhiteSpace(value.SoldBy)) ?
                 User.GetByUserId(value.SoldBy).Value() : null;
@@ -358,6 +361,8 @@ namespace DMT.Models.ExtensionMethods
             inst.TollWayId = value.TollWayId;
             inst.SAPItemName = value.SAPItemName;
             //inst.sendtaflag = value.sendtaflag;
+
+            inst.LaneId = (!string.IsNullOrEmpty(value.LaneId)) ? value.LaneId : null;
 
             inst.CouponType = (int)value.CouponType;
             inst.FinishFlag = (int)value.FinishFlag;

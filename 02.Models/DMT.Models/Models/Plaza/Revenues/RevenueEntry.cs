@@ -91,6 +91,7 @@ namespace DMT.Models
         // Coupon Usage
         private int _CouponUsageBHT30 = 0;
         private int _CouponUsageBHT35 = 0;
+        private int _CouponUsageBHT60 = 0;
         private int _CouponUsageBHT70 = 0;
         private int _CouponUsageBHT80 = 0;
         // Free Pass
@@ -1357,6 +1358,26 @@ namespace DMT.Models
                     _CouponUsageBHT35 = value;
                     // Raise event.
                     this.RaiseChanged("CouponUsageBHT35");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets number of 60 BHT coupon.
+        /// </summary>
+        [Category("Coupon Usage")]
+        [Description("Gets or sets number of 60 BHT coupon.")]
+        [PropertyMapName("CouponUsageBHT60")]
+        public int CouponUsageBHT60
+        {
+            get { return _CouponUsageBHT60; }
+            set
+            {
+                if (value < 0) return;
+                if (_CouponUsageBHT60 != value)
+                {
+                    _CouponUsageBHT60 = value;
+                    // Raise event.
+                    this.RaiseChanged("CouponUsageBHT60");
                 }
             }
         }

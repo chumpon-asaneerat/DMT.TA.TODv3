@@ -29,8 +29,16 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1410
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1409
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - RevenueEntry model
+      - Add CouponUsageBHT60 property.
+    - TSBCouponTransaction
+      - Add LaneId property.
+    - TAxTODExtensionMethods
+      - update code -> LaneId.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1408

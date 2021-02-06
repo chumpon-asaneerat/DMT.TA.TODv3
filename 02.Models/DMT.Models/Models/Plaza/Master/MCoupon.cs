@@ -21,6 +21,50 @@ using System.Reflection;
 
 namespace DMT.Models
 {
+	// Sample date from SCW
+	/*
+
+	{
+		"list": [
+			{
+				"couponId": 1,
+				"couponValue": 30,
+				"abbreviation": "30",
+				"description": "30 บาท"
+			},
+			{
+				"couponId": 2,
+				"couponValue": 35,
+				"abbreviation": "35",
+				"description": "35 บาท"
+			},
+			{
+				"couponId": 3,
+				"couponValue": 60,
+				"abbreviation": "60",
+				"description": "60 บาท"
+			},
+			{
+				"couponId": 4,
+				"couponValue": 70,
+				"abbreviation": "70",
+				"description": "70 บาท"
+			},
+			{
+				"couponId": 5,
+				"couponValue": 80,
+				"abbreviation": "80",
+				"description": "80 บาท"
+			}
+		],
+		"status": {
+			"code": "S200",
+			"message": "Success"
+		}
+	}
+
+	*/
+
 	/// <summary>
 	/// The MCoupon Data Model class.
 	/// </summary>
@@ -35,7 +79,10 @@ namespace DMT.Models
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MCoupon() : base() { }
+		public MCoupon() : base()
+		{
+			ActiveStatus = MActiveStatus.Active;
+		}
 
 		#endregion
 
@@ -71,6 +118,14 @@ namespace DMT.Models
 		[Description("Gets or sets description.")]
 		[PropertyMapName("description")]
 		public string description { get; set; }
+
+		/// <summary>
+		/// Gets or sets active status.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets or sets active status.")]
+		[PropertyMapName("ActiveStatus")]
+		public MActiveStatus ActiveStatus { get; set; }
 
 		#endregion
 
@@ -132,11 +187,19 @@ namespace DMT.Models
 				SQLiteConnection db = Default;
 				MethodBase med = MethodBase.GetCurrentMethod();
 				var result = new NDbResult();
+				if (null == db)
+				{
+					result.DbConenctFailed();
+					return result;
+				}
+				var originals = GetCoupons().Value();
 				try
 				{
 					db.BeginTransaction();
 					values.ForEach(value =>
 					{
+						var match = originals.Find(item => { return item.couponId == value.couponId; });
+						if (null != match) value.ActiveStatus = match.ActiveStatus; // Keep original status.
 						MCoupon.Save(value);
 					});
 					db.Commit();

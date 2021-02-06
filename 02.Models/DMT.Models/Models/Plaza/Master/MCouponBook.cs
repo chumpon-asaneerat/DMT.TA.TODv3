@@ -21,6 +21,32 @@ using System.Reflection;
 
 namespace DMT.Models
 {
+	// Sample date from SCW
+	/*
+
+	{
+		"list": [
+			{
+				"couponBookId": 1,
+				"couponBookValue": 665,
+				"abbreviation": "35",
+				"description": "35 บาท"
+			},
+			{
+				"couponBookId": 2,
+				"couponBookValue": 1520,
+				"abbreviation": "80",
+				"description": "80 บาท"
+			}
+		],
+		"status": {
+			"code": "S200",
+			"message": "Success"
+		}
+	}
+
+	*/
+
 	/// <summary>
 	/// The MCoupon Data Model class.
 	/// </summary>
@@ -35,7 +61,10 @@ namespace DMT.Models
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MCouponBook() : base() { }
+		public MCouponBook() : base()
+		{
+			ActiveStatus = MActiveStatus.Active;
+		}
 
 		#endregion
 
@@ -71,6 +100,14 @@ namespace DMT.Models
 		[Description("Gets or sets description.")]
 		[PropertyMapName("description")]
 		public string description { get; set; }
+
+		/// <summary>
+		/// Gets or sets active status.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets or sets active status.")]
+		[PropertyMapName("ActiveStatus")]
+		public MActiveStatus ActiveStatus { get; set; }
 
 		#endregion
 
@@ -132,11 +169,19 @@ namespace DMT.Models
 				SQLiteConnection db = Default;
 				MethodBase med = MethodBase.GetCurrentMethod();
 				var result = new NDbResult();
+				if (null == db)
+				{
+					result.DbConenctFailed();
+					return result;
+				}
+				var originals = GetCouponBooks().Value();
 				try
 				{
 					db.BeginTransaction();
 					values.ForEach(value =>
 					{
+						var match = originals.Find(item => { return item.couponBookId == value.couponBookId; });
+						if (null != match) value.ActiveStatus = match.ActiveStatus; // Keep original status.
 						MCouponBook.Save(value);
 					});
 					db.Commit();

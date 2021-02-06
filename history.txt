@@ -47,8 +47,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1405
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1404
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1403
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #9.
+    - All master models
+      - Add ActiveStatus property.
+      - Add check original status and update to new data when save all items.
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1402

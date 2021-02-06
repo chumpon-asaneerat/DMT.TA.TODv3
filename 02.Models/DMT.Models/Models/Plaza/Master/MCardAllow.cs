@@ -21,6 +21,30 @@ using System.Reflection;
 
 namespace DMT.Models
 {
+	// Sample date from SCW
+	/*
+
+	{
+		"list": [
+			{
+				"cardAllowId": 1,
+				"abbreviation": "Card DMT P1",
+				"description": "บัตร DMT (ป 1)"
+			},
+			{
+				"cardAllowId": 2,
+				"abbreviation": "Card DMT P2",
+				"description": "บัตร DMT (ป 2)"
+			}
+		],
+		"status": {
+			"code": "S200",
+			"message": "Success"
+		}
+	}
+
+	*/
+
 	/// <summary>
 	/// The MCardAllow Data Model class.
 	/// </summary>
@@ -35,7 +59,10 @@ namespace DMT.Models
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MCardAllow() : base() { }
+		public MCardAllow() : base()
+		{
+			ActiveStatus = MActiveStatus.Active;
+		}
 
 		#endregion
 
@@ -63,6 +90,14 @@ namespace DMT.Models
 		[Description("Gets or sets description.")]
 		[PropertyMapName("description")]
 		public string description { get; set; }
+
+		/// <summary>
+		/// Gets or sets active status.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets or sets active status.")]
+		[PropertyMapName("ActiveStatus")]
+		public MActiveStatus ActiveStatus { get; set; }
 
 		#endregion
 
@@ -124,11 +159,19 @@ namespace DMT.Models
 				SQLiteConnection db = Default;
 				MethodBase med = MethodBase.GetCurrentMethod();
 				var result = new NDbResult();
+				if (null == db)
+				{
+					result.DbConenctFailed();
+					return result;
+				}
+				var originals = GetCardAllows().Value();
 				try
 				{
 					db.BeginTransaction();
-					values.ForEach(value => 
+					values.ForEach(value =>
 					{
+						var match = originals.Find(item => { return item.cardAllowId == value.cardAllowId; });
+						if (null != match) value.ActiveStatus = match.ActiveStatus; // Keep original status.
 						MCardAllow.Save(value);
 					});
 					db.Commit();

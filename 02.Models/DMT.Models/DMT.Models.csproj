@@ -132,6 +132,7 @@
     <Compile Include="Models\Plaza\Infrastructures\PlazaGroup.cs" />
     <Compile Include="Models\Plaza\Infrastructures\TSB.cs" />
     <Compile Include="Models\Plaza\Infrastructures\UIModels.cs" />
+    <Compile Include="Models\Plaza\Master\MActiveStatus.cs" />
     <Compile Include="Models\Plaza\Master\MCardAllow.cs" />
     <Compile Include="Models\Plaza\Master\MCoupon.cs" />
     <Compile Include="Models\Plaza\Master\MCouponBook.cs" />

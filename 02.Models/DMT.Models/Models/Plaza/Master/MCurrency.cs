@@ -21,6 +21,116 @@ using System.Reflection;
 
 namespace DMT.Models
 {
+	// Sample date from SCW
+	/*
+
+	{
+		"list": [
+			{
+				"currencyId": 1,
+				"currencyDenomId": 1,
+				"abbreviation": "Satang26",
+				"description": "26 Satang",
+				"denomValue": 0.26,
+				"denomTypeId": 2
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 2,
+				"abbreviation": "Satang50",
+				"description": "50 Satang",
+				"denomValue": 0.5,
+				"denomTypeId": 2
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 3,
+				"abbreviation": "Baht1",
+				"description": "1 Baht",
+				"denomValue": 1,
+				"denomTypeId": 2
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 4,
+				"abbreviation": "Baht2",
+				"description": "2 Baht",
+				"denomValue": 2,
+				"denomTypeId": 2
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 5,
+				"abbreviation": "Baht5",
+				"description": "5 Baht",
+				"denomValue": 5,
+				"denomTypeId": 2
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 6,
+				"abbreviation": "CBaht10",
+				"description": "10Baht",
+				"denomValue": 10,
+				"denomTypeId": 2
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 7,
+				"abbreviation": "NBaht10",
+				"description": "10 Baht",
+				"denomValue": 10,
+				"denomTypeId": 1
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 8,
+				"abbreviation": "NBaht20",
+				"description": "20 Baht",
+				"denomValue": 20,
+				"denomTypeId": 1
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 9,
+				"abbreviation": "NBaht50",
+				"description": "50 Baht",
+				"denomValue": 50,
+				"denomTypeId": 1
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 10,
+				"abbreviation": "NBaht100",
+				"description": "100 Baht",
+				"denomValue": 100,
+				"denomTypeId": 1
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 11,
+				"abbreviation": "NBaht500",
+				"description": "500 Baht",
+				"denomValue": 500,
+				"denomTypeId": 1
+			},
+			{
+				"currencyId": 1,
+				"currencyDenomId": 12,
+				"abbreviation": "NBaht1000",
+				"description": "1000 Baht",
+				"denomValue": 1000,
+				"denomTypeId": 1
+			}
+		],
+		"status": {
+			"code": "S200",
+			"message": "Success"
+		}
+	}
+
+	*/
+
 	/// <summary>
 	/// The MCurrency Data Model class.
 	/// </summary>
@@ -35,7 +145,10 @@ namespace DMT.Models
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MCurrency() : base() { }
+		public MCurrency() : base()
+		{
+			ActiveStatus = MActiveStatus.Active;
+		}
 
 		#endregion
 
@@ -84,6 +197,14 @@ namespace DMT.Models
 		[Description("Gets or sets description.")]
 		[PropertyMapName("description")]
 		public string description { get; set; }
+
+		/// <summary>
+		/// Gets or sets active status.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets or sets active status.")]
+		[PropertyMapName("ActiveStatus")]
+		public MActiveStatus ActiveStatus { get; set; }
 
 		#endregion
 
@@ -145,11 +266,19 @@ namespace DMT.Models
 				SQLiteConnection db = Default;
 				MethodBase med = MethodBase.GetCurrentMethod();
 				var result = new NDbResult();
+				if (null == db)
+				{
+					result.DbConenctFailed();
+					return result;
+				}
+				var originals = GetCurrencies().Value();
 				try
 				{
 					db.BeginTransaction();
 					values.ForEach(value =>
 					{
+						var match = originals.Find(item => { return item.currencyDenomId == value.currencyDenomId; });
+						if (null != match) value.ActiveStatus = match.ActiveStatus; // Keep original status.
 						MCurrency.Save(value);
 					});
 					db.Commit();

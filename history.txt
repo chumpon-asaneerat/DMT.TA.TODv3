@@ -38,8 +38,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1398
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1397
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1396
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #3.
+    - User model (add check parameter is null, Update SaveUser method assign more proeprties in match user see code).
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1395

@@ -38,8 +38,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1418
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1417
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1416
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Models project refactor #4.
+    - Update AccountDbServer.cs -> init view (LaneView, PlazaGroupView, PlazaView)
+  - DMT.Plaza.Models project refactor #4.
+    - Update PlazaDbServer.cs -> init view (LaneView, PlazaGroupView, PlazaView)
+  - DMT.TA.Models project refactor #4.
+    - Update TADbServer.cs -> init view (LaneView, PlazaGroupView, PlazaView)
+  - DMT.TOD.Models project refactor #4.
+    - Update TODDbServer.cs -> init view (LaneView, PlazaGroupView, PlazaView)
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1415

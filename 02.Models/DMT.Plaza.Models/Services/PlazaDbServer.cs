@@ -392,9 +392,9 @@ namespace DMT.Services
 
             // Infrastructures - Embeded resource used . instead / to access sub contents.
             prefix = @"Infrastructures";
-            //InitView("PlazaGroupView", 1, prefix);
-            //InitView("PlazaView", 1, prefix);
-            //InitView("LaneView", 1, prefix);
+            InitView("PlazaGroupView", 1, prefix);
+            InitView("PlazaView", 1, prefix);
+            InitView("LaneView", 1, prefix);
 
             // Users - Embeded resource used . instead / to access sub contents.
             prefix = @"Users";

@@ -29,8 +29,12 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1400
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1399
-- 
+- DMT.TAxTODv4
+  - DMT.Models project refactor #6.
+    - All RabbitMQ models (update ToLocal/ToLocals code).
+  - DMT.TAxTODv3 -> Sync with new code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1398

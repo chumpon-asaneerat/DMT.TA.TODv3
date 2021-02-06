@@ -130,10 +130,16 @@ namespace DMT.Models
                         if (null != role)
                         {
                             inst.RoleId = role.RoleId;
+                            inst.RoleNameEN = role.RoleNameEN;
+                            inst.RoleNameTH = role.RoleNameTH;
                         }
                         else
                         {
                             Console.WriteLine("Not Found Group: " + inst.GroupId);
+
+                            inst.RoleId = null;
+                            inst.RoleNameEN = null;
+                            inst.RoleNameTH = null;
                         }
                     }
 

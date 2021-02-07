@@ -50,8 +50,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1424
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1423
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1422
-- 
+- DMT.TAxTODv3
+  - DMT.Account.Core project
+    - Update InitTSBAndPlazaAndLanes method.
+  - DMT.TA.Core project
+    - Update InitTSBAndPlazaAndLanes method.
+  - DMT.TOD.Core project
+    - Update InitTSBAndPlazaAndLanes method.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1421

@@ -380,10 +380,10 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "311";
+            item.TSBId = "01";
             item.TSBNameEN = "DIN DAENG";
             item.TSBNameTH = "ดินแดง";
-            item.Active = true;
+            item.Active = false;
             if (!TSB.Exists(item)) TSB.Save(item);
             // init default credit value.
             InitTSBCreditInitializeTransaction(item);
@@ -406,7 +406,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3101",
+                PlazaId = "011",
                 SCWPlazaId = 1,
                 PlazaNameEN = "DIN DAENG 1",
                 PlazaNameTH = "ดินแดง 1",
@@ -492,7 +492,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3102",
+                PlazaId = "012",
                 SCWPlazaId = 2,
                 PlazaNameEN = "DIN DAENG 2",
                 PlazaNameTH = "ดินแดง 2",
@@ -584,7 +584,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "312";
+            item.TSBId = "02";
             item.TSBNameEN = "SUTHISARN";
             item.TSBNameTH = "สุทธิสาร";
             item.Active = false;
@@ -610,7 +610,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3103",
+                PlazaId = "021",
                 SCWPlazaId = 3,
                 PlazaNameEN = "SUTHISARN",
                 PlazaNameTH = "สุทธิสาร",
@@ -670,7 +670,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "313";
+            item.TSBId = "03";
             item.TSBNameEN = "LAD PRAO";
             item.TSBNameTH = "ลาดพร้าว";
             item.Active = false;
@@ -696,7 +696,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3104",
+                PlazaId = "031",
                 SCWPlazaId = 4,
                 PlazaNameEN = "LAD PRAO INBOUND",
                 PlazaNameTH = "ลาดพร้าว ขาเข้า",
@@ -765,7 +765,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3105",
+                PlazaId = "032",
                 SCWPlazaId = 5,
                 PlazaNameEN = "LAD PRAO OUTBOUND",
                 PlazaNameTH = "ลาดพร้าว ขาออก",
@@ -835,7 +835,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "314";
+            item.TSBId = "04";
             item.TSBNameEN = "RATCHADA PHISEK";
             item.TSBNameTH = "รัชดาภิเษก";
             item.Active = false;
@@ -861,7 +861,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3106",
+                PlazaId = "041",
                 SCWPlazaId = 6,
                 PlazaNameEN = "RATCHADA PHISEK 1",
                 PlazaNameTH = "รัชดาภิเษก 1",
@@ -914,7 +914,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3107",
+                PlazaId = "042",
                 SCWPlazaId = 7,
                 PlazaNameEN = "RATCHADA PHISEK 2",
                 PlazaNameTH = "รัชดาภิเษก 2",
@@ -973,7 +973,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "315";
+            item.TSBId = "05";
             item.TSBNameEN = "BANGKHEN";
             item.TSBNameTH = "บางเขน";
             item.Active = false;
@@ -999,7 +999,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3108",
+                PlazaId = "051",
                 SCWPlazaId = 8,
                 PlazaNameEN = "BANGKHEN",
                 PlazaNameTH = "บางเขน",
@@ -1047,7 +1047,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "316";
+            item.TSBId = "06";
             item.TSBNameEN = "CHANGEWATTANA";
             item.TSBNameTH = "แจ้งวัฒนะ";
             item.Active = false;
@@ -1073,7 +1073,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3109",
+                PlazaId = "061",
                 SCWPlazaId = 9,
                 PlazaNameEN = "CHANGEWATTANA 1",
                 PlazaNameTH = "แจ้งวัฒนะ 1",
@@ -1126,7 +1126,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3110",
+                PlazaId = "062",
                 SCWPlazaId = 10,
                 PlazaNameEN = "CHANGEWATTANA 2",
                 PlazaNameTH = "แจ้งวัฒนะ 2",
@@ -1174,7 +1174,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "317";
+            item.TSBId = "07";
             item.TSBNameEN = "LAKSI";
             item.TSBNameTH = "หลักสี่";
             item.Active = false;
@@ -1200,7 +1200,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3111",
+                PlazaId = "071",
                 SCWPlazaId = 11,
                 PlazaNameEN = "LAKSI INBOUND",
                 PlazaNameTH = "หลักสี่ ขาเข้า",
@@ -1278,7 +1278,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3112",
+                PlazaId = "072",
                 SCWPlazaId = 12,
                 PlazaNameEN = "LAKSI OUTBOUND",
                 PlazaNameTH = "หลักสี่ ขาออก",
@@ -1326,7 +1326,7 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "318";
+            item.TSBId = "08";
             item.TSBNameEN = "DON MUANG";
             item.TSBNameTH = "ดอนเมือง";
             item.Active = false;
@@ -1352,7 +1352,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3113",
+                PlazaId = "081",
                 SCWPlazaId = 13,
                 PlazaNameEN = "DON MUANG 1",
                 PlazaNameTH = "ดอนเมือง 1",
@@ -1427,7 +1427,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3114",
+                PlazaId = "082",
                 SCWPlazaId = 14,
                 PlazaNameEN = "DON MUANG 2",
                 PlazaNameTH = "ดอนเมือง 2",
@@ -1508,10 +1508,10 @@ namespace DMT.Services
 
             item = new TSB();
             item.NetworkId = "31";
-            item.TSBId = "319";
+            item.TSBId = "09";
             item.TSBNameEN = "ANUSORN SATHAN";
             item.TSBNameTH = "อนุสรน์สถาน";
-            item.Active = false;
+            item.Active = true;
             if (!TSB.Exists(item)) TSB.Save(item);
             // init default credit value.
             InitTSBCreditInitializeTransaction(item);
@@ -1534,7 +1534,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3115",
+                PlazaId = "091",
                 SCWPlazaId = 15,
                 PlazaNameEN = "ANUSORN SATHAN 1",
                 PlazaNameTH = "อนุสรน์สถาน 1",
@@ -1609,7 +1609,7 @@ namespace DMT.Services
 
             plaza = new Plaza()
             {
-                PlazaId = "3116",
+                PlazaId = "092",
                 SCWPlazaId = 16,
                 PlazaNameEN = "ANUSORN SATHAN 2",
                 PlazaNameTH = "อนุสรน์สถาน 2",

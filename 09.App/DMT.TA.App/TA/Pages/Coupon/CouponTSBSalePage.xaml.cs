@@ -255,9 +255,17 @@ namespace DMT.TA.Pages.Coupon
 
         private void GotoPrintPreview()
         {
-            PreparePreview();
-
+            /*
             tabs.SelectedIndex = 1;
+
+            PreparePreview();
+            */
+
+            PreparePreview();
+            // print reports.
+            this.rptViewer.Print(ReportDisplayName);
+            // go to main menu.
+            GotoMainMenu();
         }
 
         private void PrintReceipt()
@@ -372,8 +380,6 @@ namespace DMT.TA.Pages.Coupon
 
         private void PreparePreview()
         {
-            tabs.SelectedIndex = 1;
-
             if (null != manager) manager.Save(); // Save all.
 
             var model = GetReportModel();

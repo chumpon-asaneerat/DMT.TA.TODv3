@@ -55,6 +55,22 @@ namespace DMT.TA.Windows.Credit
                 }));
                 return;
             }
+
+            if (null != manager && null != manager.UserBalance && 
+                string.IsNullOrWhiteSpace(manager.UserBalance.UserId))
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("โปรดระบุ พนักงาน", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtSearchUserId.SelectAll();
+                    txtSearchUserId.Focus();
+                }));
+                return;
+            }
+
             if (cbPlzaGroups.SelectedIndex == -1)
             {
                 var win = TAApp.Windows.MessageBox;

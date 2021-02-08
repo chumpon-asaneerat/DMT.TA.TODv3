@@ -817,9 +817,21 @@ namespace DMT.Services
             User = user;
             if (null != User)
             {
-                UserBalance.UserId = User.UserId;
-                UserBalance.FullNameEN = User.FullNameEN;
-                UserBalance.FullNameTH = User.FullNameTH;
+                if (null != UserBalance)
+                {
+                    UserBalance.UserId = User.UserId;
+                    UserBalance.FullNameEN = User.FullNameEN;
+                    UserBalance.FullNameTH = User.FullNameTH;
+                }
+            }
+            else
+            {
+                if (null != UserBalance)
+                {
+                    UserBalance.UserId = null;
+                    UserBalance.FullNameEN = null;
+                    UserBalance.FullNameTH = null;
+                }
             }
 
             RaiseChanged("CollectorId");

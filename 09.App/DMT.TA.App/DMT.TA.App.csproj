@@ -479,6 +479,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="TA\Reports\CollectorCouponReceived.rdlc" />
+    <EmbeddedResource Include="TA\Reports\CouponSalesReceiptRep.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\DataSources\DMT.Models.RevenueEntry.datasource" />
     <None Include="Properties\DataSources\DMT.Models.TSBCouponSummary.datasource" />

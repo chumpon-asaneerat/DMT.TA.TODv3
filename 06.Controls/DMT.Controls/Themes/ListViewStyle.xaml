@@ -407,6 +407,12 @@
                    Foreground="{Binding Foreground}"
                    TextAlignment="Center" />
     </DataTemplate>
+    <DataTemplate x:Key="SoldCouponId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CouponId}"
+                   Foreground="{Binding Foreground}"
+                   TextAlignment="Center" />
+    </DataTemplate>
     <!--  Common for Coupon SoldByLane/ReturnToStock  -->
     <DataTemplate x:Key="SoldByLaneCouponId">
         <TextBlock HorizontalAlignment="Stretch"

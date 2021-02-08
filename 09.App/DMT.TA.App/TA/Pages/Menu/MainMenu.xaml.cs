@@ -56,11 +56,12 @@ namespace DMT.TA.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - หัวหน่าขายคูปอง
         private void cmdCouponSoldByPlaza_Click(object sender, RoutedEventArgs e)
         {
             // หัวหน่าขายคูปอง
             var page = TAApp.Pages.CouponTSBSale;
-            //page.Setup(TAApp.User.Current);
+            page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }
 

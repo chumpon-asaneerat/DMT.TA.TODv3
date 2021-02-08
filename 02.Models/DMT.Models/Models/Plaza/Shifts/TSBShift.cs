@@ -613,7 +613,8 @@ namespace DMT.Models
                     cmd += "SELECT * ";
                     cmd += "  FROM TSBShiftView ";
                     cmd += " WHERE TSBId = ? ";
-                    cmd += "   AND (End IS NULL OR End = ?)";
+                    cmd += "   AND (End IS NULL OR End = ?) ";
+                    cmd += " ORDER BY Begin ";
 
                     var ret = NQuery.Query<FKs>(cmd,
                         tsbid, DateTime.MinValue).FirstOrDefault();
@@ -651,7 +652,8 @@ namespace DMT.Models
                     cmd += "SELECT * ";
                     cmd += "  FROM TSBShiftView ";
                     cmd += " WHERE TSBId = ? ";
-                    cmd += "   AND (End IS NULL OR End = ?)";
+                    cmd += "   AND (End IS NULL OR End = ?) ";
+                    cmd += " ORDER BY Begin ";
 
                     var ret = NQuery.Query<FKs>(cmd,
                         tsbid, DateTime.MinValue).ToList();
@@ -698,7 +700,6 @@ namespace DMT.Models
                         value.Begin = DateTime.Now;
                     }
 
-
                     // End exists shift.
                     var uncloseShifts = GetUncloseShifts(value.TSBId).Value();
                     if (null != uncloseShifts && uncloseShifts.Count > 0)
@@ -713,17 +714,17 @@ namespace DMT.Models
                                     if (!uncloseShift.End.HasValue || uncloseShift.End.Value == DateTime.MinValue)
                                     {
                                         // End shift.
-                                        uncloseShift.End = DateTime.Now;
+                                        uncloseShift.End = value.Begin;
                                         Save(uncloseShift);
                                     }
                                 }
                                 else
                                 {
-                                    // Exists shift is Begin DateTime  newer than new shift.
+                                    // Exists shift Begin DateTime is newer than new shift.
                                     if (!value.End.HasValue || value.End.Value == DateTime.MinValue)
                                     {
                                         // End shift.
-                                        value.End = DateTime.Now;
+                                        value.End = uncloseShift.Begin;
                                         saveRet = Save(value);
                                         result.errors = saveRet.errors;
                                         if (!result.errors.hasError)

@@ -44,8 +44,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1446
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1445
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1444
-- 
+- DMT.TAxTODv3
+  - TOD Change Shift implements #3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1443

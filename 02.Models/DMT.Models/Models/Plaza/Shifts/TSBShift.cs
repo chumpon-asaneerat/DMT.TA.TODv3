@@ -629,6 +629,44 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets Unclose Shifts.
+        /// </summary>
+        /// <param name="tsbid">The TSB Id.</param>
+        /// <returns>Returns List of TSBShift instance</returns>
+        public static NDbResult<List<TSBShift>> GetUncloseShifts(string tsbid)
+        {
+            var result = new NDbResult<List<TSBShift>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBShiftView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND (End IS NULL OR End = ?)";
+
+                    var ret = NQuery.Query<FKs>(cmd,
+                        tsbid, DateTime.MinValue).ToList();
+                    var data = (null != ret) ? ret.ToModels() : null;
+                    result.Success(data);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
         /// Change Shift.
         /// </summary>
         /// <param name="value">The TSBShift instance.</param>
@@ -652,24 +690,61 @@ namespace DMT.Models
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
-                    var last = GetTSBShift(value.TSBId).Value();
-                    if (null != last)
-                    {
-                        // End shift.
-                        last.End = DateTime.Now;
-                        Save(last);
-                    }
-                    // Begin new shift.
-                    if (!value.Begin.HasValue || value.Begin == DateTime.MinValue)
+                    NDbResult<TSBShift> saveRet = null;
+
+                    // Check Begin new shift.
+                    if (!value.Begin.HasValue || value.Begin.Value == DateTime.MinValue)
                     {
                         value.Begin = DateTime.Now;
                     }
-                    var saveRet = Save(value);
 
-                    result.errors = saveRet.errors;
-                    if (!result.errors.hasError)
+
+                    // End exists shift.
+                    var uncloseShifts = GetUncloseShifts(value.TSBId).Value();
+                    if (null != uncloseShifts && uncloseShifts.Count > 0)
                     {
-                        result.Success();
+                        uncloseShifts.ForEach(uncloseShift => 
+                        {
+                            if (uncloseShift.Begin.HasValue && value.Begin.HasValue)
+                            {
+                                if (uncloseShift.Begin.Value < value.Begin.Value)
+                                {
+                                    // Exists shift Begin DateTime is older than new shift.
+                                    if (!uncloseShift.End.HasValue || uncloseShift.End.Value == DateTime.MinValue)
+                                    {
+                                        // End shift.
+                                        uncloseShift.End = DateTime.Now;
+                                        Save(uncloseShift);
+                                    }
+                                }
+                                else
+                                {
+                                    // Exists shift is Begin DateTime  newer than new shift.
+                                    if (!value.End.HasValue || value.End.Value == DateTime.MinValue)
+                                    {
+                                        // End shift.
+                                        value.End = DateTime.Now;
+                                        saveRet = Save(value);
+                                        result.errors = saveRet.errors;
+                                        if (!result.errors.hasError)
+                                        {
+                                            result.Success();
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    if (null == saveRet)
+                    {
+                        // Save current value.
+                        saveRet = Save(value);
+                        result.errors = saveRet.errors;
+                        if (!result.errors.hasError)
+                        {
+                            result.Success();
+                        }
                     }
                 }
                 catch (Exception ex)

@@ -62,7 +62,7 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            var shift = TSB.GetCurrent().Value();
+            var shift = TSBShift.GetTSBShift().Value();
             if (null == shift)
             {
                 txtSupervisorId.Text = "รหัสหัวหน้าด่าน : ";

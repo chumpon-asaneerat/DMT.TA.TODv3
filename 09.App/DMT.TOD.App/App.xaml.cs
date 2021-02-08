@@ -126,10 +126,6 @@ namespace DMT
             appServ = new Services.TODWebServer();
             appServ.Start();
 
-            // Load UI Config
-            TODUIConfigManager.Instance.LoadConfig();
-            TODUIConfigManager.Instance.Start(); // Start File Watcher.
-
             // Set NotifyService
             TODNotifyService.Instance.TSBChanged += TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
@@ -162,7 +158,6 @@ namespace DMT
             TODNotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
 
             // Shutdown File Watcher.
-            TODUIConfigManager.Instance.Shutdown();
             TODConfigManager.Instance.Shutdown();
 
             if (null != appServ)

@@ -117,10 +117,6 @@ namespace DMT
             appServ = new Services.TAWebServer();
             appServ.Start();
 
-            // Load UI Config
-            TAUIConfigManager.Instance.LoadConfig();
-            TAUIConfigManager.Instance.Start(); // Start File Watcher.
-
             // Init NotifyService event.
             TANotifyService.Instance.TSBChanged += TSBChanged;
             TANotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
@@ -152,7 +148,6 @@ namespace DMT
             TANotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
 
             // Shutdown File Watcher.
-            TAUIConfigManager.Instance.Shutdown();
             TAConfigManager.Instance.Shutdown();
 
             if (null != appServ)

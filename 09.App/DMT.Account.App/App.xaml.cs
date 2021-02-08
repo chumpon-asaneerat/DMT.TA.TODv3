@@ -111,10 +111,6 @@ namespace DMT
             Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
             Services.RabbitMQService.Instance.Start();
 
-            // Load UI Config
-            AccountUIConfigManager.Instance.LoadConfig();
-            AccountUIConfigManager.Instance.Start(); // Start File Watcher.
-
             Window window = null;
             window = new MainWindow();
 
@@ -129,8 +125,6 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
-            // Shutdown File Watcher.
-            AccountUIConfigManager.Instance.Shutdown();
             AccountConfigManager.Instance.Shutdown();
 
             // Shutdown RabbitMQ.

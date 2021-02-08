@@ -50,8 +50,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1454
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1453
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1452
-- 
+- DMT.TAxTODv3
+  - Note #10
+    - TA
+      - CouponSyncService.
+        - If local coupons is zero force sync.
+        - Add button Sync on Received Coupon/Return Coupon/TSB Sold Coupon.
+      - TODxTO IsAlive status bar need to why show offline when start a few seconds.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1451

@@ -111,9 +111,8 @@
     <Compile Include="Routes\TA\Infrastructure\Actions\TSB\SetActive.cs" />
     <Compile Include="Routes\TA\Infrastructure\TA.Infrastructure.Controller.cs" />
     <Compile Include="Routes\TA\Notify\Actions\IsAlive.cs" />
-    <Compile Include="Routes\TA\Notify\Actions\Register.cs" />
     <Compile Include="Routes\TA\Notify\Actions\TSBChanged.cs" />
-    <Compile Include="Routes\TA\Notify\Actions\Unregister.cs" />
+    <Compile Include="Routes\TA\Notify\Actions\TSBShiftChanged.cs" />
     <Compile Include="Routes\TA\Notify\TA.Notify.Controller.cs" />
     <Compile Include="Routes\TA\Security\Actions\Role\Gets.cs" />
     <Compile Include="Routes\TA\Security\Actions\Role\Save.cs" />

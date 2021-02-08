@@ -1,17 +1,17 @@
 ﻿namespace DMT
 {
-    // Url: api/notify/register
+    // Url: api/notify/tsbchanged
     static partial class RouteConsts
     {
         static partial class TA
         {
             static partial class Notify
             {
-                /// <summary>The Register action.</summary>
-                public static class Register
+                /// <summary>The TSBShiftChanged action.</summary>
+                public static class TSBShiftChanged
                 {
                     /// <summary>Gets route name.</summary>
-                    public const string Name = "Register";
+                    public const string Name = "TSBShiftChanged";
                     /// <summary>Gets route url.</summary>
                     public const string Url = Notify.Url + @"/" + Name;
                 }

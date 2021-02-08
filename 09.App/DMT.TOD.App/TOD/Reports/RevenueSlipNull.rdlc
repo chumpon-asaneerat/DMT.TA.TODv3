@@ -61,12 +61,20 @@
           <DataField>CouponSoldBHTTotal</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="CouponSoldEnable">
+          <DataField>CouponSoldEnable</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
         <Field Name="CouponUsageBHT30">
           <DataField>CouponUsageBHT30</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CouponUsageBHT35">
           <DataField>CouponUsageBHT35</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CouponUsageBHT60">
+          <DataField>CouponUsageBHT60</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CouponUsageBHT70">
@@ -867,7 +875,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>6.19722in</Top>
+            <Top>6.52222in</Top>
             <Left>4.25083in</Left>
             <Height>0.25in</Height>
             <Width>0.98251in</Width>
@@ -905,7 +913,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>6.7625in</Top>
+            <Top>7.0125in</Top>
             <Left>0.10083in</Left>
             <Height>0.25in</Height>
             <Width>1.08333in</Width>
@@ -941,7 +949,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>6.7625in</Top>
+            <Top>7.0125in</Top>
             <Left>4.10001in</Left>
             <Height>0.25in</Height>
             <Width>1.59375in</Width>
@@ -979,7 +987,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>8.07272in</Top>
+            <Top>8.32272in</Top>
             <Left>4.25083in</Left>
             <Height>0.25in</Height>
             <Width>0.98251in</Width>
@@ -1015,7 +1023,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>6.7625in</Top>
+            <Top>7.0125in</Top>
             <Left>2.16737in</Left>
             <Height>0.25in</Height>
             <Width>0.61319in</Width>
@@ -1053,7 +1061,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>7.05272in</Top>
+            <Top>7.30272in</Top>
             <Left>0.10083in</Left>
             <Height>0.25in</Height>
             <Width>1.08333in</Width>
@@ -1091,7 +1099,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>8.4125in</Top>
+            <Top>8.6625in</Top>
             <Left>0.10083in</Left>
             <Height>0.25in</Height>
             <Width>1.08333in</Width>
@@ -2556,7 +2564,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>คูปอง 70 บาท</Value>
+                        <Value>คูปอง 60 บาท</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Tahoma</FontFamily>
@@ -2606,9 +2614,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>1.32237in</Top>
-                <Left>0.10985in</Left>
-                <Height>0.25in</Height>
+                <Top>1.64737in</Top>
+                <Left>0.09735in</Left>
+                <Height>0.2375in</Height>
                 <Width>1.08333in</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
@@ -2623,7 +2631,7 @@
               </Textbox>
               <Line Name="Line19">
                 <Left>1.26369in</Left>
-                <Height>1.61147in</Height>
+                <Height>1.92237in</Height>
                 <Width>0in</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
@@ -2676,11 +2684,58 @@
                   </Border>
                 </Style>
               </Line>
+              <Textbox Name="Textbox61">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>คูปอง 70 บาท</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox3</rd:DefaultName>
+                <Top>1.32241in</Top>
+                <Left>0.0962in</Left>
+                <Height>0.25in</Height>
+                <Width>1.08333in</Width>
+                <ZIndex>11</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line27">
+                <Top>1.61119in</Top>
+                <Height>0in</Height>
+                <Width>2.40119in</Width>
+                <ZIndex>12</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>4.56353in</Top>
             <Left>4.02881in</Left>
-            <Height>1.61147in</Height>
+            <Height>1.92237in</Height>
             <Width>2.40119in</Width>
             <ZIndex>39</ZIndex>
             <Style>
@@ -2691,7 +2746,7 @@
           </Rectangle>
           <Rectangle Name="Rectangle8">
             <KeepTogether>true</KeepTogether>
-            <Top>6.17496in</Top>
+            <Top>6.48746in</Top>
             <Left>5.2889in</Left>
             <Height>0.29444in</Height>
             <Width>1.1411in</Width>
@@ -2886,7 +2941,7 @@
               </Line>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>7.05272in</Top>
+            <Top>7.30272in</Top>
             <Left>4.02881in</Left>
             <Height>1.00056in</Height>
             <Width>2.40119in</Width>
@@ -2899,7 +2954,7 @@
           </Rectangle>
           <Rectangle Name="Rectangle10">
             <KeepTogether>true</KeepTogether>
-            <Top>8.0505in</Top>
+            <Top>8.3005in</Top>
             <Left>5.2889in</Left>
             <Height>0.29444in</Height>
             <Width>1.1411in</Width>

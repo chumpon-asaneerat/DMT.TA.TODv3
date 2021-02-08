@@ -44,8 +44,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1456
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1455
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1454
-- 
+- DMT.TAxTODv3
+  - Update Revenue slip reports (rdlc).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1453

@@ -224,6 +224,46 @@ namespace DMT.Simulator.Pages
         {
             currentLane = null;
 
+            // On UI Thread
+            /*
+            this.IsEnabled = false;
+            lvLanes.ItemsSource = null;
+
+            lanes = LaneInfo.GetLanes();
+            var tsb = todops.TSB.Current().Value();
+            if (null == tsb) return;
+            var plazas = todops.Plaza.Search.ByTSB(tsb).Value();
+            if (null == plazas || plazas.Count <= 0) return;
+
+            // Read all scw jobs.
+            int networkId = PlazaAppConfigManager.Instance.DMT.networkId;
+            var allJobs = new List<SCWJob>();
+            plazas.ForEach(plaza =>
+            {
+                var param = new SCWAllJob();
+                param.networkId = networkId;
+                param.plazaId = plaza.SCWPlazaId;
+                var jobs = emuOps.allJobs(param);
+                if (null != jobs && null != jobs.list && jobs.list.Count > 0)
+                {
+                    allJobs.AddRange(jobs.list.ToArray());
+                }
+            });
+
+            // assign scw jobs to lanes.
+            if (null != lanes)
+            {
+                lanes.ForEach(lane =>
+                {
+                    lane.Assign(allJobs);
+                });
+            }
+
+            lvLanes.ItemsSource = lanes;
+            this.IsEnabled = true;
+            */
+
+            // On another thread
             RunTask(() => 
             {
                 // Init (in UI thread)

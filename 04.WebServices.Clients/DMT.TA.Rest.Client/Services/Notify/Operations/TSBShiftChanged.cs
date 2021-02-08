@@ -1,7 +1,6 @@
 ﻿#region Usings
 
 using System.Collections.Generic;
-using DMT.Configurations;
 using DMT.Services;
 
 #endregion
@@ -13,13 +12,12 @@ namespace DMT.Services.Operations
         static partial class Notify
         {
             /// <summary>
-            /// Register.
+            /// Notify TSBShiftChanged.
             /// </summary>
-            /// <param name="value">The TODAppWebServiceConfig instance.</param>
             /// <returns>Returns NRestResult instance.</returns>
-            public static NRestResult Register(TODAppWebServiceConfig value)
+            public static NRestResult TSBShiftChanged()
             {
-                var ret = Execute(RouteConsts.TA.Notify.Register.Url, value);
+                var ret = Execute(RouteConsts.TA.Notify.TSBShiftChanged.Url);
                 return ret;
             }
         }

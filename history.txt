@@ -29,8 +29,13 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1440
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1439
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Client project.
+    - Notify operations
+      - Remove Register/Unregister
+      - Add TSBShiftChanged
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1438

@@ -44,8 +44,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1426
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1425
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1424
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Core project
+    - Update configs #2.
+  - DMT.TA.Core project
+    - Update configs #2.
+  - DMT.TOD.Core project
+    - Update configs #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1423

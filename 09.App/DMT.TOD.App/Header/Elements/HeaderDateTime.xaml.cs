@@ -146,10 +146,10 @@ namespace DMT.Controls.Header
         {
             get
             {
-                if (null == AccountConfigManager.Instance.Value ||
-                    null == AccountConfigManager.Instance.Value.UIConfig ||
-                    null == AccountConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return AccountConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+                if (null == TODConfigManager.Instance.Value ||
+                    null == TODConfigManager.Instance.Value.UIConfig ||
+                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TODConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
             }
         }
 

@@ -3,8 +3,11 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Threading;
 
-using DMT.Models;
+//using NLib.Services;
+using DMT.Configurations;
 using DMT.Services;
 
 #endregion
@@ -35,32 +38,43 @@ namespace DMT.Controls.Header
             txtPlazaId.Visibility = Visibility.Collapsed;
 
             UpdateUI();
-            RuntimeManager.Instance.TSBChanged += Instance_TSBChanged;
+
+            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            RuntimeManager.Instance.TSBChanged -= Instance_TSBChanged;
+            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
         }
 
         #endregion
 
-        #region RuntimeManager Handlers
+        #region Config Watcher Handlers
 
-        private void Instance_TSBChanged(object sender, EventArgs e)
+        private void ConfigChanged(object sender, EventArgs e)
         {
             UpdateUI();
         }
 
         #endregion
 
+        private PlazaInfoConfig Config
+        {
+            get
+            {
+                if (null == TODConfigManager.Instance.Value ||
+                    null == TODConfigManager.Instance.Value.UIConfig ||
+                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TODConfigManager.Instance.Value.UIConfig.HeaderBars.PlazaInfo;
+            }
+        }
+
         private void UpdateUI()
         {
-            var tsb = TSB.GetCurrent().Value();
-            if (null != tsb)
+            if (null != Config)
             {
-                txtPlazaId.Text = "รหัสด่าน : " + tsb.TSBId;
-                txtPlazaName.Text = "ชื่อด่าน : " + tsb.TSBNameTH;
+                txtPlazaId.Text = "รหัสด่าน : " + Config.PlazaId;
+                txtPlazaName.Text = "ชื่อด่าน : " + Config.PlazaNameTH;
             }
             else
             {

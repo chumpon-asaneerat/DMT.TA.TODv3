@@ -16,15 +16,22 @@ namespace DMT.Services
             [HttpPost]
             [ActionName(RouteConsts.TA.Shift.TSB.Change.Name)]
             //[AllowAnonymous]
-            public NDbResult Change(TSBShift value)
+            public NDbResult Change([FromBody] TSBShift value)
             {
-                var ret = TSBShift.ChangeShift(value);
-                if (ret.Ok)
+                NDbResult result = new NDbResult();
+                if (null == value)
+                {
+                    result.ParameterIsNull();
+                    return result;
+                }
+                var dbRet = TSBShift.ChangeShift(value);
+                if (null != dbRet && dbRet.Ok)
                 {
                     // Raise Change Shift.
                     TANotifyService.Instance.RaiseTSBShiftChanged();
+                    result.Success();
                 }
-                return ret;
+                return result;
             }
         }
     }

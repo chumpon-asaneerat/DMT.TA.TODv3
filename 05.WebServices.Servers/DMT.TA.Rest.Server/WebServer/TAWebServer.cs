@@ -292,6 +292,27 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TA.Shift.Gets.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
+
+                internal static class TSB
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.TA.Shift.TSB.ControllerName;
+
+                        // Current
+                        actionName = RouteConsts.TA.Shift.TSB.Current.Name;
+                        actionUrl = RouteConsts.TA.Shift.TSB.Current.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                        // Change
+                        actionName = RouteConsts.TA.Shift.TSB.Change.Name;
+                        actionUrl = RouteConsts.TA.Shift.TSB.Change.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                    }
+                }
             }
 
             internal static class Credit
@@ -370,6 +391,7 @@ namespace DMT.Services
 
             // Shift
             MapControllers.Shift.MapRoutes(config);
+            MapControllers.Shift.TSB.MapRoutes(config);
 
             // Credit (User)
             MapControllers.Credit.User.MapRoutes(config);

@@ -83,24 +83,15 @@ namespace DMT.Services
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            /*
-            var ret = ops.TOD.declare(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            var ret = ops.Shift.TSB.Change(value);
+            if (null == ret || !ret.Ok)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
                 med.Err("Cannot connect to TA App Web Service.");
                 return;
             }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
             // Success
             MoveToBackup(fullFileName);
-            */
         }
 
         private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)

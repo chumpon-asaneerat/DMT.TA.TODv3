@@ -15,11 +15,12 @@ namespace DMT.Services.Operations
                 /// <summary>
                 /// Gets Change TSB Shift.
                 /// </summary>
-                /// <returns>Returns Current TSB Shift instance.</returns>
-                public static NRestResult Change()
+                /// <param name="value">The TSB Shift instance</param>
+                /// <returns>Returns NRestResult instance.</returns>
+                public static NRestResult Change(Models.TSBShift value)
                 {
                     var ret = Execute(
-                        RouteConsts.TA.Shift.TSB.Change.Url);
+                        RouteConsts.TA.Shift.TSB.Change.Url, value);
                     return ret;
                 }
             }

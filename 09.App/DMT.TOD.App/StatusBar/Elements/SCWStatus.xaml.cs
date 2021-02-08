@@ -42,8 +42,7 @@ namespace DMT.Controls.StatusBar
         {
             string host = (null != TODConfigManager.Instance.SCW && null != TODConfigManager.Instance.SCW.Service) ?
                 TODConfigManager.Instance.SCW.Service.HostName : "unknown";
-            int interval = (null != TODUIConfigManager.Instance.SCW) ?
-                TODUIConfigManager.Instance.SCW.IntervalSeconds : 5;
+            int interval = (null != Config) ? Config.IntervalSeconds : 5;
             if (interval < 0) interval = 5;
 
             ping = new NLib.Components.PingManager();
@@ -61,12 +60,10 @@ namespace DMT.Controls.StatusBar
             timer.Start();
 
             TODConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TODUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != ping)
@@ -122,8 +119,7 @@ namespace DMT.Controls.StatusBar
             {
                 string host = (null != TODConfigManager.Instance.SCW && null != TODConfigManager.Instance.SCW.Service) ?
                     TODConfigManager.Instance.SCW.Service.HostName : "unknown";
-                int interval = (null != TODUIConfigManager.Instance.SCW) ?
-                    TODUIConfigManager.Instance.SCW.IntervalSeconds : 5;
+                int interval = (null != Config) ? Config.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
 
                 // Stop ping service.
@@ -139,13 +135,18 @@ namespace DMT.Controls.StatusBar
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            CallWS();
-            UpdateUI();
-        }
-
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == TODConfigManager.Instance.Value ||
+                    null == TODConfigManager.Instance.Value.UIConfig ||
+                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TODConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+            }
+        }
 
         private void CallWS()
         {
@@ -156,7 +157,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = TODUIConfigManager.Instance.SCW;
+            var statusCfg = Config;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

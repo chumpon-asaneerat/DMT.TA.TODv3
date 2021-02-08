@@ -40,8 +40,7 @@ namespace DMT.Controls.StatusBar
         {
             string host = (null != TODConfigManager.Instance.TAApp && null != TODConfigManager.Instance.TAApp.Service) ?
                 TODConfigManager.Instance.TAApp.Service.HostName : "unknown";
-            int interval = (null != TODUIConfigManager.Instance.TAApp) ?
-                TODUIConfigManager.Instance.TAApp.IntervalSeconds : 5;
+            int interval = (null != Config) ? Config.IntervalSeconds : 5;
             if (interval < 0) interval = 5;
 
             ping = new NLib.Components.PingManager();
@@ -58,12 +57,10 @@ namespace DMT.Controls.StatusBar
             timer.Start();
 
             TODConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TODUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != ping)
@@ -118,8 +115,7 @@ namespace DMT.Controls.StatusBar
             {
                 string host = (null != TODConfigManager.Instance.TAApp && null != TODConfigManager.Instance.TAApp.Service) ?
                     TODConfigManager.Instance.TAApp.Service.HostName : "unknown";
-                int interval = (null != TODUIConfigManager.Instance.TAApp) ?
-                    TODUIConfigManager.Instance.TAApp.IntervalSeconds : 5;
+                int interval = (null != Config) ? Config.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
 
                 // Stop ping service.
@@ -134,16 +130,22 @@ namespace DMT.Controls.StatusBar
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
-        }
-
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == TODConfigManager.Instance.Value ||
+                    null == TODConfigManager.Instance.Value.UIConfig ||
+                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TODConfigManager.Instance.Value.UIConfig.StatusBars.TAApp;
+            }
+        }
 
         private void UpdateUI()
         {
-            var statusCfg = TODUIConfigManager.Instance.TAApp;
+            var statusCfg = Config;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

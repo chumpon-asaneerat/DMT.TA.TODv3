@@ -45,12 +45,10 @@ namespace DMT.Controls.StatusBar
             timer.Start();
 
             TODConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TODUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != timer)
@@ -79,16 +77,22 @@ namespace DMT.Controls.StatusBar
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
-        }
-
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == TODConfigManager.Instance.Value ||
+                    null == TODConfigManager.Instance.Value.UIConfig ||
+                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TODConfigManager.Instance.Value.UIConfig.StatusBars.RabbitMQ;
+            }
+        }
 
         private void UpdateUI()
         {
-            var statusCfg = TODUIConfigManager.Instance.RabbitMQ;
+            var statusCfg = Config;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

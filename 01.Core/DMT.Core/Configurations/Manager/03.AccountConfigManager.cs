@@ -89,7 +89,7 @@ namespace DMT.Configurations
             get
             {
                 if (null == Value) LoadConfig();
-                return (null != Value) ? Value.DMT : null;
+                return (null != Value && null != Value.Services) ? Value.Services.DMT : null;
             }
         }
         /// <summary>
@@ -100,7 +100,7 @@ namespace DMT.Configurations
             get
             {
                 if (null == Value) LoadConfig();
-                return (null != Value) ? Value.RabbitMQ : null;
+                return (null != Value && null != Value.Services) ? Value.Services.RabbitMQ : null;
             }
         }
         /// <summary>
@@ -111,7 +111,7 @@ namespace DMT.Configurations
             get
             {
                 if (null == Value) LoadConfig();
-                return (null != Value) ? Value.SCW : null;
+                return (null != Value && null != Value.Services) ? Value.Services.SCW : null;
             }
         }
         /// <summary>
@@ -122,7 +122,7 @@ namespace DMT.Configurations
             get
             {
                 if (null == Value) LoadConfig();
-                return (null != Value) ? Value.TAxTOD : null;
+                return (null != Value && null != Value.Services) ? Value.Services.TAxTOD : null;
             }
         }
 

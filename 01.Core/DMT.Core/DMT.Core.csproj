@@ -121,6 +121,7 @@
     <Compile Include="Routes\TA\Security\Actions\User\Searchs.cs" />
     <Compile Include="Routes\TA\Security\TA.Security.Controller.cs" />
     <Compile Include="Routes\TA\Shift\Actions\Common\Gets.cs" />
+    <Compile Include="Routes\TA\Shift\Actions\TSB\Change.cs" />
     <Compile Include="Routes\TA\Shift\TA.Shift.Controller.cs" />
     <Compile Include="Routes\TA\TA.Controller.cs" />
     <Compile Include="Routes\TOD\Infrastructure\Actions\Lane\Gets.cs" />

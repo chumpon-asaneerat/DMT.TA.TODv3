@@ -1,4 +1,4 @@
-﻿#define SINGELTON_APP
+﻿//#define SINGELTON_APP
 
 #region Using
 
@@ -130,11 +130,6 @@ namespace DMT
             TODNotifyService.Instance.TSBChanged += TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
 
-            // Register
-            TODApp.Config = TODConfigManager.Instance.TODApp; // Keep config.
-            var ret = taaOps.Notify.Register(TODConfigManager.Instance.TODApp);
-            TODApp.IsRegistered = (null != ret) ? ret.Ok : false;
-
             Window window = null;
             window = new MainWindow();
 
@@ -149,10 +144,6 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
-            // Unregister
-            TODApp.Config = null;
-            taaOps.Notify.Unregister(TODConfigManager.Instance.TODApp);
-
             // Release NotifyService event.
             TODNotifyService.Instance.TSBChanged -= TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
@@ -180,12 +171,6 @@ namespace DMT
 
         private void Service_ConfigChanged(object sender, EventArgs e)
         {
-            if (null != TODApp.Config)
-            {
-                taaOps.Notify.Unregister(TODApp.Config);
-                TODApp.IsRegistered = false;
-            }
-
             // When Service Config file changed.
             // Update all related service operations.
             Services.Operations.TA.Config = TODConfigManager.Instance;
@@ -193,11 +178,6 @@ namespace DMT
 
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
-
-            // Re-Register
-            TODApp.Config = TODConfigManager.Instance.TODApp; // Keep config.
-            var ret = taaOps.Notify.Register(TODConfigManager.Instance.TODApp);
-            TODApp.IsRegistered = (null != ret) ? ret.Ok : false;
         }
 
         private void TSBChanged(object sender, EventArgs e)

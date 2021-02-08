@@ -57,6 +57,7 @@
     <Compile Include="Configurations\Configs\App\02.TODAppPlazaConfig.cs" />
     <Compile Include="Configurations\Configs\App\03.AccountAppPlazaConfig.cs" />
     <Compile Include="Configurations\Configs\App\04.PlazaAppConfig.cs" />
+    <Compile Include="Configurations\Configs\UI\HeaderBarConfig.cs" />
     <Compile Include="Configurations\Manager\00.JsonConfigFileManger.cs" />
     <Compile Include="Configurations\Manager\01.TAConfigManager.cs" />
     <Compile Include="Configurations\Manager\02.TODConfigManager.cs" />

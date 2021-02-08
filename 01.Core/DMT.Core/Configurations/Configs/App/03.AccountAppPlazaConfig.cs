@@ -13,20 +13,20 @@ using NLib.Controls.Design;
 
 namespace DMT.Configurations
 {
-    #region AccountAppPlazaConfig (Combine configuration used in TA Account applicaltion)
+    #region AccountAppServiceConfig
 
     /// <summary>
-    /// The AccountAppPlazaConfig class.
+    /// The AccountAppServiceConfig class.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public class AccountAppPlazaConfig
+    public class AccountAppServiceConfig
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public AccountAppPlazaConfig() : base()
+        public AccountAppServiceConfig() : base()
         {
             this.DMT = new DMTConfig();
             this.RabbitMQ = new RabbitMQServiceConfig();
@@ -45,8 +45,8 @@ namespace DMT.Configurations
         /// <returns></returns>
         public bool IsEquals(object obj)
         {
-            if (null == obj || !(obj is TAAppPlazaConfig)) return false;
-            return this.GetString() == (obj as TAAppPlazaConfig).GetString();
+            if (null == obj || !(obj is AccountAppServiceConfig)) return false;
+            return this.GetString() == (obj as AccountAppServiceConfig).GetString();
         }
         /// <summary>
         /// GetString.
@@ -118,6 +118,148 @@ namespace DMT.Configurations
         /// Gets or sets TAxTOD Service Config.
         /// </summary>
         public TAxTODWebServiceConfig TAxTOD { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region AccountHeaderBars
+
+    /// <summary>
+    /// The TODHeaderBars class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class AccountHeaderBars
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public AccountHeaderBars()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+    }
+
+    #endregion
+
+    #region AccountStatusBars
+
+    /// <summary>
+    /// The AccountStatusBars class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class AccountStatusBars
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public AccountStatusBars()
+        {
+            this.AppInfo = new StatusBarConfig() { Visible = true };
+            this.ClientInfo = new StatusBarConfig() { Visible = true };
+            this.LocalDb = new StatusBarConfig() { Visible = true };
+            this.RabbitMQ = new StatusBarConfig() { Visible = false };
+            this.SCW = new StatusBarConfig() { Visible = false };
+            this.TAServer = new StatusBarConfig() { Visible = false };
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets AppInfo status bar.</summary>
+        public StatusBarConfig AppInfo { get; set; }
+        /// <summary>Gets or sets ClientInfo status bar.</summary>
+        public StatusBarConfig ClientInfo { get; set; }
+        /// <summary>Gets or sets LocalDb status bar.</summary>
+        public StatusBarConfig LocalDb { get; set; }
+        /// <summary>Gets or sets RabbitMQ status bar.</summary>
+        public StatusBarConfig RabbitMQ { get; set; }
+        /// <summary>Gets or sets SCW status bar.</summary>
+        public StatusBarConfig SCW { get; set; }
+        /// <summary>Gets or sets TAServer status bar.</summary>
+        public StatusBarConfig TAServer { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region AccountUIConfig
+
+    /// <summary>
+    /// The AccountUIConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class AccountUIConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public AccountUIConfig()
+        {
+            this.HeaderBars = new AccountHeaderBars();
+            this.StatusBars = new AccountStatusBars();
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets Account header bars.</summary>
+        public AccountHeaderBars HeaderBars { get; set; }
+        /// <summary>Gets or sets Account status bars.</summary>
+        public AccountStatusBars StatusBars { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region AccountAppPlazaConfig (Combine configuration used in TA Account applicaltion)
+
+    /// <summary>
+    /// The AccountAppPlazaConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class AccountAppPlazaConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public AccountAppPlazaConfig() : base()
+        {
+            this.Services = new AccountAppServiceConfig();
+            this.UIConfig = new AccountUIConfig();
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Account App Service Config.
+        /// </summary>
+        public AccountAppServiceConfig Services { get; set; }
+        /// <summary>
+        /// Gets or sets Account UI Config.
+        /// </summary>
+        public AccountUIConfig UIConfig { get; set; }
 
         #endregion
     }

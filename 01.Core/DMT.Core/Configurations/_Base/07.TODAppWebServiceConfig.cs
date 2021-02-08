@@ -14,40 +14,6 @@ using NLib.Controls.Design;
 
 namespace DMT.Configurations
 {
-    #region TODAppWebServiceConfig (Need for TOD App Web Service class below)
-
-    /// <summary>
-    /// The TODPlazaConfig class.
-    /// </summary>
-    [JsonObject(MemberSerialization.OptOut)]
-    public class TODPlazaConfig
-    {
-        #region Constructor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public TODPlazaConfig() : base()
-        {
-            this.PlazaId = 0;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets or sets Plaza Id.
-        /// </summary>
-        public int PlazaId { get; set; }
-
-        #endregion
-    }
-
-    #endregion
-
-    // TODO: Need TOD Client Name, TSB Display Name property.
-
     #region TODAppWebServiceConfig (For TOD App Web Service)
 
     /// <summary>
@@ -71,9 +37,6 @@ namespace DMT.Configurations
                 UserName = "DMTUSER",
                 Password = "DMTPASS"
             };
-            Plazas = new List<TODPlazaConfig>();
-            Plazas.Add(new TODPlazaConfig() { PlazaId = 15 });
-            Plazas.Add(new TODPlazaConfig() { PlazaId = 16 });
         }
 
         #endregion
@@ -109,11 +72,6 @@ namespace DMT.Configurations
         /// Gets or sets Http service.
         /// </summary>
         public WebServiceConfig Service { get; set; }
-        /// <summary>
-        /// Gets or sets Plazas.
-        /// </summary>
-        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
-        public List<TODPlazaConfig> Plazas { get; set; }
 
         #endregion
     }

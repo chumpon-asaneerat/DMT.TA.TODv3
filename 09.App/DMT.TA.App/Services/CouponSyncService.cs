@@ -12,7 +12,6 @@ using System.Reflection;
 using System.Windows.Threading;
 
 using DMT.Configurations;
-using DMT.Controls;
 using DMT.Services;
 using DMT.Models;
 using DMT.Models.ExtensionMethods;
@@ -20,7 +19,6 @@ using DMT.Models.ExtensionMethods;
 using NLib;
 using NLib.IO;
 using NLib.Services;
-using NLib.Reports.Rdlc;
 using NLib.Reflection;
 
 using RestSharp;
@@ -131,9 +129,19 @@ namespace DMT.Services
         private NRestResult<List<TAServerCouponTransaction>, NRestOut> GetTransactions(
             int pageNo, int rowsPerPage)
         {
-            var search = Search.TAxTOD.Coupon.Gets.Create(TAAPI.TSB.TSBId, null, null, null, 0, pageNo, rowsPerPage);
-            var ret = couponOps.Gets(search);
-            return ret;
+            var tsb = TSB.GetCurrent().Value();
+            if (null != tsb)
+            {
+                var search = Search.TAxTOD.Coupon.Gets.Create(tsb.TSBId, null, null, null, 0, pageNo, rowsPerPage);
+                var ret = couponOps.Gets(search);
+                return ret;
+            }
+            else
+            {
+                var ret = new NRestResult<List<TAServerCouponTransaction>, NRestOut>();
+                ret.Success();
+                return ret;
+            }
         }
 
         private void InternalSyncCouponFromServer()

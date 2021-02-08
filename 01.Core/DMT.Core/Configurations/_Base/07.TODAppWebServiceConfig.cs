@@ -20,7 +20,7 @@ namespace DMT.Configurations
     /// The TODAppWebServiceConfig class.
     /// </summary>
     [JsonObject(MemberSerialization.OptOut)]
-    public class TODAppWebServiceConfig
+    public class TODAppWebServiceConfig : ITODAppConfig
     {
         #region Constructor
 
@@ -72,6 +72,10 @@ namespace DMT.Configurations
         /// Gets or sets Http service.
         /// </summary>
         public WebServiceConfig Service { get; set; }
+        /// <summary>
+        /// Gets TODApp Config.
+        /// </summary>
+        public TODAppWebServiceConfig TODApp { get { return this; } }
 
         #endregion
     }

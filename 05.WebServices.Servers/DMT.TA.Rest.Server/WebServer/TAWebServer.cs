@@ -497,12 +497,6 @@ namespace DMT.Services
             // TAxTOD
             Operations.TAxTOD.Config = TAConfigManager.Instance;
             Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
-            // TOD
-            // TODO: Need Check TOD App Implements
-            /*
-            Operations.TOD.Config = TAConfigManager.Instance;
-            Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-            */
 
             // RabbitMQ
             RabbitMQService.Instance.Shutdown();
@@ -534,12 +528,6 @@ namespace DMT.Services
             // TAxTOD
             Operations.TAxTOD.Config = TAConfigManager.Instance;
             Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
-            // TOD
-            // TODO: Need Check TOD App Implements
-            /*
-            Operations.TOD.Config = TAConfigManager.Instance;
-            Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-            */
 
             // Start database server.
             TALocalDbServer.Instance.Start();
@@ -562,9 +550,6 @@ namespace DMT.Services
             { 
                 med.Info("TA App local nofify service failed."); 
             }
-
-            // Start Client Manager.
-            TODClientManager.Instance.Start();
 
             // Start SCWMQ service.
             SCWMQService.Instance.Start();
@@ -604,9 +589,6 @@ namespace DMT.Services
             // Shutdown SCWMQ service.
             SCWMQService.Instance.Shutdown();
             med.Info("SCWMQ Service shutdown.");
-
-            // Shutdown Client Manager.
-            TODClientManager.Instance.Shutdown();
 
             if (null != server)
             {

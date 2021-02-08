@@ -143,6 +143,7 @@ namespace DMT
 #if ENABLE_COUPON_SYNC_SERVICE
             CouponSyncService.Instance.Shutdown();
 #endif
+
             // Release NotifyService event.
             TANotifyService.Instance.TSBChanged -= TSBChanged;
             TANotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
@@ -191,6 +192,9 @@ namespace DMT
 
         private void TSBShiftChanged(object sender, EventArgs e)
         {
+            // Notify all TOD Apps that TSB Shift is changed.
+            TODClientManager.Instance.TODTSBShiftChanged();
+
             RuntimeManager.Instance.RaiseTSBShiftChanged();
         }
     }

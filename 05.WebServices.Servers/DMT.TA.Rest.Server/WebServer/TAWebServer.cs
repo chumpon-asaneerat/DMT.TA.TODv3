@@ -69,14 +69,9 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TA.Notify.IsAlive.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
 
-                    // Register
-                    actionName = RouteConsts.TA.Notify.Register.Name;
-                    actionUrl = RouteConsts.TA.Notify.Register.Url;
-                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
-
-                    // Unregister
-                    actionName = RouteConsts.TA.Notify.Unregister.Name;
-                    actionUrl = RouteConsts.TA.Notify.Unregister.Url;
+                    // TSBShiftChanged
+                    actionName = RouteConsts.TA.Notify.TSBShiftChanged.Name;
+                    actionUrl = RouteConsts.TA.Notify.TSBShiftChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }

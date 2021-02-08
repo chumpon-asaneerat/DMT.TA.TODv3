@@ -2,7 +2,6 @@
 
 using System;
 using System.Web.Http;
-using DMT.Configurations;
 using DMT.Models;
 
 #endregion
@@ -12,13 +11,13 @@ namespace DMT.Services
     partial class TANotifyController
     {
         [HttpPost]
-        [ActionName(RouteConsts.TA.Notify.Unregister.Name)]
+        [ActionName(RouteConsts.TA.Notify.TSBShiftChanged.Name)]
         //[AllowAnonymous]
-        public NDbResult Unregister([FromBody] TODAppWebServiceConfig value)
+        public NDbResult TSBShiftChanged()
         {
             NDbResult result = new NDbResult();
             result.Success();
-            TODClientManager.Instance.Unregister(value);
+            TANotifyService.Instance.RaiseTSBShiftChanged();
             return result;
         }
     }

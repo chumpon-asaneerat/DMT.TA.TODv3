@@ -53,8 +53,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1443
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1442
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1441
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server project.
+    - Notify Actions
+      - Remove Register/Unregister
+      - Add TSBShiftChanged
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1440

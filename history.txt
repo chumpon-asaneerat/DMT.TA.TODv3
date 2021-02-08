@@ -47,8 +47,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1455
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1454
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1453
-- 
+- DMT.TAxTODv3
+  - Update CouponTSBSalePage page #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1452

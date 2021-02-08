@@ -2049,7 +2049,14 @@ namespace DMT.Services
 
             Coupons.ForEach(coupon =>
             {
-                if (null != coupon) coupon.Save();
+                if (null != coupon)
+                {
+                    if (coupon.TransactionType != TSBCouponTransactionTypes.SoldByTSB)
+                        return;
+                    coupon.FinishFlag = 0; // Mask as finished.
+
+                    coupon.Save();
+                }
             });
 
             return true;

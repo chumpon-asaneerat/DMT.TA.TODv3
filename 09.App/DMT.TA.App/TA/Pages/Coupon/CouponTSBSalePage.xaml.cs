@@ -59,11 +59,6 @@ namespace DMT.TA.Pages.Coupon
             GotoMainMenu();
         }
 
-        private void cmdEdit_Click(object sender, RoutedEventArgs e)
-        {
-            CancelPreview();
-        }
-
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
         {
             PrintReceipt();
@@ -256,18 +251,6 @@ namespace DMT.TA.Pages.Coupon
             // Main Menu Page
             var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
-        }
-
-        private void CancelPreview()
-        {
-            tabs.SelectedIndex = 0;
-
-            // Focus on search textbox.
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                txtCoupon35Filter.SelectAll();
-                txtCoupon35Filter.Focus();
-            }));
         }
 
         private void GotoPrintPreview()
@@ -515,7 +498,7 @@ namespace DMT.TA.Pages.Coupon
             // print reports.
             this.rptViewer.Print(documentName);
             // After print.
-            //GotoMainMenu();
+            Setup(_chief);
         }
 
         #endregion
@@ -534,10 +517,12 @@ namespace DMT.TA.Pages.Coupon
             if (null == manager) manager = new TSBCouponSoldManager();
             if (null != manager)
             {
-                manager.SetUser(TAApp.User.Current);
+                manager.SetUser(chief);
                 manager.Refresh();
                 UpadteListViews();
             }
+
+            tabs.SelectedIndex = 0; // set start tab.
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

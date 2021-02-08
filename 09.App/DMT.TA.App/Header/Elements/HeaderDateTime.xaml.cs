@@ -46,8 +46,7 @@ namespace DMT.Controls.Header
         {
             string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
                 TAConfigManager.Instance.SCW.Service.HostName : "unknown";
-            int interval = (null != TAUIConfigManager.Instance.SCW) ?
-                TAUIConfigManager.Instance.SCW.IntervalSeconds : 5;
+            int interval = (null != Config) ? Config.IntervalSeconds : 5;
             if (interval < 0) interval = 5;
 
             ping = new NLib.Components.PingManager();
@@ -65,12 +64,10 @@ namespace DMT.Controls.Header
             timer.Start();
 
             TAConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TAUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TAUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != ping)
@@ -127,8 +124,7 @@ namespace DMT.Controls.Header
             {
                 string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
                     TAConfigManager.Instance.SCW.Service.HostName : "unknown";
-                int interval = (null != TAUIConfigManager.Instance.SCW) ?
-                    TAUIConfigManager.Instance.SCW.IntervalSeconds : 5;
+                int interval = (null != Config) ? Config.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
 
                 // Stop ping service.
@@ -144,13 +140,18 @@ namespace DMT.Controls.Header
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            CallWS();
-            UpdateUI();
-        }
-
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == AccountConfigManager.Instance.Value ||
+                    null == AccountConfigManager.Instance.Value.UIConfig ||
+                    null == AccountConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return AccountConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+            }
+        }
 
         private void CallWS()
         {

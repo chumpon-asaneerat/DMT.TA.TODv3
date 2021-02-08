@@ -155,7 +155,6 @@
     <Compile Include="Services\TODManagers.cs" />
     <Compile Include="Services\TODApp.cs" />
     <Compile Include="Services\RuntimeManager.cs" />
-    <Compile Include="Services\UIConfigs.cs" />
     <Compile Include="SignIn\SmartcardManager.cs" />
     <Compile Include="SignIn\UserSearchManager.cs" />
     <Compile Include="SignIn\Windows\SignInWindow.xaml.cs">

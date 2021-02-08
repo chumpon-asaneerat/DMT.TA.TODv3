@@ -18,7 +18,7 @@ namespace DMT.Services.Operations
             /// <returns>Returns NRestResult instance.</returns>
             public static NRestResult<Models.IsAliveResult> IsAlive()
             {
-                var ret = Execute<Models.IsAliveResult>(RouteConsts.TA.Notify.IsAlive.Url);
+                var ret = Execute<Models.IsAliveResult>(RouteConsts.TA.Notify.IsAlive.Url, new { });
                 return ret;
             }
         }

@@ -17,7 +17,7 @@ namespace DMT.Services.Operations
             /// <returns>Returns NRestResult instance.</returns>
             public static NRestResult TSBShiftChanged()
             {
-                var ret = Execute(RouteConsts.TA.Notify.TSBShiftChanged.Url);
+                var ret = Execute(RouteConsts.TA.Notify.TSBShiftChanged.Url, new { });
                 return ret;
             }
         }

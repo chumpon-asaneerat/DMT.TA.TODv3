@@ -17,7 +17,7 @@ namespace DMT.Services.Operations
             public static NRestResult<List<Models.Shift>> Gets()
             {
                 var ret = Execute<List<Models.Shift>>(
-                    RouteConsts.TOD.Shift.Gets.Url);
+                    RouteConsts.TOD.Shift.Gets.Url, new { });
                 return ret;
             }
         }

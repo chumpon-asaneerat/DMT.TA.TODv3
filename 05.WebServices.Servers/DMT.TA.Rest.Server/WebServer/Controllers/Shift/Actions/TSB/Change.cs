@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using DMT.Models;
 
@@ -16,22 +17,17 @@ namespace DMT.Services
             [HttpPost]
             [ActionName(RouteConsts.TA.Shift.TSB.Change.Name)]
             //[AllowAnonymous]
-            public NDbResult Change([FromBody] TSBShift value)
+            public NDbResult Change([FromBody] Models.TSBShift value)
             {
-                NDbResult result = new NDbResult();
-                if (null == value)
+                var ret = Models.TSBShift.ChangeShift(value);
+                if (null != ret && ret.Ok)
                 {
-                    result.ParameterIsNull();
-                    return result;
+                    Task.Run(() => 
+                    { 
+                        TANotifyService.Instance.RaiseTSBShiftChanged(); 
+                    });
                 }
-                var dbRet = TSBShift.ChangeShift(value);
-                if (null != dbRet && dbRet.Ok)
-                {
-                    // Raise Change Shift.
-                    TANotifyService.Instance.RaiseTSBShiftChanged();
-                    result.Success();
-                }
-                return result;
+                return ret;
             }
         }
     }

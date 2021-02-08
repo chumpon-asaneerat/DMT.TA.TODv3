@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
                 public static NRestResult<List<Models.User>> Gets()
                 {
                     var ret = Execute<List<Models.User>>(
-                        RouteConsts.TOD.Security.User.Gets.Url);
+                        RouteConsts.TOD.Security.User.Gets.Url, new { });
                     return ret;
                 }
             }

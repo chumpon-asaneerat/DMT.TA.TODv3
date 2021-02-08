@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
                 public static NRestResult<List<Models.TSB>> Gets()
                 {
                     var ret = Execute<List<Models.TSB>>(
-                        RouteConsts.TA.Infrastructure.TSB.Gets.Url);
+                        RouteConsts.TA.Infrastructure.TSB.Gets.Url, new { });
                     return ret;
                 }
             }

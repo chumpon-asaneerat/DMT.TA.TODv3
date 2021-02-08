@@ -9,6 +9,8 @@ using NLib;
 using NLib.Logs;
 
 using DMT.Configurations;
+using DMT.Models;
+using DMT.Models.ExtensionMethods;
 using DMT.Services;
 
 #endregion
@@ -130,6 +132,9 @@ namespace DMT
             TODNotifyService.Instance.TSBChanged += TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
 
+            // Sync data.
+            SyncTSBShift();
+
             Window window = null;
             window = new MainWindow();
 
@@ -187,7 +192,21 @@ namespace DMT
 
         private void TSBShiftChanged(object sender, EventArgs e)
         {
+            SyncTSBShift();
             RuntimeManager.Instance.RaiseTSBShiftChanged();
+        }
+
+        private void SyncTSBShift()
+        {
+            var curr = Models.TSBShift.GetTSBShift().Value();
+            var taShift = taaOps.Shift.TSB.Current().Value();
+            if (null != taShift)
+            {
+                if (null != curr && curr.TSBShiftId != taShift.TSBShiftId)
+                {
+                    Models.TSBShift.ChangeShift(taShift);
+                }
+            }
         }
     }
 }

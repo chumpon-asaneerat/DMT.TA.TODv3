@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
                 public static NRestResult<Models.TSB> Current()
                 {
                     var ret = Execute<Models.TSB>(
-                        RouteConsts.TA.Infrastructure.TSB.Current.Url);
+                        RouteConsts.TA.Infrastructure.TSB.Current.Url, new { });
                     return ret;
                 }
             }

@@ -706,6 +706,8 @@ namespace DMT.Models
                     {
                         uncloseShifts.ForEach(uncloseShift => 
                         {
+                            if (value.TSBShiftId == uncloseShift.TSBShiftId) return; // Same Id ignore it.
+
                             if (uncloseShift.Begin.HasValue && value.Begin.HasValue)
                             {
                                 if (uncloseShift.Begin.Value < value.Begin.Value)

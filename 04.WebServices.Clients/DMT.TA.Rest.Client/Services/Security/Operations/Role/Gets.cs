@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
                 public static NRestResult<List<Models.Role>> Gets()
                 {
                     var ret = Execute<List<Models.Role>>(
-                        RouteConsts.TA.Security.Role.Gets.Url);
+                        RouteConsts.TA.Security.Role.Gets.Url, new { });
                     return ret;
                 }
             }

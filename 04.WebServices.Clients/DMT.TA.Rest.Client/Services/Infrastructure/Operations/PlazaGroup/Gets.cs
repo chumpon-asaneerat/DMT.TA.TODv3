@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
                 public static NRestResult<List<Models.PlazaGroup>> Gets()
                 {
                     var ret = Execute<List<Models.PlazaGroup>>(
-                        RouteConsts.TA.Infrastructure.PlazaGroup.Gets.Url);
+                        RouteConsts.TA.Infrastructure.PlazaGroup.Gets.Url, new { });
                     return ret;
                 }
             }

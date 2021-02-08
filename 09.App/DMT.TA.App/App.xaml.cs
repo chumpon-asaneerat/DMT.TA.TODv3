@@ -125,6 +125,10 @@ namespace DMT
 #if ENABLE_COUPON_SYNC_SERVICE
             CouponSyncService.Instance.Start();
 #endif
+
+            // Notify all TOD Apps that TSB Shift is changed.
+            TODClientManager.Instance.TODTSBShiftChanged();
+
             Window window = null;
             window = new MainWindow();
 

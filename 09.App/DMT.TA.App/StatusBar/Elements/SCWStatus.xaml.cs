@@ -42,8 +42,7 @@ namespace DMT.Controls.StatusBar
         {
             string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
                 TAConfigManager.Instance.SCW.Service.HostName : "unknown";
-            int interval = (null != TAUIConfigManager.Instance.SCW) ?
-                TAUIConfigManager.Instance.SCW.IntervalSeconds : 5;
+            int interval = (null != Config) ? Config.IntervalSeconds : 5;
             if (interval < 0) interval = 5;
 
             ping = new NLib.Components.PingManager();
@@ -61,12 +60,10 @@ namespace DMT.Controls.StatusBar
             timer.Start();
 
             TAConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TAUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TAUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != ping)
@@ -122,8 +119,7 @@ namespace DMT.Controls.StatusBar
             {
                 string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
                     TAConfigManager.Instance.SCW.Service.HostName : "unknown";
-                int interval = (null != TAUIConfigManager.Instance.SCW) ?
-                    TAUIConfigManager.Instance.SCW.IntervalSeconds : 5;
+                int interval = (null != Config) ? Config.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
 
                 // Stop ping service.
@@ -139,13 +135,18 @@ namespace DMT.Controls.StatusBar
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            CallWS();
-            UpdateUI();
-        }
-
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == TAConfigManager.Instance.Value ||
+                    null == TAConfigManager.Instance.Value.UIConfig ||
+                    null == TAConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TAConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+            }
+        }
 
         private void CallWS()
         {
@@ -156,7 +157,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = TAUIConfigManager.Instance.SCW;
+            var statusCfg = Config;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

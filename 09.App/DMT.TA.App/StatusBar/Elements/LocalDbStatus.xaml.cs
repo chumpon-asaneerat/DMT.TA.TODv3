@@ -45,12 +45,10 @@ namespace DMT.Controls.StatusBar
             timer.Start();
 
             TAConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TAUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TAUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
 
             if (null != timer)
@@ -79,16 +77,22 @@ namespace DMT.Controls.StatusBar
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
-        }
-
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == TAConfigManager.Instance.Value ||
+                    null == TAConfigManager.Instance.Value.UIConfig ||
+                    null == TAConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TAConfigManager.Instance.Value.UIConfig.StatusBars.LocalDb;
+            }
+        }
 
         private void UpdateUI()
         {
-            var statusCfg = TAUIConfigManager.Instance.LocalDb;
+            var statusCfg = Config;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

@@ -36,7 +36,6 @@ namespace DMT.Controls.StatusBar
         {
             UpdateUI();
             TAConfigManager.Instance.ConfigChanged += ConfigChanged;
-            TAUIConfigManager.Instance.ConfigChanged += UI_ConfigChanged;
 
             CouponSyncService.Instance.OnProgress += Instance_OnProgress;
         }
@@ -45,7 +44,6 @@ namespace DMT.Controls.StatusBar
         {
             CouponSyncService.Instance.OnProgress -= Instance_OnProgress;
 
-            TAUIConfigManager.Instance.ConfigChanged -= UI_ConfigChanged;
             TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
         }
 
@@ -78,6 +76,17 @@ namespace DMT.Controls.StatusBar
         }
 
         #endregion
+
+        private StatusBarConfig Config
+        {
+            get
+            {
+                if (null == TAConfigManager.Instance.Value ||
+                    null == TAConfigManager.Instance.Value.UIConfig ||
+                    null == TAConfigManager.Instance.Value.UIConfig.StatusBars) return null;
+                return TAConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+            }
+        }
 
         private void UpdateUI()
         {

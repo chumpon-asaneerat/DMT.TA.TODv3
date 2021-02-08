@@ -35,8 +35,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1439
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1438
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1437
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - fixed uncompiled code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1436

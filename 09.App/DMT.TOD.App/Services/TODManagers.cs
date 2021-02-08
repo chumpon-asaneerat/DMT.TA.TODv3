@@ -272,8 +272,8 @@ namespace DMT.Services
         {
             List<PlazaGroup> results = new List<PlazaGroup>();
 
-            var plazas = (null != TODConfigManager.Instance.TODApp) ?
-                TODConfigManager.Instance.TODApp.Plazas : null;
+            var cfg = TODConfigManager.Instance.Value;
+            var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
             {
                 plazas.ForEach(plaza =>
@@ -304,8 +304,8 @@ namespace DMT.Services
         {
             List<Plaza> results = new List<Plaza>();
 
-            var plazas = (null != TODConfigManager.Instance.TODApp) ?
-                TODConfigManager.Instance.TODApp.Plazas : null;
+            var cfg = TODConfigManager.Instance.Value;
+            var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
             {
                 plazas.ForEach(plaza =>
@@ -330,8 +330,8 @@ namespace DMT.Services
         {
             List<Lane> results = new List<Lane>();
 
-            var plazas = (null != TODConfigManager.Instance.TODApp) ?
-                TODConfigManager.Instance.TODApp.Plazas : null;
+            var cfg = TODConfigManager.Instance.Value;
+            var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
             {
                 plazas.ForEach(plaza =>
@@ -385,8 +385,8 @@ namespace DMT.Services
             List<Plaza> results = new List<Plaza>();
             if (null == value) return results;
 
-            var plazas = (null != TODConfigManager.Instance.TODApp) ?
-                TODConfigManager.Instance.TODApp.Plazas : null;
+            var cfg = TODConfigManager.Instance.Value;
+            var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
             {
                 plazas.ForEach(plaza => 

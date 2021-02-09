@@ -73,8 +73,9 @@ namespace DMT.Configurations
         /// </summary>
         public WebServiceConfig Service { get; set; }
         /// <summary>
-        /// Gets TODApp Config.
+        /// Gets TODApp Config (not serialization).
         /// </summary>
+        [JsonIgnore]
         public TODAppWebServiceConfig TODApp { get { return this; } }
 
         #endregion

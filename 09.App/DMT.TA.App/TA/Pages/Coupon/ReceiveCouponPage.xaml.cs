@@ -47,7 +47,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdRefresh_Click(object sender, RoutedEventArgs e)
         {
-
+            Resync();
         }
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -119,6 +119,8 @@ namespace DMT.TA.Pages.Coupon
 
         #region Private Methods
 
+        #region Navigate methods
+
         private void GotoMainMenu()
         {
             // Main Menu Page
@@ -137,6 +139,10 @@ namespace DMT.TA.Pages.Coupon
         {
             Setup(_chief);
         }
+
+        #endregion
+
+        #region Reset/User methods
 
         private void Reset()
         {
@@ -190,6 +196,10 @@ namespace DMT.TA.Pages.Coupon
             RefreshCoupons();
         }
 
+        #endregion
+
+        #region Coupon Manage methods
+
         private void BorrownCoupon()
         {
             if (null == manager || null == manager.User) return;
@@ -211,6 +221,10 @@ namespace DMT.TA.Pages.Coupon
                 grid.ItemsSource = summaries;
             }
         }
+
+        #endregion
+
+        #region Print Methods
 
         private void PreparePreview(TSBCouponSummary item)
         {
@@ -324,6 +338,17 @@ namespace DMT.TA.Pages.Coupon
             this.rptViewer.Print(documentName);
             Setup(_chief); // Go back to tab 1
         }
+
+        #endregion
+
+        #region Resync
+
+        private void Resync()
+        {
+
+        }
+
+        #endregion
 
         #endregion
 

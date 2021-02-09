@@ -51,7 +51,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdRefresh_Click(object sender, RoutedEventArgs e)
         {
-
+            Resync();
         }
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
@@ -510,6 +510,15 @@ namespace DMT.TA.Pages.Coupon
             this.rptViewer.Print(documentName);
             // After print.
             Setup(_chief);
+        }
+
+        #endregion
+
+        #region Resync
+
+        private void Resync()
+        {
+
         }
 
         #endregion

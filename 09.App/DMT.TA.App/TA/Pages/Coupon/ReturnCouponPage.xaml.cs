@@ -42,7 +42,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdRefresh_Click(object sender, RoutedEventArgs e)
         {
-
+            Resync();
         }
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -65,12 +65,18 @@ namespace DMT.TA.Pages.Coupon
 
         #region Private Methods
 
+        #region Navigate methods
+
         private void GotoMainMenu()
         {
             // Main Menu Page
             var page = TAApp.Pages.MainMenu;
             PageContentManager.Instance.Current = page;
         }
+
+        #endregion
+
+        #region Reset
 
         private void Reset()
         {
@@ -81,6 +87,10 @@ namespace DMT.TA.Pages.Coupon
 
             }
         }
+
+        #endregion
+
+        #region Coupon Manage methods
 
         private void ReturnCoupon()
         {
@@ -102,6 +112,17 @@ namespace DMT.TA.Pages.Coupon
                 grid.ItemsSource = summaries;
             }
         }
+
+        #endregion
+
+        #region Resync
+
+        private void Resync()
+        {
+
+        }
+
+        #endregion
 
         #endregion
 

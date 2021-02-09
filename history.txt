@@ -27,8 +27,39 @@
   - URGENT: All coupon realted classes required LandId, LaneNo.
   - ป้อนรายได้ ย้อนหลัง มี bug วันที่ของรายได้ ไม่ update ส่ง SCW
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1480
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1490
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1489
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1488
+-
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1487
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1486
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1485
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1484
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1483
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1482
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1481
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1480
+- Prepare history.txt
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1479

@@ -55,5 +55,10 @@ namespace DMT.TA.Pages.Coupon
         }
 
         #endregion
+
+        private void cmdRefresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

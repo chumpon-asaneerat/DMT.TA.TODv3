@@ -36,8 +36,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1479
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1478
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1477
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update CouponHistoryViewPage #1 -> Add Refresh Button.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1476

@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Globalization;
+using System.Windows.Markup;
 
 using DMT.Configurations;
 using DMT.Models;
@@ -44,6 +45,7 @@ namespace DMT.TOD.Windows.Reports
 
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("TH");
         private User _user = null;
 
         #endregion
@@ -54,6 +56,7 @@ namespace DMT.TOD.Windows.Reports
         {
             // Setup DateTime Picker.
             dtDate.CultureInfo = culture;
+            dtDate.Language = language;
         }
 
         #endregion

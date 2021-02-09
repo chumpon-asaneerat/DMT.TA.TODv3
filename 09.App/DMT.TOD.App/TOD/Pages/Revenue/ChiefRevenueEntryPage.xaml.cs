@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 using DMT.Configurations;
 using DMT.Controls;
@@ -44,6 +45,7 @@ namespace DMT.TOD.Pages.Revenue
 
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("TH");
 
         private RevenueEntryManager manager = null;
 
@@ -57,7 +59,9 @@ namespace DMT.TOD.Pages.Revenue
         {
             // Setup DateTime Picker.
             dtEntryDate.CultureInfo = culture;
+            dtEntryDate.Language = language;
             dtRevDate.CultureInfo = culture;
+            dtRevDate.Language = language;
             //Thread.CurrentThread.CurrentCulture = culture;
             //Thread.CurrentThread.CurrentUICulture = culture;
 

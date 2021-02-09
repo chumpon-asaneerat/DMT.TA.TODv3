@@ -44,8 +44,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1476
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1475
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1474
-- 
+- DMT.TAxTODv3
+  - TOD
+    - All DateTimePicker now force Language to TH.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1473

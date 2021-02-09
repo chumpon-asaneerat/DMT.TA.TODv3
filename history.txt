@@ -42,8 +42,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1487
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1486
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1485
-- 
+- DMT.TAxTODv3
+  - Recompile all - OK.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1484

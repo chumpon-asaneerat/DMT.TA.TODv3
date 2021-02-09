@@ -192,7 +192,7 @@ namespace DMT.Configurations
                 TSBId = "09",
                 PlazaId = "091",
                 PlazaNameEN = "ANUSORN SATHAN",
-                PlazaNameTH = "อนุสรน์สถาน"
+                PlazaNameTH = "อนุสรณ์สถาน"
             };
         }
 

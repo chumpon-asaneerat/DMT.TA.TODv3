@@ -46,9 +46,9 @@
                                    DockPanel.Dock="Bottom">
                             <Grid Width="5" DockPanel.Dock="Left" />
                             <ctrl:ImageButton x:Name="cmdRefresh"
-                                      Click="cmdRefresh_Click"
-                                      DockPanel.Dock="Left"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                                              Click="cmdRefresh_Click"
+                                              DockPanel.Dock="Left"
+                                              ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
                                 <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="อ่านข้อมูลคูปองทั้งหมด" />
                                 <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="จาก server" />
                             </ctrl:ImageButton>
@@ -260,15 +260,15 @@
                                DockPanel.Dock="Bottom">
                         <Grid Width="5" DockPanel.Dock="Left" />
                         <ctrl:ImageButton x:Name="cmdCancel"
-                                          DockPanel.Dock="Left"
                                           Click="cmdCancel_Click"
+                                          DockPanel.Dock="Left"
                                           ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
                             <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                         </ctrl:ImageButton>
                         <Grid Width="5" DockPanel.Dock="Left" />
                         <ctrl:ImageButton x:Name="cmdPrint"
-                                          DockPanel.Dock="Right"
                                           Click="cmdPrint_Click"
+                                          DockPanel.Dock="Right"
                                           ImageSource="/DMT.TA.App;component/Images/Button/Printer3.png">
                             <TextBlock Style="{StaticResource ImageButtonText}" Text="พิมพ์" />
                         </ctrl:ImageButton>

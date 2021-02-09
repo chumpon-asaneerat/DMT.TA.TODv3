@@ -42,9 +42,9 @@
                     <DockPanel Grid.Row="1"
                                Grid.Column="1"
                                Margin="10"
-                               LastChildFill="True"
                                HorizontalAlignment="Stretch"
-                               VerticalAlignment="Stretch">
+                               VerticalAlignment="Stretch"
+                               LastChildFill="True">
                         <!--  BUTTONS  -->
                         <DockPanel Height="60"
                                    HorizontalAlignment="Stretch"
@@ -57,6 +57,14 @@
                                               DockPanel.Dock="Right"
                                               ImageSource="/DMT.TA.App;component/Images/Button/Save2.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                            </ctrl:ImageButton>
+                            <Grid Width="5" DockPanel.Dock="Left" />
+                            <ctrl:ImageButton x:Name="cmdRefresh"
+                                              Click="cmdRefresh_Click"
+                                              DockPanel.Dock="Left"
+                                              ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                                <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="อ่านข้อมูลคูปองทั้งหมด" />
+                                <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="จาก server" />
                             </ctrl:ImageButton>
                             <Grid Width="5" DockPanel.Dock="Left" />
                             <ctrl:ImageButton x:Name="cmdCancel"
@@ -82,9 +90,9 @@
                                        TextAlignment="Center" />
                         </Border>
                         <!--  WORK AREA  -->
-                        <DockPanel LastChildFill="True"
+                        <DockPanel HorizontalAlignment="Center"
                                    VerticalAlignment="Stretch"
-                                   HorizontalAlignment="Center">
+                                   LastChildFill="True">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*" />

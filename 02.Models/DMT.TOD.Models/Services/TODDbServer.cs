@@ -1514,7 +1514,7 @@ namespace DMT.Services
             item.NetworkId = "31";
             item.TSBId = "09";
             item.TSBNameEN = "ANUSORN SATHAN";
-            item.TSBNameTH = "อนุสรน์สถาน";
+            item.TSBNameTH = "อนุสรณ์สถาน";
             item.Active = true;
             if (!TSB.Exists(item)) TSB.Save(item);
             // init default credit value.
@@ -1528,7 +1528,7 @@ namespace DMT.Services
             {
                 PlazaGroupId = "AS",
                 PlazaGroupNameEN = "ANUSORN SATHAN",
-                PlazaGroupNameTH = "อนุสรน์สถาน",
+                PlazaGroupNameTH = "อนุสรณ์สถาน",
                 Direction = "?",
                 TSBId = item.TSBId
             };
@@ -1541,7 +1541,7 @@ namespace DMT.Services
                 PlazaId = "091",
                 SCWPlazaId = 15,
                 PlazaNameEN = "ANUSORN SATHAN 1",
-                PlazaNameTH = "อนุสรน์สถาน 1",
+                PlazaNameTH = "อนุสรณ์สถาน 1",
                 TSBId = item.TSBId,
                 PlazaGroupId = plazaGroup.PlazaGroupId
             };
@@ -1616,7 +1616,7 @@ namespace DMT.Services
                 PlazaId = "092",
                 SCWPlazaId = 16,
                 PlazaNameEN = "ANUSORN SATHAN 2",
-                PlazaNameTH = "อนุสรน์สถาน 2",
+                PlazaNameTH = "อนุสรณ์สถาน 2",
                 TSBId = item.TSBId,
                 PlazaGroupId = plazaGroup.PlazaGroupId
             };

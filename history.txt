@@ -53,8 +53,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1463
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1462
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1461
-- 
+- DMT.TAxTODv3
+  - Fixed all application config #4.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1460

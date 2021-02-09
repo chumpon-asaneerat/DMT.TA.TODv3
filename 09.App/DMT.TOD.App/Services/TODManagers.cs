@@ -272,8 +272,6 @@ namespace DMT.Services
         {
             List<PlazaGroup> results = new List<PlazaGroup>();
 
-            //TODO: Temporary Comment out
-            /*
             var cfg = TODConfigManager.Instance.Value;
             var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
@@ -295,7 +293,6 @@ namespace DMT.Services
                     }
                 });
             }
-            */
 
             return results;
         }
@@ -306,8 +303,7 @@ namespace DMT.Services
         public static List<Plaza> GetTODPlazas()
         {
             List<Plaza> results = new List<Plaza>();
-            //TODO: Temporary Comment out
-            /*
+
             var cfg = TODConfigManager.Instance.Value;
             var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
@@ -323,7 +319,7 @@ namespace DMT.Services
                     }
                 });
             }
-            */
+
             return results;
         }
         /// <summary>
@@ -333,8 +329,7 @@ namespace DMT.Services
         public static List<Lane> GetTODLanes()
         {
             List<Lane> results = new List<Lane>();
-            //TODO: Temporary Comment out
-            /*
+
             var cfg = TODConfigManager.Instance.Value;
             var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
@@ -359,7 +354,7 @@ namespace DMT.Services
                     }
                 });
             }
-            */
+
             return results;
         }
         /// <summary>
@@ -390,8 +385,6 @@ namespace DMT.Services
             List<Plaza> results = new List<Plaza>();
             if (null == value) return results;
 
-            //TODO: Temporary Comment out
-            /*
             var cfg = TODConfigManager.Instance.Value;
             var plazas = (null != cfg && null != cfg.Plazas) ? cfg.Plazas : null;
             if (null != plazas && plazas.Count > 0)
@@ -407,7 +400,7 @@ namespace DMT.Services
                     }
                 });
             }
-            */
+
             return results;
         }
 

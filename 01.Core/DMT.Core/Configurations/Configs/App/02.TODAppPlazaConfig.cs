@@ -303,11 +303,10 @@ namespace DMT.Configurations
         {
             this.Services = new TODAppServiceConfig();
 
-            /*
             this.Plazas = new List<TODPlazaConfig>();
             this.Plazas.Add(new TODPlazaConfig() { PlazaId = 15 });
             this.Plazas.Add(new TODPlazaConfig() { PlazaId = 16 });
-            */
+
             this.UIConfig = new TODUIConfig();
         }
 
@@ -320,13 +319,11 @@ namespace DMT.Configurations
         /// Gets or sets TOD App Service Config.
         /// </summary>
         public TODAppServiceConfig Services { get; set; }
-        /*
         /// <summary>
         /// Gets or sets Plazas.
         /// </summary>
         [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<TODPlazaConfig> Plazas { get; set; }
-        */
         /// <summary>
         /// Gets or sets TOD UI Config.
         /// </summary>

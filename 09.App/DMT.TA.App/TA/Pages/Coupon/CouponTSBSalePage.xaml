@@ -66,10 +66,10 @@
                                 <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="อ่านข้อมูลคูปองทั้งหมด" />
                                 <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="จาก server" />
                             </ctrl:ImageButton>
-                            <Grid Width="5" DockPanel.Dock="Left" />
+                            <Grid Width="5" DockPanel.Dock="Right" />
                             <ctrl:ImageButton x:Name="cmdCancel"
                                               Click="cmdCancel_Click"
-                                              DockPanel.Dock="Left"
+                                              DockPanel.Dock="Right"
                                               ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                             </ctrl:ImageButton>

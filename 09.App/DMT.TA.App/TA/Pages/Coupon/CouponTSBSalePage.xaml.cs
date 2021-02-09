@@ -49,6 +49,11 @@ namespace DMT.TA.Pages.Coupon
 
         #region Button Handlers
 
+        private void cmdRefresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
             GotoPrintPreview();
@@ -539,10 +544,5 @@ namespace DMT.TA.Pages.Coupon
         }
 
         #endregion
-
-        private void cmdRefresh_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

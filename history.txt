@@ -51,8 +51,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1484
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1483
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1482
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update CouponHistoryViewPage #2.
+    - Update ReceiveCouponPage #2.
+    - Update ReturnCouponPage #2.
+    - Update CouponTSBSalePage #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1481

@@ -54,7 +54,7 @@
                             </ctrl:ImageButton>
                             <Grid Width="5" DockPanel.Dock="Right" />
                             <ctrl:ImageButton x:Name="cmdBack"
-                                              Click="cmdBack_Click_1"
+                                              Click="cmdBack_Click"
                                               DockPanel.Dock="Right"
                                               ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />

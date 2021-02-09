@@ -45,6 +45,11 @@ namespace DMT.TA.Pages.Coupon
 
         #region Button Handlers
 
+        private void cmdRefresh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();
@@ -351,10 +356,5 @@ namespace DMT.TA.Pages.Coupon
         }
 
         #endregion
-
-        private void cmdBack_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

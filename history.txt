@@ -38,8 +38,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1468
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1467
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1466
-- 
+- DMT.TAxTODv3
+  - Update TOD - Revenue Entry #1.
+    - Reorder Coupon Usage -> 35, 80, 30, 60, 70
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1465

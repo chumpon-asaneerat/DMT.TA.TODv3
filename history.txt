@@ -47,8 +47,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1475
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1474
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1473
-- 
+- DMT.TAxTODv3
+  - Update todos #6.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1472

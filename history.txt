@@ -30,8 +30,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1480
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1479
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update ReturnCouponPage #1 -> Add Refresh Button.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1478

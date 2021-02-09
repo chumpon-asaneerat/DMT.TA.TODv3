@@ -44,9 +44,17 @@
                                    HorizontalAlignment="Stretch"
                                    VerticalAlignment="Stretch"
                                    DockPanel.Dock="Bottom">
+                            <Grid Width="5" DockPanel.Dock="Left" />
+                            <ctrl:ImageButton x:Name="cmdRefresh"
+                                      Click="cmdRefresh_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                                <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="อ่านข้อมูลคูปองทั้งหมด" />
+                                <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="จาก server" />
+                            </ctrl:ImageButton>
                             <Grid Width="5" DockPanel.Dock="Right" />
                             <ctrl:ImageButton x:Name="cmdBack"
-                                              Click="cmdBack_Click"
+                                              Click="cmdBack_Click_1"
                                               DockPanel.Dock="Right"
                                               ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
                                 <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />

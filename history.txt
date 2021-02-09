@@ -26,8 +26,39 @@
     - ถ้าต่อ Service ไม่ได้ หรือยอด คูปองเป็น 0 ยอมให้ Key
   - URGENT: All coupon realted classes required LandId, LaneNo.
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1460
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1470
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1469
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1468
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1467
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1466
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1465
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1464
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1463
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1462
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1461
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1460
+- Prepare history.txt
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1459

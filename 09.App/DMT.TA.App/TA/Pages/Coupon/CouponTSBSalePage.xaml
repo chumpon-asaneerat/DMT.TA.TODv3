@@ -343,6 +343,13 @@
                                VerticalAlignment="Stretch"
                                DockPanel.Dock="Bottom">
                         <Grid Width="5" DockPanel.Dock="Left" />
+                        <ctrl:ImageButton x:Name="cmdEdit"
+                                          Click="cmdEdit_Click"
+                                          DockPanel.Dock="Left"
+                                          ImageSource="/DMT.TA.App;component/Images/Button/edit.png">
+                            <TextBlock Style="{StaticResource ImageButtonText}" Text="แก้ไข" />
+                        </ctrl:ImageButton>
+
                         <ctrl:ImageButton x:Name="cmdPrint"
                                           Click="cmdPrint_Click"
                                           DockPanel.Dock="Right"

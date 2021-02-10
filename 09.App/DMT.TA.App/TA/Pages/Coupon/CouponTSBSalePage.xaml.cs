@@ -64,6 +64,11 @@ namespace DMT.TA.Pages.Coupon
             GotoMainMenu();
         }
 
+        private void cmdEdit_Click(object sender, RoutedEventArgs e)
+        {
+            GotoEditScreen();
+        }
+
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
         {
             PrintReceipt();
@@ -260,17 +265,14 @@ namespace DMT.TA.Pages.Coupon
 
         private void GotoPrintPreview()
         {
-            /*
             tabs.SelectedIndex = 1;
 
             PreparePreview();
-            */
+        }
 
-            PreparePreview();
-            // print reports.
-            this.rptViewer.Print(ReportDisplayName);
-            // go to main menu.
-            GotoMainMenu();
+        private void GotoEditScreen()
+        {
+            tabs.SelectedIndex = 0;
         }
 
         private void PrintReceipt()
@@ -385,8 +387,9 @@ namespace DMT.TA.Pages.Coupon
 
         private void PreparePreview()
         {
+            /*
             if (null != manager) manager.Save(); // Save all.
-
+            */
             var model = GetReportModel();
             if (null == model ||
                 null == model.DataSources || model.DataSources.Count <= 0 ||

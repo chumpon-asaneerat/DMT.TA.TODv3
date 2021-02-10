@@ -387,9 +387,6 @@ namespace DMT.TA.Pages.Coupon
 
         private void PreparePreview()
         {
-            /*
-            if (null != manager) manager.Save(); // Save all.
-            */
             var model = GetReportModel();
             if (null == model ||
                 null == model.DataSources || model.DataSources.Count <= 0 ||
@@ -509,8 +506,11 @@ namespace DMT.TA.Pages.Coupon
 
         private void Print(string documentName)
         {
+            if (null != manager) manager.Save(); // Save all.
+
             // print reports.
             this.rptViewer.Print(documentName);
+
             // After print.
             Setup(_chief);
         }

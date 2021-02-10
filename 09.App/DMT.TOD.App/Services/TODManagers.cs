@@ -2350,6 +2350,7 @@ namespace DMT.Services
                 // send to server
                 SCWDeclare declare = Entry.ToServer(networkId, currencies, coupons, cardAllows,
                     jobs, emv, qrCode, plazaId);
+
                 // send.
                 SCWMQService.Instance.WriteQueue(declare);
 

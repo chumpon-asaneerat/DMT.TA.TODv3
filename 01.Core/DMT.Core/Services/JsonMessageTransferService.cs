@@ -184,25 +184,67 @@ namespace DMT.Services
         /// <param name="message">The json data in string.</param>
         public void WriteFile(string fileName, string message)
         {
-            if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(message)) 
+            if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(message))
                 return;
 
-            string fullFileName = Path.Combine(this.FolderName, fileName +".json");
-
             MethodBase med = MethodBase.GetCurrentMethod();
+            string fullFileName = Path.Combine(this.FolderName, fileName + ".json");
+
+            med.Info("Write message: {0}", message);
+            med.Info("Attemp Generate file: {0}.", fileName + ".json");
+            int iRetry = 0;
             // Save message.
-            try
-            {
-                using (var stream = File.CreateText(fullFileName))
+            while (!File.Exists(fullFileName) && iRetry < 5)
+            { 
+                try
                 {
-                    stream.Write(message);
-                    stream.Flush();
-                    stream.Close();
+                    using (var stream = File.CreateText(fullFileName))
+                    {
+                        stream.Write(message);
+                        stream.Flush();
+                        stream.Close();
+                    }
+
+                    var info = new FileInfo(fullFileName);
+                    if (null != info)
+                    {
+                        med.Info("Generate file: {0}. File Size: {1:n0} bytes.", fileName + ".json", info.Length);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    // remove if length is zero.
+                    if (File.Exists(fullFileName))
+                    {
+                        var info = new FileInfo(fullFileName);
+                        if (null == info || info.Length <= 0)
+                        {
+                            med.Info("Error whie Generate file: {0}.", fileName + ".json");
+                            try
+                            {
+                                med.Info("Attemp to remove Generate file: {0}.", fileName + ".json");
+                                File.Delete(fullFileName);
+                            }
+                            catch (Exception ex2)
+                            {
+                                med.Err(ex2);
+                                med.Info("Failed to remove Generate file: {0}.", fileName + ".json");
+                            }
+                        }
+                    }
+                }
+                ApplicationManager.Instance.Wait(100);
+                iRetry++;
             }
-            catch (Exception ex)
+
+            if (!File.Exists(fullFileName))
             {
-                med.Err(ex);
+                med.Info("Failed to Generate file: {0}.", fileName + ".json");
+            }
+            else
+            {
+                med.Info("Success to Generate file: {0}.", fileName + ".json");
             }
         }
         /// <summary>

@@ -54,8 +54,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1493
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1492
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1491
-- 
+- DMT.TAxTODv3
+  - Add log when Write File (json)
+    - Add Retry logic (5 times)
+    - Add remove file when error occur.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1490

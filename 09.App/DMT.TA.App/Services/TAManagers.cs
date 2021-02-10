@@ -2089,7 +2089,7 @@ namespace DMT.Services
             if (null == item || null == User) return;
 
             // Not allow if original is not Stock
-            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.Stock) return;
+            if (item.TransactionType != TSBCouponTransactionTypes.Stock) return;
 
             item.TransactionType = TSBCouponTransactionTypes.SoldByTSB;
             item.SoldBy = User.UserId;
@@ -2108,7 +2108,7 @@ namespace DMT.Services
             if (null == item || null == User) return;
 
             // Not allow if original is not SoldByTSB
-            if (item.Transaction.TransactionType != TSBCouponTransactionTypes.SoldByTSB) return;
+            if (item.TransactionType != TSBCouponTransactionTypes.SoldByTSB) return;
 
             item.TransactionType = TSBCouponTransactionTypes.Stock;
             item.SoldBy = null;

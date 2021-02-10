@@ -43,8 +43,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1515
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1514
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1513
-- 
+- DMT.TAxTODv3
+  - CouponTSBSalePage fixed bug cannot move Sold back to Stock.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1512

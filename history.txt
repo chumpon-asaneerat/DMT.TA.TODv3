@@ -37,8 +37,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1497
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1496
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1495
-- 
+- DMT.TAxTODv3
+  - TOD Revenue Entry process
+    - JobList fixed - send only selected jobs.
+    - BagNo, BeltNo - Clear when re enter entry screen.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1494

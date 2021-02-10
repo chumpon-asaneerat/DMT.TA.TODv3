@@ -107,7 +107,7 @@ namespace DMT.TOD.Pages.Menu
 
             // Chief Revenue Entry Page
             var page = TODApp.Pages.ChiefRevenueEntry;
-            page.Setup(user);
+            page.Setup(user, true);
             PageContentManager.Instance.Current = page;
         }
 

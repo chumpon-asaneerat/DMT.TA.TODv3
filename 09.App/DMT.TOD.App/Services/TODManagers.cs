@@ -1925,9 +1925,9 @@ namespace DMT.Services
 
         #region User Credit Methods
 
-        private UserCreditBalance CheckUserCredit()
+        private UserCreditBalance CheckUserCredit(bool isNew)
         {
-            UserCreditBalance usrCredit = null;
+            UserCreditBalance usrCredit;
             if (!ByChief)
             {
                 var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
@@ -1938,15 +1938,26 @@ namespace DMT.Services
                 // By chief create empty balance - update from Revenue Entry and save.
                 usrCredit = new UserCreditBalance();
                 usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
-                usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
-                usrCredit.BeltNo = (null != Entry) ? Entry.BeltNo : string.Empty;
+
                 usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
                 usrCredit.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
                 usrCredit.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
                 usrCredit.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
                 usrCredit.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
                 usrCredit.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
-                usrCredit.RevenueId = (null != Entry) ? Entry.RevenueId : string.Empty;
+
+                if (!isNew)
+                {
+                    usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
+                    usrCredit.BeltNo = (null != Entry) ? Entry.BeltNo : string.Empty;
+                    usrCredit.RevenueId = (null != Entry) ? Entry.RevenueId : string.Empty;
+                }
+                else
+                {
+                    usrCredit.BagNo = string.Empty;
+                    usrCredit.BeltNo = string.Empty;
+                    usrCredit.RevenueId = string.Empty;
+                }
             }
             return usrCredit;
         }
@@ -2102,7 +2113,7 @@ namespace DMT.Services
 
             #region Check User Credit Balance
 
-            var usrCredit = CheckUserCredit();
+            var usrCredit = CheckUserCredit(true);
 
             #endregion
 
@@ -2171,6 +2182,10 @@ namespace DMT.Services
                 if (null == Jobs || null == Jobs.UserShift) return false;
             }
 
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("UpdateRevenueEntry information");
+
             // Check is historical
             Entry.IsHistorical = ByChief;
             // assigned plaza group.
@@ -2185,9 +2200,22 @@ namespace DMT.Services
             // assigned date after sync object(s) to RevenueEntry.
             Entry.EntryDate = EntryDate; // assigned Entry date.
             var dtNow = DateTime.Now;
-            Entry.RevenueDate = new DateTime(
-                RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
-                dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+            if (!ByChief)
+            {
+                Entry.RevenueDate = new DateTime(
+                    RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
+                    dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+            }
+            else
+            {
+                if (!Entry.RevenueDate.HasValue)
+                {
+                    Entry.RevenueDate = new DateTime(
+                        RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
+                        dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+                }
+                med.Info("Revenue Date - By Chief : {0:dd/MM/yyyy}", Entry.RevenueDate);
+            }
 
             // Generate lane string.
             Entry.Lanes = Jobs.GetLaneString(ByChief);
@@ -2238,8 +2266,9 @@ namespace DMT.Services
 
             if (null == PlazaGroup || null == UserShift) return false;
 
-            // Save information.
             MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("SaveRevenueEntry information");
 
             if (Entry.RevenueId == string.Empty)
             {
@@ -2253,9 +2282,10 @@ namespace DMT.Services
                     UniqueCode.IncreaseUniqueId("RevenueEntry");
                 }
             }
+            med.Info("RevenueId : {0}", Entry.RevenueId);
 
             // Reload usrCredit for update Revenue Id.
-            var usrCredit = CheckUserCredit();
+            var usrCredit = CheckUserCredit(false);
             if (null != usrCredit)
             {
                 usrCredit.RevenueId = Entry.RevenueId;
@@ -2271,17 +2301,50 @@ namespace DMT.Services
                 UserShiftRevenue.SavePlazaRevenue(RevenueShift, Entry.RevenueDate.Value, revId);
             }
 
-            var allJobs = (null != Jobs) ? Jobs.AllJobs : null;
-            var currJobs = (null != Jobs) ? Jobs.PlazaGroupJobs : null;
-            // get all lanes information.
-            bool bCloseUserShift = (
-                (null == allJobs && null == currJobs) ||
-                (null != allJobs && null != currJobs && allJobs.Count == currJobs.Count));
+            List<LaneJob> allJobs;
+            List<LaneJob> currJobs;
+            bool bCloseUserShift;
+
+            if (!ByChief)
+            {
+                // Collector
+                allJobs = (null != Jobs) ? Jobs.AllJobs : null;
+                currJobs = (null != Jobs) ? Jobs.PlazaGroupJobs : null;
+                // get all lanes information.
+                bCloseUserShift = (
+                    (null == allJobs && null == currJobs) ||
+                    (null != allJobs && null != currJobs && allJobs.Count == currJobs.Count));
+            }
+            else
+            {
+                // Chief
+                allJobs = (null != Jobs) ? Jobs.AllJobs : null;
+
+                currJobs = new List<LaneJob>();
+                if (null != Jobs && null != Jobs.PlazaGroupJobs)
+                {
+                    Jobs.PlazaGroupJobs.ForEach(job => 
+                    {
+                        if (!job.Selected) return;
+                        currJobs.Add(job);
+                    });
+                }
+                // get all lanes information.
+                bCloseUserShift = (
+                    (null == allJobs && null == currJobs) ||
+                    (null != allJobs && null != currJobs && allJobs.Count == currJobs.Count));
+            }
+
 
             if (bCloseUserShift)
             {
+                med.Info("No more jobs. Auto close user shift.", Entry.RevenueId);
                 // no lane activitie in user shift.
                 UserShift.EndUserShift(UserShift);
+            }
+            else
+            {
+                med.Info("Has more jobs. user shift is not closed.", Entry.RevenueId);
             }
 
             // Generte Revenue (declare) File and mark sync status.
@@ -2333,6 +2396,7 @@ namespace DMT.Services
                     Jobs.PlazaGroupJobs.ForEach(job =>
                     {
                         if (null == job.Job) return;
+                        if (ByChief && !job.Selected) return; // By Chief but not selected ignore it.
                         jobs.Add(job.Job);
                     });
                 }
@@ -2398,7 +2462,7 @@ namespace DMT.Services
         {
             bool ret = false;
 
-            var usrCredit = CheckUserCredit();
+            var usrCredit = CheckUserCredit(true);
             if (null != usrCredit && usrCredit.State == UserCreditBalance.StateTypes.Completed)
             {
                 ret = true;

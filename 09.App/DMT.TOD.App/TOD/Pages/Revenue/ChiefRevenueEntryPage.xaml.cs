@@ -79,7 +79,7 @@ namespace DMT.TOD.Pages.Revenue
 
         private void Instance_ConfigChanged(object sender, EventArgs e)
         {
-            Setup(_chief); // Reload.
+            Setup(_chief, false); // Reload.
         }
 
         #endregion
@@ -425,7 +425,7 @@ namespace DMT.TOD.Pages.Revenue
 
         #region Reset
 
-        private void Reset()
+        private void Reset(bool isNew)
         {
             // Reset Plaza.
             cbPlazas.SelectedIndex = -1;
@@ -436,6 +436,14 @@ namespace DMT.TOD.Pages.Revenue
 
             // Setup entry date.
             manager.EntryDate = DateTime.Now;
+            if (isNew)
+            {
+                manager.RevenueDate = manager.EntryDate;
+            }
+            else
+            {
+                if (!manager.RevenueDate.HasValue) manager.RevenueDate = manager.EntryDate;
+            }
 
             // Set Bindings On Tab - Date Selection.
             dtEntryDate.DataContext = manager;
@@ -552,7 +560,7 @@ namespace DMT.TOD.Pages.Revenue
                 if (win.ShowDialog() == true)
                 {
                     string userId = (null != manager && null != manager.User) ? manager.User.UserId : string.Empty;
-                    Setup(_chief); // Goback to first page.
+                    Setup(_chief, false); // Goback to first page.
                     // Assign User
                     txtSearchUserId.Text = userId;
                     SearchUser();
@@ -574,7 +582,8 @@ namespace DMT.TOD.Pages.Revenue
         /// Setup.
         /// </summary>
         /// <param name="chief">The chief user.</param>
-        public void Setup(User chief)
+        /// <param name="isNew">Is New Entry. If true Revenue Date will reset otherwise the user select date will used.</param>
+        public void Setup(User chief, bool isNew)
         {
             if (null == manager)
             {
@@ -594,7 +603,7 @@ namespace DMT.TOD.Pages.Revenue
                 manager.ByChief = true;
                 if (null != manager.UserShifts) manager.UserShifts.IsCustom = true;
             }
-            Reset();
+            Reset(isNew);
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

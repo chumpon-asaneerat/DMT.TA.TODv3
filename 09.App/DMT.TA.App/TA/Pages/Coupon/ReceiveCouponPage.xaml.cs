@@ -345,7 +345,7 @@ namespace DMT.TA.Pages.Coupon
 
         private void Resync()
         {
-
+            CouponSyncService.Instance.ReSyncAll();
         }
 
         #endregion

@@ -1090,7 +1090,11 @@ namespace DMT.Models
                 return result;
             }
         }
-
+        /// <summary>
+        /// Sync Transaction
+        /// </summary>
+        /// <param name="value">The TSBCouponTransaction instance.</param>
+        /// <returns>Returns instance of NDbResult.</returns>
         public static NDbResult SyncTransaction(TSBCouponTransaction value)
         {
             var result = new NDbResult();
@@ -1135,7 +1139,11 @@ namespace DMT.Models
                 return result;
             }
         }
-
+        /// <summary>
+        /// Sync Transactions
+        /// </summary>
+        /// <param name="values">The TSBCouponTransaction List.</param>
+        /// <returns>Returns instance of NDbResult.</returns>
         public static NDbResult SyncTransactions(List<TSBCouponTransaction> values)
         {
             var result = new NDbResult();
@@ -1169,6 +1177,65 @@ namespace DMT.Models
                     med.Err(ex);
                     result.Error(ex);
                     db.Rollback();
+                }
+                return result;
+            }
+        }
+
+        public static NDbResult<int> GetCouponCount()
+        {
+            var result = new NDbResult<int>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            var tsb = TSB.GetCurrent().Value();
+            if (null == tsb)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            result = GetCouponCount(tsb);
+            return result;
+        }
+        /// <summary>
+        /// Gets Coupon Count (all).
+        /// </summary>
+        /// <param name="tsb">The TSB instance.</param>
+        /// <returns>Returns number of coupon records on local database.</returns>
+        public static NDbResult<int> GetCouponCount(TSB tsb)
+        {
+            NDbResult<int> result = new NDbResult<int>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == tsb)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT COUNT(*) ";
+                    cmd += "  FROM TSBCouponTransaction ";
+                    cmd += " WHERE TSBId = ? ";
+
+                    var rets = db.ExecuteScalar<int>(cmd, tsb.TSBId);
+                    result.Success(rets);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
                 }
                 return result;
             }

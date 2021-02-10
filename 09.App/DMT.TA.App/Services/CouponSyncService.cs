@@ -125,14 +125,13 @@ namespace DMT.Services
             OnProgress.Call(this, new ProgressEventArgs() { Current = current, Max = max });
         }
 
-
         private NRestResult<List<TAServerCouponTransaction>, NRestOut> GetTransactions(
-            int pageNo, int rowsPerPage)
+            int pageNo, int rowsPerPage, int? flag)
         {
             var tsb = TSB.GetCurrent().Value();
             if (null != tsb)
             {
-                var search = Search.TAxTOD.Coupon.Gets.Create(tsb.TSBId, null, null, null, 0, pageNo, rowsPerPage);
+                var search = Search.TAxTOD.Coupon.Gets.Create(tsb.TSBId, null, null, null, flag, pageNo, rowsPerPage);
                 var ret = couponOps.Gets(search);
                 return ret;
             }
@@ -150,6 +149,13 @@ namespace DMT.Services
 
             MethodBase med = MethodBase.GetCurrentMethod();
             IsSync = true;
+
+            int cnt = LocalCouponCount();
+            bool readAll = (ForceSync || (cnt == 0));
+            int? flag = (readAll) ? new int?() : new int?(0);
+
+            med.Info("Local Db Coupon count: {0}, ForceSync: {1}.", cnt, ForceSync);
+
             try
             {
                 int iCurrent = 0;
@@ -160,7 +166,7 @@ namespace DMT.Services
 
                 #region Find Max Records
 
-                var maxRet = GetTransactions(1, iRowsPerPage);
+                var maxRet = GetTransactions(1, iRowsPerPage, flag);
                 if (null == maxRet || !maxRet.Ok ||
                     null == maxRet.Output || !maxRet.Output.MaxPage.HasValue)
                 {
@@ -176,12 +182,15 @@ namespace DMT.Services
 
                 #endregion
 
+                int pageNo;
                 while (iCurrent < iMaxPage && this.IsRunning)
                 {
+                    pageNo = (readAll) ? iCurrent : 1; // if read all page number must be increment.
+
                     RaiseProgressEvent(iCurrent, iMaxPage); // Update current Progress.
 
                     // read only first because when update to total page will change each time.
-                    var pageRet = GetTransactions(1, iRowsPerPage);
+                    var pageRet = GetTransactions(pageNo, iRowsPerPage, flag);
                     if (null == pageRet || !pageRet.Ok ||
                         null == pageRet.Output) break;
                     var taCoupons = pageRet.data;
@@ -198,8 +207,15 @@ namespace DMT.Services
                             {
                                 couponOps.Received(coupon.CouponId);
                                 RaiseProgressEvent(iCurrent, iMaxPage); // Update current Progress.
+
+                                ApplicationManager.Instance.Sleep(50); // sleep a little.
+                                ApplicationManager.Instance.DoEvents();
                             });
                         }
+                        
+                        ApplicationManager.Instance.Sleep(50); // sleep a little.
+                        ApplicationManager.Instance.DoEvents();
+
                         RaiseProgressEvent(iCurrent, iMaxPage); // Update current Progress.
                     }
                     ++iCurrent;
@@ -212,9 +228,9 @@ namespace DMT.Services
                 med.Err(ex);
             }
 
+            ForceSync = false; // Reset flag.
             IsSync = false;
         }
-
 
         private async void InternalSyncCouponFromServerAsync() // returns void
         {
@@ -224,6 +240,11 @@ namespace DMT.Services
         private void SyncCouponFromServer() // not blocks, not waits
         {
             InternalSyncCouponFromServerAsync();
+        }
+
+        private int LocalCouponCount()
+        {
+            return TSBCouponTransaction.GetCouponCount().Value();
         }
 
         #endregion
@@ -237,17 +258,21 @@ namespace DMT.Services
         {
             this.IsRunning = true;
             this.IsSync = false;
+            this.ForceSync = false;
+
+            SyncCouponFromServer(); // call sync when start.
+
             if (null == _timer) _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Interval = TimeSpan.FromSeconds(15);
             _timer.Tick += _timer_Tick;
             _timer.Start();
         }
-
         /// <summary>
         /// Shutdown.
         /// </summary>
         public void Shutdown()
         {
+            this.ForceSync = false;
             this.IsSync = false;
             this.IsRunning = false;
             if (null != _timer)
@@ -256,6 +281,16 @@ namespace DMT.Services
                 _timer.Stop();
             }
             _timer = null;
+        }
+        /// <summary>
+        /// Force Re Sync all coupon from server.
+        /// </summary>
+        public void ReSyncAll()
+        {
+            if (ForceSync) return;
+            ForceSync = true;
+            if (this.IsSync) return; // on sync process ignore it.
+            SyncCouponFromServer(); // call imediately if no in sync process.
         }
 
         #endregion
@@ -270,6 +305,10 @@ namespace DMT.Services
         /// Gets is service running.
         /// </summary>
         public bool IsRunning { get; private set; }
+        /// <summary>
+        /// Gets or sets force sync.
+        /// </summary>
+        public bool ForceSync { get; private set; }
 
         #endregion
 

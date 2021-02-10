@@ -33,8 +33,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1490
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1489
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1488
--
+- DMT.TAxTODv3
+  - Coupon Re-Sync completed.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1487

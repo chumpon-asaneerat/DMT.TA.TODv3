@@ -193,7 +193,7 @@ namespace DMT.Models
                 timeEnd.Hour, timeEnd.Minute, timeEnd.Second, timeEnd.Millisecond);
             if (TimeStart.Value.Hour > TimeEnd.Value.Hour)
             {
-                end.AddDays(1);
+                end = end.AddDays(1);
             }
             bool ret = (dt >= start && dt < end);
             if (ret)

@@ -49,8 +49,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1513
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1512
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1511
-- 
+- DMT.TAxTODv3
+  - Shift -> Fixed bug auto select shift.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1510

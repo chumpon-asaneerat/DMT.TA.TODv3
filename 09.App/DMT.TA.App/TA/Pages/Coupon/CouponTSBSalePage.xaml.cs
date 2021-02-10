@@ -15,6 +15,7 @@ using NLib;
 using NLib.Services;
 using NLib.Reports.Rdlc;
 using NLib.Reflection;
+using System.Collections;
 
 #endregion
 
@@ -265,6 +266,20 @@ namespace DMT.TA.Pages.Coupon
 
         private void GotoPrintPreview()
         {
+            var sold35 = lv35Sold.ItemsSource as IList;
+            var cnt35 = (null != sold35) ? sold35.Count : 0;
+            var sold80 = lv80Sold.ItemsSource as IList;
+            var cnt80 = (null != sold80) ? sold80.Count : 0;
+            var cntTotal = cnt35 + cnt80;
+
+            var win = TAApp.Windows.MessageBoxYesNo3;
+
+            win.Setup("ยืนยันการขายคูปอง จำนวน ", cntTotal.ToString("n0"), " เล่ม"
+                , "คูปอง 35 บาท = ", cnt35.ToString("n0"), " เล่ม"
+                , "คูปอง 80 บาท = ", cnt80.ToString("n0"), " เล่ม"
+                , "Toll Admin");
+            if (win.ShowDialog() == false) return;
+
             tabs.SelectedIndex = 1;
 
             PreparePreview();

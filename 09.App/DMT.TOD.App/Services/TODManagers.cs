@@ -1932,6 +1932,12 @@ namespace DMT.Services
             {
                 var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
                 usrCredit = taaOps.Credit.User.Completed(search).Value();
+
+                //TODO: UserCredit offline need some model and logic.
+                /*
+                var ret = taaOps.Credit.User.Completed(search);
+                usrCredit = (null != ret && ret.Ok) ? ret.Value() : null;
+                */
             }
             else
             {
@@ -2463,6 +2469,10 @@ namespace DMT.Services
             bool ret = false;
 
             var usrCredit = CheckUserCredit(true);
+            
+            //TODO: UserCredit offline need some model and logic.
+            //if (null == usrCredit) return true; // Assume cannot connect to TA.
+            
             if (null != usrCredit && usrCredit.State == UserCreditBalance.StateTypes.Completed)
             {
                 ret = true;

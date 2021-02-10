@@ -48,8 +48,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1495
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1494
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1493
-- 
+- DMT.TAxTODv3
+  - TOD Revenue Entry process
+    - Add declare information log when Write File (json)
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1492

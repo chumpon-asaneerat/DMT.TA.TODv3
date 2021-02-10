@@ -2351,6 +2351,22 @@ namespace DMT.Services
                 SCWDeclare declare = Entry.ToServer(networkId, currencies, coupons, cardAllows,
                     jobs, emv, qrCode, plazaId);
 
+                med.Info("DECLARE INFORMATION");
+                int jobCnt = (null != declare.jobList) ? declare.jobList.Count : 0;
+                med.Info("Job List Count: {0}", jobCnt);
+                int cashCnt = (null != declare.cashList) ? declare.cashList.Count : 0;
+                med.Info("Cash List Count: {0}", cashCnt);
+                int couponBookCnt = (null != declare.couponBookList) ? declare.couponBookList.Count : 0;
+                med.Info("Coupon Book (sold) List Count: {0}", couponBookCnt);
+                int couponCnt = (null != declare.couponList) ? declare.couponList.Count : 0;
+                med.Info("Coupon (usage) List Count: {0}", couponCnt);
+                int cardAllowCnt = (null != declare.cardAllowList) ? declare.cardAllowList.Count : 0;
+                med.Info("Card Allow List Count: {0}", cardAllowCnt);
+                int emvCnt = (null != declare.emvList) ? declare.emvList.Count : 0;
+                med.Info("EMV List Count: {0}", emvCnt);
+                int qrCodeCnt = (null != declare.qrcodeList) ? declare.qrcodeList.Count : 0;
+                med.Info("QR Code List Count: {0}", qrCodeCnt);
+
                 // send.
                 SCWMQService.Instance.WriteQueue(declare);
 

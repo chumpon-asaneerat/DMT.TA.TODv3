@@ -146,6 +146,27 @@
                                                  Style="{StaticResource CommonTextBox}" />
                                     </StackPanel>
                                     <!--  SEPERATOR  -->
+                                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                                    <!--  COUPON 35 STOCK COUNT  -->
+                                    <StackPanel Margin="3,0"
+                                                VerticalAlignment="Center"
+                                                DockPanel.Dock="Bottom"
+                                                Orientation="Horizontal">
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="จำนวน : " />
+                                        <TextBlock Width="5" />
+                                        <TextBlock x:Name="txtC35StockCount"
+                                                   FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="0"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Width="5" />
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text=" เล่ม" />
+                                    </StackPanel>
+                                    <!--  SEPERATOR  -->
                                     <TextBlock Height="10" DockPanel.Dock="Top" />
                                     <!--  COUPON 35 STOCK LISTVIEW  -->
                                     <ListView x:Name="lv35Stock"
@@ -198,6 +219,27 @@
                                                 DockPanel.Dock="Top"
                                                 Orientation="Horizontal" />
                                     <!--  SEPERATOR  -->
+                                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                                    <!--  COUPON 35 SOLD COUNT  -->
+                                    <StackPanel Margin="3,0"
+                                                VerticalAlignment="Center"
+                                                DockPanel.Dock="Bottom"
+                                                Orientation="Horizontal">
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="จำนวน : " />
+                                        <TextBlock Width="5" />
+                                        <TextBlock x:Name="txtC35SoldCount"
+                                                   FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="0"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Width="5" />
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text=" เล่ม" />
+                                    </StackPanel>
+                                    <!--  SEPERATOR  -->
                                     <TextBlock Height="10" DockPanel.Dock="Top" />
                                     <!--  COUPON 35 SOLD LISTVIEW  -->
                                     <ListView x:Name="lv35Sold"
@@ -249,8 +291,29 @@
                                                  Style="{StaticResource CommonTextBox}" />
                                     </StackPanel>
                                     <!--  SEPERATOR  -->
+                                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                                    <!--  COUPON 80 STOCK COUNT  -->
+                                    <StackPanel Margin="3,0"
+                                                VerticalAlignment="Center"
+                                                DockPanel.Dock="Bottom"
+                                                Orientation="Horizontal">
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="จำนวน : " />
+                                        <TextBlock Width="5" />
+                                        <TextBlock x:Name="txtC80StockCount"
+                                                   FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="0"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Width="5" />
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text=" เล่ม" />
+                                    </StackPanel>
+                                    <!--  SEPERATOR  -->
                                     <TextBlock Height="10" DockPanel.Dock="Top" />
-                                    <!--  COUPON 35 STOCK LISTVIEW  -->
+                                    <!--  COUPON 80 STOCK LISTVIEW  -->
                                     <ListView x:Name="lv80Stock"
                                               Margin="5,0"
                                               HorizontalAlignment="Stretch"
@@ -300,6 +363,27 @@
                                                 Margin="5,0"
                                                 DockPanel.Dock="Top"
                                                 Orientation="Horizontal" />
+                                    <!--  SEPERATOR  -->
+                                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                                    <!--  COUPON 80 SOLD COUNT  -->
+                                    <StackPanel Margin="3,0"
+                                                VerticalAlignment="Center"
+                                                DockPanel.Dock="Bottom"
+                                                Orientation="Horizontal">
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="จำนวน : " />
+                                        <TextBlock Width="5" />
+                                        <TextBlock x:Name="txtC80SoldCount"
+                                                   FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text="0"
+                                                   TextAlignment="Right" />
+                                        <TextBlock Width="5" />
+                                        <TextBlock FontSize="20"
+                                                   Style="{StaticResource LabelText}"
+                                                   Text=" เล่ม" />
+                                    </StackPanel>
                                     <!--  SEPERATOR  -->
                                     <TextBlock Height="10" DockPanel.Dock="Top" />
                                     <!--  COUPON 80 SOLD LISTVIEW  -->

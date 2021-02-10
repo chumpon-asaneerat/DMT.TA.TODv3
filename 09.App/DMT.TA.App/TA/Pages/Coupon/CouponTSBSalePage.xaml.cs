@@ -358,10 +358,18 @@ namespace DMT.TA.Pages.Coupon
             lv35Stock.ItemsSource = null;
             lv35Sold.ItemsSource = null;
 
+            txtC35StockCount.Text = "0";
+            txtC35SoldCount.Text = "0";
+
             manager.C35StockFilter = txtCoupon35Filter.Text.Trim();
 
-            lv35Stock.ItemsSource = manager.C35Stocks;
-            lv35Sold.ItemsSource = manager.C35Solds;
+            var cStock = manager.C35Stocks;
+            var cSold = manager.C35Solds;
+            lv35Stock.ItemsSource = cStock;
+            lv35Sold.ItemsSource = cSold;
+
+            txtC35StockCount.Text = (null != cStock) ? cStock.Count.ToString("n0") : "0";
+            txtC35SoldCount.Text = (null != cSold) ? cSold.Count.ToString("n0") : "0";
         }
 
         private void UpadteC80ListViews()
@@ -369,10 +377,18 @@ namespace DMT.TA.Pages.Coupon
             lv80Stock.ItemsSource = null;
             lv80Sold.ItemsSource = null;
 
+            txtC80StockCount.Text = "0";
+            txtC80SoldCount.Text = "0";
+
             manager.C80StockFilter = txtCoupon80Filter.Text.Trim();
 
-            lv80Stock.ItemsSource = manager.C80Stocks;
-            lv80Sold.ItemsSource = manager.C80Solds;
+            var cStock = manager.C80Stocks;
+            var cSold = manager.C80Solds;
+            lv80Stock.ItemsSource = cStock;
+            lv80Sold.ItemsSource = cSold;
+
+            txtC80StockCount.Text = (null != cStock) ? cStock.Count.ToString("n0") : "0";
+            txtC80SoldCount.Text = (null != cSold) ? cSold.Count.ToString("n0") : "0";
         }
 
         private void UpadteListViews()

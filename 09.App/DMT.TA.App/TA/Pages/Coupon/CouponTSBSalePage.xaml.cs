@@ -272,13 +272,20 @@ namespace DMT.TA.Pages.Coupon
             var cnt80 = (null != sold80) ? sold80.Count : 0;
             var cntTotal = cnt35 + cnt80;
 
-            var win = TAApp.Windows.MessageBoxYesNo3;
+            if (cnt35 <= 0 && cnt80 <= 0)
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกคูปองที่ต้องการขาย", "Toll Admin");
+                win.ShowDialog();
+                return;
+            }
 
-            win.Setup("ยืนยันการขายคูปอง จำนวน ", cntTotal.ToString("n0"), " เล่ม"
+            var win2 = TAApp.Windows.MessageBoxYesNo3;
+            win2.Setup("ยืนยันการขายคูปอง จำนวน ", cntTotal.ToString("n0"), " เล่ม"
                 , "คูปอง 35 บาท = ", cnt35.ToString("n0"), " เล่ม"
                 , "คูปอง 80 บาท = ", cnt80.ToString("n0"), " เล่ม"
                 , "Toll Admin");
-            if (win.ShowDialog() == false) return;
+            if (win2.ShowDialog() == false) return;
 
             tabs.SelectedIndex = 1;
 

@@ -45,7 +45,7 @@ namespace DMT.TOD.Windows.Reports
 
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
-        private XmlLanguage language = XmlLanguage.GetLanguage("TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
         private User _user = null;
 
         #endregion

@@ -45,7 +45,7 @@ namespace DMT.TOD.Pages.Revenue
 
         //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
         private CultureInfo culture = new CultureInfo("th-TH");
-        private XmlLanguage language = XmlLanguage.GetLanguage("TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
 
         private RevenueEntryManager manager = null;
 

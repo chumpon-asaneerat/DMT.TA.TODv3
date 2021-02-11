@@ -103,8 +103,6 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            CallWS();
-
             var statusCfg = service.TAServer;
             if (null == statusCfg || !statusCfg.Visible)
             {
@@ -116,6 +114,8 @@ namespace DMT.Controls.StatusBar
                 // Show Control.
                 if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
             }
+
+            CallWS();
 
             if (isOnline)
             {

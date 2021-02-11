@@ -37,8 +37,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1547
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1546
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1545
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App -> Reorder CallWS in UpdateUI method.
+  - DMT.TA.App -> Reorder CallWS in UpdateUI method.
+  - DMT.TOD.App -> Reorder CallWS in UpdateUI method.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1544

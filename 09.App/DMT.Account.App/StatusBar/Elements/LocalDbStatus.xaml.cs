@@ -87,7 +87,7 @@ namespace DMT.Controls.StatusBar
         {
             get
             {
-                int interval = (null != service.LocalDb) ? service.LocalDb.IntervalSeconds : 5;
+                int interval = (null != service && null != service.LocalDb) ? service.LocalDb.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }
@@ -95,7 +95,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = service.LocalDb;
+            var statusCfg = (null != service) ? service.LocalDb : null;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

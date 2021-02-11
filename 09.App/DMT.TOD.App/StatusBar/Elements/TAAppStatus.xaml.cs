@@ -88,7 +88,7 @@ namespace DMT.Controls.StatusBar
         {
             get
             {
-                int interval = (null != service.TAApp) ? service.TAApp.IntervalSeconds : 5;
+                int interval = (null != service && null != service.TAApp) ? service.TAApp.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }
@@ -102,7 +102,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = service.TAApp;
+            var statusCfg = (null != service) ? service.TAApp : null;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

@@ -166,6 +166,18 @@ namespace DMT.Controls.Header
             }
         }
         /// <summary>
+        /// Gets PlazaInfo Config.
+        /// </summary>
+        public PlazaInfoConfig PlazaInfo
+        {
+            get
+            {
+                var cfgs = HeaderBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.PlazaInfo;
+            }
+        }
+        /// <summary>
         /// Gets SCW Status Bar Config.
         /// </summary>
         public StatusBarConfig SCW

@@ -77,17 +77,6 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
-        private StatusBarConfig Config
-        {
-            get
-            {
-                if (null == TAConfigManager.Instance.Value ||
-                    null == TAConfigManager.Instance.Value.UIConfig ||
-                    null == TAConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return TAConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
-            }
-        }
-
         private void UpdateUI()
         {
 

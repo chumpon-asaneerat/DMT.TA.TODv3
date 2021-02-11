@@ -86,7 +86,7 @@ namespace DMT.Controls.StatusBar
         {
             get
             {
-                int interval = (null != service.RabbitMQ) ? service.RabbitMQ.IntervalSeconds : 5;
+                int interval = (null != service && null != service.RabbitMQ) ? service.RabbitMQ.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }
@@ -94,7 +94,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = service.RabbitMQ;
+            var statusCfg = (null != service) ? service.RabbitMQ : null;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

@@ -32,6 +32,12 @@ namespace DMT.Controls.Header
 
         #endregion
 
+        #region Internal Variables
+
+        private HeaderBarService service = HeaderBarService.Instance;
+
+        #endregion
+
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -63,10 +69,8 @@ namespace DMT.Controls.Header
         {
             get
             {
-                if (null == TAConfigManager.Instance.Value ||
-                    null == TAConfigManager.Instance.Value.UIConfig ||
-                    null == TAConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return TAConfigManager.Instance.Value.UIConfig.HeaderBars.PlazaInfo;
+                if (null == service) return null;
+                return service.PlazaInfo;
             }
         }
 

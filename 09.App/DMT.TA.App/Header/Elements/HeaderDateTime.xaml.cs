@@ -92,7 +92,7 @@ namespace DMT.Controls.Header
         {
             get
             {
-                int interval = (null != service.SCW) ? service.SCW.IntervalSeconds : 5;
+                int interval = (null != service && null != service.SCW) ? service.SCW.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }

@@ -88,22 +88,11 @@ namespace DMT.Controls.Header
 
         #endregion
 
-        private StatusBarConfig Config
-        {
-            get
-            {
-                if (null == TODConfigManager.Instance.Value ||
-                    null == TODConfigManager.Instance.Value.UIConfig ||
-                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return TODConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
-            }
-        }
-
         private int Interval
         {
             get
             {
-                int interval = (null != service.SCW) ? service.SCW.IntervalSeconds : 5;
+                int interval = (null != service && null != service.SCW) ? service.SCW.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }

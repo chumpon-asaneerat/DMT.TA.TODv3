@@ -34,8 +34,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1548
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1547
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1546
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App -> add check null code in header elements and statusbar elements.
+  - DMT.TA.App -> add check null code in header elements and statusbar elements.
+  - DMT.TOD.App -> add check null code in header elements and statusbar elements.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1545

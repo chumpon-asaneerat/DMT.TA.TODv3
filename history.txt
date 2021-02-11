@@ -28,8 +28,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1540
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1539
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1538
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Add HeaderBarService class.
+  - DMT.TOD.App project.
+    - Add HeaderBarService class.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1537

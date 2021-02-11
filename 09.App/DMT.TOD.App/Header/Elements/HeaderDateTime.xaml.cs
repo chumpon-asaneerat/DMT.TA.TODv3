@@ -33,12 +33,18 @@ namespace DMT.Controls.Header
 
         #endregion
 
+        #region Internal Variables
+
         private SolidColorBrush OnlineColor = new SolidColorBrush(Colors.Transparent);
         private SolidColorBrush OfflineColor = new SolidColorBrush(Colors.Maroon);
+
+        private HeaderBarService service = HeaderBarService.Instance;
 
         private DispatcherTimer timer = null;
         private NLib.Components.PingManager ping = null;
         private bool isOnline = false;
+
+        #endregion
 
         #region Loaded/Unloaded
 

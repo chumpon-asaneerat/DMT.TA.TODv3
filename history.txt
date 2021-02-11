@@ -49,8 +49,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1533
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1532
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1531
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update StatusBarService.
+    - Update LocalDbStatus
+  - DMT.TA.App project.
+    - Update StatusBarService.
+    - Update LocalDbStatus
+  - DMT.TOD.App project.
+    - Update StatusBarService.
+    - Update LocalDbStatus
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1530

@@ -200,6 +200,18 @@ namespace DMT.Controls.StatusBar
             }
         }
         /// <summary>
+        /// Gets LocalDb Status Bar Config.
+        /// </summary>
+        public StatusBarConfig LocalDb
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.LocalDb;
+            }
+        }
+        /// <summary>
         /// Gets TAServer Status Bar Config.
         /// </summary>
         public StatusBarConfig TAServer

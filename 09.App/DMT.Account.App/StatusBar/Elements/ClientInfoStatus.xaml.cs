@@ -30,6 +30,12 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
+        #region Internal Variables
+
+        private DateTime _lastUpdate = DateTime.MinValue;
+
+        #endregion
+
         #region Loaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

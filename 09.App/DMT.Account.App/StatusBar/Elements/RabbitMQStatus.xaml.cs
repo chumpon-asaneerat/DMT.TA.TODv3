@@ -30,8 +30,14 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
+        #region Internal Variables
+
+        private DateTime _lastUpdate = DateTime.MinValue;
+
         private DispatcherTimer timer = null;
         private bool isOnline = false;
+
+        #endregion
 
         #region Loaded/Unloaded
 

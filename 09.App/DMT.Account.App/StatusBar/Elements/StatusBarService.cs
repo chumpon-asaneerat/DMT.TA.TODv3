@@ -9,6 +9,7 @@ using NLib;
 
 using DMT.Configurations;
 using DMT.Services;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -82,7 +83,20 @@ namespace DMT.Controls.StatusBar
 
         #region Private Methods
 
-        #region Config Watcher Handlers
+        private void RunAction(Action action)
+        {
+            if (null != action)
+            {
+                //Console.WriteLine("Begin : {0:HH:mm:ss.fff}", DateTime.Now);
+                action.Call(); // call action on UI Thread.
+                //Console.WriteLine("End : {0:HH:mm:ss.fff}", DateTime.Now);
+            }
+        }
+
+        private async void RunActionAsync(Action action)
+        {
+            await Task.Run(() => { RunAction(action); });
+        }
 
         private void ConfigChanged(object sender, EventArgs e)
         {
@@ -90,10 +104,9 @@ namespace DMT.Controls.StatusBar
             _actions.ForEach(action => 
             {
                 // Call Update UI action.
+                RunActionAsync(action);
             });
         }
-
-        #endregion
 
         #endregion
 

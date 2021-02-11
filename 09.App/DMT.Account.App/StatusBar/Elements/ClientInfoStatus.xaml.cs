@@ -32,6 +32,8 @@ namespace DMT.Controls.StatusBar
 
         #region Internal Variables
 
+        private StatusBarService service = StatusBarService.Instance;
+
         private DateTime _lastUpdate = DateTime.MinValue;
 
         #endregion
@@ -41,41 +43,21 @@ namespace DMT.Controls.StatusBar
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
-            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
+            if (null != service) service.Register(this.UpdateUI);
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
+            if (null != service) service.Unregister(this.UpdateUI);
         }
 
         #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
-        }
-
-        #endregion
-
-        private StatusBarConfig Config
-        {
-            get
-            {
-                if (null == AccountConfigManager.Instance.Value ||
-                    null == AccountConfigManager.Instance.Value.UIConfig ||
-                    null == AccountConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return AccountConfigManager.Instance.Value.UIConfig.StatusBars.ClientInfo;
-            }
-        }
 
         private int Interval
         {
             get
             {
-                int interval = (null != Config) ? Config.IntervalSeconds : 5;
+                int interval = (null != service.ClientInfo) ? service.ClientInfo.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }
@@ -83,7 +65,7 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = Config;
+            var statusCfg = service.ClientInfo;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

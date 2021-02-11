@@ -34,6 +34,8 @@ namespace DMT.Controls.StatusBar
 
         #region Internal Variables
 
+        private StatusBarService service = StatusBarService.Instance;
+
         private DateTime _lastUpdate = DateTime.MinValue;
         private DispatcherTimer timer = null;
         private bool isOnline = false;
@@ -44,20 +46,19 @@ namespace DMT.Controls.StatusBar
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            CallWS();
             UpdateUI();
+
+            if (null != service) service.Register(this.UpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
-
-            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
+            if (null != service) service.Unregister(this.UpdateUI);
 
             if (null != timer)
             {
@@ -73,37 +74,21 @@ namespace DMT.Controls.StatusBar
 
         void timer_Tick(object sender, EventArgs e)
         {
-            UpdateUI();
-        }
-
-        #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            CallWS();
-            UpdateUI();
-        }
-
-        #endregion
-
-        private StatusBarConfig Config
-        {
-            get
+            TimeSpan ts = DateTime.Now - _lastUpdate;
+            if (ts.TotalSeconds > this.Interval)
             {
-                if (null == AccountConfigManager.Instance.Value ||
-                    null == AccountConfigManager.Instance.Value.UIConfig ||
-                    null == AccountConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return AccountConfigManager.Instance.Value.UIConfig.StatusBars.TAServer;
+                UpdateUI();
+                _lastUpdate = DateTime.Now;
             }
         }
+
+        #endregion
 
         private int Interval
         {
             get 
             {
-                int interval = (null != Config) ? Config.IntervalSeconds : 5;
+                int interval = (null != service.TAServer) ? service.TAServer.IntervalSeconds : 5;
                 if (interval < 0) interval = 5;
                 return interval;
             }
@@ -118,7 +103,9 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = Config;
+            CallWS();
+
+            var statusCfg = service.TAServer;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

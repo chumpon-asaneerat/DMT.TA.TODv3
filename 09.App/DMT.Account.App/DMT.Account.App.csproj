@@ -172,6 +172,7 @@
     <Compile Include="StatusBar\Elements\SCWStatus.xaml.cs">
       <DependentUpon>SCWStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusBar\Elements\StatusBarService.cs" />
     <Compile Include="StatusBar\Elements\TAServerStatus.xaml.cs">
       <DependentUpon>TAServerStatus.xaml</DependentUpon>
     </Compile>

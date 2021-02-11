@@ -86,12 +86,6 @@ namespace DMT.Controls.StatusBar
             UpdateUI();
         }
 
-        private void UI_ConfigChanged(object sender, EventArgs e)
-        {
-            CallWS();
-            UpdateUI();
-        }
-
         #endregion
 
         private StatusBarConfig Config

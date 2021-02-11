@@ -30,46 +30,33 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
+        #region Internal Variables
+
+        private StatusBarService service = StatusBarService.Instance;
+
+        private DateTime _lastUpdate = DateTime.MinValue;
         private DispatcherTimer timer = null;
-        private NLib.Components.PingManager ping = null;
         private bool isOnline = false;
+
+        #endregion
 
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string host = (null != TODConfigManager.Instance.TAApp && null != TODConfigManager.Instance.TAApp.Service) ?
-                TODConfigManager.Instance.TAApp.Service.HostName : "unknown";
-            int interval = (null != Config) ? Config.IntervalSeconds : 5;
-            if (interval < 0) interval = 5;
-
-            ping = new NLib.Components.PingManager();
-            ping.OnReply += Ping_OnReply;
-            ping.Add(host);
-            ping.Interval = interval * 1000;
-            ping.Start();
-
             UpdateUI();
+
+            if (null != service) service.Register(this.UpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
-
-            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
-
-            if (null != ping)
-            {
-                ping.OnReply -= Ping_OnReply;
-                ping.Stop();
-                ping.Dispose();
-            }
-            ping = null;
+            if (null != service) service.Unregister(this.UpdateUI);
 
             if (null != timer)
             {
@@ -81,71 +68,33 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
-        #region Ping Reply Handler
-
-        private void Ping_OnReply(object sender, NLib.Networks.PingResponseEventArgs e)
-        {
-            if (null != e.Reply &&
-                e.Reply.Status == System.Net.NetworkInformation.IPStatus.Success)
-            {
-                isOnline = true;
-            }
-            else
-            {
-                isOnline = false;
-            }
-        }
-
-        #endregion
-
         #region Timer Handler
 
         void timer_Tick(object sender, EventArgs e)
         {
-            UpdateUI();
-        }
-
-        #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            if (null != ping)
+            TimeSpan ts = DateTime.Now - _lastUpdate;
+            if (ts.TotalSeconds > this.Interval)
             {
-                string host = (null != TODConfigManager.Instance.TAApp && null != TODConfigManager.Instance.TAApp.Service) ?
-                    TODConfigManager.Instance.TAApp.Service.HostName : "unknown";
-                int interval = (null != Config) ? Config.IntervalSeconds : 5;
-                if (interval < 0) interval = 5;
-
-                // Stop ping service.
-                ping.Stop();
-                ping.Interval = interval * 1000;
-                // Clear and add new host.
-                ping.Clear();
-                ping.Add(host);
-                // Restart ping service.
-                ping.Start();
+                UpdateUI();
+                _lastUpdate = DateTime.Now;
             }
-            UpdateUI();
         }
 
         #endregion
 
-        private StatusBarConfig Config
+        private int Interval
         {
             get
             {
-                if (null == TODConfigManager.Instance.Value ||
-                    null == TODConfigManager.Instance.Value.UIConfig ||
-                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return TODConfigManager.Instance.Value.UIConfig.StatusBars.TAApp;
+                int interval = (null != service.TAApp) ? service.TAApp.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+                return interval;
             }
         }
 
         private void UpdateUI()
         {
-            var statusCfg = Config;
+            var statusCfg = service.TAApp;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

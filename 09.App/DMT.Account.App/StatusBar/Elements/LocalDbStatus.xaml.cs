@@ -8,6 +8,7 @@ using System.Windows.Threading;
 
 using DMT.Configurations;
 using DMT.Services;
+using NLib;
 
 #endregion
 
@@ -39,6 +40,7 @@ namespace DMT.Controls.StatusBar
         {
             UpdateUI();
 
+            //ApplicationManager.Instance.Tick
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;

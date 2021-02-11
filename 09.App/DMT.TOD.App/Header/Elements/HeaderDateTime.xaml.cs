@@ -40,8 +40,8 @@ namespace DMT.Controls.Header
 
         private HeaderBarService service = HeaderBarService.Instance;
 
+        private DateTime _lastUpdate = DateTime.MinValue;
         private DispatcherTimer timer = null;
-        private NLib.Components.PingManager ping = null;
         private bool isOnline = false;
 
         #endregion
@@ -50,39 +50,19 @@ namespace DMT.Controls.Header
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string host = (null != TODConfigManager.Instance.SCW && null != TODConfigManager.Instance.SCW.Service) ?
-                TODConfigManager.Instance.SCW.Service.HostName : "unknown";
-            int interval = (null != Config) ? Config.IntervalSeconds : 5;
-            if (interval < 0) interval = 5;
-
-            ping = new NLib.Components.PingManager();
-            ping.OnReply += Ping_OnReply;
-            ping.Add(host);
-            ping.Interval = interval * 1000;
-            ping.Start();
-
-            CallWS();
             UpdateUI();
+
+            if (null != service) service.Register(this.UpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
-
-            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
-
-            if (null != ping)
-            {
-                ping.OnReply -= Ping_OnReply;
-                ping.Stop();
-                ping.Dispose();
-            }
-            ping = null;
+            if (null != service) service.Unregister(this.UpdateUI);
 
             if (null != timer)
             {
@@ -94,56 +74,16 @@ namespace DMT.Controls.Header
 
         #endregion
 
-        #region Ping Reply Handler
-
-        private void Ping_OnReply(object sender, NLib.Networks.PingResponseEventArgs e)
-        {
-            if (null != e.Reply && 
-                e.Reply.Status == System.Net.NetworkInformation.IPStatus.Success)
-            {
-                // Call WS
-                //CallWS();
-                isOnline = true;
-            }
-            else
-            {
-                isOnline = false;
-            }
-        }
-
-        #endregion
-
         #region Timer Handler
 
         void timer_Tick(object sender, EventArgs e)
         {
-            UpdateUI();
-        }
-
-        #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            if (null != ping)
+            TimeSpan ts = DateTime.Now - _lastUpdate;
+            if (ts.TotalSeconds > this.Interval)
             {
-                string host = (null != TODConfigManager.Instance.SCW && null != TODConfigManager.Instance.SCW.Service) ?
-                    TODConfigManager.Instance.SCW.Service.HostName : "unknown";
-                int interval = (null != Config) ? Config.IntervalSeconds : 5;
-                if (interval < 0) interval = 5;
-
-                // Stop ping service.
-                ping.Stop();
-                ping.Interval = interval * 1000;
-                // Clear and add new host.
-                ping.Clear();
-                ping.Add(host);
-                // Restart ping service.
-                ping.Start();
+                UpdateUI();
+                _lastUpdate = DateTime.Now;
             }
-            CallWS();
-            UpdateUI();
         }
 
         #endregion
@@ -159,6 +99,16 @@ namespace DMT.Controls.Header
             }
         }
 
+        private int Interval
+        {
+            get
+            {
+                int interval = (null != service.SCW) ? service.SCW.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+                return interval;
+            }
+        }
+
         private void CallWS()
         {
             // Do not call because Statusbar is already called.
@@ -171,6 +121,8 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
+            CallWS();
+
             borderDT.Background = (isOnline) ? OnlineColor : OfflineColor;
             DateTime dt = DateTime.Now;
             txtCurrentDate.Text = dt.ToThaiDateTimeString("dd/MM/yyyy");

@@ -154,6 +154,29 @@ namespace DMT.Controls.Header
                 return _cfgMgr.Value.UIConfig.HeaderBars;
             }
         }
+        /// <summary>
+        /// Gets or sets StatusBar Configs.
+        /// </summary>
+        public TAStatusBars StatusBarConfigs
+        {
+            get
+            {
+                if (null == _cfgMgr || null == _cfgMgr.Value || null == _cfgMgr.Value.UIConfig) return null;
+                return _cfgMgr.Value.UIConfig.StatusBars;
+            }
+        }
+        /// <summary>
+        /// Gets SCW Status Bar Config.
+        /// </summary>
+        public StatusBarConfig SCW
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.SCW;
+            }
+        }
 
         #endregion
     }

@@ -28,8 +28,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1530
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1529
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1528
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Add StatusBarService.cs
+  - DMT.TOD.App project.
+    - Add StatusBarService.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1527

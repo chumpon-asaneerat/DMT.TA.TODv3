@@ -178,6 +178,7 @@
     <Compile Include="StatusBar\Elements\LocalDbStatus.xaml.cs">
       <DependentUpon>LocalDbStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusBar\Elements\StatusBarService.cs" />
     <Compile Include="StatusBar\Elements\TAAppStatus.xaml.cs">
       <DependentUpon>TAAppStatus.xaml</DependentUpon>
     </Compile>

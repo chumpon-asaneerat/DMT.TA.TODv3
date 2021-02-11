@@ -32,47 +32,33 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
+        #region Internal Variables
+
+        private StatusBarService service = StatusBarService.Instance;
+
+        private DateTime _lastUpdate = DateTime.MinValue;
         private DispatcherTimer timer = null;
-        private NLib.Components.PingManager ping = null;
         private bool isOnline = false;
+
+        #endregion
 
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
-                TAConfigManager.Instance.SCW.Service.HostName : "unknown";
-            int interval = (null != Config) ? Config.IntervalSeconds : 5;
-            if (interval < 0) interval = 5;
-
-            ping = new NLib.Components.PingManager();
-            ping.OnReply += Ping_OnReply;
-            ping.Add(host);
-            ping.Interval = interval * 1000;
-            ping.Start();
-
-            CallWS();
             UpdateUI();
+
+            if (null != service) service.Register(this.UpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
-
-            TAConfigManager.Instance.ConfigChanged += ConfigChanged;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
-
-            if (null != ping)
-            {
-                ping.OnReply -= Ping_OnReply;
-                ping.Stop();
-                ping.Dispose();
-            }
-            ping = null;
+            if (null != service) service.Unregister(this.UpdateUI);
 
             if (null != timer)
             {
@@ -84,67 +70,27 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
-        #region Ping Reply Handler
-
-        private void Ping_OnReply(object sender, NLib.Networks.PingResponseEventArgs e)
-        {
-            if (null != e.Reply &&
-                e.Reply.Status == System.Net.NetworkInformation.IPStatus.Success)
-            {
-                // Call WS
-                CallWS();
-            }
-            else
-            {
-                isOnline = false;
-            }
-        }
-
-        #endregion
-
         #region Timer Handler
 
         void timer_Tick(object sender, EventArgs e)
         {
-            UpdateUI();
-        }
-
-        #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            if (null != ping)
+            TimeSpan ts = DateTime.Now - _lastUpdate;
+            if (ts.TotalSeconds > this.Interval)
             {
-                string host = (null != TAConfigManager.Instance.SCW && null != TAConfigManager.Instance.SCW.Service) ?
-                    TAConfigManager.Instance.SCW.Service.HostName : "unknown";
-                int interval = (null != Config) ? Config.IntervalSeconds : 5;
-                if (interval < 0) interval = 5;
-
-                // Stop ping service.
-                ping.Stop();
-                ping.Interval = interval * 1000;
-                // Clear and add new host.
-                ping.Clear();
-                ping.Add(host);
-                // Restart ping service.
-                ping.Start();
+                UpdateUI();
+                _lastUpdate = DateTime.Now;
             }
-            CallWS();
-            UpdateUI();
         }
 
         #endregion
 
-        private StatusBarConfig Config
+        private int Interval
         {
             get
             {
-                if (null == TAConfigManager.Instance.Value ||
-                    null == TAConfigManager.Instance.Value.UIConfig ||
-                    null == TAConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return TAConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+                int interval = (null != service.SCW) ? service.SCW.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+                return interval;
             }
         }
 
@@ -157,7 +103,9 @@ namespace DMT.Controls.StatusBar
 
         private void UpdateUI()
         {
-            var statusCfg = Config;
+            CallWS();
+
+            var statusCfg = service.SCW;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

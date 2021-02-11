@@ -46,8 +46,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1534
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1533
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1532
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update RabbitMQService.
+    - Update SCWStatus
+  - DMT.TOD.App project.
+    - Update RabbitMQService.
+    - Update SCWStatus
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1531

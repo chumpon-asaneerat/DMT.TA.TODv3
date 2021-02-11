@@ -31,8 +31,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1519
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1518
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1517
-- 
+- DMT.TAxTODv3
+  - Replace Timer #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1516

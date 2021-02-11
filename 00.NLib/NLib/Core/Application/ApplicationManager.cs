@@ -145,6 +145,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Reflection;
 
 using NLib.Reflection; // For delegate invoker
@@ -216,6 +217,8 @@ namespace NLib
 #endif
         private ShareManager _share = new ShareManager();
 
+        private Thread _timerThread = null;
+
         private bool _isExit = false;
 
         #endregion
@@ -257,6 +260,64 @@ namespace NLib
 
         #endregion
 
+        #region Timer Therad
+
+        private void CreateTimerThread() 
+        {
+            if (null != _timerThread)
+            {
+                FreeTimerThread();
+            }
+            _timerThread = new Thread(TimerProcessing);
+            _timerThread.Name = "Application Timer Thread.";
+            _timerThread.IsBackground = true;
+            _timerThread.Priority = ThreadPriority.BelowNormal;
+            _timerThread.Start();
+        }
+
+        private void FreeTimerThread()
+        {
+            if (null != _timerThread)
+            {
+                try
+                {
+                    _timerThread.Abort();
+                }
+                catch (ThreadAbortException)
+                {
+                    Thread.ResetAbort();
+                }
+                catch { }
+            }
+            _timerThread = null;
+        }
+
+        private void InternalRaiseTickEvent()
+        {
+            if (Tick != null)
+            {
+                Tick.Call(this, EventArgs.Empty);
+            }
+        }
+
+        private async void InternalRaiseTickEventAsync()
+        {
+            await Task.Run(InternalRaiseTickEvent);
+        }
+
+        private void TimerProcessing()
+        {
+            while (null != _timerThread && !_isExit)
+            {
+                InternalRaiseTickEventAsync();
+                _timerThread.Sleep(10); // Sleep a little.
+            }
+
+            FreeTimerThread();
+        }
+
+        #endregion
+
         #endregion
 
         #region Public Methods
@@ -274,6 +335,8 @@ namespace NLib
             {
                 throw new ArgumentException("Application Controller instance is not assigned.", "controller");
             }
+            // Create Timer Thread.
+            CreateTimerThread();
         }
 
         #endregion
@@ -296,13 +359,15 @@ namespace NLib
             _controller = null;
 
             _isExit = true;
+
+            FreeTimerThread();
         }
         /// <summary>
         /// Shutdown with auto kill process and release current controller.
         /// </summary>
         /// <param name="autokill">True for autokill</param>
         /// <param name="exitCode">The exit code.</param>
-        void Shutdown(bool autokill, int exitCode = 0)
+        public void Shutdown(bool autokill, int exitCode = 0)
         {
 #if USE_LOG_MANAGER
             Logs.LogManager.Instance.Shutdown();
@@ -314,6 +379,8 @@ namespace NLib
             _controller = null;
 
             _isExit = true;
+
+            FreeTimerThread();
         }
         /// <summary>
         /// Shutdown application manager and release current controller.
@@ -335,6 +402,8 @@ namespace NLib
             _controller = null;
 
             _isExit = true;
+
+            FreeTimerThread();
         }
 
         #endregion
@@ -485,6 +554,17 @@ namespace NLib
         {
             get { return _share; }
         }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// Tick Event. Application Timer tick occur every 50 ms.
+        /// </summary>
+        [Category("Application")]
+        [Description("Tick Event. Application Timer tick occur every 50 ms.")]
+        public event EventHandler Tick;
 
         #endregion
     }

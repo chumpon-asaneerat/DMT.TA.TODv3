@@ -8,6 +8,7 @@ using System.Windows.Threading;
 
 using DMT.Configurations;
 using DMT.Services;
+using NLib;
 
 #endregion
 
@@ -32,7 +33,10 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
-        private DispatcherTimer timer = null;
+        //private DispatcherTimer timer = null;
+        private DateTime _lastUpdate = DateTime.MinValue;
+        private int _interval = 1 * 1000;
+
         private NLib.Components.PingManager ping = null;
         private bool isOnline = false;
 
@@ -54,10 +58,13 @@ namespace DMT.Controls.StatusBar
             CallWS();
             UpdateUI();
 
+            /*
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+            */
+            ApplicationManager.Instance.Tick += Instance_Tick;
 
             AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
         }
@@ -65,6 +72,8 @@ namespace DMT.Controls.StatusBar
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
+
+            ApplicationManager.Instance.Tick -= Instance_Tick;
 
             if (null != ping)
             {
@@ -74,12 +83,14 @@ namespace DMT.Controls.StatusBar
             }
             ping = null;
 
+            /*
             if (null != timer)
             {
                 timer.Tick -= timer_Tick;
                 timer.Stop();
             }
             timer = null;
+            */
         }
 
         #endregion
@@ -107,6 +118,18 @@ namespace DMT.Controls.StatusBar
         void timer_Tick(object sender, EventArgs e)
         {
             UpdateUI();
+        }
+
+        private void Instance_Tick(object sender, EventArgs e)
+        {
+            TimeSpan ts = DateTime.Now - _lastUpdate;
+            if (ts.TotalMilliseconds > _interval)
+            {
+                Console.WriteLine("SCW Begin: {0:HH:mm:ss.fff}", DateTime.Now);
+                UpdateUI();
+                Console.WriteLine("SCW End: {0:HH:mm:ss.fff}", DateTime.Now);
+                _lastUpdate = DateTime.Now;
+            }
         }
 
         #endregion

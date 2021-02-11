@@ -138,6 +138,66 @@ namespace DMT.Controls.StatusBar
                 return _cfgMgr.Value.UIConfig.StatusBars;
             }
         }
+        /// <summary>
+        /// Gets AppInfo Status Bar Config.
+        /// </summary>
+        public StatusBarConfig AppInfo
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.AppInfo;
+            }
+        }
+        /// <summary>
+        /// Gets ClientInfo Status Bar Config.
+        /// </summary>
+        public StatusBarConfig ClientInfo
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.ClientInfo;
+            }
+        }
+        /// <summary>
+        /// Gets RabbitMQ Status Bar Config.
+        /// </summary>
+        public StatusBarConfig RabbitMQ
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.RabbitMQ;
+            }
+        }
+        /// <summary>
+        /// Gets SCW Status Bar Config.
+        /// </summary>
+        public StatusBarConfig SCW
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.SCW;
+            }
+        }
+        /// <summary>
+        /// Gets TAServer Status Bar Config.
+        /// </summary>
+        public StatusBarConfig TAServer
+        {
+            get
+            {
+                var cfgs = StatusBarConfigs;
+                if (null == cfgs) return null;
+                return cfgs.TAServer;
+            }
+        }
 
         #endregion
     }

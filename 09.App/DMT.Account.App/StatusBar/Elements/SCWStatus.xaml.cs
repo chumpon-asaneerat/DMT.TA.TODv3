@@ -43,13 +43,11 @@ namespace DMT.Controls.StatusBar
         {
             string host = (null != AccountConfigManager.Instance.SCW && null != AccountConfigManager.Instance.SCW.Service) ?
                 AccountConfigManager.Instance.SCW.Service.HostName : "unknown";
-            int interval = (null != Config) ? Config.IntervalSeconds : 5;
-            if (interval < 0) interval = 5;
 
             ping = new NLib.Components.PingManager();
             ping.OnReply += Ping_OnReply;
             ping.Add(host);
-            ping.Interval = interval * 1000;
+            ping.Interval = this.Interval * 1000;
             ping.Start();
 
             CallWS();
@@ -120,12 +118,10 @@ namespace DMT.Controls.StatusBar
             {
                 string host = (null != AccountConfigManager.Instance.SCW && null != AccountConfigManager.Instance.SCW.Service) ?
                     AccountConfigManager.Instance.SCW.Service.HostName : "unknown";
-                int interval = (null != Config) ? Config.IntervalSeconds : 5;
-                if (interval < 0) interval = 5;
 
                 // Stop ping service.
                 ping.Stop();
-                ping.Interval = interval * 1000;
+                ping.Interval = this.Interval * 1000;
                 // Clear and add new host.
                 ping.Clear();
                 ping.Add(host);
@@ -146,6 +142,16 @@ namespace DMT.Controls.StatusBar
                     null == AccountConfigManager.Instance.Value.UIConfig ||
                     null == AccountConfigManager.Instance.Value.UIConfig.StatusBars) return null;
                 return AccountConfigManager.Instance.Value.UIConfig.StatusBars.SCW;
+            }
+        }
+
+        private int Interval
+        {
+            get
+            {
+                int interval = (null != Config) ? Config.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+                return interval;
             }
         }
 

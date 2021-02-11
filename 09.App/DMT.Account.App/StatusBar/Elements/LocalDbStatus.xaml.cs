@@ -92,6 +92,16 @@ namespace DMT.Controls.StatusBar
             }
         }
 
+        private int Interval
+        {
+            get
+            {
+                int interval = (null != Config) ? Config.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+                return interval;
+            }
+        }
+
         private void UpdateUI()
         {
             var statusCfg = Config;

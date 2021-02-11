@@ -33,7 +33,6 @@ namespace DMT.Controls.StatusBar
         #region Internal Variables
 
         private DateTime _lastUpdate = DateTime.MinValue;
-
         private DispatcherTimer timer = null;
         private bool isOnline = false;
 

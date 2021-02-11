@@ -25,8 +25,15 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1530
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1529
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update AppInfoStatus
+    - Update ClientInfoStatus
+  - DMT.TOD.App project.
+    - Update AppInfoStatus
+    - Update ClientInfoStatus
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1528

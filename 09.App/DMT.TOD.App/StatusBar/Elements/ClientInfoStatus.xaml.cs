@@ -30,44 +30,42 @@ namespace DMT.Controls.StatusBar
 
         #endregion
 
+        #region Internal Variables
+
+        private StatusBarService service = StatusBarService.Instance;
+
+        private DateTime _lastUpdate = DateTime.MinValue;
+
+        #endregion
+
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
-            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
+            if (null != service) service.Register(this.UpdateUI);
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
+            if (null != service) service.Unregister(this.UpdateUI);
         }
 
         #endregion
 
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
-        }
-
-        #endregion
-
-        private StatusBarConfig Config
+        private int Interval
         {
             get
             {
-                if (null == TODConfigManager.Instance.Value ||
-                    null == TODConfigManager.Instance.Value.UIConfig ||
-                    null == TODConfigManager.Instance.Value.UIConfig.StatusBars) return null;
-                return TODConfigManager.Instance.Value.UIConfig.StatusBars.ClientInfo;
+                int interval = (null != service.ClientInfo) ? service.ClientInfo.IntervalSeconds : 5;
+                if (interval < 0) interval = 5;
+                return interval;
             }
         }
 
         private void UpdateUI()
         {
-            var statusCfg = Config;
+            var statusCfg = service.ClientInfo;
             if (null == statusCfg || !statusCfg.Visible)
             {
                 // Hide Control.

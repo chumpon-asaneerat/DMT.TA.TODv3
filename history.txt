@@ -37,8 +37,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1527
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1526
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1525
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App
+    - StatusBar elements update #5.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1524

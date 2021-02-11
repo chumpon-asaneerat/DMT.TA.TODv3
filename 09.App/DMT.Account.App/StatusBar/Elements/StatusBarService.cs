@@ -14,6 +14,9 @@ using DMT.Services;
 
 namespace DMT.Controls.StatusBar
 {
+    /// <summary>
+    /// The StatusBarService class.
+    /// </summary>
     public class StatusBarService
     {
         #region Singelton
@@ -41,7 +44,8 @@ namespace DMT.Controls.StatusBar
 
         #region Internal Variables
 
-        private List<Action> _actions = new List<Action>();
+        private AccountConfigManager _cfgMgr = AccountConfigManager.Instance;
+        private List<Action> _actions = null;
 
         #endregion
 
@@ -52,14 +56,26 @@ namespace DMT.Controls.StatusBar
         /// </summary>
         private StatusBarService() : base() 
         {
-            AccountConfigManager.Instance.ConfigChanged += ConfigChanged;
+            _actions = new List<Action>();
+            if (null != _cfgMgr)
+            {
+                _cfgMgr.ConfigChanged += ConfigChanged;
+            }
         }
         /// <summary>
         /// Destructor.
         /// </summary>
         ~StatusBarService()
         {
-            AccountConfigManager.Instance.ConfigChanged -= ConfigChanged;
+            if (null != _cfgMgr)
+            {
+                _cfgMgr.ConfigChanged -= ConfigChanged;
+            }
+            if (null != _actions)
+            {
+                _actions.Clear();
+            }
+            _actions = null;
         }
 
         #endregion
@@ -70,7 +86,11 @@ namespace DMT.Controls.StatusBar
 
         private void ConfigChanged(object sender, EventArgs e)
         {
-            //UpdateUI();
+            if (null == _actions || _actions.Count <= 0) return;
+            _actions.ForEach(action => 
+            {
+                // Call Update UI action.
+            });
         }
 
         #endregion
@@ -86,7 +106,7 @@ namespace DMT.Controls.StatusBar
         public void Register(Action action)
         {
             if (null == action) return;
-            if (!_actions.Contains(action))
+            if (null != _actions && !_actions.Contains(action))
             {
                 _actions.Add(action);
             }
@@ -97,9 +117,25 @@ namespace DMT.Controls.StatusBar
         public void Unregister(Action action)
         {
             if (null == action) return;
-            if (_actions.Contains(action))
+            if (null != _actions && _actions.Contains(action))
             {
                 _actions.Remove(action);
+            }
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets StatusBar Configs.
+        /// </summary>
+        public AccountStatusBars StatusBarConfigs
+        {
+            get
+            {
+                if (null == _cfgMgr || null == _cfgMgr.Value || null == _cfgMgr.Value.UIConfig) return null;
+                return _cfgMgr.Value.UIConfig.StatusBars;
             }
         }
 

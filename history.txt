@@ -28,8 +28,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1520
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1519
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1518
-- 
+- DMT.TAxTODv3
+  - Replace Timer #3.
+    - Restore code (ApplicationManager Tick event exeute in synchronize manner so not proper for async operation).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1517

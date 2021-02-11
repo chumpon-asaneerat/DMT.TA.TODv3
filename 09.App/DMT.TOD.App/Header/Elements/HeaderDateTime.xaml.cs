@@ -111,12 +111,9 @@ namespace DMT.Controls.Header
 
         private void CallWS()
         {
-            // Do not call because Statusbar is already called.
-            /*
             var ret = wsOps.passwordExpiresDays();
             isOnline = (null != ret && null != ret.status &&
                 !string.IsNullOrEmpty(ret.status.code) && ret.status.code == "S200");
-            */
         }
 
         private void UpdateUI()

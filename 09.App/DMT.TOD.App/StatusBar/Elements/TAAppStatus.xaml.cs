@@ -13,6 +13,8 @@ using DMT.Services;
 
 namespace DMT.Controls.StatusBar
 {
+    using taops = Services.Operations.TA;
+
     /// <summary>
     /// Interaction logic for TAAppStatus.xaml
     /// </summary>
@@ -92,8 +94,16 @@ namespace DMT.Controls.StatusBar
             }
         }
 
+        private void CallWS()
+        {
+            var ret = taops.Notify.IsAlive();
+            isOnline = (null != ret && ret.Ok);
+        }
+
         private void UpdateUI()
         {
+            CallWS();
+
             var statusCfg = service.TAApp;
             if (null == statusCfg || !statusCfg.Visible)
             {

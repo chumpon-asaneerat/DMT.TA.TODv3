@@ -46,8 +46,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1584
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1583
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1582
-- 
+- DMT.TAxTODv4
+  - Rebuild all projects - OK.
+  - Basic Test - OK.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1581

@@ -170,7 +170,14 @@ namespace DMT.Models
         /// <returns></returns>
         public bool CheckIsCurrent()
         {
-            DateTime dt = DateTime.Now;
+            DateTime now = DateTime.Now;
+
+            // Test 2021-02-12 01:xx:xx
+            DateTime dt = new DateTime(now.Year, now.Month, 12, 01, now.Minute, now.Second, now.Millisecond);
+            // Test 2021-02-12 22:xx:xx
+            //DateTime dt = new DateTime(now.Year, now.Month, 12, 22, now.Minute, now.Second, now.Millisecond);
+
+            //DateTime dt = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, now.Millisecond);
             if (!TimeStart.HasValue || !TimeEnd.HasValue)
             {
                 return false; // No data found.
@@ -193,12 +200,24 @@ namespace DMT.Models
 
             if (TimeStart.Value.Hour > TimeEnd.Value.Hour)
             {
-                end = end.AddDays(1);
+                if (dt.Hour < TimeStart.Value.Hour)
+                {
+                    // If current time less than TimeStart that mean its yesterday so substract day.
+                    start = start.AddDays(-1);
+                }
+                else
+                {
+                    // Condition - Shift cover between 2 days (normaly shift - 3).
+                    end = end.AddDays(1);
+                }
             }
+
             bool ret = (dt >= start && dt < end);
+
             if (ret)
             {
-                //Console.WriteLine("Match shift : {0}", ShiftId);
+                Console.WriteLine("Start: {0:dd/MM/yyyy HH:mm} - End: {1:dd/MM/yyyy HH:mm}, Curr: {2:dd/MM/yyyy HH:mm}",
+                    start, end, dt);
             }
             return ret;
         }

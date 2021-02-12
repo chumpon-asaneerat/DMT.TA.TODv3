@@ -25,8 +25,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1600
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1599
-- 
+- DMT.TAxTODv4
+  - DMT.Account.App project.
+    - Ported StatusBars from v3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1598

@@ -66,16 +66,19 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            if (null != TAApp.User.Current)
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                txtUserId.Text = "รหัสผู้ใช้งาน: " + TAApp.User.Current.UserId;
-                txtUserame.Text = "ชื่อผู้ใช้งาน: " + TAApp.User.Current.FullNameTH;
-            }
-            else
-            {
-                txtUserId.Text = "รหัสผู้ใช้งาน: ";
-                txtUserame.Text = "ชื่อผู้ใช้งาน: ";
-            }
+                if (null != TAApp.User.Current)
+                {
+                    txtUserId.Text = "รหัสผู้ใช้งาน: " + TAApp.User.Current.UserId;
+                    txtUserame.Text = "ชื่อผู้ใช้งาน: " + TAApp.User.Current.FullNameTH;
+                }
+                else
+                {
+                    txtUserId.Text = "รหัสผู้ใช้งาน: ";
+                    txtUserame.Text = "ชื่อผู้ใช้งาน: ";
+                }
+            }));
         }
     }
 }

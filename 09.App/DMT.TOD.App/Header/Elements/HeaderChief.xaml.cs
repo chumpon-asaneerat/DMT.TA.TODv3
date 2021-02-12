@@ -63,16 +63,19 @@ namespace DMT.Controls.Header
         private void UpdateUI()
         {
             var shift = TSBShift.GetTSBShift().Value();
-            if (null == shift)
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                txtSupervisorId.Text = "รหัสหัวหน้าด่าน : ";
-                txtSupervisorName.Text = "หัวหน้าด่าน : ";
-            }
-            else
-            {
-                txtSupervisorId.Text = "รหัสหัวหน้าด่าน : " + shift.UserId;
-                txtSupervisorName.Text = "หัวหน้าด่าน : " + shift.FullNameTH;
-            }
+                if (null == shift)
+                {
+                    txtSupervisorId.Text = "รหัสหัวหน้าด่าน : ";
+                    txtSupervisorName.Text = "หัวหน้าด่าน : ";
+                }
+                else
+                {
+                    txtSupervisorId.Text = "รหัสหัวหน้าด่าน : " + shift.UserId;
+                    txtSupervisorName.Text = "หัวหน้าด่าน : " + shift.FullNameTH;
+                }
+            }));
         }
     }
 }

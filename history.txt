@@ -34,8 +34,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1588
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1587
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1586
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update HeaderChief.cs
+  - DMT.TOD.App project.
+    - Update HeaderChief.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1585

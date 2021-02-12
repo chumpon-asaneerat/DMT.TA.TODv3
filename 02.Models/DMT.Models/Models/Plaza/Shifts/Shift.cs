@@ -185,12 +185,12 @@ namespace DMT.Models
             {
                 return false; // Same Hour/Minute/Second
             }
-
             DateTime start = new DateTime(dt.Year, dt.Month, dt.Day, 
                 timeStart.Hour, timeStart.Minute, timeStart.Second, timeStart.Millisecond);
 
             DateTime end = new DateTime(dt.Year, dt.Month, dt.Day,
                 timeEnd.Hour, timeEnd.Minute, timeEnd.Second, timeEnd.Millisecond);
+
             if (TimeStart.Value.Hour > TimeEnd.Value.Hour)
             {
                 end = end.AddDays(1);
@@ -253,7 +253,7 @@ namespace DMT.Models
                                 }
                                 else
                                 {
-                                    shift.TimeEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
+                                    shift.TimeStart = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
                                 }
                                 needSave = true;
                             }
@@ -288,7 +288,6 @@ namespace DMT.Models
                                 Save(shift);
                             }
                         });
-
                     }
                     result.Success(data);
                 }

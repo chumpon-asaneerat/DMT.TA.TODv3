@@ -28,8 +28,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1610
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1609
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1608
-- 
+- DMT.TAxTODv3
+  - DMT.Models projects.
+    - Shift Model
+      - Fixed bug to find auto select shift (after mid night) #2.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1607

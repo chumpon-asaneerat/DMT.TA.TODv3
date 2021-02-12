@@ -1529,7 +1529,8 @@ namespace DMT.Models
                      WHERE UserId = ?
                        AND PlazaGroupId = ? 
                        AND (RevenueId IS NULL OR RevenueId = '')
-                       AND State <> ? ";
+                       AND State <> ? 
+                     ORDER BY UserId, UserCreditDate desc";
 
                     var ret = NQuery.Query<FKs>(cmd,
                         userId, plazaGroupId, StateTypes.Completed).FirstOrDefault();
@@ -1603,7 +1604,8 @@ namespace DMT.Models
                      WHERE UserId = ?
                        AND PlazaGroupId = ? 
                        AND (RevenueId IS NULL OR RevenueId = '')
-                       AND State = ? ";
+                       AND State = ? 
+                     ORDER BY UserId, UserCreditDate desc";
 
                     var ret = NQuery.Query<FKs>(cmd,
                         userId, plazaGroupId, StateTypes.Completed).FirstOrDefault();

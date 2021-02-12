@@ -25,8 +25,11 @@
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1560
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1559
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Ported ExtensionMethods from v3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1558

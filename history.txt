@@ -49,8 +49,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1553
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1552
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1551
-- 
+- DMT.TAxTODv4
+  - DMT.Core project.
+    - Ported Routes -> TA from v3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1550

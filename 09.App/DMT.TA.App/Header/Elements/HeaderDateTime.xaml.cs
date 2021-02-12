@@ -42,6 +42,7 @@ namespace DMT.Controls.Header
 
         private DateTime _lastUpdate = DateTime.MinValue;
         private DispatcherTimer timer = null;
+        private bool needCallWs = false;
         private bool isOnline = false;
 
         #endregion
@@ -50,9 +51,10 @@ namespace DMT.Controls.Header
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            needCallWs = true;
             UpdateUI();
 
-            if (null != service) service.Register(this.UpdateUI);
+            if (null != service) service.Register(this.ForceUpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -62,7 +64,7 @@ namespace DMT.Controls.Header
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (null != service) service.Unregister(this.UpdateUI);
+            if (null != service) service.Unregister(this.ForceUpdateUI);
 
             if (null != timer)
             {
@@ -81,9 +83,14 @@ namespace DMT.Controls.Header
             TimeSpan ts = DateTime.Now - _lastUpdate;
             if (ts.TotalSeconds > this.Interval)
             {
-                UpdateUI();
+                needCallWs = true;
                 _lastUpdate = DateTime.Now;
             }
+            else
+            {
+                needCallWs = false;
+            }
+            UpdateUI();
         }
 
         #endregion
@@ -100,19 +107,30 @@ namespace DMT.Controls.Header
 
         private void CallWS()
         {
+            if (!needCallWs) return;
             var ret = wsOps.passwordExpiresDays();
             isOnline = (null != ret && null != ret.status &&
                 !string.IsNullOrEmpty(ret.status.code) && ret.status.code == "S200");
+            needCallWs = false;
+        }
+
+        private void ForceUpdateUI()
+        {
+            needCallWs = true;
+            UpdateUI();
         }
 
         private void UpdateUI()
         {
             CallWS();
 
-            borderDT.Background = (isOnline) ? OnlineColor : OfflineColor;
-            DateTime dt = DateTime.Now;
-            txtCurrentDate.Text = dt.ToThaiDateTimeString("dd/MM/yyyy");
-            txtCurrentTime.Text = dt.ToThaiDateTimeString("HH:mm:ss");
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                borderDT.Background = (isOnline) ? OnlineColor : OfflineColor;
+                DateTime dt = DateTime.Now;
+                txtCurrentDate.Text = dt.ToThaiDateTimeString("dd/MM/yyyy");
+                txtCurrentTime.Text = dt.ToThaiDateTimeString("HH:mm:ss");
+            }));
         }
     }
 }

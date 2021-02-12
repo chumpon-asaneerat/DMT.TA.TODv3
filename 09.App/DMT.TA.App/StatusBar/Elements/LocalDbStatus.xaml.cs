@@ -95,28 +95,32 @@ namespace DMT.Controls.StatusBar
         private void UpdateUI()
         {
             var statusCfg = (null != service) ? service.LocalDb : null;
-            if (null == statusCfg || !statusCfg.Visible)
-            {
-                // Hide Control.
-                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                // Show Control.
-                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
-            }
 
-            isOnline = TALocalDbServer.Instance.Connected;
-            if (isOnline)
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);
-                txtStatus.Text = "Connected";
-            }
-            else
-            {
-                borderStatus.Background = new SolidColorBrush(Colors.Maroon);
-                txtStatus.Text = "Disconnected";
-            }
+                if (null == statusCfg || !statusCfg.Visible)
+                {
+                    // Hide Control.
+                    if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    // Show Control.
+                    if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+                }
+
+                isOnline = TALocalDbServer.Instance.Connected;
+                if (isOnline)
+                {
+                    borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);
+                    txtStatus.Text = "Connected";
+                }
+                else
+                {
+                    borderStatus.Background = new SolidColorBrush(Colors.Maroon);
+                    txtStatus.Text = "Disconnected";
+                }
+            }));
         }
     }
 }

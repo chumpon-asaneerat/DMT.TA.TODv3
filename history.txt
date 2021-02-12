@@ -46,8 +46,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1594
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1593
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1592
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update LoadlDbStatus.cs
+    - Update RabbitMQStatus.cs
+  - DMT.TA.App project.
+    - Update LoadlDbStatus.cs
+    - Update RabbitMQStatus.cs
+  - DMT.TOD.App project.
+    - Update LoadlDbStatus.cs
+    - Update RabbitMQStatus.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1591

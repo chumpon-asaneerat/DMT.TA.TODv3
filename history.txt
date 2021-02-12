@@ -34,8 +34,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1578
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1577
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1576
-- 
+- DMT.TAxTODv4
+  - DMT.TOD.App project.
+    - Ported from v3 - except Credit/Coupon/Revenue related controls/pages/etc.
+    - Required to re-check with v3 again when Credit/Coupon/Revenue models conmpleted.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1575

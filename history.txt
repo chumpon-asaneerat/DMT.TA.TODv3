@@ -31,8 +31,13 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1559
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1558
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1557
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Ported RabbitMQ from v3.
+    - Ported SCW from v3.
+    - Ported TAxTOD from v3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1556

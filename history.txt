@@ -34,8 +34,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1568
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1567
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1566
-- 
+- DMT.TAxTODv4
+  - DMT.SCW.Rest.Client project.
+    - Ported from v3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1565

@@ -46,13 +46,17 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1564
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1563
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1562
-- 
+- DMT.TAxTODv4
+  - DMT.TA.Models project.
+    - Ported from v3 and Add InitTSBAndPlazaAndLanes.
+    - Add TSBShiftView.sql
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1561
 - DMT.TAxTODv4
-  - DMT.Models project.
+  - DMT.Plaza.Models project.
     - Ported from v3 and Add InitTSBAndPlazaAndLanes.
 
 [commited]

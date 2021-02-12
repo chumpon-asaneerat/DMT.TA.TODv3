@@ -29,13 +29,20 @@ namespace DMT.Controls.Header
 
         #endregion
 
+        #region Internal Variables
+
+        private HeaderBarService service = HeaderBarService.Instance;
         private DispatcherTimer timer = null;
+
+        #endregion
 
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+
+            if (null != service) service.Register(this.UpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(2);
@@ -45,6 +52,8 @@ namespace DMT.Controls.Header
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            if (null != service) service.Unregister(this.UpdateUI);
+
             if (null != timer)
             {
                 timer.Tick -= timer_Tick;

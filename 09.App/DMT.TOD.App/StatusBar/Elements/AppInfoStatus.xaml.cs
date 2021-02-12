@@ -3,6 +3,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 using NLib;
 
@@ -67,18 +68,22 @@ namespace DMT.Controls.StatusBar
         private void UpdateUI()
         {
             var statusCfg = (null != service) ? service.AppInfo : null;
-            if (null == statusCfg || !statusCfg.Visible)
-            {
-                // Hide Control.
-                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                // Show Control.
-                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
-            }
 
-            txtAppInfo.Text = ApplicationManager.Instance.Environments.Options.AppInfo.DisplayText;
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                if (null == statusCfg || !statusCfg.Visible)
+                {
+                    // Hide Control.
+                    if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    // Show Control.
+                    if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+                }
+
+                txtAppInfo.Text = ApplicationManager.Instance.Environments.Options.AppInfo.DisplayText;
+            }));
         }
     }
 }

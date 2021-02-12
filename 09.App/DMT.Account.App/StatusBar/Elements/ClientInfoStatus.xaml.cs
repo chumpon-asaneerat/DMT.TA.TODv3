@@ -3,6 +3,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 using NLib.Utils;
 
@@ -66,19 +67,23 @@ namespace DMT.Controls.StatusBar
         private void UpdateUI()
         {
             var statusCfg = (null != service) ? service.ClientInfo : null;
-            if (null == statusCfg || !statusCfg.Visible)
-            {
-                // Hide Control.
-                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                // Show Control.
-                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
-            }
 
-            var ipaddr = NetworkUtils.GetLocalIPAddress();
-            txtStatus.Text = (null != ipaddr) ? ipaddr.ToString() : "0.0.0.0";
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                if (null == statusCfg || !statusCfg.Visible)
+                {
+                    // Hide Control.
+                    if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    // Show Control.
+                    if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+                }
+
+                var ipaddr = NetworkUtils.GetLocalIPAddress();
+                txtStatus.Text = (null != ipaddr) ? ipaddr.ToString() : "0.0.0.0";
+            }));
         }
     }
 }

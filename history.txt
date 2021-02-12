@@ -31,8 +31,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1579
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1578
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1577
-- 
+- DMT.TAxTODv4
+  - DMT.Account.App project.
+    - Update MainWindow.xaml.cs code.
+  - DMT.TA.App project.
+    - Update MainWindow.xaml.cs code.
+    - Update MainMenu code.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1576

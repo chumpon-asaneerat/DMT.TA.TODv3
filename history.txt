@@ -31,8 +31,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1569
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1568
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1567
-- 
+- DMT.TAxTODv4
+  - DMT.TA.Rest.Client project.
+    - Ported from v3 - except coupon/credit/revenue.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1566

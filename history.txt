@@ -43,8 +43,15 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1595
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1594
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1593
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update SCWStatus.cs
+  - DMT.TA.App project.
+    - Update SCWStatus.cs
+  - DMT.TOD.App project.
+    - Update SCWStatus.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1592

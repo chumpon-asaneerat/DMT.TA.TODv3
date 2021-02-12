@@ -31,8 +31,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1609
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1608
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1607
-- 
+- DMT.TAxTODv4
+  - DMT.Models projects.
+    - Ported Shift Model from v3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1606

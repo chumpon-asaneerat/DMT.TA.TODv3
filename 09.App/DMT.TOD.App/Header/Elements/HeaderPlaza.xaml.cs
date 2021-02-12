@@ -45,21 +45,12 @@ namespace DMT.Controls.Header
 
             UpdateUI();
 
-            TODConfigManager.Instance.ConfigChanged += ConfigChanged;
+            if (null != service) service.Register(this.UpdateUI);
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TODConfigManager.Instance.ConfigChanged -= ConfigChanged;
-        }
-
-        #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
+            if (null != service) service.Unregister(this.UpdateUI);
         }
 
         #endregion
@@ -75,16 +66,19 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            if (null != Config)
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                txtPlazaId.Text = "รหัสด่าน : " + Config.PlazaId;
-                txtPlazaName.Text = "ชื่อด่าน : " + Config.PlazaNameTH;
-            }
-            else
-            {
-                txtPlazaId.Text = "รหัสด่าน : ";
-                txtPlazaName.Text = "ชื่อด่าน : ";
-            }
+                if (null != Config)
+                {
+                    txtPlazaId.Text = "รหัสด่าน : " + Config.PlazaId;
+                    txtPlazaName.Text = "ชื่อด่าน : " + Config.PlazaNameTH;
+                }
+                else
+                {
+                    txtPlazaId.Text = "รหัสด่าน : ";
+                    txtPlazaName.Text = "ชื่อด่าน : ";
+                }
+            }));
         }
     }
 }

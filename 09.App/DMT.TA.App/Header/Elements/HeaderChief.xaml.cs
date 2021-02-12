@@ -29,11 +29,20 @@ namespace DMT.Controls.Header
 
         #endregion
 
+        #region Internal Variables
+
+        private HeaderBarService service = HeaderBarService.Instance;
+
+        #endregion
+
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateUI();
+
+            if (null != service) service.Register(this.UpdateUI);
+
             RuntimeManager.Instance.TSBChanged += Instance_TSBChanged;
             RuntimeManager.Instance.TSBShiftChanged += Instance_TSBShiftChanged;
         }
@@ -42,6 +51,8 @@ namespace DMT.Controls.Header
         {
             RuntimeManager.Instance.TSBShiftChanged -= Instance_TSBShiftChanged;
             RuntimeManager.Instance.TSBChanged -= Instance_TSBChanged;
+
+            if (null != service) service.Unregister(this.UpdateUI);
         }
 
         #endregion

@@ -46,21 +46,12 @@ namespace DMT.Controls.Header
 
             UpdateUI();
 
-            TAConfigManager.Instance.ConfigChanged += ConfigChanged;
+            if (null != service) service.Register(this.UpdateUI);
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
-        }
-
-        #endregion
-
-        #region Config Watcher Handlers
-
-        private void ConfigChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
+            if (null != service) service.Unregister(this.UpdateUI);
         }
 
         #endregion
@@ -77,16 +68,19 @@ namespace DMT.Controls.Header
         private void UpdateUI()
         {
             var tsb = TSB.GetCurrent().Value();
-            if (null != Config)
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                txtPlazaId.Text = "รหัสด่าน : " + tsb.TSBId;
-                txtPlazaName.Text = "ชื่อด่าน : " + tsb.TSBNameTH;
-            }
-            else
-            {
-                txtPlazaId.Text = "รหัสด่าน : ";
-                txtPlazaName.Text = "ชื่อด่าน : ";
-            }
+                if (null != Config)
+                {
+                    txtPlazaId.Text = "รหัสด่าน : " + tsb.TSBId;
+                    txtPlazaName.Text = "ชื่อด่าน : " + tsb.TSBNameTH;
+                }
+                else
+                {
+                    txtPlazaId.Text = "รหัสด่าน : ";
+                    txtPlazaName.Text = "ชื่อด่าน : ";
+                }
+            }));
         }
     }
 }

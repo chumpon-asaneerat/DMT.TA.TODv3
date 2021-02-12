@@ -36,6 +36,7 @@ namespace DMT.Controls.StatusBar
 
         private DateTime _lastUpdate = DateTime.MinValue;
         private DispatcherTimer timer = null;
+        private bool needCallWs = false;
         private bool isOnline = false;
 
         #endregion
@@ -44,9 +45,10 @@ namespace DMT.Controls.StatusBar
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            needCallWs = true;
             UpdateUI();
 
-            if (null != service) service.Register(this.UpdateUI);
+            if (null != service) service.Register(this.ForceUpdateUI);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -56,7 +58,7 @@ namespace DMT.Controls.StatusBar
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (null != service) service.Unregister(this.UpdateUI);
+            if (null != service) service.Unregister(this.ForceUpdateUI);
 
             if (null != timer)
             {
@@ -75,9 +77,14 @@ namespace DMT.Controls.StatusBar
             TimeSpan ts = DateTime.Now - _lastUpdate;
             if (ts.TotalSeconds > this.Interval)
             {
-                UpdateUI();
+                needCallWs = true;
                 _lastUpdate = DateTime.Now;
             }
+            else
+            {
+                needCallWs = false;
+            }
+            UpdateUI();
         }
 
         #endregion
@@ -92,30 +99,40 @@ namespace DMT.Controls.StatusBar
             }
         }
 
+        private void ForceUpdateUI()
+        {
+            needCallWs = true;
+            UpdateUI();
+        }
+
         private void UpdateUI()
         {
             var statusCfg = (null != service) ? service.TODApp : null;
-            if (null == statusCfg || !statusCfg.Visible)
-            {
-                // Hide Control.
-                if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                // Show Control.
-                if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
-            }
 
-            if (isOnline)
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);
-                txtStatus.Text = "Online";
-            }
-            else
-            {
-                borderStatus.Background = new SolidColorBrush(Colors.Maroon);
-                txtStatus.Text = "Offline";
-            }
+                if (null == statusCfg || !statusCfg.Visible)
+                {
+                    // Hide Control.
+                    if (this.Visibility == Visibility.Visible) this.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    // Show Control.
+                    if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
+                }
+
+                if (isOnline)
+                {
+                    borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);
+                    txtStatus.Text = "Online";
+                }
+                else
+                {
+                    borderStatus.Background = new SolidColorBrush(Colors.Maroon);
+                    txtStatus.Text = "Offline";
+                }
+            }));
         }
     }
 }

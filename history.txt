@@ -37,8 +37,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1597
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1596
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1595
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update TODAppStatus.cs
+    - Update TSBCouponSyncStatus.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1594

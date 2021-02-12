@@ -43,8 +43,12 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1565
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1564
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1563
-- 
+- DMT.TAxTODv4
+  - DMT.TOD.Models project.
+    - Ported from v3 and Add InitTSBAndPlazaAndLanes.
+    - Add Shift sql script files.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1562

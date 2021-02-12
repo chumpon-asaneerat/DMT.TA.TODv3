@@ -49,8 +49,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1573
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1572
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1571
-- 
+- DMT.TAxTODv4
+  - DMT.TA.Rest.Server project.
+    - Ported from v3 - except credit/coupon (comment out).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1570

@@ -28,8 +28,18 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1560
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1559
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1558
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Ported Plaza from v3.
+      - Add IsAliveResult.cs
+      - Update TSB.cs
+      - Ported all Master files.
+      - Add TSBShift.cs
+      - Add UserShift.cs
+      - Add UserShiftRevenue.cs
+      - Update User.cs
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1557

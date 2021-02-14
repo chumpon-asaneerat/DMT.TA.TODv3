@@ -114,11 +114,11 @@ namespace DMT.TA.Pages.Menu
         {
             // ประวัติการแลกเงินยืมทอน (collector)
             var page = TAApp.Pages.CreditHistoryView;
-            //page.Setup(TAApp.User.Current);
+            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 
-        // TEST - PASSED.
+        // OK - เช็คยอดด่าน.
         private void cmdCheckBalance_Click(object sender, RoutedEventArgs e)
         {
             // เช็คยอดด่าน
@@ -127,6 +127,7 @@ namespace DMT.TA.Pages.Menu
             win.ShowDialog();
         }
 
+        // OK - ออกจากระบบ.
         private void cmdExit_Click(object sender, RoutedEventArgs e)
         {
             // ออกจากระบบ

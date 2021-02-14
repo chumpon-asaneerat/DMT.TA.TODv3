@@ -1104,7 +1104,7 @@ namespace DMT.Services
     /// <summary>
     /// User Credit Transaction Manager.
     /// </summary>
-    public class UserCreditTransactionManager
+    public class UserCreditTransactionManager : INotifyPropertyChanged
     {
         #region Constructor and Destructor
 

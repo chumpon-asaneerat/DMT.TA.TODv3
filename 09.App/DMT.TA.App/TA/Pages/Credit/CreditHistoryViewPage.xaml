@@ -453,13 +453,14 @@
                             <ctrl:ImageButton x:Name="cmdCancelTransaction"
                                               Click="cmdCancelTransaction_Click"
                                               ImageSource="/DMT.TA.App;component/Images/Button/Cancel.png">
-                                <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิกรายการ" />
                             </ctrl:ImageButton>
                         </Grid>
                         <!--  ENTRY  -->
                         <credit:TSBCreditTransactionEntry x:Name="entry"
                                                           Background="DarkRed"
-                                                          Foreground="WhiteSmoke" />
+                                                          Foreground="WhiteSmoke" 
+                                                          IsEnabled="False"/>
                     </DockPanel>
                     <!--  SEPERATOR  -->
                     <TextBlock Width="10" DockPanel.Dock="Right" />
@@ -489,7 +490,7 @@
                                 <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource TransactionTypeString}"
                                                 Header="ประเภทรายการ" />
-                                <GridViewColumn Width="100"
+                                <GridViewColumn Width="110"
                                                 CellTemplate="{StaticResource TransactionBHTTotal}"
                                                 Header="จำนวนเงิน" />
                             </GridView>

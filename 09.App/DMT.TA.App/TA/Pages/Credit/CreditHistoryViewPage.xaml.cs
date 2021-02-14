@@ -109,7 +109,7 @@ namespace DMT.TA.Pages.Credit
 
         #region TextBox Handlers
 
-        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void txtSearchUserId_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {

@@ -3,12 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Globalization;
 using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 using DMT.Configurations;
 using DMT.Models;
@@ -17,8 +19,6 @@ using DMT.Controls;
 
 using NLib.Services;
 using NLib.Reflection;
-using System.Threading;
-using System.Windows.Threading;
 
 #endregion
 
@@ -96,11 +96,10 @@ namespace DMT.TOD.Pages.TollAdmin
 
         #region TextBox Handlers
 
-        private void txtLaneNo_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void txtLaneNo_KeyDown(object sender, KeyEventArgs e)
         {
             var currFilter = txtLaneNo.Text.Trim();
-            if (e.Key == System.Windows.Input.Key.Enter ||
-                e.Key == System.Windows.Input.Key.Return)
+            if (e.Key == Key.Enter || e.Key == Key.Return)
             {
                 if (_laneFilter != currFilter)
                 {
@@ -109,7 +108,7 @@ namespace DMT.TOD.Pages.TollAdmin
                     e.Handled = true;
                 }
             }
-            else if (e.Key == System.Windows.Input.Key.Escape)
+            else if (e.Key == Key.Escape)
             {
                 txtLaneNo.Text = string.Empty;
                 e.Handled = true;
@@ -131,15 +130,14 @@ namespace DMT.TOD.Pages.TollAdmin
             }
         }
 
-        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void txtSearchUserId_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter ||
-                e.Key == System.Windows.Input.Key.Return)
+            if (e.Key == Key.Enter || e.Key == Key.Return)
             {
                 SearchUser();
                 e.Handled = true;
             }
-            else if (e.Key == System.Windows.Input.Key.Escape)
+            else if (e.Key == Key.Escape)
             {
                 ResetSelectUser();
                 RefreshEMV_QRCODE();

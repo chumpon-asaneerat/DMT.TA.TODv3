@@ -478,19 +478,19 @@
                                                 CellTemplate="{StaticResource FullNameTH}"
                                                 Header="ชื่อพนักงาน" />
                                 <GridViewColumn Width="110"
-                                                CellTemplate="{StaticResource TrxDateString}"
+                                                CellTemplate="{StaticResource TransactionDateString}"
                                                 Header="วันที่" />
                                 <GridViewColumn Width="110"
-                                                CellTemplate="{StaticResource TrxTimeString}"
+                                                CellTemplate="{StaticResource TransactionTimeString}"
                                                 Header="เวลา" />
                                 <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource UserId}"
                                                 Header="รหัสหัวหน้า" />
                                 <GridViewColumn Width="100"
-                                                CellTemplate="{StaticResource LaneNo}"
+                                                CellTemplate="{StaticResource TransactionTypeString}"
                                                 Header="ประเภทรายการ" />
                                 <GridViewColumn Width="100"
-                                                CellTemplate="{StaticResource LaneNo}"
+                                                CellTemplate="{StaticResource TransactionBHTTotal}"
                                                 Header="จำนวนเงิน" />
                             </GridView>
                         </ListView.View>

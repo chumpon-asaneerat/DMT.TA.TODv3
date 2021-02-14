@@ -451,4 +451,27 @@
                    Text="{Binding CountCouponBHT80}"
                    TextAlignment="Center" />
     </DataTemplate>
+
+    <!--  Common for User Credit History View  -->
+    <DataTemplate x:Key="TransactionDateString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransactionDateString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TransactionTimeString">
+            <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransactionTimeString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TransactionTypeString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransactionTypeString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TransactionBHTTotal">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding BHTTotal, StringFormat={}{0:n0}}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
 </ResourceDictionary>

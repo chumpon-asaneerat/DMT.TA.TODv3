@@ -143,7 +143,7 @@ namespace DMT.TA.Pages.Credit
 
         private void Reset()
         {
-            manager.User = null;
+            manager.SetUser(null);
 
             dtEntryDate.DefaultValue = DateTime.Now;
             dtEntryDate.Value = DateTime.Now.Date;

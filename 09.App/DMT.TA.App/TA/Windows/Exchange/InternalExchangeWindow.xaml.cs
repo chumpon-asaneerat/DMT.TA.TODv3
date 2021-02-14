@@ -33,10 +33,14 @@ namespace DMT.TA.Windows.Exchange
 
         #region Button Handlers
 
-        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
-            // Close Window and Goto Main Menu
             DialogResult = false;
+        }
+
+        private void cmdOK_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
 
         #endregion
@@ -47,6 +51,9 @@ namespace DMT.TA.Windows.Exchange
 
         #region Public Methods
 
+        /// <summary>
+        /// Setup.
+        /// </summary>
         public void Setup()
         {
 

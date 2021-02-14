@@ -5,6 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:tran="clr-namespace:DMT.TA.Controls"
+        xmlns:tsb="clr-namespace:DMT.TA.Controls.Elements.TSBBalance"
+        xmlns:usr="clr-namespace:DMT.TA.Controls.Elements.UserBalance"
         Title="แลกเปลี่ยนเงินหมุนเวียนภายในด่าน"
         Width="800"
         Height="600"
@@ -39,17 +42,49 @@
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdCancel"
+                                      Click="cmdCancel_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Cancel.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                    </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdBack"
-                                      Click="cmdBack_Click"
+                    <ctrl:ImageButton x:Name="cmdOK"
+                                      Click="cmdOK_Click"
                                       DockPanel.Dock="Right"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                                      ImageSource="/DMT.TA.App;component/Images/Button/OK.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <DockPanel LastChildFill="True">
+                    <!--  ENTRY  -->
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="320" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="5" />
+                        </Grid.RowDefinitions>
+                        <tsb:TSBCreditBalanceEntry x:Name="tsbBalanceEntry"
+                                                   Grid.Row="1"
+                                                   Grid.Column="3"
+                                                   Background="Orange" />
+                        <tran:UserCreditTransactionEntry x:Name="usrTransactinEntry"
+                                                         Grid.Row="1"
+                                                         Grid.Column="1"
+                                                         Background="Indigo"
+                                                         Foreground="WhiteSmoke" />
+                    </Grid>
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>

@@ -2426,9 +2426,32 @@ namespace DMT.Services
 
         #region Public Methods
 
+        /// <summary>
+        /// Refresh.
+        /// </summary>
+        public void Refresh()
+        {
+            if (!SearchDate.HasValue || SearchDate == DateTime.MinValue)
+            {
+                Transactions = new List<TSBCreditTransaction>();
+                return;
+            }
+            Transactions = TSBCreditTransaction.GetReplaceTransactions(
+                SearchDate.Value).Value();
+        }
+
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets TSBCreditTransaction List for internal exchanges.
+        /// </summary>
+        public List<TSBCreditTransaction> Transactions { get; private set; }
+        /// <summary>
+        /// Gets or sets Search Date.
+        /// </summary>
+        public DateTime? SearchDate { get; set; }
 
         #endregion
     }

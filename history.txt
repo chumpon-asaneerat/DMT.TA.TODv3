@@ -28,8 +28,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1640
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1639
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1638
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Implements Internal Exchange #5.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1637

@@ -123,11 +123,6 @@ namespace DMT.TA.Pages.Exchange
 
         #region Exchhange methods
 
-        private void RefreshInternalExchanges()
-        {
-            grid.ItemsSource = null;
-        }
-
         private void AddExchange()
         {
             var win = TAApp.Windows.InternalExchange;
@@ -142,6 +137,25 @@ namespace DMT.TA.Pages.Exchange
         #endregion
 
         #region Refresh
+
+        private void RefreshInternalExchanges()
+        {
+            grid.ItemsSource = null;
+
+            if (!dtEntryDate.Value.HasValue)
+            {
+                dtEntryDate.Focus();
+                return;
+            }
+
+            if (null == manager) return;
+            // Update Search Date.
+            manager.SearchDate = dtEntryDate.Value;
+            // Refresh
+            manager.Refresh();
+
+            grid.ItemsSource = manager.Transactions;
+        }
 
         private void Refresh()
         {

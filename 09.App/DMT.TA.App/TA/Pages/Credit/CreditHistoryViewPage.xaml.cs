@@ -253,6 +253,8 @@ namespace DMT.TA.Pages.Credit
 
             Reset();
             ResetSelectUser();
+            // Refresh List View.
+            RefreshCreditTransactions();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

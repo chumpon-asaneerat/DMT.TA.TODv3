@@ -1441,7 +1441,7 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (null == tsb || null == user)
+            if (null == tsb)
             {
                 result.ParameterIsNull();
                 return result;
@@ -1451,18 +1451,35 @@ namespace DMT.Models
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
-                    string cmd = string.Empty;
-                    cmd += "SELECT * ";
-                    cmd += "  FROM UserCreditTransactionView ";
-                    cmd += " WHERE TSBId = ? ";
-                    cmd += "   AND UserId = ? ";
-                    cmd += "   AND TransactionDate >= ? ";
-                    cmd += "   AND TransactionDate < ? ";
-                    cmd += "   AND (TransactionType = 1 OR TransactionType = 2)";
+                    if (null != user)
+                    {
+                        string cmd = string.Empty;
+                        cmd += "SELECT * ";
+                        cmd += "  FROM UserCreditTransactionView ";
+                        cmd += " WHERE TSBId = ? ";
+                        cmd += "   AND UserId = ? ";
+                        cmd += "   AND TransactionDate >= ? ";
+                        cmd += "   AND TransactionDate < ? ";
+                        cmd += "   AND (TransactionType = 1 OR TransactionType = 2)";
 
-                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, user.UserId, begin, end).ToList();
-                    var results = rets.ToModels();
-                    result.Success(results);
+                        var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, user.UserId, begin, end).ToList();
+                        var results = rets.ToModels();
+                        result.Success(results);
+                    }
+                    else
+                    {
+                        string cmd = string.Empty;
+                        cmd += "SELECT * ";
+                        cmd += "  FROM UserCreditTransactionView ";
+                        cmd += " WHERE TSBId = ? ";
+                        cmd += "   AND TransactionDate >= ? ";
+                        cmd += "   AND TransactionDate < ? ";
+                        cmd += "   AND (TransactionType = 1 OR TransactionType = 2)";
+
+                        var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, begin, end).ToList();
+                        var results = rets.ToModels();
+                        result.Success(results);
+                    }
                 }
                 catch (Exception ex)
                 {

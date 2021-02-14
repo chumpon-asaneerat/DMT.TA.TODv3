@@ -91,6 +91,11 @@ namespace DMT.TA.Pages.Credit
             SearchUser();
         }
 
+        private void cmdCancelTransaction_Click(object sender, RoutedEventArgs e)
+        {
+            CancelTransaction();
+        }
+
         #endregion
 
         #region DateTime Piecker Handelers
@@ -170,11 +175,16 @@ namespace DMT.TA.Pages.Credit
 
         #endregion
 
-        #region Refresh Credit Transaction
+        #region Credit Transaction methods
 
         private void RefreshCreditTransactions()
         {
             
+        }
+
+        private void CancelTransaction()
+        {
+
         }
 
         #endregion

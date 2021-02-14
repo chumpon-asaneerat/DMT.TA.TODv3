@@ -83,7 +83,7 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdExchange_Click(object sender, RoutedEventArgs e)
         {
-            Exchange();
+            AddExchange();
         }
 
         #endregion
@@ -128,9 +128,15 @@ namespace DMT.TA.Pages.Exchange
             grid.ItemsSource = null;
         }
 
-        private void Exchange()
+        private void AddExchange()
         {
-
+            var win = TAApp.Windows.InternalExchange;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            Refresh();
         }
 
         #endregion

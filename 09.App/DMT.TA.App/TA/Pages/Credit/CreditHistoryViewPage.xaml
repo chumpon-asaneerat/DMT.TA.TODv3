@@ -267,7 +267,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="Silver">
+    <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource PageMargin}" />
@@ -444,6 +444,39 @@
                     </DockPanel>
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <DockPanel DockPanel.Dock="Right" Width="300">
+                        
+                    </DockPanel>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Width="10" DockPanel.Dock="Right" />
+                    <ListView x:Name="grid"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="300"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                                <GridViewColumn Width="110"
+                                                CellTemplate="{StaticResource TrxDateString}"
+                                                Header="วันที่" />
+                                <GridViewColumn Width="110"
+                                                CellTemplate="{StaticResource TrxTimeString}"
+                                                Header="เวลา" />
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสหัวหน้า" />
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource LaneNo}"
+                                                Header="ประเภทรายการ" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </Grid>

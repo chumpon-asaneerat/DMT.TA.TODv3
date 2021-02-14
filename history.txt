@@ -22,8 +22,41 @@
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1620
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1630
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1629
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1628
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1627
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1626
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1625
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1624
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1623
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1622
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1621
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - Implements Credit History #3.
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1620
+- Prepare history.txt
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1619

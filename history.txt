@@ -37,8 +37,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1647
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1646
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1645
-- 
+- DMT.TAxTODv4
+  - Update App version.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1644

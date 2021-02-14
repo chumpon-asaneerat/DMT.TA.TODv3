@@ -52,6 +52,7 @@ namespace DMT.TA.Windows.Exchange
                 {
                     var win = TAApp.Windows.MessageBox;
                     win.Setup("จำนวนเงินขอแลก ไม่เท่ากัน กรุณาตรวจสอบข้อมูล", "Toll Admin");
+                    win.ShowDialog();
                     return;
                 }
                 _manager.Save();
@@ -59,10 +60,6 @@ namespace DMT.TA.Windows.Exchange
 
             DialogResult = true;
         }
-
-        #endregion
-
-        #region Private Methods
 
         #endregion
 

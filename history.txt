@@ -49,8 +49,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1653
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1652
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1651
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - InternalExchangeWindow -> Fixed bug dialog now show (when 2 entry is not equal).
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1650

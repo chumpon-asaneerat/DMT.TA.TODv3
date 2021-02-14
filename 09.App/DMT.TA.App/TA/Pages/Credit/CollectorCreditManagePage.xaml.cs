@@ -107,7 +107,6 @@ namespace DMT.TA.Pages.Credit
                 return;
 
             var win = TAApp.Windows.CollectorReceivedBag;
-            win.Owner = Application.Current.MainWindow;
             win.Setup(balance);
             if (win.ShowDialog() == false)
             {
@@ -124,7 +123,6 @@ namespace DMT.TA.Pages.Credit
         private void BorrowCredit(UserCreditBalance balance)
         {
             var win = TAApp.Windows.CollectorCreditBorrow;
-            win.Owner = Application.Current.MainWindow;
             win.Setup(balance);
             if (win.ShowDialog() == false)
             {
@@ -136,7 +134,6 @@ namespace DMT.TA.Pages.Credit
         private void ReturnCredit(UserCreditBalance balance)
         {
             var win = TAApp.Windows.CollectorCreditReturn;
-            win.Owner = Application.Current.MainWindow;
             win.Setup(balance);
             if (win.ShowDialog() == false)
             {

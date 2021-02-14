@@ -96,7 +96,6 @@ namespace DMT.TA.Pages.Coupon
         {
             if (null == manager || null == manager.User) return;
             var win = TAApp.Windows.CollectorCouponReturn;
-            win.Owner = Application.Current.MainWindow;
             win.Setup(manager);
             win.ShowDialog();
             Reset();

@@ -394,11 +394,11 @@
                                                 CellTemplate="{StaticResource InternalExchangeTimeString}"
                                                 Header="เวลา" />
                             <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource UserId}"
-                                                Header="รหัสพนักงาน" />
+                                                CellTemplate="{StaticResource InternalExchangeChiefId}"
+                                                Header="รหัสหัวหน้ากะ" />
                             <GridViewColumn Width="300"
-                                                CellTemplate="{StaticResource FullNameTH}"
-                                                Header="ชื่อพนักงาน" />
+                                                CellTemplate="{StaticResource InternalExchangeChiefFullNameEN}"
+                                                Header="ชื่อหัวหน้ากะ" />
                             <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource InternalExchangeBHTTotal}"
                                                 Header="จำนวนเงิน" />

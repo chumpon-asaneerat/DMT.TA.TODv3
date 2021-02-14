@@ -475,6 +475,22 @@
     </DataTemplate>
 
     <!--  Common for Internal Exchange View  -->
+    <DataTemplate x:Key="InternalExchangeChiefId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SupervisorId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="InternalExchangeChiefFullNameEN">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SupervisorNameEN}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="InternalExchangeChiefFullNameTH">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SupervisorNameTH}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+
     <DataTemplate x:Key="InternalExchangeDateString">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding TransactionDateString}"

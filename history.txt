@@ -49,8 +49,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1663
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1662
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1661
-- 
+- DMT.TAxTODv4
+  - Ported TSBShift from v3 -> Update new static method.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1660

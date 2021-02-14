@@ -2,11 +2,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Threading;
 
+using DMT.Configurations;
 using DMT.Models;
 using DMT.Services;
+using DMT.Controls;
+
 using NLib.Services;
 using NLib.Reflection;
 
@@ -31,11 +41,42 @@ namespace DMT.TA.Pages.Exchange
 
         #endregion
 
+        #region Internal Variables
+
+        //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
+        private CultureInfo culture = new CultureInfo("th-TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
+
+        #endregion
+
+        #region Loaded/Unloaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Setup DateTime Picker.
+            dtEntryDate.CultureInfo = culture;
+            dtEntryDate.Language = language;
+            //Thread.CurrentThread.CurrentCulture = culture;
+            //Thread.CurrentThread.CurrentUICulture = culture;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();
+        }
+
+        private void cmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void cmdExchange_Click(object sender, RoutedEventArgs e)
@@ -45,7 +86,18 @@ namespace DMT.TA.Pages.Exchange
 
         #endregion
 
+        #region DateTime Picker Handlers
+
+        private void dtEntryDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
+
+        #endregion
+
         #region Private Methods
+
+        #region Navigation Methods
 
         private void GotoMainMenu()
         {
@@ -54,10 +106,25 @@ namespace DMT.TA.Pages.Exchange
             PageContentManager.Instance.Current = page;
         }
 
+        #endregion
+
+        #region Reset
+
+        private void Reset()
+        {
+
+        }
+
+        #endregion
+
+        #region Refresh
+
         private void Refresh()
         {
             plazaSummary.Setup(); // Call for refresh.
         }
+
+        #endregion
 
         #endregion
 
@@ -68,6 +135,7 @@ namespace DMT.TA.Pages.Exchange
         /// </summary>
         public void Setup()
         {
+            Reset();
             Refresh();
         }
 

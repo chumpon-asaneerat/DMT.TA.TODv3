@@ -307,7 +307,7 @@
                 </DockPanel>
                 <!--  WORK AREA  -->
                 <DockPanel LastChildFill="True">
-                    <!--  PAYMENT FILTER PANEL  -->
+                    <!--  DATE FILTER PANEL  -->
                     <DockPanel Height="40"
                                Margin="10,1"
                                VerticalAlignment="Center"

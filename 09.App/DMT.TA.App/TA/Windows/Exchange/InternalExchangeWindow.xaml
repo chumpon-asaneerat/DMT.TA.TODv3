@@ -6,8 +6,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:tran="clr-namespace:DMT.TA.Controls"
-        xmlns:tsb="clr-namespace:DMT.TA.Controls.Elements.TSBBalance"
-        xmlns:usr="clr-namespace:DMT.TA.Controls.Elements.UserBalance"
         Title="แลกเปลี่ยนเงินหมุนเวียนภายในด่าน"
         Width="800"
         Height="600"
@@ -74,15 +72,15 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="5" />
                         </Grid.RowDefinitions>
-                        <tsb:TSBCreditBalanceEntry x:Name="tsbBalanceEntry"
+                        <tran:TSBCreditTransactionEntry x:Name="plazaEntry"
                                                    Grid.Row="1"
                                                    Grid.Column="3"
                                                    Background="Orange" />
-                        <tran:UserCreditTransactionEntry x:Name="usrTransactinEntry"
-                                                         Grid.Row="1"
-                                                         Grid.Column="1"
-                                                         Background="Indigo"
-                                                         Foreground="WhiteSmoke" />
+                        <tran:TSBCreditTransactionEntry x:Name="exchangeEntry"
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Background="Indigo"
+                                                    Foreground="WhiteSmoke" />
                     </Grid>
                 </DockPanel>
             </DockPanel>

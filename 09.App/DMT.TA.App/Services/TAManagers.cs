@@ -2406,6 +2406,8 @@ namespace DMT.Services
 
     #region Exchange Manager related classes
 
+    #region InternalExchangeManager
+
     /// <summary>
     /// The Internal Exchange Manager class.
     /// </summary>
@@ -2455,6 +2457,110 @@ namespace DMT.Services
 
         #endregion
     }
+
+    #endregion
+
+    #region TSBReplaceCreditManager
+
+    public class TSBReplaceCreditManager
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TSBReplaceCreditManager() : base()
+        {
+            this.ReplaceIn = new TSBCreditTransaction();
+            this.ReplaceIn.HasRemark = true;
+            this.ReplaceOut = new TSBCreditTransaction();
+            this.ReplaceOut.HasRemark = true;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Save Internal Replace TSB Credit (in/out)
+        /// </summary>
+        public void Save()
+        {
+            if (null == this.TSB) return;
+            if (null == this.ReplaceOut || null == this.ReplaceIn) return;
+            // set group Id and TSB id.
+            Guid groupId = Guid.NewGuid();
+            DateTime dt = DateTime.Now;
+
+            this.ReplaceOut.TSBId = this.TSB.TSBId;
+            this.ReplaceOut.GroupId = groupId;
+            this.ReplaceOut.TransactionDate = dt;
+            this.ReplaceOut.SupervisorId = this.Supervisor.UserId;
+            this.ReplaceOut.SupervisorNameEN = this.Supervisor.FullNameEN;
+            this.ReplaceOut.SupervisorNameTH = this.Supervisor.FullNameTH;
+            this.ReplaceOut.TransactionType = TSBCreditTransaction.TransactionTypes.ReplaceOut;
+
+            this.ReplaceIn.TSBId = this.TSB.TSBId;
+            this.ReplaceIn.GroupId = groupId;
+            this.ReplaceIn.TransactionDate = dt;
+            this.ReplaceIn.SupervisorId = this.Supervisor.UserId;
+            this.ReplaceIn.SupervisorNameEN = this.Supervisor.FullNameEN;
+            this.ReplaceIn.SupervisorNameTH = this.Supervisor.FullNameTH;
+            this.ReplaceIn.TransactionType = TSBCreditTransaction.TransactionTypes.ReplaceIn;
+
+            TSBCreditTransaction.SaveTransaction(this.ReplaceOut);
+            TSBCreditTransaction.SaveTransaction(this.ReplaceIn);
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #region TSB
+
+        /// <summary>
+        /// Gets Current TSB.
+        /// </summary>
+        public TSB TSB { get; set; }
+        /// <summary>
+        /// Gets Supervisor.
+        /// </summary>
+        public User Supervisor { get; set; }
+
+        #endregion
+
+        #region Replace In/Out
+
+        /// <summary>
+        /// Gets Replace Out.
+        /// </summary>
+        public TSBCreditTransaction ReplaceOut { get; private set; }
+        /// <summary>
+        /// Gets Replace In.
+        /// </summary>
+        public TSBCreditTransaction ReplaceIn { get; private set; }
+
+        #endregion
+
+        #region Checks Is Equal amount
+
+        /// <summary>
+        /// Checks Is Equal amount.
+        /// </summary>
+        public bool IsEquals
+        {
+            get
+            {
+                return (this.ReplaceOut.BHTTotal == this.ReplaceIn.BHTTotal);
+            }
+        }
+
+        #endregion
+
+        #endregion
+    }
+
+    #endregion
 
     #endregion
 }

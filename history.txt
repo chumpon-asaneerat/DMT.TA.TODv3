@@ -22,8 +22,41 @@
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
 --------------------------------------------------------------------------------------------
-Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1640
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1650
 - 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1649
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1648
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1647
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1646
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1645
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1644
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1643
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1642
+- 
+
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1641
+- 
+
+[commited]
+Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1640
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Implements Internal Exchange #7.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1639

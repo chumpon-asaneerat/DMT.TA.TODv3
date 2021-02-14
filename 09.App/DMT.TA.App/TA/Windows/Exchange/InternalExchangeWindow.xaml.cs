@@ -31,6 +31,12 @@ namespace DMT.TA.Windows.Exchange
 
         #endregion
 
+        #region Internal Variables
+
+        private TSBReplaceCreditManager _manager = new TSBReplaceCreditManager();
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
@@ -40,6 +46,17 @@ namespace DMT.TA.Windows.Exchange
 
         private void cmdOK_Click(object sender, RoutedEventArgs e)
         {
+            if (null != _manager)
+            {
+                if (!_manager.IsEquals)
+                {
+                    var win = TAApp.Windows.MessageBox;
+                    win.Setup("จำนวนเงินขอแลก ไม่เท่ากัน กรุณาตรวจสอบข้อมูล", "Toll Admin");
+                    return;
+                }
+                _manager.Save();
+            }
+
             DialogResult = true;
         }
 
@@ -56,7 +73,20 @@ namespace DMT.TA.Windows.Exchange
         /// </summary>
         public void Setup()
         {
+            // Set TSB.
+            _manager.TSB = TSB.GetCurrent().Value();
+            // Set Current Supervisor
+            _manager.Supervisor = TAApp.User.Current;
+            
+            // Set description (Replace out)
+            _manager.ReplaceOut.Description = "เงินขอแลกออก";
+            this.plazaEntry.IsEnabled = true;
+            this.plazaEntry.DataContext = _manager.ReplaceOut;
 
+            // Set description (Replace in)
+            _manager.ReplaceIn.Description = "เงินขอแลกเข้า";
+            this.exchangeEntry.IsEnabled = true;
+            this.exchangeEntry.DataContext = _manager.ReplaceIn;
         }
 
         #endregion

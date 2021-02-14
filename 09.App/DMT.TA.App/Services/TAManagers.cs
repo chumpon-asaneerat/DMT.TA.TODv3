@@ -1166,6 +1166,7 @@ namespace DMT.Services
         /// <param name="item">The UserCreditTransaction instance.</param>
         public void CancelTransaction(UserCreditTransaction item)
         {
+            /*
             if (null == item) return;
 
             bool needUpdate = false;
@@ -1200,6 +1201,7 @@ namespace DMT.Services
                 }
                 //Refresh();
             }
+            */
         }
 
         #endregion

@@ -377,7 +377,34 @@
                                   Grid.Column="3" />
                     </Grid>
                 </DockPanel>
-                <Grid />
+                <!--  SEPERATOR  -->
+                <TextBlock Width="10" DockPanel.Dock="Right" />
+                <!--  LISTVIEW TRANSACTION  -->
+                <ListView x:Name="grid"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="110"
+                                                CellTemplate="{StaticResource InternalExchangeDateString}"
+                                                Header="วันที่" />
+                            <GridViewColumn Width="110"
+                                                CellTemplate="{StaticResource InternalExchangeTimeString}"
+                                                Header="เวลา" />
+                            <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                            <GridViewColumn Width="300"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                            <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource InternalExchangeBHTTotal}"
+                                                Header="จำนวนเงิน" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </DockPanel>
         </Grid>
     </Grid>

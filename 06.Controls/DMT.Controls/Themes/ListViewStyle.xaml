@@ -474,4 +474,20 @@
                    TextAlignment="Right" />
     </DataTemplate>
 
+    <!--  Common for Internal Exchange View  -->
+    <DataTemplate x:Key="InternalExchangeDateString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransactionDateString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="InternalExchangeTimeString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransactionTimeString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="InternalExchangeBHTTotal">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding BHTTotal, StringFormat={}{0:n0}}"
+                   TextAlignment="Right" />
+    </DataTemplate>
 </ResourceDictionary>

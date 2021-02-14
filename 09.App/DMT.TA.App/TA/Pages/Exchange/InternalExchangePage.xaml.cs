@@ -76,12 +76,12 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            Refresh();
         }
 
         private void cmdExchange_Click(object sender, RoutedEventArgs e)
         {
-
+            Exchange();
         }
 
         #endregion
@@ -90,7 +90,7 @@ namespace DMT.TA.Pages.Exchange
 
         private void dtEntryDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-
+            Refresh();
         }
 
         #endregion
@@ -112,6 +112,22 @@ namespace DMT.TA.Pages.Exchange
 
         private void Reset()
         {
+            // Date Picker
+            dtEntryDate.DefaultValue = DateTime.Now;
+            dtEntryDate.Value = DateTime.Now.Date;
+        }
+
+        #endregion
+
+        #region Exchhange methods
+
+        private void RefreshInternalExchanges()
+        {
+            grid.ItemsSource = null;
+        }
+
+        private void Exchange()
+        {
 
         }
 
@@ -122,6 +138,7 @@ namespace DMT.TA.Pages.Exchange
         private void Refresh()
         {
             plazaSummary.Setup(); // Call for refresh.
+            RefreshInternalExchanges();
         }
 
         #endregion

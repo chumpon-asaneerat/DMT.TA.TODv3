@@ -1099,6 +1099,123 @@ namespace DMT.Services
 
     #endregion
 
+    #region UserCreditTransactionManager
+
+    /// <summary>
+    /// User Credit Transaction Manager.
+    /// </summary>
+    public class UserCreditTransactionManager
+    {
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public UserCreditTransactionManager() : base() { }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~UserCreditTransactionManager() { }
+
+        #endregion
+
+        #region Private/Protected Methods
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Set Current User.
+        /// </summary>
+        /// <param name="user">The User instance.</param>
+        public void SetUser(User user)
+        {
+            User = user;
+            RaiseChanged("CollectorId");
+            RaiseChanged("CollectorNameEN");
+            RaiseChanged("CollectorNameTH");
+        }
+        /// <summary>
+        /// Refresh.
+        /// </summary>
+        /// <param name="value">The Filter DateTime</param>
+        public void Refresh(DateTime? value)
+        {
+            if (!value.HasValue || value == DateTime.MinValue)
+            {
+                Transactions = new List<UserCreditTransaction>();
+                return;
+            }
+            DateTime start = value.Value.Date;
+            DateTime end = start.AddDays(1);
+            Transactions = UserCreditTransaction.GetUserCreditTransactions(TAAPI.TSB, start, end).Value();
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Plaza Group.
+        /// </summary>
+        public PlazaGroup PlazaGroup { get; set; }
+        /// <summary>
+        /// Gets or sets User.
+        /// </summary>
+        public User User { get; private set; }
+        /// <summary>
+        /// Gets Collector Id.
+        /// </summary>
+        public string CollectorId
+        {
+            get { return (null != User) ? User.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name EN.
+        /// </summary>
+        public string CollectorNameEN
+        {
+            get { return (null != User) ? User.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Collector Name TH.
+        /// </summary>
+        public string CollectorNameTH
+        {
+            get { return (null != User) ? User.FullNameTH : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Transactions.
+        /// </summary>
+        public List<UserCreditTransaction> Transactions { get; private set; }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+    }
+
+    #endregion
+
     #endregion
 
     #region TSB Coupon Manager related classes

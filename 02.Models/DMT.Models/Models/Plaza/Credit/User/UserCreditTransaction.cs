@@ -1382,9 +1382,57 @@ namespace DMT.Models
 					string cmd = string.Empty;
 					cmd += "SELECT * ";
 					cmd += "  FROM UserCreditTransactionView ";
-					cmd += " WHERE UserCredit.TSBId = ? ";
+					cmd += " WHERE TSBId = ? ";
 
 					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId).ToList();
+					var results = rets.ToModels();
+					result.Success(results);
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
+		/// Gets User Credit transactions.
+		/// </summary>
+		/// <param name="tsb">The target TSB to get transactions.</param>
+		/// <param name="begin">The Begin Date Time.</param>
+		/// <param name="end">The End Date Time.</param>
+		/// <returns>
+		/// Returns User Credit transactions. If TSB not found returns null.
+		/// </returns>
+		public static NDbResult<List<UserCreditTransaction>> GetUserCreditTransactions(TSB tsb,
+			DateTime begin, DateTime end)
+		{
+			var result = new NDbResult<List<UserCreditTransaction>>();
+			SQLiteConnection db = Default;
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			if (null == tsb)
+			{
+				result.ParameterIsNull();
+				return result;
+			}
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+				try
+				{
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM UserCreditTransactionView ";
+					cmd += " WHERE TSBId = ? ";
+					cmd += "   AND TransactinDate >= ? ";
+				    cmd += "   AND TransactinDate < ? ";
+
+					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, begin, end).ToList();
 					var results = rets.ToModels();
 					result.Success(results);
 				}

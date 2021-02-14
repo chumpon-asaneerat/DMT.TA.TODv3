@@ -43,6 +43,34 @@ namespace DMT.TA.Pages.Credit
             GotoMainMenu();
         }
 
+        private void cmdCreditSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdUserSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region DateTimePiecker Handelers
+
+        private void dtEntryDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtSearchUserId_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Private Methods

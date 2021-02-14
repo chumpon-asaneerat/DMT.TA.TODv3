@@ -47,7 +47,7 @@ namespace DMT.TA.Pages.Credit
         private CultureInfo culture = new CultureInfo("th-TH");
         private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
 
-        private CurrentTSBManager manager = null;
+        private UserCreditTransactionManager manager = null;
 
         #endregion
 
@@ -154,7 +154,7 @@ namespace DMT.TA.Pages.Credit
 
         private void ResetSelectUser()
         {
-            manager.User = null;
+            manager.SetUser(null);
             txtSearchUserId.Text = string.Empty;
         }
 
@@ -164,7 +164,7 @@ namespace DMT.TA.Pages.Credit
             var result = TAAPI.SearchUser(userId, TAApp.Permissions.TC);
             if (!result.IsCanceled && null != manager)
             {
-                manager.User = result.User;
+                manager.SetUser(result.User);
                 if (null != manager.User)
                 {
                     txtSearchUserId.Text = string.Empty;
@@ -179,7 +179,19 @@ namespace DMT.TA.Pages.Credit
 
         private void RefreshCreditTransactions()
         {
-            
+            grid.ItemsSource = null;
+
+            if (!dtEntryDate.Value.HasValue)
+            {
+                dtEntryDate.Focus();
+                return;
+            }
+
+            if (null == manager) return;
+            // Refresh
+            manager.Refresh(dtEntryDate.Value);
+
+            grid.ItemsSource = manager.Transactions;
         }
 
         private void CancelTransaction()
@@ -200,7 +212,7 @@ namespace DMT.TA.Pages.Credit
         {
             if (null == manager)
             {
-                manager = new CurrentTSBManager();
+                manager = new UserCreditTransactionManager();
             }
 
             Reset();

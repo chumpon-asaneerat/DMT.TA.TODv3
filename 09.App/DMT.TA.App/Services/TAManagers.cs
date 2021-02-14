@@ -1158,7 +1158,8 @@ namespace DMT.Services
             }
             DateTime start = value.Value.Date;
             DateTime end = start.AddDays(1);
-            Transactions = UserCreditTransaction.GetUserCreditTransactions(TAAPI.TSB, start, end).Value();
+            Transactions = UserCreditTransaction.GetUserCreditTransactions(
+                TAAPI.TSB, User, start, end).Value();
         }
 
         #endregion

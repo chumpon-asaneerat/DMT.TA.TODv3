@@ -1400,13 +1400,14 @@ namespace DMT.Models
 		/// Gets User Credit transactions.
 		/// </summary>
 		/// <param name="tsb">The target TSB to get transactions.</param>
+		/// <param name="user">The target User to get transactions.</param>
 		/// <param name="begin">The Begin Date Time.</param>
 		/// <param name="end">The End Date Time.</param>
 		/// <returns>
 		/// Returns User Credit transactions. If TSB not found returns null.
 		/// </returns>
 		public static NDbResult<List<UserCreditTransaction>> GetUserCreditTransactions(TSB tsb,
-			DateTime begin, DateTime end)
+			User user, DateTime begin, DateTime end)
 		{
 			var result = new NDbResult<List<UserCreditTransaction>>();
 			SQLiteConnection db = Default;
@@ -1415,7 +1416,7 @@ namespace DMT.Models
 				result.DbConenctFailed();
 				return result;
 			}
-			if (null == tsb)
+			if (null == tsb || null == user)
 			{
 				result.ParameterIsNull();
 				return result;
@@ -1429,10 +1430,11 @@ namespace DMT.Models
 					cmd += "SELECT * ";
 					cmd += "  FROM UserCreditTransactionView ";
 					cmd += " WHERE TSBId = ? ";
+					cmd += "   AND UserId = ? ";
 					cmd += "   AND TransactinDate >= ? ";
 				    cmd += "   AND TransactinDate < ? ";
 
-					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, begin, end).ToList();
+					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, user.UserId, begin, end).ToList();
 					var results = rets.ToModels();
 					result.Success(results);
 				}

@@ -2403,4 +2403,35 @@ namespace DMT.Services
     #endregion
 
     #endregion
+
+    #region Exchange Manager related classes
+
+    /// <summary>
+    /// The Internal Exchange Manager class.
+    /// </summary>
+    public class InternalExchangeManager
+    {
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public InternalExchangeManager() : base() { }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~InternalExchangeManager() { }
+
+        #endregion
+
+        #region Public Methods
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+    }
+
+    #endregion
 }

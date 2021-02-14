@@ -47,6 +47,8 @@ namespace DMT.TA.Pages.Exchange
         private CultureInfo culture = new CultureInfo("th-TH");
         private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
 
+        private InternalExchangeManager manager = null;
+
         #endregion
 
         #region Loaded/Unloaded
@@ -152,6 +154,10 @@ namespace DMT.TA.Pages.Exchange
         /// </summary>
         public void Setup()
         {
+            if (null == manager)
+            {
+                manager = new InternalExchangeManager();
+            }
             Reset();
             Refresh();
         }

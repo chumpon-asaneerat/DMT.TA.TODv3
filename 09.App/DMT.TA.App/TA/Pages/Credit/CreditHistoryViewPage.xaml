@@ -296,12 +296,12 @@
                                       ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
                     </ctrl:ImageButton>
-                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <Grid Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdCancel"
                                       Click="cmdCancel_Click"
-                                      DockPanel.Dock="Right"
+                                      DockPanel.Dock="Left"
                                       ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิกรายการ" />
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>
@@ -445,23 +445,13 @@
                     </DockPanel>
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
-                    <!--  SELECT TRANSACTION PANEL  -->
-                    <DockPanel Width="300"
-                               DockPanel.Dock="Right"
-                               LastChildFill="True">
-                        <Grid Height="55" DockPanel.Dock="Bottom">
-                            <ctrl:ImageButton x:Name="cmdCancelTransaction"
-                                              Click="cmdCancelTransaction_Click"
-                                              ImageSource="/DMT.TA.App;component/Images/Button/Cancel.png">
-                                <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิกรายการ" />
-                            </ctrl:ImageButton>
-                        </Grid>
-                        <!--  ENTRY  -->
-                        <credit:TSBCreditTransactionEntry x:Name="entry"
-                                                          Background="DarkRed"
-                                                          Foreground="WhiteSmoke" 
-                                                          IsEnabled="False"/>
-                    </DockPanel>
+                    <!--  SELECT TRANSACTION ENTRY PANEL  -->
+                    <credit:TSBCreditTransactionEntry x:Name="entry"
+                                                      Width="300"
+                                                      Background="DarkRed"
+                                                      DockPanel.Dock="Right"
+                                                      Foreground="WhiteSmoke"
+                                                      IsEnabled="False" />
                     <!--  SEPERATOR  -->
                     <TextBlock Width="10" DockPanel.Dock="Right" />
                     <!--  LISTVIEW TRANSACTION  -->
@@ -487,10 +477,10 @@
                                 <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource UserId}"
                                                 Header="รหัสหัวหน้า" />
-                                <GridViewColumn Width="100"
+                                <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource TransactionTypeString}"
                                                 Header="ประเภทรายการ" />
-                                <GridViewColumn Width="110"
+                                <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource TransactionBHTTotal}"
                                                 Header="จำนวนเงิน" />
                             </GridView>

@@ -31,8 +31,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1629
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1628
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1627
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - Implements Credit History #9.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1626

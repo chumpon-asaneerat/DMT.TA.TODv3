@@ -76,11 +76,6 @@ namespace DMT.TA.Pages.Credit
             GotoMainMenu();
         }
 
-        private void cmdCancel_Click(object sender, RoutedEventArgs e)
-        {
-            GotoMainMenu();
-        }
-
         private void cmdCreditSearch_Click(object sender, RoutedEventArgs e)
         {
             RefreshCreditTransactions();
@@ -91,7 +86,7 @@ namespace DMT.TA.Pages.Credit
             SearchUser();
         }
 
-        private void cmdCancelTransaction_Click(object sender, RoutedEventArgs e)
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
             CancelTransaction();
         }

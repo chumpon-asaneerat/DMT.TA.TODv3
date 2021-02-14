@@ -471,7 +471,7 @@
     <DataTemplate x:Key="TransactionBHTTotal">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding BHTTotal, StringFormat={}{0:n0}}"
-                   TextAlignment="Center" />
+                   TextAlignment="Right" />
     </DataTemplate>
 
 </ResourceDictionary>

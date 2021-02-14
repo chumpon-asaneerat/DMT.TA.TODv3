@@ -1451,8 +1451,8 @@ namespace DMT.Models
                     cmd += "  FROM UserCreditTransactionView ";
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND UserId = ? ";
-                    cmd += "   AND TransactinDate >= ? ";
-                    cmd += "   AND TransactinDate < ? ";
+                    cmd += "   AND TransactionDate >= ? ";
+                    cmd += "   AND TransactionDate < ? ";
 
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, user.UserId, begin, end).ToList();
                     var results = rets.ToModels();

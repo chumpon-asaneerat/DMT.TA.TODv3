@@ -28,8 +28,11 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1650
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1649
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1648
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Fixed bug CreditHistoryViewPage #1.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1647

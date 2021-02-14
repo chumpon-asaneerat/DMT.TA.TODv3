@@ -157,6 +157,8 @@ namespace DMT.TA.Pages.Credit
             txtUserName.DataContext = manager;
             // Entry
             entry.DataContext = null;
+            // Reset List view
+            grid.ItemsSource = null;
         }
 
         private void ResetSelectUser()

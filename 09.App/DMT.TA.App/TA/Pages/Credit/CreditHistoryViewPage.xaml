@@ -459,7 +459,8 @@
                               FontSize="{StaticResource InputFontSize18}"
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               ItemsSource="{Binding}"
-                              Style="{StaticResource SingleSelectListView}">
+                              Style="{StaticResource SingleSelectListView}"
+                              SelectionChanged="grid_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="120"

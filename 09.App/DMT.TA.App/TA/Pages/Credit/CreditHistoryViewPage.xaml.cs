@@ -121,6 +121,15 @@ namespace DMT.TA.Pages.Credit
 
         #endregion
 
+        #region ListView Handlers
+
+        private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateSelection();
+        }
+
+        #endregion
+
         #region Private Methods
 
         #region Navigate Methods
@@ -140,11 +149,14 @@ namespace DMT.TA.Pages.Credit
         {
             manager.SetUser(null);
 
+            // Date Picker
             dtEntryDate.DefaultValue = DateTime.Now;
             dtEntryDate.Value = DateTime.Now.Date;
             // Set Bindings User Selection.
             txtUserId.DataContext = manager;
             txtUserName.DataContext = manager;
+            // Entry
+            entry.DataContext = null;
         }
 
         private void ResetSelectUser()
@@ -189,9 +201,22 @@ namespace DMT.TA.Pages.Credit
             grid.ItemsSource = manager.Transactions;
         }
 
+        private void UpdateSelection()
+        {
+            entry.DataContext = null;
+            if (null == grid.ItemsSource || null == grid.SelectedItem) return;
+            var item = grid.SelectedItem as UserCreditTransaction;
+            if (null == item) return;
+            item.Description = "รายการ " + item.TransactionTypeString;
+            item.HasRemark = true;
+            entry.DataContext = item;
+        }
+
         private void CancelTransaction()
         {
-
+            if (null == grid.ItemsSource || null == grid.SelectedItem) return;
+            var item = grid.SelectedItem as UserCreditTransaction;
+            if (null == item) return;
         }
 
         #endregion

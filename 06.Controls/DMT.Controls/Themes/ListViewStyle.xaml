@@ -468,6 +468,21 @@
                    Text="{Binding TransactionTypeString}"
                    TextAlignment="Center" />
     </DataTemplate>
+    <DataTemplate x:Key="TransactionChiefId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SupervisorId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TransactionChiefNameEN">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SupervisorNameEN}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="TransactionChiefNameTH">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SupervisorNameTH}"
+                   TextAlignment="Left" />
+    </DataTemplate>
     <DataTemplate x:Key="TransactionBHTTotal">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding BHTTotal, StringFormat={}{0:n0}}"

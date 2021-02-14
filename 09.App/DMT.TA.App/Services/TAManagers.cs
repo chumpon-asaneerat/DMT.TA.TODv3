@@ -1157,8 +1157,27 @@ namespace DMT.Services
             }
             DateTime start = SearchDate.Value.Date;
             DateTime end = start.AddDays(1);
+            var shifts = TSBShift.GetTSBShifts(start).Value();
             Transactions = UserCreditTransaction.GetUserCreditTransactions(
                 TAAPI.TSB, User, start, end).Value();
+            if (null != Transactions && null != shifts)
+            {
+                Transactions.ForEach(tran => 
+                {
+                    var shift = shifts.Find(shf =>
+                    {
+                        bool matchBegin = shf.Begin <= tran.TransactionDate;
+                        bool macthEnd = ((shf.End.HasValue && shf.End > tran.TransactionDate) || !shf.End.HasValue);
+                        return matchBegin && macthEnd;
+                    });
+                    if (null != shift)
+                    {
+                        tran.SupervisorId = shift.UserId;
+                        tran.SupervisorNameEN = shift.FullNameEN;
+                        tran.SupervisorNameTH = shift.FullNameTH;
+                    }
+                });
+            }
         }
         /// <summary>
         /// Cancel Transaction.

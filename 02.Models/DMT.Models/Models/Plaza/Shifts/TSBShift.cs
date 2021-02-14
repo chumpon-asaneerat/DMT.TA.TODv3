@@ -669,6 +669,53 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets TSB Shifts by TSBId and Date.
+        /// </summary>
+        /// <param name="date">The date of shift.</param>
+        /// <returns>Returns TSBShift instance</returns>
+        public static NDbResult<List<TSBShift>> GetTSBShifts(DateTime? date)
+        {
+            var result = new NDbResult<List<TSBShift>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            var tsb = TSB.GetCurrent().Value();
+            if (null == tsb || !date.HasValue || date.Value == DateTime.MinValue)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                DateTime dt = date.Value.Date;
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBShiftView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND Begin <= ? ";
+                    cmd += "   AND (End IS NULL OR END > ? ) ";
+                    cmd += " ORDER BY Begin ";
+
+                    var ret = NQuery.Query<FKs>(cmd,
+                        tsb.TSBId, dt).ToList();
+                    var data = (null != ret) ? ret.ToModels() : null;
+                    result.Success(data);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
         /// Change Shift.
         /// </summary>
         /// <param name="value">The TSBShift instance.</param>

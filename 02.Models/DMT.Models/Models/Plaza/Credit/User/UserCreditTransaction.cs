@@ -802,6 +802,31 @@ namespace DMT.Models
 
         #endregion
 
+        //TODO: Need to Create column to keep current Chift
+
+        #region Supervisor - Need to Create column to keep current Chift
+
+        /// <summary>
+        /// Gets or sets SupervisorId.
+        /// </summary>
+        [Ignore]
+        [JsonIgnore]
+        public string SupervisorId { get; set; }
+        /// <summary>
+        /// Gets or sets Supervisor Name EN.
+        /// </summary>
+        [Ignore]
+        [JsonIgnore]
+        public string SupervisorNameEN { get; set; }
+        /// <summary>
+        /// Gets or sets Supervisor Name TH.
+        /// </summary>
+        [Ignore]
+        [JsonIgnore]
+        public string SupervisorNameTH { get; set; }
+
+        #endregion
+
         #region Coin/Bill (Amount)
 
         /// <summary>

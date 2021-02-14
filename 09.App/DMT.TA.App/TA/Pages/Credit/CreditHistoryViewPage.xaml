@@ -476,7 +476,7 @@
                                                 CellTemplate="{StaticResource TransactionTimeString}"
                                                 Header="เวลา" />
                                 <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource UserId}"
+                                                CellTemplate="{StaticResource TransactionChiefId}"
                                                 Header="รหัสหัวหน้า" />
                                 <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource TransactionTypeString}"

@@ -37,8 +37,14 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1657
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1656
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1655
-- 
+- DMT.TAxTODv3
+  - DMT.Models
+    - UserCreditTransaction - Add Properties (SupervisorId/SupervisorNameEN/SupervisorNameTH - nonserialized).
+    - TSBShift - Add static method to get shifts on specificed date.
+  - DMT.TA.App
+    - Fixed bug CreditHistoryViewPage #3.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1654

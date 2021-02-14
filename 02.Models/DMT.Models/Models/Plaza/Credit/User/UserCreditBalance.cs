@@ -1473,6 +1473,48 @@ namespace DMT.Models
 
         #endregion
 
+        #region GetBalance
+
+        /// <summary>
+        /// Get GetBalance by PK Id.
+        /// </summary>
+        /// <param name="userCreditId">The PK Id.</param>
+        /// <returns>Returns match UserCreditBalance instance.</returns>
+        public static NDbResult<UserCreditBalance> GetBalance(int userCreditId)
+        {
+            var result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = @"
+                    SELECT *
+                      FROM UserCreditSummaryView
+                     WHERE UserCreditId = ? ";
+
+                    var rets = NQuery.Query<FKs>(cmd,
+                        userCreditId).FirstOrDefault();
+                    var inst = rets.ToModel();
+                    result.Success(inst);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
+        #endregion
+
         #region GetCurrentBalance (State is not completed and Has No RevenueId)
 
         /// <summary>

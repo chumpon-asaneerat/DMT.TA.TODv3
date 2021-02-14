@@ -49,9 +49,13 @@ namespace DMT.Models
             /// </summary>
             Return = 2,
             /// <summary>
-            /// Undo
+            /// Undo - Borrow
             /// </summary>
-            Undo = 3
+            UndoBorrow = 3,
+            /// <summary>
+            /// Undo - Return
+            /// </summary>
+            UndoReturn = 4
         }
 
         #endregion
@@ -484,9 +488,10 @@ namespace DMT.Models
             get 
             {
                 string str = string.Empty;
-                if (_TransactionType == TransactionTypes.Borrow) str = "ยืม";
-                else if (_TransactionType == TransactionTypes.Return) str = "คืน";
-                else if (_TransactionType == TransactionTypes.Undo) str = "ยกเเลิก";
+                if (_TransactionType == TransactionTypes.Borrow) str = "ยืมเงิน";
+                else if (_TransactionType == TransactionTypes.Return) str = "คืนเงิน";
+                else if (_TransactionType == TransactionTypes.UndoBorrow) str = "ยกเเลิกการยืมเงิน";
+                else if (_TransactionType == TransactionTypes.UndoReturn) str = "ยกเเลิกการคืนเงิน";
                 return str;
             }
             set { }
@@ -1417,7 +1422,7 @@ namespace DMT.Models
             }
         }
         /// <summary>
-        /// Gets User Credit transactions.
+        /// Gets User Credit transactions (only Borrow/Return not include undo (Borrow/Return)).
         /// </summary>
         /// <param name="tsb">The target TSB to get transactions.</param>
         /// <param name="user">The target User to get transactions.</param>
@@ -1453,6 +1458,7 @@ namespace DMT.Models
                     cmd += "   AND UserId = ? ";
                     cmd += "   AND TransactionDate >= ? ";
                     cmd += "   AND TransactionDate < ? ";
+                    cmd += "   AND (TransactionType = 1 OR TransactionType = 2)";
 
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, user.UserId, begin, end).ToList();
                     var results = rets.ToModels();

@@ -195,8 +195,10 @@ namespace DMT.TA.Pages.Credit
             }
 
             if (null == manager) return;
+            // Update Search Date.
+            manager.SearchDate = dtEntryDate.Value;
             // Refresh
-            manager.Refresh(dtEntryDate.Value);
+            manager.Refresh();
 
             grid.ItemsSource = manager.Transactions;
         }
@@ -217,6 +219,18 @@ namespace DMT.TA.Pages.Credit
             if (null == grid.ItemsSource || null == grid.SelectedItem) return;
             var item = grid.SelectedItem as UserCreditTransaction;
             if (null == item) return;
+
+            string msg1 = "ยืนยันการยกเลิก รายการ ยืม/คืน เงินทอน";
+            string usr = item.FullNameTH;
+            string amt = item.BHTTotal.ToString("n0");
+
+            var win = TAApp.Windows.MessageBoxYesNo1;
+            win.Setup(msg1, usr, amt, "DMT - Toll Admin");
+            if (win.ShowDialog() == true)
+            {
+                manager.CancelTransaction(item);
+                RefreshCreditTransactions();
+            }
         }
 
         #endregion

@@ -1148,18 +1148,58 @@ namespace DMT.Services
         /// <summary>
         /// Refresh.
         /// </summary>
-        /// <param name="value">The Filter DateTime</param>
-        public void Refresh(DateTime? value)
+        public void Refresh()
         {
-            if (!value.HasValue || value == DateTime.MinValue)
+            if (!SearchDate.HasValue || SearchDate == DateTime.MinValue)
             {
                 Transactions = new List<UserCreditTransaction>();
                 return;
             }
-            DateTime start = value.Value.Date;
+            DateTime start = SearchDate.Value.Date;
             DateTime end = start.AddDays(1);
             Transactions = UserCreditTransaction.GetUserCreditTransactions(
                 TAAPI.TSB, User, start, end).Value();
+        }
+        /// <summary>
+        /// Cancel Transaction.
+        /// </summary>
+        /// <param name="item">The UserCreditTransaction instance.</param>
+        public void CancelTransaction(UserCreditTransaction item)
+        {
+            if (null == item) return;
+
+            bool needUpdate = false;
+
+            if (item.TransactionType == UserCreditTransaction.TransactionTypes.Borrow)
+            {
+                item.TransactionType = UserCreditTransaction.TransactionTypes.UndoBorrow;
+                needUpdate = true;
+            }
+            else if (item.TransactionType == UserCreditTransaction.TransactionTypes.Return)
+            {
+                item.TransactionType = UserCreditTransaction.TransactionTypes.UndoReturn;
+                needUpdate = true;
+            }
+            // Check Need update.
+            if (needUpdate)
+            {
+                UserCreditTransaction.SaveUserCreditTransaction(item);
+
+                var creditBalance = UserCreditBalance.GetBalance(item.UserCreditId).Value();
+                if (null != creditBalance)
+                {
+                    if (string.IsNullOrEmpty(creditBalance.RevenueId))
+                    {
+                        creditBalance.State = UserCreditBalance.StateTypes.Initial;
+                    }
+                    else
+                    {
+                        creditBalance.State = UserCreditBalance.StateTypes.Received;
+                    }
+                    UserCreditBalance.SaveUserCreditBalance(creditBalance);
+                }
+                //Refresh();
+            }
         }
 
         #endregion
@@ -1202,6 +1242,10 @@ namespace DMT.Services
         /// Gets Transactions.
         /// </summary>
         public List<UserCreditTransaction> Transactions { get; private set; }
+        /// <summary>
+        /// Gets or sets Search Date.
+        /// </summary>
+        public DateTime? SearchDate { get; set; }
 
         #endregion
 

@@ -46,8 +46,13 @@ Refactor DMT.TA.TODv4 #1694
 Refactor DMT.TA.TODv4 #1693
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1692
-- 
+- DMT.TAxTODv4
+  Reload DMT.Account.Model project.
+  Reload DMT.Plaza.Model project.
+  Reload DMT.TA.Model project.
+  Reload DMT.TOD.Model project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1691

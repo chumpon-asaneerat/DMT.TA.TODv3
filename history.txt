@@ -49,8 +49,14 @@ Refactor DMT.TA.TODv4 #1703
 Refactor DMT.TA.TODv4 #1702
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1701
-- 
+- DMT.TAxTODv4
+  - Prepare App.Config for 
+    - Wpf.Account.Db.Test project
+    - Wpf.Plaza.Db.Test project
+    - Wpf.TA.Db.Test project
+    - Wpf.TOD.Db.Test project
 
 [commited]
 Refactor DMT.TA.TODv4 #1700

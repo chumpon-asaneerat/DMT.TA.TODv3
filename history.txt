@@ -43,8 +43,10 @@ Refactor DMT.TA.TODv4 #1685
 Refactor DMT.TA.TODv4 #1684
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1683
-- 
+- DMT.TAxTODv4
+  - Add Wpf.TOD.Db.Test project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1682

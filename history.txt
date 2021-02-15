@@ -22,8 +22,40 @@
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
 --------------------------------------------------------------------------------------------
-Refactor DMT.TA.TODv4 #1680
+Refactor DMT.TA.TODv4 #1690
 - 
+
+Refactor DMT.TA.TODv4 #1689
+- 
+
+Refactor DMT.TA.TODv4 #1688
+- 
+
+Refactor DMT.TA.TODv4 #1687
+- 
+
+Refactor DMT.TA.TODv4 #1686
+- 
+
+Refactor DMT.TA.TODv4 #1685
+- 
+
+Refactor DMT.TA.TODv4 #1684
+- 
+
+Refactor DMT.TA.TODv4 #1683
+- 
+
+Refactor DMT.TA.TODv4 #1682
+- 
+
+Refactor DMT.TA.TODv4 #1681
+- DMT.TAxTODv4
+  - Add Wpf.Plaza.Db.Test project.
+
+[commited]
+Refactor DMT.TA.TODv4 #1680
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1679

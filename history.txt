@@ -40,8 +40,10 @@ Refactor DMT.TA.TODv4 #1676
 Refactor DMT.TA.TODv4 #1675
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1674
-- 
+- DMT.TAxTODv4
+  - Unload DMT.Plaza.Models project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1673

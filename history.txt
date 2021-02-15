@@ -37,8 +37,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1667
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1666
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1665
-- 
+- DMT.TAxTODv4
+  - Unload DMT.Controls project.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1664

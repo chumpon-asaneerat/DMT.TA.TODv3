@@ -28,8 +28,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1670
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1669
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1668
-- 
+- DMT.TAxTODv4
+  - Unload all WebService.Core projects.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1667

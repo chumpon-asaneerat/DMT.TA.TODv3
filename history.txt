@@ -40,8 +40,14 @@ Refactor DMT.TA.TODv4 #1706
 Refactor DMT.TA.TODv4 #1705
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1704
-- 
+- DMT.TAxTODv4
+  - Prepare Owin/WebApi2 reference assemblies for 
+    - Wpf.Account.Db.Test project
+    - Wpf.Plaza.Db.Test project
+    - Wpf.TA.Db.Test project
+    - Wpf.TOD.Db.Test project
 
 [commited]
 Refactor DMT.TA.TODv4 #1703

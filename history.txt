@@ -28,8 +28,10 @@ Refactor DMT.TA.TODv4 #1690
 Refactor DMT.TA.TODv4 #1689
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1688
-- 
+- DMT.TAxTODv4
+  - DMT.Models update Build events.
 
 [commited]
 Refactor DMT.TA.TODv4 #1687

@@ -37,8 +37,11 @@ Refactor DMT.TA.TODv4 #1697
 Refactor DMT.TA.TODv4 #1696
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1695
-- 
+- DMT.TAxTODv4
+  - Wpf.TA.Db.Test project
+    - Add related model Reference Assembly.
 
 [commited]
 Refactor DMT.TA.TODv4 #1694

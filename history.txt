@@ -31,8 +31,14 @@ Refactor DMT.TA.TODv4 #1699
 Refactor DMT.TA.TODv4 #1698
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1697
-- 
+- DMT.TAxTODv4
+  - Prepare App.xaml.cs for 
+    - Wpf.Account.Db.Test project
+    - Wpf.Plaza.Db.Test project
+    - Wpf.TA.Db.Test project
+    - Wpf.TOD.Db.Test project
 
 [commited]
 Refactor DMT.TA.TODv4 #1696

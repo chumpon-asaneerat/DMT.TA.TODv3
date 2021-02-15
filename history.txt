@@ -40,8 +40,10 @@ Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1666
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1665
 - 
 
+[commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1664
-- 
+- DMT.TAxTODv4
+  - Unload all app projects.
 
 [commited]
 Ported DMTv2 to DMT.TA.TODv1, DMT.TA.TODv2 #1663

@@ -34,8 +34,10 @@ Refactor DMT.TA.TODv4 #1678
 Refactor DMT.TA.TODv4 #1677
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1676
-- 
+- DMT.TAxTODv4
+  - Rebuld all projects (only loaded projects) - OK.
 
 [commited]
 Refactor DMT.TA.TODv4 #1675

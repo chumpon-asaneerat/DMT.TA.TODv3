@@ -46,8 +46,11 @@ Refactor DMT.TA.TODv4 #1724
 Refactor DMT.TA.TODv4 #1723
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1722
-- 
+- DMT.TAxTODv4
+  - DMT.Plaza.Models project.
+    - Update InitShifts methods -> add TimeStart/TimeEnd.
 
 [commited]
 Refactor DMT.TA.TODv4 #1721

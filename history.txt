@@ -49,8 +49,13 @@ Refactor DMT.TA.TODv4 #1723
 Refactor DMT.TA.TODv4 #1722
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1721
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Models project.
+    - Update InitShifts methods -> add TimeStart/TimeEnd.
+  - DMT.Models project
+    - Shift -> GetShifts (update remark auto create shift TimeStart/TimeEnd).
 
 [commited]
 Refactor DMT.TA.TODv4 #1720

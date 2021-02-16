@@ -49,8 +49,11 @@ Refactor DMT.TA.TODv4 #1713
 Refactor DMT.TA.TODv4 #1712
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1711
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - UserAccess model - added.
 
 [commited]
 Refactor DMT.TA.TODv4 #1710

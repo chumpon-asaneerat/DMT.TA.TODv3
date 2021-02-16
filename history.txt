@@ -28,8 +28,11 @@ Refactor DMT.TA.TODv4 #1710
 Refactor DMT.TA.TODv4 #1709
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1708
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Role model - added.
 
 [commited]
 Refactor DMT.TA.TODv4 #1707

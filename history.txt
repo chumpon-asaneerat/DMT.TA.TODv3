@@ -31,8 +31,11 @@ Refactor DMT.TA.TODv4 #1729
 Refactor DMT.TA.TODv4 #1728
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1727
-- 
+- DMT.TAxTODv4
+  - DMT.TA.Models project.
+    - Update InitRoleAndUsers methods.
 
 [commited]
 Refactor DMT.TA.TODv4 #1726

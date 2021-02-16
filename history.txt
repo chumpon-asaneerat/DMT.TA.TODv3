@@ -37,8 +37,12 @@ Refactor DMT.TA.TODv4 #1717
 Refactor DMT.TA.TODv4 #1716
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1715
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - UniqueCode model added.
+    - ViewHistory model added.
 
 [commited]
 Refactor DMT.TA.TODv4 #1714

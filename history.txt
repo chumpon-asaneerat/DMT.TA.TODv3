@@ -31,8 +31,16 @@ Refactor DMT.TA.TODv4 #1719
 Refactor DMT.TA.TODv4 #1718
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1717
-- 
+- DMT.TAxTODv4
+  - DMT.Plaza.Models project.
+    - Create Table
+      - ViewHistory
+      - Shift
+      - Role
+      - User
+      - UserAccess
 
 [commited]
 Refactor DMT.TA.TODv4 #1716

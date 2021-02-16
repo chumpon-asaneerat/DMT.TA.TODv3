@@ -25,8 +25,25 @@
 Refactor DMT.TA.TODv4 #1730
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1729
-- 
+- DMT.TAxTODv4
+  - DMT.Account.Models project.
+    - Update InitView method.
+    - Update InitViews method.
+      - Create UserView.
+  - DMT.Plaza.Models project.
+    - Update InitView method.
+    - Update InitViews method.
+      - Create UserView.
+  - DMT.TA.Models project.
+    - Update InitView method.
+    - Update InitViews method.
+      - Create UserView.
+  - DMT.TOD.Models project.
+    - Update InitView method.
+    - Update InitViews method.
+      - Create UserView.
 
 [commited]
 Refactor DMT.TA.TODv4 #1728

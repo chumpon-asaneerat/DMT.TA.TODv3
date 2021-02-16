@@ -46,8 +46,11 @@ Refactor DMT.TA.TODv4 #1714
 Refactor DMT.TA.TODv4 #1713
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1712
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Shift model - added.
 
 [commited]
 Refactor DMT.TA.TODv4 #1711

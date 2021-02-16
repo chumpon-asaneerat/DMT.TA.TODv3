@@ -43,8 +43,11 @@ Refactor DMT.TA.TODv4 #1715
 Refactor DMT.TA.TODv4 #1714
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1713
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - RabbitMQ models - added.
 
 [commited]
 Refactor DMT.TA.TODv4 #1712

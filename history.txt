@@ -31,8 +31,11 @@ Refactor DMT.TA.TODv4 #1709
 Refactor DMT.TA.TODv4 #1708
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1707
-- 
+- DMT.TAxTODv4
+  - Unload DMT.RabbitMQ.Client project.
+  - Rebuild all projects.
 
 [commited]
 Refactor DMT.TA.TODv4 #1706

@@ -37,8 +37,16 @@ Refactor DMT.TA.TODv4 #1707
 Refactor DMT.TA.TODv4 #1706
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1705
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Backup models -> except scw models
+  - All DbService.cs -> comment out all code related to models.
+    - DMT.Account.Models project.
+    - DMT.Plaza.Models project.
+    - DMT.TA.Models project.
+    - DMT.TOD.Models project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1704

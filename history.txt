@@ -25,8 +25,12 @@
 Refactor DMT.TA.TODv4 #1710
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1709
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - DMT.Search.cs -> added (exclude Revenue/Credit/Coupon).
+    - User model - added.
 
 [commited]
 Refactor DMT.TA.TODv4 #1708

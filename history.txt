@@ -34,8 +34,22 @@ Refactor DMT.TA.TODv4 #1708
 Refactor DMT.TA.TODv4 #1707
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1706
-- 
+- DMT.TAxTODv4
+  - DMT.Models project.
+    - Model -> Common
+      - ReImplements DMTModelBase.cs
+      - ReImplements NDbResult.cs
+      - ReImplements NQueries.cs
+      - ReImplements NSearch.cs
+      - ReImplements NTable.cs
+      - ReImplements Utils.cs
+  - All DbService.cs -> Update Start methods
+    - DMT.Account.Models project.
+    - DMT.Plaza.Models project.
+    - DMT.TA.Models project.
+    - DMT.TOD.Models project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1705

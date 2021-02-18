@@ -31,6 +31,7 @@
     - Check TSBCouponBalanceView.sql. (exitst)
     - Check TSBCouponSoldByTSBTransactionView.sql.
     - Check TSBCouponSoldByLaneTransactionView.sql.
+    - All script need to ported to DMT.TA.TODv4 (for backup files).
 --------------------------------------------------------------------------------------------
 Refactor DMT.TA.TODv4 #1750
 - 
@@ -50,8 +51,10 @@ Refactor DMT.TA.TODv4 #1746
 Refactor DMT.TA.TODv4 #1745
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1744
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#5.
 
 [commited]
 Refactor DMT.TA.TODv4 #1743

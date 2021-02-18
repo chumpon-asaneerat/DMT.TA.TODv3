@@ -42,6 +42,7 @@
       - Add PlazaGroup proeprties
     - Check TOD Api call -> Get UserCouponBalance
     - Check RevenueEntry -> Enable/Disable Panel.
+    - Check RevenueEntry -> Generate SCW declare.
 --------------------------------------------------------------------------------------------
 Refactor DMT.TA.TODv4 #1770
 - 
@@ -67,8 +68,10 @@ Refactor DMT.TA.TODv4 #1764
 Refactor DMT.TA.TODv4 #1763
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1762
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#10.
 
 [commited]
 Refactor DMT.TA.TODv4 #1761

@@ -58,8 +58,13 @@ Refactor DMT.TA.TODv4 #1775
 Refactor DMT.TA.TODv4 #1774
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1773
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Ported WPF Utils from v3.
+  - DMT.Models project.
+    - Update MD5 Utils class from v3.
 
 [commited]
 Refactor DMT.TA.TODv4 #1772

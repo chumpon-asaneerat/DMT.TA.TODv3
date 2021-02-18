@@ -234,7 +234,7 @@ namespace DMT.Services
                         }
                     }
                 }
-                ApplicationManager.Instance.Wait(100);
+                ApplicationManager.Instance.Wait(50);
                 iRetry++;
             }
 

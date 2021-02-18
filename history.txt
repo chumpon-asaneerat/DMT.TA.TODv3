@@ -65,8 +65,12 @@ Refactor DMT.TA.TODv4 #1765
 Refactor DMT.TA.TODv4 #1764
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1763
-- 
+- DMT.TAxTODv3
+  - Implements GetCouponSold for RevenueEntry(TOD) #6.
+    - Update TSBCouponTransactionView.sql
+      - Add join LaneView to get PlazaGroupId.
 
 [commited]
 Refactor DMT.TA.TODv4 #1762

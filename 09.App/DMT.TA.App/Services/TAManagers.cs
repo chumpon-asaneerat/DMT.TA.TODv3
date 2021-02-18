@@ -1518,22 +1518,17 @@ namespace DMT.Services
             return (null != Transaction) ? Transaction.ToServer() : null;
         }
         /// <summary>
-        /// Save.
+        /// Commit.
         /// </summary>
-        public void Save()
+        /// <returns>Returns true if has changed and need to save to database.</returns>
+        public bool Commit()
         {
-            if (HasChanged())
+            bool hasChanged = HasChanged();
+            if (hasChanged)
             {
                 ApplyChanges(); // apply changed
-                // Save to database
-                TSBCouponTransaction.Save(Transaction);
-                // Write Queue
-                TAServerCouponTransaction tran = ToServer();
-                if (null != tran)
-                {
-                    TAxTODMQService.Instance.WriteQueue(tran);
-                }
             }
+            return hasChanged;
         }
 
         #endregion
@@ -1760,10 +1755,48 @@ namespace DMT.Services
         {
             if (null == Coupons || Coupons.Count <= 0) return true;
 
+            Console.WriteLine("Begin Save: {0:HH:mm:ss.fff}", DateTime.Now);
+
+            List<TSBCouponTransaction> saveList = new List<TSBCouponTransaction>();
+
             Coupons.ForEach(coupon =>
             {
-                if (null != coupon) coupon.Save();
+                if (null != coupon)
+                {
+                    if (null != coupon.Transaction && coupon.Commit())
+                    {
+                        saveList.Add(coupon.Transaction); // keep transaction to save later.
+                    }
+                }
             });
+
+            if (null != saveList && saveList.Count > 0)
+            {
+
+                Console.WriteLine("Update local db start: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                TSBCouponTransaction.SaveTransactions(saveList);
+
+                Console.WriteLine("Update local db finished: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                Console.WriteLine("generate server queue start: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                Console.WriteLine("generate server queue count: {0}", saveList.Count);
+
+                saveList.ForEach(localTran =>
+                {
+                    // Write Queue
+                    TAServerCouponTransaction tran = localTran.ToServer();
+                    if (null != tran)
+                    {
+                        TAxTODMQService.Instance.WriteQueue(tran);
+                    }
+                });
+
+                Console.WriteLine("generate server queue finished: {0:HH:mm:ss.fff}", DateTime.Now);
+            }
+
+            Console.WriteLine("Finished Save: {0:HH:mm:ss.fff}", DateTime.Now);
 
             return true;
         }
@@ -1968,11 +2001,44 @@ namespace DMT.Services
         {
             if (null == Coupons || Coupons.Count <= 0) return true;
 
+            Console.WriteLine("Begin Save: {0:HH:mm:ss.fff}", DateTime.Now);
+
+            List<TSBCouponTransaction> saveList = new List<TSBCouponTransaction>();
+
             Coupons.ForEach(coupon =>
             {
-                // Required to check Transaction Type = Lane should set UserId to null for Update to Stock
-                if (null != coupon) coupon.Save();
+                if (null != coupon.Transaction && coupon.Commit())
+                {
+                    saveList.Add(coupon.Transaction); // keep transaction to save later.
+                }
             });
+
+            if (null != saveList && saveList.Count > 0)
+            {
+                Console.WriteLine("Update local db start: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                TSBCouponTransaction.SaveTransactions(saveList);
+
+                Console.WriteLine("Update local db finished: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                Console.WriteLine("generate server queue start: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                Console.WriteLine("generate server queue count: {0}", saveList.Count);
+
+                saveList.ForEach(localTran =>
+                {
+                    // Write Queue
+                    TAServerCouponTransaction tran = localTran.ToServer();
+                    if (null != tran)
+                    {
+                        TAxTODMQService.Instance.WriteQueue(tran);
+                    }
+                });
+
+                Console.WriteLine("generate server queue finished: {0:HH:mm:ss.fff}", DateTime.Now);
+            }
+
+            Console.WriteLine("Finished Save: {0:HH:mm:ss.fff}", DateTime.Now);
 
             return true;
         }
@@ -2222,6 +2288,9 @@ namespace DMT.Services
         {
             if (null == Coupons || Coupons.Count <= 0) return true;
 
+            Console.WriteLine("Begin Save: {0:HH:mm:ss.fff}", DateTime.Now);
+
+            List<TSBCouponTransaction> saveList = new List<TSBCouponTransaction>();
             Coupons.ForEach(coupon =>
             {
                 if (null != coupon)
@@ -2230,9 +2299,39 @@ namespace DMT.Services
                         return;
                     coupon.FinishFlag = 0; // Mask as finished.
 
-                    coupon.Save();
+                    if (null != coupon.Transaction && coupon.Commit())
+                    {
+                        saveList.Add(coupon.Transaction); // keep transaction to save later.
+                    }    
                 }
             });
+
+            if (null != saveList && saveList.Count > 0)
+            {
+                Console.WriteLine("Update local db start: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                TSBCouponTransaction.SaveTransactions(saveList);
+
+                Console.WriteLine("Update local db finished: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                Console.WriteLine("generate server queue start: {0:HH:mm:ss.fff}", DateTime.Now);
+
+                Console.WriteLine("generate server queue count: {0}", saveList.Count);
+
+                saveList.ForEach(localTran => 
+                {
+                    // Write Queue
+                    TAServerCouponTransaction tran = localTran.ToServer();
+                    if (null != tran)
+                    {
+                        TAxTODMQService.Instance.WriteQueue(tran);
+                    }
+                });
+
+                Console.WriteLine("generate server queue finished: {0:HH:mm:ss.fff}", DateTime.Now);
+            }
+
+            Console.WriteLine("Finished Save: {0:HH:mm:ss.fff}", DateTime.Now);
 
             return true;
         }

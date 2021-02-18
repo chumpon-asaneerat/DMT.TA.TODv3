@@ -43,8 +43,11 @@ Refactor DMT.TA.TODv4 #1770
 Refactor DMT.TA.TODv4 #1769
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1768
-- 
+- DMT.TAxTODv3
+  - TAManager.cs
+    - All coupon manager optimize save method speed #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #1767

@@ -1743,8 +1743,6 @@ namespace DMT.Services
 
     #endregion
 
-    // TODO: Need LaneId, LaneNo
-
     #region TSBCouponBorrowManager
 
     /// <summary>
@@ -1945,8 +1943,6 @@ namespace DMT.Services
     }
 
     #endregion
-
-    // TODO: Need LaneId, LaneNo
 
     #region TSBCouponReturnManager
 

@@ -31,8 +31,10 @@ Refactor DMT.TA.TODv4 #1739
 Refactor DMT.TA.TODv4 #1738
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1737
-- 
+- DMT.TAxTODv3
+  - Implements GetCouponSold for RevenueEntry(TOD) #5.
 
 [commited]
 Refactor DMT.TA.TODv4 #1736

@@ -484,13 +484,14 @@ namespace DMT.Models
         /// <summary>
         /// Gets Active User Coupon Sold balance.
         /// </summary>
+        /// <param name="plazaGroup">The target PlazaGroup to get balance.</param>
         /// <param name="user">The target User to get balance.</param>
         /// <param name="start">The start of sold date.</param>
         /// <param name="end">The end of sold date.</param>
         /// <returns>
         /// Returns Current Active User Coupon balance. If not found returns null.
         /// </returns>
-        public static NDbResult<UserCouponBalance> GetCouponSoldBalance(User user, 
+        public static NDbResult<UserCouponBalance> GetCouponSoldBalance(PlazaGroup plazaGroup, User user, 
             DateTime? start, DateTime? end)
         {
             var result = new NDbResult<UserCouponBalance>();
@@ -501,23 +502,24 @@ namespace DMT.Models
                 return result;
             }
             var tsb = TSB.GetCurrent().Value();
-            if (null == tsb || null == user)
+            if (null == tsb || null == plazaGroup || null == user)
             {
                 result.ParameterIsNull();
                 return result;
             }
-            result = GetCouponSoldBalance(tsb, user, start, end);
+            result = GetCouponSoldBalance(tsb, plazaGroup, user, start, end);
             return result;
         }
         /// <summary>
         /// Gets User Coupon Sold Balance.
         /// </summary>
         /// <param name="tsb">The target TSB to get balance.</param>
+        /// <param name="plazaGroup">The target PlazaGroup to get balance.</param>
         /// <param name="user">The target User to get balance.</param>
         /// <param name="start">The start of sold date.</param>
         /// <param name="end">The end of sold date.</param>
         /// <returns>Returns User Coupon balance. If TSB not found returns null.</returns>
-        public static NDbResult<UserCouponBalance> GetCouponSoldBalance(TSB tsb, 
+        public static NDbResult<UserCouponBalance> GetCouponSoldBalance(TSB tsb, PlazaGroup plazaGroup,
             User user, DateTime? start, DateTime? end)
         {
             var result = new NDbResult<UserCouponBalance>();
@@ -527,7 +529,7 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (null == tsb || null == user)
+            if (null == tsb || null == plazaGroup || null == user)
             {
                 result.ParameterIsNull();
                 return result;

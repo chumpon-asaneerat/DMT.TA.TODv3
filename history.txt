@@ -22,14 +22,30 @@
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
 --------------------------------------------------------------------------------------------
+Refactor DMT.TA.TODv4 #1745
+- 
+
+Refactor DMT.TA.TODv4 #1744
+- 
+
+Refactor DMT.TA.TODv4 #1743
+- 
+
+Refactor DMT.TA.TODv4 #1742
+- 
+
+Refactor DMT.TA.TODv4 #1741
+- 
+
 Refactor DMT.TA.TODv4 #1740
 - 
 
 Refactor DMT.TA.TODv4 #1739
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1738
-- 
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1737

@@ -22,9 +22,6 @@
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
   - Note Coupon (User Balance/Sold)
-    - Check TSBCouponTransactionView.sql. (exitst)
-    - Check TSBCouponSummarryView.sql. (exitst)
-    - Check TSBCouponStockBalanceView.sql. (exitst)
     - Check TSBCouponLaneBalanceView.sql. (exitst)
     - Check TSBCouponSoldByLaneBalanceView.sql. (exitst)
     - Check TSBCouponSoldByTSBBalanceView.sql. (exitst)
@@ -59,8 +56,10 @@ Refactor DMT.TA.TODv4 #1767
 Refactor DMT.TA.TODv4 #1766
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1765
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#11.
 
 [commited]
 Refactor DMT.TA.TODv4 #1764

@@ -546,6 +546,7 @@ namespace DMT.TA.Pages.Coupon
         {
             this.IsEnabled = false;
 
+            waitPanel.Visibility = Visibility.Visible;
             if (null != manager)
             {
                 manager.Save(); // Save all.
@@ -557,6 +558,7 @@ namespace DMT.TA.Pages.Coupon
             // After print.
             Setup(_chief);
 
+            waitPanel.Visibility = Visibility.Hidden;
             this.IsEnabled = true;
         }
 
@@ -581,6 +583,8 @@ namespace DMT.TA.Pages.Coupon
         /// <param name="chief">The Current User.</param>
         public void Setup(User chief)
         {
+            waitPanel.Visibility = Visibility.Hidden;
+
             _chief = chief;
             if (null == manager) manager = new TSBCouponSoldManager();
             if (null != manager)

@@ -10,12 +10,12 @@
         Height="500"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        Closing="Window_Closing"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        WindowStartupLocation="CenterOwner"
-        mc:Ignorable="d"
         SourceInitialized="Window_SourceInitialized"
-        Closing="Window_Closing">
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d">
     <Window.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
@@ -332,5 +332,30 @@
                 </Grid>
             </DockPanel>
         </Grid>
+        <Border x:Name="waitPanel"
+                Width="500"
+                Height="200"
+                Background="White"
+                BorderBrush="DimGray"
+                BorderThickness="1"
+                Visibility="Hidden">
+            <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                <TextBlock FontSize="32"
+                           Foreground="Black"
+                           Style="{StaticResource LabelText}"
+                           Text="กำลังทำการบันทึกข้อมูล"
+                           TextAlignment="Center" />
+                <TextBlock FontSize="32"
+                           Foreground="Black"
+                           Style="{StaticResource LabelText}"
+                           Text="และจัดเตรียมข้อมูลเพื่อส่งให้ server"
+                           TextAlignment="Center" />
+                <TextBlock FontSize="32"
+                           Foreground="Black"
+                           Style="{StaticResource LabelText}"
+                           Text="กรุณารอซักครู่"
+                           TextAlignment="Center" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

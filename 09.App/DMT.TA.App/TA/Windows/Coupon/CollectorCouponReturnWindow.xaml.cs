@@ -63,12 +63,17 @@ namespace DMT.TA.Windows.Coupon
         {
             if (null != manager)
             {
+                waitPanel.Visibility = Visibility.Visible;
                 this.IsEnabled = false;
+
                 manager.MarkCompleted();
                 manager.ReturnToStock();
                 manager.Save();
+
+                waitPanel.Visibility = Visibility.Hidden;
                 this.IsEnabled = true;
             }
+
             DialogResult = true;
         }
 
@@ -360,6 +365,8 @@ namespace DMT.TA.Windows.Coupon
         /// <param name="value">The TSB Coupon Return Manager.</param>
         public void Setup(TSBCouponReturnManager value)
         {
+            waitPanel.Visibility = Visibility.Hidden;
+
             manager = value;
             txtCurrentUserId.DataContext = null;
             txtCurrentUserName.DataContext = null;

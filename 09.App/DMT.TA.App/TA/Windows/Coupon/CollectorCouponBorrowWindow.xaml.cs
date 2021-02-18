@@ -63,10 +63,15 @@ namespace DMT.TA.Windows.Coupon
         {
             if (null != manager)
             {
+                waitPanel.Visibility = Visibility.Visible;
                 this.IsEnabled = false;
+
                 manager.Save();
+                
                 this.IsEnabled = true;
+                waitPanel.Visibility = Visibility.Hidden;
             }
+
             DialogResult = true;
         }
 
@@ -362,6 +367,8 @@ namespace DMT.TA.Windows.Coupon
         /// <param name="value">The TSB Coupon Borrow Manager.</param>
         public void Setup(TSBCouponBorrowManager value)
         {
+            waitPanel.Visibility = Visibility.Hidden;
+
             manager = value;
             txtCurrentUserId.DataContext = null;
             txtCurrentUserName.DataContext = null;

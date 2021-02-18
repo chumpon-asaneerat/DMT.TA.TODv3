@@ -52,8 +52,12 @@ Refactor DMT.TA.TODv4 #1777
 Refactor DMT.TA.TODv4 #1776
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1775
-- 
+- DMT.TAxTODv3
+  - TSBCouponSalePage -> Disable control during save #3.
+  - CollectorCouponBorrowWindow -> Disable window during save #3.
+  - CollectorCouponReturnWindow -> Disable window during save #3.
 
 [commited]
 Refactor DMT.TA.TODv4 #1774

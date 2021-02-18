@@ -34,7 +34,7 @@ namespace DMT.Services
                     TAConfigManager.Instance.TAApp.Service : null;
                 if (null != svr)
                 {
-                    return (userName == svr.UserName && password == Models.Utils.MD5.Encrypt(svr.Password));
+                    return (userName == svr.UserName && password == Utils.MD5.Encrypt(svr.Password));
                 }
                 else
                 {

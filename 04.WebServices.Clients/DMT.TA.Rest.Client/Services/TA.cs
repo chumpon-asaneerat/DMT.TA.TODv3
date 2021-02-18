@@ -236,7 +236,7 @@ namespace DMT.Services.Operations
                 if (null == Config.TAApp) return string.Empty;
                 if (null == Config.TAApp.Service) return string.Empty;
 
-                return Models.Utils.MD5.Encrypt(Config.TAApp.Service.Password);
+                return Utils.MD5.Encrypt(Config.TAApp.Service.Password);
             }
         }
 

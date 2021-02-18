@@ -61,8 +61,14 @@ Refactor DMT.TA.TODv4 #1774
 Refactor DMT.TA.TODv4 #1773
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1772
-- 
+- DMT.TAxTODv3
+  - Add WPF Utils.
+  - MD5 Utils class re-implements.
+  - TSBCouponSalePage -> Disable control during save #2.
+  - CollectorCouponBorrowWindow -> Disable window during save #2.
+  - CollectorCouponReturnWindow -> Disable window during save #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #1771

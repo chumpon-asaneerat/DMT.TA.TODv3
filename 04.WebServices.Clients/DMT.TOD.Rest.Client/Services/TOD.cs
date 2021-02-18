@@ -236,7 +236,7 @@ namespace DMT.Services.Operations
                 if (null == Config.TODApp) return string.Empty;
                 if (null == Config.TODApp.Service) return string.Empty;
 
-                return Models.Utils.MD5.Encrypt(Config.TODApp.Service.Password);
+                return Utils.MD5.Encrypt(Config.TODApp.Service.Password);
             }
         }
 

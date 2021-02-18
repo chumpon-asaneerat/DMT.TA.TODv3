@@ -42,6 +42,21 @@ namespace DMT.TA.Windows.Coupon
 
         #endregion
 
+        #region Window Handlers
+
+        private void Window_SourceInitialized(object sender, EventArgs e)
+        {
+            Utils.WPFUtils.DisableClose(this); // Disable close button and system menu.
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // if not enable always set cancel to true that mean not allow to close until process finished.
+            e.Cancel = (IsEnabled) ? false : true;
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)

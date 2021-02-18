@@ -544,11 +544,11 @@ namespace DMT.TA.Pages.Coupon
 
         private void Print(string documentName)
         {
+            this.IsEnabled = false;
+
             if (null != manager)
             {
-                this.IsEnabled = false;
                 manager.Save(); // Save all.
-                this.IsEnabled = true;
             }
 
             // print reports.
@@ -556,6 +556,8 @@ namespace DMT.TA.Pages.Coupon
 
             // After print.
             Setup(_chief);
+
+            this.IsEnabled = true;
         }
 
         #endregion

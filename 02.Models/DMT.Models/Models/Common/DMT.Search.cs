@@ -218,6 +218,10 @@ namespace DMT.Models
                     #region Public Properties
 
                     /// <summary>
+                    /// Gets or sets PlazaGroup.
+                    /// </summary>
+                    public Models.PlazaGroup PlazaGroup { get; set; }
+                    /// <summary>
                     /// Gets or sets User.
                     /// </summary>
                     public Models.User User { get; set; }
@@ -237,13 +241,15 @@ namespace DMT.Models
                     /// <summary>
                     /// Create Search instance.
                     /// </summary>
+                    /// <param name="usplazaGrouper">The PlazaGroup.</param>
                     /// <param name="user">The User.</param>
                     /// <param name="start">The Start Time (to check SoldDate).</param>
                     /// <param name="end">The End Time (to check SoldDate).</param>
                     /// <returns>Returns Search instance.</returns>
-                    public static Sold Create(Models.User user, DateTime? start, DateTime? end)
+                    public static Sold Create(Models.PlazaGroup plazaGroup, Models.User user, DateTime? start, DateTime? end)
                     {
                         var ret = new Sold();
+                        ret.PlazaGroup = plazaGroup;
                         ret.User = user;
                         ret.Start = start;
                         ret.End = end;

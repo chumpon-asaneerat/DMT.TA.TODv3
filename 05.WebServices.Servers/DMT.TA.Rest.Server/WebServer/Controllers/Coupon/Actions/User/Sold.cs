@@ -25,7 +25,7 @@ namespace DMT.Services
                     ret.ParameterIsNull();
                     return ret;
                 }
-                ret = UserCouponBalance.GetCouponSoldBalance(value.User, value.Start, value.End);
+                ret = UserCouponBalance.GetCouponSoldBalance(value.PlazaGroup, value.User, value.Start, value.End);
                 return ret;
             }
         }

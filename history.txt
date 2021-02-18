@@ -42,8 +42,39 @@
       - Add PlazaGroup proeprties
     - Check TOD Api call -> Get UserCouponBalance
 --------------------------------------------------------------------------------------------
-Refactor DMT.TA.TODv4 #1760
+Refactor DMT.TA.TODv4 #1770
 - 
+
+Refactor DMT.TA.TODv4 #1769
+- 
+
+Refactor DMT.TA.TODv4 #1768
+- 
+
+Refactor DMT.TA.TODv4 #1767
+- 
+
+Refactor DMT.TA.TODv4 #1766
+- 
+
+Refactor DMT.TA.TODv4 #1765
+- 
+
+Refactor DMT.TA.TODv4 #1764
+- 
+
+Refactor DMT.TA.TODv4 #1763
+- 
+
+Refactor DMT.TA.TODv4 #1762
+- 
+
+Refactor DMT.TA.TODv4 #1761
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #1760
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1759

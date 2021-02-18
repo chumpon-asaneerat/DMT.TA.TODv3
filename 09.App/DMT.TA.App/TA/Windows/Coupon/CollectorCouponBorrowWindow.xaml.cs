@@ -48,7 +48,9 @@ namespace DMT.TA.Windows.Coupon
         {
             if (null != manager)
             {
+                this.IsEnabled = false;
                 manager.Save();
+                this.IsEnabled = true;
             }
             DialogResult = true;
         }

@@ -544,7 +544,12 @@ namespace DMT.TA.Pages.Coupon
 
         private void Print(string documentName)
         {
-            if (null != manager) manager.Save(); // Save all.
+            if (null != manager)
+            {
+                this.IsEnabled = false;
+                manager.Save(); // Save all.
+                this.IsEnabled = true;
+            }
 
             // print reports.
             this.rptViewer.Print(documentName);

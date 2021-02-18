@@ -41,6 +41,7 @@
     - Update UserCouponTransaction Model
       - Add PlazaGroup proeprties
     - Check TOD Api call -> Get UserCouponBalance
+    - Check RevenueEntry -> Enable/Disable Panel.
 --------------------------------------------------------------------------------------------
 Refactor DMT.TA.TODv4 #1770
 - 
@@ -69,8 +70,10 @@ Refactor DMT.TA.TODv4 #1763
 Refactor DMT.TA.TODv4 #1762
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1761
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#9.
 
 [commited]
 Refactor DMT.TA.TODv4 #1760

@@ -62,8 +62,11 @@ Refactor DMT.TA.TODv4 #1766
 Refactor DMT.TA.TODv4 #1765
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1764
-- 
+- DMT.TAxTODv3
+  - Implements GetCouponSold for RevenueEntry(TOD) #7.
+    - Update TADbServer -> Init TSBCouponTransactionView.
 
 [commited]
 Refactor DMT.TA.TODv4 #1763

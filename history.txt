@@ -63,8 +63,11 @@ Refactor DMT.TA.TODv4 #1755
 Refactor DMT.TA.TODv4 #1754
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1753
-- 
+- DMT.TAxTODv4
+  - Wpf.Account.Db.Test project
+    - Update App.xaml.cs -> Start/Shutdown local database service.
 
 [commited]
 Refactor DMT.TA.TODv4 #1752

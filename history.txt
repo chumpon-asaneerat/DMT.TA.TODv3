@@ -55,12 +55,14 @@ Refactor DMT.TA.TODv4 #1776
 Refactor DMT.TA.TODv4 #1775
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1774
-- 
+- DMT.TAxTODv3
+  - Update todos.
 
 [commited]
 Refactor DMT.TA.TODv4 #1773
-- DMT.TAxTODv3
+- DMT.TAxTODv4
   - DMT.Core project.
     - Ported WPF Utils from v3.
   - DMT.Models project.

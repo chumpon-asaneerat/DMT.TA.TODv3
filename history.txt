@@ -51,8 +51,11 @@ Refactor DMT.TA.TODv4 #1759
 Refactor DMT.TA.TODv4 #1758
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1757
-- 
+- DMT.TAxTODv4
+  - Wpf.Plaza.Db.Test project
+    - Update App.xaml.cs -> Rename all PlazaDbServer class code referance to PlazaLocalDbServer.
 
 [commited]
 Refactor DMT.TA.TODv4 #1756

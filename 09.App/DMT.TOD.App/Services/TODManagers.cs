@@ -1977,7 +1977,14 @@ namespace DMT.Services
             UserCouponBalance usrCouponSold = null;
             if (!ByChief)
             {
-
+                var dt1 = UserShift.Begin.Value;
+                var dt2 = (UserShift.End.HasValue) ? UserShift.End.Value : DateTime.Now;
+                var search = Search.Coupon.User.Sold.Create(PlazaGroup, User, dt1, dt2);
+                var ret = taaOps.Coupon.User.Sold(search);
+                if (null != ret && ret.Ok)
+                {
+                    usrCouponSold = ret.Value();
+                }
             }
             return usrCouponSold;
         }
@@ -2130,7 +2137,6 @@ namespace DMT.Services
             if (!ByChief)
             {
                 // Check User Coupon Sold Balance
-                /*
                 var usrSold = CheckSoldCoupon();
                 if (null != usrSold)
                 {
@@ -2142,13 +2148,12 @@ namespace DMT.Services
                 }
                 else
                 {
-                    //Entry.CouponSoldEnable = true;
+                    Entry.CouponSoldEnable = true;
                 }
-                */
             }
             else
             {
-                //Entry.CouponSoldEnable = true;
+                Entry.CouponSoldEnable = true;
             }
 
             bool success = UpdateRevenueEntry();

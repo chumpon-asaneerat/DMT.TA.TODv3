@@ -16,11 +16,13 @@
     - PlazaOperations.Exchange.cs (Local.WebClient) need to check why save to invalid column.
   - ใบเสร็จขายคูปอง ที่ TA ขาดเรื่อง Running Number
   - หลังป้อนรายได้ควร update กลับไปยัง UserCredit/RevenueShift ด้วย
-  - Note
+  - Note (TA Credit)
     - รับถุงเงิน ถ้าไม่เปิดกะให้ auto เปิดกะให้
     - ถ้ารับถุงที่ 2 มีกะเปิดแล้ว รับได้ แต่ต้องผูก plaza group (IN/OUT)
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
+  - Note Coupon (User Balance/Sold)
+    - Check UserCouponTransationView.
 --------------------------------------------------------------------------------------------
 Refactor DMT.TA.TODv4 #1750
 - 
@@ -52,8 +54,10 @@ Refactor DMT.TA.TODv4 #1742
 Refactor DMT.TA.TODv4 #1741
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1740
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#1.
 
 [commited]
 Refactor DMT.TA.TODv4 #1739

@@ -546,7 +546,9 @@ namespace DMT.TA.Pages.Coupon
         {
             this.IsEnabled = false;
 
+            rptViewer.Visibility = Visibility.Hidden;
             waitPanel.Visibility = Visibility.Visible;
+
             if (null != manager)
             {
                 manager.Save(); // Save all.
@@ -559,6 +561,7 @@ namespace DMT.TA.Pages.Coupon
             Setup(_chief);
 
             waitPanel.Visibility = Visibility.Hidden;
+            rptViewer.Visibility = Visibility.Visible;
             this.IsEnabled = true;
         }
 
@@ -584,6 +587,7 @@ namespace DMT.TA.Pages.Coupon
         public void Setup(User chief)
         {
             waitPanel.Visibility = Visibility.Hidden;
+            rptViewer.Visibility = Visibility.Visible;
 
             _chief = chief;
             if (null == manager) manager = new TSBCouponSoldManager();

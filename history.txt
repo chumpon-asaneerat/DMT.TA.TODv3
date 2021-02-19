@@ -49,8 +49,10 @@ Refactor DMT.TA.TODv4 #1778
 Refactor DMT.TA.TODv4 #1777
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1776
-- 
+- DMT.TAxTODv3
+  - TSBCouponSalePage -> Disable control during save #4.
 
 [commited]
 Refactor DMT.TA.TODv4 #1775

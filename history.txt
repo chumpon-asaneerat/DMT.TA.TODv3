@@ -64,8 +64,11 @@ Refactor DMT.TA.TODv4 #1783
 Refactor DMT.TA.TODv4 #1782
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1781
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - TSBCouponSoldManager - Add log code.
 
 [commited]
 Refactor DMT.TA.TODv4 #1780

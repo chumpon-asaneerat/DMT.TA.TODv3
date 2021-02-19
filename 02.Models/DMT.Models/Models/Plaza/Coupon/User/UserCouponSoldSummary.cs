@@ -32,7 +32,34 @@ namespace DMT.Models
     //[Table("UserCouponSoldSummary")]
     public class UserCouponSoldSummary : NTable<UserCouponSoldSummary>
     {
+        #region Internal Variables
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public UserCouponSoldSummary() : base() { }
+
+        #endregion
+
+        #region Private Methods
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Internal Class
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
     }
 
     #endregion

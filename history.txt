@@ -48,8 +48,12 @@ Refactor DMT.TA.TODv4 #1787
 Refactor DMT.TA.TODv4 #1786
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1785
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TSBCreditTransaction
+      - Add PlazaGroupId, PlazaGroupNameEN, PlazaGroupNameTH
 
 [commited]
 Refactor DMT.TA.TODv4 #1784

@@ -37,8 +37,39 @@
     - Check RevenueEntry -> Enable/Disable Panel.
     - Check RevenueEntry -> Generate SCW declare.
 --------------------------------------------------------------------------------------------
-Refactor DMT.TA.TODv4 #1780
+Refactor DMT.TA.TODv4 #1790
 - 
+
+Refactor DMT.TA.TODv4 #1789
+- 
+
+Refactor DMT.TA.TODv4 #1788
+- 
+
+Refactor DMT.TA.TODv4 #1787
+- 
+
+Refactor DMT.TA.TODv4 #1786
+- 
+
+Refactor DMT.TA.TODv4 #1785
+- 
+
+Refactor DMT.TA.TODv4 #1784
+- 
+
+Refactor DMT.TA.TODv4 #1783
+- 
+
+Refactor DMT.TA.TODv4 #1782
+- 
+
+Refactor DMT.TA.TODv4 #1781
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #1780
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1779

@@ -301,9 +301,9 @@ namespace DMT.Models.ExtensionMethods
             inst.TSBId = value.TSBId;
             if (inst.TransactionType == TSBCouponTransactionTypes.Stock)
             {
-                inst.UserId = string.Empty;
-                inst.FullNameEN = string.Empty;
-                inst.FullNameTH = string.Empty;
+                inst.UserId = null;
+                inst.FullNameEN = null;
+                inst.FullNameTH = null;
             }
             else
             {

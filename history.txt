@@ -53,8 +53,16 @@ Refactor DMT.TA.TODv4 #1794
 Refactor DMT.TA.TODv4 #1793
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1792
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TAxTODExtensionMethods
+      - ToLocal method
+        - Fixed code set UserId to null.
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TAxTODExtensionMethods - Ported ToLocal, ToServer from v3.
 
 [commited]
 Refactor DMT.TA.TODv4 #1791

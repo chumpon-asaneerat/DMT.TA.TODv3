@@ -27,10 +27,6 @@
     - All script need to ported to DMT.TA.TODv4 (for backup files).
     - Update UserCouponBalance Model
       - Add PlazaGroup proeprties
-      - Need Coupon35 OnHand
-      - Need Coupon35 Sold
-      - Need Coupon80 OnHand
-      - Need Coupon80 Sold
     - Update UserCouponTransaction Model
       - Add PlazaGroup proeprties
     - Check TOD Api call -> Get UserCouponBalance
@@ -61,8 +57,10 @@ Refactor DMT.TA.TODv4 #1784
 Refactor DMT.TA.TODv4 #1783
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1782
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#14.
 
 [commited]
 Refactor DMT.TA.TODv4 #1781

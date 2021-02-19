@@ -1755,7 +1755,13 @@ namespace DMT.Services
         {
             if (null == Coupons || Coupons.Count <= 0) return true;
 
-            Console.WriteLine("Begin Save: {0:HH:mm:ss.fff}", DateTime.Now);
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string msg = string.Empty;
+
+            msg = string.Format("Begin Save: {0:HH:mm:ss.fff}", DateTime.Now);
+            med.Info(msg);
+            Console.WriteLine(msg);
 
             List<TSBCouponTransaction> saveList = new List<TSBCouponTransaction>();
 
@@ -1773,15 +1779,23 @@ namespace DMT.Services
             if (null != saveList && saveList.Count > 0)
             {
 
-                Console.WriteLine("Update local db start: {0:HH:mm:ss.fff}", DateTime.Now);
+                msg = string.Format("Update local db start: {0:HH:mm:ss.fff}", DateTime.Now);
+                med.Info(msg);
+                Console.WriteLine(msg);
 
                 TSBCouponTransaction.SaveTransactions(saveList);
 
-                Console.WriteLine("Update local db finished: {0:HH:mm:ss.fff}", DateTime.Now);
+                msg = string.Format("Update local db finished: {0:HH:mm:ss.fff}", DateTime.Now);
+                med.Info(msg);
+                Console.WriteLine(msg);
 
-                Console.WriteLine("generate server queue start: {0:HH:mm:ss.fff}", DateTime.Now);
+                msg = string.Format("generate server queue count: {0}", saveList.Count);
+                med.Info(msg);
+                Console.WriteLine(msg);
 
-                Console.WriteLine("generate server queue count: {0}", saveList.Count);
+                msg = string.Format("generate server queue start: {0:HH:mm:ss.fff}", DateTime.Now);
+                med.Info(msg);
+                Console.WriteLine(msg);
 
                 saveList.ForEach(localTran =>
                 {
@@ -1793,10 +1807,14 @@ namespace DMT.Services
                     }
                 });
 
-                Console.WriteLine("generate server queue finished: {0:HH:mm:ss.fff}", DateTime.Now);
+                msg = string.Format("generate server queue finished: {0:HH:mm:ss.fff}", DateTime.Now);
+                med.Info(msg);
+                Console.WriteLine(msg);
             }
 
-            Console.WriteLine("Finished Save: {0:HH:mm:ss.fff}", DateTime.Now);
+            msg = string.Format("Finished Save: {0:HH:mm:ss.fff}", DateTime.Now);
+            med.Info(msg);
+            Console.WriteLine(msg);
 
             return true;
         }

@@ -1334,6 +1334,25 @@ namespace DMT.Services
 
             if (string.IsNullOrEmpty(val1) && string.IsNullOrEmpty(val2))
             {
+                // Note: Need this code in new version.
+                //
+                //if (val1 == null && val2 != null)
+                //{
+                //    return true; // val2 is string.Empty.
+                //}
+                //else if (val1 != null && val2 == null)
+                //{
+                //    return true; // val1 is string.Empty.
+                //}
+                //else if (val1 != null && val2 != null)
+                //{
+                //    return true; // Both is string.Empty.
+                //}
+                //else
+                //{
+                //    return false; // Both is null.
+                //}
+
                 return false; // Both is null.
             }
             else if (!string.IsNullOrEmpty(val1) && string.IsNullOrEmpty(val2))
@@ -1498,11 +1517,11 @@ namespace DMT.Services
             if (null != Transaction)
             {
                 Transaction.TransactionType = TransactionType;
-                Transaction.UserId = UserId;
+                Transaction.UserId = string.IsNullOrWhiteSpace(UserId) ? null : UserId;
                 Transaction.FullNameEN = FullNameEN;
                 Transaction.FullNameTH = FullNameTH;
                 Transaction.UserReceiveDate = ReceiveDate;
-                Transaction.SoldBy = SoldBy;
+                Transaction.SoldBy = string.IsNullOrWhiteSpace(SoldBy) ? null : SoldBy;
                 Transaction.SoldByFullNameEN = SoldByFullNameEN;
                 Transaction.SoldByFullNameTH = SoldByFullNameTH;
                 Transaction.SoldDate = SoldDate;
@@ -2083,7 +2102,7 @@ namespace DMT.Services
 
         #region Public Methods
 
-        #region For Sold/Unsold Stock-Lane
+        #region For UnsoldByLane/SoldByLane Stock-Lane
 
         /// <summary>
         /// Set As Unsold by lane for return back to Stock.
@@ -2406,7 +2425,7 @@ namespace DMT.Services
 
         #endregion
 
-        #region For Borrow/Return between Stock-Lane
+        #region For TSB Sold/Unsold between Stock-TSB
 
         /// <summary>
         /// Sold Coupon from Stock back to Sold (TSB).

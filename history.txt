@@ -36,8 +36,21 @@
 Refactor DMT.TA.TODv4 #1790
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1789
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TSBCreditTransaction
+      - Remove PlazaGroupId, PlazaGroupNameEN, PlazaGroupNameTH
+    - TSBCouponTransaction
+      - Remove PlazaGroupId, PlazaGroupNameEN, PlazaGroupNameTH
+    - TAxTODExtensionMethods
+      - ToServer method
+        - Add code set UserId to null if value is string.empty (or null).
+        - Add code set SoldBy to null if value is string.empty (or null).
+      - TSBCouponItem class
+        - Update UserIdChanged method -> if detected string.Emtpy returns true (changed) but comment out.
+        - Update ApplyChanges method -> UserId/SoldBy now set to null if string.empty assigned. 
 
 [commited]
 Refactor DMT.TA.TODv4 #1788

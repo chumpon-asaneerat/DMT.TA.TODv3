@@ -77,6 +77,10 @@ namespace DMT.Models
         private string _TSBId = string.Empty;
         private string _TSBNameEN = string.Empty;
         private string _TSBNameTH = string.Empty;
+        // Plaza Group
+        private string _PlazaGroupId = string.Empty;
+        private string _PlazaGroupNameEN = string.Empty;
+        private string _PlazaGroupNameTH = string.Empty;
         // User
         private string _UserId = string.Empty;
         private string _FullNameEN = string.Empty;
@@ -438,6 +442,80 @@ namespace DMT.Models
                 {
                     _TSBNameTH = value;
                     this.RaiseChanged("TSBNameTH");
+                }
+            }
+        }
+
+        #endregion
+
+        #region PlazaGroup
+
+        /// <summary>
+        /// Gets or sets Plaza Group Id.
+        /// </summary>
+        [Category("Plaza Group")]
+        [Description("Gets or sets Plaza Group Id.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("PlazaGroupId")]
+        public virtual string PlazaGroupId
+        {
+            get
+            {
+                return _PlazaGroupId;
+            }
+            set
+            {
+                if (_PlazaGroupId != value)
+                {
+                    _PlazaGroupId = value;
+                    this.RaiseChanged("PlazaGroupId");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Plaza Group Name EN.
+        /// </summary>
+        [Category("Plaza Group")]
+        [Description("Gets or sets Plaza Group Name EN.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("PlazaGroupNameEN")]
+        public virtual string PlazaGroupNameEN
+        {
+            get
+            {
+                return _PlazaGroupNameEN;
+            }
+            set
+            {
+                if (_PlazaGroupNameEN != value)
+                {
+                    _PlazaGroupNameEN = value;
+                    this.RaiseChanged("PlazaGroupNameEN");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Plaza Group Name TH.
+        /// </summary>
+        [Category("Plaza Group")]
+        [Description("Gets or sets Plaza Group Name TH.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("PlazaGroupNameTH")]
+        public virtual string PlazaGroupNameTH
+        {
+            get
+            {
+                return _PlazaGroupNameTH;
+            }
+            set
+            {
+                if (_PlazaGroupNameTH != value)
+                {
+                    _PlazaGroupNameTH = value;
+                    this.RaiseChanged("PlazaGroupNameTH");
                 }
             }
         }
@@ -951,6 +1029,41 @@ namespace DMT.Models
             }
 
             #endregion
+
+            #region PlazaGroup
+
+            /// <summary>
+            /// Gets or sets Plaza Group Id.
+            /// </summary>
+            [MaxLength(10)]
+            [PropertyMapName("PlazaGroupNameEN")]
+            public override string PlazaGroupId
+            {
+                get { return base.PlazaGroupId; }
+                set { base.PlazaGroupId = value; }
+            }
+            /// <summary>
+            /// Gets or sets Plaza Group Name EN.
+            /// </summary>
+            [MaxLength(100)]
+            [PropertyMapName("PlazaGroupNameEN")]
+            public override string PlazaGroupNameEN
+            {
+                get { return base.PlazaGroupNameEN; }
+                set { base.PlazaGroupNameEN = value; }
+            }
+            /// <summary>
+            /// Gets or sets Plaza Group Name TH.
+            /// </summary>
+            [MaxLength(100)]
+            [PropertyMapName("PlazaGroupNameTH")]
+            public override string PlazaGroupNameTH
+            {
+                get { return base.PlazaGroupNameTH; }
+                set { base.PlazaGroupNameTH = value; }
+            }
+
+            #endregion
         }
 
         #endregion
@@ -1181,7 +1294,10 @@ namespace DMT.Models
                 return result;
             }
         }
-
+        /// <summary>
+        /// Gets Coupon Count (all).
+        /// </summary>
+        /// <returns>Returns number of coupon records on local database.</returns>
         public static NDbResult<int> GetCouponCount()
         {
             var result = new NDbResult<int>();

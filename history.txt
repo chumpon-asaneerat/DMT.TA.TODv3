@@ -25,10 +25,6 @@
     - Check TSBCouponSoldByTSBTransactionView.sql.
     - Check TSBCouponSoldByLaneTransactionView.sql.
     - All script need to ported to DMT.TA.TODv4 (for backup files).
-    - Update UserCouponBalance Model
-      - Add PlazaGroup proeprties
-    - Update UserCouponTransaction Model
-      - Add PlazaGroup proeprties
     - Check TOD Api call -> Get UserCouponBalance
     - Check RevenueEntry -> Enable/Disable Panel.
     - Check RevenueEntry -> Generate SCW declare.
@@ -60,8 +56,10 @@ Refactor DMT.TA.TODv4 #1793
 Refactor DMT.TA.TODv4 #1792
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1791
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#15.
 
 [commited]
 Refactor DMT.TA.TODv4 #1790

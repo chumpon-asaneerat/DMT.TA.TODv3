@@ -55,6 +55,14 @@ namespace DMT.Models
 
         #region Internal Class
 
+        /// <summary>
+        /// The internal FKs class for query data.
+        /// </summary>
+        public class FKs : UserCouponSoldSummary, IFKs<UserCouponSoldSummary>
+        {
+
+        }
+
         #endregion
 
         #region Static Methods

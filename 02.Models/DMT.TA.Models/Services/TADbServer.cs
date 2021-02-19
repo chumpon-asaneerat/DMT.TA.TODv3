@@ -2029,9 +2029,6 @@ namespace DMT.Services
             prefix = @"Coupons";
             InitView("TSBCouponTransactionView", 2, prefix);
 
-            //InitView("TSBCouponSoldByTSBTransactionView", 1, prefix);
-            //InitView("TSBCouponSoldByLaneTransactionView", 1, prefix);
-
             InitView("TSBCouponSummarryView", 1, prefix);
             InitView("TSBCouponStockBalanceView", 1, prefix);
             InitView("TSBCouponLaneBalanceView", 1, prefix);
@@ -2044,6 +2041,9 @@ namespace DMT.Services
             // - TSBCouponSoldByLaneBalanceView
             // - TSBCouponSoldByTSBBalanceView
             InitView("TSBCouponBalanceView", 1, prefix);
+
+            // !!! Required for UserCouponSoldSummary model (NEW!!).
+            //InitView("UserCouponSoldByLaneTransactionView", 1, prefix);
 
             // Exchanges - Embeded resource used . instead / to access sub contents.
             prefix = @"Exchanges";

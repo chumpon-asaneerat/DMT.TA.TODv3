@@ -121,6 +121,7 @@
     <Compile Include="Models\Plaza\Coupon\TSB\TSBCouponSummary.cs" />
     <Compile Include="Models\Plaza\Coupon\TSB\TSBCouponTransaction.cs" />
     <Compile Include="Models\Plaza\Coupon\User\UserCouponBalance.cs" />
+    <Compile Include="Models\Plaza\Coupon\User\UserCouponSoldSummary.cs" />
     <Compile Include="Models\Plaza\Credit\TSB\TSBCreditBanalce.cs" />
     <Compile Include="Models\Plaza\Credit\TSB\TSBCreditTransaction.cs" />
     <Compile Include="Models\Plaza\Credit\User\UserCreditBalance.cs" />

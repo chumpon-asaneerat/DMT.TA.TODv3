@@ -51,8 +51,11 @@ Refactor DMT.TA.TODv4 #1786
 Refactor DMT.TA.TODv4 #1785
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1784
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Implements UserCouponSoldSummary.sql #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #1783

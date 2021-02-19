@@ -21,13 +21,6 @@
     - ถ้ารับถุงที่ 2 มีกะเปิดแล้ว รับได้ แต่ต้องผูก plaza group (IN/OUT)
       - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
       - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
-  - Note Coupon (User Balance/Sold)
-    - Check TSBCouponSoldByTSBTransactionView.sql.
-    - Check TSBCouponSoldByLaneTransactionView.sql.
-    - All script need to ported to DMT.TA.TODv4 (for backup files).
-    - Check TOD Api call -> Get UserCouponBalance
-    - Check RevenueEntry -> Enable/Disable Panel.
-    - Check RevenueEntry -> Generate SCW declare.
 --------------------------------------------------------------------------------------------
 Refactor DMT.TA.TODv4 #1800
 - 
@@ -41,8 +34,10 @@ Refactor DMT.TA.TODv4 #1798
 Refactor DMT.TA.TODv4 #1797
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1796
-- 
+- DMT.TAxTODv3
+  - Update history.txt note#16.
 
 [commited]
 Refactor DMT.TA.TODv4 #1795

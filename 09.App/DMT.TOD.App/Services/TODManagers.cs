@@ -1972,9 +1972,9 @@ namespace DMT.Services
 
         #region Coupon Sold Methods
 
-        private UserCouponBalance CheckSoldCoupon()
+        private UserCouponSoldSummary CheckSoldCoupon()
         {
-            UserCouponBalance usrCouponSold = null;
+            UserCouponSoldSummary usrCouponSold = null;
             if (!ByChief)
             {
                 var dt1 = UserShift.Begin.Value;

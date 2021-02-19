@@ -67,6 +67,34 @@ namespace DMT.Models
 
         #region Static Methods
 
+        public static NDbResult<UserCouponSoldSummary> GetCouponSoldSummary(PlazaGroup plazaGroup,
+            User user, DateTime? start, DateTime? end)
+        {
+            var result = new NDbResult<UserCouponSoldSummary>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            var tsb = TSB.GetCurrent().Value();
+            if (null == tsb || null == plazaGroup || null == user)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            result = GetCouponSoldSummary(tsb, plazaGroup, user, start, end);
+            return result;
+        }
+
+        public static NDbResult<UserCouponSoldSummary> GetCouponSoldSummary(TSB tsb, PlazaGroup plazaGroup,
+            User user, DateTime? start, DateTime? end)
+        {
+            var result = new NDbResult<UserCouponSoldSummary>();
+
+            return result;
+        }
+
         #endregion
     }
 

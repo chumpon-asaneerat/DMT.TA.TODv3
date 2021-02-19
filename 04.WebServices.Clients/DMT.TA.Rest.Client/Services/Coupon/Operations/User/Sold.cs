@@ -17,10 +17,10 @@ namespace DMT.Services.Operations
                 /// </summary>
                 /// <param name="value">The Search parameter.</param>
                 /// <returns>Returns User Coupon Sold Balance instance.</returns>
-                public static NRestResult<Models.UserCouponBalance> Sold(
+                public static NRestResult<Models.UserCouponSoldSummary> Sold(
                     Models.Search.Coupon.User.Sold value)
                 {
-                    var ret = Execute<Models.UserCouponBalance>(
+                    var ret = Execute<Models.UserCouponSoldSummary>(
                         RouteConsts.TA.Coupon.User.Sold.Url, value);
                     return ret;
                 }

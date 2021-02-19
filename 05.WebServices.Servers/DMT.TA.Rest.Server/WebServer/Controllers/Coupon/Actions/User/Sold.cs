@@ -16,16 +16,16 @@ namespace DMT.Services
             [HttpPost]
             [ActionName(RouteConsts.TA.Coupon.User.Sold.Name)]
             //[AllowAnonymous]
-            public NDbResult<UserCouponBalance> Sold([FromBody] Models.Search.Coupon.User.Sold value)
+            public NDbResult<UserCouponSoldSummary> Sold([FromBody] Models.Search.Coupon.User.Sold value)
             {
-                NDbResult<UserCouponBalance> ret;
+                NDbResult<UserCouponSoldSummary> ret;
                 if (null == value)
                 {
-                    ret = new NDbResult<UserCouponBalance>();
+                    ret = new NDbResult<UserCouponSoldSummary>();
                     ret.ParameterIsNull();
                     return ret;
                 }
-                ret = UserCouponBalance.GetCouponSoldBalance(value.PlazaGroup, value.User, value.Start, value.End);
+                ret = UserCouponSoldSummary.GetCouponSoldSummary(value.PlazaGroup, value.User, value.Start, value.End);
                 return ret;
             }
         }

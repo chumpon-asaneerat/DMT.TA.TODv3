@@ -479,6 +479,8 @@ namespace DMT.Models
 
         #region Static Methods
 
+        //TODO: UserCouponBalance Remove Comment Code.
+        /*
         /// <summary>
         /// Gets Active User Coupon Sold balance.
         /// </summary>
@@ -569,6 +571,7 @@ namespace DMT.Models
             }
         }
 
+        */
         #endregion
     }
 

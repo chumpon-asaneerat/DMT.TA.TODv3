@@ -54,8 +54,11 @@ Refactor DMT.TA.TODv4 #1785
 Refactor DMT.TA.TODv4 #1784
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1783
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models project.
+    - Implements UserCouponSoldByLaneTransactionView.sql #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #1782

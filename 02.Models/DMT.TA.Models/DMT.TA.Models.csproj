@@ -197,10 +197,13 @@
     <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponTransactionView.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponSoldByLaneTransactionView.sql" />
+    <None Include="Views\v1\Coupons\TSBCouponSoldByLaneTransactionView.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Coupons\TSBCouponSoldByTSBTransactionView.sql" />
+    <None Include="Views\v1\Coupons\TSBCouponSoldByTSBTransactionView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Coupons\UserCouponSoldByLaneTransactionView.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

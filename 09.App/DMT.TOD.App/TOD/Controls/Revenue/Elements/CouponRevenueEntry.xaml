@@ -36,7 +36,7 @@
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource CouponSold35Description}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource CouponSoldBHT35Count}" />
+                    <TextBox IsEnabled="{Binding CouponSoldEnable}" Style="{StaticResource CouponSoldBHT35Count}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponSoldUnitCountStyle}" />
                     <TextBlock Width="5" />
@@ -48,7 +48,7 @@
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource CouponSold80Description}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource CouponSoldBHT80Count}" />
+                    <TextBox IsEnabled="{Binding CouponSoldEnable}" Style="{StaticResource CouponSoldBHT80Count}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponSoldUnitCountStyle}" />
                     <TextBlock Width="5" />

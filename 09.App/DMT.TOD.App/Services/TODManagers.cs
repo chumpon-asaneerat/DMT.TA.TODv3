@@ -2140,11 +2140,11 @@ namespace DMT.Services
                 var usrSold = CheckSoldCoupon();
                 if (null != usrSold)
                 {
-                    //Entry.CouponSoldEnable = false;
-                    //Entry.CouponSoldBHT35 = usrSold.CouponBHT35;
-                    //Entry.CouponSoldBHT80 = usrSold.CouponBHT80;
-                    //Entry.CouponSoldBHT35Total = ;
-                    //Entry.CouponSoldBHT80Total;
+                    Entry.CouponSoldEnable = false;
+                    Entry.CouponSoldBHT35 = usrSold.CouponBHT35;
+                    Entry.CouponSoldBHT80 = usrSold.CouponBHT80;
+                    Entry.CouponSoldBHT35Total = usrSold.CouponBHT35Total;
+                    Entry.CouponSoldBHT80Total = usrSold.CouponBHT80Total;
                 }
                 else
                 {

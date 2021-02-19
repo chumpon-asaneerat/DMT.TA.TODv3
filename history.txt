@@ -50,8 +50,13 @@ Refactor DMT.TA.TODv4 #1795
 Refactor DMT.TA.TODv4 #1794
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1793
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - CouponSyncService class
+      - Update InternalSyncCouponFromServerAsync method
+        - Change Task.Run to Task.StartNew with setup UIThread to prevent cross thread error.
 
 [commited]
 Refactor DMT.TA.TODv4 #1792

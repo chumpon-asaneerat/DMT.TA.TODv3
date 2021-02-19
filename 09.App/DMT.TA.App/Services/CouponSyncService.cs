@@ -23,6 +23,7 @@ using NLib.Reflection;
 
 using RestSharp;
 using System.Threading.Tasks;
+using System.Threading;
 
 #endregion
 
@@ -234,7 +235,11 @@ namespace DMT.Services
 
         private async void InternalSyncCouponFromServerAsync() // returns void
         {
-            await Task.Run(InternalSyncCouponFromServer);
+            var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
+            await Task.Factory.StartNew(() => 
+            {
+                InternalSyncCouponFromServer();
+            }, CancellationToken.None, TaskCreationOptions.None, uiContext);
         }
 
         private void SyncCouponFromServer() // not blocks, not waits

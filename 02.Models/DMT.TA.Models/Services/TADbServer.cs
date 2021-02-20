@@ -2043,7 +2043,7 @@ namespace DMT.Services
             InitView("TSBCouponBalanceView", 1, prefix);
 
             // !!! Required for UserCouponSoldSummary model (NEW!!).
-            InitView("UserCouponSoldByLaneTransactionView", 1, prefix);
+            InitView("UserCouponSoldByLaneTransactionView", 2, prefix);
 
             // Exchanges - Embeded resource used . instead / to access sub contents.
             prefix = @"Exchanges";

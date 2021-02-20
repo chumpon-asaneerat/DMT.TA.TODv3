@@ -46,8 +46,12 @@ Refactor DMT.TA.TODv4 #1804
 Refactor DMT.TA.TODv4 #1803
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1802
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models
+    - TADbServer.cs
+      - Update InitView Code UserCouponSoldByLaneTransactionView (increace version).
 
 [commited]
 Refactor DMT.TA.TODv4 #1801

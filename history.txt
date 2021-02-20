@@ -49,8 +49,11 @@ Refactor DMT.TA.TODv4 #1803
 Refactor DMT.TA.TODv4 #1802
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1801
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Models
+    - Update UserCouponSoldByLaneTransactionView remove FinishFlag check.
 
 [commited]
 Refactor DMT.TA.TODv4 #1800

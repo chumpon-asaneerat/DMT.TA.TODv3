@@ -28,8 +28,12 @@ Refactor DMT.TA.TODv4 #1800
 Refactor DMT.TA.TODv4 #1799
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1798
-- 
+- DMT.TAxTODv3
+  - DMT.Core
+    - NJson.cs -> Change DefaultSettings
+      - Change DateTimeZoneHandling from Local to RoundtripKind.
 
 [commited]
 Refactor DMT.TA.TODv4 #1797

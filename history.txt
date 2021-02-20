@@ -1,6 +1,4 @@
 ﻿- Note:
-  - Implements User credit history view.
-  - Implements Coupon borrows/returns view.
   - Request 
     - Check if both total side (left/right) is match.
     - Need to check with TSB max balance.
@@ -16,17 +14,14 @@
     - PlazaOperations.Exchange.cs (Local.WebClient) need to check why save to invalid column.
   - ใบเสร็จขายคูปอง ที่ TA ขาดเรื่อง Running Number
   - หลังป้อนรายได้ควร update กลับไปยัง UserCredit/RevenueShift ด้วย
-  - Note (TA Credit)
-    - รับถุงเงิน ถ้าไม่เปิดกะให้ auto เปิดกะให้
-    - ถ้ารับถุงที่ 2 มีกะเปิดแล้ว รับได้ แต่ต้องผูก plaza group (IN/OUT)
-      - ถ้าเป็นขาเดียว ต้องรับถุงที่ 2 ไม่ได้
-      - ถ้าเป็น 2 ขา ต้องเลือก ขาเข้า/ขาออก ของแต่ละถุง
 --------------------------------------------------------------------------------------------
 Refactor DMT.TA.TODv4 #1810
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1809
-- 
+- DMT.TAxTODv3
+  - Update history.txt note.
 
 [commited]
 Refactor DMT.TA.TODv4 #1808

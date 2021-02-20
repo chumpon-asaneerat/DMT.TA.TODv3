@@ -39,8 +39,10 @@ Refactor DMT.TA.TODv4 #1814
 Refactor DMT.TA.TODv4 #1813
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1812
-- 
+- DMT.TAxTODv3
+  - Update todos.
 
 [commited]
 Refactor DMT.TA.TODv4 #1811

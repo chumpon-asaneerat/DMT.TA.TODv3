@@ -40,8 +40,11 @@ Refactor DMT.TA.TODv4 #1806
 Refactor DMT.TA.TODv4 #1805
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1804
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCouponSoldSummary -> GetCouponSoldSummary remove unused comment.
 
 [commited]
 Refactor DMT.TA.TODv4 #1803

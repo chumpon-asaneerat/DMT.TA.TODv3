@@ -545,9 +545,6 @@ namespace DMT.Models
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
-                    //CouponBHT35
-                    //CouponBHT80
-                    //Price
                     var coupons = TSBCouponTransaction.GetUserCouponSoldByLaneTransactions(tsb,
                         plazaGroup, user, start, end).Value();
                     if (null != coupons)

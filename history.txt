@@ -34,8 +34,16 @@ Refactor DMT.TA.TODv4 #1808
 Refactor DMT.TA.TODv4 #1807
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1806
-- 
+- DMT.TAxTODv3
+  - TEST (Json DateTime problem fixed)
+    - Borrow Coupon -> OK.
+    - Return Coupon -> OK.
+    - Revenue Entry -> Load Sold Coupon -> OK.
+    - Check json files
+      - Save coupon(s) -> OK.
+      - Revenue Entry -> OK.
 
 [commited]
 Refactor DMT.TA.TODv4 #1805

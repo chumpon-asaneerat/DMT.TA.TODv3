@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #1830
 Refactor DMT.TA.TODv4 #1829
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1828
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - Temporary Enable Enter CoupontSold entry in all case but get actual coupon sold from TA for initialize values.
 
 [commited]
 Refactor DMT.TA.TODv4 #1827

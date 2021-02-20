@@ -37,8 +37,10 @@ Refactor DMT.TA.TODv4 #1807
 Refactor DMT.TA.TODv4 #1806
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1805
-- 
+- DMT.TAxTODv3
+  - Rebuild all projects - OK.
 
 [commited]
 Refactor DMT.TA.TODv4 #1804

@@ -36,8 +36,10 @@ Refactor DMT.TA.TODv4 #1825
 Refactor DMT.TA.TODv4 #1824
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1823
-- 
+- DMT.TAxTODv4
+  - Poretd TODMQService from v3
 
 [commited]
 Refactor DMT.TA.TODv4 #1822

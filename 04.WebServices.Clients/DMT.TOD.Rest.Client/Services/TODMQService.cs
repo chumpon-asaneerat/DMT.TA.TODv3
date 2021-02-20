@@ -68,17 +68,6 @@ namespace DMT.Services
 
         #region Private Methods
 
-        private string GetFileName(string msgType)
-        {
-
-            if (string.IsNullOrWhiteSpace(msgType))
-                return string.Empty;
-            // Save message.
-            string fileName = "msg." + DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss.ffffff",
-                System.Globalization.DateTimeFormatInfo.InvariantInfo) + "." + msgType;
-            return fileName;
-        }
-
         private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();

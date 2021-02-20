@@ -33,8 +33,10 @@ Refactor DMT.TA.TODv4 #1816
 Refactor DMT.TA.TODv4 #1815
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1814
-- 
+- DMT.TAxTODv3
+  - Implements Compression #1. 
 
 [commited]
 Refactor DMT.TA.TODv4 #1813

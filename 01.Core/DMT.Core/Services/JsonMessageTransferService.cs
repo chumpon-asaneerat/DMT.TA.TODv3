@@ -54,6 +54,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
             try
             {
+                CompressFiles();
                 List<string> files = new List<string>();
                 var msgFiles = Directory.GetFiles(this.MessageFolder, "*.json");
                 if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
@@ -164,6 +165,26 @@ namespace DMT.Services
 
         #endregion
 
+        #region GetFileName
+
+        /// <summary>
+        /// Get File Name.
+        /// </summary>
+        /// <param name="msgType">The message type.</param>
+        /// <returns>Returns file name</returns>
+        protected string GetFileName(string msgType)
+        {
+
+            if (string.IsNullOrWhiteSpace(msgType))
+                return string.Empty;
+            // Save message.
+            string fileName = "msg." + DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss.ffffff",
+                System.Globalization.DateTimeFormatInfo.InvariantInfo) + "." + msgType;
+            return fileName;
+        }
+
+        #endregion
+
         #region ProcessJson
 
         /// <summary>
@@ -172,6 +193,49 @@ namespace DMT.Services
         /// <param name="fullFileName">The json full file name.</param>
         /// <param name="jsonString">The json data in string.</param>
         protected abstract void ProcessJson(string fullFileName, string jsonString);
+
+        #endregion
+
+        #region Compress file
+
+        /// <summary>
+        /// Compress Files.
+        /// </summary>
+        protected void CompressFiles()
+        {
+            List<string> files = new List<string>();
+            var backupFiles = Directory.GetFiles(Path.Combine(this.MessageFolder, "Backup"), "*.json");
+            if (null != backupFiles && backupFiles.Length > 0) files.AddRange(backupFiles);
+            List<string> oldFiles = new List<string>();
+
+            DateTime today = DateTime.Today;
+            DateTime targetDT = DateTime.Today.AddDays(-2);
+            files.ForEach(file => 
+            {
+                string fileName = Path.GetFileName(file);
+                string fileYMD = fileName.Substring(4, 10);
+                DateTime fileDT;
+                if (DateTime.TryParseExact(fileYMD, "yyyy.MM.dd", 
+                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                    System.Globalization.DateTimeStyles.None,
+                    out fileDT))
+                {
+                    if (fileDT <= targetDT)
+                    {
+                        oldFiles.Add(file);
+                    }
+                }
+            });
+
+            if (null != oldFiles && oldFiles.Count > 0)
+            {
+                string zipDir = targetDT.ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                oldFiles.ForEach(file => 
+                {
+                    MoveTo(file, zipDir);
+                });
+            }
+        }
 
         #endregion
 
@@ -306,7 +370,7 @@ namespace DMT.Services
 
         #endregion
 
-        #region Start/Shutdown
+        #region OnStart/OnShutdown
 
         /// <summary>
         /// OnStart.

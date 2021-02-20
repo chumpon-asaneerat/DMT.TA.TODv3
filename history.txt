@@ -18,8 +18,10 @@
 Refactor DMT.TA.TODv4 #1820
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1819
-- 
+- DMT.TAxTODv4
+  - Poretd SCWMQService from v3
 
 [commited]
 Refactor DMT.TA.TODv4 #1818

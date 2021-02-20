@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #1820
 Refactor DMT.TA.TODv4 #1819
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1818
-- 
+- DMT.TAxTODv4
+  - Ported JsonMessageTransferService from v3
+    - Supports Compression.
 
 [commited]
 Refactor DMT.TA.TODv4 #1817

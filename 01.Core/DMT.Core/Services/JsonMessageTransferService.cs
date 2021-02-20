@@ -203,37 +203,87 @@ namespace DMT.Services
         /// </summary>
         protected void CompressFiles()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             List<string> files = new List<string>();
-            var backupFiles = Directory.GetFiles(Path.Combine(this.MessageFolder, "Backup"), "*.json");
-            if (null != backupFiles && backupFiles.Length > 0) files.AddRange(backupFiles);
             List<string> oldFiles = new List<string>();
 
+            string backupFolder = Path.Combine(this.MessageFolder, "Backup");
+            if (!Directory.Exists(backupFolder)) return; // No Backup Folder.
+
+            var backupFiles = Directory.GetFiles(backupFolder, "*.json");
+            if (null != backupFiles && backupFiles.Length > 0) files.AddRange(backupFiles);
+
+            // Find old files to compress.
             DateTime today = DateTime.Today;
-            DateTime targetDT = DateTime.Today.AddDays(-2);
+            DateTime firstOnMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            DateTime targetDT = firstOnMonth.AddMonths(-2); // last 2 month.
+
             files.ForEach(file => 
             {
-                string fileName = Path.GetFileName(file);
-                string fileYMD = fileName.Substring(4, 10);
-                DateTime fileDT;
-                if (DateTime.TryParseExact(fileYMD, "yyyy.MM.dd", 
-                    System.Globalization.DateTimeFormatInfo.InvariantInfo,
-                    System.Globalization.DateTimeStyles.None,
-                    out fileDT))
+                try
                 {
-                    if (fileDT <= targetDT)
+                    string fileName = Path.GetFileName(file);
+                    string fileYMD = fileName.Substring(4, 10);
+                    DateTime fileDT;
+                    if (DateTime.TryParseExact(fileYMD, "yyyy.MM.dd",
+                        System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                        System.Globalization.DateTimeStyles.None,
+                        out fileDT))
                     {
-                        oldFiles.Add(file);
+                        if (fileDT < targetDT)
+                        {
+                            oldFiles.Add(file);
+                        }
                     }
                 }
+                catch (Exception ex1)
+                {
+                    med.Err(ex1);
+                }
             });
-
+            // Move old files to target folder.
             if (null != oldFiles && oldFiles.Count > 0)
             {
                 string zipDir = targetDT.ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
                 oldFiles.ForEach(file => 
                 {
-                    MoveTo(file, zipDir);
+                    try
+                    {
+                        MoveTo(file, zipDir);
+                    }
+                    catch (Exception ex2)
+                    {
+                        med.Err(ex2);
+                    }
                 });
+
+                // Compress.
+                string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);
+                string targetFile = zipDir + ".zip";
+                string outputFile = Path.Combine(this.MessageFolder, "Backup", targetFile);
+                try
+                {
+                    NLib.Utils.SevenZipManager.CompressDirectory(targetDir, outputFile, true);
+                }
+                catch (Exception ex3)
+                {
+                    med.Err(ex3);
+                }
+
+                // Remove Folder.
+                try
+                {
+                    if (Directory.Exists(targetDir))
+                    {
+                        // Delete all sub directories and files
+                        Directory.Delete(targetDir, true);
+                    }
+                }
+                catch (Exception ex4)
+                {
+                    med.Err(ex4);
+                }
             }
         }
 

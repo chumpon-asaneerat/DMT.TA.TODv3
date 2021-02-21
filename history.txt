@@ -27,8 +27,11 @@ Refactor DMT.TA.TODv4 #1858
 Refactor DMT.TA.TODv4 #1857
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1856
-- 
+- DMT.TAxTODv4
+  - Update NJson.cs
+    - Add CorrectedIsoDateTimeConverter class for override all date serialization (add +7).
 
 [commited]
 Refactor DMT.TA.TODv4 #1855

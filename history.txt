@@ -42,8 +42,10 @@ Refactor DMT.TA.TODv4 #1863
 Refactor DMT.TA.TODv4 #1862
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1861
-- 
+- DMT.TAxTODv3
+  - Note in #1860 has update NJson.cs -> Set Culture to DateTimeFormatInfo.InvariantInfo.
 
 [commited]
 Refactor DMT.TA.TODv4 #1860

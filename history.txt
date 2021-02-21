@@ -42,8 +42,10 @@ Refactor DMT.TA.TODv4 #1853
 Refactor DMT.TA.TODv4 #1852
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1851
-- 
+- DMT.TAxTODv4
+  - Update SCWExtensionMethods -> ToServer (assign attendanceDateTime, departureDateTime as local date).
 
 [commited]
 Refactor DMT.TA.TODv4 #1850

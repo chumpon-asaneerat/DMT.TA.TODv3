@@ -18,8 +18,10 @@
 Refactor DMT.TA.TODv4 #1840
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1839
-- 
+- DMT.TAxTODv3
+  - PaymentManager fixed LoadEMVItems/LoadQRCodeItems start/end datetime must be local (+7).
 
 [commited]
 Refactor DMT.TA.TODv4 #1838

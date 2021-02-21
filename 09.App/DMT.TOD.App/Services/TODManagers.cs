@@ -1530,8 +1530,24 @@ namespace DMT.Services
                         param.networkId = networkId;
                         param.plazaId = pzId;
                         param.staffId = User.UserId;
-                        param.startDateTime = Begin;
-                        param.endDateTime = End;
+                        if (Begin.HasValue)
+                        {
+                            var dt = Begin.Value;
+                            param.startDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local));
+                        }
+                        else
+                        {
+                            param.startDateTime = new DateTime?();
+                        }
+                        if (End.HasValue)
+                        {
+                            var dt = End.Value;
+                            param.endDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local));
+                        }
+                        else
+                        {
+                            param.endDateTime = new DateTime?();
+                        }
                         var emvList = scwOps.emvTransactionList(param);
                         if (null != emvList && null != emvList.list)
                         {
@@ -1607,8 +1623,24 @@ namespace DMT.Services
                         param.networkId = networkId;
                         param.plazaId = pzId;
                         param.staffId = User.UserId;
-                        param.startDateTime = Begin;
-                        param.endDateTime = End;
+                        if (Begin.HasValue)
+                        {
+                            var dt = Begin.Value;
+                            param.startDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local));
+                        }
+                        else
+                        {
+                            param.startDateTime = new DateTime?();
+                        }
+                        if (End.HasValue)
+                        {
+                            var dt = End.Value;
+                            param.endDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local));
+                        }
+                        else
+                        {
+                            param.endDateTime = new DateTime?();
+                        }
                         var qrcodeList = scwOps.qrcodeTransactionList(param);
                         if (null != qrcodeList && null != qrcodeList.list)
                         {

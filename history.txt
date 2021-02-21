@@ -36,8 +36,10 @@ Refactor DMT.TA.TODv4 #1835
 Refactor DMT.TA.TODv4 #1834
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1833
-- 
+- DMT.TAxTODv4
+  - Update SCWExtensionMethods -> ToServer (assign operationDateTime, declareDateTime as local date).
 
 [commited]
 Refactor DMT.TA.TODv4 #1832

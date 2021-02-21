@@ -2210,7 +2210,18 @@ namespace DMT.Services
             usrshf.AssignTo(Entry); // assigned user shift
 
             // assigned date after sync object(s) to RevenueEntry.
-            Entry.EntryDate = EntryDate; // assigned Entry date.
+
+            // assigned Entry date.
+            if (EntryDate.HasValue)
+            {
+                var dt = EntryDate.Value;
+                Entry.EntryDate = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, DateTimeKind.Local));
+            }
+            else
+            {
+                Entry.EntryDate = new DateTime?();
+            }
+
             var dtNow = DateTime.Now;
             if (!ByChief)
             {

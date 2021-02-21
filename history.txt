@@ -39,8 +39,11 @@ Refactor DMT.TA.TODv4 #1834
 Refactor DMT.TA.TODv4 #1833
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1832
-- 
+- DMT.TAxTODv3
+  - Update RevenueManager -> EntryDate (assign as local date).
+  - Update SCWExtensionMethods -> ToServer (assign operationDateTime, declareDateTime as local date).
 
 [commited]
 Refactor DMT.TA.TODv4 #1831

@@ -89,8 +89,28 @@ namespace DMT.Models.ExtensionMethods
             inst.safetyBeltNumber = value.BeltNo;
 
             inst.shiftTypeId = value.ShiftId;
-            inst.declareDateTime = value.EntryDate;
-            inst.operationDate = value.RevenueDate.Value.Date; // date part only.
+
+            if (value.EntryDate.HasValue)
+            {
+                var dt = value.EntryDate.Value;
+                // date part only.
+                inst.declareDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, DateTimeKind.Local));
+            }
+            else
+            {
+                inst.declareDateTime = new DateTime?();
+            }
+
+            if (value.RevenueDate.HasValue)
+            {
+                var dt = value.RevenueDate.Value;
+                // date part only.
+                inst.operationDate = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, DateTimeKind.Local));
+            }
+            else
+            {
+                inst.operationDate = new DateTime?();
+            }
 
             inst.declareById = value.UserId;
             inst.declareByName = value.TSBNameTH;

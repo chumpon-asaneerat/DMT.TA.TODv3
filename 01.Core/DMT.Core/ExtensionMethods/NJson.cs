@@ -3,30 +3,114 @@
 #region Using
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using NLib;
-using Newtonsoft.Json;
-using NLib.IO;
+
 using System.Configuration;
+using System.Globalization;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+using NLib;
+using NLib.IO;
 
 #endregion
 
 namespace DMT
 {
+    #region CorrectedIsoDateTimeConverter
+
+    public class CorrectedIsoDateTimeConverter : IsoDateTimeConverter
+    {
+        //private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+        private const string DefaultDateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffK";
+
+        /// <summary>
+        /// Write Json.
+        /// </summary>
+        /// <param name="writer">The JsonWriter instance.</param>
+        /// <param name="value">The object instance.</param>
+        /// <param name="serializer">The Serializer instance.</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            if (value is DateTime)
+            {
+                DateTime dateTime = (DateTime)value;
+
+                if (dateTime.Kind == DateTimeKind.Unspecified)
+                {
+                    if (DateTimeStyles.HasFlag(DateTimeStyles.AssumeUniversal))
+                    {
+                        dateTime = DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
+                    }
+                    else if (DateTimeStyles.HasFlag(DateTimeStyles.AssumeLocal))
+                    {
+                        dateTime = DateTime.SpecifyKind(dateTime, DateTimeKind.Local);
+                    }
+                    else
+                    {
+                        // Force local
+                        dateTime = DateTime.SpecifyKind(dateTime, DateTimeKind.Local);
+                    }
+                }
+
+                if (DateTimeStyles.HasFlag(DateTimeStyles.AdjustToUniversal))
+                {
+                    dateTime = dateTime.ToUniversalTime();
+                }
+
+                string format = string.IsNullOrEmpty(DateTimeFormat) ? DefaultDateTimeFormat : DateTimeFormat;
+                writer.WriteValue(dateTime.ToString(format, Culture));
+                //base.WriteJson(writer, dateTime, serializer);
+            }
+            else
+            {
+                base.WriteJson(writer, value, serializer);
+            }
+        }
+    }
+
+    #endregion
+
+    #region NJson
+
     /// <summary>
     /// The Json Extension Methods.
     /// </summary>
     public static class NJson
     {
-        public static JsonSerializerSettings DefaultSettings = new JsonSerializerSettings()
+        private static JsonSerializerSettings _defaultSettings = null;
+        /// <summary>
+        /// Gets Default JsonSerializerSettings.
+        /// </summary>
+        public static JsonSerializerSettings DefaultSettings
         {
-            DateFormatHandling = DateFormatHandling.IsoDateFormat,
-            DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
-            DateParseHandling = DateParseHandling.DateTimeOffset,
-            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'"
-            DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK"
-        };
+            get
+            {
+                if (null == _defaultSettings)
+                {
+                    lock (typeof(NJson))
+                    {
+                        _defaultSettings = new JsonSerializerSettings()
+                        {
+                            DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                            DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
+                            DateParseHandling = DateParseHandling.DateTimeOffset,
+                            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'"
+                            DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK"
+                        };
+                        if (null == _defaultSettings.Converters) _defaultSettings.Converters = new List<JsonConverter>();
+                        if (null != _defaultSettings.Converters)
+                        {
+                            _defaultSettings.Converters.Add(new CorrectedIsoDateTimeConverter());
+                        }
+                    }
+                }
+                return _defaultSettings;
+            }
+        }
 
         /// <summary>
         /// Convert Object to Json String.
@@ -40,6 +124,7 @@ namespace DMT
             try
             {
                 var settings = NJson.DefaultSettings;
+                settings.Converters.Add(new CorrectedIsoDateTimeConverter());
                 result = JsonConvert.SerializeObject(value, 
                     (minimized) ? Formatting.None : Formatting.Indented, settings);
             }
@@ -269,4 +354,6 @@ namespace DMT
             return Files.Exists(localFile);
         }
     }
+
+    #endregion
 }

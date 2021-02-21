@@ -62,8 +62,8 @@ namespace DMT
                 }
 
                 string format = string.IsNullOrEmpty(DateTimeFormat) ? DefaultDateTimeFormat : DateTimeFormat;
-                writer.WriteValue(dateTime.ToString(format, Culture));
-                //base.WriteJson(writer, dateTime, serializer);
+                writer.WriteValue(dateTime.ToString(format, DateTimeFormatInfo.InvariantInfo));
+                //writer.WriteValue(dateTime.ToString(format, Culture));
             }
             else
             {

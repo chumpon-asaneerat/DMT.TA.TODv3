@@ -116,8 +116,26 @@ namespace DMT.Models.ExtensionMethods
             inst.declareByName = value.TSBNameTH;
 
             // Lane information - Job List
-            inst.attendanceDateTime = value.ShiftBegin;
-            inst.departureDateTime = value.ShiftEnd;
+            if (value.ShiftBegin.HasValue)
+            {
+                var dt = value.ShiftBegin.Value;
+                inst.attendanceDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local));
+            }
+            else
+            {
+                inst.attendanceDateTime = new DateTime?();
+            }
+
+            if (value.ShiftEnd.HasValue)
+            {
+                var dt = value.ShiftEnd.Value;
+                inst.departureDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local));
+            }
+            else
+            {
+                inst.departureDateTime = new DateTime?();
+            }
+
             inst.jobList = new List<SCWJob>();
             if (null != jobs)
             {

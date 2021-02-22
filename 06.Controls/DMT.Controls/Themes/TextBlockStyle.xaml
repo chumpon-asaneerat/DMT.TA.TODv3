@@ -18,7 +18,7 @@
 
     <!--  ERROR MESSAGE STYLE  -->
     <Style x:Key="ErrorText" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="GreenYellow" />
+        <Setter Property="Foreground" Value="Red" />
         <Setter Property="FontSize" Value="{StaticResource TextBlockFontSize20}" />
         <Setter Property="FontWeight" Value="ExtraBold" />
         <Setter Property="TextAlignment" Value="Center" />

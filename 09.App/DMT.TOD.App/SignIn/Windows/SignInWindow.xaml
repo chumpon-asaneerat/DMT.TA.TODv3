@@ -11,6 +11,7 @@
         Height="420"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        Background="#DD000000"
         Loaded="Window_Loaded"
         PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
@@ -32,7 +33,7 @@
                  Header="Sign In"
                  Visibility="Collapsed">
             <!--  Sign In  -->
-            <Grid Background="DimGray">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="2*" />
@@ -50,7 +51,7 @@
                       Grid.RowSpan="4"
                       Grid.Column="1"
                       Grid.ColumnSpan="3">
-                    <Image Opacity="0.5" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
+                    <Image Opacity="0.1" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
                 </Grid>
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <StackPanel Margin="5">
@@ -122,7 +123,7 @@
                  Header="Change Password"
                  Visibility="Collapsed">
             <!--  Change Password  -->
-            <Grid Background="DimGray">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="2*" />
@@ -143,7 +144,7 @@
                       Grid.RowSpan="7"
                       Grid.Column="1"
                       Grid.ColumnSpan="3">
-                    <Image Opacity="0.5" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
+                    <Image Opacity="0.1" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
                 </Grid>
                 <StackPanel Grid.Row="1"
                             Grid.RowSpan="5"
@@ -229,7 +230,7 @@
                  Header="Change Password"
                  Visibility="Collapsed">
             <!--  Notify Password expired in days.  -->
-            <Grid Background="DimGray">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="*" />
@@ -244,7 +245,7 @@
                       Grid.RowSpan="3"
                       Grid.Column="1"
                       Grid.ColumnSpan="3">
-                    <Image Opacity="0.5" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
+                    <Image Opacity="0.1" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
                 </Grid>
                 <DockPanel Grid.Row="1"
                            Grid.Column="1"
@@ -295,7 +296,7 @@
                  Header="Change Password"
                  Visibility="Collapsed">
             <!--  Notify Password Expired.  -->
-            <Grid Background="DimGray">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="*" />
@@ -310,7 +311,7 @@
                       Grid.RowSpan="3"
                       Grid.Column="1"
                       Grid.ColumnSpan="3">
-                    <Image Opacity="0.5" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
+                    <Image Opacity="0.1" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
                 </Grid>
                 <DockPanel Grid.Row="1"
                            Grid.Column="1"
@@ -341,7 +342,7 @@
                  Header="Change Password"
                  Visibility="Collapsed">
             <!--  Notify Password Changed.  -->
-            <Grid Background="DimGray">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="*" />
@@ -356,7 +357,7 @@
                       Grid.RowSpan="3"
                       Grid.Column="1"
                       Grid.ColumnSpan="3">
-                    <Image Opacity="0.5" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
+                    <Image Opacity="0.1" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
                 </Grid>
                 <DockPanel Grid.Row="1"
                            Grid.Column="1"
@@ -387,7 +388,7 @@
                  Header="Change Password"
                  Visibility="Collapsed">
             <!--  Account Locked.  -->
-            <Grid Background="DimGray">
+            <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25" />
                     <ColumnDefinition Width="*" />
@@ -402,7 +403,7 @@
                       Grid.RowSpan="3"
                       Grid.Column="1"
                       Grid.ColumnSpan="3">
-                    <Image Opacity="0.5" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
+                    <Image Opacity="0.1" Source="/DMT.TOD.App;component/Images/Background/snartcard.png" />
                 </Grid>
                 <DockPanel Grid.Row="1"
                            Grid.Column="1"

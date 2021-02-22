@@ -36,8 +36,11 @@ Refactor DMT.TA.TODv4 #1875
 Refactor DMT.TA.TODv4 #1874
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1873
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - LocalDbStatus -> Change Connected/Disconnected to On/Off.
 
 [commited]
 Refactor DMT.TA.TODv4 #1872

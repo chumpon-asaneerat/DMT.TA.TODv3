@@ -2257,17 +2257,17 @@ namespace DMT.Services
             var dtNow = DateTime.Now;
             if (!ByChief)
             {
-                Entry.RevenueDate = new DateTime(
+                Entry.RevenueDate = new DateTime?(new DateTime(
                     RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
-                    dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+                    dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond, DateTimeKind.Local));
             }
             else
             {
                 if (!Entry.RevenueDate.HasValue)
                 {
-                    Entry.RevenueDate = new DateTime(
+                    Entry.RevenueDate = new DateTime?(new DateTime(
                         RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
-                        dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond);
+                        dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond, DateTimeKind.Local));
                 }
                 med.Info("Revenue Date - By Chief : {0:dd/MM/yyyy}", Entry.RevenueDate);
             }

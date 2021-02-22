@@ -21,8 +21,14 @@ Refactor DMT.TA.TODv4 #1900
 Refactor DMT.TA.TODv4 #1899
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1898
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Update TODManagers.cs.
+- DMT.TAxTODv4
+  - DMT.TOD.App project.
+    - Update TODManagers.cs.
 
 [commited]
 Refactor DMT.TA.TODv4 #1897

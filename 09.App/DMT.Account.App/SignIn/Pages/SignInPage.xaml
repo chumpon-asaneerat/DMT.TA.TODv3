@@ -411,12 +411,15 @@
                                    FontSize="28"
                                    Style="{StaticResource ErrorText}">
                             <Run Text="บัญชีผู้ใช้นี้ ไม่สามารถใช้งานได้ ณ. ขณะนี้" />
+                            <Run Text="โปรดติดต่อผู้ดูแลระบบ หมายเลข 7777" />
+                            <!--
                             <Run Text="กรุณาลองใหม่ หลัง " />
                             <Run x:Name="txtLockHours"
                                  FontSize="36"
                                  Foreground="Orange"
                                  Text="0" />
                             <Run Text=" ชั่วโมง" />
+                            -->
                             <LineBreak />
                             <Run Text="กดปุ่ม ตกลง เพื่อทำการ Sign In ใหม่" />
                         </TextBlock>

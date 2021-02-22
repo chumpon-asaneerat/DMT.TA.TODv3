@@ -18,6 +18,39 @@
 Refactor DMT.TA.TODv4 #1880
 - 
 
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- 
+
+Refactor DMT.TA.TODv4 #1880
+- Prepare history.txt
+
+[commited]
+Refactor DMT.TA.TODv4 #1880
+- DMT.TAxTODv3
+  - DMT.Account.App
+    - SignInPage -> Change password lock message.
+
 [commited]
 Refactor DMT.TA.TODv4 #1879
 - DMT.TAxTODv3

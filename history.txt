@@ -24,8 +24,10 @@ Refactor DMT.TA.TODv4 #1889
 Refactor DMT.TA.TODv4 #1888
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1887
-- 
+- DMT.TAxTODv3
+  - Update todos -> Change password lock message.
 
 [commited]
 Refactor DMT.TA.TODv4 #1886

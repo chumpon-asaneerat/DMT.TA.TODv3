@@ -18,8 +18,10 @@
 Refactor DMT.TA.TODv4 #1880
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1879
-- 
+- DMT.TAxTODv3
+  - Update todos -> fixed LocalDbStatus show on/off
 
 [commited]
 Refactor DMT.TA.TODv4 #1878

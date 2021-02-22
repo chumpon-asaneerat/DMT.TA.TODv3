@@ -114,12 +114,12 @@ namespace DMT.Controls.StatusBar
                 if (isOnline)
                 {
                     borderStatus.Background = new SolidColorBrush(Colors.ForestGreen);
-                    txtStatus.Text = "Connected";
+                    txtStatus.Text = "On";
                 }
                 else
                 {
                     borderStatus.Background = new SolidColorBrush(Colors.Maroon);
-                    txtStatus.Text = "Disconnected";
+                    txtStatus.Text = "Off";
                 }
             }));
         }

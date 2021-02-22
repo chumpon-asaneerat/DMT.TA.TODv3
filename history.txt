@@ -21,8 +21,10 @@ Refactor DMT.TA.TODv4 #1870
 Refactor DMT.TA.TODv4 #1869
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1868
-- 
+- DMT.TAxTODv4
+  - Update NJson.cs -> Add original code and code comment.
 
 [commited]
 Refactor DMT.TA.TODv4 #1867

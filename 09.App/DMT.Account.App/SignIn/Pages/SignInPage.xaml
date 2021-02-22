@@ -411,6 +411,7 @@
                                    FontSize="28"
                                    Style="{StaticResource ErrorText}">
                             <Run Text="บัญชีผู้ใช้นี้ ไม่สามารถใช้งานได้ ณ. ขณะนี้" />
+                            <LineBreak />
                             <Run Text="โปรดติดต่อผู้ดูแลระบบ หมายเลข 7777" />
                             <!--
                             <Run Text="กรุณาลองใหม่ หลัง " />

@@ -36,8 +36,11 @@ Refactor DMT.TA.TODv4 #1885
 Refactor DMT.TA.TODv4 #1884
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1883
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - SignInPage -> Change password lock message.
 
 [commited]
 Refactor DMT.TA.TODv4 #1882

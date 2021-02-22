@@ -24,8 +24,11 @@ Refactor DMT.TA.TODv4 #1899
 Refactor DMT.TA.TODv4 #1898
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1897
-- 
+- DMT.TAxTODv4
+  - NJson.cs -> Update fixed bug and remove duplicate code.
+  - DMTRestServerStartUp.cs -> Update InitCustomFormatter method -> add DateFormat settings and Converter.
 
 [commited]
 Refactor DMT.TA.TODv4 #1896

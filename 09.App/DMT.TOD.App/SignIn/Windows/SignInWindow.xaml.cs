@@ -286,7 +286,7 @@ namespace DMT.Windows
 
         private void GotoLockAccountTab(int lockHours)
         {
-            txtLockHours.Text = lockHours.ToString();
+            //txtLockHours.Text = lockHours.ToString();
             tabs.SelectedIndex = 5;
         }
 

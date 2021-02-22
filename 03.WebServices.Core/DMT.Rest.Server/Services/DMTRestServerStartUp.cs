@@ -276,9 +276,14 @@ namespace DMT.Services
             config.Formatters.Add(new System.Net.Http.Formatting.JsonMediaTypeFormatter());
             config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
+                DateParseHandling = DateParseHandling.DateTimeOffset,
+                DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
             };
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter());
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new CorrectedIsoDateTimeConverter());
 
             // Replace IBodyModelValidator to Custom Model Validator to prevent insufficient stack problem.
             config.Services.Replace(typeof(IBodyModelValidator), new CustomBodyModelValidator());

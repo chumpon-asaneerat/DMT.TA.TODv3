@@ -199,18 +199,19 @@ namespace DMT
         #region Consts
 
         //private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
-        private const string DefaultDateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffK";
+        //private const string DefaultDateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffK";
+        private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
 
         #endregion
 
         #region Override methods
 
         /// <summary>
-        /// Write Json.
+        /// Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The JsonWriter instance.</param>
-        /// <param name="value">The object instance.</param>
-        /// <param name="serializer">The Serializer instance.</param>
+        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             if (value is DateTime)
@@ -240,7 +241,8 @@ namespace DMT
                 }
 
                 string format = string.IsNullOrEmpty(DateTimeFormat) ? DefaultDateTimeFormat : DateTimeFormat;
-                writer.WriteValue(dateTime.ToString(format, DateTimeFormatInfo.InvariantInfo));
+                string str = dateTime.ToString(format, DateTimeFormatInfo.InvariantInfo);
+                writer.WriteValue(str);
                 //writer.WriteValue(dateTime.ToString(format, Culture));
             }
             else
@@ -262,6 +264,7 @@ namespace DMT
     public static class NJson
     {
         private static JsonSerializerSettings _defaultSettings = null;
+        private static CorrectedIsoDateTimeConverter _dateConverter = new CorrectedIsoDateTimeConverter();
         /// <summary>
         /// Gets Default JsonSerializerSettings.
         /// </summary>
@@ -278,13 +281,19 @@ namespace DMT
                             DateFormatHandling = DateFormatHandling.IsoDateFormat,
                             DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
                             DateParseHandling = DateParseHandling.DateTimeOffset,
-                            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'"
-                            DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK"
+                            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK"
+                            //DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK"
+                            DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
                         };
-                        if (null == _defaultSettings.Converters) _defaultSettings.Converters = new List<JsonConverter>();
-                        if (null != _defaultSettings.Converters)
+                        if (null == _defaultSettings.Converters)
                         {
-                            _defaultSettings.Converters.Add(new CorrectedIsoDateTimeConverter());
+                            // Create new List of not exists.
+                            _defaultSettings.Converters = new List<JsonConverter>();
+                        }
+                        if (null != _defaultSettings.Converters && 
+                            !_defaultSettings.Converters.Contains(_dateConverter))
+                        {
+                            _defaultSettings.Converters.Add(_dateConverter);
                         }
                     }
                 }
@@ -301,10 +310,10 @@ namespace DMT
         public static string ToJson(this object value, bool minimized = false)
         {
             string result = string.Empty;
+            if (null == value) return result;
             try
             {
                 var settings = NJson.DefaultSettings;
-                settings.Converters.Add(new CorrectedIsoDateTimeConverter());
                 result = JsonConvert.SerializeObject(value, 
                     (minimized) ? Formatting.None : Formatting.Indented, settings);
             }
@@ -357,7 +366,9 @@ namespace DMT
                     serializer.Formatting = (minimized) ? Formatting.None : Formatting.Indented;
                     serializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                     serializer.DateTimeZoneHandling = DateTimeZoneHandling.Local;
-                    serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'";
+                    //serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+                    //serializer.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK";
+                    serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
                     serializer.Serialize(file, value);
 
                     try 
@@ -430,7 +441,9 @@ namespace DMT
                         //serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                         serializer.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                         serializer.DateTimeZoneHandling = DateTimeZoneHandling.Local;
-                        serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'K'";
+                        //serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+                        //serializer.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK";
+                        serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
                         result = (T)serializer.Deserialize(file, typeof(T));
 
                         file.Close();

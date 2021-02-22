@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NRestClient.cs" />
     <Compile Include="Services\NRestResult.cs" />
-    <Compile Include="Services\RestAPI.cs" />
+    <None Include="Services\RestAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

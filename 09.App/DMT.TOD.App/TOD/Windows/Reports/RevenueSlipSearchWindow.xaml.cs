@@ -37,6 +37,9 @@ namespace DMT.TOD.Windows.Reports
         public RevenueSlipSearchWindow()
         {
             InitializeComponent();
+
+            txtShifts.Visibility = Visibility.Collapsed;
+            cbShifts.Visibility = Visibility.Collapsed;
         }
 
         #endregion
@@ -130,7 +133,7 @@ namespace DMT.TOD.Windows.Reports
             dtDate.Value = DateTime.Now.Date;
             LoadRevenues();
 
-            var shifts = Models.Shift.GetShiftAll().Value();
+            var shifts = Models.Shift.GetShifts().Value();
             cbShifts.ItemsSource = shifts;
 
         }

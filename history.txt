@@ -18,8 +18,11 @@
 Refactor DMT.TA.TODv4 #1920
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1919
-- 
+- DMT.TAxTODv3
+  - Recheck Code #18
+    - DMT.Controls project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1918

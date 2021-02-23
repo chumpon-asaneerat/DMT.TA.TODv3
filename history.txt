@@ -15,8 +15,39 @@
   - ใบเสร็จขายคูปอง ที่ TA ขาดเรื่อง Running Number
   - หลังป้อนรายได้ควร update กลับไปยัง UserCredit/RevenueShift ด้วย
 --------------------------------------------------------------------------------------------
-Refactor DMT.TA.TODv4 #1930
+Refactor DMT.TA.TODv4 #1940
 - 
+
+Refactor DMT.TA.TODv4 #1939
+- 
+
+Refactor DMT.TA.TODv4 #1938
+- 
+
+Refactor DMT.TA.TODv4 #1937
+- 
+
+Refactor DMT.TA.TODv4 #1936
+- 
+
+Refactor DMT.TA.TODv4 #1935
+- 
+
+Refactor DMT.TA.TODv4 #1934
+- 
+
+Refactor DMT.TA.TODv4 #1933
+- 
+
+Refactor DMT.TA.TODv4 #1932
+- 
+
+Refactor DMT.TA.TODv4 #1931
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #1930
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1929

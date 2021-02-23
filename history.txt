@@ -1,21 +1,4 @@
-﻿- Note:
-  - Request 
-    - Check if both total side (left/right) is match.
-    - Need to check with TSB max balance.
-  - Internal Exchange
-    - TSBCreditTransaction Required GroupId for group all by each operation.
-  - last files checked in Request Exchange process refactor is 
-    - LoanMoney2Entry.xaml (Controls) check binding to BorrowBHT that need to check property 
-      in TSBCreditBalance, TSBCreditTransaction.
-    - PlazaRequestExchangePage.xaml (Controls) the main page that used LoanMoney2Entry control.
-    - TSBExchangeGroup.cs (Models) in SaveTSBExchangeGroup methods need to save only one received 
-      TSBCreditTransaction by calc all value i.e (Borrow.Count1BHT - Exchange.Count1BHT) and save to
-      transaction to used in TSBCreditSummary view later.
-    - PlazaOperations.Exchange.cs (Local.WebClient) need to check why save to invalid column.
-  - ใบเสร็จขายคูปอง ที่ TA ขาดเรื่อง Running Number
-  - หลังป้อนรายได้ควร update กลับไปยัง UserCredit/RevenueShift ด้วย
---------------------------------------------------------------------------------------------
-Refactor DMT.TA.TODv4 #1940
+﻿Refactor DMT.TA.TODv4 #1940
 - 
 
 Refactor DMT.TA.TODv4 #1939
@@ -39,8 +22,11 @@ Refactor DMT.TA.TODv4 #1934
 Refactor DMT.TA.TODv4 #1933
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1932
-- 
+- DMT.TAxTODv3
+  - Add Note.txt
+  - Move note in history.txt to Note.txt.
 
 [commited]
 Refactor DMT.TA.TODv4 #1931

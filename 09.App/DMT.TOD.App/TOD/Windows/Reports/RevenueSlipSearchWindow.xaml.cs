@@ -129,6 +129,10 @@ namespace DMT.TOD.Windows.Reports
             dtDate.DefaultValue = DateTime.Now;
             dtDate.Value = DateTime.Now.Date;
             LoadRevenues();
+
+            var shifts = Models.Shift.GetShiftAll().Value();
+            cbShifts.ItemsSource = shifts;
+
         }
 
         #endregion

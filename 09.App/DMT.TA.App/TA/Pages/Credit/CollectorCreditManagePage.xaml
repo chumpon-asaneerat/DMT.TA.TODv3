@@ -132,7 +132,7 @@
                                                     Width="100"
                                                     Margin="3"
                                                     Click="cmdBorrow_Click"
-                                                    Content="ยืมเงิน"
+                                                    Content="ยืมเพิ่ม"
                                                     Style="{DynamicResource InlineButton}" />
                                             <Button x:Name="cmdReturn"
                                                     Width="100"

@@ -311,7 +311,7 @@
                                 DockPanel.Dock="Top">
                             <TextBlock Margin="5"
                                        Style="{StaticResource LabelText}"
-                                       Text="วันที่ของรายได้" />
+                                       Text="นำส่งนายได้ย้อนหลัง" />
                         </Border>
                         <StackPanel Margin="0,5,0,0"
                                     DockPanel.Dock="Top"

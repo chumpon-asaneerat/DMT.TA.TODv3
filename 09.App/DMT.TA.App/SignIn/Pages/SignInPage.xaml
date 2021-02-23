@@ -151,7 +151,7 @@
                                  util:KeyboardOptions.UpDownNavigation="True"
                                  Style="{StaticResource CommonTextBox}" />
                         <Grid Height="5" />
-                        <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่าน" />
+                        <TextBlock Style="{StaticResource LabelText}" Text="กรุณาป้อนรหัสผ่านเดิม" />
                         <Grid Height="5" />
                         <PasswordBox x:Name="txtPassword2"
                                      util:FocusOptions.SelectAll="True"

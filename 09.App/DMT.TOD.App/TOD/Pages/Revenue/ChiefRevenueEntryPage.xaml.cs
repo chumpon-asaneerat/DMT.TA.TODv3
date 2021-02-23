@@ -556,7 +556,8 @@ namespace DMT.TOD.Pages.Revenue
             {
                 // Still has more jobs on another Plaza Group.
                 var win = TODApp.Windows.MessageBoxYesNo;
-                win.Setup("กะปัจจุบันยังป้อนรายได้ไม่ครบ ต้องการป้อนรายได้ต่อหรือไม่ ?", "DMT - Tour of Duty");
+                //win.Setup("กะปัจจุบันยังป้อนรายได้ไม่ครบ ต้องการป้อนรายได้ต่อหรือไม่ ?", "DMT - Tour of Duty");
+                win.Setup("พบ Job การทำงาน ของพนักงาน ที่ยังไม่ได้นำส่งรายได้\r\nต้องการนำส่งรายได้ ต่อ หรือ ไม่", "DMT - Tour of Duty");
                 if (win.ShowDialog() == true)
                 {
                     string userId = (null != manager && null != manager.User) ? manager.User.UserId : string.Empty;

@@ -36,8 +36,11 @@ Refactor DMT.TA.TODv4 #1905
 Refactor DMT.TA.TODv4 #1904
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1903
-- 
+- DMT.TAxTODv3
+  - Recheck Code #3
+    - DMT.Core project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1902

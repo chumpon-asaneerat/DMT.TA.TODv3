@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #1920
 Refactor DMT.TA.TODv4 #1919
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1918
-- 
+- DMT.TAxTODv3
+  - Recheck Code #17
+    - DMT.TOD.Rest.Server project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1917

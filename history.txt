@@ -19,8 +19,11 @@ Refactor DMT.TA.TODv4 #1935
 Refactor DMT.TA.TODv4 #1934
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1933
-- 
+- DMT.TAxTODv4
+  - Add Note.txt
+  - Move note in history.txt to Note.txt.
 
 [commited]
 Refactor DMT.TA.TODv4 #1932

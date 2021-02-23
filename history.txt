@@ -10,8 +10,10 @@ Refactor DMT.TA.TODv4 #1938
 Refactor DMT.TA.TODv4 #1937
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1936
-- 
+- DMTv2
+  - Remove note in history.txt.
 
 [commited]
 Refactor DMT.TA.TODv4 #1935

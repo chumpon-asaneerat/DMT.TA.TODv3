@@ -27,8 +27,11 @@ Refactor DMT.TA.TODv4 #1908
 Refactor DMT.TA.TODv4 #1907
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1906
-- 
+- DMT.TAxTODv3
+  - Recheck Code #6
+    - DMT.Account.Models project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1905

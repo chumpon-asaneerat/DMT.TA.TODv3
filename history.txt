@@ -30,8 +30,11 @@ Refactor DMT.TA.TODv4 #1927
 Refactor DMT.TA.TODv4 #1926
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1925
-- 
+- DMT.TAxTODv3
+  - Recheck Code #23
+    - DMT.Plaza.Simulator.App project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1924

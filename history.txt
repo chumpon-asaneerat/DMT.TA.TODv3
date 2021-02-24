@@ -22,8 +22,11 @@ Refactor DMT.TA.TODv4 #1954
 Refactor DMT.TA.TODv4 #1953
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1952
-- 
+- DMT.TAxTODv4
+  - Recheck Code #14
+    - DMT.TAxTOD.Rest.Client project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1951

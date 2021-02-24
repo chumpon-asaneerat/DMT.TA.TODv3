@@ -10,8 +10,11 @@ Refactor DMT.TA.TODv4 #1948
 Refactor DMT.TA.TODv4 #1947
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1946
-- 
+- DMT.TAxTODv4
+  - Recheck Code #9
+    - DMT.Plaza.Models project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1945

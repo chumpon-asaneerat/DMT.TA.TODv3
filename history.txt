@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #1959
 Refactor DMT.TA.TODv4 #1958
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1957
-- 
+- DMT.TAxTODv4
+  - Recheck Code #19
+    - DMT.Controls project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1956

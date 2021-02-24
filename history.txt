@@ -1,5 +1,36 @@
-﻿Refactor DMT.TA.TODv4 #1950
+﻿Refactor DMT.TA.TODv4 #1960
 - 
+
+Refactor DMT.TA.TODv4 #1959
+- 
+
+Refactor DMT.TA.TODv4 #1958
+- 
+
+Refactor DMT.TA.TODv4 #1957
+- 
+
+Refactor DMT.TA.TODv4 #1956
+- 
+
+Refactor DMT.TA.TODv4 #1955
+- 
+
+Refactor DMT.TA.TODv4 #1954
+- 
+
+Refactor DMT.TA.TODv4 #1953
+- 
+
+Refactor DMT.TA.TODv4 #1952
+- 
+
+Refactor DMT.TA.TODv4 #1951
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #1950
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1949

@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #1949
 Refactor DMT.TA.TODv4 #1948
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1947
-- 
+- DMT.TAxTODv4
+  - Recheck Code #10
+    - DMT.RabbitMQ.Client project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1946

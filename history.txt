@@ -1,8 +1,10 @@
 ﻿Refactor DMT.TA.TODv4 #1970
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1969
-- 
+- DMT.TAxTODv3
+  - Recheck Wpf.Owin.Rest.Server.Sample proejct.
 
 [commited]
 Refactor DMT.TA.TODv4 #1968

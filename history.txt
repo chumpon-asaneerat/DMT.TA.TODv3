@@ -7,8 +7,10 @@ Refactor DMT.TA.TODv4 #1969
 Refactor DMT.TA.TODv4 #1968
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1967
-- 
+- DMT.TAxTODv4
+  - Recheck Wpf.TA.Db.Test proejct.
 
 [commited]
 Refactor DMT.TA.TODv4 #1966

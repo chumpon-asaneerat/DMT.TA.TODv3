@@ -19,8 +19,10 @@ Refactor DMT.TA.TODv4 #1965
 Refactor DMT.TA.TODv4 #1964
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1963
-- 
+- DMT.TAxTODv3
+  - Recheck SmartcardM1Test proejct.
 
 [commited]
 Refactor DMT.TA.TODv4 #1962

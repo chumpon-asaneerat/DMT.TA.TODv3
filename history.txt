@@ -7,8 +7,10 @@ Refactor DMT.TA.TODv4 #1979
 Refactor DMT.TA.TODv4 #1978
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1977
-- 
+- DMT.TAxTODv4
+  - Fixed bug Rest API datetime foramt #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #1976

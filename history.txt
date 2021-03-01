@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #1977
 Refactor DMT.TA.TODv4 #1976
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1975
-- 
+- DMT.TAxTODv3
+  - Fixed bug Rest API datetime foramt.
+  - Fixed declare -> bug declaredatetime is not include time.
 
 [commited]
 Refactor DMT.TA.TODv4 #1974

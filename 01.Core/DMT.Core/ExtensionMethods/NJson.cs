@@ -200,7 +200,8 @@ namespace DMT
 
         //private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
         //private const string DefaultDateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffK";
-        private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
+        //private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
+        private const string DefaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffK";
 
         #endregion
 
@@ -283,7 +284,8 @@ namespace DMT
                             DateParseHandling = DateParseHandling.DateTimeOffset,
                             //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK"
                             //DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK"
-                            DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
+                            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
+                            DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffK"
                         };
                         if (null == _defaultSettings.Converters)
                         {
@@ -368,7 +370,8 @@ namespace DMT
                     serializer.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                     //serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
                     //serializer.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK";
-                    serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
+                    //serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
+                    serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffK";
                     serializer.Serialize(file, value);
 
                     try 
@@ -443,7 +446,8 @@ namespace DMT
                         serializer.DateTimeZoneHandling = DateTimeZoneHandling.Local;
                         //serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
                         //serializer.DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK";
-                        serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
+                        //serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK";
+                        serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffK";
                         result = (T)serializer.Deserialize(file, typeof(T));
 
                         file.Close();

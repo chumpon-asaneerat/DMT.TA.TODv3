@@ -94,7 +94,7 @@ namespace DMT.Models.ExtensionMethods
             {
                 var dt = value.EntryDate.Value;
                 // date part only.
-                inst.declareDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, DateTimeKind.Local));
+                inst.declareDateTime = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Local));
             }
             else
             {

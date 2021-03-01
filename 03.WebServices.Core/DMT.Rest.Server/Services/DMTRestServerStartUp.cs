@@ -280,7 +280,8 @@ namespace DMT.Services
                 DateFormatHandling = DateFormatHandling.IsoDateFormat,
                 DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
                 DateParseHandling = DateParseHandling.DateTimeOffset,
-                DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
+                //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
+                DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffK"
             };
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter());
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new CorrectedIsoDateTimeConverter());

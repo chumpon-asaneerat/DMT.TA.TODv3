@@ -2247,7 +2247,8 @@ namespace DMT.Services
             if (EntryDate.HasValue)
             {
                 var dt = EntryDate.Value;
-                Entry.EntryDate = new DateTime?(new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, DateTimeKind.Local));
+                Entry.EntryDate = new DateTime?(new DateTime(
+                    dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, DateTimeKind.Local));
             }
             else
             {

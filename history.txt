@@ -4,8 +4,13 @@
 Refactor DMT.TA.TODv4 #1979
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1978
-- 
+- DMT.TAxTODv4
+  - DMT.Models
+    - Update Model Extension methods.
+      - declare
+      - coupon
 
 [commited]
 Refactor DMT.TA.TODv4 #1977

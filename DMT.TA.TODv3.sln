@@ -105,6 +105,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.File.System.Watcher.Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMT.Plaza.Models", "02.Models\DMT.Plaza.Models\DMT.Plaza.Models.csproj", "{7517EB79-EACB-4F0C-A5D3-C78D9873635E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Xceed.DateTime.Sample", "10.Tests\Wpf.Xceed.DateTime.Sample\Wpf.Xceed.DateTime.Sample.csproj", "{CF4A70FA-50F5-42C5-B598-7B997E139910}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,10 @@ Global
 		{7517EB79-EACB-4F0C-A5D3-C78D9873635E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7517EB79-EACB-4F0C-A5D3-C78D9873635E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7517EB79-EACB-4F0C-A5D3-C78D9873635E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4A70FA-50F5-42C5-B598-7B997E139910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4A70FA-50F5-42C5-B598-7B997E139910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4A70FA-50F5-42C5-B598-7B997E139910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4A70FA-50F5-42C5-B598-7B997E139910}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -254,6 +260,7 @@ Global
 		{550549BE-D2A4-490B-B784-9345E6D8E5CD} = {2BD477BA-BC55-4333-AE9A-68F3C90D9E7C}
 		{0DFEDCA3-4A8E-4364-BF8A-84A70DD7E049} = {F8082E1C-9F77-4746-BE89-525109F468E1}
 		{7517EB79-EACB-4F0C-A5D3-C78D9873635E} = {2BD477BA-BC55-4333-AE9A-68F3C90D9E7C}
+		{CF4A70FA-50F5-42C5-B598-7B997E139910} = {F8082E1C-9F77-4746-BE89-525109F468E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

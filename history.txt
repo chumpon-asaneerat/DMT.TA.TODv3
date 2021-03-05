@@ -16,8 +16,10 @@ Refactor DMT.TA.TODv4 #1986
 Refactor DMT.TA.TODv4 #1985
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1984
-- 
+- DMT.TAxTODv3
+  - Add Wpf.Xceed.DateTime.Sample project.
 
 [commited]
 Refactor DMT.TA.TODv4 #1983

@@ -10,8 +10,14 @@ Refactor DMT.TA.TODv4 #1988
 Refactor DMT.TA.TODv4 #1987
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1986
-- 
+- DMT.TAxTODv3
+  - Wpf.Xceed.DateTime.Sample project.
+    - Change default namespace
+    - Change MainWindow namespace
+    - Add DateTimePicker Control.
+    - Add DateTimePicker Style.
 
 [commited]
 Refactor DMT.TA.TODv4 #1985

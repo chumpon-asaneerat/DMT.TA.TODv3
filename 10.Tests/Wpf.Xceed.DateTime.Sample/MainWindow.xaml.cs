@@ -50,6 +50,11 @@ namespace Toolkit
             //culture.DateTimeFormat.YearMonthPattern = "";
             dtEntryDate.Language = language;
         }
+
+        private void dtEntryDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            dtOut.SelectedDate = dtEntryDate.Value;
+        }
     }
 }
 
@@ -63,7 +68,15 @@ namespace Toolkit
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //if (null != culture) culture.DateTimeFormat.Calendar = thaicalendar;
-            return value;
+            string[] values = (null != value) ? value.ToString().Split(' ') : null;
+            string ret = value.ToString();
+            if (null != values && values.Length >= 2)
+            {
+                int yr = int.Parse(values[1]);
+                if (yr < 2500) yr += 543;
+                ret = values[0] + " " + yr.ToString();
+            }
+            return ret;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

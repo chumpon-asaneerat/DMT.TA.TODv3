@@ -1,8 +1,11 @@
 ﻿Refactor DMT.TA.TODv4 #1990
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1989
-- 
+- DMT.TAxTODv3
+  - Wpf.Xceed.DateTime.Sample project.
+    - Implemetns Thai calendar #3 (Force convert by year < 2500).
 
 [commited]
 Refactor DMT.TA.TODv4 #1988

@@ -22,8 +22,12 @@ Refactor DMT.TA.TODv4 #1994
 Refactor DMT.TA.TODv4 #1993
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1992
-- 
+- DMT.TAxTODv4
+  - DMT.Models
+    - User model
+      - Add ADUserName proeprty (VARCHAR(40)).
 
 [commited]
 Refactor DMT.TA.TODv4 #1991

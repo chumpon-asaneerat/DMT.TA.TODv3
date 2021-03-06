@@ -4,8 +4,11 @@
 Refactor DMT.TA.TODv4 #1989
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1988
-- 
+- DMT.TAxTODv3
+  - Wpf.Xceed.DateTime.Sample project.
+    - Implemetns Thai calendar #1 (seem WPF not supports Non-Gregorian Calendar).
 
 [commited]
 Refactor DMT.TA.TODv4 #1987

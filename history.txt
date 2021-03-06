@@ -7,8 +7,12 @@ Refactor DMT.TA.TODv4 #1989
 Refactor DMT.TA.TODv4 #1988
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1987
-- 
+- DMT.TAxTODv3
+  - Wpf.Xceed.DateTime.Sample project.
+    - Update DateTimePicker Style.
+    - Add ThaiYearConverter class.
 
 [commited]
 Refactor DMT.TA.TODv4 #1986

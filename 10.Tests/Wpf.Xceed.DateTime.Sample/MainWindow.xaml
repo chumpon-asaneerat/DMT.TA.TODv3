@@ -18,8 +18,8 @@
                                 FontSize="18"
                                 Format="Custom"
                                 FormatString="dd/MM/yyyy"
+                                 Style="{StaticResource DateTimePickerStyle1}"
                                 ShowButtonSpinner="False"
-                                Style="{DynamicResource DateTimePickerStyle1}"
                                 TimePickerAllowSpin="False"
                                 TimePickerShowButtonSpinner="False"
                                 TimePickerVisibility="Collapsed" />

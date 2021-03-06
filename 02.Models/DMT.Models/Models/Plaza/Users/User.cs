@@ -109,6 +109,7 @@ namespace DMT.Models
 
         private string _Password = string.Empty;
         private string _CardId = string.Empty;
+        private string _ADUserName = string.Empty;
 
         private string _RoleId = string.Empty;
         private int _GroupId = 0;
@@ -426,6 +427,29 @@ namespace DMT.Models
                 {
                     _CardId = value;
                     this.RaiseChanged("CardId");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets AD User Name.
+        /// </summary>
+        [Category("User")]
+        [Description("Gets or sets AD User Name.")]
+        [Indexed]
+        [MaxLength(40)]
+        [PropertyMapName("ADUserName")]
+        public string ADUserName
+        {
+            get
+            {
+                return _ADUserName;
+            }
+            set
+            {
+                if (_ADUserName != value)
+                {
+                    _ADUserName = value;
+                    this.RaiseChanged("ADUserName");
                 }
             }
         }

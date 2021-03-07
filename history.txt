@@ -16,8 +16,18 @@ Refactor DMT.TA.TODv4 #1996
 Refactor DMT.TA.TODv4 #1995
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1994
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - SignInPage
+      - Update VerifyUser method.
+  - DMT.TA.App project.
+    - SignInPage
+      - Update VerifyUser method.
+  - DMT.TOD.App project.
+    - SignInWindow
+      - Update VerifyUser method.
 
 [commited]
 Refactor DMT.TA.TODv4 #1993

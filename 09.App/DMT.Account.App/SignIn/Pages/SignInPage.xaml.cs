@@ -75,7 +75,7 @@ namespace DMT.Pages
                         UserAccess.Success(_user.UserId).Value(); // Update success.
                         LogInLog(true);
                     }
-                    VerifyUser();
+                    VerifyUser(true);
                 }
                 else if (tabs.SelectedIndex == 1)
                 {
@@ -293,7 +293,7 @@ namespace DMT.Pages
                 }
             }
 
-            VerifyUser();
+            VerifyUser(false);
         }
 
         private bool IsUserExists(string userId)
@@ -357,13 +357,28 @@ namespace DMT.Pages
             return ret;
         }
 
-        private void VerifyUser()
+        private void VerifyUser(bool byCardId)
         {
+            if (byCardId)
+            {
+                ShowError("ไม่พบข้อมูลพนักงาน ตามรหัสบัตรที่แตะ" + Environment.NewLine + "กรุณาแตะบัตรใหม่ หรือเปลี่ยนบัตรใหม่");
+                return;
+            }
             if (null == _user)
             {
-                ShowError("ไม่พบข้อมูลพนักงานตามรหัสพนักงาน และรหัสผ่านที่ระบุ" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
-                txtUserId.SelectAll();
-                txtUserId.Focus();
+                var userId = txtUserId.Text.Trim();
+                if (IsUserExists(userId))
+                {
+                    ShowError("รหัสผ่านไม่ถูกต้อง" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
+                    txtPassword.SelectAll();
+                    txtPassword.Focus();
+                }
+                else
+                {
+                    ShowError("ไม่พบข้อมูลพนักงานตามรหัสพนักงาน และรหัสผ่านที่ระบุ" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
+                    txtUserId.SelectAll();
+                    txtUserId.Focus();
+                }
                 return;
             }
 

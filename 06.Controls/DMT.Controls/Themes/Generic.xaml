@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
+
+        <ResourceDictionary Source="/DMT.Controls;component/Themes/XceedToolKitStyle.xaml" />
+        
         <ResourceDictionary Source="/DMT.Controls;component/Themes/GroupMenuStyle.xaml" />
         <ResourceDictionary Source="/DMT.Controls;component/Themes/ImageButtonStyle.xaml" />
         <ResourceDictionary Source="/DMT.Controls;component/Themes/InlineButtonStyle.xaml" />

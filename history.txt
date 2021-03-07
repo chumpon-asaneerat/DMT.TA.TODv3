@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #1997
 Refactor DMT.TA.TODv4 #1996
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1995
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Add XceedToolKitStyle.xaml
 
 [commited]
 Refactor DMT.TA.TODv4 #1994

@@ -91,8 +91,8 @@ namespace DMT.TOD.Windows.Reports
             Revenues = null;
             if (!dtDate.Value.HasValue) return;
             var dt = dtDate.Value.Value.Date;
-
-            Revenues = RevenueEntry.FindByRevnueDate(dt).Value();
+            int? shiftId = new int?(); // all shift.
+            Revenues = RevenueEntry.FindByRevnueDate(dt, shiftId).Value();
         }
 
         #endregion

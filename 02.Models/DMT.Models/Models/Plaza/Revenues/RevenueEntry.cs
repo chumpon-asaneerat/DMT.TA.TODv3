@@ -1826,8 +1826,9 @@ namespace DMT.Models
         /// </summary>
         /// <param name="begin">The Begin Revenue Date Time.</param>
         /// <param name="end">The End Revenue Date Time.</param>
+        /// <param name="shiftId">The Shift Id filter.</param>
         /// <returns>Returns List of RevenueEntry.</returns>
-        public static NDbResult<List<RevenueEntry>> FindByRevnueDate(DateTime begin, DateTime end)
+        public static NDbResult<List<RevenueEntry>> FindByRevnueDate(DateTime begin, DateTime end, int? shiftId)
         {
             var result = new NDbResult<List<RevenueEntry>>();
             SQLiteConnection db = Default;
@@ -1846,10 +1847,25 @@ namespace DMT.Models
                     cmd += "  FROM RevenueEntryView ";
                     cmd += " WHERE RevenueDate >= ? ";
                     cmd += "   AND RevenueDate <= ? ";
+                    if (shiftId.HasValue && shiftId.Value > 0)
+                    {
+                        cmd += "   AND ShiftId = ? ";
+                    }
 
-                    var rets = NQuery.Query<FKs>(cmd, begin, end).ToList();
-                    var results = rets.ToModels();
-                    result.Success(results);
+                    if (shiftId.HasValue && shiftId.Value > 0)
+                    {
+                        // Has Shift Filter.
+                        var rets = NQuery.Query<FKs>(cmd, begin, end, shiftId.Value).ToList();
+                        var results = rets.ToModels();
+                        result.Success(results);
+                    }
+                    else
+                    {
+                        // No Shift Filter.
+                        var rets = NQuery.Query<FKs>(cmd, begin, end).ToList();
+                        var results = rets.ToModels();
+                        result.Success(results);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1863,12 +1879,13 @@ namespace DMT.Models
         /// Find Revenue Enties by date.
         /// </summary>
         /// <param name="date">The Revenue Date.</param>
+        /// <param name="shiftId">The Shift Id filter.</param>
         /// <returns>Returns List of RevenueEntry.</returns>
-        public static NDbResult<List<RevenueEntry>> FindByRevnueDate(DateTime date)
+        public static NDbResult<List<RevenueEntry>> FindByRevnueDate(DateTime date, int? shiftId)
         {
             DateTime begin = date.Date;
             DateTime end = date.Date.AddDays(1).AddMilliseconds(-1);
-            return FindByRevnueDate(begin, end);
+            return FindByRevnueDate(begin, end, shiftId);
         }
 
         /*

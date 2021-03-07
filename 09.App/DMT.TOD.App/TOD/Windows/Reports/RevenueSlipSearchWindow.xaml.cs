@@ -37,9 +37,6 @@ namespace DMT.TOD.Windows.Reports
         public RevenueSlipSearchWindow()
         {
             InitializeComponent();
-
-            txtShifts.Visibility = Visibility.Collapsed;
-            cbShifts.Visibility = Visibility.Collapsed;
         }
 
         #endregion
@@ -88,6 +85,15 @@ namespace DMT.TOD.Windows.Reports
 
         #endregion
 
+        #region Combobox Handlers
+
+        private void cbShifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadRevenues();
+        }
+
+        #endregion
+
         #region ListView Handlers
 
         private void grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -111,7 +117,10 @@ namespace DMT.TOD.Windows.Reports
             if (!dtDate.Value.HasValue) return;
             var dt = dtDate.Value.Value.Date;
 
-            var revenues = RevenueEntry.FindByRevnueDate(dt).Value();
+            var shift = cbShifts.SelectedItem as Models.Shift;
+            int? shiftId = (null != shift && shift.ShiftId > 0) ? shift.ShiftId : new int?();
+
+            var revenues = RevenueEntry.FindByRevnueDate(dt, shiftId).Value();
             if (null != revenues)
             {
                 grid.ItemsSource = revenues;
@@ -134,7 +143,12 @@ namespace DMT.TOD.Windows.Reports
             LoadRevenues();
 
             var shifts = Models.Shift.GetShifts().Value();
+            if (null != shifts)
+            {
+                shifts.Insert(0, new Models.Shift() { ShiftId = 0, ShiftNameEN = "None", ShiftNameTH = "ไม่ระบุ" });
+            }
             cbShifts.ItemsSource = shifts;
+            if (null != shifts) cbShifts.SelectedIndex = 0;
 
         }
 

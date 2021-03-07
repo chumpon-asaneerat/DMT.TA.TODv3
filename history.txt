@@ -22,8 +22,14 @@ Refactor DMT.TA.TODv4 #2004
 Refactor DMT.TA.TODv4 #2003
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2002
-- 
+- DMT.TAxTODv3
+  - DMT.Modes Project
+    - RevenueEntry -> Update FindByRevnueDate add shift id parameter.
+  - DMT.TOD.App Project
+    - RevenueSlipSearchWindow -> Supports filter by shift id.
+    - RevenueSummarySearchWindow -> Update code call RevenueEntry->FindByRevnueDate
 
 [commited]
 Refactor DMT.TA.TODv4 #2001

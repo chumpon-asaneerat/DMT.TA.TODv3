@@ -10,8 +10,12 @@ Refactor DMT.TA.TODv4 #1998
 Refactor DMT.TA.TODv4 #1997
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1996
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update XceedToolKitStyle.xaml
+    - Add ThaiYearConverter
 
 [commited]
 Refactor DMT.TA.TODv4 #1995

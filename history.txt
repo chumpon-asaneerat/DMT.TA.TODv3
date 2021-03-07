@@ -1,5 +1,36 @@
-﻿Refactor DMT.TA.TODv4 #2000
+﻿Refactor DMT.TA.TODv4 #2010
 - 
+
+Refactor DMT.TA.TODv4 #2009
+- 
+
+Refactor DMT.TA.TODv4 #2008
+- 
+
+Refactor DMT.TA.TODv4 #2007
+- 
+
+Refactor DMT.TA.TODv4 #2006
+- 
+
+Refactor DMT.TA.TODv4 #2005
+- 
+
+Refactor DMT.TA.TODv4 #2004
+- 
+
+Refactor DMT.TA.TODv4 #2003
+- 
+
+Refactor DMT.TA.TODv4 #2002
+- 
+
+Refactor DMT.TA.TODv4 #2001
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #2000
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #1999

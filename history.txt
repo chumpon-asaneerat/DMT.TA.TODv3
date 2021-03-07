@@ -19,8 +19,18 @@ Refactor DMT.TA.TODv4 #1995
 Refactor DMT.TA.TODv4 #1994
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1993
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - SignInPage
+      - Update ChangePassword method.
+  - DMT.TA.App project.
+    - SignInPage
+      - Update ChangePassword method.
+  - DMT.TOD.App project.
+    - SignInWindow
+      - Update ChangePassword method.
 
 [commited]
 Refactor DMT.TA.TODv4 #1992

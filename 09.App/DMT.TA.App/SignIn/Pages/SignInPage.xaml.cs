@@ -413,9 +413,18 @@ namespace DMT.Pages
 
             if (null == _user)
             {
-                ShowError("ไม่พบข้อมูลพนักงานตามรหัสพนักงาน และรหัสผ่านที่ระบุ" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
-                txtUserId2.SelectAll();
-                txtUserId2.Focus();
+                if (IsUserExists(userId))
+                {
+                    ShowError("รหัสผ่านไม่ถูกต้อง" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
+                    txtPassword2.SelectAll();
+                    txtPassword2.Focus();
+                }
+                else
+                {
+                    ShowError("ไม่พบข้อมูลพนักงานตามรหัสพนักงาน และรหัสผ่านที่ระบุ" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
+                    txtUserId2.SelectAll();
+                    txtUserId2.Focus();
+                }
                 return ret;
             }
             var oldPwd = Utils.MD5.Encrypt(txtPassword2.Password);

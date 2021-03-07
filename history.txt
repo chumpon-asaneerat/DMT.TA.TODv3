@@ -7,8 +7,12 @@ Refactor DMT.TA.TODv4 #1999
 Refactor DMT.TA.TODv4 #1998
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #1997
-- 
+- DMT.TAxTODv3
+  - DMT.TOD project.
+    - Fixed DateTimePicker -> show popup thai year.
+    - Chief Revenue Entry -> fixed bug Revenue Date -> remove binding used manual check control.
 
 [commited]
 Refactor DMT.TA.TODv4 #1996

@@ -868,7 +868,7 @@
                                         <!--  Set Style to DMTCalendarItemStyle  -->
                                         <Calendar x:Name="PART_Calendar"
                                                   BorderThickness="0"
-                                                  Style="{DynamicResource DMTCalendarItemStyle}" />
+                                                  Style="{DynamicResource DMTCalendarStyle}" />
                                         <xceed:TimePicker x:Name="PART_TimeUpDown"
                                                           AllowSpin="{TemplateBinding TimePickerAllowSpin}"
                                                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"

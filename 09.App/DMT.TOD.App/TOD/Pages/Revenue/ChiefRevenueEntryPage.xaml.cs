@@ -211,7 +211,7 @@ namespace DMT.TOD.Pages.Revenue
 
             #region Check Date
 
-            if (!manager.RevenueDate.HasValue)
+            if (!dtRevDate.Value.HasValue)
             {
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("กรุณาเลือกวันที่ของรายได้", "DMT - Tour of Duty");
@@ -220,7 +220,7 @@ namespace DMT.TOD.Pages.Revenue
                 return;
             }
 
-            if (manager.RevenueDate.HasValue && manager.RevenueDate.Value.Date > DateTime.Now.Date)
+            if (dtRevDate.Value.HasValue && dtRevDate.Value.Value.Date > DateTime.Now.Date)
             {
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("ไม่อณุญาตให้ป้อนรายได้ล่วงหน้า กรุณาเลือกวันที่ของรายได้ใหม่", "DMT - Tour of Duty");
@@ -228,6 +228,8 @@ namespace DMT.TOD.Pages.Revenue
                 dtRevDate.Focus();
                 return;
             }
+            // Setup Revenue Date.
+            manager.RevenueDate = dtRevDate.Value;
 
             #endregion
 
@@ -447,7 +449,9 @@ namespace DMT.TOD.Pages.Revenue
 
             // Set Bindings On Tab - Date Selection.
             dtEntryDate.DataContext = manager;
-            dtRevDate.DataContext = manager;
+            //dtRevDate.DataContext = manager;
+            dtRevDate.Value = DateTime.Now.Date;
+
             txtUserId.DataContext = manager;
             txtUserName.DataContext = manager;
             // Set Bindings On Tab - Revenue Entry.

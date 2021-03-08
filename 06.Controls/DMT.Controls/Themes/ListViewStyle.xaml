@@ -521,4 +521,55 @@
                    Text="{Binding BHTTotal, StringFormat={}{0:n0}}"
                    TextAlignment="Right" />
     </DataTemplate>
+
+  
+    <!--  Common for CouponSoldHistory View  -->
+    <!--
+    <DataTemplate x:Key="SAPItemCode">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SAPItemCode}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPIntrSerial">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SAPIntrSerial}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPTransferNo">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SAPTransferNo}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="WorkingDataFrom">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding WorkingDataFrom}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ItemStatusDigit">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ItemStatusDigit}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TollWayId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TollWayId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="WorkingDateTo">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding WorkingDateTo}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ShiftId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ShiftId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPARInvoice">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SAPARInvoice}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    -->
+
 </ResourceDictionary>

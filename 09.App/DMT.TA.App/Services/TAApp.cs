@@ -344,6 +344,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region CouponSoldHistory
+
+            private static TA.Pages.Coupon.CouponSoldHistoryPage _CouponSoldHistory;
+
+            /// <summary>Gets Coupon History View Page.</summary>
+            public static TA.Pages.Coupon.CouponSoldHistoryPage CouponSoldHistory
+            {
+                get
+                {
+                    if (null == _CouponSoldHistory)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _CouponSoldHistory = new TA.Pages.Coupon.CouponSoldHistoryPage();
+                        }
+                    }
+                    return _CouponSoldHistory;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

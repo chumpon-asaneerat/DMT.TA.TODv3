@@ -556,10 +556,6 @@
       <Project>{5afdd4c5-434e-4b9f-a6e8-05c75dd95b59}</Project>
       <Name>DMT.SCW.Rest.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\05.WebServices.Servers\DMT.TOD.Rest.Server\DMT.TOD.Rest.Server.csproj">
-      <Project>{313dcc84-b2ff-46c4-b7a4-ae5a0bcfd1b2}</Project>
-      <Name>DMT.TOD.Rest.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\06.Controls\DMT.Controls\DMT.Controls.csproj">
       <Project>{aeed7b1c-4e56-4d44-bbd1-a936be653d4d}</Project>
       <Name>DMT.Controls</Name>

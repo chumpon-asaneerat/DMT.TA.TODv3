@@ -7,8 +7,16 @@ Refactor DMT.TA.TODv4 #2009
 Refactor DMT.TA.TODv4 #2008
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2007
-- 
+- DMT.TAxTODv3
+  - DMT.Core
+    - Add TAxTOD Routes
+      - Add TA Inquiry Coupon Sell. Url: /api/TA/coupons/inquiry
+      - Add Save TSB Credit Balance. Url: /api/account/tsbcredit/save
+      - Add Gets TSB Credit Balance. Url: /api/account/tsbcredit
+      - Add Save User Credit on Job. Url: /api/account/UserCredit/save
+      - Add Gets User On Job Credit by TSB. Url: /api/account/usercredit/search
 
 [commited]
 Refactor DMT.TA.TODv4 #2006

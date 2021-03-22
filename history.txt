@@ -10,8 +10,12 @@ Refactor DMT.TA.TODv4 #2008
 Refactor DMT.TA.TODv4 #2007
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2006
-- 
+- DMT.TAxTODv3
+  - DMT.Models
+    - Add TAAccountUserCredit class
+    - Add TAAccountUserCreditResult class
 
 [commited]
 Refactor DMT.TA.TODv4 #2005

@@ -10,7 +10,7 @@ namespace DMT.Models
 {
     // Server data result.
     /*
-{
+    {
       "SAPItemCode": "C35",
       "SAPIntrSerial": "ข011648",
       "SAPSysSerial": 749762,
@@ -30,6 +30,7 @@ namespace DMT.Models
       "LaneId": null
     }
     */
+    /// <summary>The TACouponInquiry class.</summary>
     public class TACouponInquiry
     {
         /// <summary>Gets or sets SAPItemCode.</summary>

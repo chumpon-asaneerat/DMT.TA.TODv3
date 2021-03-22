@@ -160,6 +160,7 @@
     <Compile Include="Models\SCW\SCWSaveChiefDuty.cs" />
     <Compile Include="Models\Plaza\Shifts\Shift.cs" />
     <Compile Include="Models\Plaza\Shifts\TSBShift.cs" />
+    <Compile Include="Models\TAxTOD\TAAccountTSBCredit.cs" />
     <Compile Include="Models\TAxTOD\TACouponInquiry.cs" />
     <Compile Include="Models\TAxTOD\TACouponReveiced.cs" />
     <Compile Include="Models\TAxTOD\TACouponTransaction.cs" />

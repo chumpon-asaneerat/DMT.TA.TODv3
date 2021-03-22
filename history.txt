@@ -16,8 +16,12 @@ Refactor DMT.TA.TODv4 #2006
 Refactor DMT.TA.TODv4 #2005
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2004
-- 
+- DMT.TAxTODv3
+  - DMT.Models
+    - Add TACouponInquiry class
+    - Add Search->TAxTOD->Coupon->Inquiry
 
 [commited]
 Refactor DMT.TA.TODv4 #2003

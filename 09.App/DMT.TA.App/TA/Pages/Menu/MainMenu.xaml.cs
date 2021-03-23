@@ -68,11 +68,7 @@ namespace DMT.TA.Pages.Menu
         private void cmdCouponSoldHistory_Click(object sender, RoutedEventArgs e)
         {
             // ประวัติการขายคูปอง
-            //var page = TAApp.Pages.CouponHistoryView;
-            //page.Setup();
-            //PageContentManager.Instance.Current = page;
-
-            var page = TAApp.Pages.CouponSoldHistory;
+            var page = TAApp.Pages.CouponHistoryView;
             page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }

@@ -22,8 +22,11 @@ Refactor DMT.TA.TODv4 #2014
 Refactor DMT.TA.TODv4 #2013
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2012
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Update Coupon History page #4.
 
 [commited]
 Refactor DMT.TA.TODv4 #2011

@@ -1,12 +1,18 @@
 ﻿#region Using
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Threading;
+using System.Reflection;
 
 using DMT.Models;
 using DMT.Services;
+
+using NLib;
 using NLib.Services;
 using NLib.Reflection;
 
@@ -28,6 +34,12 @@ namespace DMT.TA.Pages.Coupon
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Internal Variables
+
+        private User _chief = null;
 
         #endregion
 
@@ -62,6 +74,31 @@ namespace DMT.TA.Pages.Coupon
         private void Resync()
         {
             CouponSyncService.Instance.ReSyncAll();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup
+        /// </summary>
+        /// <param name="chief">The Current User.</param>
+        public void Setup(User chief)
+        {
+            _chief = chief;
+
+            if (null != _chief)
+            {
+
+            }
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtSAPItemCode.SelectAll();
+                txtSAPItemCode.Focus();
+            }));
         }
 
         #endregion

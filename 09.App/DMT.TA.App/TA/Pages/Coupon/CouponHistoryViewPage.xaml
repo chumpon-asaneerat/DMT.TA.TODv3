@@ -222,58 +222,46 @@
                                                   TimePickerAllowSpin="False"
                                                   TimePickerShowButtonSpinner="False"
                                                   TimePickerVisibility="Collapsed" />
-
-                            <!--
-                            <StackPanel Grid.Row="5"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock Width="10" />
-                                <TextBlock Width="140"
-                                           Style="{StaticResource LabelText}"
-                                           Text="กะทำงาน : "
-                                           TextAlignment="Right" />
-                                <TextBlock Width="10" />
-                                <ComboBox x:Name="cbShifts"
-                                          Grid.Row="3"
-                                          Grid.Column="3"
-                                          Width="150"
-                                          Margin="5"
-                                          VerticalAlignment="Center"
-                                          HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center"
-                                          DisplayMemberPath="ShiftNameTH"
-                                          FontSize="{StaticResource InputFontSize18}"
-                                          SelectedValuePath="ShiftId"
-                                          Style="{StaticResource CommonComboBox}" />
-                                <TextBlock Width="10" />
-                            </StackPanel>
-                            -->
-                            <!--
-                            <StackPanel Grid.Row="7"
-                                        Grid.Column="0"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                <TextBlock Width="110"
-                                           Style="{StaticResource LabelText}"
-                                           Text="สต็อกคงเหลือ : "
-                                           TextAlignment="Right" />
-                                <TextBox x:Name="txtStockBalance"
-                                         Width="150"
-                                         FontSize="{StaticResource InputFontSize18}"
-                                         Style="{StaticResource CommonTextBox}" />
-                                <TextBlock Width="10" />
-                                <Button x:Name="cmdSearch"
-                                        Width="150"
-                                        Height="30"
-                                        VerticalAlignment="Center"
-                                        Content="แสดงข้อมูล"
-                                        FontSize="{StaticResource InputFontSize18}"
-                                        Style="{DynamicResource InlineButton}" />
-                                <TextBlock Width="10" />
-                            </StackPanel>
-                            -->
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="8"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource LabelText}"
+                                       Text="กะทำงาน : "
+                                       TextAlignment="Right" />
+                            <ComboBox x:Name="cbShifts"
+                                      Grid.Row="5"
+                                      Grid.Column="10"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      DisplayMemberPath="ShiftNameTH"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      SelectedValuePath="ShiftId"
+                                      Style="{StaticResource CommonComboBox}" />
+                            <!--  LINE 4  -->
+                            <TextBlock Grid.Row="7"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource LabelText}"
+                                       Text="สต็อกคงเหลือ : "
+                                       TextAlignment="Right" />
+                            <TextBox x:Name="txtStockBalance"
+                                     Grid.Row="7"
+                                     Grid.Column="2"
+                                     VerticalAlignment="Center"
+                                     FontSize="{StaticResource InputFontSize18}"
+                                     Style="{StaticResource CommonTextBox}" />
+                            <Button x:Name="cmdSearch"
+                                    Grid.Row="7"
+                                    Grid.Column="4"
+                                    Grid.ColumnSpan="3"
+                                    Width="150"
+                                    Height="30"
+                                    VerticalAlignment="Center"
+                                    Content="แสดงข้อมูล"
+                                    FontSize="{StaticResource InputFontSize18}"
+                                    Style="{DynamicResource InlineButton}" />
                         </Grid>
                     </DockPanel>
                     <!--  SEPERATOR  -->
@@ -282,7 +270,7 @@
                     <TextBlock Height="10" DockPanel.Dock="Bottom" />
                     <!--  LIST VIEW  -->
                     <ListView x:Name="grid"
-                              Margin="10,1"
+                              Margin="10,0"
                               FontSize="{StaticResource InputFontSize18}"
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               ItemsSource="{Binding}"

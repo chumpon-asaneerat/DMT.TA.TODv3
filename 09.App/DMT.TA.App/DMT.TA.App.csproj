@@ -219,9 +219,6 @@
     <Compile Include="TA\Pages\Coupon\CouponTSBSalePage.xaml.cs">
       <DependentUpon>CouponTSBSalePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TA\Pages\Coupon\CouponSoldHistoryPage.xaml.cs">
-      <DependentUpon>CouponSoldHistoryPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TA\Pages\Coupon\ReceiveCouponPage.xaml.cs">
       <DependentUpon>ReceiveCouponPage.xaml</DependentUpon>
     </Compile>
@@ -391,10 +388,6 @@
     <Page Include="TA\Pages\Coupon\CouponTSBSalePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TA\Pages\Coupon\CouponSoldHistoryPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="TA\Pages\Coupon\ReceiveCouponPage.xaml">
       <SubType>Designer</SubType>

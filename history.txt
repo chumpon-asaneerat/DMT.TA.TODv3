@@ -19,8 +19,11 @@ Refactor DMT.TA.TODv4 #2015
 Refactor DMT.TA.TODv4 #2014
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2013
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Update Coupon History page #5 - Remove CouponSoldHistoryPage (Kik).
 
 [commited]
 Refactor DMT.TA.TODv4 #2012

@@ -51,7 +51,10 @@ namespace DMT.Account.Pages.Menu
 
         private void cndCouponSoldHistory_Click(object sender, RoutedEventArgs e)
         {
-            // Coupon Sold History
+            // Coupon History
+            var page = AccountApp.Pages.CouponHistoryView;
+            page.Setup(AccountApp.User.Current);
+            PageContentManager.Instance.Current = page;
         }
 
         private void cndExit_Click(object sender, RoutedEventArgs e)

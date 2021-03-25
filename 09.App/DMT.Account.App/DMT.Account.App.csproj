@@ -133,6 +133,9 @@
     <Compile Include="Account\Controls\TSBCreditTransactionEntry.xaml.cs">
       <DependentUpon>TSBCreditTransactionEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml.cs">
+      <DependentUpon>CouponHistoryViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Pages\Menu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,7 @@
     <Compile Include="Header\AccountHeader.xaml.cs">
       <DependentUpon>AccountHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\AccountManager.cs" />
     <Compile Include="SignIn\Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>
@@ -181,6 +185,10 @@
       <DependentUpon>AccountStatusBar.xaml</DependentUpon>
     </Compile>
     <Page Include="Account\Controls\TSBCreditTransactionEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

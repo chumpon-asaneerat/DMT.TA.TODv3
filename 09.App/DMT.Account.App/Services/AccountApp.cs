@@ -92,6 +92,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region Coupon History View
+
+            private static Account.Pages.Coupon.CouponHistoryViewPage _CouponHistoryView;
+
+            /// <summary>Gets Coupon History View Page.</summary>
+            public static Account.Pages.Coupon.CouponHistoryViewPage CouponHistoryView
+            {
+                get
+                {
+                    if (null == _CouponHistoryView)
+                    {
+                        lock (typeof(AccountApp))
+                        {
+                            _CouponHistoryView = new Account.Pages.Coupon.CouponHistoryViewPage();
+                        }
+                    }
+                    return _CouponHistoryView;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

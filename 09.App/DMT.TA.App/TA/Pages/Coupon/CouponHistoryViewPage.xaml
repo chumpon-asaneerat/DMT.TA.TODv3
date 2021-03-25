@@ -49,13 +49,6 @@
                                       ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
                     </ctrl:ImageButton>
-                    <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdCancel"
-                                      Click="cmdCancel_Click"
-                                      DockPanel.Dock="Right"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
-                    </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
@@ -275,39 +268,37 @@
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               ItemsSource="{Binding}"
                               Style="{StaticResource SingleSelectListView}">
-                        <!--
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Width="80"
-                                                        CellTemplate="{StaticResource SAPItemCode}"
-                                                        Header="รหัสสินค้า" />
-                                        <GridViewColumn Width="100"
-                                                        CellTemplate="{StaticResource SAPIntrSerial}"
-                                                        Header="Serial No" />
-                                        <GridViewColumn Width="140"
-                                                        CellTemplate="{StaticResource SAPTransferNo}"
-                                                        Header="เลขที่ใบโอนสินค้า" />
-                                        <GridViewColumn Width="200"
-                                                        CellTemplate="{StaticResource WorkingDataFrom}"
-                                                        Header="วันที่โอนสินค้า" />
-                                        <GridViewColumn Width="120"
-                                                        CellTemplate="{StaticResource ItemStatusDigit}"
-                                                        Header="สถานะรายการ" />
-                                        <GridViewColumn Width="120"
-                                                        CellTemplate="{StaticResource TollWayId}"
-                                                        Header="ด่านเก็บเงิน" />
-                                        <GridViewColumn Width="200"
-                                                        CellTemplate="{StaticResource WorkingDateTo}"
-                                                        Header="วันที่ทำงาน" />
-                                        <GridViewColumn Width="80"
-                                                        CellTemplate="{StaticResource ShiftId}"
-                                                        Header="กะทำงาน" />
-                                        <GridViewColumn Width="200"
-                                                        CellTemplate="{StaticResource SAPARInvoice}"
-                                                        Header="AR Invoice" />
-                                    </GridView>
-                                </ListView.View>
-                        -->
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="80"
+                                                CellTemplate="{StaticResource SAPItemCode}"
+                                                Header="รหัสสินค้า" />
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource SAPIntrSerial}"
+                                                Header="Serial No" />
+                                <GridViewColumn Width="140"
+                                                CellTemplate="{StaticResource SAPTransferNo}"
+                                                Header="เลขที่ใบโอนสินค้า" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource WorkingDataFrom}"
+                                                Header="วันที่โอนสินค้า" />
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource ItemStatusDigit}"
+                                                Header="สถานะรายการ" />
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource TollWayId}"
+                                                Header="ด่านเก็บเงิน" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource WorkingDateTo}"
+                                                Header="วันที่ทำงาน" />
+                                <GridViewColumn Width="80"
+                                                CellTemplate="{StaticResource ShiftId}"
+                                                Header="กะทำงาน" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource SAPARInvoice}"
+                                                Header="AR Invoice" />
+                            </GridView>
+                        </ListView.View>
                     </ListView>
                 </DockPanel>
             </DockPanel>

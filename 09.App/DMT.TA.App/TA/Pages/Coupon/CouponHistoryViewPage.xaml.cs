@@ -55,11 +55,6 @@ namespace DMT.TA.Pages.Coupon
             GotoMainMenu();
         }
 
-        private void cmdCancel_Click(object sender, RoutedEventArgs e)
-        {
-            GotoMainMenu();
-        }
-
         #endregion
 
         #region Private Methods

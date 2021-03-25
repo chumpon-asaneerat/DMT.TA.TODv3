@@ -522,9 +522,18 @@
                    TextAlignment="Right" />
     </DataTemplate>
 
-  
-    <!--  Common for CouponSoldHistory View  -->
+    <!--  Common for Coupon History View  -->
     <!--
+    {
+      "SAPTransferDate": "2020-01-14T00:00:00.000Z",
+      "ShiftName": null,
+      "SAPARDate": null,
+      "ShiftId": 0,
+      "SoldBy": null,
+      "SoldDate": null,
+      "LaneId": null
+    }
+    -->
     <DataTemplate x:Key="SAPItemCode">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding SAPItemCode}"
@@ -535,14 +544,24 @@
                    Text="{Binding SAPIntrSerial}"
                    TextAlignment="Center" />
     </DataTemplate>
+    <DataTemplate x:Key="SAPSysSerial">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SAPSysSerial}"
+                   TextAlignment="Center" />
+    </DataTemplate>
     <DataTemplate x:Key="SAPTransferNo">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding SAPTransferNo}"
                    TextAlignment="Center" />
     </DataTemplate>
-    <DataTemplate x:Key="WorkingDataFrom">
+    <DataTemplate x:Key="SAPARInvoice">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding WorkingDataFrom}"
+                   Text="{Binding SAPARInvoice}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ItemStatus">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ItemStatus}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="ItemStatusDigit">
@@ -555,21 +574,19 @@
                    Text="{Binding TollWayId}"
                    TextAlignment="Center" />
     </DataTemplate>
+    <DataTemplate x:Key="TollWayName">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TollWayName}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="WorkingDataFrom">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding WorkingDataFrom}"
+                   TextAlignment="Center" />
+    </DataTemplate>
     <DataTemplate x:Key="WorkingDateTo">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding WorkingDateTo}"
                    TextAlignment="Center" />
     </DataTemplate>
-    <DataTemplate x:Key="ShiftId">
-        <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding ShiftId}"
-                   TextAlignment="Center" />
-    </DataTemplate>
-    <DataTemplate x:Key="SAPARInvoice">
-        <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding SAPARInvoice}"
-                   TextAlignment="Center" />
-    </DataTemplate>
-    -->
-
 </ResourceDictionary>

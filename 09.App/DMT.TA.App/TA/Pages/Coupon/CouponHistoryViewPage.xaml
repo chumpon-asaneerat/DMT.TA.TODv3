@@ -34,14 +34,6 @@
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
-                    <Grid Width="5" DockPanel.Dock="Left" />
-                    <ctrl:ImageButton x:Name="cmdRefresh"
-                                      Click="cmdRefresh_Click"
-                                      DockPanel.Dock="Left"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
-                        <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="อ่านข้อมูลคูปองทั้งหมด" />
-                        <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="จาก server" />
-                    </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
                     <ctrl:ImageButton x:Name="cmdBack"
                                       Click="cmdBack_Click"
@@ -130,14 +122,14 @@
                                        Style="{StaticResource LabelText}"
                                        Text="ด่านเก็บเงิน : "
                                        TextAlignment="Right" />
-                            <ComboBox Name="cbPlzaGroups"
+                            <ComboBox Name="cbTSBs"
                                       Grid.Row="1"
                                       Grid.Column="10"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Center"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
-                                      DisplayMemberPath="PlazaGroupNameTH"
+                                      DisplayMemberPath="TSBNameTH"
                                       FontSize="{StaticResource InputFontSize18}"
                                       ItemsSource="{Binding}" />
                             <!--  LINE 2  -->
@@ -166,6 +158,7 @@
                                       VerticalAlignment="Center"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      DisplayMemberPath="ItemStatus"
                                       FontSize="{StaticResource InputFontSize18}"
                                       ItemsSource="{Binding}" />
                             <TextBlock Grid.Row="3"
@@ -244,7 +237,10 @@
                                      Grid.Column="2"
                                      VerticalAlignment="Center"
                                      FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonTextBox}" />
+                                     IsReadOnly="True"
+                                     Style="{StaticResource CommonTextBox}"
+                                     Text="0"
+                                     TextAlignment="Center" />
                             <Button x:Name="cmdSearch"
                                     Grid.Row="7"
                                     Grid.Column="4"
@@ -252,10 +248,10 @@
                                     Width="150"
                                     Height="30"
                                     VerticalAlignment="Center"
+                                    Click="cmdSearch_Click"
                                     Content="แสดงข้อมูล"
                                     FontSize="{StaticResource InputFontSize18}"
-                                    Style="{DynamicResource InlineButton}" 
-                                    Click="cmdSearch_Click"/>
+                                    Style="{DynamicResource InlineButton}" />
                         </Grid>
                     </DockPanel>
                     <!--  SEPERATOR  -->
@@ -283,17 +279,17 @@
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource WorkingDataFrom}"
                                                 Header="วันที่โอนสินค้า" />
-                                <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource ItemStatusDigit}"
+                                <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource ItemStatus}"
                                                 Header="สถานะรายการ" />
-                                <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource TollWayId}"
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource TollWayName}"
                                                 Header="ด่านเก็บเงิน" />
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource WorkingDateTo}"
                                                 Header="วันที่ทำงาน" />
                                 <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource ShiftId}"
+                                                CellTemplate="{StaticResource ShiftName}"
                                                 Header="กะทำงาน" />
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource SAPARInvoice}"

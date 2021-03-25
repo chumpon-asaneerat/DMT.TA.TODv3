@@ -8,6 +8,29 @@ using NLib.Reflection;
 
 namespace DMT.Models
 {
+    // 1 = สต๊อก , 2 = ด่านขาย , 3 = ด่านปิดการขาย , 4 = สร้าง Invoice, 5 = Out of Stock , 0 = เลือกทั้งหมด
+    public class InquiryStatus
+    {
+        /// <summary>Gets or sets ItemStatusDigit.</summary>
+        [PropertyMapName("ItemStatusDigit")]
+        public int ItemStatusDigit { get; set; }
+        /// <summary>Gets or sets ItemStatus.</summary>
+        [PropertyMapName("ItemStatus")]
+        public string ItemStatus { get; set; }
+
+        public static List<InquiryStatus> Gets()
+        {
+            var ret = new List<InquiryStatus>();
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 0, ItemStatus = "[เลือกทั้งหมด]" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 1, ItemStatus = "สต๊อก" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 2, ItemStatus = "ด่านขาย" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 3, ItemStatus = "ด่านปิดการขาย" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 4, ItemStatus = "สร้าง Invoice" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 5, ItemStatus = "Out of Stock" });
+            return ret;
+        }
+    }
+
     // Server data result.
     /*
     {
@@ -167,23 +190,23 @@ namespace DMT.Models
                     /// <param name="sapItemCode">The SAPItemCode.</param>
                     /// <param name="sapIntrSerial">The SAPIntrSerial.</param>
                     /// <param name="sapTransferNo">The SAPTransferNo.</param>
+                    /// <param name="sapARInvoice">The SAPARInvoice.</param>
                     /// <param name="itemStatusDigit">The ItemStatusDigit.</param>
                     /// <param name="tollWayId">The TollWayId.</param>
+                    /// <param name="shiftId">The ShiftId.</param>
                     /// <param name="workingDateFrom">The WorkingDateFrom.</param>
                     /// <param name="workingDateTo">The WorkingDateTo.</param>
-                    /// <param name="sapARInvoice">The SAPARInvoice.</param>
-                    /// <param name="shiftId">The ShiftId.</param>
                     /// <returns>Returns Search instance.</returns>
                     public static Inquiry Create(
                         string sapItemCode,
                         string sapIntrSerial, 
                         string sapTransferNo = null,
+                        string sapARInvoice = "",
                         int? itemStatusDigit = new int?(), 
-                        int? tollWayId = 9,
+                        int? tollWayId = 0,
+                        int? shiftId = new int?(),
                         DateTime? workingDateFrom = new DateTime?(),
-                        DateTime? workingDateTo = new DateTime?(),
-                        string sapARInvoice = "", 
-                        int? shiftId = new int?())
+                        DateTime? workingDateTo = new DateTime?())
                     {
                         var ret = new Inquiry();
                         ret.SAPItemCode = sapItemCode;

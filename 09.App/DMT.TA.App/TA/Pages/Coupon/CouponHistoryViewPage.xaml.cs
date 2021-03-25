@@ -47,11 +47,6 @@ namespace DMT.TA.Pages.Coupon
 
         #region Button Handlers
 
-        private void cmdRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            Resync();
-        }
-
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();
@@ -73,14 +68,44 @@ namespace DMT.TA.Pages.Coupon
             PageContentManager.Instance.Current = page;
         }
 
-        private void Resync()
+        private void LoadTSBs()
         {
-            CouponSyncService.Instance.ReSyncAll();
+            var tsbs = TSB.GetTSBs().Value();
+            if (null != tsbs)
+            {
+                tsbs.Insert(0, new Models.TSB() { TSBId = "00", TSBNameEN = "[All]", TSBNameTH = "[ไม่ระบุด่าน]" });
+            }
+            cbTSBs.ItemsSource = tsbs;
+            if (null != tsbs) cbTSBs.SelectedIndex = 0;
         }
 
         private void LoadShifts()
         {
-           cbShifts.ItemsSource = TAAPI.Shifts;
+            var shifts = TAAPI.Shifts;
+            if (null != shifts)
+            {
+                shifts.Insert(0, new Models.Shift() { ShiftId = 0, ShiftNameEN = "[All]", ShiftNameTH = "[เลือกทั้งหมด]" });
+            }
+            cbShifts.ItemsSource = shifts;
+            if (null != shifts) cbShifts.SelectedIndex = 0;
+        }
+
+        private void LoadInquiryStatus()
+        {
+            var status = InquiryStatus.Gets();
+            cbStatus.ItemsSource = status;
+            if (null != status) cbStatus.SelectedIndex = 0;
+        }
+
+        private void Reset()
+        {
+            txtSAPItemCode.Text = string.Empty;
+            txtSAPIntrSerial.Text = string.Empty;
+            txtSAPTransferNo.Text = string.Empty;
+            txtSAPARInvoice.Text = string.Empty;
+
+            dtWorkDateFrom.Value = new DateTime?();
+            dtWorkDateTo.Value = new DateTime?();
         }
 
         private void Search()
@@ -89,14 +114,24 @@ namespace DMT.TA.Pages.Coupon
             string sapIntrSerial = string.IsNullOrWhiteSpace(txtSAPIntrSerial.Text) ? null : txtSAPIntrSerial.Text.Trim();
             string sapTransferNo = string.IsNullOrWhiteSpace(txtSAPTransferNo.Text) ? null : txtSAPTransferNo.Text.Trim();
             string sapARInvoice = string.IsNullOrWhiteSpace(txtSAPARInvoice.Text) ? null : txtSAPARInvoice.Text.Trim();
-            int? itemStatusDigit = new int?();
-            int? tollWayId = 9;
+
+            var status = (null != cbStatus.SelectedItem && cbStatus.SelectedItem is Models.InquiryStatus) ?
+                cbStatus.SelectedItem as Models.InquiryStatus : null;
+            int ? itemStatusDigit = (null != status) ? status.ItemStatusDigit : new int?();
+
             DateTime? workingDateFrom = (dtWorkDateFrom.Value.HasValue) ? dtWorkDateFrom.Value.Value : new DateTime?();
             DateTime? workingDateTo = (dtWorkDateTo.Value.HasValue) ? dtWorkDateTo.Value.Value : new DateTime?();
-            int? shiftId = (null != cbShifts.SelectedItem && cbShifts.SelectedItem is Models.Shift) ?
-                (cbShifts.SelectedItem as Models.Shift).ShiftId : new int ?();
+
+            var tsb = (null != cbTSBs.SelectedItem && cbTSBs.SelectedItem is Models.TSB) ?
+                cbTSBs.SelectedItem as Models.TSB : null;
+            int ? tollWayId = (null != tsb && tsb.TSBId != "00") ? Convert.ToInt32(tsb.TSBId) : new int?();
+
+            var shift = (null != cbShifts.SelectedItem && cbShifts.SelectedItem is Models.Shift) ?
+                cbShifts.SelectedItem as Models.Shift : null;
+            int ? shiftId = (null != shift) ? shift.ShiftId : new int?();
+
             var searchOp = Models.Search.TAxTOD.Coupon.Inquiry.Create(sapItemCode, sapIntrSerial, sapTransferNo,
-                itemStatusDigit, tollWayId, workingDateFrom, workingDateTo, sapARInvoice, shiftId);
+                sapARInvoice, itemStatusDigit, tollWayId, shiftId, workingDateFrom, workingDateTo);
             var ret = ops.Inquiry(searchOp);
             grid.ItemsSource = ret.Value();
         }
@@ -118,7 +153,10 @@ namespace DMT.TA.Pages.Coupon
 
             }
 
+            LoadTSBs(); // TollwayId
             LoadShifts();
+            LoadInquiryStatus();
+            Reset();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

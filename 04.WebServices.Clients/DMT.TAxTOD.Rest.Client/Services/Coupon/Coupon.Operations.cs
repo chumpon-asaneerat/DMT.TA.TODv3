@@ -58,7 +58,7 @@ namespace DMT.Services.Operations
             public static NRestResult<List<TACouponInquiry>> Inquiry(Search.TAxTOD.Coupon.Inquiry value)
             {
                 var ret = Execute<List<TACouponInquiry>>(
-                    RouteConsts.TAxTOD.Coupon.Inquiry.Url, value, 10000);
+                    RouteConsts.TAxTOD.Coupon.Inquiry.Url, value, 15 * 1000);
                 return ret;
             }
         }

@@ -526,7 +526,6 @@
     <!--
     {
       "SAPTransferDate": "2020-01-14T00:00:00.000Z",
-      "ShiftName": null,
       "SAPARDate": null,
       "ShiftId": 0,
       "SoldBy": null,
@@ -577,6 +576,11 @@
     <DataTemplate x:Key="TollWayName">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding TollWayName}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="ShiftName">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ShiftName}"
                    TextAlignment="Left" />
     </DataTemplate>
     <DataTemplate x:Key="WorkingDataFrom">

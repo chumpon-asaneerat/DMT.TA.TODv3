@@ -118,6 +118,30 @@ namespace DMT.Services.Operations
         /// Execute.
         /// </summary>
         /// <typeparam name="TResult">The Result type paramter.</typeparam>
+        /// <param name="url">The api url.</param>
+        /// <param name="value">The parameter object.</param>
+        /// <param name="timeout">The Timeout in millisecond.</param>
+        /// <returns>Returns NRestResult instance.</returns>
+        public static NRestResult<TResult> Execute<TResult>(string url, object value, int timeout)
+            where TResult : new()
+        {
+            NRestResult<TResult> ret;
+            NRestClient client = GetClient();
+            if (null == client)
+            {
+                ret = new NRestResult<TResult>();
+                ret.RestInvalidConfig();
+                return ret;
+            }
+
+            ret = client.Execute<TResult>(url, value, timeout, UserName, Password);
+            return ret;
+
+        }
+        /// <summary>
+        /// Execute.
+        /// </summary>
+        /// <typeparam name="TResult">The Result type paramter.</typeparam>
         /// <typeparam name="TOut">The Output type paramter</typeparam>
         /// <param name="url">The api url.</param>
         /// <returns>Returns NRestResult instance.</returns>

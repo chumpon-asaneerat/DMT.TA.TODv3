@@ -186,7 +186,7 @@
                                        Style="{StaticResource LabelText}"
                                        Text="วันที่จ่าย : "
                                        TextAlignment="Right" />
-                            <xceed:DateTimePicker x:Name="dtEntryDate"
+                            <xceed:DateTimePicker x:Name="dtWorkDateFrom"
                                                   Grid.Row="5"
                                                   Grid.Column="2"
                                                   VerticalAlignment="Center"
@@ -199,7 +199,7 @@
                                                   TimePickerAllowSpin="False"
                                                   TimePickerShowButtonSpinner="False"
                                                   TimePickerVisibility="Collapsed" />
-                            <xceed:DateTimePicker x:Name="dtEndDate"
+                            <xceed:DateTimePicker x:Name="dtWorkDateTo"
                                                   Grid.Row="5"
                                                   Grid.Column="4"
                                                   Grid.ColumnSpan="3"
@@ -254,7 +254,8 @@
                                     VerticalAlignment="Center"
                                     Content="แสดงข้อมูล"
                                     FontSize="{StaticResource InputFontSize18}"
-                                    Style="{DynamicResource InlineButton}" />
+                                    Style="{DynamicResource InlineButton}" 
+                                    Click="cmdSearch_Click"/>
                         </Grid>
                     </DockPanel>
                     <!--  SEPERATOR  -->

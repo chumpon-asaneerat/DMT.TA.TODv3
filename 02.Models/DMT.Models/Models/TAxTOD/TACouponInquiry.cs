@@ -182,7 +182,7 @@ namespace DMT.Models
                         int? tollWayId = 9,
                         DateTime? workingDateFrom = new DateTime?(),
                         DateTime? workingDateTo = new DateTime?(),
-                        string sapARInvoice = null, 
+                        string sapARInvoice = "", 
                         int? shiftId = new int?())
                     {
                         var ret = new Inquiry();
@@ -193,7 +193,7 @@ namespace DMT.Models
                         ret.TollWayId = tollWayId;
                         ret.WorkingDateFrom = workingDateFrom;
                         ret.WorkingDateTo = workingDateTo;
-                        ret.SAPARInvoice = sapARInvoice;
+                        ret.SAPARInvoice = (string.IsNullOrWhiteSpace(sapARInvoice)) ? string.Empty : sapARInvoice;
                         ret.ShiftId = shiftId;
                         return ret;
                     }

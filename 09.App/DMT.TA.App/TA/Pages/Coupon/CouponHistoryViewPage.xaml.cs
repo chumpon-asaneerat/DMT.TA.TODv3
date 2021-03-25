@@ -20,6 +20,8 @@ using NLib.Reflection;
 
 namespace DMT.TA.Pages.Coupon
 {
+    using ops = DMT.Services.Operations.TAxTOD.Coupon;
+
     /// <summary>
     /// Interaction logic for CouponHistoryViewPage.xaml
     /// </summary>
@@ -55,6 +57,11 @@ namespace DMT.TA.Pages.Coupon
             GotoMainMenu();
         }
 
+        private void cmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
+        }
+
         #endregion
 
         #region Private Methods
@@ -69,6 +76,29 @@ namespace DMT.TA.Pages.Coupon
         private void Resync()
         {
             CouponSyncService.Instance.ReSyncAll();
+        }
+
+        private void LoadShifts()
+        {
+           cbShifts.ItemsSource = TAAPI.Shifts;
+        }
+
+        private void Search()
+        {
+            string sapItemCode = string.IsNullOrWhiteSpace(txtSAPItemCode.Text) ? null : txtSAPItemCode.Text.Trim();
+            string sapIntrSerial = string.IsNullOrWhiteSpace(txtSAPIntrSerial.Text) ? null : txtSAPIntrSerial.Text.Trim();
+            string sapTransferNo = string.IsNullOrWhiteSpace(txtSAPTransferNo.Text) ? null : txtSAPTransferNo.Text.Trim();
+            string sapARInvoice = string.IsNullOrWhiteSpace(txtSAPARInvoice.Text) ? null : txtSAPARInvoice.Text.Trim();
+            int? itemStatusDigit = new int?();
+            int? tollWayId = 9;
+            DateTime? workingDateFrom = (dtWorkDateFrom.Value.HasValue) ? dtWorkDateFrom.Value.Value : new DateTime?();
+            DateTime? workingDateTo = (dtWorkDateTo.Value.HasValue) ? dtWorkDateTo.Value.Value : new DateTime?();
+            int? shiftId = (null != cbShifts.SelectedItem && cbShifts.SelectedItem is Models.Shift) ?
+                (cbShifts.SelectedItem as Models.Shift).ShiftId : new int ?();
+            var searchOp = Models.Search.TAxTOD.Coupon.Inquiry.Create(sapItemCode, sapIntrSerial, sapTransferNo,
+                itemStatusDigit, tollWayId, workingDateFrom, workingDateTo, sapARInvoice, shiftId);
+            var ret = ops.Inquiry(searchOp);
+            grid.ItemsSource = ret.Value();
         }
 
         #endregion
@@ -87,6 +117,8 @@ namespace DMT.TA.Pages.Coupon
             {
 
             }
+
+            LoadShifts();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

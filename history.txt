@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #2017
 Refactor DMT.TA.TODv4 #2016
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2015
-- 
+- DMT.TAxTODv3
+  - DMT.TAxTOD.Rest.Client
+    - Implements TAxTOD Coupon Operation - Inquiry.
 
 [commited]
 Refactor DMT.TA.TODv4 #2014

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using NLib.Reflection;
 
+using Newtonsoft.Json;
+
 #endregion
 
 namespace DMT.Models
@@ -77,6 +79,18 @@ namespace DMT.Models
         /// <summary>Gets or sets SAPTransferDate.</summary>
         [PropertyMapName("SAPTransferDate")]
         public DateTime? SAPTransferDate { get; set; }
+        /// <summary>Gets or sets SAPTransferDateString.</summary>
+        [JsonIgnore]
+        public string SAPTransferDateString
+        {
+            get 
+            {
+                var ret = (!this.SAPTransferDate.HasValue || this.SAPTransferDate.Value == DateTime.MinValue) ?
+                    "" : this.SAPTransferDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
 
         /// <summary>Gets or sets ItemStatusDigit.</summary>
         [PropertyMapName("ItemStatusDigit")]
@@ -95,6 +109,18 @@ namespace DMT.Models
         /// <summary>Gets or sets WorkingDate.</summary>
         [PropertyMapName("WorkingDate")]
         public DateTime? WorkingDate { get; set; }
+        /// <summary>Gets or sets WorkingDateString.</summary>
+        [JsonIgnore]
+        public string WorkingDateString
+        {
+            get
+            {
+                var ret = (!this.WorkingDate.HasValue || this.WorkingDate.Value == DateTime.MinValue) ?
+                    "" : this.WorkingDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
 
         /// <summary>Gets or sets ShiftId.</summary>
         [PropertyMapName("ShiftId")]
@@ -103,6 +129,7 @@ namespace DMT.Models
         [PropertyMapName("ShiftName")]
         public string ShiftName { get; set; }
 
+        /// <summary>Gets or sets LaneId.</summary>
         [PropertyMapName("LaneId")]
         public string LaneId { get; set; }
         /// <summary>Gets or sets SoldBy.</summary>
@@ -111,7 +138,18 @@ namespace DMT.Models
         /// <summary>Gets or sets SoldDate.</summary>
         [PropertyMapName("SoldDate")]
         public DateTime? SoldDate { get; set; }
-        /// <summary>Gets or sets LaneId.</summary>
+        /// <summary>Gets or sets SoldDateString.</summary>
+        [JsonIgnore]
+        public string SoldDateString
+        {
+            get
+            {
+                var ret = (!this.SoldDate.HasValue || this.SoldDate.Value == DateTime.MinValue) ?
+                    "" : this.SoldDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
     }
     // Search
     /*

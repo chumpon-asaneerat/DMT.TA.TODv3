@@ -525,11 +525,8 @@
     <!--  Common for Coupon History View  -->
     <!--
     {
-      "SAPTransferDate": "2020-01-14T00:00:00.000Z",
       "SAPARDate": null,
       "ShiftId": 0,
-      "SoldBy": null,
-      "SoldDate": null,
       "LaneId": null
     }
     -->
@@ -583,14 +580,29 @@
                    Text="{Binding ShiftName}"
                    TextAlignment="Left" />
     </DataTemplate>
-    <DataTemplate x:Key="WorkingDataFrom">
+    <DataTemplate x:Key="SAPTransferDateString">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding WorkingDataFrom}"
+                   Text="{Binding SAPTransferDateString}"
                    TextAlignment="Center" />
     </DataTemplate>
-    <DataTemplate x:Key="WorkingDateTo">
+    <DataTemplate x:Key="WorkingDateString">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding WorkingDateTo}"
+                   Text="{Binding WorkingDateString}"
                    TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SoldDateString">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SoldDateString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="CouponSoldLaneId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding LaneId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="CouponSoldBy">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SoldBy}"
+                   TextAlignment="Left" />
     </DataTemplate>
 </ResourceDictionary>

@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -135,6 +136,8 @@ namespace DMT.TA.Pages.Coupon
 
         private void Search()
         {
+            grid.ItemsSource = null;
+
             string sapItemCode = string.IsNullOrWhiteSpace(txtSAPItemCode.Text) ? null : txtSAPItemCode.Text.Trim();
             string sapIntrSerial = string.IsNullOrWhiteSpace(txtSAPIntrSerial.Text) ? null : txtSAPIntrSerial.Text.Trim();
             string sapTransferNo = string.IsNullOrWhiteSpace(txtSAPTransferNo.Text) ? null : txtSAPTransferNo.Text.Trim();
@@ -158,7 +161,21 @@ namespace DMT.TA.Pages.Coupon
             var searchOp = Models.Search.TAxTOD.Coupon.Inquiry.Create(sapItemCode, sapIntrSerial, sapTransferNo,
                 sapARInvoice, itemStatusDigit, tollWayId, shiftId, workingDateFrom, workingDateTo);
             var ret = ops.Inquiry(searchOp);
-            grid.ItemsSource = ret.Value();
+            var coupons = ret.Value();
+            grid.ItemsSource = coupons;
+
+            if (null != coupons)
+            {
+                int cnt = coupons.Count;
+                /*
+                int cnt = coupons.Count(coupon => 
+                { 
+                    return (coupon.ItemStatusDigit.HasValue && coupon.ItemStatusDigit.Value == 1);
+                });
+                */
+                txtStockBalance.Text = string.Format("{0:n0}", cnt);
+            }
+            else txtStockBalance.Text = "0";
         }
 
         #endregion

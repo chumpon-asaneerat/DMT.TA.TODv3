@@ -16,8 +16,12 @@ Refactor DMT.TA.TODv4 #2026
 Refactor DMT.TA.TODv4 #2025
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2024
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update Coupon History Page.
+      - Add stock count code.
 
 [commited]
 Refactor DMT.TA.TODv4 #2023

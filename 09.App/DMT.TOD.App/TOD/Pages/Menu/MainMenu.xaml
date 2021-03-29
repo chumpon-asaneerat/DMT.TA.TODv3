@@ -152,7 +152,7 @@
                            Grid.Column="0"
                            Grid.ColumnSpan="3"
                            Style="{StaticResource ShiftHeaderTextStyle}"
-                           Text="กะ" />
+                           Text="รายงานตัว" />
                 <!--  SHIFT - BUTTONS  -->
                 <Button x:Name="cmdCollectorBOJ"
                         Grid.Row="1"

@@ -25,8 +25,11 @@ Refactor DMT.TA.TODv4 #2023
 Refactor DMT.TA.TODv4 #2022
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2021
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update MainMenu - Change Shift Caption.
 
 [commited]
 Refactor DMT.TA.TODv4 #2020

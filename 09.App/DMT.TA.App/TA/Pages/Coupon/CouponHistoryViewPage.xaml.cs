@@ -57,6 +57,11 @@ namespace DMT.TA.Pages.Coupon
             Search();
         }
 
+        private void cmdClear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearInputs();
+        }
+
         #endregion
 
         #region Private Methods
@@ -106,6 +111,26 @@ namespace DMT.TA.Pages.Coupon
 
             dtWorkDateFrom.Value = new DateTime?();
             dtWorkDateTo.Value = new DateTime?();
+        }
+
+        private void ClearInputs()
+        {
+            Reset();
+
+            CheckComboDefaultItem(cbTSBs);
+            CheckComboDefaultItem(cbStatus);
+            CheckComboDefaultItem(cbShifts);
+        }
+
+        private void CheckComboDefaultItem(ComboBox cb)
+        {
+            if (null == cb) return;
+            cb.SelectedIndex = -1;
+            if (null != cb.ItemsSource)
+            {
+                var lst = cb.ItemsSource as IList;
+                if (null != lst && lst.Count > 0) cb.SelectedIndex = 0;
+            }
         }
 
         private void Search()

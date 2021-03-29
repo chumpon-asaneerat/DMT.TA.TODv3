@@ -243,13 +243,22 @@
                                      TextAlignment="Center" />
                             <Button x:Name="cmdSearch"
                                     Grid.Row="7"
-                                    Grid.Column="4"
-                                    Grid.ColumnSpan="3"
+                                    Grid.Column="6"
                                     Width="150"
                                     Height="30"
                                     VerticalAlignment="Center"
                                     Click="cmdSearch_Click"
                                     Content="แสดงข้อมูล"
+                                    FontSize="{StaticResource InputFontSize18}"
+                                    Style="{DynamicResource InlineButton}" />
+                            <Button x:Name="cmdClear"
+                                    Grid.Row="7"
+                                    Grid.Column="8"
+                                    Width="150"
+                                    Height="30"
+                                    VerticalAlignment="Center"
+                                    Content="เคลียร์"
+                                    Click="cmdClear_Click"
                                     FontSize="{StaticResource InputFontSize18}"
                                     Style="{DynamicResource InlineButton}" />
                         </Grid>

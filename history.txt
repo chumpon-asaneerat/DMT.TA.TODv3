@@ -28,8 +28,11 @@ Refactor DMT.TA.TODv4 #2032
 Refactor DMT.TA.TODv4 #2031
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2030
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Update TAxTOD routes #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2029

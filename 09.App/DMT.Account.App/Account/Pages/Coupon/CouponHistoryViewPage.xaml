@@ -277,7 +277,7 @@
                                                 CellTemplate="{StaticResource SAPTransferNo}"
                                                 Header="เลขที่ใบโอนสินค้า" />
                                 <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource WorkingDataFrom}"
+                                                CellTemplate="{StaticResource SAPTransferDateString}"
                                                 Header="วันที่โอนสินค้า" />
                                 <GridViewColumn Width="150"
                                                 CellTemplate="{StaticResource ItemStatus}"
@@ -286,7 +286,7 @@
                                                 CellTemplate="{StaticResource TollWayName}"
                                                 Header="ด่านเก็บเงิน" />
                                 <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource WorkingDateTo}"
+                                                CellTemplate="{StaticResource WorkingDateString}"
                                                 Header="วันที่ทำงาน" />
                                 <GridViewColumn Width="80"
                                                 CellTemplate="{StaticResource ShiftName}"

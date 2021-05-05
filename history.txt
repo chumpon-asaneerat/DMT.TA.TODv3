@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2029
 Refactor DMT.TA.TODv4 #2028
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2027
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Update CouponHistoryViewPage - Fixed ListView Column resource references.
 
 [commited]
 Refactor DMT.TA.TODv4 #2026

@@ -15,7 +15,7 @@ namespace DMT
         {
             static partial class TACredit
             {
-                // Url: /api/account/tsbcredit/save
+                // Url: /api/ta/creditlowlimit/save
                 /// <summary>The TA Credit Low Limit Save Class.</summary>
                 public static partial class Save
                 {
@@ -25,7 +25,7 @@ namespace DMT
                     public const string Url = @"/api/ta/creditlowlimit/save";
                 }
 
-                // Url: /api/account/tsbcredit
+                // Url: /api/ta/creditlowlimit/get
                 /// <summary>The TA Credit Low Limit Gets (Search) Class.</summary>
                 public static partial class Gets
                 {

@@ -57,6 +57,12 @@ namespace DMT.Account.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+
+        private void cndSendDataToSAP_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void cndExit_Click(object sender, RoutedEventArgs e)
         {
             // Exit
@@ -69,5 +75,6 @@ namespace DMT.Account.Pages.Menu
         }
 
         #endregion
+
     }
 }

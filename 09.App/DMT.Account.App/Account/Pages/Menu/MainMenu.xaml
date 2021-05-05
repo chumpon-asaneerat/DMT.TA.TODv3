@@ -20,6 +20,10 @@
         <SolidColorBrush x:Key="ExitBG" Color="Indigo" />
         <SolidColorBrush x:Key="ExitBGHover" Color="Blue" />
         <SolidColorBrush x:Key="ExitFG" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="ShiftBG" Color="DarkOrange" />
+        <SolidColorBrush x:Key="ShiftBGHover" Color="DarkRed" />
+        <SolidColorBrush x:Key="ShiftFG" Color="WhiteSmoke" />
+
         <!--  TEXTBLOCK (GROUP HEADER)  -->
         <Style x:Key="TollAdminHeaderTextStyle"
                BasedOn="{StaticResource MenuGroupHeaderTextStyle}"
@@ -27,6 +31,13 @@
             <Setter Property="Background" Value="{StaticResource TollAdminBG}" />
             <Setter Property="Foreground" Value="{StaticResource TollAdminFG}" />
         </Style>
+        <Style x:Key="ShiftHeaderTextStyle"
+               BasedOn="{StaticResource MenuGroupHeaderTextStyle}"
+               TargetType="TextBlock">
+            <Setter Property="Background" Value="{StaticResource ShiftBG}" />
+            <Setter Property="Foreground" Value="{StaticResource ShiftFG}" />
+        </Style>
+
         <!--  BUTTON STYLES  -->
         <Style x:Key="TollAdminButtonStyle"
                BasedOn="{StaticResource MenuButtonStyle}"
@@ -78,6 +89,32 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ShiftButtonStyle"
+               BasedOn="{StaticResource MenuButtonStyle}"
+               TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ShiftBG}" />
+            <Setter Property="Foreground" Value="{StaticResource ShiftFG}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ShiftBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ShiftFG}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ShiftBGHover}" />
+                                <Setter Property="Foreground" Value="{StaticResource ShiftFG}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+     
     </UserControl.Resources>
     <ScrollViewer HorizontalContentAlignment="Center"
                   VerticalContentAlignment="Center"
@@ -100,6 +137,8 @@
                   Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{StaticResource TextHeight}" />
+                    <RowDefinition Height="{StaticResource RowSpace}" />
+                    <RowDefinition Height="{StaticResource ButtonHeight}" />
                     <RowDefinition Height="{StaticResource RowSpace}" />
                     <RowDefinition Height="{StaticResource ButtonHeight}" />
                     <RowDefinition Height="{StaticResource RowSpace}" />
@@ -163,9 +202,15 @@
                         Style="{StaticResource TollAdminButtonStyle}">
                     <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ประวัติการขายคูปอง" />
                 </Button>
-                <Button x:Name="cndExit"
+                <Button x:Name="cndSendDataToSAP"
                         Grid.Row="4"
                         Grid.Column="4"
+                        Style="{StaticResource ShiftButtonStyle}" Click="cndSendDataToSAP_Click">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ส่งข้อมูลไป SAP" />
+                </Button>
+                <Button x:Name="cndExit"
+                        Grid.Row="6"
+                        Grid.Column="0"
                         Click="cndExit_Click"
                         Style="{StaticResource ExitButtonStyle}">
                     <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />

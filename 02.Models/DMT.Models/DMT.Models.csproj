@@ -168,6 +168,7 @@
     <Compile Include="Models\RabbitMQ\RabbitMQ.cs" />
     <Compile Include="Models\Plaza\Users\Role.cs" />
     <Compile Include="Models\Plaza\Users\User.cs" />
+    <Compile Include="Models\TAxTOD\TASAPClasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="v1\ExtensionMethods\ModelExtensionMethods.cs" />
     <None Include="v1\ExtensionMethods\NullableType.ExtensionMethods.cs" />

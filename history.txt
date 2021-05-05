@@ -22,8 +22,17 @@ Refactor DMT.TA.TODv4 #2034
 Refactor DMT.TA.TODv4 #2033
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2032
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update SAP Model #1.
+      - Implements GetCustomers related classes (Result/Search class).
+  - DMT.TAxTOD.Rest.Client project.
+    - Update SAP Operations #1.
+      - Implements GetCustomers
+  - DMT.Account.App project.
+    - Update MainMenu xaml code -> fixed variable name and add comment.
 
 [commited]
 Refactor DMT.TA.TODv4 #2031

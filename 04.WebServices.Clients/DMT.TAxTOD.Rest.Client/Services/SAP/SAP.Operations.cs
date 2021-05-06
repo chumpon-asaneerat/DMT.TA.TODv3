@@ -19,7 +19,7 @@ namespace DMT.Services.Operations
             /// <param name="value">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
             public static NRestResult<List<SAPCustomer>, NRestOut> GetCustomers(
-                Search.TAxTOD.SAP.SearchCustomer value)
+                Search.TAxTOD.SAP.Customers value)
             {
                 var ret = Execute<List<SAPCustomer>, NRestOut>(
                     RouteConsts.TAxTOD.SAP.GetCustomers.Url, value);
@@ -29,12 +29,24 @@ namespace DMT.Services.Operations
             /// <summary>
             /// Execute GetTSBs api.
             /// </summary>
-            /// <param name="value">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
             public static NRestResult<List<SAPTSB>, NRestOut> GetTSBs()
             {
                 var ret = Execute<List<SAPTSB>, NRestOut>(
                     RouteConsts.TAxTOD.SAP.GetTSBs.Url, new { });
+                return ret;
+            }
+
+            /// <summary>
+            /// Execute GetCouponSolds api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult<List<SAPCouponSold>, NRestOut> GetCouponSolds(
+                Search.TAxTOD.SAP.CouponSolds value)
+            {
+                var ret = Execute<List<SAPCouponSold>, NRestOut>(
+                    RouteConsts.TAxTOD.SAP.GetCouponSolds.Url, value);
                 return ret;
             }
         }

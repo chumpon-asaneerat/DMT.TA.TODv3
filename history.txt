@@ -16,8 +16,17 @@ Refactor DMT.TA.TODv4 #2036
 Refactor DMT.TA.TODv4 #2035
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2034
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update SAP Model #3.
+      - Implements GetCouponSolds related classes (Result, Parameter class).
+  - DMT.TAxTOD.Rest.Client project.
+    - Update SAP Operations #2.
+      - Implements GetCouponSolds
+  - DMT.Account.App project.
+    - Update MainMenu.cs code -> add test method for GetCouponSolds.
 
 [commited]
 Refactor DMT.TA.TODv4 #2033

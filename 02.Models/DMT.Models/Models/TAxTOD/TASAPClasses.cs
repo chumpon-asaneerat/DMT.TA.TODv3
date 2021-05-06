@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using NLib.Reflection;
 
-#endregion
+using Newtonsoft.Json;
 
+#endregion
 
 // SAPCustomer: Url: /api/account/sap/getcustomer
 namespace DMT.Models
@@ -44,12 +45,12 @@ namespace DMT.Models
         {
             public static partial class SAP
             {
-                #region SearchCustomer
+                #region Customers
 
                 /// <summary>
-                /// SearchCustomer.
+                /// Customers.
                 /// </summary>
-                public class SearchCustomer : NSearch<SearchCustomer>
+                public class Customers : NSearch<Customers>
                 {
                     #region Public Properties
 
@@ -67,10 +68,10 @@ namespace DMT.Models
                     /// </summary>
                     /// <param name="filter">The filter.</param>
                     /// <returns>Returns Search instance.</returns>
-                    public static SearchCustomer Create(
+                    public static Customers Create(
                         string filter = "")
                     {
-                        var ret = new SearchCustomer();
+                        var ret = new Customers();
                         ret.searchtext = filter;
                         return ret;
                     }
@@ -124,14 +125,69 @@ namespace DMT.Models
     }
 }
 
+// SAPCouponSold: Url: /api/account/sap/couponsoldlist
 namespace DMT.Models
 {
-    // Url: /api/account/sap/couponsoldlist
+    // Server data result.
+    /*
+    {
+        "TollWayId": 9,
+        "CouponType": "35",
+        "SAPItemName": "Coupon 35 Baht",
+        "SerialNo": "ข009863",
+        "SAPSysSerial": 747977,
+        "SoldDate": "2021-02-20T11:10:40.510Z",
+        "SoldBy": "20001",
+        "LaneId": "AN12"
+    }
+    */
+    /// <summary>The SAPCouponSold class.</summary>
+    public class SAPCouponSold
+    {
+        /// <summary>Gets or sets TollwayID.</summary>
+        [PropertyMapName("TollwayID")]
+        public int TollwayID { get; set; }
+        /// <summary>Gets or sets CouponType.</summary>
+        [PropertyMapName("CouponType")]
+        public string CouponType { get; set; }
+        /// <summary>Gets or sets SAPItemName.</summary>
+        [PropertyMapName("SAPItemName")]
+        public string SAPItemName { get; set; }
+        /// <summary>Gets or sets SerialNo.</summary>
+        [PropertyMapName("SerialNo")]
+        public string SerialNo { get; set; }
+        /// <summary>Gets or sets SAPSysSerial.</summary>
+        [PropertyMapName("SAPSysSerial")]
+        public string SAPSysSerial { get; set; }
 
+        /// <summary>Gets or sets SoldDate.</summary>
+        [PropertyMapName("SoldDate")]
+        public DateTime? SoldDate { get; set; }
+        /// <summary>Gets or sets SoldDateString.</summary>
+        [JsonIgnore]
+        public string SoldDateString
+        {
+            get
+            {
+                var ret = (!this.SoldDate.HasValue || this.SoldDate.Value == DateTime.MinValue) ?
+                    "" : this.SoldDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
+
+        /// <summary>Gets or sets SoldBy.</summary>
+        [PropertyMapName("SoldBy")]
+        public string SoldBy { get; set; }
+        /// <summary>Gets or sets LaneId.</summary>
+        [PropertyMapName("LaneId")]
+        public string LaneId { get; set; }
+    }
     // Server data parameter.
     /*
     {
-
+        "tollwayid": 9 ,
+        "solddate": "2021-02-20"
     }
     */
     static partial class Search
@@ -140,7 +196,47 @@ namespace DMT.Models
         {
             public static partial class SAP
             {
+                #region CouponSolds
 
+                /// <summary>
+                /// CouponSolds.
+                /// </summary>
+                public class CouponSolds : NSearch<CouponSolds>
+                {
+                    #region Public Properties
+
+                    /// <summary>
+                    /// Gets or sets tollwayid.
+                    /// </summary>
+                    public int tollwayid { get; set; }
+                    /// <summary>
+                    /// Gets or sets solddate.
+                    /// </summary>
+                    public DateTime? solddate { get; set; }
+
+                    #endregion
+
+                    #region Static Method (Create)
+
+                    /// <summary>
+                    /// Create Search instance.
+                    /// </summary>
+                    /// <param name="tollwayid">The tollwayid.</param>
+                    /// <param name="solddate">The solddate.</param>
+                    /// <returns>Returns Search instance.</returns>
+                    public static CouponSolds Create(
+                        DateTime? solddate = new DateTime?(), int tollwayid = 9)
+                    {
+                        var ret = new CouponSolds();
+                        ret.tollwayid = tollwayid;
+                        ret.solddate = solddate;
+                        return ret;
+                    }
+
+                    #endregion
+                }
+
+                #endregion
             }
         }
     }

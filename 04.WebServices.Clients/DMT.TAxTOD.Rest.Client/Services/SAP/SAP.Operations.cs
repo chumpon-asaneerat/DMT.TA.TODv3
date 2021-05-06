@@ -25,6 +25,18 @@ namespace DMT.Services.Operations
                     RouteConsts.TAxTOD.SAP.GetCustomers.Url, value);
                 return ret;
             }
+
+            /// <summary>
+            /// Execute GetTSBs api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult<List<SAPTSB>, NRestOut> GetTSBs()
+            {
+                var ret = Execute<List<SAPTSB>, NRestOut>(
+                    RouteConsts.TAxTOD.SAP.GetTSBs.Url, new { });
+                return ret;
+            }
         }
     }
 }

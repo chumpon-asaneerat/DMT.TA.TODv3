@@ -6,9 +6,10 @@ using NLib.Reflection;
 
 #endregion
 
+
+// SAPCustomer: Url: /api/account/sap/getcustomer
 namespace DMT.Models
 {
-    // Url: /api/account/sap/getcustomer
     // Server data result.
     /*
     {
@@ -83,25 +84,43 @@ namespace DMT.Models
     }
 }
 
+// SAPTSB: Url: /api/account/sap/tsblist
 namespace DMT.Models
 {
-    // Url: /api/account/sap/tsblist
-
+    // Server data result
+    /*
+    {
+      "TSBId": "09",
+      "TSB_Th_Name": "อนุสรณ์สถาน",
+      "TSB_Eng_name": "ANUSORN SATHAN",
+      "SapWhsCode": "CAS",
+      "TollwayID": 9
+    }
+    */
     // Server data parameter.
     /*
     {
 
     }
     */
-    static partial class Search
+    /// <summary>The SAPTSB class.</summary>
+    public class SAPTSB
     {
-        public static partial class TAxTOD
-        {
-            public static partial class SAP
-            {
-
-            }
-        }
+        /// <summary>Gets or sets TSBId.</summary>
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+        /// <summary>Gets or sets TSB_Th_Name.</summary>
+        [PropertyMapName("TSB_Th_Name")]
+        public string TSB_Th_Name { get; set; }
+        /// <summary>Gets or sets TSB_Eng_name.</summary>
+        [PropertyMapName("TSB_Eng_name")]
+        public string TSB_Eng_name { get; set; }
+        /// <summary>Gets or sets SapWhsCode.</summary>
+        [PropertyMapName("SapWhsCode")]
+        public string SapWhsCode { get; set; }
+        /// <summary>Gets or sets TollwayID.</summary>
+        [PropertyMapName("TollwayID")]
+        public int TollwayID { get; set; }
     }
 }
 

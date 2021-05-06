@@ -8,6 +8,10 @@ using NLib.Services;
 
 #endregion
 
+using DMT.Services;
+using DMT.Models.ExtensionMethods;
+using ops = DMT.Services.Operations.TAxTOD.SAP;
+
 namespace DMT.Account.Pages.Menu
 {
     /// <summary>
@@ -60,7 +64,8 @@ namespace DMT.Account.Pages.Menu
 
         private void cndSendDataToSAP_Click(object sender, RoutedEventArgs e)
         {
-
+            TestGetCustomers();
+            TestGetTSBs();
         }
 
         private void cndExit_Click(object sender, RoutedEventArgs e)
@@ -76,5 +81,32 @@ namespace DMT.Account.Pages.Menu
 
         #endregion
 
+        private void TestGetCustomers()
+        {
+            Console.WriteLine("ทดสอบ GetCustomers");
+            var ret = ops.GetCustomers(Models.Search.TAxTOD.SAP.SearchCustomer.Create(""));
+            if (null != ret && ret.Ok)
+            {
+                var list = ret.Value();
+                list.ForEach(item =>
+                {
+                    Console.WriteLine("Code: {0} - Name: {1}", item.CardCode, item.CardName);
+                });
+            }
+        }
+
+        private void TestGetTSBs()
+        {
+            Console.WriteLine("ทดสอบ GetTSBs");
+            var ret = ops.GetTSBs();
+            if (null != ret && ret.Ok)
+            {
+                var list = ret.Value();
+                list.ForEach(item =>
+                {
+                    Console.WriteLine("Id: {0} - NameTH: {1}, WHSCode: {2}", item.TSBId, item.TSB_Th_Name, item.SapWhsCode);
+                });
+            }
+        }
     }
 }

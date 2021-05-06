@@ -19,8 +19,17 @@ Refactor DMT.TA.TODv4 #2035
 Refactor DMT.TA.TODv4 #2034
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2033
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update SAP Model #2.
+      - Implements GetTSBs related classes (Result class).
+  - DMT.TAxTOD.Rest.Client project.
+    - Update SAP Operations #2.
+      - Implements GetTSBs
+  - DMT.Account.App project.
+    - Update MainMenu.cs code -> add test method for GetCustomers, GetTSBs.
 
 [commited]
 Refactor DMT.TA.TODv4 #2032

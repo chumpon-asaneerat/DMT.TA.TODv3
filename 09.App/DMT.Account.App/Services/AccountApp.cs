@@ -158,6 +158,21 @@ namespace DMT
 
             #endregion
 
+            #region SAP Customer Search
+
+            /// <summary>Gets SAP Customer Search Window.</summary>
+            public static DMT.Windows.SAPCustomerWindow SAPCustomerSearch
+            {
+                get
+                {
+                    var ret = new DMT.Windows.SAPCustomerWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region MessageBox(s)
 
             /// <summary>Gets MessageBox Window.</summary>

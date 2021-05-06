@@ -114,6 +114,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region SAP Send Coupoon Sold View
+
+            private static Account.Pages.SAP.SAPSendCouponSoldPage _SAPSendCouponSoldView;
+
+            /// <summary>Gets SAP Send Coupoon Sold View Page.</summary>
+            public static Account.Pages.SAP.SAPSendCouponSoldPage SAPSendCouponSoldView
+            {
+                get
+                {
+                    if (null == _SAPSendCouponSoldView)
+                    {
+                        lock (typeof(AccountApp))
+                        {
+                            _SAPSendCouponSoldView = new Account.Pages.SAP.SAPSendCouponSoldPage();
+                        }
+                    }
+                    return _SAPSendCouponSoldView;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

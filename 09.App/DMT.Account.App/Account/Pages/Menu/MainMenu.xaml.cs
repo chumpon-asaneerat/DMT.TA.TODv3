@@ -65,10 +65,15 @@ namespace DMT.Account.Pages.Menu
 
         private void cndSendDataToSAP_Click(object sender, RoutedEventArgs e)
         {
+            // SAP Send Coupon Sold.
+            var page = AccountApp.Pages.SAPSendCouponSoldView;
+            page.Setup(AccountApp.User.Current);
+            PageContentManager.Instance.Current = page;
+
             //TestGetCustomers();
             //TestGetTSBs();
             //TestGetCouponSolds();
-            TestInquiry();
+            //TestInquiry();
         }
 
         private void cndExit_Click(object sender, RoutedEventArgs e)

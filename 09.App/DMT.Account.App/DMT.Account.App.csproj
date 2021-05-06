@@ -139,6 +139,9 @@
     <Compile Include="Account\Pages\Menu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Pages\SAP\SAPSendCouponSoldPage.xaml.cs">
+      <DependentUpon>SAPSendCouponSoldPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Header\Elements\HeaderBarService.cs" />
     <Compile Include="Services\AccountApp.cs" />
     <Compile Include="Header\Elements\HeaderDateTime.xaml.cs">
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Pages\Menu\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Pages\SAP\SAPSendCouponSoldPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

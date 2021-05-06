@@ -14,6 +14,8 @@ using NLib.Reflection;
 
 #endregion
 
+using ops = DMT.Services.Operations.TAxTOD.SAP;
+
 namespace DMT.Windows
 {
     /// <summary>
@@ -59,6 +61,17 @@ namespace DMT.Windows
 
         public void Setup(string filter)
         {
+            var ret = ops.GetCustomers(Models.Search.TAxTOD.SAP.Customers.Create(filter));
+            if (null != ret && ret.Ok)
+            {
+                var list = ret.Value();
+                /*
+                list.ForEach(item =>
+                {
+                    Console.WriteLine("Code: {0} - Name: {1}", item.CardCode, item.CardName);
+                });
+                */
+            }
 
         }
 

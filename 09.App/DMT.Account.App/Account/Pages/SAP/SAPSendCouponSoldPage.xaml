@@ -68,11 +68,11 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="180" />
                                 <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="5" />
                                 <ColumnDefinition Width="110" />
                                 <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="5" />
                                 <ColumnDefinition Width="150" />
                             </Grid.ColumnDefinitions>
@@ -110,9 +110,9 @@
                                       Grid.Column="2"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Center"
-                                      HorizontalContentAlignment="Center"
+                                      HorizontalContentAlignment="Left"
                                       VerticalContentAlignment="Center"
-                                      DisplayMemberPath="TSBNameTH"
+                                      DisplayMemberPath="DisplayName"
                                       FontSize="{StaticResource InputFontSize18}"
                                       ItemsSource="{Binding}" />
                             <TextBlock Grid.Row="3"

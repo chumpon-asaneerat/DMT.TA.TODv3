@@ -122,6 +122,13 @@ namespace DMT.Models
         /// <summary>Gets or sets TollwayID.</summary>
         [PropertyMapName("TollwayID")]
         public int TollwayID { get; set; }
+
+        /// <summary>Gets or sets DisplayName.</summary>
+        [JsonIgnore]
+        public string DisplayName
+        {
+            get { return string.Format("{0} - {1}", TSBId, TSB_Th_Name); }
+        }
     }
 }
 

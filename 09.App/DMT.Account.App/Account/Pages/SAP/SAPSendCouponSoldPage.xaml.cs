@@ -44,6 +44,7 @@ namespace DMT.Account.Pages.SAP
 
         private User _chief = null;
         private int _tollwayId = 9;
+        private Models.SAPCustomer _customer = null;
 
         #endregion
 
@@ -52,6 +53,11 @@ namespace DMT.Account.Pages.SAP
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();
+        }
+
+        private void cmdSelectCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            SelectCustomer();
         }
 
         private void cmdSearch_Click(object sender, RoutedEventArgs e)
@@ -72,7 +78,11 @@ namespace DMT.Account.Pages.SAP
 
         private void Reset()
         {
+            _customer = null;
+
             txtCustomerFilter.Text = string.Empty;
+            txtCurrentCustomer.Text = "-";
+
             dtSoldDate.Value = new DateTime?();
         }
 
@@ -90,10 +100,26 @@ namespace DMT.Account.Pages.SAP
                 }
                 else list = src;
 
-
                 cbTSBs.ItemsSource = list;
                 if (list.Count > 0) cbTSBs.SelectedIndex = 0;
             }
+        }
+
+        private void SelectCustomer()
+        {
+            string filter = txtCustomerFilter.Text;
+            var win = AccountApp.Windows.SAPCustomerSearch;
+            win.Setup(filter);
+            if (win.ShowDialog() == true)
+            {
+                //_customer = win.SelectedCustomer;
+            }
+
+            if (null != _customer)
+            {
+                txtCurrentCustomer.Text = string.Format("{0} - {1}", _customer.CardCode, _customer.CardName);
+            }
+            else txtCurrentCustomer.Text = "-";
         }
 
         private void Search()

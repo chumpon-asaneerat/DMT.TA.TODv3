@@ -651,4 +651,10 @@
                    Text="{Binding ShiftName}"
                    TextAlignment="Center" />
     </DataTemplate>
+
+    <DataTemplate x:Key="SAPNoOfCoupon">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding NoOfCoupon}"
+                   TextAlignment="Center" />
+    </DataTemplate>
 </ResourceDictionary>

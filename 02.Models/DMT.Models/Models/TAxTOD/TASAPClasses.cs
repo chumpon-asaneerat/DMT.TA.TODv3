@@ -221,10 +221,7 @@ namespace DMT.Models
             if (null != items && items.Count > 0)
             {
                 // extract coupon type.
-                var query = items.Select(c => new 
-                {
-                    CouponType = c.CouponType
-                }).ToList();
+                var query = items.Select(c => new { CouponType = c.CouponType }).Distinct().ToList();
                 // calculate sum of each coupon type.
                 query.ForEach(q =>
                 {

@@ -211,33 +211,57 @@
                     <TextBlock Height="10" DockPanel.Dock="Top" />
                     <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
                     <TextBlock Height="10" DockPanel.Dock="Bottom" />
-                    <!--  LIST VIEW  -->
-                    <ListView x:Name="grid"
-                              Margin="10,0"
-                              FontSize="{StaticResource InputFontSize18}"
-                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
-                              ItemsSource="{Binding}"
-                              Style="{StaticResource SingleSelectListView}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource SAPCouponType}"
-                                                Header="รหัสสินค้า" />
-                                <GridViewColumn Width="120"
-                                                CellTemplate="{StaticResource SAPSerialNo}"
-                                                Header="Serial No" />
-                                <GridViewColumn Width="220"
-                                                CellTemplate="{StaticResource SAPTSBName}"
-                                                Header="ด่านเก็บเงิน" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource SAPSoldDate}"
-                                                Header="วันที่ขาย" />
-                                <GridViewColumn Width="180"
-                                                CellTemplate="{StaticResource SAPShiftName}"
-                                                Header="กะทำงาน" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel>
+                        <!--  LIST VIEW (SUM)  -->
+                        <ListView x:Name="gridSum"
+                                  Height="100"
+                                  Margin="10,0"
+                                  DockPanel.Dock="Bottom"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource SAPCouponType}"
+                                                    Header="รหัสสินค้า" />
+                                    <GridViewColumn Width="180"
+                                                    CellTemplate="{StaticResource SAPNoOfCoupon}"
+                                                    Header="จำนวน" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
+                        <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                        <!--  LIST VIEW (ITEMS)  -->
+                        <ListView x:Name="grid"
+                                  Margin="10,0"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource SAPCouponType}"
+                                                    Header="รหัสสินค้า" />
+                                    <GridViewColumn Width="120"
+                                                    CellTemplate="{StaticResource SAPSerialNo}"
+                                                    Header="Serial No" />
+                                    <GridViewColumn Width="220"
+                                                    CellTemplate="{StaticResource SAPTSBName}"
+                                                    Header="ด่านเก็บเงิน" />
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource SAPSoldDate}"
+                                                    Header="วันที่ขาย" />
+                                    <GridViewColumn Width="180"
+                                                    CellTemplate="{StaticResource SAPShiftName}"
+                                                    Header="กะทำงาน" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
                 </DockPanel>
             </DockPanel>
         </Grid>

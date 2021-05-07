@@ -16,8 +16,16 @@ Refactor DMT.TA.TODv4 #2056
 Refactor DMT.TA.TODv4 #2055
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2054
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update SAPCouponSoldSummaryItem calculate static method.
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml #4
+  - DMT.Account.App project.
+    - Update SAPSendCouponSoldPage #9.
+      - Add summary grid.
 
 [commited]
 Refactor DMT.TA.TODv4 #2053

@@ -207,12 +207,22 @@ namespace DMT.Account.Pages.SAP
             }
 
             grid.ItemsSource = null;
+            gridSum.ItemsSource = null;
             _tollwayId = (cbTSBs.SelectedItem as SAPTSB).TollwayID;
             var ret = ops.GetCouponSolds(Models.Search.TAxTOD.SAP.CouponSolds.Create(dt, _tollwayId));
             if (null != ret && ret.Ok)
             {
                 var list = ret.Value();
                 grid.ItemsSource = list;
+
+                txtTotalRows.Text = "0";
+                if (null != list && list.Count > 0)
+                {
+                    txtTotalRows.Text = list.Count.ToString("n0");
+                }
+                // get summary list.
+                var sum = SAPCouponSoldSummaryItem.Calculate(list);
+                gridSum.ItemsSource = sum;
             }
         }
 

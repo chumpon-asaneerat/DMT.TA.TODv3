@@ -126,7 +126,7 @@
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
                                        Text="-"
-                                       TextAlignment="Right" />
+                                       TextAlignment="Left" />
                             <!--  LINE 3  -->
                             <TextBlock Grid.Row="5"
                                        Grid.Column="0"

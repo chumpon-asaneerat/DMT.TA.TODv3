@@ -251,22 +251,36 @@ namespace DMT.Models
 
 namespace DMT.Models
 {
-    // Url: /api/account/sap/save/arserial
+    // Url: /api/account/sap/save/ar
 
     // Server data parameter.
     /*
     {
-
+        "DocDate": "20210429" ,
+        "DocDueDate": "20210429" , 
+        "CardCode": "CC061" ,
+        "CardName": "ผู้ใช้ทาง" ,
+        "TollWayId": 9   
     }
     */
-    static partial class Search
+    /// <summary>The SAPSaveAR class.</summary>
+    public class SAPSaveAR
     {
-        public static partial class TAxTOD
-        {
-            public static partial class SAP
-            {
+        /// <summary>Gets or sets DocDate. Format is YYYYMMDD.</summary>
+        [PropertyMapName("DocDate")]
+        public string DocDate { get; set; }
+        /// <summary>Gets or sets DocDueDate. Format is YYYYMMDD.</summary>
+        [PropertyMapName("DocDueDate")]
+        public string DocDueDate { get; set; }
 
-            }
-        }
+        /// <summary>Gets or sets CardCode.</summary>
+        [PropertyMapName("CardCode")]
+        public string CardCode { get; set; }
+        /// <summary>Gets or sets CardName.</summary>
+        [PropertyMapName("CardName")]
+        public string CardName { get; set; }
+        /// <summary>Gets or sets TollwayID.</summary>
+        [PropertyMapName("TollwayID")]
+        public int TollwayID { get; set; }
     }
 }

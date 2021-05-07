@@ -45,6 +45,16 @@ namespace DMT
                     public const string Url = @"/api/account/sap/couponsoldlist";
                 }
 
+                // Url: /api/account/sap/save/ar
+                /// <summary>The Save (insert) AR Head and related ARLine, ARSerial in one call.</summary>
+                public static partial class SaveAR
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "SaveAR";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/account/sap/save/ar";
+                }
+
                 //------------------------------------------------------------------------------
                 // Note: Below route use SaveAR instead.
                 //

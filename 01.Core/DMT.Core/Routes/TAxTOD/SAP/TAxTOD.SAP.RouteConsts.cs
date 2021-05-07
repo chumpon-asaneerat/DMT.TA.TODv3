@@ -45,6 +45,8 @@ namespace DMT
                     public const string Url = @"/api/account/sap/couponsoldlist";
                 }
 
+                // Note: Use SaveAR instead.
+                /*
                 // Url: /api/account/sap/save/arhead
                 /// <summary>The Save (insert) AR Head Class.</summary>
                 public static partial class SaveARHead
@@ -101,6 +103,7 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = @"/api/account/sap/save/arserial";
                 }
+                */
             }
         }
     }

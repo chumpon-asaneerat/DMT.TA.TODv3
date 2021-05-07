@@ -45,10 +45,11 @@ namespace DMT
                     public const string Url = @"/api/account/sap/couponsoldlist";
                 }
 
-                // Note: Use SaveAR instead.
-                /*
+                //------------------------------------------------------------------------------
+                // Note: Below route use SaveAR instead.
+                //
                 // Url: /api/account/sap/save/arhead
-                /// <summary>The Save (insert) AR Head Class.</summary>
+                /// <summary>The Save (insert) AR Head Class. Note. Use SaveAR instead.</summary>
                 public static partial class SaveARHead
                 {
                     /// <summary>Gets route name.</summary>
@@ -57,7 +58,7 @@ namespace DMT
                     public const string Url = @"/api/account/sap/save/arhead";
                 }
                 // Url: /api/account/sap/couponsoldlist
-                /// <summary>The Get AR Head List Class.</summary>
+                /// <summary>The Get AR Head List Class. Note. Use SaveAR instead.</summary>
                 public static partial class GetARHeads
                 {
                     /// <summary>Gets route name.</summary>
@@ -67,7 +68,7 @@ namespace DMT
                 }
 
                 // Url: /api/account/sap/get/arsumcoupon
-                /// <summary>The Get AR Sum Coupon List Class.</summary>
+                /// <summary>The Get AR Sum Coupon List Class. Note. Use SaveAR instead.</summary>
                 public static partial class GetARSumCoupons
                 {
                     /// <summary>Gets route name.</summary>
@@ -76,7 +77,7 @@ namespace DMT
                     public const string Url = @"/api/account/sap/get/arsumcoupon";
                 }
                 // Url: /api/account/sap/save/arline
-                /// <summary>The Save (insert) AR Line Class.</summary>
+                /// <summary>The Save (insert) AR Line Class. Note. Use SaveAR instead.</summary>
                 public static partial class SaveARLine
                 {
                     /// <summary>Gets route name.</summary>
@@ -86,7 +87,7 @@ namespace DMT
                 }
 
                 // Url: /api/account/sap/get/arcouponlist
-                /// <summary>The Get AR Coupon List Class.</summary>
+                /// <summary>The Get AR Coupon List Class. Note. Use SaveAR instead.</summary>
                 public static partial class GetARCoupons
                 {
                     /// <summary>Gets route name.</summary>
@@ -95,7 +96,7 @@ namespace DMT
                     public const string Url = @"/api/account/sap/get/arcouponlist";
                 }
                 // Url: /api/account/sap/save/arserial
-                /// <summary>The Save (insert) AR Serial Class.</summary>
+                /// <summary>The Save (insert) AR Serial Class. Note. Use SaveAR instead.</summary>
                 public static partial class SaveARSerial
                 {
                     /// <summary>Gets route name.</summary>
@@ -103,7 +104,7 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = @"/api/account/sap/save/arserial";
                 }
-                */
+                //------------------------------------------------------------------------------
             }
         }
     }

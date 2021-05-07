@@ -25,8 +25,13 @@ Refactor DMT.TA.TODv4 #2043
 Refactor DMT.TA.TODv4 #2042
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2041
-- 
+- DMT.TAxTODv3
+  - DMT.Code project.
+    - Update SAP routes #2.
+  - DMT.Models project.
+    - Remove unused classes.
 
 [commited]
 Refactor DMT.TA.TODv4 #2040

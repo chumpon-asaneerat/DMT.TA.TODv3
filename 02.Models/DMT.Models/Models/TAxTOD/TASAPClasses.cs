@@ -249,10 +249,9 @@ namespace DMT.Models
     }
 }
 
+// SAPSapAR Url: /api/account/sap/save/ar
 namespace DMT.Models
 {
-    // Url: /api/account/sap/save/ar
-
     // Server data parameter.
     /*
     {

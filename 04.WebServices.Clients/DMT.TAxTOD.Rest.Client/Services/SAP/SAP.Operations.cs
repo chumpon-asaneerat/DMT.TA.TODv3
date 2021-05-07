@@ -49,6 +49,17 @@ namespace DMT.Services.Operations
                     RouteConsts.TAxTOD.SAP.GetCouponSolds.Url, value);
                 return ret;
             }
+
+            /// <summary>
+            /// Execute Save AR api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult SaveAR(SAPSaveAR value)
+            {
+                var ret = Execute(RouteConsts.TAxTOD.SAP.SaveAR.Url, value);
+                return ret;
+            }
         }
     }
 }

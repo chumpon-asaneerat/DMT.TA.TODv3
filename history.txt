@@ -16,8 +16,14 @@ Refactor DMT.TA.TODv4 #2046
 Refactor DMT.TA.TODv4 #2045
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2044
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update SaveAR class.
+  - DMT.TAxTOD.Rest.Client project.
+    - Update SAP Operations #3.
+      - Implements SaveAR method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2043

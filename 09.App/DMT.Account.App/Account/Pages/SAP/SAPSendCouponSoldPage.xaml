@@ -206,32 +206,20 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource SAPItemCode}"
+                                                CellTemplate="{StaticResource SAPCouponType}"
                                                 Header="รหัสสินค้า" />
-                                <GridViewColumn Width="100"
-                                                CellTemplate="{StaticResource SAPIntrSerial}"
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource SAPSerialNo}"
                                                 Header="Serial No" />
-                                <GridViewColumn Width="140"
-                                                CellTemplate="{StaticResource SAPTransferNo}"
-                                                Header="เลขที่ใบโอนสินค้า" />
                                 <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource SAPTransferDateString}"
-                                                Header="วันที่โอนสินค้า" />
-                                <GridViewColumn Width="150"
-                                                CellTemplate="{StaticResource ItemStatus}"
-                                                Header="สถานะรายการ" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource TollWayName}"
+                                                CellTemplate="{StaticResource SAPTollWayId}"
                                                 Header="ด่านเก็บเงิน" />
                                 <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource WorkingDateString}"
-                                                Header="วันที่ทำงาน" />
+                                                CellTemplate="{StaticResource SAPSoldDate}"
+                                                Header="วันที่ขาย" />
                                 <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource ShiftName}"
+                                                CellTemplate="{StaticResource SAPShiftName}"
                                                 Header="กะทำงาน" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource SAPARInvoice}"
-                                                Header="AR Invoice" />
                             </GridView>
                         </ListView.View>
                     </ListView>

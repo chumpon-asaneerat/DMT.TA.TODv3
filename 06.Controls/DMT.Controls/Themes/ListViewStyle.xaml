@@ -607,14 +607,48 @@
     </DataTemplate>
 
     <!--  Common for SAP AR related ListView  -->
-    <DataTemplate x:Key="CardCode">
+    <!--
+    {
+        "TollWayId": 9,
+        "SAPSysSerial": 747977,
+        "SoldBy": "20001",
+        "LaneId": "AN12"
+    }
+    -->
+    <DataTemplate x:Key="SAPCardCode">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding CardCode}"
-                   TextAlignment="Left" />
+                   TextAlignment="Center" />
     </DataTemplate>
-    <DataTemplate x:Key="CardName">
+    <DataTemplate x:Key="SAPCardName">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding CardName}"
                    TextAlignment="Left" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="SAPCouponType">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CouponType}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPSerialNo">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SerialNo}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPTollWayId">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TollWayId}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPSoldDate">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SoldDateString}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SAPShiftName">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SoldDateString}"
+                   TextAlignment="Center" />
     </DataTemplate>
 </ResourceDictionary>

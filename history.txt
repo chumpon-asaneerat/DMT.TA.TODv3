@@ -10,8 +10,14 @@ Refactor DMT.TA.TODv4 #2048
 Refactor DMT.TA.TODv4 #2047
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2046
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml #2
+      - Add more column templates.
+  - DMT.Account.App project.
+    - Update SAPSendCouponSoldPage #4.
 
 [commited]
 Refactor DMT.TA.TODv4 #2045

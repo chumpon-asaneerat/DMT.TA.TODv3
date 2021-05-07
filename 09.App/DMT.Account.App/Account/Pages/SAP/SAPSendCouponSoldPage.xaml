@@ -99,19 +99,30 @@
                                      Grid.Column="2"
                                      VerticalAlignment="Center"
                                      FontSize="{StaticResource InputFontSize18}"
+                                     KeyDown="txtCustomerFilter_KeyDown"
                                      Style="{StaticResource CommonTextBox}" />
-                            <Button x:Name="cmdSelectCustomer"
-                                    Grid.Row="1"
-                                    Grid.Column="4"
-                                    Grid.ColumnSpan="3"
-                                    Width="150"
-                                    Height="30"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Content="ค้นหา"
-                                    Click="cmdSelectCustomer_Click"
-                                    FontSize="{StaticResource InputFontSize18}"
-                                    Style="{DynamicResource InlineButton}" />
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="4"
+                                        Grid.ColumnSpan="3"
+                                        Height="30"
+                                        Orientation="Horizontal">
+                                <Button x:Name="cmdSelectCustomer"
+                                        Width="150"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Click="cmdSelectCustomer_Click"
+                                        Content="ค้นหา"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
+                                <Button x:Name="cmdClear"
+                                        Width="150"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Click="cmdClear_Click"
+                                        Content="Clear"
+                                        FontSize="{StaticResource InputFontSize18}"
+                                        Style="{DynamicResource InlineButton}" />
+                            </StackPanel>
                             <!--  LINE 2  -->
                             <TextBlock Grid.Row="3"
                                        Grid.Column="0"
@@ -119,14 +130,17 @@
                                        Style="{StaticResource LabelText}"
                                        Text="ลูกค้า : "
                                        TextAlignment="Right" />
-                            <TextBlock Grid.Row="3"
-                                       Grid.Column="2"
-                                       Grid.ColumnSpan="5"
-                                       x:Name="txtCurrentCustomer"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="-"
-                                       TextAlignment="Left" />
+                            <Border Grid.Row="3"
+                                    Grid.Column="2"
+                                    Grid.ColumnSpan="5"
+                                    Background="AntiqueWhite">
+                                <TextBlock x:Name="txtCurrentCustomer"
+                                           VerticalAlignment="Center"
+                                           Foreground="Black"
+                                           Style="{StaticResource LabelText}"
+                                           Text="-"
+                                           TextAlignment="Left" />
+                            </Border>
                             <!--  LINE 3  -->
                             <TextBlock Grid.Row="5"
                                        Grid.Column="0"
@@ -163,6 +177,18 @@
                                                   TimePickerAllowSpin="False"
                                                   TimePickerShowButtonSpinner="False"
                                                   TimePickerVisibility="Collapsed" />
+                            <Button x:Name="cmdSearch"
+                                    Grid.Row="5"
+                                    Grid.Column="9"
+                                    Grid.ColumnSpan="3"
+                                    Width="150"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Click="cmdSearch_Click"
+                                    Content="แสดงข้อมูล"
+                                    FontSize="{StaticResource InputFontSize18}"
+                                    Style="{DynamicResource InlineButton}" />
                             <!--  LINE 4  -->
                             <TextBlock Grid.Row="7"
                                        Grid.Column="0"
@@ -179,17 +205,6 @@
                                      Style="{StaticResource CommonTextBox}"
                                      Text="0"
                                      TextAlignment="Center" />
-                            <Button x:Name="cmdSearch"
-                                    Grid.Row="7"
-                                    Grid.Column="4"
-                                    Grid.ColumnSpan="3"
-                                    Width="150"
-                                    Height="30"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Content="แสดงข้อมูล"
-                                    FontSize="{StaticResource InputFontSize18}"
-                                    Style="{DynamicResource InlineButton}" />
                         </Grid>
                     </DockPanel>
                     <!--  SEPERATOR  -->

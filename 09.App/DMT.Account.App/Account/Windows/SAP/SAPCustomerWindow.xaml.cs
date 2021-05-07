@@ -41,6 +41,24 @@ namespace DMT.Windows
 
         #endregion
 
+        #region Window Handlers
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                DialogResult = false;
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Enter || e.Key == Key.Return)
+            {
+                DialogResult = true;
+                e.Handled = true;
+            }
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
@@ -51,6 +69,15 @@ namespace DMT.Windows
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        #endregion
+
+        #region ListView Handlers
+
+        private void grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DialogResult = true;
         }
 
         #endregion
@@ -72,6 +99,12 @@ namespace DMT.Windows
             }
 
             grid.ItemsSource = _customers;
+
+            // Focus on list view.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                grid.Focus();
+            }));
         }
 
         #endregion

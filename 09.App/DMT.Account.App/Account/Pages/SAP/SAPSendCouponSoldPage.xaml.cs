@@ -60,9 +60,32 @@ namespace DMT.Account.Pages.SAP
             SelectCustomer();
         }
 
+        private void cmdClear_Click(object sender, RoutedEventArgs e)
+        {
+            Reset();
+        }
+
         private void cmdSearch_Click(object sender, RoutedEventArgs e)
         {
             Search();
+        }
+
+        #endregion
+
+        #region TextBlock Handlers
+
+        private void txtCustomerFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Reset();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Enter || e.Key == Key.Return)
+            {
+                SelectCustomer();
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -83,7 +106,13 @@ namespace DMT.Account.Pages.SAP
             txtCustomerFilter.Text = string.Empty;
             txtCurrentCustomer.Text = "-";
 
-            dtSoldDate.Value = new DateTime?();
+            dtSoldDate.Value = new DateTime?(DateTime.Now);
+            grid.ItemsSource = null;
+
+            if (null != cbTSBs.ItemsSource && cbTSBs.ItemsSource is IList && (cbTSBs.ItemsSource as IList).Count > 0)
+            {
+                cbTSBs.SelectedIndex = 0;
+            }
         }
 
         private void GetSAPTSBs()
@@ -101,7 +130,6 @@ namespace DMT.Account.Pages.SAP
                 else list = src;
 
                 cbTSBs.ItemsSource = list;
-                if (list.Count > 0) cbTSBs.SelectedIndex = 0;
             }
         }
 
@@ -118,13 +146,53 @@ namespace DMT.Account.Pages.SAP
             if (null != _customer)
             {
                 txtCurrentCustomer.Text = string.Format("{0} - {1}", _customer.CardCode, _customer.CardName);
+
+                // Focus on SoldDate input.
+                dtSoldDate.SelectAll();
+                dtSoldDate.Focus();
             }
-            else txtCurrentCustomer.Text = "-";
+            else
+            {
+                txtCurrentCustomer.Text = "-";
+
+                // Focus on search textbox.
+                txtCustomerFilter.SelectAll();
+                txtCustomerFilter.Focus();
+            }
         }
 
         private void Search()
         {
+            if (null == _customer)
+            {
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุลูกค้า.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on search textbox.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtCustomerFilter.SelectAll();
+                    txtCustomerFilter.Focus();
+                }));
+                return;
+            }
+
             DateTime? dt = (dtSoldDate.Value.HasValue) ? dtSoldDate.Value.Value : new DateTime?();
+
+            if (!dt.HasValue)
+            {
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุวันที่ขาย.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on SoldDate input.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    dtSoldDate.SelectAll();
+                    dtSoldDate.Focus();
+                }));
+                return;
+            }
+
             var ret = ops.GetCouponSolds(Models.Search.TAxTOD.SAP.CouponSolds.Create(dt, _tollwayId));
             if (null != ret && ret.Ok)
             {

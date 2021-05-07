@@ -6,10 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="กรุณาเลือกลูกค้า"
-        Width="960"
+        Width="800"
         Height="500"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
+        PreviewKeyDown="Window_PreviewKeyDown"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
@@ -86,13 +87,14 @@
                               FontSize="{StaticResource InputFontSize18}"
                               ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
                               ItemsSource="{Binding}"
+                              MouseDoubleClick="grid_MouseDoubleClick"
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="120"
+                                <GridViewColumn Width="150"
                                                 CellTemplate="{StaticResource SAPCardCode}"
                                                 Header="รหัสลูกค้า" />
-                                <GridViewColumn Width="250"
+                                <GridViewColumn Width="500"
                                                 CellTemplate="{StaticResource SAPCardName}"
                                                 Header="ชื่อลูกค้า" />
                             </GridView>

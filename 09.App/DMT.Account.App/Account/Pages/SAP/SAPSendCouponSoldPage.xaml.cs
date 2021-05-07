@@ -112,7 +112,7 @@ namespace DMT.Account.Pages.SAP
             win.Setup(filter);
             if (win.ShowDialog() == true)
             {
-                //_customer = win.SelectedCustomer;
+                _customer = win.SelectedCustomer;
             }
 
             if (null != _customer)

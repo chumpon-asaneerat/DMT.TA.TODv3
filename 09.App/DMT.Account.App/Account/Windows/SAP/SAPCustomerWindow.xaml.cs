@@ -37,9 +37,7 @@ namespace DMT.Windows
 
         #region Internal Variables
 
-        #endregion
-
-        #region Window Handlers
+        private List<SAPCustomer> _customers = null;
 
         #endregion
 
@@ -59,25 +57,39 @@ namespace DMT.Windows
 
         #region Public Methods
 
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="filter">The filter text.</param>
         public void Setup(string filter)
         {
+            _customers = null;
+
             var ret = ops.GetCustomers(Models.Search.TAxTOD.SAP.Customers.Create(filter));
             if (null != ret && ret.Ok)
             {
-                var list = ret.Value();
-                /*
-                list.ForEach(item =>
-                {
-                    Console.WriteLine("Code: {0} - Name: {1}", item.CardCode, item.CardName);
-                });
-                */
+                _customers = ret.Value();
             }
 
+            grid.ItemsSource = _customers;
         }
 
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets selected customer.
+        /// </summary>
+        public SAPCustomer SelectedCustomer
+        {
+            get 
+            {
+                if (null == _customers || grid.SelectedIndex < 0) return null;
+                if (grid.SelectedIndex >= _customers.Count) return null;
+                return _customers[grid.SelectedIndex];
+            }
+        }
 
         #endregion
     }

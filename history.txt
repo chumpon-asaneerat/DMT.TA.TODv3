@@ -4,8 +4,12 @@
 Refactor DMT.TA.TODv4 #2049
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2048
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update SAPCustomerWindow #3.
+    - Update SAPSendCouponSoldPage #5.
 
 [commited]
 Refactor DMT.TA.TODv4 #2047

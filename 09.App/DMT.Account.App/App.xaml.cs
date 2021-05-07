@@ -106,6 +106,8 @@ namespace DMT
 
             // Start SCWMQ
             Services.SCWMQService.Instance.Start();
+            // Start TAxTOD MQ Service
+            Services.TAxTODMQService.Instance.Start();
 
             // Start RabbitMQ
             Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
@@ -127,6 +129,8 @@ namespace DMT
         {
             AccountConfigManager.Instance.Shutdown();
 
+            // Shutdown TAxTOD MQ Service
+            Services.TAxTODMQService.Instance.Shutdown();
             // Shutdown RabbitMQ.
             Services.RabbitMQService.Instance.Shutdown();
 

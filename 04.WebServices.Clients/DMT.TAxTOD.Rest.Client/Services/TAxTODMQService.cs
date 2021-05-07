@@ -104,6 +104,24 @@ namespace DMT.Services
             }
         }
 
+        private void SendSaveAR(string fullFileName, Models.SAPSaveAR value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.SAP.SaveAR(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            else
+            {
+                // Success
+                MoveToBackup(fullFileName);
+            }
+        }
+
         #endregion
 
         #region Override Methods and Properties
@@ -154,6 +172,21 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("sap.send.ar"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SAPSaveAR>();
+                    SendSaveAR(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
             else
             {
                 // process not staff list so Not Supports file.
@@ -193,6 +226,17 @@ namespace DMT.Services
         {
             if (null == value) return;
             string fileName = GetFileName("update.coupon.received");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The SAPSaveAR instance.</param>
+        public void WriteQueue(Models.SAPSaveAR value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("sap.send.ar");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

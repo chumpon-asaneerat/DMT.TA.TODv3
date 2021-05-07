@@ -205,6 +205,18 @@
                                      Style="{StaticResource CommonTextBox}"
                                      Text="0"
                                      TextAlignment="Center" />
+                            <Button x:Name="cmdSendToSAP"
+                                    Grid.Row="7"
+                                    Grid.Column="4"
+                                    Grid.ColumnSpan="3"
+                                    Width="150"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Click="cmdSendToSAP_Click"
+                                    Content="ส่งข้อมูลไปยัง SAP"
+                                    FontSize="{StaticResource InputFontSize18}"
+                                    Style="{DynamicResource InlineButton}" />
                         </Grid>
                     </DockPanel>
                     <!--  SEPERATOR  -->

@@ -13,8 +13,17 @@ Refactor DMT.TA.TODv4 #2057
 Refactor DMT.TA.TODv4 #2056
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2055
-- 
+- DMT.TAxTODv3
+  - DMT.TAxTOD.Rest.Client project.
+    - Update TAxTODMQService
+      - Add supports sap.send.ar for SaveAR to TA Server.
+  - DMT.Account.App project.
+    - Update App.xaml.cs
+      - Add Start/Stop TAxTODMQService.
+    - Update SAPSendCouponSoldPage #10.
+      - Add SendToSAP operation.
 
 [commited]
 Refactor DMT.TA.TODv4 #2054

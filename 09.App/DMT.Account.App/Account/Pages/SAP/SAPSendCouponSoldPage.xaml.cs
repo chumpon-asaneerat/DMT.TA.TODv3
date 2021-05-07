@@ -70,6 +70,11 @@ namespace DMT.Account.Pages.SAP
             Search();
         }
 
+        private void cmdSendToSAP_Click(object sender, RoutedEventArgs e)
+        {
+            SendToSAP();
+        }
+
         #endregion
 
         #region TextBlock Handlers
@@ -224,6 +229,73 @@ namespace DMT.Account.Pages.SAP
                 var sum = SAPCouponSoldSummaryItem.Calculate(list);
                 gridSum.ItemsSource = sum;
             }
+        }
+
+        private void SendToSAP()
+        {
+            if (null == _customer)
+            {
+                // No customer selected.
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุลูกค้า.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on search textbox.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtCustomerFilter.SelectAll();
+                    txtCustomerFilter.Focus();
+                }));
+                return;
+            }
+
+            DateTime? dt = (dtSoldDate.Value.HasValue) ? dtSoldDate.Value.Value : new DateTime?();
+            if (!dt.HasValue)
+            {
+                // No date selected.
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุวันที่ขาย.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on SoldDate input.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    dtSoldDate.SelectAll();
+                    dtSoldDate.Focus();
+                }));
+                return;
+            }
+
+            if (null == cbTSBs.SelectedItem)
+            {
+                // No TSB selected.
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกด่าน.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on TSB Combobox.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    cbTSBs.Focus();
+                }));
+                return;
+            }
+
+            _tollwayId = (cbTSBs.SelectedItem as SAPTSB).TollwayID;
+
+            SAPSaveAR json = new SAPSaveAR();
+            json.DocDate = DateTime.Now.ToString("yyyyMMdd");
+            json.DocDueDate = dt.Value.ToString("yyyyMMdd");
+            json.CardCode = _customer.CardCode;
+            json.CardName = _customer.CardName;
+            json.TollwayID = _tollwayId;
+
+            TAxTODMQService.Instance.WriteQueue(json);
+            // Show success gnerate message.
+            {
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("เสร็จสิ้นการสร้างรายการนำส่งไปยัง SAP แล้ว.", "DMT - TA (Account)");
+                win.ShowDialog();
+            }
+
+            Reset(); // clear all inputs.
         }
 
         #endregion

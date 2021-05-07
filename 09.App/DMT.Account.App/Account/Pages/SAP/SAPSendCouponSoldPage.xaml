@@ -226,13 +226,13 @@
                                 <GridViewColumn Width="120"
                                                 CellTemplate="{StaticResource SAPSerialNo}"
                                                 Header="Serial No" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource SAPTollWayId}"
+                                <GridViewColumn Width="220"
+                                                CellTemplate="{StaticResource SAPTSBName}"
                                                 Header="ด่านเก็บเงิน" />
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource SAPSoldDate}"
                                                 Header="วันที่ขาย" />
-                                <GridViewColumn Width="80"
+                                <GridViewColumn Width="180"
                                                 CellTemplate="{StaticResource SAPShiftName}"
                                                 Header="กะทำงาน" />
                             </GridView>

@@ -636,9 +636,9 @@
                    Text="{Binding SerialNo}"
                    TextAlignment="Center" />
     </DataTemplate>
-    <DataTemplate x:Key="SAPTollWayId">
+    <DataTemplate x:Key="SAPTSBName">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding TollWayId}"
+                   Text="{Binding TollWayName}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="SAPSoldDate">
@@ -648,7 +648,7 @@
     </DataTemplate>
     <DataTemplate x:Key="SAPShiftName">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding SoldDateString}"
+                   Text="{Binding ShiftName}"
                    TextAlignment="Center" />
     </DataTemplate>
 </ResourceDictionary>

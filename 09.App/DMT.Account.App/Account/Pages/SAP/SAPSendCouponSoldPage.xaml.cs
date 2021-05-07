@@ -193,16 +193,26 @@ namespace DMT.Account.Pages.SAP
                 return;
             }
 
+            if (null == cbTSBs.SelectedItem)
+            {
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกด่าน.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on TSB Combobox.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    cbTSBs.Focus();
+                }));
+                return;
+            }
+
+            grid.ItemsSource = null;
+            _tollwayId = (cbTSBs.SelectedItem as SAPTSB).TollwayID;
             var ret = ops.GetCouponSolds(Models.Search.TAxTOD.SAP.CouponSolds.Create(dt, _tollwayId));
             if (null != ret && ret.Ok)
             {
                 var list = ret.Value();
-                /*
-                list.ForEach(item =>
-                {
-                    Console.WriteLine("SN: {0} - CouponType: {1}, SoldBy: {2}", item.SerialNo, item.CouponType, item.SoldBy);
-                });
-                */
+                grid.ItemsSource = list;
             }
         }
 

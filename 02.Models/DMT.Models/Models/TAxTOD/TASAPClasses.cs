@@ -189,6 +189,13 @@ namespace DMT.Models
         /// <summary>Gets or sets LaneId.</summary>
         [PropertyMapName("LaneId")]
         public string LaneId { get; set; }
+
+        /// <summary>Gets or sets TollWayName.</summary>
+        [PropertyMapName("TollWayName")]
+        public string TollWayName { get; set; }
+        /// <summary>Gets or sets ShiftName.</summary>
+        [PropertyMapName("ShiftName")]
+        public string ShiftName { get; set; }
     }
     // Server data parameter.
     /*

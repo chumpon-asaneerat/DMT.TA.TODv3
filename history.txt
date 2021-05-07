@@ -22,8 +22,16 @@ Refactor DMT.TA.TODv4 #2054
 Refactor DMT.TA.TODv4 #2053
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2052
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update SAPCouponSold class (add TollWayName, ShiftName property).
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml #3
+      - Add more column templates (TollWayName, ShiftName).
+  - DMT.Account.App project.
+    - Update SAPSendCouponSoldPage #8.
 
 [commited]
 Refactor DMT.TA.TODv4 #2051

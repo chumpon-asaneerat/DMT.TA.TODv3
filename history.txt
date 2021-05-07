@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2049
 Refactor DMT.TA.TODv4 #2048
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2047
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update SAPCustomerWindow #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2046

@@ -65,6 +65,39 @@
                 <TextBlock Height="10" DockPanel.Dock="Bottom" />
                 <!--  WORK AREA  -->
                 <Grid>
+                    <Border Margin="10,1"
+                            Background="CornflowerBlue"
+                            BorderBrush="Silver"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top">
+                        <TextBlock Margin="5,3"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="ส่งข้อมูลขายไปที่ SAP" />
+                    </Border>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
+                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                    <!--  LIST VIEW  -->
+                    <ListView x:Name="grid"
+                              Margin="10,0"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource SAPCardCode}"
+                                                Header="รหัสลูกค้า" />
+                                <GridViewColumn Width="250"
+                                                CellTemplate="{StaticResource SAPCardName}"
+                                                Header="ชื่อลูกค้า" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </DockPanel>
         </Grid>

@@ -19,8 +19,11 @@ Refactor DMT.TA.TODv4 #2055
 Refactor DMT.TA.TODv4 #2054
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2053
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Add SAPCouponSoldSummaryItem class with calculate static method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2052

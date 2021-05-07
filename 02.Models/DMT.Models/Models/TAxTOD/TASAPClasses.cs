@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NLib.Reflection;
 
 using Newtonsoft.Json;
@@ -197,6 +198,48 @@ namespace DMT.Models
         [PropertyMapName("ShiftName")]
         public string ShiftName { get; set; }
     }
+
+    // for runtime summary by coupon type
+    public class SAPCouponSoldSummaryItem
+    {
+        /// <summary>Gets or sets CouponType.</summary>
+        [PropertyMapName("CouponType")]
+        public string CouponType { get; set; }
+        /// <summary>Gets or sets NoOfCoupon.</summary>
+        [PropertyMapName("NoOfCoupon")]
+        public int NoOfCoupon { get; set; }
+
+        /// <summary>
+        /// Calculate.
+        /// </summary>
+        /// <param name="items">The source list of SAPCouponSold.</param>
+        /// <returns>Returns summary list by CouponType.</returns>
+        public static List<SAPCouponSoldSummaryItem> Calculate(List<SAPCouponSold> items)
+        {
+            List<SAPCouponSoldSummaryItem> results = new List<SAPCouponSoldSummaryItem>();
+
+            if (null != items && items.Count > 0)
+            {
+                // extract coupon type.
+                var query = items.Select(c => new 
+                {
+                    CouponType = c.CouponType
+                }).ToList();
+                // calculate sum of each coupon type.
+                query.ForEach(q =>
+                {
+                    results.Add(new SAPCouponSoldSummaryItem() 
+                    { 
+                        CouponType = q.CouponType, 
+                        NoOfCoupon = items.Count(c => c.CouponType == q.CouponType) 
+                    });
+                });
+            }
+
+            return results;
+        }
+    }
+
     // Server data parameter.
     /*
     {

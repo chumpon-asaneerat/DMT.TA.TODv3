@@ -605,4 +605,16 @@
                    Text="{Binding SoldBy}"
                    TextAlignment="Left" />
     </DataTemplate>
+
+    <!--  Common for SAP AR related ListView  -->
+    <DataTemplate x:Key="CardCode">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CardCode}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+    <DataTemplate x:Key="CardName">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CardName}"
+                   TextAlignment="Left" />
+    </DataTemplate>
 </ResourceDictionary>

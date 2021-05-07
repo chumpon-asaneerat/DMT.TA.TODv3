@@ -13,8 +13,12 @@ Refactor DMT.TA.TODv4 #2047
 Refactor DMT.TA.TODv4 #2046
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2045
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml #1
+      - Add CardCode, CardName column template.
 
 [commited]
 Refactor DMT.TA.TODv4 #2044

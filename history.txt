@@ -28,8 +28,11 @@ Refactor DMT.TA.TODv4 #2062
 Refactor DMT.TA.TODv4 #2061
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2060
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Implements TSB and User Check Balance #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2059

@@ -59,8 +59,8 @@ namespace DMT.Account.Pages.Balance
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (null == grid.SelectedItem) return;
-            var item = grid.SelectedItem as Models.TAAccountTSBCreditResult;
+            if (null == sender || !(sender is Button)) return;
+            var item = (sender as Button).DataContext as Models.TAAccountTSBCreditResult;
             if (null != item)
             {
                 var win = AccountApp.Windows.UserCheckBalance;

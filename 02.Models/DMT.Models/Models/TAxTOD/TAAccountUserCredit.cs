@@ -58,56 +58,51 @@ namespace DMT.Models
     }
 
 
+    /*
+    {
+          "TSBId": "09",
+          "TSB_Th_Name": "อนุสรณ์สถาน",
+          "UserId": "00111",
+          "username": "นาย หัสกร ทิพยไพศาล",
+          "Bagno": "1245",
+          "Credit": 10000,
+          "creditdate": "2021-02-20T13:03:11.200Z",
+          "C35": null,
+          "C80": null
+    }
+    */
     /// <summary>The TAAccountUserCreditResult class.</summary>
     public class TAAccountUserCreditResult
     {
+        /// <summary>Gets or sets TSBId.</summary>
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+        /// <summary>Gets or sets TSB_Th_Name.</summary>
+        [PropertyMapName("TSB_Th_Name")]
+        public string TSB_Th_Name { get; set; }
 
-    }
+        /// <summary>Gets or sets UserId.</summary>
+        [PropertyMapName("UserId")]
+        public string UserId { get; set; }
+        /// <summary>Gets or sets username.</summary>
+        [PropertyMapName("username")]
+        public string username { get; set; }
 
-    static partial class Search
-    {
-        public static partial class TAxTOD
-        {
-            public static partial class Credit
-            {
-                public static partial class User
-                {
-                    #region Gets
+        /// <summary>Gets or sets Bagno.</summary>
+        [PropertyMapName("Bagno")]
+        public string Bagno { get; set; }
+        /// <summary>Gets or sets Credit.</summary>
+        [PropertyMapName("Credit")]
+        public decimal? Credit { get; set; }
+        /// <summary>Gets or sets creditdate.</summary>
+        [PropertyMapName("creditdate")]
+        public DateTime? creditdate { get; set; }
 
-                    /// <summary>
-                    /// Gets.
-                    /// </summary>
-                    public class Gets : NSearch<Gets>
-                    {
-                        #region Public Properties
-
-                        /// <summary>
-                        /// Gets or sets TSBId.
-                        /// </summary>
-                        public string TSBId { get; set; }
-
-                        #endregion
-
-                        #region Static Method (Create)
-
-                        /// <summary>
-                        /// Create Search instance.
-                        /// </summary>
-                        /// <param name="tsbId">The TSB Id.</param>
-                        /// <returns>Returns Search instance.</returns>
-                        public static Gets Create(string tsbId)
-                        {
-                            var ret = new Gets();
-                            ret.TSBId = tsbId;
-                            return ret;
-                        }
-
-                        #endregion
-                    }
-
-                    #endregion
-                }
-            }
-        }
+        /// <summary>Gets or sets C35.</summary>
+        [PropertyMapName("C35")]
+        public int? C35 { get; set; }
+        /// <summary>Gets or sets C80.</summary>
+        [PropertyMapName("C80")]
+        public int? C80 { get; set; }
     }
 }

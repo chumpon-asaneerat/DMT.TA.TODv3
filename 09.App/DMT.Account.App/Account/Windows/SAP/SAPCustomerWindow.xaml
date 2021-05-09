@@ -65,7 +65,7 @@
                 <!--  SEPERATOR  -->
                 <TextBlock Height="10" DockPanel.Dock="Bottom" />
                 <!--  WORK AREA  -->
-                <Grid>
+                <DockPanel LastChildFill="True">
                     <Border Margin="10,1"
                             Background="CornflowerBlue"
                             BorderBrush="Silver"
@@ -100,7 +100,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>

@@ -26,6 +26,21 @@ namespace DMT.Services.Operations
                     return ret;
                 }
             }
+
+            public static partial class User
+            {
+                /// <summary>
+                /// Execute Gets api.
+                /// </summary>
+                /// <param name="tsbId">The TSBId</param>
+                /// <returns>Returns instance of NRestResult.</returns>
+                public static NRestResult<List<TAAccountUserCreditResult>> Gets(string tsbId)
+                {
+                    var ret = Execute<List<TAAccountUserCreditResult>>(
+                        RouteConsts.TAxTOD.AccountCredit.User.Gets.Url, new { tsbId = tsbId });
+                    return ret;
+                }
+            }
         }
     }
 }

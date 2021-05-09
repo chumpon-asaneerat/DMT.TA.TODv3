@@ -133,6 +133,9 @@
     <Compile Include="Account\Controls\TSBCreditTransactionEntry.xaml.cs">
       <DependentUpon>TSBCreditTransactionEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Pages\Balance\TSBCheckBalancePage.xaml.cs">
+      <DependentUpon>TSBCheckBalancePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml.cs">
       <DependentUpon>CouponHistoryViewPage.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,9 @@
     </Compile>
     <Compile Include="Account\Pages\SAP\SAPSendCouponSoldPage.xaml.cs">
       <DependentUpon>SAPSendCouponSoldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Windows\Balance\UserCheckBalanceWindow.xaml.cs">
+      <DependentUpon>UserCheckBalanceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\Windows\SAP\SAPCustomerWindow.xaml.cs">
       <DependentUpon>SAPCustomerWindow.xaml</DependentUpon>
@@ -194,6 +200,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Account\Pages\Balance\TSBCheckBalancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Pages\SAP\SAPSendCouponSoldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Windows\Balance\UserCheckBalanceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

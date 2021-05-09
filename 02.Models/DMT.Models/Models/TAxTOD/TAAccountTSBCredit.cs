@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using NLib.Reflection;
 
+using Newtonsoft.Json;
+
 #endregion
 
 namespace DMT.Models
@@ -128,12 +130,36 @@ namespace DMT.Models
         [PropertyMapName("Amnt1000")]
         public decimal? Amnt1000 { get; set; }
 
+        /// <summary>Gets Total credit amount in BHT.</summary>
+        [JsonIgnore]
+        public decimal? Total 
+        {
+            get 
+            {
+                decimal total = decimal.Zero;
+                total += (Amnt1.HasValue) ? Amnt1.Value : decimal.Zero;
+                total += (Amnt2.HasValue) ? Amnt2.Value : decimal.Zero;
+                total += (Amnt5.HasValue) ? Amnt5.Value : decimal.Zero;
+                total += (Amnt10.HasValue) ? Amnt10.Value : decimal.Zero;
+                total += (Amnt20.HasValue) ? Amnt20.Value : decimal.Zero;
+                total += (Amnt50.HasValue) ? Amnt50.Value : decimal.Zero;
+                total += (Amnt100.HasValue) ? Amnt100.Value : decimal.Zero;
+                total += (Amnt500.HasValue) ? Amnt500.Value : decimal.Zero;
+                total += (Amnt1000.HasValue) ? Amnt1000.Value : decimal.Zero;
+                return total;
+            }
+        }
+
         /// <summary>Gets or sets BalanceDate.</summary>
         [PropertyMapName("BalanceDate")]
         public DateTime? BalanceDate { get; set; }
         /// <summary>Gets or sets BalanceRemark.</summary>
         [PropertyMapName("BalanceRemark")]
         public string BalanceRemark { get; set; }
+
+        /// <summary>Gets or sets ucredit.</summary>
+        [PropertyMapName("ucredit")]
+        public decimal? ucredit { get; set; }
 
         /// <summary>Gets or sets C35.</summary>
         [PropertyMapName("C35")]

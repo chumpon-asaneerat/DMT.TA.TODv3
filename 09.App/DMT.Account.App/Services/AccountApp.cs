@@ -93,6 +93,28 @@ namespace DMT
 
             #endregion
 
+            #region TSB Balance Page
+
+            private static Account.Pages.Balance.TSBCheckBalancePage _TSBCheckBalancePage;
+
+            /// <summary>Gets TSB Check Balance Page.</summary>
+            public static Account.Pages.Balance.TSBCheckBalancePage TSBCheckBalancePage
+            {
+                get
+                {
+                    if (null == _TSBCheckBalancePage)
+                    {
+                        lock (typeof(AccountApp))
+                        {
+                            _TSBCheckBalancePage = new Account.Pages.Balance.TSBCheckBalancePage();
+                        }
+                    }
+                    return _TSBCheckBalancePage;
+                }
+            }
+
+            #endregion
+
             #region Coupon History View
 
             private static Account.Pages.Coupon.CouponHistoryViewPage _CouponHistoryView;
@@ -151,6 +173,21 @@ namespace DMT
                 get
                 {
                     var ret = new DMT.Windows.UserSearchWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region User Check Balance Window
+
+            /// <summary>Gets SUser Check Balance Window.</summary>
+            public static DMT.Windows.UserCheckBalanceWindow UserCheckBalance
+            {
+                get
+                {
+                    var ret = new DMT.Windows.UserCheckBalanceWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

@@ -32,6 +32,9 @@ namespace DMT.Account.Pages.Menu
         private void cmdCreditAndCouponSummary_Click(object sender, RoutedEventArgs e)
         {
             // TSB Credit and Coupon Summary
+            var page = AccountApp.Pages.TSBCheckBalancePage;
+            page.Setup(AccountApp.User.Current);
+            PageContentManager.Instance.Current = page;
         }
 
         private void cndRequestExchangeHistory_Click(object sender, RoutedEventArgs e)

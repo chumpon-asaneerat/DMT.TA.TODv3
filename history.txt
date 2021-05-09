@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2059
 Refactor DMT.TA.TODv4 #2058
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2057
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Fixed DocDate (force use invariant format).
 
 [commited]
 Refactor DMT.TA.TODv4 #2056

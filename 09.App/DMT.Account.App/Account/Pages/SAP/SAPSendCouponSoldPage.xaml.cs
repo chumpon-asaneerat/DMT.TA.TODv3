@@ -281,8 +281,8 @@ namespace DMT.Account.Pages.SAP
             _tollwayId = (cbTSBs.SelectedItem as SAPTSB).TollwayID;
 
             SAPSaveAR json = new SAPSaveAR();
-            json.DocDate = DateTime.Now.ToString("yyyyMMdd");
-            json.DocDueDate = dt.Value.ToString("yyyyMMdd");
+            json.DocDate = DateTime.Now.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            json.DocDueDate = dt.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             json.CardCode = _customer.CardCode;
             json.CardName = _customer.CardName;
             json.TollwayID = _tollwayId;

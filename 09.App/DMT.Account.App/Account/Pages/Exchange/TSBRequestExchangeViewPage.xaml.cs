@@ -20,6 +20,8 @@ using NLib.Reflection;
 
 namespace DMT.Account.Pages.Exchange
 {
+    using ops = DMT.Services.Operations.TAxTOD;
+
     /// <summary>
     /// Interaction logic for TSBRequestExchangeViewPage.xaml
     /// </summary>
@@ -90,6 +92,28 @@ namespace DMT.Account.Pages.Exchange
             PageContentManager.Instance.Current = page;
         }
 
+        private void LoadRequestList()
+        {
+            gridRequest.ItemsSource = null;
+            // get by (R)equest status.
+            var list = ops.Exchange.Gets("R").Value();
+            gridRequest.ItemsSource = list;
+        }
+
+        private void LoadApproveList()
+        {
+            gridApprove.ItemsSource = null;
+            // get by (A)pprove status.
+            var list = ops.Exchange.Gets("A").Value();
+            gridApprove.ItemsSource = list;
+        }
+
+        private void LoadAll()
+        {
+            LoadRequestList();
+            LoadApproveList();
+        }
+
         #endregion
 
         #region Public Method
@@ -105,6 +129,8 @@ namespace DMT.Account.Pages.Exchange
             {
 
             }
+
+            LoadAll();
         }
 
         #endregion

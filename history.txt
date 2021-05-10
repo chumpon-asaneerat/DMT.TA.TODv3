@@ -4,8 +4,16 @@
 Refactor DMT.TA.TODv4 #2069
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2068
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TAAExchangeSummary add Selected property (runtime only).
+  - DMT.Account.App project.
+    - Implements Request Exchange process #5.
+  - DMT.TA.App project.
+    - Internal Exchange -> Add code send TSB balance to TA Server.
+  - Update App version
 
 [commited]
 Refactor DMT.TA.TODv4 #2067

@@ -16,13 +16,13 @@ namespace DMT.Services.Operations
             /// <summary>
             /// Execute Gets api.
             /// </summary>
-            /// <param name="status">The api parameter.</param>
+            /// <param name="value">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
             public static NRestResult<List<TAAExchangeSummary>> Gets(
-                string status)
+                string value)
             {
                 var ret = Execute<List<TAAExchangeSummary>>(
-                    RouteConsts.TAxTOD.Exchange.Gets.Url, status);
+                    RouteConsts.TAxTOD.Exchange.Gets.Url, new { status = value });
                 return ret;
             }
         }

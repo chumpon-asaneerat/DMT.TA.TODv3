@@ -23,10 +23,7 @@
                 </GridViewColumn.HeaderContainerStyle>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <!--
-                        <TextBlock Text="{Binding Path=StartDate, Mode=OneWay, StringFormat=\{0:dd/MM/yyyy\}}" TextAlignment="Right" />
-                        -->
-                        <TextBlock Text="{Binding Path=StartDate, Mode=OneWay}" TextAlignment="Right" />
+                        <TextBlock Text="{Binding Path=PeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
@@ -39,10 +36,7 @@
                 </GridViewColumn.HeaderContainerStyle>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <!--
-                        <TextBlock Text="{Binding Path=EndDate, Mode=OneWay, StringFormat=\{0:dd/MM/yyyy\}}" TextAlignment="Right" />
-                        -->
-                        <TextBlock Text="{Binding Path=EndDate, Mode=OneWay}" TextAlignment="Right" />
+                        <TextBlock Text="{Binding Path=PeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
@@ -90,15 +84,15 @@
                            DockPanel.Dock="Bottom">
                     <Grid Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdApprove"
-                                      DockPanel.Dock="Left"
                                       Click="cmdApprove_Click"
+                                      DockPanel.Dock="Left"
                                       ImageSource="/DMT.Account.App;component/Images/Button/Approve.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="อนุมัติ" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Left" />
                     <ctrl:ImageButton x:Name="cmdNotApprove"
-                                      DockPanel.Dock="Left"
                                       Click="cmdNotApprove_Click"
+                                      DockPanel.Dock="Left"
                                       ImageSource="/DMT.Account.App;component/Images/Button/Rejected3.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ไม่อนุมัติ" />
                     </ctrl:ImageButton>
@@ -174,10 +168,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <!--
-                                                    <TextBlock Text="{Binding Path=DocDate, Mode=OneWay, StringFormat=\{0:dd/MM/yyyy\}}" TextAlignment="Center" />
-                                                    -->
-                                                    <TextBlock Text="{Binding Path=DocDate, Mode=OneWay}" TextAlignment="Center" />
+                                                    <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -217,7 +208,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -243,7 +234,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -269,7 +260,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -318,7 +309,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <CheckBox IsChecked="{Binding Path=Selected, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -341,7 +332,8 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Height="30"
+                                                    <Button x:Name="cmdRequestDetail"
+                                                            Height="30"
                                                             FontSize="{StaticResource InputFontSize18}"
                                                             Style="{DynamicResource InlineButton}">
                                                         <TextBlock Margin="5,0"
@@ -417,10 +409,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <!--
-                                                    <TextBlock Text="{Binding Path=DocDate, Mode=OneWay, StringFormat=\{0:dd/MM/yyyy\}}" TextAlignment="Center" />
-                                                    -->
-                                                    <TextBlock Text="{Binding Path=DocDate, Mode=OneWay}" TextAlignment="Center" />
+                                                    <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -460,7 +449,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -486,7 +475,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -512,7 +501,7 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+                                                    <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -561,7 +550,8 @@
                                             </GridViewColumn.HeaderTemplate>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <Button Height="30"
+                                                    <Button x:Name="cmdApproveDetail"
+                                                            Height="30"
                                                             FontSize="{StaticResource InputFontSize18}"
                                                             Style="{DynamicResource InlineButton}">
                                                         <TextBlock Margin="5,0"

@@ -2777,6 +2777,27 @@ namespace DMT.Services
 
             TSBCreditTransaction.SaveTransaction(this.ReplaceOut);
             TSBCreditTransaction.SaveTransaction(this.ReplaceIn);
+
+            // Find current TSB balance.
+            var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
+            if (null != tsbBal)
+            {
+                // For Update TSB balance
+                var tsbCdt = new TAATSBCredit();
+                tsbCdt.TSBId = tsbBal.TSBId;
+                tsbCdt.Amnt1 = tsbBal.AmountBHT1;
+                tsbCdt.Amnt2 = tsbBal.AmountBHT2;
+                tsbCdt.Amnt5 = tsbBal.AmountBHT5;
+                tsbCdt.Amnt10 = tsbBal.AmountBHT10;
+                tsbCdt.Amnt20 = tsbBal.AmountBHT20;
+                tsbCdt.Amnt50 = tsbBal.AmountBHT50;
+                tsbCdt.Amnt100 = tsbBal.AmountBHT100;
+                tsbCdt.Amnt500 = tsbBal.AmountBHT500;
+                tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
+                tsbCdt.Remark = null;
+                tsbCdt.Updatedate = DateTime.Now;
+                TAxTODMQService.Instance.WriteQueue(tsbCdt);
+            }
         }
 
         #endregion

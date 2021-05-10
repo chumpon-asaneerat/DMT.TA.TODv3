@@ -34,6 +34,10 @@ namespace DMT.Models
     /// <summary>The TAAExchangeSummary class.</summary>
     public class TAAExchangeSummary
     {
+        /// <summary>Gets or sets Selected.</summary>
+        [JsonIgnore]
+        public bool Selected { get; set; }
+
         /// <summary>Gets or sets TSBId.</summary>
         [PropertyMapName("TSBId")]
         public string TSBId { get; set; }
@@ -67,12 +71,50 @@ namespace DMT.Models
         [PropertyMapName("AdditionalBHT")]
         public decimal? AdditionalBHT { get; set; }
 
+        /// <summary>Gets Total Request amount in BHT.</summary>
+        [JsonIgnore]
+        public decimal? Total
+        {
+            get
+            {
+                decimal total = decimal.Zero;
+                total += (ExchangeBHT.HasValue) ? ExchangeBHT.Value : decimal.Zero;
+                total += (BorrowBHT.HasValue) ? BorrowBHT.Value : decimal.Zero;
+                total += (AdditionalBHT.HasValue) ? AdditionalBHT.Value : decimal.Zero;
+                return total;
+            }
+        }
+
         /// <summary>Gets or sets PeriodBegin.</summary>
         [PropertyMapName("PeriodBegin")]
         public DateTime? PeriodBegin { get; set; }
+        /// <summary>Gets or sets PeriodBeginDateString.</summary>
+        [JsonIgnore]
+        public string PeriodBeginDateString
+        {
+            get
+            {
+                var ret = (!this.PeriodBegin.HasValue || this.PeriodBegin.Value == DateTime.MinValue) ?
+                    "" : this.PeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
         /// <summary>Gets or sets PeriodEnd.</summary>
         [PropertyMapName("PeriodEnd")]
         public DateTime? PeriodEnd { get; set; }
+        /// <summary>Gets or sets PeriodEndDateString.</summary>
+        [JsonIgnore]
+        public string PeriodEndDateString
+        {
+            get
+            {
+                var ret = (!this.PeriodEnd.HasValue || this.PeriodEnd.Value == DateTime.MinValue) ?
+                    "" : this.PeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
         /// <summary>Gets or sets RequestRemark.</summary>
         [PropertyMapName("RequestRemark")]
         public string RequestRemark { get; set; }
@@ -89,6 +131,20 @@ namespace DMT.Models
         /// <summary>Gets or sets AppAdditionalBHT.</summary>
         [PropertyMapName("AppAdditionalBHT")]
         public decimal? AppAdditionalBHT { get; set; }
+
+        /// <summary>Gets Approve Total Request amount in BHT.</summary>
+        [JsonIgnore]
+        public decimal? ApproveTotal
+        {
+            get
+            {
+                decimal total = decimal.Zero;
+                total += (AppExchangeBHT.HasValue) ? AppExchangeBHT.Value : decimal.Zero;
+                total += (AppBorrowBHT.HasValue) ? AppBorrowBHT.Value : decimal.Zero;
+                total += (AppAdditionalBHT.HasValue) ? AppAdditionalBHT.Value : decimal.Zero;
+                return total;
+            }
+        }
 
         /// <summary>Gets or sets ApproveBy.</summary>
         [PropertyMapName("ApproveBy")]
@@ -111,33 +167,5 @@ namespace DMT.Models
         /// <summary>Gets or sets ApproveRemark.</summary>
         [PropertyMapName("ApproveRemark")]
         public string ApproveRemark { get; set; }
-
-        /// <summary>Gets Total Request amount in BHT.</summary>
-        [JsonIgnore]
-        public decimal? Total
-        {
-            get
-            {
-                decimal total = decimal.Zero;
-                total += (ExchangeBHT.HasValue) ? ExchangeBHT.Value : decimal.Zero;
-                total += (BorrowBHT.HasValue) ? BorrowBHT.Value : decimal.Zero;
-                total += (AdditionalBHT.HasValue) ? AdditionalBHT.Value : decimal.Zero;
-                return total;
-            }
-        }
-
-        /// <summary>Gets Approve Total Request amount in BHT.</summary>
-        [JsonIgnore]
-        public decimal? ApproveTotal
-        {
-            get
-            {
-                decimal total = decimal.Zero;
-                total += (AppExchangeBHT.HasValue) ? AppExchangeBHT.Value : decimal.Zero;
-                total += (AppBorrowBHT.HasValue) ? AppBorrowBHT.Value : decimal.Zero;
-                total += (AppAdditionalBHT.HasValue) ? AppAdditionalBHT.Value : decimal.Zero;
-                return total;
-            }
-        }
     }
 }

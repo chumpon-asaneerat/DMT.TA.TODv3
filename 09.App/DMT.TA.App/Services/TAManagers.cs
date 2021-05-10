@@ -1019,6 +1019,17 @@ namespace DMT.Services
 
                 UserCreditTransaction.SaveUserCreditTransaction(Transaction);
 
+                // find current user balance.
+                var inst = UserCreditBalance.GetCurrentBalance(
+                    UserBalance.UserId, UserBalance.PlazaGroupId).Value();
+                if (null != inst)
+                {
+                    // TODO: Call TA Server API :
+                    // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
+                    // For Update User Balance: - http://localhost:8000/api/account/UserCredit/save
+                    // Note: if Balance Not zero @flag = 0
+                    // Check is total borrow is reach zero.
+                }
                 result = true; // save success.
             }
 
@@ -1081,6 +1092,18 @@ namespace DMT.Services
                         // change source state.
                         UserBalance.State = UserCreditBalance.StateTypes.Completed;
                         UserCreditBalance.SaveUserCreditBalance(UserBalance);
+
+                        // TODO: Call TA Server API :
+                        // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
+                        // For Update User Balance: - http://localhost:8000/api/account/UserCredit/save
+                        // Note: if Balance is zero @flag = 1
+                    }
+                    else
+                    {
+                        // TODO: Call TA Server API :
+                        // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
+                        // For Update User Balance: - http://localhost:8000/api/account/UserCredit/save
+                        // Note: if Balance Not zero @flag = 0
                     }
                 }
 

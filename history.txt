@@ -25,8 +25,11 @@ Refactor DMT.TA.TODv4 #2063
 Refactor DMT.TA.TODv4 #2062
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2061
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Implements TSB and User Send Balance #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2060

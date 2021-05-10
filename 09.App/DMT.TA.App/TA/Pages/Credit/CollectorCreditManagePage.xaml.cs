@@ -116,6 +116,16 @@ namespace DMT.TA.Pages.Credit
             // Change state after received bag and update to database.
             balance.State = UserCreditBalance.StateTypes.Received;
             UserCreditBalance.SaveUserCreditBalance(balance);
+            
+            // find current user balance.
+            var inst = UserCreditBalance.GetCurrentBalance(balance.UserId, balance.PlazaGroupId).Value();
+            if (null != inst)
+            {
+                // TODO: Call TA Server API :
+                // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
+                // For Update User Bag Number and balance: - http://localhost:8000/api/account/UserCredit/save
+                // Note: if Received Bag or Balance Not zero @flag = 0
+            }
 
             Refresh();
         }
@@ -128,6 +138,7 @@ namespace DMT.TA.Pages.Credit
             {
                 return;
             }
+
             Refresh();
         }
 
@@ -139,6 +150,7 @@ namespace DMT.TA.Pages.Credit
             {
                 return;
             }
+
             Refresh();
         }
 

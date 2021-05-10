@@ -13,7 +13,7 @@ namespace DMT
         /// <summary>The TAxTOD class.</summary>
         public static partial class TAxTOD
         {
-            static partial class AccountCredit
+            static partial class Credit
             {
                 static partial class TSB
                 {

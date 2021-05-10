@@ -27,8 +27,8 @@ namespace DMT.Models
         "remark" : null
     }
     */
-    /// <summary>The TAAccountTSBCredit class.</summary>
-    public class TAAccountTSBCredit
+    /// <summary>The TAATSBCredit class.</summary>
+    public class TAATSBCredit
     {
         /// <summary>Gets or sets TSBId.</summary>
         [PropertyMapName("TSBId")]
@@ -70,7 +70,6 @@ namespace DMT.Models
         public string Remark { get; set; }
     }
 
-
     // Server data result.
     /*
     {
@@ -92,8 +91,8 @@ namespace DMT.Models
       "C80": 1076
     }
     */
-    /// <summary>The TAAccountTSBCreditResult class.</summary>
-    public class TAAccountTSBCreditResult
+    /// <summary>The TAATSBCreditResult class.</summary>
+    public class TAATSBCreditResult
     {
         /// <summary>Gets or sets TSBId.</summary>
         [PropertyMapName("TSBId")]

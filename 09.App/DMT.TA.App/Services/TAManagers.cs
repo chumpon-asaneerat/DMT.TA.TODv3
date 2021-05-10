@@ -1027,7 +1027,7 @@ namespace DMT.Services
                     // For Update User Bag Number and balance
                     var usr = User.GetByUserId(balance.UserId).Value();
                     // For Update User Bag Number and balance
-                    TAAccountUserCredit usrCdt = new TAAccountUserCredit();
+                    var usrCdt = new TAAUserCredit();
                     usrCdt.TSBId = balance.TSBId;
                     usrCdt.UserId = balance.UserId;
                     usrCdt.UserPrefix = (null != usr) ? usr.PrefixTH : string.Empty;
@@ -1046,7 +1046,7 @@ namespace DMT.Services
                 if (null != tsbBal)
                 {
                     // For Update TSB balance
-                    TAAccountTSBCredit tsbCdt = new TAAccountTSBCredit();
+                    var tsbCdt = new TAATSBCredit();
                     tsbCdt.TSBId = tsbBal.TSBId;
                     tsbCdt.Amnt1 = tsbBal.AmountBHT1;
                     tsbCdt.Amnt2 = tsbBal.AmountBHT2;
@@ -1131,7 +1131,7 @@ namespace DMT.Services
                     // For Update User Bag Number and balance
                     var usr = User.GetByUserId(balance.UserId).Value();
                     // For Update User Bag Number and balance
-                    TAAccountUserCredit usrCdt = new TAAccountUserCredit();
+                    var usrCdt = new TAAUserCredit();
                     usrCdt.TSBId = balance.TSBId;
                     usrCdt.UserId = balance.UserId;
                     usrCdt.UserPrefix = (null != usr) ? usr.PrefixTH : string.Empty;
@@ -1150,7 +1150,7 @@ namespace DMT.Services
                     if (null != tsbBal)
                     {
                         // For Update TSB balance
-                        TAAccountTSBCredit tsbCdt = new TAAccountTSBCredit();
+                        var tsbCdt = new TAATSBCredit();
                         tsbCdt.TSBId = tsbBal.TSBId;
                         tsbCdt.Amnt1 = tsbBal.AmountBHT1;
                         tsbCdt.Amnt2 = tsbBal.AmountBHT2;

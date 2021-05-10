@@ -20,7 +20,7 @@ using NLib.Reflection;
 
 namespace DMT.Account.Pages.Balance
 {
-    using ops = DMT.Services.Operations.TAxTOD.AccountCredit;
+    using ops = DMT.Services.Operations.TAxTOD;
 
     /// <summary>
     /// Interaction logic for TSBCheckBalance.xaml
@@ -60,12 +60,14 @@ namespace DMT.Account.Pages.Balance
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (null == sender || !(sender is Button)) return;
-            var item = (sender as Button).DataContext as Models.TAAccountTSBCreditResult;
+            var item = (sender as Button).DataContext as Models.TAATSBCreditResult;
             if (null != item)
             {
                 var win = AccountApp.Windows.UserCheckBalance;
                 win.Setup(item.TSBId);
                 win.ShowDialog();
+
+                LoadTSBBalances(); // refresh.
             }
         }
 
@@ -83,7 +85,7 @@ namespace DMT.Account.Pages.Balance
         private void LoadTSBBalances()
         {
             grid.ItemsSource = null;
-            var items = ops.TSB.Gets().Value();
+            var items = ops.Credit.TSB.Gets().Value();
             grid.ItemsSource = items;
         }
 

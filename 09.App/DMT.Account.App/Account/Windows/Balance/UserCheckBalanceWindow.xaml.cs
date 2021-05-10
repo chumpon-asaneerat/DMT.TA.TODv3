@@ -17,7 +17,7 @@ using NLib.Reflection;
 
 namespace DMT.Windows
 {
-    using ops = DMT.Services.Operations.TAxTOD.AccountCredit;
+    using ops = DMT.Services.Operations.TAxTOD;
 
     /// <summary>
     /// Interaction logic for UserCheckBalanceWindow.xaml
@@ -55,11 +55,11 @@ namespace DMT.Windows
         private void LoadUserBalance(string tsbId)
         {
             grid.ItemsSource = null;
-            var items = ops.User.Gets(tsbId).Value();
+            var items = ops.Credit.User.Gets(tsbId).Value();
             if (null != items)
             {
                 // calc sum at last item.
-                var sum = new TAAccountUserCreditResult();
+                var sum = new TAAUserCreditResult();
                 sum.username = "รวม";
                 sum.Credit = decimal.Zero;
                 sum.C35 = 0;

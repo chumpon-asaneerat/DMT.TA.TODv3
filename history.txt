@@ -7,8 +7,30 @@ Refactor DMT.TA.TODv4 #2069
 Refactor DMT.TA.TODv4 #2068
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2067
-- 
+- DMT.TAxTODv3
+  - DMT.Core project.
+    - Rename some files.
+    - Rename exists route classes.
+    - Add Exchange Route -> Gets.    
+  - DMT.Models project.
+    - Rename some files.
+    - Add TAAExchangeSummary class.
+    - Rename TAAccountTSBCredit class to TAATSBCredit
+    - Rename TAAccountTSBCreditResult class to TAATSBCreditResult
+    - Rename TAAccountUserCredit class to TAAUserCredit
+    - Rename TAAccountUserCreditResult class to TAAUserCreditResult
+  - DMT.TAxTOD.Rest.Client project.
+    - Update exists route classes to new one.
+    - Add Exchange Operation -> Gets.
+    - Update Credit Operations
+      - Update new TAACreditXXX classes name.
+  - DMT.Account.App project.
+    - Update all TA Credit api call and related classes.
+    - Implements Request Exchange process #4.
+  - DMT.TA.App project.
+    - Update all TA (TSB/User) Credit api call and related classes.
 
 [commited]
 Refactor DMT.TA.TODv4 #2066

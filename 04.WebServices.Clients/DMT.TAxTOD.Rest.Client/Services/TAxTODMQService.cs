@@ -68,11 +68,11 @@ namespace DMT.Services
 
         #region Private Methods
 
-        private void SendTSBCreditBalance(string fullFileName, Models.TAAccountTSBCredit value) 
+        private void SendTSBCreditBalance(string fullFileName, Models.TAATSBCredit value) 
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            var ret = ops.AccountCredit.TSB.Save(value);
+            var ret = ops.Credit.TSB.Save(value);
             if (null == ret || ret.Failed)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
@@ -86,11 +86,11 @@ namespace DMT.Services
             }
         }
 
-        private void SendUserCreditBalance(string fullFileName, Models.TAAccountUserCredit value) 
+        private void SendUserCreditBalance(string fullFileName, Models.TAAUserCredit value) 
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            var ret = ops.AccountCredit.User.Save(value);
+            var ret = ops.Credit.User.Save(value);
             if (null == ret || ret.Failed)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
@@ -182,7 +182,7 @@ namespace DMT.Services
             {
                 try
                 {
-                    var value = jsonString.FromJson<Models.TAAccountTSBCredit>();
+                    var value = jsonString.FromJson<Models.TAATSBCredit>();
                     SendTSBCreditBalance(fullFileName, value);
                 }
                 catch (Exception ex)
@@ -197,7 +197,7 @@ namespace DMT.Services
             {
                 try
                 {
-                    var value = jsonString.FromJson<Models.TAAccountUserCredit>();
+                    var value = jsonString.FromJson<Models.TAAUserCredit>();
                     SendUserCreditBalance(fullFileName, value);
                 }
                 catch (Exception ex)
@@ -276,8 +276,8 @@ namespace DMT.Services
         /// <summary>
         /// Write Queue.
         /// </summary>
-        /// <param name="value">The TAAccountTSBCredit instance.</param>
-        public void WriteQueue(Models.TAAccountTSBCredit value)
+        /// <param name="value">The TAATSBCredit instance.</param>
+        public void WriteQueue(Models.TAATSBCredit value)
         {
             if (null == value) return;
             string fileName = GetFileName("update.tsb.credit.balance");
@@ -287,15 +287,14 @@ namespace DMT.Services
         /// <summary>
         /// Write Queue.
         /// </summary>
-        /// <param name="value">The TAAccountUserCredit instance.</param>
-        public void WriteQueue(Models.TAAccountUserCredit value)
+        /// <param name="value">The TAAUserCredit instance.</param>
+        public void WriteQueue(Models.TAAUserCredit value)
         {
             if (null == value) return;
             string fileName = GetFileName("update.user.credit.balance");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }
-
         /// <summary>
         /// Write Queue.
         /// </summary>

@@ -30,8 +30,8 @@ namespace DMT
                 public const string Url = TAxTOD.Url + @"/ta";
             }
 
-            /// <summary>The Account Credit class.</summary>
-            public static partial class AccountCredit
+            /// <summary>The Credit class.</summary>
+            public static partial class Credit
             {
                 /// <summary>Gets route url.</summary>
                 public const string Url = TAxTOD.Url + @"/account";
@@ -41,6 +41,13 @@ namespace DMT
 
                 /// <summary>The Account User Credit class.</summary>
                 public static partial class User { }
+            }
+
+            /// <summary>The AccountExchange class.</summary>
+            public static partial class Exchange
+            {
+                /// <summary>Gets route url.</summary>
+                public const string Url = TAxTOD.Url + @"/account/request";
             }
 
             /// <summary>The Account's SAP class.</summary>

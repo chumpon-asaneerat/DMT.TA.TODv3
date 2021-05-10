@@ -22,8 +22,8 @@ namespace DMT.Models
         "creditdate": "2021-02-20:13:03.112Z"
     }
     */
-    /// <summary>The TAAccountUserCredit class.</summary>
-    public class TAAccountUserCredit
+    /// <summary>The TAAUserCredit class.</summary>
+    public class TAAUserCredit
     {
         /// <summary>Gets or sets TSBId.</summary>
         [PropertyMapName("TSBId")]
@@ -71,8 +71,8 @@ namespace DMT.Models
           "C80": null
     }
     */
-    /// <summary>The TAAccountUserCreditResult class.</summary>
-    public class TAAccountUserCreditResult
+    /// <summary>The TAAUserCreditResult class.</summary>
+    public class TAAUserCreditResult
     {
         /// <summary>Gets or sets TSBId.</summary>
         [PropertyMapName("TSBId")]

@@ -10,8 +10,8 @@ namespace DMT.Services.Operations
 {
     partial class TAxTOD
     {
-        /// <summary>The Account Operations class.</summary>
-        public static partial class AccountCredit
+        /// <summary>The Credit Operations class.</summary>
+        public static partial class Credit
         {
             public static partial class TSB
             {
@@ -19,10 +19,10 @@ namespace DMT.Services.Operations
                 /// Execute Gets api.
                 /// </summary>
                 /// <returns>Returns instance of NRestResult.</returns>
-                public static NRestResult<List<TAAccountTSBCreditResult>> Gets()
+                public static NRestResult<List<TAATSBCreditResult>> Gets()
                 {
-                    var ret = Execute<List<TAAccountTSBCreditResult>>(
-                        RouteConsts.TAxTOD.AccountCredit.TSB.Gets.Url, new { });
+                    var ret = Execute<List<TAATSBCreditResult>>(
+                        RouteConsts.TAxTOD.Credit.TSB.Gets.Url, new { });
                     return ret;
                 }
                 /// <summary>
@@ -31,10 +31,10 @@ namespace DMT.Services.Operations
                 /// <param name="value">The api parameter.</param>
                 /// <returns>Returns instance of NRestResult.</returns>
                 public static NRestResult Save(
-                    TAAccountTSBCredit value)
+                    TAATSBCredit value)
                 {
-                    var ret = Execute<TAAccountTSBCredit>(
-                        RouteConsts.TAxTOD.AccountCredit.TSB.Save.Url, value);
+                    var ret = Execute<TAATSBCredit>(
+                        RouteConsts.TAxTOD.Credit.TSB.Save.Url, value);
                     return ret;
                 }
             }
@@ -46,10 +46,10 @@ namespace DMT.Services.Operations
                 /// </summary>
                 /// <param name="tsbId">The TSBId</param>
                 /// <returns>Returns instance of NRestResult.</returns>
-                public static NRestResult<List<TAAccountUserCreditResult>> Gets(string tsbId)
+                public static NRestResult<List<TAAUserCreditResult>> Gets(string tsbId)
                 {
-                    var ret = Execute<List<TAAccountUserCreditResult>>(
-                        RouteConsts.TAxTOD.AccountCredit.User.Gets.Url, new { tsbId = tsbId });
+                    var ret = Execute<List<TAAUserCreditResult>>(
+                        RouteConsts.TAxTOD.Credit.User.Gets.Url, new { tsbId = tsbId });
                     return ret;
                 }
                 /// <summary>
@@ -58,10 +58,10 @@ namespace DMT.Services.Operations
                 /// <param name="value">The api parameter.</param>
                 /// <returns>Returns instance of NRestResult.</returns>
                 public static NRestResult Save(
-                    TAAccountUserCredit value)
+                    TAAUserCredit value)
                 {
-                    var ret = Execute<TAAccountUserCredit>(
-                        RouteConsts.TAxTOD.AccountCredit.User.Save.Url, value);
+                    var ret = Execute<TAAUserCredit>(
+                        RouteConsts.TAxTOD.Credit.User.Save.Url, value);
                     return ret;
                 }
             }

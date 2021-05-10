@@ -213,7 +213,7 @@
                            Text="{Binding}" />
                 <GridViewHeaderRowPresenter Grid.Row="1"
                                             HorizontalAlignment="Stretch"
-                                            Columns="{StaticResource SubColumnCollectionCoupon}"/>
+                                            Columns="{StaticResource SubColumnCollectionCoupon}" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="MultiColumnCellTemplateCoupon">
@@ -292,7 +292,8 @@
                                     </Style>
                                 </GridView.ColumnHeaderContainerStyle>
                                 -->
-                                <GridViewColumn Width="Auto" Header=" ด่าน ">
+                                <!--  TSB  -->
+                                <GridViewColumn Width="150" Header=" ด่าน ">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -313,6 +314,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <!--  COINS/BILLS  -->
                                 <GridViewColumn Width="Auto"
                                                 CellTemplate="{StaticResource MultiColumnCellTemplateCredit}"
                                                 Header="ประเภทเงิน/จำนวน (บาท)"
@@ -326,7 +328,8 @@
                                         </Style>
                                     </GridViewColumn.HeaderContainerStyle>
                                 </GridViewColumn>
-                                <GridViewColumn Width="Auto">
+                                <!--  TOTAL CREDIT BALANCE  -->
+                                <GridViewColumn Width="150">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -336,8 +339,7 @@
                                     </GridViewColumn.HeaderContainerStyle>
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       HorizontalAlignment="Center"
+                                            <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center">
                                                 <Run Text="ยอดเงินรวม" />
@@ -352,7 +354,8 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="Auto">
+                                <!--  TOTAL CREDIT ON USER  -->
+                                <GridViewColumn Width="150">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -362,8 +365,7 @@
                                     </GridViewColumn.HeaderContainerStyle>
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       HorizontalAlignment="Center"
+                                            <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center">
                                                 <Run Text="ยอดเงินลงตู้" />
@@ -378,6 +380,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <!--  COUPONS (35/80)  -->
                                 <GridViewColumn Width="Auto"
                                                 CellTemplate="{StaticResource MultiColumnCellTemplateCoupon}"
                                                 Header="ประเภทคูปอง(เล่ม)"

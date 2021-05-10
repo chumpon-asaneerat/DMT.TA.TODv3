@@ -37,6 +37,14 @@ namespace DMT.Account.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        private void cndRequestExchangeManage_Click(object sender, RoutedEventArgs e)
+        {
+            // TSB Request Exchange Management
+            var page = AccountApp.Pages.TSBRequestExchangeView;
+            page.Setup(AccountApp.User.Current);
+            PageContentManager.Instance.Current = page;
+        }
+
         private void cndRequestExchangeHistory_Click(object sender, RoutedEventArgs e)
         {
             // TSB Request Exchange History
@@ -45,11 +53,6 @@ namespace DMT.Account.Pages.Menu
         private void cmdTSBBalanceSummary_Click(object sender, RoutedEventArgs e)
         {
             // TSB Balance Summary
-        }
-
-        private void cndRequestExchangeManage_Click(object sender, RoutedEventArgs e)
-        {
-            // TSB Request Exchange Management
         }
 
         private void cndCouponSoldHistory_Click(object sender, RoutedEventArgs e)

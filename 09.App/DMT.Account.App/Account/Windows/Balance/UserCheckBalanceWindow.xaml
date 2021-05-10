@@ -136,7 +136,8 @@
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="Auto" Header=" ด่าน ">
+                                <!--  TSB  -->
+                                <GridViewColumn Width="150" Header=" ด่าน ">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -152,7 +153,8 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="Auto">
+                                <!--  USERID  -->
+                                <GridViewColumn Width="150">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -162,8 +164,7 @@
                                     </GridViewColumn.HeaderContainerStyle>
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       HorizontalAlignment="Center"
+                                            <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center">
                                                 <Run Text="รหัสพนักงาน" />
@@ -176,7 +177,8 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="Auto">
+                                <!--  USER NAME  -->
+                                <GridViewColumn Width="250">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -186,8 +188,7 @@
                                     </GridViewColumn.HeaderContainerStyle>
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="250"
-                                                       HorizontalAlignment="Center"
+                                            <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center">
                                                 <Run Text="ชื่อพนักงาน" />
@@ -200,7 +201,8 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="Auto">
+                                <!--  BAG NO  -->
+                                <GridViewColumn Width="150">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -210,8 +212,7 @@
                                     </GridViewColumn.HeaderContainerStyle>
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       HorizontalAlignment="Center"
+                                            <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center">
                                                 <Run Text="เลขถุงเงิน" />
@@ -224,7 +225,8 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Width="Auto">
+                                <!--  CREDIT ON USER  -->
+                                <GridViewColumn Width="150">
                                     <GridViewColumn.HeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -234,8 +236,7 @@
                                     </GridViewColumn.HeaderContainerStyle>
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       HorizontalAlignment="Center"
+                                            <TextBlock HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextAlignment="Center">
                                                 <Run Text="เงินลงตู้" />
@@ -250,6 +251,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <!--  COUPONS (35/80)  -->
                                 <GridViewColumn Width="Auto"
                                                 CellTemplate="{StaticResource MultiColumnCellTemplateCoupon}"
                                                 Header="ประเภทคูปอง(เล่ม)"

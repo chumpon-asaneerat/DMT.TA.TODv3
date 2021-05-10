@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #2067
 Refactor DMT.TA.TODv4 #2066
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2065
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Implements Request Exchange process #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2064

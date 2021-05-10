@@ -139,6 +139,9 @@
     <Compile Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml.cs">
       <DependentUpon>CouponHistoryViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Pages\Exchange\TSBRequestExchangeViewPage.xaml.cs">
+      <DependentUpon>TSBRequestExchangeViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Pages\Menu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Pages\Exchange\TSBRequestExchangeViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -405,8 +412,6 @@
       <Name>DMT.Controls</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Account\Pages\Exchange\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

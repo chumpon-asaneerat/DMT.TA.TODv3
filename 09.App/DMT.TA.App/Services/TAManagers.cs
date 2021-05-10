@@ -1019,17 +1019,49 @@ namespace DMT.Services
 
                 UserCreditTransaction.SaveUserCreditTransaction(Transaction);
 
-                // find current user balance.
-                var inst = UserCreditBalance.GetCurrentBalance(
+                // For Update User Bag Number and balance
+                var balance = UserCreditBalance.GetCurrentBalance(
                     UserBalance.UserId, UserBalance.PlazaGroupId).Value();
-                if (null != inst)
+                if (null != balance)
                 {
-                    // TODO: Call TA Server API :
-                    // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
-                    // For Update User Balance: - http://localhost:8000/api/account/UserCredit/save
-                    // Note: if Balance Not zero @flag = 0
-                    // Check is total borrow is reach zero.
+                    // For Update User Bag Number and balance
+                    var usr = User.GetByUserId(balance.UserId).Value();
+                    // For Update User Bag Number and balance
+                    TAAccountUserCredit usrCdt = new TAAccountUserCredit();
+                    usrCdt.TSBId = balance.TSBId;
+                    usrCdt.UserId = balance.UserId;
+                    usrCdt.UserPrefix = (null != usr) ? usr.PrefixTH : string.Empty;
+                    usrCdt.UserFirstName = (null != usr) ? usr.FirstNameTH : balance.FullNameTH;
+                    usrCdt.UserLastName = (null != usr) ? usr.LastNameTH : string.Empty;
+                    //usrCdt.BagNo = (balance.State == UserCreditBalance.StateTypes.Initial) ? null : balance.BagNo;
+                    usrCdt.BagNo = balance.BagNo;
+                    usrCdt.CreditDate = balance.UserCreditDate;
+                    usrCdt.Credit = balance.BHTTotal;
+                    usrCdt.flag = 0; // Borrow so flag is 0
+                    // write to quque
+                    TAxTODMQService.Instance.WriteQueue(usrCdt);
                 }
+                // Find current TSB balance.
+                var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
+                if (null != tsbBal)
+                {
+                    // For Update TSB balance
+                    TAAccountTSBCredit tsbCdt = new TAAccountTSBCredit();
+                    tsbCdt.TSBId = tsbBal.TSBId;
+                    tsbCdt.Amnt1 = tsbBal.AmountBHT1;
+                    tsbCdt.Amnt2 = tsbBal.AmountBHT2;
+                    tsbCdt.Amnt5 = tsbBal.AmountBHT5;
+                    tsbCdt.Amnt10 = tsbBal.AmountBHT10;
+                    tsbCdt.Amnt20 = tsbBal.AmountBHT20;
+                    tsbCdt.Amnt50 = tsbBal.AmountBHT50;
+                    tsbCdt.Amnt100 = tsbBal.AmountBHT100;
+                    tsbCdt.Amnt500 = tsbBal.AmountBHT500;
+                    tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
+                    tsbCdt.Remark = null;
+                    tsbCdt.Updatedate = DateTime.Now;
+                    TAxTODMQService.Instance.WriteQueue(tsbCdt);
+                }
+
                 result = true; // save success.
             }
 
@@ -1083,27 +1115,56 @@ namespace DMT.Services
                 UserCreditTransaction.SaveUserCreditTransaction(Transaction);
 
                 // Check is total borrow is reach zero.
-                var inst = UserCreditBalance.GetCurrentBalance(
+                var balance = UserCreditBalance.GetCurrentBalance(
                     UserBalance.UserId, UserBalance.PlazaGroupId).Value();
-                if (null != inst)
+                if (null != balance)
                 {
-                    if (inst.BHTTotal <= decimal.Zero)
+                    int flag = 0;
+                    if (balance.BHTTotal <= decimal.Zero)
                     {
                         // change source state.
                         UserBalance.State = UserCreditBalance.StateTypes.Completed;
                         UserCreditBalance.SaveUserCreditBalance(UserBalance);
-
-                        // TODO: Call TA Server API :
-                        // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
-                        // For Update User Balance: - http://localhost:8000/api/account/UserCredit/save
                         // Note: if Balance is zero @flag = 1
+                        flag = 1;
                     }
-                    else
+                    // For Update User Bag Number and balance
+                    var usr = User.GetByUserId(balance.UserId).Value();
+                    // For Update User Bag Number and balance
+                    TAAccountUserCredit usrCdt = new TAAccountUserCredit();
+                    usrCdt.TSBId = balance.TSBId;
+                    usrCdt.UserId = balance.UserId;
+                    usrCdt.UserPrefix = (null != usr) ? usr.PrefixTH : string.Empty;
+                    usrCdt.UserFirstName = (null != usr) ? usr.FirstNameTH : balance.FullNameTH;
+                    usrCdt.UserLastName = (null != usr) ? usr.LastNameTH : string.Empty;
+                    //usrCdt.BagNo = (balance.State == UserCreditBalance.StateTypes.Initial) ? null : balance.BagNo;
+                    usrCdt.BagNo = balance.BagNo;
+                    usrCdt.CreditDate = balance.UserCreditDate;
+                    usrCdt.Credit = balance.BHTTotal;
+                    usrCdt.flag = flag;
+                    // write to quque
+                    TAxTODMQService.Instance.WriteQueue(usrCdt);
+
+                    // Find current TSB balance.
+                    var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
+                    if (null != tsbBal)
                     {
-                        // TODO: Call TA Server API :
-                        // For Update TSB balance: http://localhost:8000/api/account/tsbcredit/save
-                        // For Update User Balance: - http://localhost:8000/api/account/UserCredit/save
-                        // Note: if Balance Not zero @flag = 0
+                        // For Update TSB balance
+                        TAAccountTSBCredit tsbCdt = new TAAccountTSBCredit();
+                        tsbCdt.TSBId = tsbBal.TSBId;
+                        tsbCdt.Amnt1 = tsbBal.AmountBHT1;
+                        tsbCdt.Amnt2 = tsbBal.AmountBHT2;
+                        tsbCdt.Amnt5 = tsbBal.AmountBHT5;
+                        tsbCdt.Amnt10 = tsbBal.AmountBHT10;
+                        tsbCdt.Amnt20 = tsbBal.AmountBHT20;
+                        tsbCdt.Amnt50 = tsbBal.AmountBHT50;
+                        tsbCdt.Amnt100 = tsbBal.AmountBHT100;
+                        tsbCdt.Amnt500 = tsbBal.AmountBHT500;
+                        tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
+                        tsbCdt.Remark = null;
+                        tsbCdt.Updatedate = DateTime.Now;
+                        // write to quque
+                        TAxTODMQService.Instance.WriteQueue(tsbCdt);
                     }
                 }
 
@@ -2349,7 +2410,7 @@ namespace DMT.Services
 
     #endregion
 
-    #region TSBCouponBorrowManager
+    #region TSBCouponSoldManager
 
     /// <summary>
     /// TSB Coupon Sold Manager class.

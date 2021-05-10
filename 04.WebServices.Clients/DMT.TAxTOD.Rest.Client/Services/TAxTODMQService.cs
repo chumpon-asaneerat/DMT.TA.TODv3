@@ -68,6 +68,42 @@ namespace DMT.Services
 
         #region Private Methods
 
+        private void SendTSBCreditBalance(string fullFileName, Models.TAAccountTSBCredit value) 
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.AccountCredit.TSB.Save(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            else
+            {
+                // Success
+                MoveToBackup(fullFileName);
+            }
+        }
+
+        private void SendUserCreditBalance(string fullFileName, Models.TAAccountUserCredit value) 
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.AccountCredit.User.Save(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            else
+            {
+                // Success
+                MoveToBackup(fullFileName);
+            }
+        }
+
         private void SendTAServerCouponTransaction(string fullFileName, Models.TAServerCouponTransaction value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -142,7 +178,37 @@ namespace DMT.Services
             // Extract File Name.
             if (string.IsNullOrEmpty(fullFileName)) return; // skip if file name is empty.
 
-            if (fullFileName.Contains("save.coupon.transaction"))
+            if (fullFileName.Contains("update.tsb.credit.balance"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAccountTSBCredit>();
+                    SendTSBCreditBalance(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("update.user.credit.balance"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAccountUserCredit>();
+                    SendUserCreditBalance(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.coupon.transaction"))
             {
                 try
                 {
@@ -206,6 +272,29 @@ namespace DMT.Services
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The TAAccountTSBCredit instance.</param>
+        public void WriteQueue(Models.TAAccountTSBCredit value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("update.tsb.credit.balance");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The TAAccountUserCredit instance.</param>
+        public void WriteQueue(Models.TAAccountUserCredit value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("update.user.credit.balance");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
 
         /// <summary>
         /// Write Queue.

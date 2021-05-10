@@ -25,6 +25,18 @@ namespace DMT.Services.Operations
                         RouteConsts.TAxTOD.AccountCredit.TSB.Gets.Url, new { });
                     return ret;
                 }
+                /// <summary>
+                /// Execute Save api.
+                /// </summary>
+                /// <param name="value">The api parameter.</param>
+                /// <returns>Returns instance of NRestResult.</returns>
+                public static NRestResult Save(
+                    TAAccountTSBCredit value)
+                {
+                    var ret = Execute<TAAccountTSBCredit>(
+                        RouteConsts.TAxTOD.AccountCredit.TSB.Save.Url, value);
+                    return ret;
+                }
             }
 
             public static partial class User
@@ -38,6 +50,18 @@ namespace DMT.Services.Operations
                 {
                     var ret = Execute<List<TAAccountUserCreditResult>>(
                         RouteConsts.TAxTOD.AccountCredit.User.Gets.Url, new { tsbId = tsbId });
+                    return ret;
+                }
+                /// <summary>
+                /// Execute Save api.
+                /// </summary>
+                /// <param name="value">The api parameter.</param>
+                /// <returns>Returns instance of NRestResult.</returns>
+                public static NRestResult Save(
+                    TAAccountUserCredit value)
+                {
+                    var ret = Execute<TAAccountUserCredit>(
+                        RouteConsts.TAxTOD.AccountCredit.User.Save.Url, value);
                     return ret;
                 }
             }

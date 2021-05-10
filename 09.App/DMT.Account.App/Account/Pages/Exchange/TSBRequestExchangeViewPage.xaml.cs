@@ -43,11 +43,40 @@ namespace DMT.Account.Pages.Exchange
 
         #endregion
 
+        #region TabControl Handler
+
+        private void tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (tabs.SelectedIndex == 0)
+            {
+                cmdApprove.Visibility = Visibility.Visible;
+                cmdNotApprove.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                cmdApprove.Visibility = Visibility.Collapsed;
+                cmdNotApprove.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();
+        }
+
+        private void cmdApprove_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdNotApprove_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion

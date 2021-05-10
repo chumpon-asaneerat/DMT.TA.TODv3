@@ -89,10 +89,18 @@
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
                     <Grid Width="5" DockPanel.Dock="Left" />
-                    <ctrl:ImageButton x:Name="cmdRefresh"
+                    <ctrl:ImageButton x:Name="cmdApprove"
                                       DockPanel.Dock="Left"
-                                      ImageSource="/DMT.Account.App;component/Images/Button/Refresh.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="เรียกดูข้อมูลใหม่" />
+                                      Click="cmdApprove_Click"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Approve.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="อนุมัติ" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdNotApprove"
+                                      DockPanel.Dock="Left"
+                                      Click="cmdNotApprove_Click"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Rejected3.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ไม่อนุมัติ" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
                     <ctrl:ImageButton x:Name="cmdBack"
@@ -104,7 +112,7 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <TabControl>
+                <TabControl x:Name="tabs" SelectionChanged="tabs_SelectionChanged">
                     <TabItem FontSize="20" Header="รายการรออนุมัติ">
                         <DockPanel LastChildFill="True">
                             <Border Margin="10,1"

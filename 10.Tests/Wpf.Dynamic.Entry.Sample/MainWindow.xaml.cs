@@ -41,7 +41,8 @@ namespace Wpf.Dynamic.Entry.Sample
 
         private void cmdGetDetails_Click(object sender, RoutedEventArgs e)
         {
-            entry.DataContext = Detail.GetDetails();
+            //entry.DataContext = Detail.GetDetails();
+            entry.DataContext = Detail.GetSamples();
         }
 
         private void cmdRetriveData_Click(object sender, RoutedEventArgs e)

@@ -10,8 +10,12 @@ Refactor DMT.TA.TODv4 #2078
 Refactor DMT.TA.TODv4 #2077
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2076
-- 
+- DMT.TAxTODv3
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #5.
+      - Implements Create Entry (from exists detail to create full entry detail).
 
 [commited]
 Refactor DMT.TA.TODv4 #2075

@@ -209,10 +209,51 @@ namespace DMT.Models
 
             return results;
         }
+
+        public static List<Detail> GetSamples()
+        {
+            List<Detail> results = new List<Detail>();
+
+            Detail item;
+            item = new Detail();
+            item.CurrencyDenomId = 9;
+            item.DenomValue = 50;
+            item.DenomTypeId = 1; // Note
+            item.Amount = 250; // 250 BHT
+            results.Add(item);
+
+            item = new Detail();
+            item.CurrencyDenomId = 4;
+            item.DenomValue = 2;
+            item.DenomTypeId = 2; // coin
+            item.Amount = 20; // 20 BHT
+            results.Add(item);
+
+            return results.CreateEntry();
+        }
     }
 
     public static class DetailExtensionMethods
     {
+        public static List<Detail> CreateEntry(this List<Detail> values)
+        {
+            List<Detail> results = Detail.GetDetails();
+
+            if (null != values && values.Count > 0)
+            {
+                values.ForEach(value =>
+                {
+                    var match = results.Find(result => 
+                    { 
+                        return value.DenomValue == result.DenomValue; 
+                    });
+                    if (null != match) match.Amount = value.Amount;
+                });
+            }
+
+            return results;
+        }
+
         public static List<Detail> Compact(this List<Detail> values)
         {
             List<Detail> results = new List<Detail>();

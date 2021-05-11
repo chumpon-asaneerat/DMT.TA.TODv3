@@ -15,6 +15,7 @@ namespace DMT.Models
     {
         "TSBId": "09",
         "TSB_Th_Name": "อนุสรณ์สถาน",
+        "RequestId": 1,
         "RequestDate": "2021-04-13T22:03:11.200Z",
         "ExchangeBHT": 10000,
         "BorrowBHT": 0,
@@ -45,6 +46,9 @@ namespace DMT.Models
         [PropertyMapName("TSB_Th_Name")]
         public string TSB_Th_Name { get; set; }
 
+        /// <summary>Gets or sets RequestId.</summary>
+        [PropertyMapName("RequestId")]
+        public int? RequestId { get; set; }
         /// <summary>Gets or sets RequestDate.</summary>
         [PropertyMapName("RequestDate")]
         public DateTime? RequestDate { get; set; }

@@ -22,8 +22,11 @@ Refactor DMT.TA.TODv4 #2074
 Refactor DMT.TA.TODv4 #2073
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2072
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - TAAExchangeSummary add RequestId property (runtime only).
 
 [commited]
 Refactor DMT.TA.TODv4 #2071

@@ -6,8 +6,15 @@
              d:DesignHeight="150"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <Grid>
-        <ItemsControl Name="icTodoList" ItemsSource="{Binding}">
+    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling">
+        <ItemsControl Name="icTodoList"
+                      Margin="5"
+                      ItemsSource="{Binding}"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,0,0,5">
@@ -34,5 +41,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

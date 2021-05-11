@@ -7,8 +7,12 @@ Refactor DMT.TA.TODv4 #2079
 Refactor DMT.TA.TODv4 #2078
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2077
-- 
+- DMT.TAxTODv3
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #6.
+      - Entry List Control add scrollbars.
 
 [commited]
 Refactor DMT.TA.TODv4 #2076

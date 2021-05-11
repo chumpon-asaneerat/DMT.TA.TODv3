@@ -37,6 +37,8 @@ namespace Wpf.Dynamic.Entry.Sample
         private void cmdGetMaster_Click(object sender, RoutedEventArgs e)
         {
             gridMaster.ItemsSource = MCurrency.GetCurrencies();
+            // auto change tab
+            tabs.SelectedIndex = 0;
         }
 
         private void cmdGetDetails_Click(object sender, RoutedEventArgs e)
@@ -49,6 +51,8 @@ namespace Wpf.Dynamic.Entry.Sample
         {
             List<Detail> details = entry.DataContext as List<Detail>;
             gridDetail.ItemsSource = details.Compact();
+            // auto change tab
+            tabs.SelectedIndex = 1;
         }
 
         #endregion

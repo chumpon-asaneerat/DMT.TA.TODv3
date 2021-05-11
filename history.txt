@@ -4,8 +4,12 @@
 Refactor DMT.TA.TODv4 #2079
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2078
-- 
+- DMT.TAxTODv3
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #7.
+      - Update ListView Column Header Text.
 
 [commited]
 Refactor DMT.TA.TODv4 #2077

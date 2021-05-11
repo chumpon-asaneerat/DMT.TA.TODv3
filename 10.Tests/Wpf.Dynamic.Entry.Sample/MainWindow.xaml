@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Wpf Dynamic Entry Sample"
-        Width="800"
+        Width="850"
         Height="450"
         mc:Ignorable="d">
     <DockPanel Margin="10" LastChildFill="True">
@@ -41,29 +41,26 @@
                           Width="5"
                           HorizontalAlignment="Stretch"
                           ResizeDirection="Columns" />
-            <TabControl Grid.Column="2">
+            <TabControl x:Name="tabs" Grid.Column="2">
                 <TabItem Header="Master">
                     <ListView x:Name="gridMaster" Background="WhiteSmoke">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="120"
+                                <GridViewColumn Width="50"
                                                 DisplayMemberBinding="{Binding currencyDenomId}"
-                                                Header="currencyDenomId" />
-                                <GridViewColumn Width="120"
-                                                DisplayMemberBinding="{Binding currencyId}"
-                                                Header="currencyId" />
-                                <GridViewColumn Width="120"
-                                                DisplayMemberBinding="{Binding denomTypeId}"
-                                                Header="denomTypeId" />
-                                <GridViewColumn Width="120"
+                                                Header="รหัส" />
+                                <GridViewColumn Width="70"
+                                                DisplayMemberBinding="{Binding Active}"
+                                                Header="สถานะใช้งาน" />
+                                <GridViewColumn Width="80"
                                                 DisplayMemberBinding="{Binding denomValue}"
-                                                Header="denomValue" />
-                                <GridViewColumn Width="120"
-                                                DisplayMemberBinding="{Binding abbreviation}"
-                                                Header="abbreviation" />
-                                <GridViewColumn Width="120"
+                                                Header="มูลค่า" />
+                                <GridViewColumn Width="100"
                                                 DisplayMemberBinding="{Binding description}"
-                                                Header="description" />
+                                                Header="ความหมาย" />
+                                <GridViewColumn Width="85"
+                                                DisplayMemberBinding="{Binding denomTypeId}"
+                                                Header="เหรียญ/ธนบัตร" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -72,15 +69,15 @@
                     <ListView x:Name="gridDetail" Background="WhiteSmoke">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="120"
+                                <GridViewColumn Width="50"
                                                 DisplayMemberBinding="{Binding CurrencyDenomId}"
-                                                Header="CurrencyDenomId" />
-                                <GridViewColumn Width="120"
+                                                Header="รหัส" />
+                                <GridViewColumn Width="100"
                                                 DisplayMemberBinding="{Binding Description}"
-                                                Header="Description" />
-                                <GridViewColumn Width="120"
+                                                Header="ความหมาย" />
+                                <GridViewColumn Width="80"
                                                 DisplayMemberBinding="{Binding Amount}"
-                                                Header="Amount" />
+                                                Header="จำนวนเงิน" />
                             </GridView>
                         </ListView.View>
                     </ListView>

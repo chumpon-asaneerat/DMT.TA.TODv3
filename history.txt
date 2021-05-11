@@ -25,8 +25,11 @@ Refactor DMT.TA.TODv4 #2073
 Refactor DMT.TA.TODv4 #2072
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2071
-- 
+- DMT.TAxTODv3
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2070

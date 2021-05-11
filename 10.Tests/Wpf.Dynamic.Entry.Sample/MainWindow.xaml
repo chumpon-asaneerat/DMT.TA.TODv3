@@ -34,37 +34,58 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ctrl:DynamicEntry Grid.Column="0" Background="AntiqueWhite" />
+            <ctrl:DynamicEntry x:Name="entry"
+                               Grid.Column="0"
+                               Background="AntiqueWhite" />
             <GridSplitter Grid.Column="1"
                           Width="5"
                           HorizontalAlignment="Stretch"
                           ResizeDirection="Columns" />
-            <ListView x:Name="grid"
-                      Grid.Column="2"
-                      Background="WhiteSmoke">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="120"
-                                        DisplayMemberBinding="{Binding currencyDenomId}"
-                                        Header="currencyDenomId" />
-                        <GridViewColumn Width="120"
-                                        DisplayMemberBinding="{Binding currencyId}"
-                                        Header="currencyId" />
-                        <GridViewColumn Width="120"
-                                        DisplayMemberBinding="{Binding denomTypeId}"
-                                        Header="denomTypeId" />
-                        <GridViewColumn Width="120"
-                                        DisplayMemberBinding="{Binding denomValue}"
-                                        Header="denomValue" />
-                        <GridViewColumn Width="120"
-                                        DisplayMemberBinding="{Binding abbreviation}"
-                                        Header="abbreviation" />
-                        <GridViewColumn Width="120"
-                                        DisplayMemberBinding="{Binding description}"
-                                        Header="description" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <TabControl Grid.Column="2">
+                <TabItem Header="Master">
+                    <ListView x:Name="gridMaster" Background="WhiteSmoke">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding currencyDenomId}"
+                                                Header="currencyDenomId" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding currencyId}"
+                                                Header="currencyId" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding denomTypeId}"
+                                                Header="denomTypeId" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding denomValue}"
+                                                Header="denomValue" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding abbreviation}"
+                                                Header="abbreviation" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding description}"
+                                                Header="description" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+                <TabItem Header="Entry Detail">
+                    <ListView x:Name="gridDetail" Background="WhiteSmoke">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding CurrencyDenomId}"
+                                                Header="CurrencyDenomId" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding Description}"
+                                                Header="Description" />
+                                <GridViewColumn Width="120"
+                                                DisplayMemberBinding="{Binding Amount}"
+                                                Header="Amount" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+            </TabControl>
         </Grid>
     </DockPanel>
 </Window>

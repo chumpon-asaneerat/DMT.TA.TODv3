@@ -1,6 +1,7 @@
 ﻿#region Using
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Reflection;
@@ -35,17 +36,18 @@ namespace Wpf.Dynamic.Entry.Sample
 
         private void cmdGetMaster_Click(object sender, RoutedEventArgs e)
         {
-            grid.ItemsSource = MCurrency.GetCurrencies();
+            gridMaster.ItemsSource = MCurrency.GetCurrencies();
         }
 
         private void cmdGetDetails_Click(object sender, RoutedEventArgs e)
         {
-
+            entry.DataContext = Detail.GetDetails();
         }
 
         private void cmdRetriveData_Click(object sender, RoutedEventArgs e)
         {
-
+            List<Detail> details = entry.DataContext as List<Detail>;
+            gridDetail.ItemsSource = details.Compact();
         }
 
         #endregion

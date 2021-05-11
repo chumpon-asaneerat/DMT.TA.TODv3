@@ -13,11 +13,16 @@ Refactor DMT.TA.TODv4 #2077
 Refactor DMT.TA.TODv4 #2076
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2075
-- 
+- DMT.TAxTODv3
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #4.
+      - Implements Entry List Control.
 
 [commited]
 Refactor DMT.TA.TODv4 #2074
+- DMT.TAxTODv3
   - Wpf.Dynamic.Entry.Sample project.
     - Update code #3.
       - Test GetCurrencies (Master).

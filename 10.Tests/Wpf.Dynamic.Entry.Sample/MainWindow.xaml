@@ -10,15 +10,27 @@
         mc:Ignorable="d">
     <DockPanel Margin="10" LastChildFill="True">
         <StackPanel Height="26"
+                    Margin="0,5"
                     DockPanel.Dock="Top"
                     Orientation="Horizontal">
-            <Button Width="120" Content="Load" />
+            <Button x:Name="cmdGetMaster"
+                    Width="120"
+                    Click="cmdGetMaster_Click"
+                    Content="Gets Master" />
             <TextBlock Width="5" />
-            <Button Width="120" Content="Gets" />
+            <Button x:Name="cmdGetDetails"
+                    Width="120"
+                    Click="cmdGetDetails_Click"
+                    Content="Gets Details" />
+            <TextBlock Width="5" />
+            <Button x:Name="cmdRetriveData"
+                    Width="120"
+                    Click="cmdRetriveData_Click"
+                    Content="Retrive Data" />
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="350" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -27,7 +39,32 @@
                           Width="5"
                           HorizontalAlignment="Stretch"
                           ResizeDirection="Columns" />
-            <Grid Grid.Column="2" Background="WhiteSmoke" />
+            <ListView x:Name="grid"
+                      Grid.Column="2"
+                      Background="WhiteSmoke">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="120"
+                                        DisplayMemberBinding="{Binding currencyDenomId}"
+                                        Header="currencyDenomId" />
+                        <GridViewColumn Width="120"
+                                        DisplayMemberBinding="{Binding currencyId}"
+                                        Header="currencyId" />
+                        <GridViewColumn Width="120"
+                                        DisplayMemberBinding="{Binding denomTypeId}"
+                                        Header="denomTypeId" />
+                        <GridViewColumn Width="120"
+                                        DisplayMemberBinding="{Binding denomValue}"
+                                        Header="denomValue" />
+                        <GridViewColumn Width="120"
+                                        DisplayMemberBinding="{Binding abbreviation}"
+                                        Header="abbreviation" />
+                        <GridViewColumn Width="120"
+                                        DisplayMemberBinding="{Binding description}"
+                                        Header="description" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </DockPanel>
 </Window>

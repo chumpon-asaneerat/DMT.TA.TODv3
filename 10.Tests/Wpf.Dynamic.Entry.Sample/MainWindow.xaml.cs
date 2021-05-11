@@ -30,5 +30,24 @@ namespace Wpf.Dynamic.Entry.Sample
         }
 
         #endregion
+
+        #region Button Handlers
+
+        private void cmdGetMaster_Click(object sender, RoutedEventArgs e)
+        {
+            grid.ItemsSource = MCurrency.GetCurrencies();
+        }
+
+        private void cmdGetDetails_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdRetriveData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }

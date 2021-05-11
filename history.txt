@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2076
 Refactor DMT.TA.TODv4 #2075
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2074
-- 
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #3.
+      - Test GetCurrencies (Master).
 
 [commited]
 Refactor DMT.TA.TODv4 #2073

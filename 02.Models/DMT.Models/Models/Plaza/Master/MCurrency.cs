@@ -214,7 +214,7 @@ namespace DMT.Models
 		/// Gets Currencies.
 		/// </summary>
 		/// <param name="db">The database connection.</param>
-		/// <returns>Returns List of Coupon Master.</returns>
+		/// <returns>Returns List of MCurrency.</returns>
 		public static NDbResult<List<MCurrency>> GetCurrencies(SQLiteConnection db)
 		{
 			var result = new NDbResult<List<MCurrency>>();
@@ -245,7 +245,7 @@ namespace DMT.Models
 		/// <summary>
 		/// Gets Currencies.
 		/// </summary>
-		/// <returns>Returns List of Coupon Master.</returns>
+		/// <returns>Returns List of MCurrency.</returns>
 		public static NDbResult<List<MCurrency>> GetCurrencies()
 		{
 			lock (sync)

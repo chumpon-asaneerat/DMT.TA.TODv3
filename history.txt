@@ -19,8 +19,14 @@ Refactor DMT.TA.TODv4 #2075
 Refactor DMT.TA.TODv4 #2074
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2073
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - MCurrency update static method(s) conmment.
+  - Wpf.Dynamic.Entry.Sample project.
+    - Update code #2.
+      - Add MCurrency class + static method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2072

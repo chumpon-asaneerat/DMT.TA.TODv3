@@ -11,8 +11,8 @@ namespace DMT
         // common properties
         public static string Version = "1";
         public static string Minor = "4";
-        public static string Build = "9665";
-        public static DateTime LastUpdate = new DateTime(2021, 05, 10, 12, 00, 00);
+        public static string Build = "9666";
+        public static DateTime LastUpdate = new DateTime(2021, 05, 12, 12, 00, 00);
 
         public static class Application
         {

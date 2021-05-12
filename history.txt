@@ -28,8 +28,12 @@ Refactor DMT.TA.TODv4 #2082
 Refactor DMT.TA.TODv4 #2081
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2080
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Change Shift Page -> remove TSBId column.
+  - Upadte app version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2079

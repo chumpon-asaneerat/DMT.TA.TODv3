@@ -2458,6 +2458,9 @@ namespace DMT.Services
                 }
 
                 var plazas = Plaza.GetPlazaGroupPlazas(PlazaGroup).Value();
+
+                // TODO: REVENUE ENTRY to find plazaid may be need to loop all job and check if has only one plazaid use that value instead use the first one.
+
                 int plazaId = (null != plazas && plazas.Count > 0) ? plazas[0].SCWPlazaId : -1;
 
                 if (plazaId == -1)

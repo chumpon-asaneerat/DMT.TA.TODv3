@@ -25,8 +25,11 @@ Refactor DMT.TA.TODv4 #2083
 Refactor DMT.TA.TODv4 #2082
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2081
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Add note to find plazaid (in case all job on second plaza so the plazaid should get from job list).
 
 [commited]
 Refactor DMT.TA.TODv4 #2080

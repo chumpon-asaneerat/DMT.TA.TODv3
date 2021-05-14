@@ -97,8 +97,6 @@ namespace DMT.TOD.Pages.Reports
             List<RevenueEntry> items = new List<RevenueEntry>();
             if (null != _revenues) items.AddRange(_revenues);
 
-            //test
-
             // assign new data source
             RdlcReportDataSource mainDS = new RdlcReportDataSource();
             mainDS.Name = "main"; // the datasource name in the rdlc report.

@@ -868,6 +868,60 @@
         </Grid>
     </DataTemplate>
 
+    <!--  BalanceUserId HEADER TEMPLATE  -->
+    <DataTemplate x:Key="BalanceUserIdHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="รหัสพนักงาน" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  BalanceUserId CELL TEMPLATE  -->
+    <DataTemplate x:Key="BalanceUserId">
+        <TextBlock Text="{Binding Path=UserId, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  BalanceUserName Header TEMPLATE  -->
+    <DataTemplate x:Key="BalanceUserNameHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="ชื่อพนักงาน" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  BalanceUserName CELL TEMPLATE  -->
+    <DataTemplate x:Key="BalanceUserName">
+        <TextBlock Text="{Binding Path=username, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Left" />
+    </DataTemplate>
+
+    <!--  BalanceBagNo Header TEMPLATE  -->
+    <DataTemplate x:Key="BalanceBagNoHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เลขถุงเงิน" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  BalanceBagNo CELL TEMPLATE  -->
+    <DataTemplate x:Key="BalanceBagNo">
+        <TextBlock Text="{Binding Path=Bagno, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  BalanceUserCredit Header TEMPLATE  -->
+    <DataTemplate x:Key="BalanceUserCreditHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินลงตู้" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  BalanceUserCredit CELL TEMPLATE  -->
+    <DataTemplate x:Key="BalanceUserCredit">
+        <TextBlock Text="{Binding Path=Credit, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
     <!--  Common Exchange Data Template (HEADER/CELL)  -->
 
     <!--  RequestDate HEADER TEMPLATE  -->

@@ -20,59 +20,6 @@
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
         <GridLength x:Key="ListViewPanelWidth">200</GridLength>
         <GridLength x:Key="ButtonPanelWidth">50</GridLength>
-        <sys:Double x:Key="colWidth">90</sys:Double>
-        <!--  GRID VIEW - COUPON  -->
-        <GridViewColumnCollection x:Key="SubColumnCollectionCoupon">
-            <GridViewColumn Width="{StaticResource colWidth}" Header=" 35 บาท ">
-                <GridViewColumn.HeaderContainerStyle>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                    </Style>
-                </GridViewColumn.HeaderContainerStyle>
-                <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBlock FontSize="{StaticResource InputFontSize18}"
-                                   Text="{Binding Path=C35, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
-                                   TextAlignment="Right" />
-                    </DataTemplate>
-                </GridViewColumn.CellTemplate>
-            </GridViewColumn>
-            <GridViewColumn Width="{StaticResource colWidth}" Header=" 80 บาท ">
-                <GridViewColumn.HeaderContainerStyle>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                    </Style>
-                </GridViewColumn.HeaderContainerStyle>
-                <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBlock FontSize="{StaticResource InputFontSize18}"
-                                   Text="{Binding Path=C80, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
-                                   TextAlignment="Right" />
-                    </DataTemplate>
-                </GridViewColumn.CellTemplate>
-            </GridViewColumn>
-        </GridViewColumnCollection>
-        <DataTemplate x:Key="MultiColumnHeaderTemplateCoupon">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           HorizontalAlignment="Center"
-                           Text="{Binding}" />
-                <GridViewHeaderRowPresenter Grid.Row="1"
-                                            HorizontalAlignment="Stretch"
-                                            Columns="{StaticResource SubColumnCollectionCoupon}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="MultiColumnCellTemplateCoupon">
-            <Grid>
-                <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource SubColumnCollectionCoupon}" />
-            </Grid>
-        </DataTemplate>
     </Window.Resources>
     <Grid HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch"
@@ -137,97 +84,36 @@
                         <ListView.View>
                             <GridView>
                                 <!--  TSB  -->
-                                <GridViewColumn Width="150" Header=" ด่าน "
-                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Margin="5,0"
-                                                       Text="{Binding Path=TSB_Th_Name}"
-                                                       TextAlignment="Left" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource TSBTHName}"
+                                                Header=" ด่าน "
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                 <!--  USERID  -->
                                 <GridViewColumn Width="150"
-                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
-                                    <GridViewColumn.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       TextAlignment="Center">
-                                                <Run Text="รหัสพนักงาน" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.HeaderTemplate>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=UserId, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Center" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                                CellTemplate="{StaticResource BalanceUserId}"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                HeaderTemplate="{StaticResource BalanceUserIdHeader}" />
                                 <!--  USER NAME  -->
                                 <GridViewColumn Width="250"
-                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
-                                    <GridViewColumn.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       TextAlignment="Center">
-                                                <Run Text="ชื่อพนักงาน" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.HeaderTemplate>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=username, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Left" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                                CellTemplate="{StaticResource BalanceUserName}"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                HeaderTemplate="{StaticResource BalanceUserNameHeader}" />
                                 <!--  BAG NO  -->
                                 <GridViewColumn Width="150"
-                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
-                                    <GridViewColumn.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       TextAlignment="Center">
-                                                <Run Text="เลขถุงเงิน" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.HeaderTemplate>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Bagno, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Center" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                                CellTemplate="{StaticResource BalanceBagNo}"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                HeaderTemplate="{StaticResource BalanceBagNoHeader}" />
                                 <!--  CREDIT ON USER  -->
                                 <GridViewColumn Width="150"
-                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
-                                    <GridViewColumn.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       TextAlignment="Center">
-                                                <Run Text="เงินลงตู้" />
-                                                <LineBreak />
-                                                <Run Text="(บาท)" />
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.HeaderTemplate>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Credit, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                                CellTemplate="{StaticResource BalanceUserCredit}"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                HeaderTemplate="{StaticResource BalanceUserCreditHeader}" />
                                 <!--  COUPONS (35/80)  -->
                                 <GridViewColumn Width="Auto"
-                                                CellTemplate="{StaticResource MultiColumnCellTemplateCoupon}"
+                                                CellTemplate="{StaticResource CouponColumns}"
                                                 Header="ประเภทคูปอง(เล่ม)"
-                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCoupon}"
-                                                HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}">
-                                </GridViewColumn>
+                                                HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                HeaderTemplate="{StaticResource CouponColumnsHeader}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

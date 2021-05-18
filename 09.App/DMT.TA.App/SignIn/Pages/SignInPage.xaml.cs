@@ -379,7 +379,6 @@ namespace DMT.Pages
             MethodBase med = MethodBase.GetCurrentMethod();
             string msg = string.Empty;
 
-
             if (byCardId && null == _user)
             {
                 ShowError("ไม่พบข้อมูลพนักงาน ตามรหัสบัตรที่แตะ" + Environment.NewLine + "กรุณาแตะบัตรใหม่ หรือเปลี่ยนบัตรใหม่");

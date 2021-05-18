@@ -11,55 +11,6 @@
     <UserControl.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
-        <sys:Double x:Key="colWidth">100</sys:Double>
-        <!--  GRID VIEW - DATE  -->
-        <GridViewColumnCollection x:Key="SubColumnCollectionDate">
-            <GridViewColumn Width="{StaticResource colWidth}" Header=" วันที่เริ่มต้น ">
-                <GridViewColumn.HeaderContainerStyle>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                    </Style>
-                </GridViewColumn.HeaderContainerStyle>
-                <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=PeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
-                    </DataTemplate>
-                </GridViewColumn.CellTemplate>
-            </GridViewColumn>
-            <GridViewColumn Width="{StaticResource colWidth}" Header=" วันที่สิ้นสุด ">
-                <GridViewColumn.HeaderContainerStyle>
-                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                    </Style>
-                </GridViewColumn.HeaderContainerStyle>
-                <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=PeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
-                    </DataTemplate>
-                </GridViewColumn.CellTemplate>
-            </GridViewColumn>
-        </GridViewColumnCollection>
-        <DataTemplate x:Key="MultiColumnHeaderTemplateDate">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           HorizontalAlignment="Center"
-                           Text="{Binding}" />
-                <GridViewHeaderRowPresenter Grid.Row="1"
-                                            HorizontalAlignment="Stretch"
-                                            Columns="{StaticResource SubColumnCollectionDate}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="MultiColumnCellTemplateDate">
-            <Grid>
-                <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource SubColumnCollectionDate}" />
-            </Grid>
-        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="DimGray">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -134,202 +85,57 @@
                                 <ListView.View>
                                     <GridView>
                                         <!--  TSB  -->
-                                        <GridViewColumn Width="150" Header=" ด่าน ">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Margin="5,0"
-                                                               Text="{Binding Path=TSB_Th_Name}"
-                                                               TextAlignment="Left" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource TSBTHName}"
+                                                        Header=" ด่าน "
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  REQUEST DATE  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="วันที่ร้องขอ"
-                                                               TextAlignment="Center"
-                                                               TextWrapping="Wrap" />
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource RequestDate}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource RequestDateHeader}" />
                                         <!--  REQUIRED DATE (BEGIN-END)  -->
                                         <GridViewColumn Width="Auto"
-                                                        CellTemplate="{StaticResource MultiColumnCellTemplateDate}"
+                                                        CellTemplate="{StaticResource PediodColumns}"
                                                         Header="วันที่ใช้เงิน"
-                                                        HeaderTemplate="{StaticResource MultiColumnHeaderTemplateDate}">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="IsHitTestVisible" Value="False" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                        </GridViewColumn>
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                        HeaderTemplate="{StaticResource PediodColumnsHeader}" />
                                         <!--  EXCHANGE TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เงินขอแลก" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource ExchangeBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource ExchangeBHTHeader}" />
                                         <!--  BORROW TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เงินขอยืม" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource BorrowBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource BorrowBHTHeader}" />
                                         <!--  ADDITION TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เพิ่มวงเงิน" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource AdditionalBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource AdditionalBHTHeader}" />
                                         <!--  SUM TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เงินรวม" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource ExchangeTotalBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource ExchangeTotalBHTHeader}" />
                                         <!--  SELECTED (CHECKBOX)  -->
-                                        <GridViewColumn Width="90">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               Text="เลือกรายการ"
-                                                               TextAlignment="Center" />
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn Width="90"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource SelectedRequestHeader}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <CheckBox IsChecked="{Binding Path=Selected, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <CheckBox HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              IsChecked="{Binding Path=Selected, Mode=OneWay}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
                                         <!--  SHOW DETAIL (BUTTON)  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               Text="รายละเอียด"
-                                                               TextAlignment="Center" />
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn Width="150"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource RequestDetailHeader}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <Button x:Name="cmdRequestDetail"
@@ -375,179 +181,45 @@
                                 <ListView.View>
                                     <GridView>
                                         <!--  TSB  -->
-                                        <GridViewColumn Width="150" Header=" ด่าน ">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Margin="5,0"
-                                                               Text="{Binding Path=TSB_Th_Name}"
-                                                               TextAlignment="Left" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource TSBTHName}"
+                                                        Header=" ด่าน "
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  REQUEST DATE  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="วันที่ร้องขอ"
-                                                               TextAlignment="Center"
-                                                               TextWrapping="Wrap" />
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource RequestDate}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource RequestDateHeader}" />
                                         <!--  REQUIRED DATE (BEGIN-END)  -->
                                         <GridViewColumn Width="Auto"
-                                                        CellTemplate="{StaticResource MultiColumnCellTemplateDate}"
+                                                        CellTemplate="{StaticResource PediodColumns}"
                                                         Header="วันที่ใช้เงิน"
-                                                        HeaderTemplate="{StaticResource MultiColumnHeaderTemplateDate}">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="IsHitTestVisible" Value="False" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                        </GridViewColumn>
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                        HeaderTemplate="{StaticResource PediodColumnsHeader}" />
                                         <!--  EXCHANGE TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เงินขอแลก" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource ExchangeBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource ExchangeBHTHeader}" />
                                         <!--  BORROW TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เงินขอยืม" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource BorrowBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource BorrowBHTHeader}" />
                                         <!--  ADDITION TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เพิ่มวงเงิน" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource AdditionalBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource AdditionalBHTHeader}" />
                                         <!--  SUM TOTAL BHT  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               TextAlignment="Center">
-                                                        <Run Text="เงินรวม" />
-                                                        <LineBreak />
-                                                        <Run Text="(บาท)" />
-                                                    </TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource ExchangeTotalBHT}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource ExchangeTotalBHTHeader}" />
                                         <!--  SHOW DETAIL (BUTTON)  -->
-                                        <GridViewColumn Width="150">
-                                            <GridViewColumn.HeaderContainerStyle>
-                                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="IsEnabled" Value="True" />
-                                                    <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                                </Style>
-                                            </GridViewColumn.HeaderContainerStyle>
-                                            <GridViewColumn.HeaderTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"
-                                                               Text="รายละเอียด"
-                                                               TextAlignment="Center" />
-                                                </DataTemplate>
-                                            </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn Width="150"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource RequestDetailHeader}">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <Button x:Name="cmdApproveDetail"

@@ -7,8 +7,14 @@ Refactor DMT.TA.TODv4 #2089
 Refactor DMT.TA.TODv4 #2088
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2087
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project.
+    - Update ListViewStyle.xaml #1 (Multicolumn).
+  - DMT.Account.App project.
+    - Update TSBRequestExchangeViewPage #1.
+    - Update TSBCheckBalancePage #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2086

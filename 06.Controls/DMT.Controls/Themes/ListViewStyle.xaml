@@ -13,6 +13,9 @@
     <sys:Double x:Key="ListViewFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
     <sys:Double x:Key="ListViewFontSize20" PresentationOptions:Freeze="True">20</sys:Double>
 
+    <!--  CONST LISTVIEW COLUMN WIDTH  -->
+    <sys:Double x:Key="ListViewColWidth">100</sys:Double>
+
     <!--  CONST LISTVIEW's ITEM COLORS  -->
     <SolidColorBrush x:Key="ListViewItemBackground1"
                      PresentationOptions:Freeze="True"
@@ -397,46 +400,46 @@
     <!--  Common for Coupon BORROW/RETURN  -->
     <DataTemplate x:Key="StockCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="{Binding Foreground}"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="LaneCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="{Binding Foreground}"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="SoldCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="{Binding Foreground}"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
     <!--  Common for Coupon SoldByLane/ReturnToStock  -->
     <DataTemplate x:Key="SoldByLaneCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="Black"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="ReturnToStockCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="Black"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
     <!--  Common for Coupon TSBStock/SoldByTSB  -->
     <DataTemplate x:Key="TSBStockCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="Black"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="SoldByTSBCouponId">
         <TextBlock HorizontalAlignment="Stretch"
-                   Text="{Binding CouponId}"
                    Foreground="Black"
+                   Text="{Binding CouponId}"
                    TextAlignment="Center" />
     </DataTemplate>
 
@@ -459,7 +462,7 @@
                    TextAlignment="Center" />
     </DataTemplate>
     <DataTemplate x:Key="TransactionTimeString">
-            <TextBlock HorizontalAlignment="Stretch"
+        <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding TransactionTimeString}"
                    TextAlignment="Center" />
     </DataTemplate>
@@ -524,11 +527,11 @@
 
     <!--  Common for Coupon History View  -->
     <!--
-    {
-      "SAPARDate": null,
-      "ShiftId": 0,
-      "LaneId": null
-    }
+        {
+        "SAPARDate": null,
+        "ShiftId": 0,
+        "LaneId": null
+        }
     -->
     <DataTemplate x:Key="SAPItemCode">
         <TextBlock HorizontalAlignment="Stretch"
@@ -608,12 +611,12 @@
 
     <!--  Common for SAP AR related ListView  -->
     <!--
-    {
+        {
         "TollWayId": 9,
         "SAPSysSerial": 747977,
         "SoldBy": "20001",
         "LaneId": "AN12"
-    }
+        }
     -->
     <DataTemplate x:Key="SAPCardCode">
         <TextBlock HorizontalAlignment="Stretch"
@@ -655,6 +658,159 @@
     <DataTemplate x:Key="SAPNoOfCoupon">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding NoOfCoupon}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
+
+    <!--  Common for REQUEST EXCHANGE related ListView  -->
+
+    <!--  Common Header Container  -->
+    <Style x:Key="CommonHeaderContainer" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="IsHitTestVisible" Value="True" />
+        <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
+    </Style>
+    <Style x:Key="CommonHeaderFreezeContainer" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
+    </Style>
+
+    <!--  Common Exchange Data Template (HEADER/CELL)  -->
+
+    <!--  TSBTHName CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBTHName">
+        <TextBlock Margin="5,0"
+                   Text="{Binding Path=TSB_Th_Name}"
+                   TextAlignment="Left" />
+    </DataTemplate>
+
+    <!--  RequestDate HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestDateHeader">
+        <TextBlock Text="วันที่ร้องขอ"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+    </DataTemplate>
+    <!--  RequestDate CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestDate">
+        <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  PeriodBegin CELL TEMPLATE  -->
+    <DataTemplate x:Key="PeriodBegin">
+        <TextBlock Text="{Binding Path=PeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  PeriodEnd CELL TEMPLATE  -->
+    <DataTemplate x:Key="PeriodEnd">
+        <TextBlock Text="{Binding Path=PeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Period Columns Collections  -->
+    <GridViewColumnCollection x:Key="PediodGridViewColumns">
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource PeriodBegin}"
+                        Header=" วันที่เริ่มต้น "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource PeriodEnd}"
+                        Header=" วันที่สิ้นสุด "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+    </GridViewColumnCollection>
+    <!--  Pediod Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="PediodColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource PediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Pediod Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="PediodColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource PediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
+    <!--  ExchangeBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ExchangeBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอแลก" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  ExchangeBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="ExchangeBHT">
+        <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  BorrowBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="BorrowBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอยืม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  BorrowBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="BorrowBHT">
+        <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  AdditionalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AdditionalBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เพิ่มวงเงิน" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  AdditionalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AdditionalBHT">
+        <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  AdditionalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ExchangeTotalBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินรวม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Exchange Total BHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="ExchangeTotalBHT">
+        <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  SelectedRequestHeader HEADER TEMPLATE  -->
+    <DataTemplate x:Key="SelectedRequestHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="เลือกรายการ"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <!--  RequestDetailHeader HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestDetailHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="รายละเอียด"
                    TextAlignment="Center" />
     </DataTemplate>
 </ResourceDictionary>

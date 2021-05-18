@@ -285,22 +285,10 @@
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
-                                <!--
-                                <GridView.ColumnHeaderContainerStyle>
-                                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                                        <Setter Property="IsEnabled" Value="False" />
-                                    </Style>
-                                </GridView.ColumnHeaderContainerStyle>
-                                -->
                                 <!--  TSB  -->
-                                <GridViewColumn Width="150" Header=" ด่าน ">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150"
+                                                Header=" ด่าน "
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Height="30"
@@ -318,25 +306,10 @@
                                 <GridViewColumn Width="Auto"
                                                 CellTemplate="{StaticResource MultiColumnCellTemplateCredit}"
                                                 Header="ประเภทเงิน/จำนวน (บาท)"
-                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCredit}">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="IsHitTestVisible" Value="False" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
-                                </GridViewColumn>
+                                                HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCredit}" />
                                 <!--  TOTAL CREDIT BALANCE  -->
-                                <GridViewColumn Width="150">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150" HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center"
@@ -355,14 +328,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <!--  TOTAL CREDIT ON USER  -->
-                                <GridViewColumn Width="150">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150" HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center"
@@ -384,16 +350,8 @@
                                 <GridViewColumn Width="Auto"
                                                 CellTemplate="{StaticResource MultiColumnCellTemplateCoupon}"
                                                 Header="ประเภทคูปอง(เล่ม)"
-                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCoupon}">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="IsHitTestVisible" Value="False" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
-                                </GridViewColumn>
+                                                HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCoupon}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

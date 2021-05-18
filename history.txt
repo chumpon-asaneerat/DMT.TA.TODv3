@@ -4,8 +4,11 @@
 Refactor DMT.TA.TODv4 #2089
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2088
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Update UserCheckBalanceWindow #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2087

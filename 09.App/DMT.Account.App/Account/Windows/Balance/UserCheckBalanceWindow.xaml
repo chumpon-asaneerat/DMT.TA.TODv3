@@ -137,14 +137,8 @@
                         <ListView.View>
                             <GridView>
                                 <!--  TSB  -->
-                                <GridViewColumn Width="150" Header=" ด่าน ">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150" Header=" ด่าน "
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Margin="5,0"
@@ -154,14 +148,8 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <!--  USERID  -->
-                                <GridViewColumn Width="150">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center"
@@ -178,14 +166,8 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <!--  USER NAME  -->
-                                <GridViewColumn Width="250">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="250"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center"
@@ -202,14 +184,8 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <!--  BAG NO  -->
-                                <GridViewColumn Width="150">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center"
@@ -226,14 +202,8 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <!--  CREDIT ON USER  -->
-                                <GridViewColumn Width="150">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn Width="150"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderContainer}">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Center"
@@ -255,15 +225,8 @@
                                 <GridViewColumn Width="Auto"
                                                 CellTemplate="{StaticResource MultiColumnCellTemplateCoupon}"
                                                 Header="ประเภทคูปอง(เล่ม)"
-                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCoupon}">
-                                    <GridViewColumn.HeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="IsEnabled" Value="True" />
-                                            <Setter Property="IsHitTestVisible" Value="False" />
-                                            <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
-                                        </Style>
-                                    </GridViewColumn.HeaderContainerStyle>
+                                                HeaderTemplate="{StaticResource MultiColumnHeaderTemplateCoupon}"
+                                                HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}">
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>

@@ -662,7 +662,7 @@
     </DataTemplate>
 
 
-    <!--  Common for REQUEST EXCHANGE related ListView  -->
+    <!--  Common for BALANCE/REQUEST EXCHANGE related ListView  -->
 
     <!--  Common Header Container  -->
     <Style x:Key="CommonHeaderContainer" TargetType="{x:Type GridViewColumnHeader}">
@@ -678,14 +678,197 @@
         <Setter Property="FontSize" Value="{StaticResource InputFontSize18}" />
     </Style>
 
-    <!--  Common Exchange Data Template (HEADER/CELL)  -->
-
     <!--  TSBTHName CELL TEMPLATE  -->
     <DataTemplate x:Key="TSBTHName">
         <TextBlock Margin="5,0"
                    Text="{Binding Path=TSB_Th_Name}"
                    TextAlignment="Left" />
     </DataTemplate>
+
+    <!--  Common BALANCE Data Template (HEADER/CELL)  -->
+
+    <!--  AMOUNT CELL TEMPLATE(S)  -->
+    <DataTemplate x:Key="Amnt1">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt1, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt2">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt2, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt5">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt5, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt10">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt10, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt20">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt20, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt50">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt50, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt100">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt100, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt500">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt500, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="Amnt1000">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=Amnt1000, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Credit GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="CreditGridViewColumns">
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt1}"
+                        Header=" 1 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt2}"
+                        Header=" 2 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt5}"
+                        Header=" 5 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt10}"
+                        Header=" 10 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt20}"
+                        Header=" 20 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt50}"
+                        Header=" 50 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt100}"
+                        Header=" 100 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt500}"
+                        Header=" 500 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource Amnt1000}"
+                        Header=" 1000 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+    </GridViewColumnCollection>
+    <!--  Credit Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="CreditColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource CreditGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Credit Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="CreditColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource CreditGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
+    <!--  TSBCreditTotalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="TSBCreditTotalBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="ยอดเงินรวม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  TSBCreditTotalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBCreditTotalBHT">
+        <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  UserCreditTotalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="UserCreditTotalBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="ยอดเงินลงตู้" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  UserCreditTotalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="UserCreditTotalBHT">
+        <TextBlock Text="{Binding Path=ucredit, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  COUPON CELL TEMPLATE(S)  -->
+    <DataTemplate x:Key="C35">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=C35, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="C80">
+        <TextBlock FontSize="{StaticResource InputFontSize18}"
+                   Text="{Binding Path=C80, Mode=OneWay, StringFormat='{}{0:#,##0}'}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Coupon GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="CouponGridViewColumns">
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource C35}"
+                        Header=" 35 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+        <GridViewColumn Width="{StaticResource ListViewColWidth}"
+                        CellTemplate="{StaticResource C80}"
+                        Header=" 80 บาท "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+    </GridViewColumnCollection>
+    <!--  Coupon Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="CouponColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource CouponGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Coupon Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="CouponColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource CouponGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
+    <!--  Common Exchange Data Template (HEADER/CELL)  -->
 
     <!--  RequestDate HEADER TEMPLATE  -->
     <DataTemplate x:Key="RequestDateHeader">
@@ -706,7 +889,7 @@
     <DataTemplate x:Key="PeriodEnd">
         <TextBlock Text="{Binding Path=PeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
     </DataTemplate>
-    <!--  Period Columns Collections  -->
+    <!--  Period GridView Columns Collections  -->
     <GridViewColumnCollection x:Key="PediodGridViewColumns">
         <GridViewColumn Width="{StaticResource ListViewColWidth}"
                         CellTemplate="{StaticResource PeriodBegin}"

@@ -3,6 +3,7 @@
 using System;
 
 using NLib;
+using System.Reflection;
 
 using DMT.Smartcard;
 using DMT.Models;
@@ -85,6 +86,11 @@ namespace DMT.Controls
         private void SmartcardService_OnCardReadSerial(object sender, M1CardReadSerialEventArgs e)
         {
             this.CardId = e.SerialNo.Replace(" ", string.Empty);
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Format("SMARTCARD - DETECT S/N : {0}", this.CardId);
+            med.Info(msg);
+
             FindUserByCardId();
         }
 
@@ -103,13 +109,34 @@ namespace DMT.Controls
 
         private void FindUserByCardId()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Empty;
+
             if (string.IsNullOrWhiteSpace(this.CardId))
             {
+                msg = string.Format("SMARTCARD - S/N is empty string. S/N: {0}", this.CardId);
+                med.Info(msg);
                 this.User = null;
             }
             else
             {
-                var usr = User.GetByCardId(this.CardId).Value();
+                msg = string.Format("SMARTCARD - FIND USER BY CARD S/N. S/N: {0}", this.CardId);
+                med.Info(msg);
+
+                var usr = User.GetByCardId(this.CardId).Value();                
+                // write log
+                if (null == usr)
+                {
+                    msg = string.Format("SMARTCARD - NOT FOUND USER BY S/N: {0}", this.CardId);
+                    med.Info(msg);
+                }
+                else
+                {
+                    msg = string.Format("SMARTCARD - FOUND USER BY S/N: {0}, USERNAME: {1}", 
+                        this.CardId, usr.FullNameTH);
+                    med.Info(msg);
+                }
+
                 if (null == this.User && null != usr)
                 {
                     this.User = usr;
@@ -130,7 +157,7 @@ namespace DMT.Controls
                 }
                 else
                 {
-                    // CardId Not found  on dataase.
+                    // CardId Not found  on database.
                     this.User = usr;
                     RaiseUserChanged();
                 }

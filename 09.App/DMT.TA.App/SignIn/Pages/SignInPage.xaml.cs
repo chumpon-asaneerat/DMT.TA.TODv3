@@ -12,6 +12,8 @@ using DMT.Models;
 using DMT.Services;
 using DMT.Controls;
 using System.Windows.Threading;
+using NLib;
+using System.Reflection;
 
 #endregion
 

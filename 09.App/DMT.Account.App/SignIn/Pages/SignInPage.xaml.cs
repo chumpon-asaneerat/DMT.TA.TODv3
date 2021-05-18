@@ -379,12 +379,12 @@ namespace DMT.Pages
             MethodBase med = MethodBase.GetCurrentMethod();
             string msg = string.Empty;
 
-            if (byCardId)
+            if (byCardId && null == _user)
             {
                 ShowError("ไม่พบข้อมูลพนักงาน ตามรหัสบัตรที่แตะ" + Environment.NewLine + "กรุณาแตะบัตรใหม่ หรือเปลี่ยนบัตรใหม่");
                 return;
             }
-            if (null == _user)
+            if (!byCardId && null == _user)
             {
                 var userId = txtUserId.Text.Trim();
                 if (IsUserExists(userId))

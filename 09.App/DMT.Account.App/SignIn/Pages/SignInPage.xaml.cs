@@ -299,8 +299,23 @@ namespace DMT.Pages
         }
 
         private bool IsUserExists(string userId)
-        {            
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Empty;
+
             var usr = User.GetByUserId(userId).Value();
+
+            if (null != usr)
+            {
+                msg = string.Format("SIGN IN CHECK USERID: {0} found.", userId);
+                med.Info(msg);
+            }
+            else
+            {
+                msg = string.Format("SIGN IN CHECK USERID: {0} not found.", userId);
+                med.Info(msg);
+            }
+
             return (null != usr);
         }
 
@@ -361,6 +376,9 @@ namespace DMT.Pages
 
         private void VerifyUser(bool byCardId)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Empty;
+
             if (byCardId)
             {
                 ShowError("ไม่พบข้อมูลพนักงาน ตามรหัสบัตรที่แตะ" + Environment.NewLine + "กรุณาแตะบัตรใหม่ หรือเปลี่ยนบัตรใหม่");
@@ -371,12 +389,18 @@ namespace DMT.Pages
                 var userId = txtUserId.Text.Trim();
                 if (IsUserExists(userId))
                 {
+                    msg = "SIGN IN FAILED. INVALID PASSWORD.";
+                    med.Info(msg);
+
                     ShowError("รหัสผ่านไม่ถูกต้อง" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
                     txtPassword.SelectAll();
                     txtPassword.Focus();
                 }
                 else
                 {
+                    msg = "SIGN IN FAILED. NOT FOUND USERID.";
+                    med.Info(msg);
+
                     ShowError("ไม่พบข้อมูลพนักงานตามรหัสพนักงาน และรหัสผ่านที่ระบุ" + Environment.NewLine + "กรุณาป้อนรหัสใหม่");
                     txtUserId.SelectAll();
                     txtUserId.Focus();
@@ -384,12 +408,23 @@ namespace DMT.Pages
                 return;
             }
 
-            if (null != _user && _roles.IndexOf(_user.RoleId) == -1)
+            if (null != _user)
             {
-                ShowError("พนักงานตามรหัสที่ระบุ ไม่มีสิทธิในการเข้าใช้งาน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น");
-                txtUserId.SelectAll();
-                txtUserId.Focus();
-                return;
+                if (_roles.IndexOf(_user.RoleId) == -1)
+                {
+                    msg = string.Format("SIGN IN USERID: {0}. NO MATCH ROLE (PERMISSION).", _user.UserId);
+                    med.Info(msg);
+
+                    ShowError("พนักงานตามรหัสที่ระบุ ไม่มีสิทธิในการเข้าใช้งาน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น");
+                    txtUserId.SelectAll();
+                    txtUserId.Focus();
+                    return;
+                }
+                else
+                {
+                    msg = string.Format("SIGN IN USERID: {0}. MATCH ROLE (PERMISSION).", _user.UserId);
+                    med.Info(msg);
+                }
             }
 
             if (null != _user)

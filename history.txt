@@ -19,8 +19,10 @@ Refactor DMT.TA.TODv4 #2085
 Refactor DMT.TA.TODv4 #2084
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2083
-- 
+- DMT.TAxTODv3
+  - All app add log smartcard/login #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2082

@@ -13,6 +13,9 @@ using NLib.Services;
 using NLib.Reflection;
 using System.Windows.Threading;
 
+using NLib;
+using System.Reflection;
+
 #endregion
 
 namespace DMT.TA.Windows.Credit
@@ -126,8 +129,15 @@ namespace DMT.TA.Windows.Credit
             var md5 = Utils.MD5.Encrypt(pwd);
             var user = User.GetByLogIn(userId, md5).Value();
 
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Empty;
+
             if (null == user)
             {
+                // write log.
+                msg = string.Format("RECEIVED BAG - USER NOT FOUND. USERID: {0}", userId);
+                med.Info(msg);
+
                 txtMsg.Text = "ไม่พบข้อมูลพนักงาน ตามรหัสที่ระบุ กรุณาใส่รหัสพนักงานใหม่";
 
                 Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
@@ -143,6 +153,22 @@ namespace DMT.TA.Windows.Credit
 
         private void CheckUser(User user)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Empty;
+
+            if (null == user)
+            {
+                // write log.
+                msg = "RECEIVED BAG - USER NOT FOUND.";
+                med.Info(msg);
+            }
+            else
+            {
+                // write log.
+                msg = string.Format("RECEIVED BAG - USER FOUND. USERID: {0}, USERNAME: {1}", user.UserId, user.FullNameTH);
+                med.Info(msg);
+            }
+
             if (string.IsNullOrEmpty(_userId) ||  null == user || (null != user && user.UserId != _userId))
             {
                 txtMsg.Text = "รหัสพนักงานไม่ตรงกับ พนักงานที่รับถุงเงิน";

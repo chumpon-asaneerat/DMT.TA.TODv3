@@ -2855,5 +2855,94 @@ namespace DMT.Services
 
     #endregion
 
+    #region TSBRequestCreditManager
+
+    /// <summary>
+    /// TSBRequestCreditManager class.
+    /// Used in RequestExchangeWindow to Request credit exchange transaction.
+    /// </summary>
+    public class TSBRequestCreditManager
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TSBRequestCreditManager() : base()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// New Request.
+        /// </summary>
+        public void NewRequest() 
+        {
+            IsNew = true;
+            this.Group = new TSBExchangeGroup();
+            //this.Group.PkId; // auto number.
+            this.Group.GroupId = Guid.NewGuid();
+            this.Group.RequestDate = DateTime.Now;
+            this.Group.RequestType = TSBExchangeGroup.RequestTypes.Account;
+            this.Group.State = TSBExchangeGroup.StateTypes.Request;
+            this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Avaliable;
+        }
+        /// <summary>
+        /// Load Request.
+        /// </summary>
+        /// <param name="requestId">The request Id (PK).</param>
+        public void LoadRequest(int requestId) 
+        {
+            IsNew = false;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #region TSB
+
+        /// <summary>
+        /// Gets Current TSB.
+        /// </summary>
+        public TSB TSB { get; set; }
+        /// <summary>
+        /// Gets Supervisor.
+        /// </summary>
+        public User Supervisor { get; set; }
+
+        #endregion
+
+        #region IsNew
+
+        /// <summary>
+        /// Gets is new request.
+        /// </summary>
+        public bool IsNew { get; private set; }
+
+        #endregion
+
+        #region Exchange(group/transaction)
+
+        /// <summary>
+        /// Gets TSB Exchange Group.
+        /// </summary>
+        public TSBExchangeGroup Group { get; private set; }
+        /// <summary>
+        /// Gets TSB Exchange Request Transaction.
+        /// </summary>
+        public TSBExchangeTransaction Request { get; private set; }
+
+        #endregion
+
+        #endregion
+    }
+
+    #endregion
+
     #endregion
 }

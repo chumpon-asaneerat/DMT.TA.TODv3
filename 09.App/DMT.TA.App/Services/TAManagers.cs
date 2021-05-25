@@ -2676,7 +2676,7 @@ namespace DMT.Services
     #region InternalExchangeManager
 
     /// <summary>
-    /// The Internal Exchange Manager class.
+    /// The Internal Exchange Manager class. Used in InternalExchangePage to get list of internal exchange transactions.
     /// </summary>
     public class InternalExchangeManager
     {
@@ -2729,6 +2729,9 @@ namespace DMT.Services
 
     #region TSBReplaceCreditManager
 
+    /// <summary>
+    /// TSBReplaceCreditManager class. Used in InternalExchangeWindow to update credit replace transactions (in/out).
+    /// </summary>
     public class TSBReplaceCreditManager
     {
         #region Constructor

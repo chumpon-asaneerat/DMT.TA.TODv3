@@ -16,8 +16,13 @@ Refactor DMT.TA.TODv4 #2096
 Refactor DMT.TA.TODv4 #2095
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2094
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Remove v1 classes.
+  - DMT.TA.App project.
+    - Update Manager class comment.
 
 [commited]
 Refactor DMT.TA.TODv4 #2093

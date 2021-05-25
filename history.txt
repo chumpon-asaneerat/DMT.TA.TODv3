@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #2097
 Refactor DMT.TA.TODv4 #2096
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2095
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Update Manager class comment.
 
 [commited]
 Refactor DMT.TA.TODv4 #2094

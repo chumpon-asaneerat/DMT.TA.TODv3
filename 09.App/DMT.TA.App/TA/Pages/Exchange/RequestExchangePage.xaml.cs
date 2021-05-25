@@ -40,7 +40,7 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdRequest_Click(object sender, RoutedEventArgs e)
         {
-
+            NewRequest();
         }
 
         #endregion
@@ -57,6 +57,27 @@ namespace DMT.TA.Pages.Exchange
         private void Refresh()
         {
             plazaSummary.Setup(); // Call for refresh.
+        }
+
+        private void NewRequest()
+        {
+            TSBExchangeGroup group = new TSBExchangeGroup();
+            TSBExchangeTransaction transaction = new TSBExchangeTransaction();
+            transaction.Description = "แลกเปลี่ยนเงินยืม/ทอน";
+            transaction.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
+            EditRequest(group, transaction, true);
+        }
+
+        private void EditRequest(TSBExchangeGroup group, TSBExchangeTransaction transaction, bool isNew)
+        {
+            var win = TAApp.Windows.RequestExchange;
+            win.Setup(group, transaction);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+
+            Refresh();
         }
 
         #endregion

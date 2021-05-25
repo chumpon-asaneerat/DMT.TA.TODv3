@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2099
 Refactor DMT.TA.TODv4 #2098
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2097
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Add TSBExchange element controls #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2096

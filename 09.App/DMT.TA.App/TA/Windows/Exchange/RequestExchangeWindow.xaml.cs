@@ -55,9 +55,14 @@ namespace DMT.TA.Windows.Exchange
 
         #region Public Method
 
-        public void Setup()
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="group">The TSB Exchange Group.</param>
+        /// <param name="transaction">The TSB Exchange Transaction.</param>
+        public void Setup(TSBExchangeGroup group, TSBExchangeTransaction transaction)
         {
-
+            entry.Setup(transaction);
         }
 
         #endregion

@@ -193,6 +193,9 @@
     <Compile Include="StatusBar\TAStatusBar.xaml.cs">
       <DependentUpon>TAStatusBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Controls\Elements\Exchange\TSBExchangeTransactionExtendEntry.xaml.cs">
+      <DependentUpon>TSBExchangeTransactionExtendEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Controls\Elements\TSBBalance\TSBCouponBalanceEntry.xaml.cs">
       <DependentUpon>TSBCouponBalanceEntry.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,9 @@
     </Compile>
     <Compile Include="TA\Controls\TSBCreditTransactionEntry.xaml.cs">
       <DependentUpon>TSBCreditTransactionEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TA\Controls\Elements\Exchange\TSBExchangeTransactionEntry.xaml.cs">
+      <DependentUpon>TSBExchangeTransactionEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="TA\Controls\TSBPlazaCreditSummaryEntry.xaml.cs">
       <DependentUpon>TSBPlazaCreditSummaryEntry.xaml</DependentUpon>
@@ -357,6 +363,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="TA\Controls\Elements\Exchange\TSBExchangeTransactionExtendEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TA\Controls\Elements\TSBBalance\TSBCouponBalanceEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -374,6 +384,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Controls\TSBCreditTransactionEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Controls\Elements\Exchange\TSBExchangeTransactionEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

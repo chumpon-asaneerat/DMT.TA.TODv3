@@ -273,4 +273,73 @@
         <Setter Property="Text" Value="บาท" />
     </Style>
 
+    <!--  EXCHANGE DESCRIPTION  -->
+    <Style x:Key="PeriodBeginDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="175" />
+        <Setter Property="Text" Value="วันที่ใช้งาน" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="PeriodEndDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="175" />
+        <Setter Property="Text" Value="ถึง" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestExchangeBHTDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="175" />
+        <Setter Property="Text" Value="จำนวนเงินขอแลกเปลี่ยน" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestBorrowBHTDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="175" />
+        <Setter Property="Text" Value="จำนวนเงินขอยืม" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestAdditionalBHTDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="175" />
+        <Setter Property="Text" Value="เพิ่มวงเงิน" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestGrandTotalBHTDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="175" />
+        <Setter Property="Text" Value="จำนวนเงินรวม" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+
+    <!--  EXCHANGE TEXTBOX  -->
+    <Style x:Key="RequestExchangeBHT"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding ExchangeBHT, StringFormat=N0}" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestBorrowBHT"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding BorrowBHT, StringFormat=N0}" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestAdditionBHT"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding AdditionalBHT, StringFormat=N0}" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
+    <Style x:Key="RequestGrandTotalBHT"
+           BasedOn="{StaticResource BankNoteAmountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding GrandTotalBHT, StringFormat=N0}" />
+        <Setter Property="TextAlignment" Value="Right" />
+    </Style>
 </ResourceDictionary>

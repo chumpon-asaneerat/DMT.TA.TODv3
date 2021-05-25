@@ -15,16 +15,16 @@ using NLib.Reflection;
 namespace DMT.TA.Windows.Exchange
 {
     /// <summary>
-    /// Interaction logic for ReceiveExchangeWindow.xaml
+    /// Interaction logic for RequestExchangeWindow.xaml
     /// </summary>
-    public partial class ReceiveExchangeWindow : Window
+    public partial class RequestExchangeWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ReceiveExchangeWindow()
+        public RequestExchangeWindow()
         {
             InitializeComponent();
         }
@@ -35,23 +35,25 @@ namespace DMT.TA.Windows.Exchange
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
+            // Cancel Request and close window
+            DialogResult = true;
+        }
+
+        private void cmdSave_Click(object sender, RoutedEventArgs e)
+        {
+            // Save or Update Request and close window
+            DialogResult = true;
+        }
+
+        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        {
             // Close Window
             DialogResult = false;
         }
 
-        private void cmdExchange_Click(object sender, RoutedEventArgs e)
-        {
-            // Accept Exchange and close Window
-            DialogResult = true;
-        }
-
         #endregion
 
-        #region Private Methods
-
-        #endregion
-
-        #region Public Methods
+        #region Public Method
 
         public void Setup()
         {

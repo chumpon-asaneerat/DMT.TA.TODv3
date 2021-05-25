@@ -19,8 +19,13 @@ Refactor DMT.TA.TODv4 #2095
 Refactor DMT.TA.TODv4 #2094
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2093
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Implements Credit Exchange Process #1.
+  - DMT.TA.App project.
+    - Implements Credit Exchange Process #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2092

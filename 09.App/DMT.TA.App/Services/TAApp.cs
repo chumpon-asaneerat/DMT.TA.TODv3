@@ -429,6 +429,21 @@ namespace DMT
 
             #endregion
 
+            #region Request Exchange
+
+            /// <summary>Gets Request Exchange Window.</summary>
+            public static TA.Windows.Exchange.RequestExchangeWindow RequestExchange
+            {
+                get
+                {
+                    var ret = new TA.Windows.Exchange.RequestExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Receive Exchange
 
             /// <summary>Gets Receive Exchange Window.</summary>

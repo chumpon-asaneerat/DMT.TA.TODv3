@@ -151,6 +151,9 @@
     <Compile Include="Account\Windows\Balance\UserCheckBalanceWindow.xaml.cs">
       <DependentUpon>UserCheckBalanceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Windows\Exchange\TSBRequestExchangeWindow.xaml.cs">
+      <DependentUpon>TSBRequestExchangeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Windows\SAP\SAPCustomerWindow.xaml.cs">
       <DependentUpon>SAPCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Windows\Balance\UserCheckBalanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Windows\Exchange\TSBRequestExchangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

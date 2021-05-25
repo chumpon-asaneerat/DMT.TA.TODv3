@@ -271,6 +271,9 @@
     <Compile Include="TA\Windows\Exchange\ReceiveExchangeWindow.xaml.cs">
       <DependentUpon>ReceiveExchangeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Exchange\RequestExchangeWindow.xaml.cs">
+      <DependentUpon>RequestExchangeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Plaza\PlazaBalanceSummaryWindow.xaml.cs">
       <DependentUpon>PlazaBalanceSummaryWindow.xaml</DependentUpon>
     </Compile>
@@ -455,6 +458,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Windows\Exchange\ReceiveExchangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Exchange\RequestExchangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

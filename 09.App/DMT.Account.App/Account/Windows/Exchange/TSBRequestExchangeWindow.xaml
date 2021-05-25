@@ -1,12 +1,12 @@
-﻿<Window x:Class="DMT.TA.Windows.Exchange.ReceiveExchangeWindow"
+﻿<Window x:Class="DMT.Account.Windows.Exchange.TSBRequestExchangeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="ยืนยันข้อมูลการแลกเปลี่ยนเงิน"
-        Width="800"
+        Title="รายละเอียดคำร้องการขอ/แลก เงินยืมทอน - "
+        Width="1000"
         Height="600"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
@@ -40,18 +40,25 @@
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
                     <Grid Width="5" DockPanel.Dock="Left" />
-                    <ctrl:ImageButton x:Name="cmdCancel"
-                                      Click="cmdCancel_Click"
+                    <ctrl:ImageButton x:Name="cmdApprove"
+                                      Click="cmdApprove_Click"
                                       DockPanel.Dock="Left"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Cancel.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Approve.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="อนุมัติ" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdReject"
+                                      Click="cmdReject_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Cancel.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ไม่อนุมัติ" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdExchange"
-                                      Click="cmdExchange_Click"
+                    <ctrl:ImageButton x:Name="cmdBack"
+                                      Click="cmdBack_Click"
                                       DockPanel.Dock="Right"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Money2.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="แลกเปลี่ยนเงิน" />
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Home.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>

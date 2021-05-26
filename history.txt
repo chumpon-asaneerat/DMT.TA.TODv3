@@ -28,8 +28,14 @@ Refactor DMT.TA.TODv4 #2102
 Refactor DMT.TA.TODv4 #2101
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2100
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Add width in Credit Manage Page.
+  - DMT.TOD.App project.
+    - try to fixed slow load report.
+    - Block double click on print all reports.
 
 [commited]
 Refactor DMT.TA.TODv4 #2099

@@ -82,7 +82,7 @@
                          Style="{StaticResource SingleSelectWrapListBox}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border Width="320"
+                            <Border Width="350"
                                     Background="Silver"
                                     BorderBrush="Black"
                                     BorderThickness="1"
@@ -152,7 +152,7 @@
                                                            Foreground="Black"
                                                            Text="รหัสพนักงาน : "
                                                            TextAlignment="Right" />
-                                                <TextBlock Width="70"
+                                                <TextBlock Width="100"
                                                            FontSize="20"
                                                            FontWeight="Bold"
                                                            Foreground="Navy"
@@ -166,7 +166,7 @@
                                                            Foreground="Black"
                                                            Text="เลขถุงเงิน : "
                                                            TextAlignment="Right" />
-                                                <TextBlock Width="70"
+                                                <TextBlock Width="100"
                                                            FontSize="20"
                                                            FontWeight="Bold"
                                                            Foreground="Navy"
@@ -180,7 +180,7 @@
                                                            Foreground="Black"
                                                            Text="ยืมแล้ว : "
                                                            TextAlignment="Right" />
-                                                <TextBlock Width="70"
+                                                <TextBlock Width="100"
                                                            FontSize="24"
                                                            FontWeight="Bold"
                                                            Foreground="Navy"

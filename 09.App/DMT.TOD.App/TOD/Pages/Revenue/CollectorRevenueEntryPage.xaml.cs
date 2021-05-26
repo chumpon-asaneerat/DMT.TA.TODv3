@@ -384,7 +384,15 @@ namespace DMT.TOD.Pages.Revenue
                 // Set Display Name (default file name).
                 model.DisplayName = ReportDisplayName;
 
-                this.rptViewer.LoadReport(model);
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    this.rptViewer.LoadReport(model);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
             }
 
             return true;
@@ -412,14 +420,27 @@ namespace DMT.TOD.Pages.Revenue
                 return;
             }
 
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            cmdOk.Visibility = Visibility.Collapsed; // Hide button.
+
             bool hasActivitied = manager.SaveRevenueEntry();
 
             if (manager.Entry.RevenueDate.HasValue && manager.Entry.RevenueDate.Value != DateTime.MinValue &&
                 manager.Entry.EntryDate.HasValue && manager.Entry.EntryDate.Value != DateTime.MinValue)
             {
-                // print reports only date exists.
-                this.rptViewer.Print(ReportDisplayName);
+                try
+                {
+                    // print reports only date exists.
+                    this.rptViewer.Print(ReportDisplayName);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
             }
+
+            cmdOk.Visibility = Visibility.Visible; // Show button
 
             if (!hasActivitied || null == manager.User)
             {
@@ -460,6 +481,7 @@ namespace DMT.TOD.Pages.Revenue
             }
 
             tabs.SelectedIndex = 0;
+            cmdOk.Visibility = Visibility.Visible;
 
             _user = user;
             if (null != _user)

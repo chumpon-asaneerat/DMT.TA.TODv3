@@ -7,6 +7,7 @@ using System.Windows.Controls;
 
 using DMT.Models;
 using DMT.Services;
+using NLib;
 using NLib.Services;
 using NLib.Reflection;
 using NLib.Reports.Rdlc;
@@ -67,7 +68,20 @@ namespace DMT.TOD.Pages.Reports
 
         private void Print()
         {
-            this.rptViewer.Print(ReportDisplayName);
+            cmdPrint.Visibility = Visibility.Collapsed;
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                this.rptViewer.Print(ReportDisplayName);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+
+            cmdPrint.Visibility = Visibility.Visible;
+
             GotoReportMenu();
         }
 
@@ -131,6 +145,8 @@ namespace DMT.TOD.Pages.Reports
             {
             }
 
+            cmdPrint.Visibility = Visibility.Visible;
+
             var model = GetReportModel();
             if (null == model ||
                 null == model.DataSources || model.DataSources.Count <= 0 ||
@@ -143,7 +159,15 @@ namespace DMT.TOD.Pages.Reports
             }
             else
             {
-                this.rptViewer.LoadReport(model);
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    this.rptViewer.LoadReport(model);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
             }
         }
 

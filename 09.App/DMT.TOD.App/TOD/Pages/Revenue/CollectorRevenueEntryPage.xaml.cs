@@ -493,6 +493,9 @@ namespace DMT.TOD.Pages.Revenue
             {
                 manager.User = null; // Reset User
                 manager.ByChief = false;
+                // Refresh.
+                manager.Refresh();
+
                 manager.User = user;
             }
 

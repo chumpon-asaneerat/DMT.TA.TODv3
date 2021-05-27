@@ -632,6 +632,9 @@ namespace DMT.TOD.Pages.Revenue
             {
                 manager.User = null; // Reset.
                 manager.ByChief = true;
+                // Refresh.
+                manager.Refresh();
+
                 if (null != manager.UserShifts) manager.UserShifts.IsCustom = true;
             }
             Reset(isNew);

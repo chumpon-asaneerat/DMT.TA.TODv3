@@ -13,8 +13,12 @@ Refactor DMT.TA.TODv4 #2107
 Refactor DMT.TA.TODv4 #2106
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2105
-- 
+- DMT.TAxTODv3
+  - Update App version.
+  - DMT.TOD.App project.
+    - Fixed bug not change chief if not restart program in Revenue Entry page.
 
 [commited]
 Refactor DMT.TA.TODv4 #2104

@@ -987,8 +987,8 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Transactions
-
+		#region Transactions - Comment out
+		/*
 		/// <summary>
 		/// Gets or sets Request transacton.
 		/// </summary>
@@ -1024,7 +1024,7 @@ namespace DMT.Models
 		[Description("Gets or sets Returns transacton.")]
 		[Ignore]
 		public TSBExchangeTransaction Return { get; set; }
-
+		*/
 		#endregion
 
 		#region Status (DC)
@@ -1391,7 +1391,7 @@ namespace DMT.Models
 				value.GroupId = Guid.NewGuid();
 			}
 			result = Save(value); // save group.
-
+			/*
 			// save each transaction
 			if (null != value.Request)
 			{
@@ -1414,15 +1414,13 @@ namespace DMT.Models
 				if (updateCredit)
 				{
 					//TODO: Update TSBCreditTransaction Remove Temporary
-					/*
-					TSBCreditTransaction tran = CloneTransaction(value.Received);
-					// Set property here.
-					tran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
-					// Additional keep only received
-					tran.AdditionalBHT = value.Received.AdditionalBHT;
-					// Save.
-					TSBCreditTransaction.Save(tran);
-					*/
+					//TSBCreditTransaction tran = CloneTransaction(value.Received);
+					//// Set property here.
+					//tran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
+					//// Additional keep only received
+					//tran.AdditionalBHT = value.Received.AdditionalBHT;
+					//// Save.
+					//TSBCreditTransaction.Save(tran);
 				}
 			}
 			if (null != value.Exchange)
@@ -1434,13 +1432,11 @@ namespace DMT.Models
 				if (updateCredit)
 				{
 					//TODO: Update TSBCreditTransaction Remove Temporary
-					/*
-					TSBCreditTransaction tran = CloneTransaction(value.Exchange, true);
-					// Set property here.
-					tran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
-					// Save.
-					TSBCreditTransaction.Save(tran);
-					*/
+					//TSBCreditTransaction tran = CloneTransaction(value.Exchange, true);
+					//// Set property here.
+					//tran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
+					//// Save.
+					//TSBCreditTransaction.Save(tran);
 				}
 			}
 			if (null != value.Return)
@@ -1449,7 +1445,7 @@ namespace DMT.Models
 				value.Return.TransactionType = TSBExchangeTransaction.TransactionTypes.Return;
 				TSBExchangeTransaction.Save(value.Return);
 			}
-
+			*/
 			return result;
 		}
 

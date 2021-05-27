@@ -22,8 +22,11 @@ Refactor DMT.TA.TODv4 #2104
 Refactor DMT.TA.TODv4 #2103
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2102
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Remove TSBExchangeGroup Transactions properties and code in related method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2101

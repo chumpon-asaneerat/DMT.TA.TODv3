@@ -19,8 +19,11 @@ Refactor DMT.TA.TODv4 #2105
 Refactor DMT.TA.TODv4 #2104
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2103
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project.
+    - Fixed TSB Balance Bug (not update summary balance until restart program).
 
 [commited]
 Refactor DMT.TA.TODv4 #2102

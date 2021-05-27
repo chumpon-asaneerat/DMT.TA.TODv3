@@ -608,7 +608,8 @@ namespace DMT.Services
             else
             {
                 // Update values.
-                balance.AssignTo(TSBBalance);
+                //balance.AssignTo(TSBBalance);
+                TSBBalance = balance;
             }
         }
 

@@ -22,8 +22,15 @@ Refactor DMT.TA.TODv4 #2114
 Refactor DMT.TA.TODv4 #2113
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2112
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project.
+    - Add rsOverlappingReportItems suppress warning in project debug properties.
+  - DMT.TA.App project.
+    - Add rsOverlappingReportItems suppress warning in project debug properties.
+  - DMT.TOD.App project.
+    - Add rsOverlappingReportItems suppress warning in project debug properties.
 
 [commited]
 Refactor DMT.TA.TODv4 #2111

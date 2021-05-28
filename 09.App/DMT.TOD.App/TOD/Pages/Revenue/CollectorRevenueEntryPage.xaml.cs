@@ -18,6 +18,7 @@ using NLib;
 using NLib.Services;
 using NLib.Reports.Rdlc;
 using NLib.Reflection;
+using System.Windows.Threading;
 
 #endregion
 
@@ -261,6 +262,9 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoPrintPreview()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("[<<<<   START PRINT PREVIEW   >>>>]");
+
             #region Check Has BagNo/BeltNo
 
             if (!entry.HasBagNo)
@@ -294,6 +298,9 @@ namespace DMT.TOD.Pages.Revenue
                 win.ShowDialog();
                 return;
             }
+
+            med.Info("[<<<<   END PRINT PREVIEW   >>>>]");
+
             // All OK so goto next tab.
             tabs.SelectedIndex = 2;
         }
@@ -390,7 +397,10 @@ namespace DMT.TOD.Pages.Revenue
 
                 try
                 {
-                    this.rptViewer.LoadReport(model);
+                    Dispatcher.Invoke(() =>
+                    {
+                        this.rptViewer.LoadReport(model);
+                    }, DispatcherPriority.Background);
                 }
                 catch (Exception ex)
                 {

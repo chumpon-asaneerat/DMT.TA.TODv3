@@ -31,18 +31,53 @@ namespace DMT.TA.Windows.Exchange
 
         #endregion
 
+        #region Internal Variables
+
+        private TSBRequestCreditManager _manager = null;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
-            // Cancel Request and close window
-            DialogResult = true;
+            if (null != _manager && null != _manager.Request)
+            {
+                // Cancel Request and close window
+                _manager.CancelRequest();
+
+                DialogResult = false;
+            }
         }
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)
         {
-            // Save or Update Request and close window
-            DialogResult = true;
+            if (null != _manager && null != _manager.Request)
+            {
+                if (!_manager.IsMatchAmount())
+                {
+                    var win = TAApp.Windows.MessageBox;
+                    win.Setup("ยอดเงินรวมไม่ตรงกัน กรุณาตรวจสอบข้อมูล.", "DMT - Toll Admin");
+                    win.ShowDialog();
+                    return;
+                }
+
+                // update period
+                _manager.Request.PeriodBegin =  entry.PeriodBegin;
+                _manager.Request.PeriodEnd = entry.PeriodEnd;
+
+                if (!_manager.CheckPeriod())
+                {
+                    var win = TAApp.Windows.MessageBox;
+                    win.Setup("กรุณาระบุวันที่ใช้เงิน และวันที่คืนเงิน.", "DMT - Toll Admin");
+                    win.ShowDialog();
+                    return;
+                }
+                // Save or Update Request and close window
+                _manager.SaveRequest();
+
+                DialogResult = true;
+            }
         }
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -61,6 +96,14 @@ namespace DMT.TA.Windows.Exchange
         /// <param name="manager">The TSB Request Exchange Manager.</param>
         public void Setup(TSBRequestCreditManager manager)
         {
+            this._manager = manager;
+
+            if ((null != _manager.Request))
+            {
+                entry.PeriodBegin = _manager.Request.PeriodBegin;
+                entry.PeriodEnd = _manager.Request.PeriodEnd;
+            }
+
             entry.Setup(manager);
         }
 

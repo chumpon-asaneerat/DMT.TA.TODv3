@@ -2862,7 +2862,7 @@ namespace DMT.Services
     /// TSBRequestCreditManager class.
     /// Used in RequestExchangeWindow to Request credit exchange transaction.
     /// </summary>
-    public class TSBRequestCreditManager
+    public class TSBRequestCreditManager : INotifyPropertyChanged
     {
         #region Constructor
 
@@ -2871,8 +2871,25 @@ namespace DMT.Services
         /// </summary>
         public TSBRequestCreditManager() : base()
         {
-
+            
         }
+
+        #endregion
+
+        #region Private Methods
+
+        #region Event Raisers
+
+        /// <summary>
+        /// Raise Property Changed Event.
+        /// </summary>
+        /// <param name="propertyName">The property name.</param>
+        protected void RaiseChanged(string propertyName)
+        {
+            PropertyChanged.Call(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
         #endregion
 
@@ -2891,11 +2908,17 @@ namespace DMT.Services
             this.Group.RequestType = TSBExchangeGroup.RequestTypes.Account;
             this.Group.State = TSBExchangeGroup.StateTypes.Request;
             this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Avaliable;
+            this.Group.TSBId = this.TSB.TSBId;
+            this.Group.TSBNameEN = this.TSB.TSBNameEN;
+            this.Group.TSBNameTH = this.TSB.TSBNameTH;
 
             this.Request = new TSBExchangeTransaction();
             this.Request.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
             this.Request.Description = "แลกเปลี่ยนเงินยืม/ทอน";
             this.Request.GroupId = this.Group.GroupId;
+            this.Request.UserId = this.SupervisorId;
+            this.Request.FullNameEN = this.FullNameEN;
+            this.Request.FullNameTH = this.FullNameTH;
         }
         /// <summary>
         /// Load Request.
@@ -2920,25 +2943,82 @@ namespace DMT.Services
 
             return (grp != null);
         }
+        /// <summary>
+        /// Cancel Request
+        /// </summary>
+        public void CancelRequest()
+        {
 
-        public void Save()
+        }
+        /// <summary>
+        /// Checks is both total amount is match.
+        /// </summary>
+        /// <returns>Returns true if match.</returns>
+        public bool IsMatchAmount()
+        {
+            bool ret = false;
+
+            if (null != this.Request)
+            {
+                decimal detailTotal = this.Request.GrandTotalBHT;
+                decimal creditTotal = this.Request.BHTTotal;
+                ret = (detailTotal == creditTotal);
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Checks has period begin/end date.
+        /// </summary>
+        /// <returns>Returns true if period begin/end date assigned (if required)</returns>
+        public bool CheckPeriod()
+        {
+            bool ret = false;
+
+            if (null != this.Request)
+            {
+                if (this.Request.AdditionalBHT != decimal.Zero || this.Request.BorrowBHT != decimal.Zero)
+                {
+                    ret = (this.Request.PeriodBegin.HasValue && this.Request.PeriodEnd.HasValue);
+                }
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Save Request (both group/transaction).
+        /// </summary>
+        public void SaveRequest()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             if (null != this.Group && null != this.Request)
             {
                 string msg = string.Empty;
+
+                // Save group
                 var ret = TSBExchangeGroup.SaveTSBExchangeGroup(this.Group).Value();
                 if (null != ret)
                 {
                     msg = "TSB Exchange Group successfully saved.";
                 }
                 else msg = "TSB Exchange Group failed to saved.";
+
+                // Check transaction period.
+                if (this.Request.AdditionalBHT == decimal.Zero && this.Request.BorrowBHT == decimal.Zero)
+                {
+                    // Reset date time.
+                    this.Request.PeriodBegin = new DateTime?();
+                    this.Request.PeriodEnd = new DateTime?();
+                }
+                // Save transaction
                 var ret2 = TSBExchangeTransaction.SaveTransaction(this.Request).Value();
                 if (null != ret2)
                 {
                     msg = "TSB Exchange Transaction (Request) successfully saved.";
                 }
                 else msg = "TSB Exchange Transaction (Request) failed to saved.";
+                // Write log.
                 med.Info(msg);
             }
         }
@@ -2947,16 +3027,44 @@ namespace DMT.Services
 
         #region Public Properties
 
-        #region TSB
+        #region TSB/Supervisor
 
         /// <summary>
         /// Gets Current TSB.
         /// </summary>
-        public TSB TSB { get; set; }
+        public TSB TSB { get { return TAAPI.TSB; } set { } }
         /// <summary>
         /// Gets Supervisor.
         /// </summary>
-        public User Supervisor { get; set; }
+        public User Supervisor
+        {
+            get { return TAApp.User.Current; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Supervisor Id (Chief).
+        /// </summary>
+        public string SupervisorId
+        {
+            get { return (null != TAApp.User.Current) ? TAApp.User.Current.UserId : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Full Name EN (Chief).
+        /// </summary>
+        public string FullNameEN
+        {
+            get { return (null != TAApp.User.Current) ? TAApp.User.Current.FullNameEN : string.Empty; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Full Name TH (Chief).
+        /// </summary>
+        public string FullNameTH
+        {
+            get { return (null != TAApp.User.Current) ? TAApp.User.Current.FullNameTH : string.Empty; }
+            set { }
+        }
 
         #endregion
 
@@ -2981,6 +3089,15 @@ namespace DMT.Services
         public TSBExchangeTransaction Request { get; private set; }
 
         #endregion
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The PropertyChanged event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
     }

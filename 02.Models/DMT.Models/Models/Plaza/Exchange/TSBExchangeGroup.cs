@@ -1313,14 +1313,11 @@ namespace DMT.Models
 			}
 		}
 		/// <summary>
-		/// Gets TSB Exchange Groups.
+		/// Gets TSB Request Exchange Groups.
 		/// </summary>
 		/// <param name="tsb">The TSB instance.</param>
-		/// <param name="state">The transaction state.</param>
-		/// <param name="flag">The finish flag.</param>
 		/// <returns></returns>
-		public static NDbResult<List<TSBExchangeGroup>> GetTSBExchangeGroups(TSB tsb,
-			StateTypes state, FinishedFlags flag)
+		public static NDbResult<List<TSBExchangeGroup>> GetRequestExchangeGroups(TSB tsb)
 		{
 			var result = new NDbResult<List<TSBExchangeGroup>>();
 			SQLiteConnection db = Default;
@@ -1338,6 +1335,10 @@ namespace DMT.Models
 			lock (sync)
 			{
 				MethodBase med = MethodBase.GetCurrentMethod();
+
+				StateTypes state = StateTypes.Request;
+				FinishedFlags flag = FinishedFlags.Avaliable;
+
 				try
 				{
 					string cmd = string.Empty;

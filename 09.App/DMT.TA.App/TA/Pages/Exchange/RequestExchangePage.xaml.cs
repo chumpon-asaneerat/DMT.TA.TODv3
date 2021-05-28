@@ -86,8 +86,6 @@ namespace DMT.TA.Pages.Exchange
                 return;
             }
 
-            manager.Save();
-
             Refresh();
         }
 
@@ -108,8 +106,6 @@ namespace DMT.TA.Pages.Exchange
             {
                 return;
             }
-
-            manager.Save();
 
             Refresh();
         }

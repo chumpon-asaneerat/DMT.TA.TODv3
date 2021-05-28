@@ -236,6 +236,8 @@ namespace DMT.TA.Pages.Coupon
             {
                 var win = TAApp.Windows.MessageBox;
                 win.Setup("ไม่พบข้อมูลในการจัดพิมพ์รายงาน.", "DMT - Toll Admin");
+                win.ShowDialog();
+
                 this.rptViewer.ClearReport();
             }
             else

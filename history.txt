@@ -13,8 +13,21 @@ Refactor DMT.TA.TODv4 #2117
 Refactor DMT.TA.TODv4 #2116
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2115
-- 
+- DMT.TAxTODv3
+  - NLib.Reports project.
+    - Add App config.
+  - DMT.Account.App project.
+    - Update App config.
+    - Add reference to all report viewer dlls.
+  - DMT.TA.App project.
+    - Update App config.
+    - Add reference to all report viewer dlls.
+  - DMT.TOD.App project.
+    - Update App config.
+    - Add reference to all report viewer dlls.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2114

@@ -2916,6 +2916,9 @@ namespace DMT.Services
             this.Request.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
             this.Request.Description = "แลกเปลี่ยนเงินยืม/ทอน";
             this.Request.GroupId = this.Group.GroupId;
+            this.Request.TSBId = this.Group.TSBId;
+            this.Request.TSBNameEN = this.Group.TSBNameEN;
+            this.Request.TSBNameTH = this.Group.TSBNameTH;
             this.Request.UserId = this.SupervisorId;
             this.Request.FullNameEN = this.FullNameEN;
             this.Request.FullNameTH = this.FullNameTH;
@@ -2980,6 +2983,10 @@ namespace DMT.Services
                 if (this.Request.AdditionalBHT != decimal.Zero || this.Request.BorrowBHT != decimal.Zero)
                 {
                     ret = (this.Request.PeriodBegin.HasValue && this.Request.PeriodEnd.HasValue);
+                }
+                else
+                {
+                    ret = true; // only exchange so no need period begin/end.
                 }
             }
 

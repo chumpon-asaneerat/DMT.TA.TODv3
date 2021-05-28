@@ -25,8 +25,12 @@ Refactor DMT.TA.TODv4 #2113
 Refactor DMT.TA.TODv4 #2112
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2111
-- 
+- DMT.TAxTODv3
+  - NLib.Reports project.
+    - Add log in LoadReport method.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2110

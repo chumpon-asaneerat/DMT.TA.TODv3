@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 using Microsoft.Reporting.WinForms;
+using NLib;
 using NLib.Reports.Rdlc;
 
 #endregion
@@ -31,22 +33,30 @@ namespace NLib.Controls
         public static void LoadReport(this ReportViewer rptViewer,
             RdlcReportModel reportSource)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("======== BEGIN LOAD REPORT ========");
+
             RdlcMessageService.Instance.SendMessage("Begin Load Report.");
 
             rptViewer.ProcessingMode = ProcessingMode.Local;
             LocalReport lr = rptViewer.LocalReport;
             lr.DisplayName = reportSource.DisplayName;
 
+            med.Info("  - REPORT VIEWER - Check Data Source.");
             if (null != reportSource && null != reportSource.Definition &&
                 null != reportSource.Definition.RdlcInstance &&
                 null != reportSource.DataSources)
             {
                 RdlcMessageService.Instance.SendMessage("Begin Load Report Definition.");
 
+                med.Info("    - REPORT VIEWER - Load Report Definition.");
                 // Load Rdlc file
                 lr.LoadReportDefinition(reportSource.Definition.RdlcInstance);
 
                 RdlcMessageService.Instance.SendMessage("Clear Report Data source.");
+
+                med.Info("    - REPORT VIEWER - Clear Report datasource(s).");
                 // Clear all datasource before assign new one.
                 lr.DataSources.Clear();
 
@@ -59,6 +69,8 @@ namespace NLib.Controls
                             continue;
                         RdlcMessageService.Instance
                             .SendMessage("Add New Report Data source - " + dataSource.Name);
+
+                        med.Info("    - REPORT VIEWER - Add datasource [ " + dataSource.Name + " ].");
                         lr.DataSources.Add(new ReportDataSource(
                             dataSource.Name, dataSource.Items));
                     }
@@ -67,8 +79,12 @@ namespace NLib.Controls
                 {
                     RdlcMessageService.Instance
                         .SendMessage("No New Report Data source.");
+
+                    med.Info("    - REPORT VIEWER - No Report datasource.");
                 }
 
+
+                med.Info("    - REPORT VIEWER - Set Report Parameter(s).");
                 if (lr.DataSources.Count > 0 &&
                     null != reportSource.Parameters && reportSource.Parameters.Count > 0)
                 {
@@ -81,19 +97,27 @@ namespace NLib.Controls
                             RdlcMessageService.Instance
                                 .SendMessage("Set Report parameter - " + para.Name);
 
+                            med.Info("    - REPORT VIEWER - Set Parameter [ " + para.Name  + " ].");
                             lr.SetValue(para.Name, para.Value);
                         }
-                        catch (Exception) { }
+                        catch (Exception ex) 
+                        {
+                            med.Err(ex);
+                        }
                     }
                 }
                 else
                 {
                     RdlcMessageService.Instance
                         .SendMessage("No Report parameter assigned.");
+
+                    med.Info("    - REPORT VIEWER - No Report parameter.");
                 }
 
                 if (lr.DataSources.Count > 0)
                 {
+                    med.Info("    - REPORT VIEWER - Read pringer page setting(s).");
+
                     RdlcMessageService.Instance
                         .SendMessage("Set Report Page setting from Printer page setting.");
 
@@ -105,7 +129,10 @@ namespace NLib.Controls
                     pageSettings.Landscape = rdlcPageSettings.IsLandscape;
                     pageSettings.Margins = rdlcPageSettings.Margins;
 
+                    med.Info("    - REPORT VIEWER - Update Report page setting(s).");
                     rptViewer.SetPageSettings(pageSettings);
+
+                    med.Info("    - REPORT VIEWER - Refresh report.");
                     // refresh
                     rptViewer.LocalReport.Refresh();
                 }
@@ -116,7 +143,10 @@ namespace NLib.Controls
                 }
             }
 
+            med.Info("  - REPORT VIEWER - Refresh Report.");
             rptViewer.RefreshReport();
+
+            med.Info("  - REPORT VIEWER - Set Print Layout.");
             // Set display mode to print layout.
             rptViewer.SetDisplayMode(DisplayMode.PrintLayout);
 
@@ -129,6 +159,8 @@ namespace NLib.Controls
                 }
                 catch { }
             }
+
+            med.Info("======== END LOAD REPORT ========");
         }
         /// <summary>
         /// Print Report to specificed printer.

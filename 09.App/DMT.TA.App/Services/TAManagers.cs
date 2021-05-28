@@ -2923,16 +2923,23 @@ namespace DMT.Services
 
         public void Save()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
             if (null != this.Group && null != this.Request)
             {
+                string msg = string.Empty;
                 var ret = TSBExchangeGroup.SaveTSBExchangeGroup(this.Group).Value();
                 if (null != ret)
                 {
+                    msg = "TSB Exchange Group successfully saved.";
                 }
+                else msg = "TSB Exchange Group failed to saved.";
                 var ret2 = TSBExchangeTransaction.SaveTransaction(this.Request).Value();
                 if (null != ret2)
                 {
+                    msg = "TSB Exchange Transaction (Request) successfully saved.";
                 }
+                else msg = "TSB Exchange Transaction (Request) failed to saved.";
+                med.Info(msg);
             }
         }
 

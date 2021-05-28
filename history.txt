@@ -7,8 +7,13 @@ Refactor DMT.TA.TODv4 #2109
 Refactor DMT.TA.TODv4 #2108
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2107
-- 
+- DMT.TAxTODv3
+  - DMT.Models project.
+    - Update TSBExchangeGroup model #2.
+  - DMT.TA.App project.
+    - Implements Credit Exchange Process #3.
 
 [commited]
 Refactor DMT.TA.TODv4 #2106

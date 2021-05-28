@@ -1318,11 +1318,9 @@ namespace DMT.Models
 		/// <param name="tsb">The TSB instance.</param>
 		/// <param name="state">The transaction state.</param>
 		/// <param name="flag">The finish flag.</param>
-		/// <param name="reqBegin">Request Date Begin.</param>
-		/// <param name="reqEnd">Request Date End.</param>
 		/// <returns></returns>
 		public static NDbResult<List<TSBExchangeGroup>> GetTSBExchangeGroups(TSB tsb,
-			StateTypes state, FinishedFlags flag, DateTime? reqBegin, DateTime? reqEnd)
+			StateTypes state, FinishedFlags flag)
 		{
 			var result = new NDbResult<List<TSBExchangeGroup>>();
 			SQLiteConnection db = Default;
@@ -1351,27 +1349,8 @@ namespace DMT.Models
 					{
 						cmd += "   AND State = ? ";
 					}
-					if (reqBegin.HasValue)
-					{
-						if (reqBegin.Value != DateTime.MinValue)
-						{
-							cmd += "   AND RequestDate >= ? ";
-						}
-					}
-					else
-					{
-						cmd += "   AND RequestDate IS NULL ";
-					}
-					if (reqEnd.HasValue)
-					{
-						if (reqEnd.Value != DateTime.MinValue)
-						{
-							cmd += "   AND RequestDate <= ? ";
-						}
-					}
-					else cmd += "   AND RequestDate IS NULL ";
 
-					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state, reqBegin, reqEnd).ToList();
+					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state).ToList();
 					var results = rets.ToModels();
 					result.Success(results);
 				}

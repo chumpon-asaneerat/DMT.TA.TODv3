@@ -94,6 +94,7 @@
     <Compile Include="Reports\Rdlc\RdlcModels.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="softbase.snk" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,39 @@
-﻿Refactor DMT.TA.TODv4 #2110
+﻿Refactor DMT.TA.TODv4 #2120
 - 
 
-Refactor DMT.TA.TODv4 #2109
+Refactor DMT.TA.TODv4 #2119
 - 
+
+Refactor DMT.TA.TODv4 #2118
+- 
+
+Refactor DMT.TA.TODv4 #2117
+- 
+
+Refactor DMT.TA.TODv4 #2116
+- 
+
+Refactor DMT.TA.TODv4 #2115
+- 
+
+Refactor DMT.TA.TODv4 #2114
+- 
+
+Refactor DMT.TA.TODv4 #2113
+- 
+
+Refactor DMT.TA.TODv4 #2112
+- 
+
+Refactor DMT.TA.TODv4 #2111
+- 
+
+Refactor DMT.TA.TODv4 #2110
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #2109
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2108

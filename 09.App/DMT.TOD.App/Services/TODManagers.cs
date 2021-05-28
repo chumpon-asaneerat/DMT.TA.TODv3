@@ -2557,11 +2557,16 @@ namespace DMT.Services
         /// <returns></returns>
         public RdlcReportModel GetRevenueSlipReportModel()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("   - Load Report [ RevenueSlip ] rdlc file."); // write log
             Assembly assembly = this.GetType().Assembly;
             RdlcReportModel inst = new RdlcReportModel();
             inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
+
+            med.Info("   - Clear data source."); // write log
             // clear reprot datasource.
             inst.DataSources.Clear();
 
@@ -2572,12 +2577,14 @@ namespace DMT.Services
             }
 
             // assign new data source
+            med.Info("   - Assign new data source in Report Model."); // write log
             RdlcReportDataSource mainDS = new RdlcReportDataSource();
             mainDS.Name = "main"; // the datasource name in the rdlc report.
             mainDS.Items = items; // setup data source
             // Add to datasources
             inst.DataSources.Add(mainDS);
 
+            med.Info("   - Assign parameter(s) in Report Model."); // write log
             // Add parameters (if required).
             DateTime today = DateTime.Now;
             string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");

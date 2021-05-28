@@ -19,8 +19,12 @@ Refactor DMT.TA.TODv4 #2115
 Refactor DMT.TA.TODv4 #2114
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2113
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Revenue Entry Process add log #1.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2112

@@ -500,7 +500,11 @@ namespace DMT.TOD.Pages.Revenue
 
         private bool PrepareReport()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             if (null == manager || !manager.CanBuildRevenueSlipReport) return false;
+
+            med.Info("<<<<<<<<<  Generate Revenue Slip Report Model  >>>>>>>>>");
             var model = manager.GetRevenueSlipReportModel();
 
             if (null == model ||
@@ -517,7 +521,6 @@ namespace DMT.TOD.Pages.Revenue
                 // Set Display Name (default file name).
                 model.DisplayName = ReportDisplayName;
 
-                MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
                     this.rptViewer.LoadReport(model);

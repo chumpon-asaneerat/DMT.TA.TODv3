@@ -1268,9 +1268,61 @@ namespace DMT.Models
 				return result;
 			}
 		}
+		/// <summary>
+		/// Gets TSB Exchange Group by PKId.
+		/// </summary>
+		/// <param name="tsb">The TSB instance.</param>
+		/// <param name="requestId">The Request Id (PKId).</param>
+		/// <returns></returns>
+		public static NDbResult<TSBExchangeGroup> GetTSBExchangeGroup(TSB tsb, int requestId)
+		{
+			var result = new NDbResult<TSBExchangeGroup>();
+			SQLiteConnection db = Default;
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			if (null == tsb)
+			{
+				result.ParameterIsNull();
+				return result;
+			}
 
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+				try
+				{
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM TSBExchangeGroupView ";
+					cmd += " WHERE TSBId = ? ";
+					cmd += "   AND PKId = ? ";
+
+					var ret = NQuery.Query<FKs>(cmd, tsb.TSBId, requestId).FirstOrDefault();
+					var val = (null != ret) ? ret.ToModel() : null;
+					result.Success(val);
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
+		/// Gets TSB Exchange Groups.
+		/// </summary>
+		/// <param name="tsb">The TSB instance.</param>
+		/// <param name="state">The transaction state.</param>
+		/// <param name="flag">The finish flag.</param>
+		/// <param name="reqBegin">Request Date Begin.</param>
+		/// <param name="reqEnd">Request Date End.</param>
+		/// <returns></returns>
 		public static NDbResult<List<TSBExchangeGroup>> GetTSBExchangeGroups(TSB tsb,
-			StateTypes state, FinishedFlags flag, DateTime reqBegin, DateTime reqEnd)
+			StateTypes state, FinishedFlags flag, DateTime? reqBegin, DateTime? reqEnd)
 		{
 			var result = new NDbResult<List<TSBExchangeGroup>>();
 			SQLiteConnection db = Default;
@@ -1299,14 +1351,25 @@ namespace DMT.Models
 					{
 						cmd += "   AND State = ? ";
 					}
-					if (reqBegin != DateTime.MinValue)
+					if (reqBegin.HasValue)
 					{
-						cmd += "   AND RequestDate >= ? ";
-						if (reqEnd != DateTime.MinValue)
+						if (reqBegin.Value != DateTime.MinValue)
+						{
+							cmd += "   AND RequestDate >= ? ";
+						}
+					}
+					else
+					{
+						cmd += "   AND RequestDate IS NULL ";
+					}
+					if (reqEnd.HasValue)
+					{
+						if (reqEnd.Value != DateTime.MinValue)
 						{
 							cmd += "   AND RequestDate <= ? ";
 						}
 					}
+					else cmd += "   AND RequestDate IS NULL ";
 
 					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state, reqBegin, reqEnd).ToList();
 					var results = rets.ToModels();
@@ -1320,7 +1383,6 @@ namespace DMT.Models
 				return result;
 			}
 		}
-
 
 		private static TSBCreditTransaction CloneTransaction(TSBExchangeTransaction value, bool isMinuis = false)
 		{

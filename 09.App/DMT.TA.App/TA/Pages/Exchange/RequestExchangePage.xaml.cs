@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Reflection;
 
 using DMT.Models;
 using DMT.Services;
 using NLib.Services;
+using NLib;
 using NLib.Reflection;
 
 #endregion
@@ -30,6 +32,13 @@ namespace DMT.TA.Pages.Exchange
         }
 
         #endregion
+
+        #region Internal Variables
+
+        private TSBRequestCreditManager manager = null;
+
+        #endregion
+
 
         #region Button Handlers
 
@@ -61,21 +70,46 @@ namespace DMT.TA.Pages.Exchange
 
         private void NewRequest()
         {
-            TSBExchangeGroup group = new TSBExchangeGroup();
-            TSBExchangeTransaction transaction = new TSBExchangeTransaction();
-            transaction.Description = "แลกเปลี่ยนเงินยืม/ทอน";
-            transaction.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
-            EditRequest(group, transaction, true);
-        }
+            MethodBase med = MethodBase.GetCurrentMethod();
+            if (null == manager)
+            {
+                med.Info("TSBRequestCreditManager is null.");
+                return;
+            }
 
-        private void EditRequest(TSBExchangeGroup group, TSBExchangeTransaction transaction, bool isNew)
-        {
+            manager.NewRequest();
+
             var win = TAApp.Windows.RequestExchange;
-            win.Setup(group, transaction);
+            win.Setup(manager);
             if (win.ShowDialog() == false)
             {
                 return;
             }
+
+            manager.Save();
+
+            Refresh();
+        }
+
+        private void EditRequest()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            if (null == manager)
+            {
+                med.Info("TSBRequestCreditManager is null.");
+            }
+
+            int requestId = 0;
+            manager.LoadRequest(requestId);
+
+            var win = TAApp.Windows.RequestExchange;
+            win.Setup(manager);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+
+            manager.Save();
 
             Refresh();
         }
@@ -89,6 +123,10 @@ namespace DMT.TA.Pages.Exchange
         /// </summary>
         public void Setup()
         {
+            if (null == manager)
+            {
+                manager = new TSBRequestCreditManager();
+            }
             Refresh();
         }
 

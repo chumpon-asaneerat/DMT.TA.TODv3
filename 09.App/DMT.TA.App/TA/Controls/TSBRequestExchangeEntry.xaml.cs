@@ -33,10 +33,11 @@ namespace DMT.TA.Controls
 
         #region Public Methods
 
-        public void Setup(TSBExchangeTransaction transaction)
+        /// <param name="manager">The TSB Request Exchange Manager.</param>
+        public void Setup(TSBRequestCreditManager manager)
         {
-            tranEntry.Setup(transaction);
-            extEntry.Setup(transaction);
+            tranEntry.Setup(manager.Request);
+            extEntry.Setup(manager.Request);
         }
 
         #endregion

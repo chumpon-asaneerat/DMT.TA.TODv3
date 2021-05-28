@@ -2891,14 +2891,49 @@ namespace DMT.Services
             this.Group.RequestType = TSBExchangeGroup.RequestTypes.Account;
             this.Group.State = TSBExchangeGroup.StateTypes.Request;
             this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Avaliable;
+
+            this.Request = new TSBExchangeTransaction();
+            this.Request.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
+            this.Request.Description = "แลกเปลี่ยนเงินยืม/ทอน";
+            this.Request.GroupId = this.Group.GroupId;
         }
         /// <summary>
         /// Load Request.
         /// </summary>
         /// <param name="requestId">The request Id (PK).</param>
-        public void LoadRequest(int requestId) 
+        /// <returns>Returns true if found group by request id.</returns>
+        public bool LoadRequest(int requestId) 
         {
             IsNew = false;
+
+            var grp = TSBExchangeGroup.GetTSBExchangeGroup(this.TSB, requestId).Value();
+            if (null != grp)
+            {
+                this.Group = grp;
+                this.Request = null; // get request transaction.
+            }
+            else
+            {
+                this.Group = null;
+                this.Request = null;
+            }
+
+            return (grp != null);
+        }
+
+        public void Save()
+        {
+            if (null != this.Group && null != this.Request)
+            {
+                var ret = TSBExchangeGroup.SaveTSBExchangeGroup(this.Group).Value();
+                if (null != ret)
+                {
+                }
+                var ret2 = TSBExchangeTransaction.SaveTransaction(this.Request).Value();
+                if (null != ret2)
+                {
+                }
+            }
         }
 
         #endregion

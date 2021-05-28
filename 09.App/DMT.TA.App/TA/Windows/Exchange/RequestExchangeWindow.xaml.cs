@@ -58,11 +58,10 @@ namespace DMT.TA.Windows.Exchange
         /// <summary>
         /// Setup.
         /// </summary>
-        /// <param name="group">The TSB Exchange Group.</param>
-        /// <param name="transaction">The TSB Exchange Transaction.</param>
-        public void Setup(TSBExchangeGroup group, TSBExchangeTransaction transaction)
+        /// <param name="manager">The TSB Request Exchange Manager.</param>
+        public void Setup(TSBRequestCreditManager manager)
         {
-            entry.Setup(transaction);
+            entry.Setup(manager);
         }
 
         #endregion

@@ -4,8 +4,14 @@
 Refactor DMT.TA.TODv4 #2119
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2118
-- 
+- DMT.TAxTODv3
+  - NLib.Reports project.
+    - Revert code -> LoadReport.
+  - DMT.TOD.App project.
+    - Revert code -> Revenue Entry.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2117

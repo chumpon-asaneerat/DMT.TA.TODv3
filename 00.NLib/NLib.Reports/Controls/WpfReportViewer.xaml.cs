@@ -133,10 +133,12 @@ namespace NLib.Wpf.Controls
         private void RptViewer_RenderingComplete(object sender, RenderingCompleteEventArgs e)
         {
             //Console.WriteLine("Render completed call refresh.");
+            /*
             if (null != rptViewer.LocalReport)
             {
                 rptViewer.LocalReport.Refresh();
             }
+            */
             //rptViewer.Refresh();
         }
 
@@ -148,26 +150,12 @@ namespace NLib.Wpf.Controls
         /// Load Report.
         /// </summary>
         /// <param name="reportSource">The instance of RdlcReportModel.</param>
-        /// <param name="delayRefresh">
-        /// The delay refresh if 0 no refresh call. 
-        /// If more than zero it will wait for delay time in ms and refresh report.
-        /// Default is 0 ms.
-        /// </param>
-        public void LoadReport(RdlcReportModel reportSource, int delayRefresh = 0)
+        public void LoadReport(RdlcReportModel reportSource)
         {
             rptViewer.LoadReport(reportSource);
             if (rptViewer.ZoomMode != ZoomMode.PageWidth)
             {
                 rptViewer.ZoomMode = ZoomMode.PageWidth;
-            }
-            if (delayRefresh > 0)
-            {
-                ApplicationManager.Instance.Wait(delayRefresh); // wait a little
-                // force redraw in some case after load report is not redraw.
-                if (null != rptViewer.LocalReport)
-                {
-                    rptViewer.LocalReport.Refresh();
-                }
             }
         }
         /// <summary>

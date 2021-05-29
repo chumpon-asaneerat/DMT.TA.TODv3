@@ -2551,38 +2551,6 @@ namespace DMT.Services
                     null != Entry);
             }
         }
-
-        public RdlcReportModel GetEmptyRevenueSlipReportModel()
-        {
-            Assembly assembly = this.GetType().Assembly;
-            RdlcReportModel inst = new RdlcReportModel();
-            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
-            inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
-                inst.Definition.EmbededReportName);
-
-            // clear reprot datasource.
-            inst.DataSources.Clear();
-
-            List<RevenueEntry> items = new List<RevenueEntry>();
-            //var entry = new RevenueEntry();
-            //items.Add(entry);
-
-            RdlcReportDataSource mainDS = new RdlcReportDataSource();
-            mainDS.Name = "main"; // the datasource name in the rdlc report.
-            mainDS.Items = items; // setup data source
-            // Add to datasources
-            inst.DataSources.Add(mainDS);
-
-            // Add parameters (if required).
-            DateTime today = DateTime.Now;
-            string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
-            inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
-            string histText = string.Empty;
-            inst.Parameters.Add(RdlcReportParameter.Create("HistoryText", histText));
-
-            return inst;
-        }
-
         /// <summary>
         /// Gets RevenueSlip ReportModel.
         /// </summary>

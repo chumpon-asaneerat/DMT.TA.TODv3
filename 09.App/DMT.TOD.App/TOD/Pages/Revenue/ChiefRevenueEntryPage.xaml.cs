@@ -505,52 +505,6 @@ namespace DMT.TOD.Pages.Revenue
             get { return "revenue." + DateTime.Now.ToThaiDateTimeString("ddMMyyyyHHmmssfff"); }
         }
 
-        //TODO: TEST PRERENDER
-        private int delayRefresh = 500;
-
-        private void PrerenderReport()
-        {
-            MethodBase med = MethodBase.GetCurrentMethod();
-            med.Info("<<<<<<<<<  Begin Pre render Revenue Slip Report Model  >>>>>>>>>");
-
-            TimeSpan ts = DateTime.Now - TODApp.Variables.ChiefRevenueLastRenderTime;
-            if (ts.TotalMinutes < 30)
-            {
-                med.Info("   - last prerender is less than 30 minutes. No need to pre render.");
-                med.Info("<<<<<<<<<  End Pre render Revenue Slip Report Model  >>>>>>>>>");
-                delayRefresh = 0;
-                return;
-            }
-
-            if (null == manager) return;
-
-            //delayRefresh = 500;
-            delayRefresh = 0;
-
-            var model = manager.GetEmptyRevenueSlipReportModel();
-            // Set Display Name (default file name).
-            model.DisplayName = ReportDisplayName;
-
-            try
-            {
-                var viewer = new NLib.Wpf.Controls.WpfReportViewer();
-                var task = Task.Factory.StartNew(() => 
-                {
-                    Dispatcher.Invoke(() => 
-                    {
-                        viewer.LoadReport(model);
-                        // update last render time.
-                        TODApp.Variables.ChiefRevenueLastRenderTime = DateTime.Now;
-                        med.Info("<<<<<<<<<  End Pre render Revenue Slip Report Model  >>>>>>>>>");
-                    }, DispatcherPriority.Background);
-                });
-            }
-            catch (Exception ex)
-            {
-                med.Err(ex);
-            }
-        }
-
         private bool PrepareReport()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -578,7 +532,7 @@ namespace DMT.TOD.Pages.Revenue
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        this.rptViewer.LoadReport(model, delayRefresh);
+                        this.rptViewer.LoadReport(model);
                     }, DispatcherPriority.Background);
                 }
                 catch (Exception ex)
@@ -681,8 +635,6 @@ namespace DMT.TOD.Pages.Revenue
 
             tabs.SelectedIndex = 0;
             cmdOk.Visibility = Visibility.Visible;
-            
-            PrerenderReport(); // TODO: pre render call.
 
             _chief = chief;
             if (null != _chief)

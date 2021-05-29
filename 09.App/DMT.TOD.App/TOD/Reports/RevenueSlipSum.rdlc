@@ -1889,7 +1889,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>รวม   </Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>5pt</FontSize>
@@ -1897,7 +1897,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -1913,14 +1913,83 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>6</ColSpan>
+                    <ColSpan>4</ColSpan>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
                 <TablixCell />
                 <TablixCell />
-                <TablixCell />
-                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="BagNo1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Count(Fields!BagNo.Value)</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>5pt</FontSize>
+                                <Format>n0</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>BagNo1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox9">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>5pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="TrafficBHTTotal1">
@@ -2295,7 +2364,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>รวม   </Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>5pt</FontSize>
@@ -2303,7 +2372,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -2319,14 +2388,83 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>6</ColSpan>
+                    <ColSpan>4</ColSpan>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
                 <TablixCell />
                 <TablixCell />
-                <TablixCell />
-                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="BagNo2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Count(Fields!BagNo.Value)</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>5pt</FontSize>
+                                <Format>n0</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>BagNo2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox14">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>5pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox14</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox56">
@@ -2734,14 +2872,14 @@
               </SortExpressions>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="ShiftNameTH">
+                  <Group Name="ShiftId">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!ShiftNameTH.Value</GroupExpression>
+                      <GroupExpression>=Fields!ShiftId.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ShiftNameTH.Value</Value>
+                      <Value>=Fields!ShiftId.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
@@ -3053,7 +3191,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>1.8125in</Height>
+      <Height>1.58333in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -3078,7 +3216,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox40</rd:DefaultName>
-          <Top>1.3875in</Top>
+          <Top>1.225in</Top>
           <Left>2.19036in</Left>
           <Height>0.18in</Height>
           <Width>1.42188in</Width>
@@ -3117,7 +3255,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox40</rd:DefaultName>
-              <Top>0.0375in</Top>
+              <Top>0.025in</Top>
               <Left>0.08416in</Left>
               <Height>0.18in</Height>
               <Width>2.75in</Width>
@@ -3154,7 +3292,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox41</rd:DefaultName>
-              <Top>0.0375in</Top>
+              <Top>0.025in</Top>
               <Left>3.49041in</Left>
               <Height>0.18in</Height>
               <Width>2.75in</Width>
@@ -3190,7 +3328,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox40</rd:DefaultName>
-              <Top>0.68264in</Top>
+              <Top>0.52014in</Top>
               <Left>0.08416in</Left>
               <Height>0.18in</Height>
               <Width>1.42188in</Width>
@@ -3228,7 +3366,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox41</rd:DefaultName>
-              <Top>0.68264in</Top>
+              <Top>0.52014in</Top>
               <Left>3.49041in</Left>
               <Height>0.18in</Height>
               <Width>2.75in</Width>
@@ -3264,7 +3402,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox40</rd:DefaultName>
-              <Top>0.88958in</Top>
+              <Top>0.72708in</Top>
               <Left>0.08416in</Left>
               <Height>0.18in</Height>
               <Width>1.42188in</Width>
@@ -3302,7 +3440,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox41</rd:DefaultName>
-              <Top>0.88958in</Top>
+              <Top>0.72708in</Top>
               <Left>3.49041in</Left>
               <Height>0.18in</Height>
               <Width>2.75in</Width>
@@ -3338,7 +3476,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox40</rd:DefaultName>
-              <Top>1.10139in</Top>
+              <Top>0.93889in</Top>
               <Left>0.08416in</Left>
               <Height>0.18in</Height>
               <Width>1.42188in</Width>
@@ -3376,7 +3514,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox41</rd:DefaultName>
-              <Top>1.10139in</Top>
+              <Top>0.93889in</Top>
               <Left>3.49041in</Left>
               <Height>0.18in</Height>
               <Width>2.75in</Width>
@@ -3392,7 +3530,7 @@
               </Style>
             </Textbox>
             <Line Name="Line1">
-              <Top>0.27915in</Top>
+              <Top>0.22915in</Top>
               <Height>0in</Height>
               <Width>6.32458in</Width>
               <ZIndex>8</ZIndex>
@@ -3404,7 +3542,7 @@
             </Line>
             <Line Name="Line2">
               <Left>3.4125in</Left>
-              <Height>1.31889in</Height>
+              <Height>1.16889in</Height>
               <Width>0in</Width>
               <ZIndex>9</ZIndex>
               <Style>
@@ -3417,7 +3555,7 @@
           <KeepTogether>true</KeepTogether>
           <Top>0.03958in</Top>
           <Left>2.52156in</Left>
-          <Height>1.31889in</Height>
+          <Height>1.16889in</Height>
           <Width>6.32458in</Width>
           <ZIndex>1</ZIndex>
           <Style>

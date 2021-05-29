@@ -7,8 +7,14 @@ Refactor DMT.TA.TODv4 #2119
 Refactor DMT.TA.TODv4 #2118
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2117
-- 
+- DMT.TAxTODv3
+  - NLib.Reports project.
+    - Update code handle RenderCompleted event to call render method.
+  - DMT.TOD.App project.
+    - Update code related to Revenue Entry report render #2.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2116

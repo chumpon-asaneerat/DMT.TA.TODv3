@@ -34,7 +34,7 @@ namespace NLib.Wpf.Controls
     /// </summary>
     public partial class WpfReportViewer : UserControl
     {
-        #region Constructor
+        #region Constructor and Destructor
 
         /// <summary>
         /// Constructor.
@@ -42,6 +42,13 @@ namespace NLib.Wpf.Controls
         public WpfReportViewer()
         {
             InitializeComponent();
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~WpfReportViewer()
+        {
+
         }
 
         #endregion
@@ -99,18 +106,20 @@ namespace NLib.Wpf.Controls
             rptViewer.ShowFindControls = false;
             rptViewer.ShowProgress = false;
             rptViewer.ReportError += new ReportErrorEventHandler(rptViewer_ReportError);
+            rptViewer.RenderingComplete += RptViewer_RenderingComplete;
             // Init default printer.
             InitPrinterParameter();
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            rptViewer.RenderingComplete -= RptViewer_RenderingComplete;
             rptViewer.ReportError -= new ReportErrorEventHandler(rptViewer_ReportError);
         }
 
         #endregion
 
-        #region ReportError Handlers
+        #region Report Viewer Handlers
 
         void rptViewer_ReportError(object sender, ReportErrorEventArgs e)
         {
@@ -119,6 +128,16 @@ namespace NLib.Wpf.Controls
                 RdlcMessageService.Instance.SendMessage(e.Exception.ToString());
             }
             e.Handled = true;
+        }
+
+        private void RptViewer_RenderingComplete(object sender, RenderingCompleteEventArgs e)
+        {
+            //Console.WriteLine("Render completed call refresh.");
+            if (null != rptViewer.LocalReport)
+            {
+                rptViewer.LocalReport.Refresh();
+            }
+            //rptViewer.Refresh();
         }
 
         #endregion
@@ -132,9 +151,9 @@ namespace NLib.Wpf.Controls
         /// <param name="delayRefresh">
         /// The delay refresh if 0 no refresh call. 
         /// If more than zero it will wait for delay time in ms and refresh report.
-        /// Default is 300 ms.
+        /// Default is 0 ms.
         /// </param>
-        public void LoadReport(RdlcReportModel reportSource, int delayRefresh = 300)
+        public void LoadReport(RdlcReportModel reportSource, int delayRefresh = 0)
         {
             rptViewer.LoadReport(reportSource);
             if (rptViewer.ZoomMode != ZoomMode.PageWidth)
@@ -143,7 +162,7 @@ namespace NLib.Wpf.Controls
             }
             if (delayRefresh > 0)
             {
-                ApplicationManager.Instance.Wait(300); // wait a little
+                ApplicationManager.Instance.Wait(delayRefresh); // wait a little
                 // force redraw in some case after load report is not redraw.
                 if (null != rptViewer.LocalReport)
                 {

@@ -374,6 +374,8 @@ namespace DMT.TOD.Pages.Revenue
         }
 
         //TODO: TEST PRERENDER
+        private int delayRefresh = 500;
+
         private void PrerenderReport()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -384,10 +386,14 @@ namespace DMT.TOD.Pages.Revenue
             {
                 med.Info("   - last prerender is less than 30 minutes. No need to pre render.");
                 med.Info("<<<<<<<<<  End Pre render Revenue Slip Report Model  >>>>>>>>>");
+                delayRefresh = 0;
                 return;
             }
 
             if (null == manager) return;
+
+            //delayRefresh = 500;
+            delayRefresh = 0;
 
             var model = manager.GetEmptyRevenueSlipReportModel();
             // Set Display Name (default file name).
@@ -440,7 +446,7 @@ namespace DMT.TOD.Pages.Revenue
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        this.rptViewer.LoadReport(model);
+                        this.rptViewer.LoadReport(model, delayRefresh);
                     }, DispatcherPriority.Background);
                 }
                 catch (Exception ex)

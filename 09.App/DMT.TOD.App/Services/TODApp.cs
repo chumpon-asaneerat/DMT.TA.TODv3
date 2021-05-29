@@ -28,6 +28,18 @@ namespace DMT
         /// </summary>
         public static bool IsRegistered { get; set; }
 
+
+        /// <summary>
+        /// Variables Static class.
+        /// </summary>
+        public static class Variables
+        {
+            /// <summary>Chief Revenue Entry Prerender DateTime.</summary>
+            public static DateTime ChiefRevenueLastRenderTime = DateTime.MinValue;
+            /// <summary>Collector Revenue Entry Prerender DateTime.</summary>
+            public static DateTime CollectorRevenueLastRenderTime = DateTime.MinValue;
+        }
+
         /// <summary>
         /// Permissions Static class.
         /// </summary>

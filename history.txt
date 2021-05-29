@@ -10,8 +10,21 @@ Refactor DMT.TA.TODv4 #2118
 Refactor DMT.TA.TODv4 #2117
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2116
-- 
+- DMT.TAxTODv3
+  - NLib.Reports project.
+    - Update LoadReport method.
+      - Add delay refresh paramter (default is 300 ms).
+  - DMT.TOD.App project.
+    - Revenue Entry pages
+      - Add prerender method (experiment).
+    - RevenueEntryManager 
+      - Add GetEmptyRevenueSlipReportModel method.
+    - TODApp
+      - Add Variables class
+        - Add ChiefRevenueLastRenderTime property.
+        - Add CollectorRevenueLastRenderTime property.
 
 [commited]
 Refactor DMT.TA.TODv4 #2115

@@ -1851,6 +1851,7 @@ namespace DMT.Models
                     {
                         cmd += "   AND ShiftId = ? ";
                     }
+                    cmd += "   ORDER BY ShiftId, BagNo ";
 
                     if (shiftId.HasValue && shiftId.Value > 0)
                     {

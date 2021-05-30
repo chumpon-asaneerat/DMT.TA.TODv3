@@ -1889,7 +1889,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>รายได้รวมต่อกะ   </Value>
+                              <Value>รวม   </Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>5pt</FontSize>
@@ -2364,7 +2364,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>รายได้รวมต่อวัน   </Value>
+                              <Value>รายได้รวมทั้งหมด   </Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>5pt</FontSize>
@@ -2416,7 +2416,6 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>BagNo2</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2463,7 +2462,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

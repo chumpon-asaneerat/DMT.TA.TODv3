@@ -1,8 +1,11 @@
 ﻿Refactor DMT.TA.TODv4 #2120
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2119
-- 
+- DMT.TAxTODv3
+  - Update App version.
+  - merge TOD report from Kik.
 
 [commited]
 Refactor DMT.TA.TODv4 #2118

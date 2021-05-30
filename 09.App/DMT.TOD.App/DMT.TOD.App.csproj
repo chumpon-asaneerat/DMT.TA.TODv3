@@ -458,8 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TOD\Reports\RevenueSlip.rdlc" />
     <EmbeddedResource Include="TOD\Reports\RevenueSlipNull.rdlc" />
-    <EmbeddedResource Include="TOD\Reports\RevenueSlipSum.rdlc" />
+    <EmbeddedResource Include="TOD\Reports\RevenueSlipSumL.rdlc" />
     <EmbeddedResource Include="TOD\Reports\RevenueSlipSumOld.rdlc" />
+    <EmbeddedResource Include="TOD\Reports\RevenueSlipSum.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\DataSources\DMT.Models.RevenueEntry.datasource" />
     <None Include="Properties\Settings.settings">

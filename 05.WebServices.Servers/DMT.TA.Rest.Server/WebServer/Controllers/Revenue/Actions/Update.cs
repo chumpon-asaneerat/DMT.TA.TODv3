@@ -12,33 +12,30 @@ using DMT.Models;
 
 namespace DMT.Services
 {
-    partial class Shift
+    partial class RevenueController
     {
-        partial class TAARevenueController
+        [HttpPost]
+        [ActionName(RouteConsts.TA.Revenue.Update.Name)]
+        //[AllowAnonymous]
+        public NDbResult Update([FromBody] Models.RevenueEntry value)
         {
-            [HttpPost]
-            [ActionName(RouteConsts.TA.Revenue.Update.Name)]
-            //[AllowAnonymous]
-            public NDbResult Update([FromBody] Models.RevenueEntry value)
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = new NDbResult();
+            ret.Success();
+
+            if (null != ret && ret.Ok)
             {
-                MethodBase med = MethodBase.GetCurrentMethod();
-
-                var ret = new NDbResult();
-                ret.Success();
-
-                if (null != ret && ret.Ok)
-                {
-                    med.Info("Generate RevenueEntry files (prepare for sent to all TODs).");
-                    // Write to Queue for send to all TOD clients.
-                    //TODClientManager.Instance.SendToTOD(value);
-                }
-                else
-                {
-                    med.Info("No RevenueEntry files generated.");
-                }
-
-                return ret;
+                med.Info("Generate RevenueEntry files (prepare for sent to all TODs).");
+                // Write to Queue for send to all TOD clients.
+                TODClientManager.Instance.SendToTOD(value);
             }
+            else
+            {
+                med.Info("No RevenueEntry files generated.");
+            }
+
+            return ret;
         }
     }
 }

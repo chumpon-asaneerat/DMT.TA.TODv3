@@ -28,7 +28,7 @@ namespace DMT.Services
                 {
                     med.Info("Generate TSBShift files (prepare for sent to all TODs).");
                     // Write to Queue for send to all TOD clients.
-                    //TODClientManager.Instance.SendToTOD(value);
+                    TODClientManager.Instance.SendToTOD(value);
 
                     med.Info("Notify change to update new chief on TA app.");
                     TANotifyService.Instance.RaiseTSBShiftChanged();

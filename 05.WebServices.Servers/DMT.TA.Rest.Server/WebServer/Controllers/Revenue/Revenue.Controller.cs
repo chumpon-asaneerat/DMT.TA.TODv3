@@ -12,5 +12,11 @@ namespace DMT.Services
     /// The Revenue Controller class.
     /// </summary>
     [Authorize] // Authorize Attribute can set here or set in each method(s).
-    public partial class TAARevenueController : ApiController { }
+    public partial class RevenueController : ApiController { }
+
+    // Exports nested class to controller(s)
+    /// <summary>
+    /// The TA Revenue's Controller class.
+    /// </summary>
+    public class TAARevenueController : RevenueController { }
 }

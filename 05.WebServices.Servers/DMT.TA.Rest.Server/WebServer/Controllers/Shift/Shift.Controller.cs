@@ -38,5 +38,5 @@ namespace DMT.Services
     /// <summary>
     /// The User Shift's Manage Controller class.
     /// </summary>
-    public class TAAUserShiftManageController : Shift.TSBController { }
+    public class TAAUserShiftManageController : Shift.UserController { }
 }

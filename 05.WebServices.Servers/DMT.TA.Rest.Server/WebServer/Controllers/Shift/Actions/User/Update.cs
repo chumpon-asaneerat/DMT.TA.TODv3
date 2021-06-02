@@ -30,7 +30,7 @@ namespace DMT.Services
                 {
                     med.Info("Generate UserShift files (prepare for sent to all TODs).");
                     // Write to Queue for send to all TOD clients.
-                    //TODClientManager.Instance.SendToTOD(value);
+                    TODClientManager.Instance.SendToTOD(value);
                 }
                 else
                 {

@@ -68,11 +68,6 @@ namespace DMT.Services
                     actionName = RouteConsts.TA.Notify.IsAlive.Name;
                     actionUrl = RouteConsts.TA.Notify.IsAlive.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
-
-                    // TSBShiftChanged
-                    actionName = RouteConsts.TA.Notify.TSBShiftChanged.Name;
-                    actionUrl = RouteConsts.TA.Notify.TSBShiftChanged.Url;
-                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }
 
@@ -307,9 +302,9 @@ namespace DMT.Services
                         actionUrl = RouteConsts.TA.Shift.TSB.Current.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
 
-                        // Change
-                        actionName = RouteConsts.TA.Shift.TSB.Change.Name;
-                        actionUrl = RouteConsts.TA.Shift.TSB.Change.Url;
+                        // Update
+                        actionName = RouteConsts.TA.Shift.TSB.Update.Name;
+                        actionUrl = RouteConsts.TA.Shift.TSB.Update.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }
@@ -323,9 +318,9 @@ namespace DMT.Services
                         // Set Controller Name.
                         controllerName = RouteConsts.TA.Shift.User.ControllerName;
 
-                        // Change
-                        actionName = RouteConsts.TA.Shift.User.Change.Name;
-                        actionUrl = RouteConsts.TA.Shift.User.Change.Url;
+                        // Update
+                        actionName = RouteConsts.TA.Shift.User.Update.Name;
+                        actionUrl = RouteConsts.TA.Shift.User.Update.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }
@@ -337,6 +332,13 @@ namespace DMT.Services
                 {
                     string controllerName, actionName, actionUrl;
 
+                    // Set Controller Name.
+                    controllerName = RouteConsts.TA.Revenue.ControllerName;
+
+                    // Update
+                    actionName = RouteConsts.TA.Revenue.Update.Name;
+                    actionUrl = RouteConsts.TA.Revenue.Update.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
             }
 

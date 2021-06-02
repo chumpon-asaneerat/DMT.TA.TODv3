@@ -65,11 +65,6 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TOD.Notify.TSBChanged.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
 
-                    // TSB Shift Changed
-                    actionName = RouteConsts.TOD.Notify.TSBShiftChanged.Name;
-                    actionUrl = RouteConsts.TOD.Notify.TSBShiftChanged.Url;
-                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
-
                     // IsAlive
                     actionName = RouteConsts.TOD.Notify.IsAlive.Name;
                     actionUrl = RouteConsts.TOD.Notify.IsAlive.Url;
@@ -293,6 +288,54 @@ namespace DMT.Services
                     actionUrl = RouteConsts.TOD.Shift.Gets.Url;
                     Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                 }
+
+                internal static class TSB
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.TOD.Shift.TSB.ControllerName;
+
+                        // Update
+                        actionName = RouteConsts.TOD.Shift.TSB.Update.Name;
+                        actionUrl = RouteConsts.TOD.Shift.TSB.Update.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                    }
+                }
+
+                internal static class User
+                {
+                    internal static void MapRoutes(HttpConfiguration config)
+                    {
+                        string controllerName, actionName, actionUrl;
+
+                        // Set Controller Name.
+                        controllerName = RouteConsts.TOD.Shift.User.ControllerName;
+
+                        // Update
+                        actionName = RouteConsts.TOD.Shift.User.Update.Name;
+                        actionUrl = RouteConsts.TOD.Shift.User.Update.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                    }
+                }
+            }
+
+            internal static class RevenueEntry
+            {
+                internal static void MapRoutes(HttpConfiguration config)
+                {
+                    string controllerName, actionName, actionUrl;
+
+                    // Set Controller Name.
+                    controllerName = RouteConsts.TOD.Revenue.ControllerName;
+
+                    // Update
+                    actionName = RouteConsts.TOD.Revenue.Update.Name;
+                    actionUrl = RouteConsts.TOD.Revenue.Update.Url;
+                    Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+                }
             }
         }
 
@@ -321,6 +364,11 @@ namespace DMT.Services
 
             // Shift
             MapControllers.Shift.MapRoutes(config);
+            MapControllers.Shift.TSB.MapRoutes(config);
+            MapControllers.Shift.User.MapRoutes(config);
+
+            // Revenue Entry
+            MapControllers.RevenueEntry.MapRoutes(config);
 
             #region Default Route (do not used)
 

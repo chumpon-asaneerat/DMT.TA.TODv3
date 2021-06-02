@@ -6,21 +6,21 @@ using System.Collections.Generic;
 
 namespace DMT.Services.Operations
 {
-    static partial class TA
+    static partial class TOD
     {
         static partial class Shift
         {
-            static partial class User
+            static partial class TSB
             {
                 /// <summary>
-                /// Gets Change User Shift.
+                /// TSB Shift Update.
                 /// </summary>
-                /// <param name="value">The User Shift instance</param>
+                /// <param name="value">The TSB Shift instance</param>
                 /// <returns>Returns NRestResult instance.</returns>
-                public static NRestResult Change(Models.UserShift value)
+                public static NRestResult Update(Models.TSBShift value)
                 {
                     var ret = Execute(
-                        RouteConsts.TA.Shift.User.Change.Url, value);
+                        RouteConsts.TOD.Shift.TSB.Update.Url, value);
                     return ret;
                 }
             }

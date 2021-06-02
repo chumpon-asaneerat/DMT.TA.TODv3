@@ -77,7 +77,8 @@
     <Compile Include="Services\Notify\Notify.Operations.cs" />
     <Compile Include="Services\Notify\Operations\IsAlive.cs" />
     <Compile Include="Services\Notify\Operations\TSBChanged.cs" />
-    <Compile Include="Services\Notify\Operations\TSBShiftChanged.cs" />
+    <Compile Include="Services\Revenue\Operations\Update.cs" />
+    <Compile Include="Services\Revenue\Revenue.Operations.cs" />
     <Compile Include="Services\Security\Operations\Role\Gets.cs" />
     <Compile Include="Services\Security\Operations\Role\Save.cs" />
     <Compile Include="Services\Security\Operations\User\Gets.cs" />
@@ -85,9 +86,9 @@
     <Compile Include="Services\Security\Operations\User\Searchs.cs" />
     <Compile Include="Services\Security\Security.Operations.cs" />
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
-    <Compile Include="Services\Shift\Operations\TSB\Change.cs" />
+    <Compile Include="Services\Shift\Operations\TSB\Update.cs" />
     <Compile Include="Services\Shift\Operations\TSB\Current.cs" />
-    <Compile Include="Services\Shift\Operations\User\Change.cs" />
+    <Compile Include="Services\Shift\Operations\User\Update.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TA.cs" />
     <Compile Include="Services\TAMQService.cs" />

@@ -1,7 +1,6 @@
 ﻿#region Usings
 
 using System.Collections.Generic;
-using DMT.Services;
 
 #endregion
 
@@ -9,15 +8,17 @@ namespace DMT.Services.Operations
 {
     static partial class TA
     {
-        static partial class Notify
+        static partial class Revenue
         {
             /// <summary>
-            /// Notify TSBShiftChanged.
+            /// Revenue Entry Update.
             /// </summary>
+            /// <param name="value">The RevenueEntry instance</param>
             /// <returns>Returns NRestResult instance.</returns>
-            public static NRestResult TSBShiftChanged()
+            public static NRestResult Update(Models.RevenueEntry value)
             {
-                var ret = Execute(RouteConsts.TA.Notify.TSBShiftChanged.Url, new { });
+                var ret = Execute(
+                    RouteConsts.TA.Revenue.Update.Url, value);
                 return ret;
             }
         }

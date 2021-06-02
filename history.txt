@@ -13,11 +13,23 @@ Refactor DMT.TA.TODv4 #2127
 Refactor DMT.TA.TODv4 #2126
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2125
-- 
+- DMT.TAxTODv3
+  - Re-implements TA-TOD communication WS #2.
 
+[commited]
 Refactor DMT.TA.TODv4 #2124
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Update TA/TOD route.
+      - Add TA TSB Shift update route.
+      - Remove TA TSB Shift Change route.
+      - Add TOD TSB Shift update route.
+      - Add TOD User Shift update route.
+      - Add TOD Revenue Shift update route.
+      - Remove TA->Notify->TSBShiftChanged route.
+      - Remove TOD->Notify->TSBShiftChanged route.
 
 [commited]
 Refactor DMT.TA.TODv4 #2123

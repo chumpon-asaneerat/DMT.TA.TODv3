@@ -72,7 +72,7 @@ namespace DMT.Services
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            var ret = ops.Shift.TSB.Change(value);
+            var ret = ops.Shift.TSB.Update(value);
             if (null == ret || !ret.Ok)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
@@ -86,7 +86,8 @@ namespace DMT.Services
         private void SendChangeUserShift(string fullFileName, Models.UserShift value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            var ret = ops.Shift.User.Change(value);
+
+            var ret = ops.Shift.User.Update(value);
             if (null == ret || !ret.Ok)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
@@ -101,6 +102,15 @@ namespace DMT.Services
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
+            var ret = ops.Revenue.Update(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
             /*
             var ret = ops.Security.changePassword(value);
             if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))

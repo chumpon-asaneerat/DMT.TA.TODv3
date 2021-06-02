@@ -12,14 +12,15 @@ namespace DMT.Services
 {
     partial class Shift
     {
-        partial class UserController
+        partial class TODRevenueController
         {
             [HttpPost]
-            [ActionName(RouteConsts.TA.Shift.User.Change.Name)]
+            [ActionName(RouteConsts.TOD.Revenue.Update.Name)]
             //[AllowAnonymous]
-            public NDbResult Change([FromBody] Models.UserShift value)
+            public NDbResult Update([FromBody] Models.UserShift value)
             {
-                var ret = Models.UserShift.UpdateUserShift(value);
+                //var ret = Models.UserShift.UpdateUserShift(value);
+                var ret = new NDbResult();
                 if (null != ret && ret.Ok)
                 {
                     /*

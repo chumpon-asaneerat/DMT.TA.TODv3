@@ -15,17 +15,19 @@ namespace DMT.Services
         partial class TSBController
         {
             [HttpPost]
-            [ActionName(RouteConsts.TA.Shift.TSB.Change.Name)]
+            [ActionName(RouteConsts.TOD.Shift.TSB.Update.Name)]
             //[AllowAnonymous]
-            public NDbResult Change([FromBody] Models.TSBShift value)
+            public NDbResult Update([FromBody] Models.TSBShift value)
             {
                 var ret = Models.TSBShift.ChangeShift(value);
                 if (null != ret && ret.Ok)
                 {
+                    /*
                     Task.Run(() => 
                     { 
                         TANotifyService.Instance.RaiseTSBShiftChanged(); 
                     });
+                    */
                 }
                 return ret;
             }

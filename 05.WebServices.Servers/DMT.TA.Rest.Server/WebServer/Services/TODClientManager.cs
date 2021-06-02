@@ -96,6 +96,8 @@ namespace DMT.Services
             {
                 configs.ForEach(cfg =>
                 {
+                    //TODO: TO Fixed.
+                    /*
                     Operations.TOD.Config = cfg; // varies by client config
                     // Notify TOD - TSBShiftChanged.
                     var ret = ops.TSBShiftChanged();
@@ -103,6 +105,7 @@ namespace DMT.Services
                     {
                         Console.WriteLine("Send to TOD failed.");
                     }
+                    */
                 });
             }
         }

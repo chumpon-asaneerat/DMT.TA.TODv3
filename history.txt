@@ -19,8 +19,10 @@ Refactor DMT.TA.TODv4 #2125
 Refactor DMT.TA.TODv4 #2124
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2123
-- 
+- DMT.TAxTODv3
+  - Remove v1 routes.
 
 [commited]
 Refactor DMT.TA.TODv4 #2122

@@ -15,9 +15,9 @@ namespace DMT.Services.Operations
                 /// <summary>
                 /// User Shift Update.
                 /// </summary>
-                /// <param name="value">The TSB Shift instance</param>
+                /// <param name="value">The User Shift instance</param>
                 /// <returns>Returns NRestResult instance.</returns>
-                public static NRestResult Update(Models.TSBShift value)
+                public static NRestResult Update(Models.UserShift value)
                 {
                     var ret = Execute(
                         RouteConsts.TA.Shift.TSB.Update.Url, value);

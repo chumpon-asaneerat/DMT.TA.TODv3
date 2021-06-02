@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 
 namespace DMT.Services
 {
-    using ops = Operations.TOD.Notify;
+    using ops = Operations.TOD;
 
     /// <summary>
     /// The TODClientManager class.
@@ -109,49 +109,55 @@ namespace DMT.Services
 
         #endregion
 
-        #region Public Methods
+        #region Private Methods
 
-        /// <summary>
-        /// Start service.
-        /// </summary>
-        public void Start()
+        #region Get TOD WS Config
+
+        private TODAppWebServiceConfig GetTODWSConfig(string todFolder) 
         {
+            TODAppWebServiceConfig ret = null;
+            if (string.IsNullOrWhiteSpace(todFolder)) 
+                return ret;
+
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            // Init Scanning Timer
-            _scanning = false;
-            _timer = new Timer();
-            _timer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
-            _timer.Elapsed += _timer_Elapsed;
-            _timer.Start();
-        }
-        /// <summary>
-        /// Shutdown service.
-        /// </summary>
-        public void Shutdown()
-        {
-            // Free Scanning Timer 
             try
             {
-                if (null != _timer)
+                DirectoryInfo di = new DirectoryInfo(todFolder);
+                var folderNameOnly = di.Name;
+
+                string[] lines = folderNameOnly.Replace("tod.", "").Split('x');
+                if (null == todFolder || todFolder.Length < 2)
                 {
-                    _timer.Elapsed -= _timer_Elapsed;
-                    _timer.Stop();
-                    _timer.Dispose();
+                    med.Info(string.Format("Cannot find WS config from TOD folder name '{0}'.", todFolder));
+                    return ret;
+                }
+
+                string hostName = lines[0];
+                int portNo = Convert.ToInt32(lines[1]);
+                var configs = TAConfigManager.Instance.Value.Services.TODApps;
+                if (null != configs && configs.Count > 0)
+                {
+                    ret = configs.Find((cfg =>
+                    {
+                        return (cfg.Service.HostName == hostName && cfg.Service.PortNumber == portNo);
+                    }));
                 }
             }
-            catch { }
-            _timer = null;
-            _scanning = false;
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+            return ret;
         }
 
         #endregion
 
-        #region Private Methods
+        #region Get File Name and Folder Name methods
 
         private string GetTODFolder(string host, int portNo)
         {
-            string todFolderName = string.Format("tod.{0}x{1:D5}", host, portNo);
+            string todFolderName = string.Format("tod.{0}x{1:D5}", host, portNo).Replace(":", "_");
             string localFilder = Folders.Combine(this.MessageFolder, todFolderName);
             if (!Folders.Exists(localFilder))
             {
@@ -186,6 +192,11 @@ namespace DMT.Services
                 msgType = "user.shift.change";
             return GetFileName(msgType);
         }
+
+        #endregion
+
+        #region Compress
+
         /// <summary>
         /// Compress Files.
         /// </summary>
@@ -274,6 +285,11 @@ namespace DMT.Services
                 }
             }
         }
+
+        #endregion
+
+        #region File Management Method
+
         /// <summary>
         /// Read All Text from target file.
         /// </summary>
@@ -467,6 +483,10 @@ namespace DMT.Services
             MoveTo(file, "NotSupports");
         }
 
+        #endregion
+
+        #region Processing methods
+
         private void ProcessTODFolders()
         {
             if (null == TAConfigManager.Instance.Value || null == TAConfigManager.Instance.Value.Services) return;
@@ -511,12 +531,16 @@ namespace DMT.Services
             List<string> files = new List<string>();
             var msgFiles = Directory.GetFiles(todFolder, "*.json");
             if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
+
+            // Set operation DMT.
+            Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
+
             files.ForEach(file => 
             {
                 try 
                 {
                     string json = ReadAllText(file);
-                    ProcessJson(file, json);
+                    ProcessJson(todFolder, file, json);
                 }
                 catch (Exception ex)
                 {
@@ -524,13 +548,13 @@ namespace DMT.Services
                 }
             });
         }
-
         /// <summary>
         /// Process Json (string).
         /// </summary>
+        /// <param name="todFolder">The tod folder. Required to get WS config.</param>
         /// <param name="fullFileName">The json full file name.</param>
         /// <param name="jsonString">The json data in string.</param>
-        private void ProcessJson(string fullFileName, string jsonString) 
+        private void ProcessJson(string todFolder, string fullFileName, string jsonString) 
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -542,7 +566,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TSBShift>();
-                    //SendChangeTSBShift(fullFileName, value);
+                    SendChangeTSBShift(todFolder, fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -557,7 +581,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.UserShift>();
-                    //SendChangeTSBShift(fullFileName, value);
+                    SendChangeUserShift(todFolder, fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -572,7 +596,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.RevenueEntry>();
-                    //SendChangeTSBShift(fullFileName, value);
+                    SendUpdateRevenueEntry(todFolder, fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -589,6 +613,92 @@ namespace DMT.Services
                 MoveToNotSupports(fullFileName);
             }
         }
+
+        #endregion
+
+        #region Send
+
+        private void SendChangeTSBShift(string todFolder, string fullFileName, TSBShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var cfg = GetTODWSConfig(todFolder);
+            if (null == cfg)
+            {
+                med.Err(string.Format("Cannot send file because no match config found. Folder: '{0}'", todFolder));
+                MoveToError(fullFileName);
+                return;
+            }
+
+            Operations.TOD.Config = cfg; // varies by client config
+
+            var ret = ops.Shift.TSB.Update(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TOD App Web Service.");
+                return;
+            }
+
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
+        private void SendChangeUserShift(string todFolder, string fullFileName, UserShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var cfg = GetTODWSConfig(todFolder);
+            if (null == cfg)
+            {
+                med.Err(string.Format("Cannot send file because no match config found. Folder: '{0}'", todFolder));
+                MoveToError(fullFileName);
+                return;
+            }
+
+            Operations.TOD.Config = cfg; // varies by client config
+
+            var ret = ops.Shift.User.Update(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TOD App Web Service.");
+                return;
+            }
+
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
+        private void SendUpdateRevenueEntry(string todFolder, string fullFileName, RevenueEntry value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var cfg = GetTODWSConfig(todFolder);
+            if (null == cfg)
+            {
+                med.Err(string.Format("Cannot send file because no match config found. Folder: '{0}'", todFolder));
+                MoveToError(fullFileName);
+                return;
+            }
+
+            Operations.TOD.Config = cfg; // varies by client config
+
+            var ret = ops.Revenue.Update(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TOD App Web Service.");
+                return;
+            }
+
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
+        #endregion
+
+        #region Write Queues
 
         /// <summary>
         /// Write Json object to all TOD queues.
@@ -632,6 +742,8 @@ namespace DMT.Services
 
         #endregion
 
+        #endregion
+
         #region Protected method and properties
 
         #region FolderName property
@@ -647,54 +759,72 @@ namespace DMT.Services
 
         #region Public Methods
 
-        #region TSB Shift Change -> Sent to all TOD apps.
+        #region SendToTOD (Write Queue)
 
-        /*
         /// <summary>
-        /// Raise all TOD TSBShiftChanged.
+        /// Sent to all TOD.
         /// </summary>
-        /// <param name="value"></param>
-        public void TODTSBShiftChanged()
-        {
-            if (null == TAConfigManager.Instance.Value || null == TAConfigManager.Instance.Value.Services) return;
-            var configs = TAConfigManager.Instance.Value.Services.TODApps;
-
-            // Set operation DMT.
-            Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-
-            if (null != configs && configs.Count > 0)
-            {
-                configs.ForEach(cfg =>
-                {
-                    //TODO: TO Fixed.
-                    Operations.TOD.Config = cfg; // varies by client config
-                    // Notify TOD - TSBShiftChanged.
-                    var ret = ops.TSBShiftChanged();
-                    if (null == ret || ret.Failed)
-                    {
-                        Console.WriteLine("Send to TOD failed.");
-                    }
-                });
-            }
-        }
-        */
-
-        #endregion
-
+        /// <param name="value">The TSBShift instance.</param>
         public void SendToTOD(TSBShift value)
         {
             WtiteQueues(value);
         }
-
+        /// <summary>
+        /// Sent to all TOD.
+        /// </summary>
+        /// <param name="value">The UserShift instance.</param>
         public void SendToTOD(UserShift value)
         {
             WtiteQueues(value);
         }
-
+        /// <summary>
+        /// Sent to all TOD.
+        /// </summary>
+        /// <param name="value">The RevenueEntry instance.</param>
         public void SendToTOD(RevenueEntry value)
         {
             WtiteQueues(value);
         }
+
+        #endregion
+
+        #region Start/Shutdown
+
+        /// <summary>
+        /// Start service.
+        /// </summary>
+        public void Start()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            // Init Scanning Timer
+            _scanning = false;
+            _timer = new Timer();
+            _timer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
+            _timer.Elapsed += _timer_Elapsed;
+            _timer.Start();
+        }
+        /// <summary>
+        /// Shutdown service.
+        /// </summary>
+        public void Shutdown()
+        {
+            // Free Scanning Timer 
+            try
+            {
+                if (null != _timer)
+                {
+                    _timer.Elapsed -= _timer_Elapsed;
+                    _timer.Stop();
+                    _timer.Dispose();
+                }
+            }
+            catch { }
+            _timer = null;
+            _scanning = false;
+        }
+
+        #endregion
 
         #endregion
 

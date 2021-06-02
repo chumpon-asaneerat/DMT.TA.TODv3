@@ -17,7 +17,7 @@ namespace DMT.Services
             [HttpPost]
             [ActionName(RouteConsts.TOD.Revenue.Update.Name)]
             //[AllowAnonymous]
-            public NDbResult Update([FromBody] Models.UserShift value)
+            public NDbResult Update([FromBody] Models.RevenueEntry value)
             {
                 //var ret = Models.UserShift.UpdateUserShift(value);
                 var ret = new NDbResult();

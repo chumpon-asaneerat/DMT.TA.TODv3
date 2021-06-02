@@ -444,5 +444,16 @@ namespace DMT
 
             #endregion
         }
+
+        /// <summary>
+        /// Chief Static class.
+        /// </summary>
+        public static class Chief
+        {
+            /// <summary>
+            /// Gets or sets current login chief.
+            /// </summary>
+            public static User Current { get; set; }
+        }
     }
 }

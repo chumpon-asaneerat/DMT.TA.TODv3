@@ -2296,11 +2296,25 @@ namespace DMT.Services
                 Entry.CollectorNameTH = User.FullNameTH;
             }
             // Update Chief data.
-            if (null != Chief)
+            if (!ByChief)
             {
-                Entry.SupervisorId = Chief.UserId;
-                Entry.SupervisorNameEN = Chief.FullNameEN;
-                Entry.SupervisorNameTH = Chief.FullNameTH;
+                // By Normal operation.
+                if (null != Chief)
+                {
+                    Entry.SupervisorId = Chief.UserId;
+                    Entry.SupervisorNameEN = Chief.FullNameEN;
+                    Entry.SupervisorNameTH = Chief.FullNameTH;
+                }
+            }
+            else
+            {
+                // By Chief.
+                if (null != TODApp.Chief.Current)
+                {
+                    Entry.SupervisorId = TODApp.Chief.Current.UserId;
+                    Entry.SupervisorNameEN = TODApp.Chief.Current.FullNameEN;
+                    Entry.SupervisorNameTH = TODApp.Chief.Current.FullNameTH;
+                }
             }
 
             return true;

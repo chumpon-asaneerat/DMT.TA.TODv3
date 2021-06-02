@@ -25,8 +25,12 @@ Refactor DMT.TA.TODv4 #2123
 Refactor DMT.TA.TODv4 #2122
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2121
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project.
+    - Revenue Entry (by chief) use login chief instead of current chief.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2120

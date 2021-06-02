@@ -469,6 +469,12 @@ namespace DMT.TOD.Pages.Revenue
             txtRevDate2.DataContext = manager;
             txtUserId2.DataContext = manager;
             txtUserName2.DataContext = manager;
+
+            TODApp.Chief.Current = null; // clear chief.
+            if (null != _chief)
+            {
+                TODApp.Chief.Current = _chief; // assign current chief.
+            }
         }
 
         #endregion
@@ -637,10 +643,7 @@ namespace DMT.TOD.Pages.Revenue
             cmdOk.Visibility = Visibility.Visible;
 
             _chief = chief;
-            if (null != _chief)
-            {
 
-            }
             if (null != manager)
             {
                 manager.User = null; // Reset.

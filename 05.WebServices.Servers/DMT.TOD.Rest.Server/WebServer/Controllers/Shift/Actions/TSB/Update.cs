@@ -19,18 +19,10 @@ namespace DMT.Services
             //[AllowAnonymous]
             public NDbResult Update([FromBody] Models.TSBShift value)
             {
-                //var ret = Models.TSBShift.ChangeShift(value);
-
-                var ret = new NDbResult();
-                ret.Error(new Exception("Not implements."));
+                var ret = Models.TSBShift.ChangeShift(value);
                 if (null != ret && ret.Ok)
                 {
-                    /*
-                    Task.Run(() => 
-                    { 
-                        TANotifyService.Instance.RaiseTSBShiftChanged(); 
-                    });
-                    */
+                    TODNotifyService.Instance.RaiseTSBShiftChanged();
                 }
                 return ret;
             }

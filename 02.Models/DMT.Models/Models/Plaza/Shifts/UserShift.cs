@@ -749,18 +749,12 @@ namespace DMT.Models
                 try
                 {
                     // Update User Shift.
-                    result.Success(); // TODO: Temp code.
-                    /*
-                    if (!value.End.HasValue || value.End == DateTime.MinValue)
-                        value.End = DateTime.Now;
-
                     var saveRet = Save(value);
                     result.errors = saveRet.errors;
                     if (!result.errors.hasError)
                     {
                         result.Success();
                     }
-                    */
                 }
                 catch (Exception ex)
                 {

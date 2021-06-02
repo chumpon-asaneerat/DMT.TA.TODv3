@@ -181,7 +181,6 @@
     <Compile Include="Services\RuntimeManager.cs" />
     <Compile Include="Services\TAManagers.cs" />
     <Compile Include="Services\TAServerManager.cs" />
-    <Compile Include="Services\TODClientManager.cs" />
     <Compile Include="SignIn\Pages\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>

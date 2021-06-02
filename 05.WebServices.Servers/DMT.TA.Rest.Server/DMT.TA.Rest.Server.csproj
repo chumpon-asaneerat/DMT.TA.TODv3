@@ -141,8 +141,10 @@
     <Compile Include="WebServer\Controllers\Shift\Actions\Common\Gets.cs" />
     <Compile Include="WebServer\Controllers\Shift\Actions\TSB\Change.cs" />
     <Compile Include="WebServer\Controllers\Shift\Actions\TSB\Current.cs" />
+    <Compile Include="WebServer\Controllers\Shift\Actions\User\Change.cs" />
     <Compile Include="WebServer\Controllers\Shift\Shift.Controller.cs" />
     <Compile Include="WebServer\Services\TANotifyService.cs" />
+    <Compile Include="WebServer\Services\TODClientManager.cs" />
     <Compile Include="WebServer\TAWebServer.cs" />
   </ItemGroup>
   <ItemGroup>

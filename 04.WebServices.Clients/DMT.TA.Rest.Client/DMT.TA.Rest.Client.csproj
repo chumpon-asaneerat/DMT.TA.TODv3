@@ -87,6 +87,7 @@
     <Compile Include="Services\Shift\Operations\Common\Gets.cs" />
     <Compile Include="Services\Shift\Operations\TSB\Change.cs" />
     <Compile Include="Services\Shift\Operations\TSB\Current.cs" />
+    <Compile Include="Services\Shift\Operations\User\Change.cs" />
     <Compile Include="Services\Shift\Shift.Operations.cs" />
     <Compile Include="Services\TA.cs" />
     <Compile Include="Services\TAMQService.cs" />

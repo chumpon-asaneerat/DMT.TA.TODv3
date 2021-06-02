@@ -83,6 +83,20 @@ namespace DMT.Services
             MoveToBackup(fullFileName);
         }
 
+        private void SendChangeUserShift(string fullFileName, Models.UserShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            var ret = ops.Shift.User.Change(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
         private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -142,6 +156,21 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("user.shift.change"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.UserShift>();
+                    SendChangeUserShift(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
             else if (fullFileName.Contains("revenue.entry"))
             {
                 try
@@ -185,6 +214,17 @@ namespace DMT.Services
         {
             if (null == value) return;
             string fileName = GetFileName("tsb.shift.change");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The UserShift instance.</param>
+        public void WriteQueue(Models.UserShift value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("user.shift.change");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

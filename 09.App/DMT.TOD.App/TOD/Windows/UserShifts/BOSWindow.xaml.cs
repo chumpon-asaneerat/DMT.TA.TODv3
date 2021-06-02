@@ -81,6 +81,12 @@ namespace DMT.TOD.Windows.UserShifts
                         msg.Setup("ไม่สามารถเปิดกะใหม่ได้ เนื่องจาก ยังมีกะที่ยังไม่ป้อนรายได้", "DMT - Tour of Duty");
                         msg.ShowDialog();
                     }
+                    else
+                    {
+
+                        // Send User Shift to TA Message Queue.
+                        TAMQService.Instance.WriteQueue(inst);
+                    }
                 }
             }
 

@@ -78,7 +78,7 @@ namespace DMT.Services
 
         #region Public Methods
 
-        #region Change
+        #region TSB Shift Change -> Sent to all TOD apps.
 
         /// <summary>
         /// Raise all TOD TSBShiftChanged.
@@ -108,6 +108,16 @@ namespace DMT.Services
         }
 
         #endregion
+
+        public void SendToTOD(UserShift value)
+        {
+
+        }
+
+        public void SendToTOD(RevenueEntry value)
+        {
+
+        }
 
         #endregion
     }

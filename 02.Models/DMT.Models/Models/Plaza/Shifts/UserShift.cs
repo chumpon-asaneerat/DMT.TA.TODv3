@@ -725,6 +725,52 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Update User Shift.
+        /// </summary>
+        /// <param name="value">The UserShift instance.</param>
+        /// <returns>Returns User Shift Result.</returns>
+        public static NDbResult UpdateUserShift(UserShift value)
+        {
+            var result = new NDbResult();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == value)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    // Update User Shift.
+                    result.Success(); // TODO: Temp code.
+                    /*
+                    if (!value.End.HasValue || value.End == DateTime.MinValue)
+                        value.End = DateTime.Now;
+
+                    var saveRet = Save(value);
+                    result.errors = saveRet.errors;
+                    if (!result.errors.hasError)
+                    {
+                        result.Success();
+                    }
+                    */
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
         /// Gets User Shifts (Active TSB).
         /// </summary>
         /// <param name="userId">The User Id.</param>

@@ -14,7 +14,7 @@
                         /// <summary>Gets route name.</summary>
                         public const string Name = "Update";
                         /// <summary>Gets route url.</summary>
-                        public const string Url = TSB.Url + @"/" + Name;
+                        public const string Url = User.Url + @"/" + Name;
                     }
                 }
             }

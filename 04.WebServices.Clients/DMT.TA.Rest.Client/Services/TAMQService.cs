@@ -111,24 +111,6 @@ namespace DMT.Services
             }
             // Success
             MoveToBackup(fullFileName);
-            /*
-            var ret = ops.Security.changePassword(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
-            */
         }
 
         #endregion
@@ -181,7 +163,7 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
-            else if (fullFileName.Contains("revenue.entry"))
+            else if (fullFileName.Contains("revenue.entry.update"))
             {
                 try
                 {
@@ -198,7 +180,7 @@ namespace DMT.Services
             }
             else
             {
-                // process not staff list so Not Supports file.
+                // process not Supports file.
                 med.Err("Not Supports message.");
                 MoveToNotSupports(fullFileName);
             }
@@ -245,7 +227,7 @@ namespace DMT.Services
         public void WriteQueue(Models.RevenueEntry value)
         {
             if (null == value) return;
-            string fileName = GetFileName("revenue.entry");
+            string fileName = GetFileName("revenue.entry.update");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

@@ -127,7 +127,8 @@ namespace DMT
 #endif
 
             // Notify all TOD Apps that TSB Shift is changed.
-            TODClientManager.Instance.TODTSBShiftChanged();
+            // TODO: Need Remove later.
+            //TODClientManager.Instance.TODTSBShiftChanged();
 
             Window window = null;
             window = new MainWindow();
@@ -197,9 +198,10 @@ namespace DMT
         private void TSBShiftChanged(object sender, EventArgs e)
         {
             // Notify all TOD Apps that TSB Shift is changed.
-            TODClientManager.Instance.TODTSBShiftChanged();
+            // TODO: Need Remove later.
+            //TODClientManager.Instance.TODTSBShiftChanged();
 
-            RuntimeManager.Instance.RaiseTSBShiftChanged();
+            RuntimeManager.Instance.RaiseTSBShiftChanged(); // notify UI to update TSB Shift.
         }
     }
 }

@@ -600,6 +600,10 @@ namespace DMT.Services
             {
                 med.Info("RabbitMQ Client service connect failed.");
             }
+
+            // Start TOD Client Manager
+            TODClientManager.Instance.Start();
+            med.Info("TOD Client Manager start.");
         }
         /// <summary>
         /// Shutdown service.
@@ -609,6 +613,10 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             TAConfigManager.Instance.ConfigChanged -= ConfigChanged;
+
+            // Shutdown TOD Client Manager
+            TODClientManager.Instance.Shutdown();
+            med.Info("TOD Client Manager shutdown.");
 
             // Shutdown Rabbit MQ Service.
             RabbitMQService.Instance.Shutdown();

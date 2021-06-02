@@ -19,19 +19,15 @@ namespace DMT.Services
             //[AllowAnonymous]
             public NDbResult Update([FromBody] Models.TSBShift value)
             {
-                //var ret = Models.TSBShift.ChangeShift(value);
+                // Write to Queue for send to all TOD clients.
+                TODClientManager.Instance.SendToTOD(value);
 
-                var ret = new NDbResult();
-                ret.Error(new Exception("Not implements."));
+                var ret = Models.TSBShift.ChangeShift(value);
                 if (null != ret && ret.Ok)
                 {
-                    /*
-                    Task.Run(() => 
-                    { 
-                        TANotifyService.Instance.RaiseTSBShiftChanged(); 
-                    });
-                    */
+                    TANotifyService.Instance.RaiseTSBShiftChanged();
                 }
+
                 return ret;
             }
         }

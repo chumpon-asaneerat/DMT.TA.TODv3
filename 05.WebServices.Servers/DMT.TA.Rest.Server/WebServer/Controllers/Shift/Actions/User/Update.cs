@@ -20,7 +20,9 @@ namespace DMT.Services
             public NDbResult Update([FromBody] Models.UserShift value)
             {
                 //var ret = Models.UserShift.UpdateUserShift(value);
+
                 var ret = new NDbResult();
+                ret.Error(new Exception("Not implements."));
                 if (null != ret && ret.Ok)
                 {
                     /*

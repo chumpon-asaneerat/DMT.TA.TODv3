@@ -76,6 +76,27 @@ namespace DMT.Services
 
         #endregion
 
+        #region Private Methods
+
+        private void ToAllTODClients<T>(T value)
+        {
+            if (null == TAConfigManager.Instance.Value || null == TAConfigManager.Instance.Value.Services) return;
+            var configs = TAConfigManager.Instance.Value.Services.TODApps;
+
+            // Set operation DMT.
+            Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
+
+            if (null != configs && configs.Count > 0)
+            {
+                configs.ForEach(cfg => 
+                {
+                    Operations.TOD.Config = cfg; // varies by client config                   
+                });
+            }
+        }
+
+        #endregion
+
         #region Public Methods
 
         #region TSB Shift Change -> Sent to all TOD apps.

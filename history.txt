@@ -10,8 +10,10 @@ Refactor DMT.TA.TODv4 #2128
 Refactor DMT.TA.TODv4 #2127
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2126
-- 
+- DMT.TAxTODv3
+  - Re-implements TA-TOD communication WS #3.
 
 [commited]
 Refactor DMT.TA.TODv4 #2125

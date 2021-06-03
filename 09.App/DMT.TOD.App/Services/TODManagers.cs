@@ -2410,7 +2410,9 @@ namespace DMT.Services
             {
                 med.Info("No more jobs. Auto close user shift.", Entry.RevenueId);
                 // no lane activitie in user shift.
-                UserShift.EndUserShift(UserShift);
+                var ret = UserShift.EndUserShift(UserShift).Value();
+
+                GenerateUserShiftFile(ret);
             }
             else
             {
@@ -2423,12 +2425,29 @@ namespace DMT.Services
             return !bCloseUserShift;
         }
 
+        private void GenerateUserShiftFile(UserShift value)
+        {
+            if (null == value)
+                return;
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                // Send Entry to TA Message Queue
+                TAMQService.Instance.WriteQueue(value);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+
         private void GenerateRevnueFile()
         {
             if (null == Entry) return;
 
-            // Generate File.
             MethodBase med = MethodBase.GetCurrentMethod();
+
+            // Generate File.
             try
             {
                 if (null == Entry || null == PlazaGroup) return;

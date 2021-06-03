@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Reflection;
 using System.Web.Http;
+using NLib;
 using DMT.Models;
 
 #endregion
@@ -19,18 +21,18 @@ namespace DMT.Services
             //[AllowAnonymous]
             public NDbResult Update([FromBody] Models.UserShift value)
             {
-                //var ret = Models.UserShift.UpdateUserShift(value);
-                var ret = new NDbResult();
-                ret.Error(new Exception("Not implements."));
+                MethodBase med = MethodBase.GetCurrentMethod();
+
+                var ret = Models.UserShift.UpdateUserShift(value);
                 if (null != ret && ret.Ok)
                 {
-                    /*
-                    Task.Run(() => 
-                    { 
-                        TANotifyService.Instance.RaiseTSBShiftChanged(); 
-                    });
-                    */
+                    med.Info("Sync UserShift from TA - success.");
                 }
+                else
+                {
+                    med.Info("Sync UserShift from TA - failed.");
+                }
+
                 return ret;
             }
         }

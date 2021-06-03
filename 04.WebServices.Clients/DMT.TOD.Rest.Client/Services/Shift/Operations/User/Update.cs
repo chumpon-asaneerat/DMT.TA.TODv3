@@ -20,7 +20,7 @@ namespace DMT.Services.Operations
                 public static NRestResult Update(Models.UserShift value)
                 {
                     var ret = Execute(
-                        RouteConsts.TA.Shift.TSB.Update.Url, value);
+                        RouteConsts.TOD.Shift.User.Update.Url, value);
                     return ret;
                 }
             }

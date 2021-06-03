@@ -686,9 +686,9 @@ namespace DMT.Models
         /// </summary>
         /// <param name="value">The UserShift instance.</param>
         /// <returns>Returns End User Shift Result.</returns>
-        public static NDbResult EndUserShift(UserShift value)
+        public static NDbResult<UserShift> EndUserShift(UserShift value)
         {
-            var result = new NDbResult();
+            var result = new NDbResult<UserShift>();
             SQLiteConnection db = Default;
             if (null == db)
             {
@@ -709,12 +709,7 @@ namespace DMT.Models
                     if (!value.End.HasValue || value.End == DateTime.MinValue)
                         value.End = DateTime.Now;
 
-                    var saveRet = Save(value);
-                    result.errors = saveRet.errors;
-                    if (!result.errors.hasError)
-                    {
-                        result.Success();
-                    }
+                    result = Save(value);
                 }
                 catch (Exception ex)
                 {

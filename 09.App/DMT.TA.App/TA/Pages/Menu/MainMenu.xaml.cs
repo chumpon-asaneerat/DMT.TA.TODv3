@@ -48,7 +48,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - ยืม/แลก เงินยืมทอนฝ่ายบัญชี");
+            med.Info("==> MENU - ยืม/แลก เงินยืมทอนฝ่ายบัญชี (REQUSET EXCHANGE)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // ยืม/แลก เงินยืมทอนฝ่ายบัญชี
@@ -62,7 +62,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - คืนเงินยืมทอนฝ่ายบัญชี");
+            med.Info("==> MENU - คืนเงินยืมทอนฝ่ายบัญชี (RETURNS EXCHANGE)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // คืนเงินยืมทอนฝ่ายบัญชี
@@ -76,7 +76,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - แลกเงินหมุนเวียนในด่าน");
+            med.Info("==> MENU - แลกเงินหมุนเวียนในด่าน (INTERNAL EXCHANGE)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // แลกเงินหมุนเวียนในด่าน
@@ -90,7 +90,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - หัวหน่าขายคูปอง");
+            med.Info("==> MENU - หัวหน่าขายคูปอง (TSB SOLD COUPON)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // หัวหน่าขายคูปอง
@@ -103,7 +103,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - ประวัติการขายคูปอง");
+            med.Info("==> MENU - ประวัติการขายคูปอง (COUPON SOLD HISTORY)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // ประวัติการขายคูปอง
@@ -116,7 +116,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - รายงานสรุปการยืมเงินทอน");
+            med.Info("==> MENU - รายงานสรุปการยืมเงินทอน (TSB CREDIT MOVEMENT SUMMARY)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // รายงานสรุปการยืมเงินทอน
@@ -132,7 +132,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - เงินยืมทอน (collector)");
+            med.Info("==> MENU - เงินยืมทอน (USER CREDIT MANAGEMENT)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // เงินยืมทอน (collector)
@@ -146,7 +146,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - รับคูปอง (collector)");
+            med.Info("==> MENU - รับคูปอง (USER RECEIVED COUPON)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // รับคูปอง (collector)
@@ -160,7 +160,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - คืนคูปอง (collector)");
+            med.Info("==> MENU - คืนคูปอง (USER RETURNS COUPON)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // คืนคูปอง (collector)
@@ -173,7 +173,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - ประวัติการแลกเงินยืมทอน (collector)");
+            med.Info("==> MENU - ประวัติการแลกเงินยืมทอน (USER CREDIT MOVEMENT SUMMARY)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // ประวัติการแลกเงินยืมทอน (collector)
@@ -187,7 +187,7 @@ namespace DMT.TA.Pages.Menu
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            med.Info("==> MENU - เช็คยอดด่าน");
+            med.Info("==> MENU - เช็คยอดด่าน (TSB CREDIT/COUPON BALANCE SUMMARY)");
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // เช็คยอดด่าน

@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2136
 Refactor DMT.TA.TODv4 #2135
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2134
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Fixed bug RevenueEntry pages not update user shift (Both page).
 
 [commited]
 Refactor DMT.TA.TODv4 #2133

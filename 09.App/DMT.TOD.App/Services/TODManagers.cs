@@ -646,7 +646,7 @@ namespace DMT.Services
         /// </summary>
         public TSBShift TSBShift { get; private set; }
         /// <summary>
-        /// Gets Current Shift
+        /// Gets Current Shift (Required to used later for create user shift).
         /// </summary>
         public Models.Shift Shift
         {
@@ -799,36 +799,7 @@ namespace DMT.Services
 
         private void Current_UserChanged(object sender, EventArgs e)
         {
-            if (null == Current || null == Current.User)
-            {
-                _userShift = null;
-            }
-            else
-            {
-                if (!IsCustom)
-                {
-                    _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
-                }
-                else
-                {
-                    // Create new instance.
-                    var inst = new UserShift();
-                    // Assign properties
-                    if (null != Current.TSB) Current.TSB.AssignTo(inst);
-                    if (null != Current.Shift) Current.Shift.AssignTo(inst);
-                    if (null != Current.User) Current.User.AssignTo(inst);
-
-                    // Update UserShiftId from exists one.
-                    if (null != _userShift) inst.UserShiftId = _userShift.UserShiftId;
-
-                    // Update Begin and End Date from exists one.
-                    inst.Begin = (null != _userShift) ? _userShift.Begin : new DateTime?();
-                    inst.End = (null != _userShift) ? _userShift.End : new DateTime?();
-
-                    // Update to current instance.
-                    _userShift = inst;
-                }
-            }
+            UpdateUserShift();
             // Raise Event.
             UserChanged.Call(sender, e);
             UserShiftChanged.Call(this, EventArgs.Empty);
@@ -836,12 +807,14 @@ namespace DMT.Services
 
         private void Current_ShiftChanged(object sender, EventArgs e)
         {
+            UpdateUserShift();
             // Raise Event.
             ShiftChanged.Call(sender, e);
         }
 
         private void Current_PlazaGroupChanged(object sender, EventArgs e)
         {
+            UpdateUserShift();
             // Raise Event.
             PlazaGroupChanged.Call(sender, e);
         }
@@ -874,6 +847,44 @@ namespace DMT.Services
             inst.End = inst.Begin;
 
             return inst;
+        }
+        /// <summary>
+        /// Update User Shift. force update.
+        /// </summary>
+        public void UpdateUserShift()
+        {
+            if (null == Current || null == Current.User)
+            {
+                _userShift = null;
+            }
+            else
+            {
+                if (!IsCustom)
+                {
+                    _userShift = UserShift.GetUserShift(Current.User.UserId).Value();
+                }
+                else
+                {
+                    // Create new instance.
+                    var inst = new UserShift();
+                    // Assign properties
+                    if (null != Current.TSB) Current.TSB.AssignTo(inst);
+                    if (null != Current.Shift) Current.Shift.AssignTo(inst);
+                    if (null != Current.User) Current.User.AssignTo(inst);
+
+                    // Update UserShiftId from exists one.
+                    if (null != _userShift) inst.UserShiftId = _userShift.UserShiftId;
+
+                    // Update Begin and End Date from exists one.
+                    inst.Begin = (null != _userShift) ? _userShift.Begin : new DateTime?();
+                    inst.End = (null != _userShift) ? _userShift.End : new DateTime?();
+
+                    // Update to current instance.
+                    _userShift = inst;
+                }
+            }
+            // Raise Event.
+            UserShiftChanged.Call(this, EventArgs.Empty);
         }
 
         #endregion
@@ -1938,6 +1949,10 @@ namespace DMT.Services
         private void UserShifts_UserShiftChanged(object sender, EventArgs e)
         {
             CheckRevenueDate();
+            
+            RaiseChanged("ShiftId");
+            RaiseChanged("ShiftNameEN");
+            RaiseChanged("ShiftNameTH");
         }
 
         #endregion
@@ -2711,29 +2726,45 @@ namespace DMT.Services
         /// </summary>
         public bool HasUserShift
         {
-            get { return (null != UserShifts && null != UserShifts.Shift); }
+            get 
+            { 
+                return (null != UserShifts && null != UserShifts.Shift); 
+            }
         }
         /// <summary>
         /// Gets Collector UserShift.
         /// </summary>
         public UserShift UserShift
         {
-            get { return (HasUserShift) ? UserShifts.Shift : null; }
+            get 
+            { 
+                return (null != UserShifts) ? UserShifts.Shift : null; 
+            }
         }
         /// <summary>
-        /// Gets Shift Name EN.
+        /// Gets User Shift Name EN.
         /// </summary>
         public string ShiftNameEN
         {
-            get { return (HasUserShift) ? UserShifts.Shift.ShiftNameEN : string.Empty; }
+            get 
+            {
+                var ret = (HasUserShift) ? UserShifts.Shift.ShiftNameEN : string.Empty;
+                //Console.WriteLine("Shift Name EN: {0}", ret);
+                return ret;
+            }
             set { }
         }
         /// <summary>
-        /// Gets Shift Name TH.
+        /// Gets User Shift Name TH.
         /// </summary>
         public string ShiftNameTH
         {
-            get { return (HasUserShift) ? UserShifts.Shift.ShiftNameTH : string.Empty; }
+            get 
+            {
+                var ret = (HasUserShift) ? UserShifts.Shift.ShiftNameTH : string.Empty;
+                //Console.WriteLine("Shift Name TH: {0}", ret);
+                return ret; 
+            }
             set { }
         }
 

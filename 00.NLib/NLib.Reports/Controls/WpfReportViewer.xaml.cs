@@ -133,12 +133,10 @@ namespace NLib.Wpf.Controls
         private void RptViewer_RenderingComplete(object sender, RenderingCompleteEventArgs e)
         {
             //Console.WriteLine("Render completed call refresh.");
-            /*
             if (null != rptViewer.LocalReport)
             {
-                rptViewer.LocalReport.Refresh();
+                //rptViewer.LocalReport.Refresh();
             }
-            */
             //rptViewer.Refresh();
         }
 
@@ -165,7 +163,23 @@ namespace NLib.Wpf.Controls
         {
             rptViewer.Clear();
         }
-
+        /// <summary>
+        /// Refresh local report.
+        /// </summary>
+        public void Refresh()
+        {
+            if (null != rptViewer.LocalReport)
+            {
+                rptViewer.LocalReport.Refresh();
+            }
+        }
+        /// <summary>
+        /// Refresh Report.
+        /// </summary>
+        public void RefreshReport()
+        {
+            rptViewer.RefreshReport();
+        }
         /// <summary>
         /// Print.
         /// </summary>

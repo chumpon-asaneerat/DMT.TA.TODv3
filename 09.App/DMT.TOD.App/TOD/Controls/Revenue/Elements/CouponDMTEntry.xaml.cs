@@ -45,6 +45,9 @@ namespace DMT.TOD.Controls.Revenue.Elements
         /// <param name="value">The RevenueEntryManager instance.</param>
         public void Setup(RevenueEntryManager value)
         {
+            // reset data context
+            this.DataContext = null;
+
             manager = value;
             this.DataContext = (null != manager) ? manager.Entry : null;
         }

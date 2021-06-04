@@ -130,6 +130,9 @@ namespace DMT.TOD.Controls.Revenue
         {
             manager = value;
 
+            // Reset data context
+            this.DataContext = null;
+
             if (null != manager)
             {
                 this.DataContext = manager.Entry;

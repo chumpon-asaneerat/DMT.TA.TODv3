@@ -94,7 +94,12 @@ namespace DMT.TOD.Pages.Revenue
             var shift = cbShifts.SelectedItem as Models.Shift;
             if (null == shift) return; // No Selection.
             // Set Current Shift.
-            if (null != manager.Current) manager.Current.Shift = shift;
+            if (null != manager.Current)
+            {
+                manager.Current.Shift = shift;
+                // Need to call for re create user shift based on selected shift.
+                manager.UserShifts.UpdateUserShift();
+            }
 
             RefreshJobList();
         }
@@ -438,6 +443,17 @@ namespace DMT.TOD.Pages.Revenue
 
         private void Reset(bool isNew)
         {
+            // Reset Bindings On Tab - Date Selection.
+            dtEntryDate.DataContext = null;
+            txtUserId.DataContext = null;
+            txtUserName.DataContext = null;
+            // Reset Bindings On Tab - Revenue Entry.
+            txtPlazaName.DataContext = null;
+            txtShiftName.DataContext = null;
+            txtRevDate2.DataContext = null;
+            txtUserId2.DataContext = null;
+            txtUserName2.DataContext = null;
+
             // Reset Plaza.
             cbPlazas.SelectedIndex = -1;
             LoadPlazaGroups();

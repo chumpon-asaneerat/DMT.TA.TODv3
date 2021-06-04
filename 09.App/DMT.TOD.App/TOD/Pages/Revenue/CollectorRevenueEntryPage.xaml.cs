@@ -343,6 +343,16 @@ namespace DMT.TOD.Pages.Revenue
 
         private void Reset()
         {
+            // Reset Bindings On Tab - Date Selection.
+            txtRevDate.DataContext = null;
+            txtEntryDate.DataContext = null;
+            // Reset Bindings On Tab - Revenue Entry.
+            txtPlazaName.DataContext = null;
+            txtShiftName.DataContext = null;
+            txtRevDate2.DataContext = null;
+            txtUserId2.DataContext = null;
+            txtUserName2.DataContext = null;
+
             // Reset Plaza.
             cbPlazas.SelectedIndex = -1;
             LoadPlazaGroups();

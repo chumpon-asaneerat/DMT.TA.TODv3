@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:local="clr-namespace:DMT.Controls.Utils"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     mc:Ignorable="PresentationOptions">
     <ResourceDictionary.MergedDictionaries>
@@ -8,6 +9,9 @@
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <!--  CONVERTER  -->
+    <local:StringToNumberConverter x:Key="ToNumberConverter" />
 
     <!--  EACH TRAFFIC COUNT DESCRIPTION  -->
     <Style x:Key="TrafficST25Description"
@@ -75,63 +79,63 @@
     <Style x:Key="TrafficST25Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficST25, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficST25, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficST50Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficST50, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficST50, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT1Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT1, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT1, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT2Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT2, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT2, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT5Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT5, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT5, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT10Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT10, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT10, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT20Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT20, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT20, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT50Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT50, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT50, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT100Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT100, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT100, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT500Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT500, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT500, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHT1000Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding TrafficBHT1000, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHT1000, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="TrafficBHTTotalAmount"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="IsEnabled" Value="False" />
-        <Setter Property="Text" Value="{Binding TrafficBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding TrafficBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  EACH BANK NOTE COUNT UNIT  -->
@@ -159,13 +163,13 @@
         <Setter Property="Width" Value="70" />
         <Setter Property="Text" Value="ยอดรวม" />
     </Style>
-    
+
     <!--  OTHER ENTRY (TEXTBOX)  -->
     <Style x:Key="OtherBHTTotal"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="90" />
-        <Setter Property="Text" Value="{Binding OtherBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding OtherBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  OTHER UNIT  -->
@@ -219,31 +223,31 @@
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponUsageBHT30, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT30, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="CouponUsageBHT35"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponUsageBHT35, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT35, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="CouponUsageBHT60"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponUsageBHT60, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT60, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="CouponUsageBHT70"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponUsageBHT70, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT70, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="CouponUsageBHT80"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponUsageBHT80, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT80, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  COUPON USAGE UNIT  -->
@@ -283,14 +287,14 @@
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponSoldBHT35, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT35, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="CouponSoldBHT80Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding CouponSoldBHT80, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT80, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="CouponSoldBHT35Total"
@@ -298,7 +302,7 @@
            TargetType="TextBox">
         <Setter Property="Width" Value="90" />
         <Setter Property="IsEnabled" Value="False" />
-        <Setter Property="Text" Value="{Binding CouponSoldBHT35Total, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT35Total, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="CouponSoldBHT80Total"
@@ -306,7 +310,7 @@
            TargetType="TextBox">
         <Setter Property="Width" Value="90" />
         <Setter Property="IsEnabled" Value="False" />
-        <Setter Property="Text" Value="{Binding CouponSoldBHT80Total, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT80Total, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="CouponSoldBHTTotal"
@@ -314,7 +318,7 @@
            TargetType="TextBox">
         <Setter Property="Width" Value="90" />
         <Setter Property="IsEnabled" Value="False" />
-        <Setter Property="Text" Value="{Binding CouponSoldBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  COUPON SOLD UNIT  -->
@@ -362,14 +366,14 @@
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding FreePassUsageClassA, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding FreePassUsageClassA, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="FreePassUsageOther"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
-        <Setter Property="Text" Value="{Binding FreePassUsageOther, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding FreePassUsageOther, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  FREE PASS UNIT  -->

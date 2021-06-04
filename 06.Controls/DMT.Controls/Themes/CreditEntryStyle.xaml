@@ -2,12 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:local="clr-namespace:DMT.Controls.Utils"
                     mc:Ignorable="PresentationOptions">
     <ResourceDictionary.MergedDictionaries>
         <!--  Force Merge related resource dictionary  -->
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
         <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <!--  CONVERTER  -->
+    <local:StringToNumberConverter x:Key="ToNumberConverter" />
 
     <!--  COMMON BANK NOTE DESCRIPTION  -->
     <Style x:Key="BankNoteDescriptionStyle" TargetType="TextBlock">
@@ -99,67 +103,67 @@
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding ST25Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountST25, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountST25, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="ST50Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding ST50Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountST50, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountST50, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT1Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT1Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT1, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT1, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT2Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT2Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT2, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT2, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT5Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT5Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT5, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT5, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT10Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT10Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT10, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT10, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT20Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT20Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT20, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT20, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT50Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT50Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT50, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT50, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT100Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT100Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT100, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT100, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT500Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT500Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT500, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT500, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHT1000Amount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Foreground" Value="{Binding BHT1000Foreground}" />
-        <Setter Property="Text" Value="{Binding AmountBHT1000, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AmountBHT1000, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BHTTotalAmount"
            BasedOn="{StaticResource BankNoteAmountStyle}"
@@ -167,7 +171,7 @@
         <!--
         <Setter Property="Foreground" Value="{Binding BHTTotalForeground}" />
         -->
-        <Setter Property="Text" Value="{Binding BHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding BHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  EACH BANK NOTE AMOUNT UNIT  -->
@@ -223,27 +227,27 @@
     <Style x:Key="CreditFlowBHTTotal"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding CreditFlowBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding CreditFlowBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="BorrowBHTTotal"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding BorrowBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding BorrowBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="UserBHTTotal"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding UserBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding UserBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="AdditionalBHTTotal"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding AdditionalBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AdditionalBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="GrandBHTTotal"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding GrandBHTTotal, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding GrandBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <!--  EACH BALANCE AMOUNT UNIT  -->
@@ -321,25 +325,25 @@
     <Style x:Key="RequestExchangeBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding ExchangeBHT, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding ExchangeBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
     <Style x:Key="RequestBorrowBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding BorrowBHT, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding BorrowBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
     <Style x:Key="RequestAdditionBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding AdditionalBHT, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding AdditionalBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
     <Style x:Key="RequestGrandTotalBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
-        <Setter Property="Text" Value="{Binding GrandTotalBHT, StringFormat=N0}" />
+        <Setter Property="Text" Value="{Binding GrandTotalBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
 </ResourceDictionary>

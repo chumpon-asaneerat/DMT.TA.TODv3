@@ -10,8 +10,14 @@ Refactor DMT.TA.TODv4 #2138
 Refactor DMT.TA.TODv4 #2137
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2136
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Add StringToNumberConverter class
+    - Update RevenueEntryStyel.xaml -> all text box binding add conveter code.
+    - Update CouponEntryStyel.xaml -> all text box binding add conveter code.
+    - Update CreditEntryStyel.xaml -> all text box binding add conveter code.
 
 [commited]
 Refactor DMT.TA.TODv4 #2135

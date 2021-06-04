@@ -62,6 +62,7 @@
       <DependentUpon>ImageButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Utils\AttachProperties.cs" />
+    <Compile Include="Controls\Utils\StringToNumberConverter.cs" />
     <Compile Include="Controls\Utils\ThaiYearConverter.cs" />
     <Compile Include="MessageBox\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>

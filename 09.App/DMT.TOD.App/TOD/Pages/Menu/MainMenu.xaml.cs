@@ -4,6 +4,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
+using System.Reflection;
+using NLib;
 using NLib.Services;
 
 using DMT.Models;
@@ -37,6 +39,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdCollectorBOJ_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - User Change Shift");
+
             // เปิดกะ
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.TC);
@@ -50,6 +56,9 @@ namespace DMT.TOD.Pages.Menu
                 var usrshf = UserShift.GetUserShift(TODAPI.TSB.TSBId, user.UserId).Value();
                 if (null != usrshf)
                 {
+                    // write log
+                    med.Info("พนักงานเปิดกะแล้ว กรุณาป้อนรายได้ให้เสร็จสิ้นก่อน.");
+
                     var win = TODApp.Windows.MessageBox;
                     win.Setup("พนักงานเปิดกะแล้ว กรุณาป้อนรายได้ให้เสร็จสิ้นก่อน", "DMT - Tour of Duty");
                     win.ShowDialog();
@@ -69,6 +78,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdCollectorRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - Revenue Entry (User)");
+
             // ป้อนรายได้
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.TC);
@@ -82,6 +95,9 @@ namespace DMT.TOD.Pages.Menu
                 var usrshf = UserShift.GetUserShift(TODAPI.TSB.TSBId, user.UserId).Value();
                 if (null == usrshf)
                 {
+                    // write log
+                    med.Info("ไม่พบกะพนักงาน กรุณาเปิดกะก่อนเข้าทำงานที่ช่องทาง.");
+
                     var win = TODApp.Windows.MessageBox;
                     win.Setup("ไม่พบกะพนักงาน กรุณาเปิดกะก่อนเข้าทำงานที่ช่องทาง", "DMT - Tour of Duty");
                     win.ShowDialog();
@@ -98,6 +114,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdChiefRevenueEntry_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - Revenue Entry (Chief)");
+
             // ป้อนรายได้ย้อนหลัง
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.CTC);
@@ -114,6 +134,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdChiefChangeShift_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - Chief Change Shift");
+
             // หัวหน้าเปลี่ยนกะ
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.CTC);
@@ -130,6 +154,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdReportMenu_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - Report menu");
+
             // รายงานต่าง ๆ
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.CTC);
@@ -147,6 +175,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdEMVQRCode_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - EMV/QR Code");
+
             // EMV/QR Code
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.CTC);
@@ -163,6 +195,10 @@ namespace DMT.TOD.Pages.Menu
         // TEST - PASSED.
         private void cmdStaffJobs_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - Job List.");
+
             // รายชื่อพนักงานเข้ากะ
             var signinWin = TODApp.Windows.SignIn;
             signinWin.Setup(TODApp.Permissions.CTC);

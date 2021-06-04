@@ -4,8 +4,13 @@
 Refactor DMT.TA.TODv4 #2139
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2138
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Add log when click each menu buttons.
+  - DMT.TOD.App project
+    - Add log when click each menu buttons.
 
 [commited]
 Refactor DMT.TA.TODv4 #2137

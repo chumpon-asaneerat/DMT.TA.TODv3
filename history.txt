@@ -19,8 +19,11 @@ Refactor DMT.TA.TODv4 #2145
 Refactor DMT.TA.TODv4 #2144
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2143
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update TOD - Revenue Entry -> move button to left side on last tab.
 
 [commited]
 Refactor DMT.TA.TODv4 #2142

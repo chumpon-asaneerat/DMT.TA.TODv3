@@ -402,11 +402,11 @@
                         <Grid Width="5" DockPanel.Dock="Left" />
                         <ctrl:ImageButton x:Name="cmdOk"
                                           Click="cmdOk_Click"
-                                          DockPanel.Dock="Right"
+                                          DockPanel.Dock="Left"
                                           ImageSource="/DMT.TOD.App;component/Images/Button/Approve.png">
                             <TextBlock Style="{StaticResource ImageButtonText}" Text="ยืนยัน นำส่งรายได้" />
                         </ctrl:ImageButton>
-                        <Grid Width="5" DockPanel.Dock="Right" />
+                        <Grid Width="5" DockPanel.Dock="Left" />
                     </DockPanel>
                     <!--  WORK AREA  -->
                     <nlib:WpfReportViewer x:Name="rptViewer" Margin="2" />

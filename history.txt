@@ -22,9 +22,12 @@ Refactor DMT.TA.TODv4 #2144
 Refactor DMT.TA.TODv4 #2143
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2142
-- 
-
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - TOD app.xaml set singelton app.
+  
 [commited]
 Refactor DMT.TA.TODv4 #2141
 - DMT.TAxTODv3

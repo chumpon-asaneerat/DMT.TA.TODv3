@@ -68,6 +68,8 @@ namespace DMT.Services
 
         #region Private Methods
 
+        #region Send
+
         private void SendTSBCreditBalance(string fullFileName, Models.TAATSBCredit value) 
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -157,6 +159,12 @@ namespace DMT.Services
                 MoveToBackup(fullFileName);
             }
         }
+
+        #endregion
+
+        #region Resend (from error folder)
+
+        #endregion
 
         #endregion
 

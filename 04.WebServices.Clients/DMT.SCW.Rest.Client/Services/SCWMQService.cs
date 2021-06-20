@@ -64,6 +64,8 @@ namespace DMT.Services
 
         #region Private Methods
 
+        #region Send
+
         private void SendDeclare(string fullFileName, Models.SCWDeclare value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -151,6 +153,12 @@ namespace DMT.Services
             // Success
             MoveToBackup(fullFileName);
         }
+
+        #endregion
+
+        #region Resend (from error folder)
+
+        #endregion
 
         #endregion
 

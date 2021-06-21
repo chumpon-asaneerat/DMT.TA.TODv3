@@ -97,23 +97,27 @@ namespace DMT
             // Start log manager
             LogManager.Instance.Start();
 
+            var splash = new TA.Windows.SplashScreenWindow();
+            splash.Setup(5);
+            splash.Show();
+
             // Load Config service.
-            TAConfigManager.Instance.LoadConfig();
+            splash.Next("Load configuration");
             TAConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
+            TAConfigManager.Instance.LoadConfig();
+
             // Setup config reference to all rest client class.
-            // TODO: Need Check TOD App Implements
-            /*
-            Services.Operations.TOD.Config = TAConfigManager.Instance;
-            Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-            */
+            splash.Next("Setting up web service client(s).");
             Services.Operations.TAxTOD.Config = TAConfigManager.Instance;
             Services.Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
-
             Services.Operations.SCW.Config = TAConfigManager.Instance;
             Services.Operations.SCW.DMT = TAConfigManager.Instance; // required for NetworkId
+
+            splash.Next("Start configuration monitoring service.");
             TAConfigManager.Instance.Start(); // Start File Watcher.
 
-            // Start App Notify Server.
+            // Start Web Server.
+            splash.Next("Start local TA (application) web server.");
             appServ = new Services.TAWebServer();
             appServ.Start();
 
@@ -126,9 +130,8 @@ namespace DMT
             CouponSyncService.Instance.Start();
 #endif
 
-            // Notify all TOD Apps that TSB Shift is changed.
-            // TODO: Need Remove later.
-            //TODClientManager.Instance.TODTSBShiftChanged();
+            splash.Next("TA Application successfully loaded.");
+            splash.Wait(250);
 
             Window window = null;
             window = new MainWindow();
@@ -137,6 +140,9 @@ namespace DMT
             {
                 WpfAppContoller.Instance.Run(window);
             }
+
+            splash.Close();
+            splash = null;
         }
         /// <summary>
         /// OnExit
@@ -178,11 +184,6 @@ namespace DMT
         {
             // When Service Config file changed.
             // Update all related service operations.
-            // TODO: Need Check TOD App Implements
-            /*
-            Services.Operations.TOD.Config = TAConfigManager.Instance;
-            Services.Operations.TOD.DMT = TAConfigManager.Instance; // required for NetworkId
-            */
             Services.Operations.TAxTOD.Config = TAConfigManager.Instance;
             Services.Operations.TAxTOD.DMT = TAConfigManager.Instance; // required for NetworkId
 
@@ -197,10 +198,6 @@ namespace DMT
 
         private void TSBShiftChanged(object sender, EventArgs e)
         {
-            // Notify all TOD Apps that TSB Shift is changed.
-            // TODO: Need Remove later.
-            //TODClientManager.Instance.TODTSBShiftChanged();
-
             RuntimeManager.Instance.RaiseTSBShiftChanged(); // notify UI to update TSB Shift.
         }
     }

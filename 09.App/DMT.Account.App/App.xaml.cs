@@ -92,26 +92,42 @@ namespace DMT
             // Start log manager
             LogManager.Instance.Start();
 
+            var splash = new Account.Windows.SplashScreenWindow();
+            splash.Setup(8);
+            splash.Show();
+
             // Start local database (account).
+            splash.Next("Start database service.");
             Services.AccountDbServer.Instance.Start();
 
             // Load Config service.
-            AccountConfigManager.Instance.LoadConfig();
+            splash.Next("Load configuration");
             AccountConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
+            AccountConfigManager.Instance.LoadConfig();
+
+            splash.Next("Setting up web service client(s).");
             Services.Operations.TAxTOD.Config = AccountConfigManager.Instance;
             Services.Operations.TAxTOD.DMT = AccountConfigManager.Instance; // required for NetworkId
             Services.Operations.SCW.Config = AccountConfigManager.Instance;
             Services.Operations.SCW.DMT = AccountConfigManager.Instance; // required for NetworkId
+
+            splash.Next("Start configuration monitoring service.");
             AccountConfigManager.Instance.Start(); // Start File Watcher.
 
+            splash.Next("Start message queue service (SCW WS).");
             // Start SCWMQ
             Services.SCWMQService.Instance.Start();
+            splash.Next("Start message queue service (TA WS).");
             // Start TAxTOD MQ Service
             Services.TAxTODMQService.Instance.Start();
 
             // Start RabbitMQ
+            splash.Next("Start message queue service (RabbitMQ).");
             Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
             Services.RabbitMQService.Instance.Start();
+
+            splash.Next("TA Application (Account) successfully loaded.");
+            splash.Wait(250);
 
             Window window = null;
             window = new MainWindow();
@@ -120,6 +136,9 @@ namespace DMT
             {
                 WpfAppContoller.Instance.Run(window);
             }
+
+            splash.Close();
+            splash = null;
         }
         /// <summary>
         /// OnExit

@@ -182,6 +182,9 @@
     <Compile Include="Account\Windows\SAP\SAPCustomerWindow.xaml.cs">
       <DependentUpon>SAPCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Windows\Utils\SplashScreenWindow.xaml.cs">
+      <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Header\Elements\HeaderBarService.cs" />
     <Compile Include="Services\AccountApp.cs" />
     <Compile Include="Header\Elements\HeaderDateTime.xaml.cs">
@@ -260,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Windows\SAP\SAPCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Windows\Utils\SplashScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

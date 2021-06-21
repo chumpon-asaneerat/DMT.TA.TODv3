@@ -126,13 +126,13 @@ namespace DMT
             splash.Next("Setting up web service client(s).");
             Services.Operations.TA.Config = TODConfigManager.Instance;
             Services.Operations.TA.DMT = TODConfigManager.Instance; // required for NetworkId
-
-            splash.Next("Start configuration monitoring service.");
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
+
+            splash.Next("Start configuration monitoring service.");
             TODConfigManager.Instance.Start(); // Start File Watcher.
 
-            // Start App Notify Server.
+            // Start Web Server.
             splash.Next("Start local TOD (application) web server.");
             appServ = new Services.TODWebServer();
             appServ.Start();

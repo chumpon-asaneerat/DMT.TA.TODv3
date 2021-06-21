@@ -310,6 +310,9 @@
     <Compile Include="TA\Windows\Plaza\PlazaBalanceSummaryWindow.xaml.cs">
       <DependentUpon>PlazaBalanceSummaryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Utils\SplashScreenWindow.xaml.cs">
+      <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Header\Elements\HeaderChief.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -511,6 +514,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Windows\Plaza\PlazaBalanceSummaryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Utils\SplashScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

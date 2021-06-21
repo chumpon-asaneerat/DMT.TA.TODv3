@@ -50,6 +50,10 @@ namespace DMT.Services
 
         #endregion
 
+        #region Internal Variables
+
+        #endregion
+
         #region Constructor and Destructor
 
         /// <summary>

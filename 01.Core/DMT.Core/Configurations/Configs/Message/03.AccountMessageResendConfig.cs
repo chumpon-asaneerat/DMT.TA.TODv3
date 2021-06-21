@@ -27,7 +27,17 @@ namespace DMT.Configurations
         /// <summary>
         /// Constructor.
         /// </summary>
-        public AccountMessageResendConfig() : base() { }
+        public AccountMessageResendConfig() : base() 
+        {
+            this.IntervalSeconds = 3600;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets Interval in seconds. Default 3600 seomds.</summary>
+        public int IntervalSeconds { get; set; }
 
         #endregion
     }

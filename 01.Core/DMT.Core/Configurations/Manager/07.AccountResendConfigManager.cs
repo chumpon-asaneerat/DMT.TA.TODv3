@@ -80,7 +80,6 @@ namespace DMT.Configurations
 
         #region Public Properties
 
-
         #endregion
     }
 

@@ -10,8 +10,11 @@ Refactor DMT.TA.TODv4 #2148
 Refactor DMT.TA.TODv4 #2147
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2146
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Add splash screen and update app.xaml.cs.
 
 [commited]
 Refactor DMT.TA.TODv4 #2145

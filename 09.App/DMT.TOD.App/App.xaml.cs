@@ -113,18 +113,27 @@ namespace DMT
             // Start log manager
             LogManager.Instance.Start();
 
+            var splash = new TOD.Windows.SplashScreenWindow();
+            splash.Setup(5);
+            splash.Show();
+
             // Load Config service.
-            TODConfigManager.Instance.LoadConfig();
+            splash.Next("Load configuration");
             TODConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
+            TODConfigManager.Instance.LoadConfig();
+
             // Setup config reference to all rest client class.
+            splash.Next("Setting up web service client(s).");
             Services.Operations.TA.Config = TODConfigManager.Instance;
             Services.Operations.TA.DMT = TODConfigManager.Instance; // required for NetworkId
 
+            splash.Next("Start configuration monitoring service.");
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
             TODConfigManager.Instance.Start(); // Start File Watcher.
 
             // Start App Notify Server.
+            splash.Next("Start local TOD (application) web server.");
             appServ = new Services.TODWebServer();
             appServ.Start();
 
@@ -135,6 +144,9 @@ namespace DMT
             // Sync data.
             SyncTSBShift();
 
+            splash.Next("TOD Application successfully loaded.");
+            splash.Wait(250);
+
             Window window = null;
             window = new MainWindow();
 
@@ -142,6 +154,9 @@ namespace DMT
             {
                 WpfAppContoller.Instance.Run(window);
             }
+
+            splash.Close();
+            splash = null;
         }
         /// <summary>
         /// OnExit

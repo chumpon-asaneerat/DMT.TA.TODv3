@@ -13,8 +13,10 @@ Refactor DMT.TA.TODv4 #2157
 Refactor DMT.TA.TODv4 #2156
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2155
-- 
+- DMT.TAxTODv3
+  - Implement resend json message from error folder #5.
 
 [commited]
 Refactor DMT.TA.TODv4 #2154

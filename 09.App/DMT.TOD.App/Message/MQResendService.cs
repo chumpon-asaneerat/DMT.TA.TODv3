@@ -144,7 +144,7 @@ namespace DMT.Services
                 {
                     // Call resend
                     med.Info("TAApp resend message(s).");
-
+                    TAMQService.Instance.ResendMessages();
                     _lastUpdateds[MQ.TAApp] = DateTime.Now; // Update new time
                 }
             }

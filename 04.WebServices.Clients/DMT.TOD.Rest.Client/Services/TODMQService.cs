@@ -102,6 +102,11 @@ namespace DMT.Services
 
         #region Resend (from error folder)
 
+        private void ResendRevenueEntry(string fullFileName, Models.RevenueEntry value)
+        {
+
+        }
+
         #endregion
 
         #endregion
@@ -163,6 +168,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.RevenueEntry>();
+                    ResendRevenueEntry(fullFileName, value);
                 }
                 catch (Exception ex)
                 {

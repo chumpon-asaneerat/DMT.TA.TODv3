@@ -144,7 +144,7 @@ namespace DMT.Services
                 {
                     // Call resend
                     med.Info("TODApps resend message(s).");
-
+                    TODMQService.Instance.ResendMessages();
                     _lastUpdateds[MQ.TODApps] = DateTime.Now; // Update new time
                 }
             }

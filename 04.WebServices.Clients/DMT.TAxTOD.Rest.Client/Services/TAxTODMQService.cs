@@ -85,11 +85,8 @@ namespace DMT.Services
                 med.Err("Cannot connect to TA Server Web Service.");
                 return;
             }
-            else
-            {
-                // Success
-                MoveToBackup(fullFileName);
-            }
+            // Success
+            MoveToBackup(fullFileName);
         }
 
         private void SendUserCreditBalance(string fullFileName, Models.TAAUserCredit value) 
@@ -103,11 +100,8 @@ namespace DMT.Services
                 med.Err("Cannot connect to TA Server Web Service.");
                 return;
             }
-            else
-            {
-                // Success
-                MoveToBackup(fullFileName);
-            }
+            // Success
+            MoveToBackup(fullFileName);
         }
 
         private void SendTAServerCouponTransaction(string fullFileName, Models.TAServerCouponTransaction value)
@@ -121,11 +115,8 @@ namespace DMT.Services
                 med.Err("Cannot connect to TA Server Web Service.");
                 return;
             }
-            else
-            {
-                // Success
-                MoveToBackup(fullFileName);
-            }
+            // Success
+            MoveToBackup(fullFileName);
         }
 
         private void SendUpdateCouponReceived(string fullFileName, Models.TAServerCouponReceived value)
@@ -139,11 +130,8 @@ namespace DMT.Services
                 med.Err("Cannot connect to TA Server Web Service.");
                 return;
             }
-            else
-            {
-                // Success
-                MoveToBackup(fullFileName);
-            }
+            // Success
+            MoveToBackup(fullFileName);
         }
 
         private void SendSaveAR(string fullFileName, Models.SAPSaveAR value)
@@ -157,16 +145,93 @@ namespace DMT.Services
                 med.Err("Cannot connect to TA Server Web Service.");
                 return;
             }
-            else
-            {
-                // Success
-                MoveToBackup(fullFileName);
-            }
+            // Success
+            MoveToBackup(fullFileName);
         }
 
         #endregion
 
         #region Resend (from error folder)
+
+        private void ResendTSBCreditBalance(string fullFileName, Models.TAATSBCredit value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Credit.TSB.Save(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendUserCreditBalance(string fullFileName, Models.TAAUserCredit value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Credit.User.Save(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendTAServerCouponTransaction(string fullFileName, Models.TAServerCouponTransaction value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Coupon.Save(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendUpdateCouponReceived(string fullFileName, Models.TAServerCouponReceived value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Coupon.Received(value.Serialno);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendSaveAR(string fullFileName, Models.SAPSaveAR value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.SAP.SaveAR(value);
+            if (null == ret || ret.Failed)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
 
         #endregion
 
@@ -289,6 +354,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TAATSBCredit>();
+                    ResendTSBCreditBalance(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -302,6 +368,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TAAUserCredit>();
+                    ResendUserCreditBalance(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -315,6 +382,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TAServerCouponTransaction>();
+                    ResendTAServerCouponTransaction(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -328,6 +396,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TAServerCouponReceived>();
+                    ResendUpdateCouponReceived(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -341,6 +410,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.SAPSaveAR>();
+                    ResendSaveAR(fullFileName, value);
                 }
                 catch (Exception ex)
                 {

@@ -123,6 +123,54 @@ namespace DMT.Services
 
         #region Resend (from error folder)
 
+        private void ResendChangeTSBShift(string fullFileName, Models.TSBShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Shift.TSB.Update(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendChangeUserShift(string fullFileName, Models.UserShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Shift.User.Update(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendRevenueEntry(string fullFileName, Models.RevenueEntry value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Revenue.Update(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
         #endregion
 
         #endregion
@@ -213,6 +261,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TSBShift>();
+                    ResendChangeTSBShift(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -226,6 +275,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.UserShift>();
+                    ResendChangeUserShift(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -239,6 +289,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.RevenueEntry>();
+                    ResendRevenueEntry(fullFileName, value);
                 }
                 catch (Exception ex)
                 {

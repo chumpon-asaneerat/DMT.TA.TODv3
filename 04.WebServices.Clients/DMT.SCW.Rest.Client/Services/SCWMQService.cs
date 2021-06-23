@@ -162,6 +162,94 @@ namespace DMT.Services
 
         #region Resend (from error folder)
 
+        private void ResendDeclare(string fullFileName, Models.SCWDeclare value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.TOD.declare(value);
+            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service.");
+                return;
+            }
+            if (ret.status.code != "S200")
+            {
+                // Execute Result is not Success so move to error folder.
+                med.Err("SCW Web Service returns error.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendLogInAudit(string fullFileName, Models.SCWLogInAudit value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Security.loginAudit(value);
+            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service.");
+                return;
+            }
+            if (ret.status.code != "S200")
+            {
+                // Execute Result is not Success so move to error folder.
+                med.Err("SCW Web Service returns error.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendChangePassword(string fullFileName, Models.SCWChangePassword value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Security.changePassword(value);
+            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service.");
+                return;
+            }
+            if (ret.status.code != "S200")
+            {
+                // Execute Result is not Success so move to error folder.
+                med.Err("SCW Web Service returns error.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendSaveChiefDuty(string fullFileName, Models.SCWSaveChiefDuty value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.TOD.saveCheifDuty(value);
+            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service.");
+                return;
+            }
+            if (ret.status.code != "S200")
+            {
+                // Execute Result is not Success so move to error folder.
+                med.Err("SCW Web Service returns error.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
         #endregion
 
         #endregion
@@ -268,6 +356,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.SCWDeclare>();
+                    ResendDeclare(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -281,6 +370,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.SCWLogInAudit>();
+                    ResendLogInAudit(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -294,6 +384,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.SCWChangePassword>();
+                    ResendChangePassword(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -307,6 +398,7 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.SCWSaveChiefDuty>();
+                    ResendSaveChiefDuty(fullFileName, value);
                 }
                 catch (Exception ex)
                 {

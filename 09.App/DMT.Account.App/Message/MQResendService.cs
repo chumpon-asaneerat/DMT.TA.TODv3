@@ -11,13 +11,14 @@ using NLib;
 using DMT.Configurations;
 using DMT.Services;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 #endregion
 
 namespace DMT.Services
 {
     /// <summary>
-    /// The Message Queue Resend Service class.
+    /// The Message Queue Resend Service class (Account App).
     /// </summary>
     public class MQResendService
     {
@@ -44,9 +45,21 @@ namespace DMT.Services
 
         #endregion
 
+        #region Enum (private)
+
+        private enum MQ
+        {
+            SCW,
+            TAxTOD
+        }
+
+        #endregion
+
         #region Internal Variables
 
         private AccountResendConfigManager _cfgMgr = AccountResendConfigManager.Instance;
+        private DispatcherTimer timer = null;
+        private Dictionary<MQ, DateTime> _lastUpdateds = new Dictionary<MQ, DateTime>();
 
         #endregion
 
@@ -57,14 +70,24 @@ namespace DMT.Services
         /// </summary>
         private MQResendService() : base()
         {
-
+            ResetTimes();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
         }
         /// <summary>
         /// Destructor.
         /// </summary>
         ~MQResendService()
         {
+            if (null != timer)
+            {
+                timer.Tick -= timer_Tick;
+                timer.Stop();
+            }
+            timer = null;
 
+            Shutdown();
         }
 
         #endregion
@@ -73,7 +96,56 @@ namespace DMT.Services
 
         private void _cfgMgr_ConfigChanged(object sender, EventArgs e)
         {
+            ResetTimes();
+        }
 
+        void timer_Tick(object sender, EventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            TimeSpan ts;
+            // SCW
+            if (null != _cfgMgr.SCW)
+            {
+                ts = DateTime.Now - _lastUpdateds[MQ.SCW];
+                if (ts.TotalSeconds > _cfgMgr.SCW.IntervalSeconds)
+                {
+                    // Call resend
+                    med.Info("SCW resend message(s).");
+
+                    _lastUpdateds[MQ.SCW] = DateTime.Now; // Update new time
+                }
+            }
+            else
+            {
+                med.Info("SCW message resend config is null.");
+            }
+            // TAxTOD
+            if (null != _cfgMgr.TAxTOD)
+            {
+                ts = DateTime.Now - _lastUpdateds[MQ.TAxTOD];
+                if (ts.TotalSeconds > _cfgMgr.TAxTOD.IntervalSeconds)
+                {
+                    // Call resend
+                    med.Info("TAxTOD resend message(s).");
+
+                    _lastUpdateds[MQ.TAxTOD] = DateTime.Now; // Update new time
+                }
+            }
+            else
+            {
+                med.Info("TAxTOD message resend config is null.");
+            }
+        }
+
+        private void ResetTimes()
+        {
+            if (!_lastUpdateds.ContainsKey(MQ.SCW))
+                _lastUpdateds.Add(MQ.SCW, DateTime.MinValue);
+            else _lastUpdateds[MQ.SCW] = DateTime.MinValue;
+
+            if (!_lastUpdateds.ContainsKey(MQ.TAxTOD))
+                _lastUpdateds.Add(MQ.TAxTOD, DateTime.MinValue);
+            else _lastUpdateds[MQ.TAxTOD] = DateTime.MinValue;
         }
 
         #endregion
@@ -95,6 +167,7 @@ namespace DMT.Services
             _cfgMgr.ConfigChanged += _cfgMgr_ConfigChanged;
             _cfgMgr.Start();
             med.Info("Message Resend service started.");
+            ResetTimes();
         }
         /// <summary>
         /// Shutdown service.

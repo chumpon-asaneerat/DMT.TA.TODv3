@@ -147,6 +147,37 @@ namespace DMT.Services
             }
         }
         /// <summary>
+        /// Resend Json (string) from error folder.
+        /// </summary>
+        /// <param name="fullFileName">The json full file name.</param>
+        /// <param name="jsonString">The json data in string.</param>
+        protected override void ResendJson(string fullFileName, string jsonString)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            // Extract File Name.
+            if (string.IsNullOrEmpty(fullFileName)) return; // skip if file name is empty.
+
+            if (fullFileName.Contains("revenueentry"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.RevenueEntry>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else
+            {
+                // Not Supports file.
+                med.Err("Not Supports message.");
+            }
+        }
+        /// <summary>
         /// OnStart.
         /// </summary>
         protected override void OnStart() { }

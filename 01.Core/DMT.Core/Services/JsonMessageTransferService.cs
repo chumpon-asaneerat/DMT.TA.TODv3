@@ -39,6 +39,7 @@ namespace DMT.Services
 
         private Timer _timer = null;
         private bool _scanning = false;
+        private bool _resending = false;
 
         #endregion
 
@@ -193,6 +194,12 @@ namespace DMT.Services
         /// <param name="fullFileName">The json full file name.</param>
         /// <param name="jsonString">The json data in string.</param>
         protected abstract void ProcessJson(string fullFileName, string jsonString);
+        /// <summary>
+        /// Resend Json (string) from error folder.
+        /// </summary>
+        /// <param name="fullFileName">The json full file name.</param>
+        /// <param name="jsonString">The json data in string.</param>
+        protected abstract void ResendJson(string fullFileName, string jsonString);
 
         #endregion
 
@@ -472,6 +479,41 @@ namespace DMT.Services
             _scanning = false;
 
             OnShutdown(); // call virtual method.
+        }
+        /// <summary>
+        /// Resend Message in error folder.
+        /// </summary>
+        public void ResendMessages()
+        {
+            if (_resending) return;
+            _resending = true;
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                List<string> files = new List<string>();
+                string errorFolder = Path.Combine(this.MessageFolder, "Error");
+                var msgFiles = Directory.GetFiles(errorFolder, "*.json");
+                if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
+                files.ForEach(file =>
+                {
+                    try
+                    {
+                        string json = ReadAllText(file);
+                        ResendJson(file, json);
+                    }
+                    catch (Exception ex2)
+                    {
+                        // Read file error.
+                        med.Err(ex2);
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+            _resending = false;
         }
 
         #endregion

@@ -252,6 +252,76 @@ namespace DMT.Services
             }
         }
         /// <summary>
+        /// Resend Json (string) from error folder.
+        /// </summary>
+        /// <param name="fullFileName">The json full file name.</param>
+        /// <param name="jsonString">The json data in string.</param>
+        protected override void ResendJson(string fullFileName, string jsonString)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            // Extract File Name.
+            if (string.IsNullOrEmpty(fullFileName)) return; // skip if file name is empty.
+
+            if (fullFileName.Contains("declare"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SCWDeclare>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("loginaudit"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SCWLogInAudit>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("changepwd"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SCWChangePassword>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("savechiefduty"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SCWSaveChiefDuty>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else
+            {
+                // process Not Supports file.
+                med.Err("Not Supports message.");
+            }
+        }
+        /// <summary>
         /// OnStart.
         /// </summary>
         protected override void OnStart() { }

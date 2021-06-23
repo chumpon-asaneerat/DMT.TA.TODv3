@@ -273,6 +273,89 @@ namespace DMT.Services
             }
         }
         /// <summary>
+        /// Resend Json (string) from error folder.
+        /// </summary>
+        /// <param name="fullFileName">The json full file name.</param>
+        /// <param name="jsonString">The json data in string.</param>
+        protected override void ResendJson(string fullFileName, string jsonString)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            // Extract File Name.
+            if (string.IsNullOrEmpty(fullFileName)) return; // skip if file name is empty.
+
+            if (fullFileName.Contains("update.tsb.credit.balance"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAATSBCredit>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("update.user.credit.balance"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAUserCredit>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("save.coupon.transaction"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAServerCouponTransaction>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("update.coupon.received"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAServerCouponReceived>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("sap.send.ar"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.SAPSaveAR>();
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else
+            {
+                // Not Supports file.
+                med.Err("Not Supports message.");
+            }
+        }
+        /// <summary>
         /// OnStart.
         /// </summary>
         protected override void OnStart() { }

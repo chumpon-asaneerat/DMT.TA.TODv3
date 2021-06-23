@@ -145,6 +145,16 @@ namespace DMT.Services
             }
         }
         /// <summary>
+        /// Resend Json (string) from error folder.
+        /// </summary>
+        /// <param name="fullFileName">The json full file name.</param>
+        /// <param name="jsonString">The json data in string.</param>
+        protected override void ResendJson(string fullFileName, string jsonString)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Err("Not Supports resend.");
+        }
+        /// <summary>
         /// OnStart.
         /// </summary>
         protected override void OnStart() 

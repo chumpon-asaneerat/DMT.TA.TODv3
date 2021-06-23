@@ -42,13 +42,22 @@
                    Foreground="WhiteSmoke"
                    Opacity="1"
                    TextAlignment="Center">
-            <Run Text="DMT - Toll Admin (Account)" />
+            <Run Text="Toll Admin - TA (Account)" />
         </TextBlock>
         <StackPanel Grid.Row="2"
                     Grid.Column="1"
                     Margin="5"
                     Orientation="Vertical">
             <TextBlock Height="5" />
+            <TextBlock x:Name="txtVersion"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       FontSize="12"
+                       FontWeight="Bold"
+                       Foreground="WhiteSmoke"
+                       Text="v1.04 build 10060 update 2021-06-24 06:00"
+                       TextAlignment="Center" />
+            <TextBlock Height="30" />
             <TextBlock x:Name="txtMsg"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"

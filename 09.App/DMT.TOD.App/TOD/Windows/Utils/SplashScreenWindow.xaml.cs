@@ -63,6 +63,7 @@ namespace DMT.TOD.Windows
             progress.Minimum = 0;
             progress.Maximum = (maxStep > 0) ? maxStep : 1;
             progress.Value = 0;
+            txtVersion.Text = ApplicationManager.Instance.Environments.Options.AppInfo.DisplayText;
         }
         /// <summary>
         /// Next step.

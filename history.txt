@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2166
 Refactor DMT.TA.TODv4 #2165
 - 
 
-Refactor DMT.TA.TODv4 #2164
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2164 (release build 10060)
+- DMT.TAxTODv3
+  - Update App version to build 10060.
+  - Update version history.
 
 [commited]
 Refactor DMT.TA.TODv4 #2163

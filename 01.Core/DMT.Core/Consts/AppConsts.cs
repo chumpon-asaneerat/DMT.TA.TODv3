@@ -11,8 +11,6 @@ namespace DMT
         // common properties
         public static string Version = "1";
         public static string Minor = "4";
-        public static string Build = "10040";
-        public static DateTime LastUpdate = new DateTime(2021, 06, 10, 22, 10, 00);
 
         public static class Application
         {
@@ -22,8 +20,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
 
             public static class TOD
@@ -32,8 +30,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
             
             public static class Account
@@ -42,8 +40,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
             
             public static class PlazaConfig
@@ -52,8 +50,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
 
             public static class PlazaSumulator
@@ -62,8 +60,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
 
             public static class PlazaWorkBench
@@ -72,8 +70,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
 
             public static class PlazaServiceManager
@@ -82,8 +80,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = AppConsts.Build;
-                public static DateTime LastUpdate = AppConsts.LastUpdate;
+                public static string Build = Build = "10060";
+                public static DateTime LastUpdate = new DateTime(2021, 06, 24, 06, 00, 00);
             }
         }
         /*

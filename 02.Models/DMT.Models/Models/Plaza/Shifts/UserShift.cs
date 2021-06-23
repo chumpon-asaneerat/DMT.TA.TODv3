@@ -744,6 +744,7 @@ namespace DMT.Models
                 try
                 {
                     // Update User Shift.
+                    // TODO: Need to check user shift begin date if exists and used oldest time.
                     var saveRet = Save(value);
                     result.errors = saveRet.errors;
                     if (!result.errors.hasError)

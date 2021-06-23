@@ -129,6 +129,10 @@ namespace DMT
             Services.Operations.SCW.Config = TODConfigManager.Instance;
             Services.Operations.SCW.DMT = TODConfigManager.Instance; // required for NetworkId
 
+            //TODO: Need to add TOD app config for access TA Server.
+            //Services.Operations.TAxTOD.Config = TODConfigManager.Instance;
+            Services.Operations.TAxTOD.DMT = TODConfigManager.Instance; // required for NetworkId
+
             splash.Next("Start configuration monitoring service.");
             TODConfigManager.Instance.Start(); // Start File Watcher.
 

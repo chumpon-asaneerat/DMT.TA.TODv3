@@ -111,7 +111,7 @@ namespace DMT.Services
                 {
                     // Call resend
                     med.Info("SCW resend message(s).");
-
+                    SCWMQService.Instance.ResendMessages();
                     _lastUpdateds[MQ.SCW] = DateTime.Now; // Update new time
                 }
             }
@@ -127,7 +127,7 @@ namespace DMT.Services
                 {
                     // Call resend
                     med.Info("TAxTOD resend message(s).");
-
+                    TAxTODMQService.Instance.ResendMessages();
                     _lastUpdateds[MQ.TAxTOD] = DateTime.Now; // Update new time
                 }
             }

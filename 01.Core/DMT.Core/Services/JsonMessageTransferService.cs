@@ -41,6 +41,7 @@ namespace DMT.Services
         private bool _scanning = false;
         private bool _resending = false;
         private DateTime _lastErrorCheck = DateTime.MinValue;
+        private int _msgCnt = 0;
         private int _errCnt = 0;
 
         #endregion
@@ -60,7 +61,14 @@ namespace DMT.Services
                 CompressFiles();
                 List<string> files = new List<string>();
                 var msgFiles = Directory.GetFiles(this.MessageFolder, "*.json");
-                if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
+
+                _msgCnt = 0;
+                if (null != msgFiles && msgFiles.Length > 0)
+                {
+                    _msgCnt = msgFiles.Length;
+                    files.AddRange(msgFiles);
+                }
+
                 files.ForEach(file =>
                 {
                     try
@@ -78,11 +86,15 @@ namespace DMT.Services
 
                 // Get error file count
                 TimeSpan ts = DateTime.Now - _lastErrorCheck;
-                if (ts.TotalSeconds > 5)
+                if (ts.TotalSeconds >= 5)
                 {
                     string errDir = Path.Combine(this.MessageFolder, "Error");
-                    var errFiles = Directory.GetFiles(errDir, "*.json");
-                    _errCnt = (null != errFiles) ? errFiles.Length : 0;
+                    _errCnt = 0;
+                    if (Directory.Exists(errDir))
+                    {
+                        var errFiles = Directory.GetFiles(errDir, "*.json");
+                        _errCnt = (null != errFiles) ? errFiles.Length : 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -529,21 +541,28 @@ namespace DMT.Services
             {
                 List<string> files = new List<string>();
                 string errorFolder = Path.Combine(this.MessageFolder, "Error");
-                var msgFiles = Directory.GetFiles(errorFolder, "*.json");
-                if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
-                files.ForEach(file =>
+                if (Directory.Exists(errorFolder))
                 {
-                    try
+                    var msgFiles = Directory.GetFiles(errorFolder, "*.json");
+                    if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
+                    files.ForEach(file =>
                     {
-                        string json = ReadAllText(file);
-                        ResendJson(file, json);
-                    }
-                    catch (Exception ex2)
-                    {
-                        // Read file error.
-                        med.Err(ex2);
-                    }
-                });
+                        try
+                        {
+                            string json = ReadAllText(file);
+                            ResendJson(file, json);
+                        }
+                        catch (Exception ex2)
+                        {
+                            // Read file error.
+                            med.Err(ex2);
+                        }
+                    });
+                }
+                else
+                {
+                    med.Info("The 'Error' directory is not exits. So no need to resend message.");
+                }
             }
             catch (Exception ex)
             {
@@ -573,9 +592,17 @@ namespace DMT.Services
             }
         }
         /// <summary>
+        /// Gets message file count (all json file in error folder).
+        /// </summary>
+        public int MsgCount { get { return _msgCnt; } set { } }
+        /// <summary>
         /// Gets error file count (all json file in error folder).
         /// </summary>
         public int ErrorCount { get { return _errCnt; } set { } }
+        /// <summary>
+        /// Gets all json file remain message folder and error folder.
+        /// </summary>
+        public int TotalCount { get { return _msgCnt + _errCnt; } }
 
         #endregion
     }

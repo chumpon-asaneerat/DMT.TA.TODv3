@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="16"
-             d:DesignWidth="150"
+             d:DesignWidth="200"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded"
              mc:Ignorable="d">
@@ -30,10 +30,31 @@
         <Border x:Name="borderStatus"
                 VerticalAlignment="Stretch"
                 Background="ForestGreen">
-            <TextBlock x:Name="txtStatus"
-                       Margin="10,0"
-                       Style="{StaticResource SCWStatusTextBlockCommonStyle}"
-                       Text="Offline" />
+            <StackPanel Margin="10,0" Orientation="Horizontal">
+                <TextBlock x:Name="txtStatus"
+                           Margin="10,0"
+                           Style="{StaticResource SCWStatusTextBlockCommonStyle}"
+                           Text="Offline" />
+                <StackPanel x:Name="msginfo"
+                            Orientation="Horizontal"
+                            Visibility="Collapsed">
+                    <TextBlock Width="10" />
+                    <Border Padding="5,0"
+                            VerticalAlignment="Center"
+                            Background="RoyalBlue"
+                            CornerRadius="8">
+                        <TextBlock x:Name="txtCnt"
+                                   VerticalAlignment="Stretch"
+                                   Background="Transparent"
+                                   FontSize="12"
+                                   FontWeight="Bold"
+                                   Foreground="WhiteSmoke"
+                                   Text=""
+                                   TextAlignment="Center" />
+
+                    </Border>
+                </StackPanel>
+            </StackPanel>
         </Border>
     </StackPanel>
 </UserControl>

@@ -22,8 +22,14 @@ Refactor DMT.TA.TODv4 #2164
 Refactor DMT.TA.TODv4 #2163
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2162
-- 
+- DMT.TAxTODv3
+  - Implement resend json message from error folder #11.
+  - Update status bar UI (show remain messages that not send).
+    - SCW -> OK
+    - TAxTOD -> OK
+    - TAApp -> OK
 
 [commited]
 Refactor DMT.TA.TODv4 #2161

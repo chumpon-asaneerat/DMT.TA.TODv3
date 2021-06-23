@@ -75,6 +75,7 @@ namespace DMT.Services
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
+            timer.Start();
         }
         /// <summary>
         /// Destructor.

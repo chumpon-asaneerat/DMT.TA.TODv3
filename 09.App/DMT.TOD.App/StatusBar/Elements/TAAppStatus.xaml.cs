@@ -144,6 +144,18 @@ namespace DMT.Controls.StatusBar
                     borderStatus.Background = new SolidColorBrush(Colors.Maroon);
                     txtStatus.Text = "Offline";
                 }
+
+                // Check has message remain in folder(s).
+                if (TAMQService.Instance.TotalCount > 0)
+                {
+                    msginfo.Visibility = Visibility.Visible;
+                    txtCnt.Text = TAMQService.Instance.TotalCount.ToString("n0");
+                }
+                else
+                {
+                    msginfo.Visibility = Visibility.Collapsed;
+                    txtCnt.Text = "";
+                }
             }));
         }
     }

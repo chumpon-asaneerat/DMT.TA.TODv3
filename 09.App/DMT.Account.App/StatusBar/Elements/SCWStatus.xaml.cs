@@ -146,6 +146,18 @@ namespace DMT.Controls.StatusBar
                     borderStatus.Background = new SolidColorBrush(Colors.Maroon);
                     txtStatus.Text = "Offline";
                 }
+
+                // Check has message remain in folder.
+                if (SCWMQService.Instance.TotalCount > 0)
+                {
+                    msginfo.Visibility = Visibility.Visible;
+                    txtCnt.Text = SCWMQService.Instance.TotalCount.ToString("n0");
+                }
+                else
+                {
+                    msginfo.Visibility = Visibility.Collapsed;
+                    txtCnt.Text = "";
+                }
             }));
         }
     }

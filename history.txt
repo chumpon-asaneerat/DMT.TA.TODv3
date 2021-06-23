@@ -22,8 +22,10 @@ Refactor DMT.TA.TODv4 #2154
 Refactor DMT.TA.TODv4 #2153
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2152
-- 
+- DMT.TAxTODv3
+  - Add vesion.history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2151

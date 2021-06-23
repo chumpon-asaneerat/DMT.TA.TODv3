@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		history.txt = history.txt
 		notes.txt = notes.txt
+		version.history.txt = version.history.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.NLib", "00.NLib", "{286EBC02-3572-4B95-BC59-709527B5B1FA}"

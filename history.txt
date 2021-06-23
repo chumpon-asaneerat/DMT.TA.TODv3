@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2156
 Refactor DMT.TA.TODv4 #2155
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2154
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Remove TOD status bar config and UI.
 
 [commited]
 Refactor DMT.TA.TODv4 #2153

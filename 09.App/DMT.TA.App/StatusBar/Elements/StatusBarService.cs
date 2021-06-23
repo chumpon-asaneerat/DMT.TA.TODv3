@@ -223,18 +223,6 @@ namespace DMT.Controls.StatusBar
                 return cfgs.TAServer;
             }
         }
-        /// <summary>
-        /// Gets TODApp Status Bar Config.
-        /// </summary>
-        public StatusBarConfig TODApp
-        {
-            get
-            {
-                var cfgs = StatusBarConfigs;
-                if (null == cfgs) return null;
-                return cfgs.TODApp;
-            }
-        }
 
         #endregion
     }

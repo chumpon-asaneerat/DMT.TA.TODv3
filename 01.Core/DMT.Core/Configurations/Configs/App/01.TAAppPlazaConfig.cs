@@ -228,7 +228,6 @@ namespace DMT.Configurations
             this.RabbitMQ = new StatusBarConfig() { Visible = false };
             this.SCW = new StatusBarConfig() { Visible = false };
             this.TAServer = new StatusBarConfig() { Visible = true };
-            this.TODApp = new StatusBarConfig() { Visible = false };
         }
 
         #endregion
@@ -247,8 +246,6 @@ namespace DMT.Configurations
         public StatusBarConfig SCW { get; set; }
         /// <summary>Gets or sets TAServer status bar.</summary>
         public StatusBarConfig TAServer { get; set; }
-        /// <summary>Gets or sets TOD App status bar.</summary>
-        public StatusBarConfig TODApp { get; set; }
 
         #endregion
     }

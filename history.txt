@@ -19,8 +19,10 @@ Refactor DMT.TA.TODv4 #2165
 Refactor DMT.TA.TODv4 #2164
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2163
-- 
+- DMT.TAxTODv3
+  - Update shift init code for new begin/end shift time.
 
 [commited]
 Refactor DMT.TA.TODv4 #2162

@@ -126,6 +126,9 @@ namespace DMT
             Services.RabbitMQService.Instance.RabbitMQ = AccountConfigManager.Instance.RabbitMQ;
             Services.RabbitMQService.Instance.Start();
 
+            // start message resend manager.
+            Services.MQResendService.Instance.Start();
+
             splash.Next("TA Application (Account) successfully loaded.");
             splash.Wait(250);
 
@@ -146,6 +149,9 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // shutdown message resend manager.
+            Services.MQResendService.Instance.Shutdown();
+
             AccountConfigManager.Instance.Shutdown();
 
             // Shutdown TAxTOD MQ Service

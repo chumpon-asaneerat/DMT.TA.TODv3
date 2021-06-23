@@ -129,6 +129,8 @@ namespace DMT
 #if ENABLE_COUPON_SYNC_SERVICE
             CouponSyncService.Instance.Start();
 #endif
+            // start message resend manager.
+            Services.MQResendService.Instance.Start();
 
             splash.Next("TA Application successfully loaded.");
             splash.Wait(250);
@@ -150,6 +152,9 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // shutdown message resend manager.
+            Services.MQResendService.Instance.Shutdown();
+
             // Shutdown coupon sync service.
 #if ENABLE_COUPON_SYNC_SERVICE
             CouponSyncService.Instance.Shutdown();

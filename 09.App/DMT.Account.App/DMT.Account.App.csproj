@@ -186,6 +186,7 @@
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Header\Elements\HeaderBarService.cs" />
+    <Compile Include="Message\MQResendService.cs" />
     <Compile Include="Services\AccountApp.cs" />
     <Compile Include="Header\Elements\HeaderDateTime.xaml.cs">
       <DependentUpon>HeaderDateTime.xaml</DependentUpon>

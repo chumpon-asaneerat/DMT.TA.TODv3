@@ -144,6 +144,9 @@ namespace DMT
             // Sync data.
             SyncTSBShift();
 
+            // start message resend manager.
+            Services.MQResendService.Instance.Start();
+
             splash.Next("TOD Application successfully loaded.");
             splash.Wait(250);
 
@@ -164,6 +167,9 @@ namespace DMT
         /// <param name="e"></param>
         protected override void OnExit(ExitEventArgs e)
         {
+            // shutdown message resend manager.
+            Services.MQResendService.Instance.Shutdown();
+
             // Release NotifyService event.
             TODNotifyService.Instance.TSBChanged -= TSBChanged;
             TODNotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;

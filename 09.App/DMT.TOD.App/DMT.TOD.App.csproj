@@ -177,6 +177,7 @@
     <Compile Include="Header\PlazaHeader.xaml.cs">
       <DependentUpon>PlazaHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Message\MQResendService.cs" />
     <Compile Include="Models\Lane.Models.cs" />
     <Compile Include="Services\TODManagers.cs" />
     <Compile Include="Services\TODApp.cs" />

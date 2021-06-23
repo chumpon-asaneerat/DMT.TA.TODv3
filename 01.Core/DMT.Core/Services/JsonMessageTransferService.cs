@@ -40,6 +40,8 @@ namespace DMT.Services
         private Timer _timer = null;
         private bool _scanning = false;
         private bool _resending = false;
+        private DateTime _lastErrorCheck = DateTime.MinValue;
+        private int _errCnt = 0;
 
         #endregion
 
@@ -73,6 +75,15 @@ namespace DMT.Services
                         med.Err(ex2);
                     }
                 });
+
+                // Get error file count
+                TimeSpan ts = DateTime.Now - _lastErrorCheck;
+                if (ts.TotalSeconds > 5)
+                {
+                    string errDir = Path.Combine(this.MessageFolder, "Error");
+                    var errFiles = Directory.GetFiles(errDir, "*.json");
+                    _errCnt = (null != errFiles) ? errFiles.Length : 0;
+                }
             }
             catch (Exception ex)
             {
@@ -561,6 +572,10 @@ namespace DMT.Services
                 return localFilder;
             }
         }
+        /// <summary>
+        /// Gets error file count (all json file in error folder).
+        /// </summary>
+        public int ErrorCount { get { return _errCnt; } set { } }
 
         #endregion
     }

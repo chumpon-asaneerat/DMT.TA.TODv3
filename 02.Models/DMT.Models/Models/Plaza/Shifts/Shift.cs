@@ -270,15 +270,15 @@ namespace DMT.Models
                             {
                                 if (shift.ShiftId == 1)
                                 {
-                                    shift.TimeStart = new DateTime(1, 1, 1, 3, 0, 0, 0, 0);
+                                    shift.TimeStart = new DateTime(1, 1, 1, 4, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 2)
                                 {
-                                    shift.TimeStart = new DateTime(1, 1, 1, 11, 0, 0, 0, 0);
+                                    shift.TimeStart = new DateTime(1, 1, 1, 12, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 3)
                                 {
-                                    shift.TimeStart = new DateTime(1, 1, 1, 19, 0, 0, 0, 0);
+                                    shift.TimeStart = new DateTime(1, 1, 1, 20, 0, 0, 0, 0);
                                 }
                                 else
                                 {
@@ -290,15 +290,15 @@ namespace DMT.Models
                             {
                                 if (shift.ShiftId == 1)
                                 {
-                                    shift.TimeEnd = new DateTime(1, 1, 1, 11, 0, 0, 0, 0);
+                                    shift.TimeEnd = new DateTime(1, 1, 1, 12, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 2)
                                 {
-                                    shift.TimeEnd = new DateTime(1, 1, 1, 19, 0, 0, 0, 0);
+                                    shift.TimeEnd = new DateTime(1, 1, 1, 20, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 3)
                                 {
-                                    shift.TimeEnd = new DateTime(1, 1, 1, 3, 0, 0, 0, 0);
+                                    shift.TimeEnd = new DateTime(1, 1, 1, 4, 0, 0, 0, 0);
                                 }
                                 else
                                 {

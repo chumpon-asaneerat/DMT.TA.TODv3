@@ -2571,6 +2571,8 @@ namespace DMT.Services
         {
             bool ret = false;
 
+            // TODO: Need check state 1 (received bag) and 2 (completed).
+            // and when check each state need difference dialog.
             var usrCredit = CheckUserCredit(true);
             
             //TODO: UserCredit offline need some model and logic.

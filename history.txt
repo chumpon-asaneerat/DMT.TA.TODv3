@@ -7,8 +7,13 @@ Refactor DMT.TA.TODv4 #2169
 Refactor DMT.TA.TODv4 #2168
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2167
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Add TAServerStatus control
+    - Update StatusBarService.cs
+    - Update TODStatusBar control
 
 [commited]
 Refactor DMT.TA.TODv4 #2166

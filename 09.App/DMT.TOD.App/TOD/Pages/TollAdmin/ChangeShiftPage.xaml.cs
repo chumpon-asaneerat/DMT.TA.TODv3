@@ -84,6 +84,8 @@ namespace DMT.TOD.Pages.TollAdmin
                     // Update TOD
                     RuntimeManager.Instance.RaiseTSBShiftChanged();
 
+                    // write to TAxTOD message queue.
+                    TAxTODMQService.Instance.WriteQueue(inst);
                     // write to TA App message queue.
                     TAMQService.Instance.WriteQueue(inst);
 

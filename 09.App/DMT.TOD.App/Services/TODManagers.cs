@@ -2447,6 +2447,8 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
             try
             {
+                // write to TAxTOD message queue.
+                TAxTODMQService.Instance.WriteQueue(value);
                 // Send Entry to TA Message Queue
                 TAMQService.Instance.WriteQueue(value);
             }
@@ -2516,6 +2518,8 @@ namespace DMT.Services
                     return;
                 }
 
+                // write to TAxTOD message queue.
+                TAxTODMQService.Instance.WriteQueue(Entry);
                 // Send Entry to TA Message Queue
                 TAMQService.Instance.WriteQueue(Entry);
 

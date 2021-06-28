@@ -527,6 +527,10 @@ namespace DMT.Services
             SCWMQService.Instance.Start();
             med.Info("SCWMQ Service start.");
 
+            // Start TAxTODMQService service.
+            TAxTODMQService.Instance.Start();
+            med.Info("TAxTODMQService Service start.");
+
             // Start TAMQService service.
             TAMQService.Instance.Start();
             med.Info("TAMQService Service start.");
@@ -560,6 +564,10 @@ namespace DMT.Services
             // Shutdown TAMQService service.
             TAMQService.Instance.Shutdown();
             med.Info("TAMQService Service shutdown.");
+
+            // Shutdown TAxTODMQService service.
+            TAxTODMQService.Instance.Shutdown();
+            med.Info("TAxTODMQService Service shutdown.");
 
             // Shutdown SCWMQ service.
             SCWMQService.Instance.Shutdown();

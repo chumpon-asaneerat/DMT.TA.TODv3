@@ -1,8 +1,48 @@
-﻿Refactor DMT.TA.TODv4 #2170
+﻿Refactor DMT.TA.TODv4 #2180
 - 
 
-Refactor DMT.TA.TODv4 #2169
+Refactor DMT.TA.TODv4 #2179
 - 
+
+Refactor DMT.TA.TODv4 #2178
+- 
+
+Refactor DMT.TA.TODv4 #2177
+- 
+
+Refactor DMT.TA.TODv4 #2176
+- 
+
+Refactor DMT.TA.TODv4 #2175
+- 
+
+Refactor DMT.TA.TODv4 #2174
+- 
+
+Refactor DMT.TA.TODv4 #2173
+- 
+
+Refactor DMT.TA.TODv4 #2172
+- 
+
+Refactor DMT.TA.TODv4 #2171
+- 
+
+Refactor DMT.TA.TODv4 #2170
+- DMT.TAxTODv3
+
+[commited]
+Refactor DMT.TA.TODv4 #2169
+- DMT.TAxTODv3
+  - DMT.TOD.Rest.Server project
+    - TODWebServer update
+      - Start/Shutdown method add TAxTODMQService start/shutdown code.
+  - DMT.TOD.App project
+    - Update ChangeShiftPage -> Write TSBShift json file for send to TAxTOD service.
+    - Update BOSWindow -> Write UserShift json file for send to TAxTOD service.
+    - Update TODManager
+      - Write UserShift json file for send to TAxTOD service.
+      - Write RevenueEntry json file for send to TAxTOD service.
 
 [commited]
 Refactor DMT.TA.TODv4 #2168

@@ -83,7 +83,8 @@ namespace DMT.TOD.Windows.UserShifts
                     }
                     else
                     {
-
+                        // write to TAxTOD message queue.
+                        TAxTODMQService.Instance.WriteQueue(inst);
                         // Send User Shift to TA Message Queue.
                         TAMQService.Instance.WriteQueue(inst);
                     }

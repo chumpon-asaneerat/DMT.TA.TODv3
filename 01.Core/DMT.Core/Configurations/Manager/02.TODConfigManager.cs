@@ -19,7 +19,7 @@ namespace DMT.Configurations
     /// TOD Config Manager class.
     /// </summary>
     public class TODConfigManager : JsonConfigFileManger<TODAppPlazaConfig>,
-        IDMTConfig, ISCWConfig, ITAAppConfig, ITODAppConfig
+        IDMTConfig, ISCWConfig, ITAxTODConfig, ITAAppConfig, ITODAppConfig
     {
         #region Static Instance Access
 
@@ -112,6 +112,17 @@ namespace DMT.Configurations
             {
                 if (null == Value) LoadConfig();
                 return (null != Value && null != Value.Services) ? Value.Services.RabbitMQ : null;
+            }
+        }
+        /// <summary>
+        /// Gets TAxTOD Config.
+        /// </summary>
+        public TAxTODWebServiceConfig TAxTOD
+        {
+            get
+            {
+                if (null == Value) LoadConfig();
+                return (null != Value && null != Value.Services) ? Value.Services.TAxTOD : null;
             }
         }
         /// <summary>

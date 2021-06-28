@@ -32,6 +32,7 @@ namespace DMT.Configurations
             this.DMT = new DMTConfig();
             this.SCW = new SCWWebServiceConfig();
             this.RabbitMQ = new RabbitMQServiceConfig();
+            this.TAxTOD = new TAxTODWebServiceConfig();
             this.TAApp = new TAAppWebServiceConfig();
             this.TODApp = new TODAppWebServiceConfig();
         }
@@ -87,6 +88,16 @@ namespace DMT.Configurations
                 code += string.Format("SCW: {0}",
                     this.SCW.GetString()) + Environment.NewLine;
             }
+            // TAxTOD Server
+            if (null == this.TAxTOD)
+            {
+                code += "TAxTOD: null" + Environment.NewLine;
+            }
+            else
+            {
+                code += string.Format("TAxTOD: {0}",
+                    this.TAxTOD.GetString()) + Environment.NewLine;
+            }
             // TA Application (Plaza)
             if (null == this.TAApp)
             {
@@ -126,6 +137,10 @@ namespace DMT.Configurations
         /// Gets or sets SCW Service Config.
         /// </summary>
         public SCWWebServiceConfig SCW { get; set; }
+        /// <summary>
+        /// Gets or sets TAxTOD Service Config.
+        /// </summary>
+        public TAxTODWebServiceConfig TAxTOD { get; set; }
         /// <summary>
         /// Gets or sets TA App Service Config (local server).
         /// </summary>
@@ -228,6 +243,7 @@ namespace DMT.Configurations
             this.LocalDb = new StatusBarConfig() { Visible = true };
             this.RabbitMQ = new StatusBarConfig() { Visible = false };
             this.SCW = new StatusBarConfig() { Visible = false };
+            this.TAServer = new StatusBarConfig() { Visible = true };
             this.TAApp = new StatusBarConfig() { Visible = false };
         }
 
@@ -245,6 +261,8 @@ namespace DMT.Configurations
         public StatusBarConfig RabbitMQ { get; set; }
         /// <summary>Gets or sets SCW status bar.</summary>
         public StatusBarConfig SCW { get; set; }
+        /// <summary>Gets or sets TAServer status bar.</summary>
+        public StatusBarConfig TAServer { get; set; }
         /// <summary>Gets or sets TA App status bar.</summary>
         public StatusBarConfig TAApp { get; set; }
 

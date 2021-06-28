@@ -36,7 +36,6 @@ namespace DMT.Configurations
             this.TAApp = new TAAppWebServiceConfig();
 
             this.TODApps = new List<TODAppWebServiceConfig>();
-
             this.TODApps.Add(new TODAppWebServiceConfig()
             {
                 Service = new WebServiceConfig()

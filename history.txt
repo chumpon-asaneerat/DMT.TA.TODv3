@@ -10,8 +10,13 @@ Refactor DMT.TA.TODv4 #2168
 Refactor DMT.TA.TODv4 #2167
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2166
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - TOD related config add TAServer config and UI config for TAServer checking.
+  - DMT.TOD.App project
+    - App.xaml.cs - add TAxTOD config setup code.
 
 [commited]
 Refactor DMT.TA.TODv4 #2165

@@ -51,7 +51,7 @@ namespace DMT
                         /// <summary>Gets route name.</summary>
                         public const string Name = "Save";
                         /// <summary>Gets route url.</summary>
-                        public const string Url = @"/api/ta/revenueentry/save";
+                        public const string Url = @"/api/tod/revenueentry/save";
                     }
                 }
             }

@@ -28,8 +28,11 @@ Refactor DMT.TA.TODv4 #2172
 Refactor DMT.TA.TODv4 #2171
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2170
 - DMT.TAxTODv3
+  - DMT.Core project
+    - Fixed invalid route for TAxTOD->RevenueEntry->Save
 
 [commited]
 Refactor DMT.TA.TODv4 #2169

@@ -4,8 +4,24 @@
 Refactor DMT.TA.TODv4 #2169
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2168
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - Add route for TAxTOD->TSBShift->Save
+    - Add route for TAxTOD->UserShift->Save
+    - Add route for TAxTOD->RevenueEntry->Save
+  - DMT.TAxTOD.Rest.Client project
+    - Implements TOD related operations
+      - Implements TSBShift->Save
+      - Implements UserShift->Save
+      - Implements RevenueEntry->Save
+    - Implement TAxTODMQService
+      - Add WriteQueue/Send/Resend TSBShift
+      - Add WriteQueue/Send/Resend UserShift
+      - Add WriteQueue/Send/Resend RevenueEntry
+      - Update ProcessJson method.
+      - Update ResendJson method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2167

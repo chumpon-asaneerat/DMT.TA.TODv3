@@ -149,6 +149,51 @@ namespace DMT.Services
             MoveToBackup(fullFileName);
         }
 
+        private void SendChangeTSBShift(string fullFileName, Models.TSBShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.TOD.TSBShift.Save(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
+        private void SendChangeUserShift(string fullFileName, Models.UserShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.TOD.UserShift.Save(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
+        private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.TOD.RevenueEntry.Save(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveToBackup(fullFileName);
+        }
+
         #endregion
 
         #region Resend (from error folder)
@@ -227,6 +272,54 @@ namespace DMT.Services
             {
                 // Error may be cannot connect to WS. Wait for next loop.
                 med.Err("Cannot connect to TA Server Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendChangeTSBShift(string fullFileName, Models.TSBShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.TOD.TSBShift.Save(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendChangeUserShift(string fullFileName, Models.UserShift value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.TOD.UserShift.Save(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
+                return;
+            }
+            // Success
+            MoveErrorToBackup(fullFileName);
+        }
+
+        private void ResendRevenueEntry(string fullFileName, Models.RevenueEntry value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.TOD.RevenueEntry.Save(value);
+            if (null == ret || !ret.Ok)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA App Web Service.");
                 return;
             }
             // Success
@@ -330,6 +423,51 @@ namespace DMT.Services
                     MoveToError(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("tsb.shift.change"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TSBShift>();
+                    SendChangeTSBShift(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("user.shift.change"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.UserShift>();
+                    SendChangeUserShift(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("revenue.entry.update"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.RevenueEntry>();
+                    SendRevenueEntry(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToError(fullFileName);
+                }
+            }
             else
             {
                 // process not staff list so Not Supports file.
@@ -419,6 +557,48 @@ namespace DMT.Services
                     med.Err("message is null or cannot convert to json object.");
                 }
             }
+            else if (fullFileName.Contains("tsb.shift.change"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TSBShift>();
+                    ResendChangeTSBShift(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("user.shift.change"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.UserShift>();
+                    ResendChangeUserShift(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
+            else if (fullFileName.Contains("revenue.entry.update"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.RevenueEntry>();
+                    ResendRevenueEntry(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                }
+            }
             else
             {
                 // Not Supports file.
@@ -490,6 +670,39 @@ namespace DMT.Services
         {
             if (null == value) return;
             string fileName = GetFileName("sap.send.ar");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The TSBShift instance.</param>
+        public void WriteQueue(Models.TSBShift value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("tsb.shift.change");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The UserShift instance.</param>
+        public void WriteQueue(Models.UserShift value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("user.shift.change");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The RevenueEntry instance.</param>
+        public void WriteQueue(Models.RevenueEntry value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("revenue.entry.update");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

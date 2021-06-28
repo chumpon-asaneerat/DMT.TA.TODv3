@@ -66,6 +66,9 @@ namespace DMT
 
             /// <summary>The TCT class.</summary>
             public static partial class TCT { }
+
+            /// <summary>The TOD class.</summary>
+            public static partial class TOD { }
         }
     }
 }

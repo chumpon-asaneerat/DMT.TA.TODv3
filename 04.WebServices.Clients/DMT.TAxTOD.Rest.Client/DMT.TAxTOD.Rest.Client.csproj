@@ -69,6 +69,7 @@
     <Compile Include="Services\TAxTODMQService.cs" />
     <Compile Include="Services\TAxTOD.cs" />
     <Compile Include="Services\TCT\TCT.Operations.cs" />
+    <Compile Include="Services\TOD\TOD.Operations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

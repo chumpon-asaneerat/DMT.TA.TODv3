@@ -22,8 +22,16 @@ Refactor DMT.TA.TODv4 #2174
 Refactor DMT.TA.TODv4 #2173
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2172
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - RevenueEntry Model
+      - Add ToTAServer column.
+      - Add GetUnsyncRevenueEnties methods.
+  - DMT.TOD.App project
+    - MQResendService
+      - Auto generate unsync RevenueEntry message(s).
 
 [commited]
 Refactor DMT.TA.TODv4 #2171

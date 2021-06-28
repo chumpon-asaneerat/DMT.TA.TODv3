@@ -1,4 +1,4 @@
-﻿//#define SINGELTON_APP
+﻿#define SINGELTON_APP
 
 #region Using
 

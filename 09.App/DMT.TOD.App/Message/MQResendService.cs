@@ -173,6 +173,19 @@ namespace DMT.Services
                         });
                     }
 
+                    var revenues = Models.RevenueEntry.GetUnSyncRevenueEnties().Value();
+                    if (null != revenues && revenues.Count > 0)
+                    {
+                        med.Info("Generate Unsync RevenueEntry message(s).");
+                        revenues.ForEach(revenue =>
+                        {
+                            TAxTODMQService.Instance.WriteQueue(revenue);
+                            // Mark as sync.
+                            revenue.ToTAServer = 1;
+                            Models.RevenueEntry.Save(revenue);
+                        });
+                    }
+
                     // Call resend
                     med.Info("TAApp resend message(s).");
                     TAMQService.Instance.ResendMessages();

@@ -109,6 +109,8 @@ namespace DMT.Models
         private int _Status = 0;
         private DateTime? _LastUpdate = new DateTime?();
 
+        private int? _ToTAServer = new int?();
+
         #endregion
 
         #region Constructor
@@ -1652,6 +1654,32 @@ namespace DMT.Models
 
         #endregion
 
+        #region ToTAServer
+
+        /// <summary>
+        /// Gets or sets ToTAServer
+        /// </summary>
+        [Category("User")]
+        [Description("Gets or sets ToTAServer.")]
+        [PropertyMapName("ToTAServer")]
+        public int? ToTAServer
+        {
+            get
+            {
+                return _ToTAServer;
+            }
+            set
+            {
+                if (_ToTAServer != value)
+                {
+                    _ToTAServer = value;
+                    this.RaiseChanged("ToTAServer");
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Internal Class
@@ -1927,6 +1955,42 @@ namespace DMT.Models
             }
         }
         */
+
+        /// <summary>
+        /// Gets all UnSync Revenue Enties.
+        /// </summary>
+        /// <returns>Returns List of RevenueEntry.</returns>
+        public static NDbResult<List<RevenueEntry>> GetUnSyncRevenueEnties()
+        {
+            var result = new NDbResult<List<RevenueEntry>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM RevenueEntryView ";
+                    cmd += " WHERE ToTAServer IS NULL ";
+
+                    var rets = NQuery.Query<FKs>(cmd).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
 
         #endregion
     }

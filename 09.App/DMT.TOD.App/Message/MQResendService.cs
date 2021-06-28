@@ -8,6 +8,7 @@ using System.Reflection;
 
 using NLib;
 
+using DMT.Models;
 using DMT.Configurations;
 using DMT.Services;
 using System.Threading.Tasks;
@@ -143,6 +144,35 @@ namespace DMT.Services
                 ts = DateTime.Now - _lastUpdateds[MQ.TAApp];
                 if (ts.TotalSeconds > _cfgMgr.TAApp.IntervalSeconds)
                 {
+                    // Check Unsync TSBShift, UserShift
+                    // TODO: Uncomment if need auto sync TSB to TAServer (but required to check TA Stored Proc because it has duplicate error)
+                    /*
+                    var tsbShifts = Models.TSBShift.GetUnSyncTSBShifts().Value();
+                    if (null != tsbShifts && tsbShifts.Count > 0)
+                    {
+                        med.Info("Generate Unsync TSBShift message(s).");
+                        tsbShifts.ForEach(tsbshift => 
+                        { 
+                            TAxTODMQService.Instance.WriteQueue(tsbshift);
+                            // Mark as sync.
+                            tsbshift.ToTAServer = 1;
+                            Models.TSBShift.Save(tsbshift);
+                        });
+                    }
+                    */
+                    var usrShifts = Models.UserShift.GetUnSyncUserShifts().Value();
+                    if (null != usrShifts && usrShifts.Count > 0)
+                    {
+                        med.Info("Generate Unsync UserShift message(s).");
+                        usrShifts.ForEach(usrshift => 
+                        { 
+                            TAxTODMQService.Instance.WriteQueue(usrshift);
+                            // Mark as sync.
+                            usrshift.ToTAServer = 1;
+                            Models.UserShift.Save(usrshift);
+                        });
+                    }
+
                     // Call resend
                     med.Info("TAApp resend message(s).");
                     TAMQService.Instance.ResendMessages();

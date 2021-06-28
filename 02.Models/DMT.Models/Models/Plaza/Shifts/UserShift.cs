@@ -51,6 +51,8 @@ namespace DMT.Models
         private DateTime? _Begin = new DateTime?();
         private DateTime? _End = new DateTime?();
 
+        private int? _ToTAServer = new int?();
+
         #endregion
 
         #region Constructor
@@ -480,6 +482,32 @@ namespace DMT.Models
 
         #endregion
 
+        #region ToTAServer
+
+        /// <summary>
+        /// Gets or sets ToTAServer
+        /// </summary>
+        [Category("User")]
+        [Description("Gets or sets ToTAServer.")]
+        [PropertyMapName("ToTAServer")]
+        public int? ToTAServer
+        {
+            get
+            {
+                return _ToTAServer;
+            }
+            set
+            {
+                if (_ToTAServer != value)
+                {
+                    _ToTAServer = value;
+                    this.RaiseChanged("ToTAServer");
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Internal Class
@@ -720,6 +748,53 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets Unclose UserShifts by UserId.
+        /// </summary>
+        /// <param name="userId">The User Id.</param>
+        /// <returns>Returns UserShift instance.</returns>
+        public static NDbResult<List<UserShift>> GetUncloseUserShifts(string userId)
+        {
+            var result = new NDbResult<List<UserShift>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            var tsb = TSB.GetCurrent().Value();
+            if (null == tsb)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserShiftView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND UserId = ? ";
+                    cmd += "   AND (End IS NULL OR End = ?) ";
+
+
+                    var ret = NQuery.Query<FKs>(cmd,
+                        tsb.TSBId, userId, DateTime.MinValue).ToList();
+
+                    var data = (null != ret) ? ret.ToModels() : null;
+                    result.Success(data);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
         /// Update User Shift.
         /// </summary>
         /// <param name="value">The UserShift instance.</param>
@@ -745,12 +820,97 @@ namespace DMT.Models
                 {
                     // Update User Shift.
                     // TODO: Need to check user shift begin date if exists and used oldest time.
-                    var saveRet = Save(value);
-                    result.errors = saveRet.errors;
-                    if (!result.errors.hasError)
+                    NDbResult<UserShift> saveRet = null;
+                    var uncloseShifts = GetUncloseUserShifts(value.UserId).Value();
+                    if (null != uncloseShifts && uncloseShifts.Count > 0)
                     {
-                        result.Success();
+                        uncloseShifts.ForEach(uncloseShift =>
+                        {
+                            if (value.UserShiftId == uncloseShift.UserShiftId) return; // Same Id ignore it.
+
+                            if (uncloseShift.Begin.HasValue && value.Begin.HasValue)
+                            {
+                                if (uncloseShift.Begin.Value < value.Begin.Value)
+                                {
+                                    // Exists shift Begin DateTime is older than new shift.
+                                    if (!uncloseShift.End.HasValue || uncloseShift.End.Value == DateTime.MinValue)
+                                    {
+                                        // End shift.
+                                        uncloseShift.End = value.Begin;
+                                        Save(uncloseShift);
+                                    }
+                                }
+                                else
+                                {
+                                    // Exists shift Begin DateTime is newer than new shift.
+                                    if (!value.End.HasValue || value.End.Value == DateTime.MinValue)
+                                    {
+                                        // End shift.
+                                        value.End = uncloseShift.Begin;
+                                        saveRet = Save(value);
+                                        result.errors = saveRet.errors;
+                                        if (!result.errors.hasError)
+                                        {
+                                            result.Success();
+                                        }
+                                    }
+                                }
+                            }
+                        });
                     }
+
+                    if (null == saveRet)
+                    {
+                        // Save current value.
+                        saveRet = Save(value);
+                        result.errors = saveRet.errors;
+                        if (!result.errors.hasError)
+                        {
+                            result.Success();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
+        /// Gets UnSync UserShifts.
+        /// </summary>
+        /// <returns>Returns UserShift instance.</returns>
+        public static NDbResult<List<UserShift>> GetUnSyncUserShifts()
+        {
+            var result = new NDbResult<List<UserShift>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            var tsb = TSB.GetCurrent().Value();
+            if (null == tsb)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserShiftView ";
+                    cmd += " WHERE ToTAServer IS NULL ";
+
+                    var ret = NQuery.Query<FKs>(cmd).ToList();
+
+                    var data = (null != ret) ? ret.ToModels() : null;
+                    result.Success(data);
                 }
                 catch (Exception ex)
                 {

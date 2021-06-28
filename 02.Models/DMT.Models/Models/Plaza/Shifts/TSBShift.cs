@@ -51,6 +51,8 @@ namespace DMT.Models
         private DateTime? _Begin = new DateTime?();
         private DateTime? _End = new DateTime?();
 
+        private int? _ToTAServer = new int?();
+
         #endregion
 
         #region Constructor
@@ -480,6 +482,32 @@ namespace DMT.Models
 
         #endregion
 
+        #region ToTAServer
+
+        /// <summary>
+        /// Gets or sets ToTAServer
+        /// </summary>
+        [Category("User")]
+        [Description("Gets or sets ToTAServer.")]
+        [PropertyMapName("ToTAServer")]
+        public int? ToTAServer
+        {
+            get
+            {
+                return _ToTAServer;
+            }
+            set
+            {
+                if (_ToTAServer != value)
+                {
+                    _ToTAServer = value;
+                    this.RaiseChanged("ToTAServer");
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Internal Class
@@ -796,6 +824,42 @@ namespace DMT.Models
                             result.Success();
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
+        /// Gets UnSync TSB Shifts.
+        /// </summary>
+        /// <returns>Returns TSBShift instance</returns>
+        public static NDbResult<List<TSBShift>> GetUnSyncTSBShifts()
+        {
+            var result = new NDbResult<List<TSBShift>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBShiftView ";
+                    cmd += " WHERE ToTAServer IS NULL ";
+
+                    var ret = NQuery.Query<FKs>(cmd).ToList();
+                    var data = (null != ret) ? ret.ToModels() : null;
+                    result.Success(data);
                 }
                 catch (Exception ex)
                 {

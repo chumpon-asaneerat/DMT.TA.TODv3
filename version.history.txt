@@ -1,4 +1,19 @@
 ﻿[== TOD ============================================================================================================]
+TOD version 1.4 build 10070 2564/06/29 09:00
+- ปรับแก้ไขข้อมูลเวลา เริ่มต้น/สิ้นสุด กะ โดย
+  - กะเช้า 04:00 - 12:00
+  - กะบ่าย 12:00 - 20:00
+  - กะดึก 20:00 - 04:00
+- ปรับ config เพิ่ม การเชื่อมต่อกับ TA Server.
+- ปรับ UI แสดง สถานะการเชื่อมต่อกับ TA Server และ message ค้างส่งให้ TA Server (tsbshift, usershift, revenueentry).
+- เพิ่ม code ส่วนการส่งข้อมูล TSB Shift. User Shift และ Revenue Entry ไปยัง TA Server.
+- Local database (TOD) 
+  - TSBShift เพิ่ม column ToTAserver โดยค่า NULL = ยังไม่ส่งไปยัง TA Server, 1 = สร้าง file สำหรับส่ง TA Server แล้ว
+    Note: code auto genreate message สำหรับ ตารางนี้ ถูก comment ไว้ เนื่องจากการทดสอบ ติด error ที่ SP ของ SQL Server เจอปัญหา duplicate key
+  - UserShift เพิ่ม column ToTAserver โดยค่า NULL = ยังไม่ส่งไปยัง TA Server, 1 = สร้าง file สำหรับส่ง TA Server แล้ว
+  - RevenueEntry เพิ่ม column ToTAserver โดยค่า NULL = ยังไม่ส่งไปยัง TA Server, 1 = สร้าง file สำหรับส่ง TA Server แล้ว
+
+----------------------------------------------------------------------------------------------------------------------
 TOD version 1.4 build 10060 2564/06/24 06:00
 - ปรับแก้ไขข้อมูลเวลา เริ่มต้น/สิ้นสุด กะ โดย
   - กะเช้า 03:00 - 11:00
@@ -59,6 +74,11 @@ Account version  1.4 build 10060 2564/06/24 06:00
 
 
 [== TA Server ============================================================================================================]
+TA Server v1.0..0 build 352 update 2564-06-29 04:30
+- ปรับแก้ เรื่องเวลาของ log file (ปัญหาเดิมเวลา timestamp จะผิดจากความเป็นจริง -7:00)
+- ปรับแก้ Table TODRevenueEntry เปลี่ยน column IsHistorical datatype เป็น bit
+- ปรับแก้ SP TOD_SaveRevenueEntry เปลี่ยน datatype IsHistorical เป็น bit
+----------------------------------------------------------------------------------------------------------------------
 TA Server v1.0..0 build 350 update 2564-05-24 05:40
 - ปรับแก้ web service SCW (จำลองการทำงาน) โดยให้ทำการส่งข้อมูลตอบกลับ จาก file โดยมีรายการดังต่อไปนี้
   - saveChiefDuty.result.json

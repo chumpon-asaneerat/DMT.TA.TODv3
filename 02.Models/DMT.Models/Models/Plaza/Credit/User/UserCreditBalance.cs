@@ -1590,7 +1590,82 @@ namespace DMT.Models
 
         #endregion
 
-        #region GetCompletedBalance (By State and Has No RevenueId)
+        #region GetReceivedBalance (By State = Received (bag) and Has No RevenueId)
+
+        /// <summary>
+        /// Get Received UserCredit Balance (when balance has no RevenueId).
+        /// </summary>
+        /// <param name="user">The User instance.</param>
+        /// <param name="plazaGroup">The Plaza Group instance.</param>
+        /// <returns>Returns User Credit Balance.</returns>
+        public static NDbResult<UserCreditBalance> GetReceivedBalance(User user, PlazaGroup plazaGroup)
+        {
+            var result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == user || null == plazaGroup)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                return GetReceivedBalance(user.UserId, plazaGroup.PlazaGroupId);
+            }
+        }
+        /// <summary>
+        /// Get Received UserCredit Balance (when balance has no RevenueId).
+        /// </summary>
+        /// <param name="userId">The User Id.</param>
+        /// <param name="plazaGroupId">The Plaza Group Id.</param>
+        /// <returns>Returns User Credit Balance.</returns>
+        public static NDbResult<UserCreditBalance> GetReceivedBalance(string userId, string plazaGroupId)
+        {
+            var result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(userId) ||
+                        string.IsNullOrWhiteSpace(plazaGroupId)) return null;
+
+                    string cmd = @"
+                    SELECT *
+                      FROM UserCreditSummaryView
+                     WHERE UserId = ?
+                       AND PlazaGroupId = ? 
+                       AND (RevenueId IS NULL OR RevenueId = '')
+                       AND State = ? 
+                     ORDER BY UserId, UserCreditDate desc";
+
+                    var ret = NQuery.Query<FKs>(cmd,
+                        userId, plazaGroupId, StateTypes.Received).FirstOrDefault();
+                    UserCreditBalance inst = ret.ToModel();
+                    result.Success(inst);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
+        #endregion
+
+        #region GetCompletedBalance (By State = Completed and Has No RevenueId)
 
         /// <summary>
         /// Get Completed UserCredit Balance (when balance has no RevenueId).

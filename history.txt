@@ -16,8 +16,12 @@ Refactor DMT.TA.TODv4 #2176
 Refactor DMT.TA.TODv4 #2175
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2174
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - UserCreditBalance model
+      - GetCompletedBalance add query to filter only max UserBalanceDate.
 
 [commited]
 Refactor DMT.TA.TODv4 #2173

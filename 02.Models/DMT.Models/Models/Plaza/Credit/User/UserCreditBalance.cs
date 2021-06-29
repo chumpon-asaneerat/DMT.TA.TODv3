@@ -1722,10 +1722,14 @@ namespace DMT.Models
                        AND PlazaGroupId = ? 
                        AND (RevenueId IS NULL OR RevenueId = '')
                        AND State = ? 
+                       AND UserCreditDate = (SELECT Max(UserCreditDate) 
+                                               FROM UserCreditSummaryView 
+                                              WHERE UserId = ?
+                                                AND PlazaGroupId = ?)
                      ORDER BY UserId, UserCreditDate desc";
 
                     var ret = NQuery.Query<FKs>(cmd,
-                        userId, plazaGroupId, StateTypes.Completed).FirstOrDefault();
+                        userId, plazaGroupId, StateTypes.Completed, userId, plazaGroupId).FirstOrDefault();
                     UserCreditBalance inst = ret.ToModel();
                     result.Success(inst);
                 }

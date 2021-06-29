@@ -13,8 +13,10 @@ Refactor DMT.TA.TODv4 #2177
 Refactor DMT.TA.TODv4 #2176
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2175
-- 
+- DMT.TAxTODv3
+  - Update TA App version to build 10070.
 
 [commited]
 Refactor DMT.TA.TODv4 #2174

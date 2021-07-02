@@ -10,8 +10,10 @@ Refactor DMT.TA.TODv4 #2178
 Refactor DMT.TA.TODv4 #2177
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2176
-- 
+- DMT.TAxTODv3
+  - Add WebSocketClientTest project.
 
 [commited]
 Refactor DMT.TA.TODv4 #2175

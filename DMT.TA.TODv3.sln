@@ -110,6 +110,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Xceed.DateTime.Sample",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Dynamic.Entry.Sample", "10.Tests\Wpf.Dynamic.Entry.Sample\Wpf.Dynamic.Entry.Sample.csproj", "{FCCE74DD-4AEF-43BD-8DBD-8220B131E313}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketClientTest", "11.Samples\WebSocketClientTest\WebSocketClientTest.csproj", "{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -232,6 +234,10 @@ Global
 		{FCCE74DD-4AEF-43BD-8DBD-8220B131E313}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCCE74DD-4AEF-43BD-8DBD-8220B131E313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCCE74DD-4AEF-43BD-8DBD-8220B131E313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -269,6 +275,7 @@ Global
 		{7517EB79-EACB-4F0C-A5D3-C78D9873635E} = {2BD477BA-BC55-4333-AE9A-68F3C90D9E7C}
 		{CF4A70FA-50F5-42C5-B598-7B997E139910} = {F8082E1C-9F77-4746-BE89-525109F468E1}
 		{FCCE74DD-4AEF-43BD-8DBD-8220B131E313} = {F8082E1C-9F77-4746-BE89-525109F468E1}
+		{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0} = {9F850F11-2C93-4A59-8F2E-F37C8D6A8AB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

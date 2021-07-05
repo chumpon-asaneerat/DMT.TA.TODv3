@@ -76,6 +76,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>..\..\References\websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -108,6 +111,9 @@
     </Compile>
     <Compile Include="Simulator\Pages\LaneActivityPage.xaml.cs">
       <DependentUpon>LaneActivityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Simulator\Pages\SubAdjServerPage.xaml.cs">
+      <DependentUpon>SubAdjServerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Simulator\Pages\TAServerCouponSyncPage.xaml.cs">
       <DependentUpon>TAServerCouponSyncPage.xaml</DependentUpon>
@@ -168,6 +174,10 @@
     <Page Include="Simulator\Pages\LaneActivityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Simulator\Pages\SubAdjServerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Simulator\Pages\TAServerCouponSyncPage.xaml">
       <SubType>Designer</SubType>

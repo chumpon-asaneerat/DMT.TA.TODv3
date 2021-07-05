@@ -33,26 +33,6 @@
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
-                <!-- 
-                <Fluent:RibbonGroupBox Header="Users">
-                    <Fluent:Button x:Name="cmdUserView"
-                                   Width="75"
-                                   Header="View users"
-                                   Click="cmdUserView_Click">
-                        <Fluent:Button.LargeIcon>
-                            <Image Source="Images/Users/online-user.png" />
-                        </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
-                    <Fluent:Button x:Name="cmdSupervisorView"
-                                   Width="75"
-                                   Header="Supervisor Task"
-                                   Click="cmdSupervisorView_Click">
-                        <Fluent:Button.LargeIcon>
-                            <Image Source="Images/Users/red-user.png" />
-                        </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
-                </Fluent:RibbonGroupBox>
-                -->
                 <Fluent:RibbonGroupBox Header="Coupons">
                     <!--
                     <Fluent:Button x:Name="cmdTSBCouponView"
@@ -78,6 +58,16 @@
                                    Click="cmdTSBPlazaSoldCoupon_Click">
                         <Fluent:Button.LargeIcon>
                             <Image Source="Images/Reports/slip_06.png" />
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="SupAdj">
+                    <Fluent:Button x:Name="cmdSupervisorAdj"
+                                   Width="75"
+                                   Header="Sup Adj Emulator"
+                                   Click="cmdSupervisorAdj_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/Users/red-user.png" />
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>

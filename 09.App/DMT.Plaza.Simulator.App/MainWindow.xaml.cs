@@ -101,6 +101,13 @@ namespace DMT
             PageContentManager.Instance.Current = page;
         }
 
+        private void cmdSupervisorAdj_Click(object sender, RoutedEventArgs e)
+        {
+            var page = SimApp.Pages.SubAdjServer;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
+        }
+
         #endregion
     }
 }

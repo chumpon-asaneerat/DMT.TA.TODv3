@@ -190,6 +190,14 @@ namespace WebSocketClientTest
             Log("web socket connection is closed.");
         }
 
+        private void Reconnect(ushort code, string error)
+        {
+            if (null != ws && code != (ushort)CloseStatusCode.Normal)
+            {
+                ws.Connect();
+            }
+        }
+
         private void SendMsg()
         {
             string msg = txtSend.Text;

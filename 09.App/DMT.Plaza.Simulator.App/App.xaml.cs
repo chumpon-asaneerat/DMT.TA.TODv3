@@ -96,7 +96,7 @@ namespace DMT
             // Start log manager
             LogManager.Instance.Start();
 
-            // Load Config service.
+            // Load Plaza Config service.
             PlazaAppConfigManager.Instance.LoadConfig();
             PlazaAppConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
             // Setup config reference to all rest client class.
@@ -114,6 +114,10 @@ namespace DMT
 
             PlazaAppConfigManager.Instance.Start(); // Start File Watcher.
 
+            // Load Sub Adj Config service.
+            PlazaSupAdjConfigManager.Instance.LoadConfig();
+            PlazaSupAdjConfigManager.Instance.Start();
+
             Window window = null;
             window = new MainWindow();
 
@@ -129,6 +133,7 @@ namespace DMT
         protected override void OnExit(ExitEventArgs e)
         {
             // Shutdown File Watcher.
+            PlazaSupAdjConfigManager.Instance.Shutdown();
             PlazaAppConfigManager.Instance.Shutdown();
 
             // Shutdown log manager

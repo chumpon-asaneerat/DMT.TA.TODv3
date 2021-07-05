@@ -117,7 +117,7 @@ namespace DMT
             splash.Setup(5);
             splash.Show();
 
-            // Load Config service.
+            // Load TOD Config service.
             splash.Next("Load configuration");
             TODConfigManager.Instance.ConfigChanged += Service_ConfigChanged;
             TODConfigManager.Instance.LoadConfig();
@@ -133,6 +133,10 @@ namespace DMT
 
             splash.Next("Start configuration monitoring service.");
             TODConfigManager.Instance.Start(); // Start File Watcher.
+
+            // Load Sub Adj Config service.
+            TODSupAdjConfigManager.Instance.LoadConfig();
+            TODSupAdjConfigManager.Instance.Start();
 
             // Start Web Server.
             splash.Next("Start local TOD (application) web server.");
@@ -177,6 +181,7 @@ namespace DMT
             TODNotifyService.Instance.TSBShiftChanged -= TSBShiftChanged;
 
             // Shutdown File Watcher.
+            TODSupAdjConfigManager.Instance.Shutdown();
             TODConfigManager.Instance.Shutdown();
 
             if (null != appServ)

@@ -75,6 +75,8 @@
     <Compile Include="Configurations\Manager\05.TODResendConfigManager.cs" />
     <Compile Include="Configurations\Manager\06.TAResendConfigManager.cs" />
     <Compile Include="Configurations\Manager\07.AccountResendConfigManager.cs" />
+    <Compile Include="Configurations\Manager\08.TODSubAdjConfigManager.cs" />
+    <Compile Include="Configurations\Manager\09.PlazaAppSupAdjConfigManager.cs" />
     <Compile Include="Configurations\_Base\01.DMTConfig.cs" />
     <Compile Include="Configurations\_Base\02.WebServiceConfig.cs" />
     <Compile Include="Configurations\_Base\03.RabbitMQServiceConfig.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Configurations\_Base\05.SCWWebServiceConfig.cs" />
     <Compile Include="Configurations\_Base\06.TAAppWebServiceConfig.cs" />
     <Compile Include="Configurations\_Base\07.TODAppWebServiceConfig.cs" />
+    <Compile Include="Configurations\_Base\08.SupAdjWebSocketConfig.cs" />
     <Compile Include="Configurations\__Interfaces\01.IDMTConfig.cs" />
     <Compile Include="Configurations\__Interfaces\02.IRabbitMQConfig.cs" />
     <Compile Include="Configurations\__Interfaces\03.ISCWConfig.cs" />

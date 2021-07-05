@@ -110,6 +110,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region Sup Adj Server
+
+            private static Simulator.Pages.SubAdjServerPage _SubAdjServer;
+
+            /// <summary>Gets Sup Adj Server Page.</summary>
+            public static Simulator.Pages.SubAdjServerPage SubAdjServer
+            {
+                get
+                {
+                    if (null == _SubAdjServer)
+                    {
+                        lock (typeof(SimApp))
+                        {
+                            _SubAdjServer = new Simulator.Pages.SubAdjServerPage();
+                        }
+                    }
+                    return _SubAdjServer;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

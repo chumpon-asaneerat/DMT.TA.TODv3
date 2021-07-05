@@ -3105,44 +3105,38 @@ namespace DMT.Services
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
+            var cfg = Configurations.PlazaSupAdjConfigManager.Instance.SupAdj;
+
             if (null != ws)
             {
                 med.Info("SUPADJ - Already create web socket.");
-                med.Info(string.Format("SUPADJ - Ready State: {0}.", ws.ReadyState));
-                if (ws.ReadyState != WebSocketState.Open)
-                {
-                    med.Info("SUPADJ - Current connection is not in open state. Try to disconnect before send message.");
-                }
+                Disconnect(false);
+            }
+            iRetry = 0; // reset retry,
+            iReq = 0;
+            iRes = 0;
+
+            string url = string.Format("{0}://{1}:{2}", cfg.Protocol, cfg.HostName, cfg.PortNumber); ;
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                med.Err(string.Format("SUPADJ - Invalid Url. Url: {0}", url));
                 return;
             }
-            else
+
+            med.Info("SUPADJ - Create new web socket connection.");
+
+            try
             {
-                iRetry = 0; // reset retry,
-                iReq = 0;
-                iRes = 0;
-
-                string url = txtUrl.Text;
-                if (string.IsNullOrWhiteSpace(url))
-                {
-                    med.Err(string.Format("SUPADJ - Invalid Url. Url: {0}", url));
-                    return;
-                }
-
-                med.Info("SUPADJ - Create new web socket connection.");
-
-                try
-                {
-                    ws = new WebSocket(url);
-                    ws.OnOpen += Ws_OnOpen;
-                    ws.OnMessage += Ws_OnMessage;
-                    ws.OnError += Ws_OnError;
-                    ws.OnClose += Ws_OnClose;
-                    ws.Connect();
-                }
-                catch (Exception ex)
-                {
-                    med.Err(string.Format("SUPADJ - WS Open error: {0}", ex.Message));
-                }
+                ws = new WebSocket(url);
+                ws.OnOpen += Ws_OnOpen;
+                ws.OnMessage += Ws_OnMessage;
+                ws.OnError += Ws_OnError;
+                ws.OnClose += Ws_OnClose;
+                ws.Connect();
+            }
+            catch (Exception ex)
+            {
+                med.Err(string.Format("SUPADJ - WS Open error: {0}", ex.Message));
             }
         }
 

@@ -243,8 +243,27 @@ namespace DMT.TOD.Pages.Revenue
 
             SupAdjClient wcli = new SupAdjClient();
             wcli.Connect();
-            wcli.Send(_user, manager.UserShift.Begin.Value);
+            System.Threading.Thread.Sleep(10);
+
+            if (wcli.Connected)
+            {
+                subAdj.Notify("เชื่อมต่อ ระบบ SUP ADJUST สำเร็จ");
+                System.Threading.Thread.Sleep(10);
+
+                subAdj.Notify("ตรวจสอบ จํานวนเหตุการณ์ ที่ยังไม่ทำการ ADJUST");
+                wcli.Send(_user, manager.UserShift.Begin.Value);
+                System.Threading.Thread.Sleep(10);
+            }
+            else
+            {
+                subAdj.Notify("เชื่อมต่อ ระบบ SUP ADJUST ไม่สำเร็จ");
+                System.Threading.Thread.Sleep(10);
+            }
+
+
+            subAdj.Notify("จบการเชื่อมต่อ ระบบ SUP ADJUST");
             wcli.Disconnect();
+            System.Threading.Thread.Sleep(10);
 
             subAdj.Close();
             */

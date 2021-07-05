@@ -235,6 +235,22 @@ namespace DMT.TOD.Pages.Revenue
 
             #endregion
 
+            #region Check Sup Adjust
+            /*
+            var subAdj = TODApp.Windows.SupAdjStatus;
+            subAdj.Notify("เริ่มดำเนินการเชื่อมต่อ ระบบ SUP ADJUST");
+            subAdj.Show();
+
+            SupAdjClient wcli = new SupAdjClient();
+            wcli.Connect();
+            wcli.Send(_user, manager.UserShift.Begin.Value);
+            wcli.Disconnect();
+
+            subAdj.Close();
+            */
+            #endregion
+
+
             #region Check Return Bag
 
             if (!manager.IsReturnBag())

@@ -287,6 +287,9 @@
     <Compile Include="TOD\Windows\Utils\SplashScreenWindow.xaml.cs">
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TOD\Windows\Utils\SupAdjStatusWindow.xaml.cs">
+      <DependentUpon>SupAdjStatusWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Header\Elements\HeaderChief.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -452,6 +455,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TOD\Windows\Utils\SplashScreenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Windows\Utils\SupAdjStatusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

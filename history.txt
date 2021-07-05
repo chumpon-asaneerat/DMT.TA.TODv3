@@ -16,8 +16,10 @@ Refactor DMT.TA.TODv4 #2186
 Refactor DMT.TA.TODv4 #2185
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2184
-- 
+- DMT.TAxTODv3
+  - Implements SupAdj communication #6.
 
 [commited]
 Refactor DMT.TA.TODv4 #2183

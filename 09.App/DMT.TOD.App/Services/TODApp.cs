@@ -359,6 +359,22 @@ namespace DMT
 
             #endregion
 
+            #region SupAdjStatusWindow
+
+            /// <summary>Gets SupAdjStatus Window.</summary>
+            public static DMT.Windows.SupAdjStatusWindow SupAdjStatus
+            {
+                get
+                {
+                    var ret = new DMT.Windows.SupAdjStatusWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+
             #region Reports
 
             /// <summary>Gets Revenue Slip Search Window.</summary>

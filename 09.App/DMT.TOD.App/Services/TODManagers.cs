@@ -25,6 +25,8 @@ using NLib.Reflection;
 using RestSharp;
 
 using WebSocketSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 #endregion
 
@@ -3022,20 +3024,22 @@ namespace DMT.Services
 
     #endregion
 
-    #region SupAdjManager
+    #region SupAdjClient
 
     /// <summary>
-    /// The SupAdj Manager.
+    /// The SupAdj Client.
     /// </summary>
-    public class SupAdjManager
+    public class SupAdjClient
     {
         #region Internal Variables
 
         private int iRetry = 0;
-        private int iReq = 0;
-        private int iRes = 0;
         private bool _reconnect = false;
         private WebSocket ws = null;
+
+        private Models.User _user = null; 
+        private int? adjCnt = new int?();
+        private bool isEnabled = true;
 
         #endregion
 
@@ -3044,11 +3048,11 @@ namespace DMT.Services
         /// <summary>
         /// Constructor.
         /// </summary>
-        public SupAdjManager() : base() { }
+        public SupAdjClient() : base() { }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~SupAdjManager() 
+        ~SupAdjClient() 
         {
             Disconnect(false);
         }
@@ -3062,19 +3066,82 @@ namespace DMT.Services
         private void Ws_OnOpen(object sender, EventArgs e)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("SUPADJ - WS OnOpen detected.");
         }
 
         private void Ws_OnMessage(object sender, WebSocketSharp.MessageEventArgs e)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            // Cross thread wrapper.
-            /*
-            Invoke(new MethodInvoker(delegate () {
-                string message = e.Data;
-                Log(string.Format("WS OnMessage: {0}", message));
-                txtRecv.Text = message;
-            }));
-            */
+
+            if (null == _user)
+            {
+                med.Info("SUPADJ - WS OnMessage: No user assigned.");
+            }
+            string json = e.Data;
+            adjCnt = new int?(); // Reset
+
+            // {"jsonrpc":"2.0","method":"TOD_adjustSizeResponse","staffId":123456,"adjustSize":0}
+            try
+            {
+                JObject jobj = JObject.Parse(json);
+                string ver = jobj.Property("jsonrpc").HasValues ?
+                    jobj.Property("jsonrpc").Value.ToString() : string.Empty;
+                string method = jobj.Property("method").HasValues ?
+                    jobj.Property("method").Value.ToString() : string.Empty;
+                if (ver != "2.0" || method != "TOD_adjustSizeResponse")
+                {
+                    med.Info("SUPADJ - WS OnMessage: Invalid version or method.");
+                    med.Info(string.Format("     - jsonrpc: {0}.", ver));
+                    med.Info(string.Format("     - method: {0}.", method));
+                    return;
+                }
+                int? staffId = new int?();
+                if (jobj.Property("staffId").HasValues)
+                {
+                    int id;
+                    if (int.TryParse(jobj.Property("staffId").Value.ToString(), out id))
+                    {
+                        staffId = id;
+                        med.Info(string.Format("     - staffId: {0}.", id));
+                    }
+                    else
+                    {
+                        med.Info(string.Format("     - staffId: {0} -> parse error.", id));
+                    }
+                }
+
+                if (!staffId.HasValue)
+                {
+                    med.Info("SUPADJ - WS OnMessage: staffId is null or invalid.");
+                    return;
+                }
+
+                if (jobj.Property("adjustSize").HasValues)
+                {
+                    int sz;
+                    if (int.TryParse(jobj.Property("adjustSize").Value.ToString(), out sz))
+                    {
+                        adjCnt = new int?(sz);
+                        med.Info(string.Format("     - adjustSize: {0}.", sz));
+                    }
+                    else
+                    {
+                        med.Info(string.Format("     - adjustSize: {0} -> parse error.", sz));
+                    }
+                }
+
+                if (!adjCnt.HasValue)
+                {
+                    med.Info("SUPADJ - WS OnMessage: adjustSize is null or invalid.");
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                med.Err(string.Format("SUPADJ - WS OnMessage Error: {0}", ex.Message));
+            }
         }
 
         private void Ws_OnClose(object sender, WebSocketSharp.CloseEventArgs e)
@@ -3099,22 +3166,40 @@ namespace DMT.Services
 
         #endregion
 
+        #endregion
+
+        #region Public Method
+
         #region Connect/Reconnect/Disconnect/Send
 
-        private void Connect() 
+        /// <summary>
+        /// Connect
+        /// </summary>
+        public void Connect()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-
-            var cfg = Configurations.PlazaSupAdjConfigManager.Instance.SupAdj;
 
             if (null != ws)
             {
                 med.Info("SUPADJ - Already create web socket.");
                 Disconnect(false);
             }
+
             iRetry = 0; // reset retry,
-            iReq = 0;
-            iRes = 0;
+
+            var cfg = Configurations.PlazaSupAdjConfigManager.Instance.SupAdj;
+            if (null == cfg)
+            {
+                med.Err("SUPADJ - Config is null.");
+                return;
+            }
+
+            isEnabled = cfg.Enabled;
+            if (!isEnabled)
+            {
+                med.Err("SUPADJ - Connection is disable by config.");
+                return;
+            }
 
             string url = string.Format("{0}://{1}:{2}", cfg.Protocol, cfg.HostName, cfg.PortNumber); ;
             if (string.IsNullOrWhiteSpace(url))
@@ -3138,6 +3223,13 @@ namespace DMT.Services
             {
                 med.Err(string.Format("SUPADJ - WS Open error: {0}", ex.Message));
             }
+        }
+        /// <summary>
+        /// Disconnect.
+        /// </summary>
+        public void Disconnect()
+        {
+            Disconnect(false);
         }
 
         private void Disconnect(bool reconnect)
@@ -3184,6 +3276,12 @@ namespace DMT.Services
             string msg = string.Format("SUPADJ - Reconnect: last status {0}, {1}", code, error);
             med.Info(msg);
 
+            if (!isEnabled)
+            {
+                med.Info("SUPADJ - Re-conenct to ws is disable by config.");
+                return;
+            }
+
             if (iRetry >= 3)
             {
                 med.Info("SUPADJ - Re-conenct to ws server failed.");
@@ -3202,19 +3300,60 @@ namespace DMT.Services
                 med.Info(string.Format("SUPADJ - Retry failed close status: {0} or ws is null.", code));
             }
         }
-
-        private void Send()
+        /// <summary>
+        /// Send.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="jobBegin"></param>
+        public void Send(Models.User user, DateTime jobBegin)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+            if (null == ws || ws.ReadyState != WebSocketState.Open)
+            {
+                med.Info("SUPADJ - SEND: No websocket connection. The connection is null or connection state is not ready.");
+                return;
+            }
+            if (null == user)
+            {
+                med.Info("SUPADJ - SEND: No User assign.");
+                return;
+            }
 
-            iReq++;
+            _user = user;
+            //{"jsonrpc":"2.0","method":"TOD_adjustSizeRequest","staffId":123456,"staffName":"สมชาย","staffLastName":"เข็มขัด","bojDateTime":"2021-05-31T22:55:31.000Z"}
+            var jobj = new
+            {
+                jsonrpc = "2.0",
+                method = "TOD_adjustSizeRequest",
+                staffId = Convert.ToInt32(user.UserId),
+                staffName = user.FirstNameTH,
+                staffLastName = user.LastNameTH,
+                bojDateTime = jobBegin
+            };
+
+            string json = JsonConvert.SerializeObject(jobj);
+            med.Info(string.Format("SUPADJ - SEND: {0}", json));
+            med.Info(string.Format("     jsonrpc: {0}", jobj.jsonrpc));
+            med.Info(string.Format("     method: {0}", jobj.method));
+            med.Info(string.Format("     staffId: {0}", jobj.staffId));
+            med.Info(string.Format("     staffName: {0}", jobj.staffName));
+            med.Info(string.Format("     staffLastName: {0}", jobj.staffLastName));
+            med.Info(string.Format("     bojDateTime: {0:yyyy-MM-dd HH:mm:ss.fff}", jobj.bojDateTime));
+
+            adjCnt = new int?(); // reset count.
+            try
+            {
+                ws.Send(json); // sending
+            }
+            catch (Exception ex)
+            {
+                med.Err(string.Format("SUPADJ - SEND Error: {0}", ex.Message));
+            }
         }
 
         #endregion
 
-        #endregion
-
-        #region Public Method
+        #region HasAdjustEvents
 
         /// <summary>
         /// Checks has adjust event.
@@ -3223,8 +3362,25 @@ namespace DMT.Services
         public bool HasAdjustEvents()
         {
             bool ret = false;
-
+            if (isEnabled)
+            {
+                ret = (adjCnt.HasValue && adjCnt.Value > 0);
+            }
             return ret;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Checks is connected.
+        /// </summary>
+        public bool Connected 
+        {
+            get { return (null != ws && ws.ReadyState == WebSocketState.Open); }
         }
 
         #endregion

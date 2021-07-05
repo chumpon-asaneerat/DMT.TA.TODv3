@@ -12,7 +12,7 @@ TOD version 1.4 build 10070 2564/06/29 09:00
     Note: code auto genreate message สำหรับ ตารางนี้ ถูก comment ไว้ เนื่องจากการทดสอบ ติด error ที่ SP ของ SQL Server เจอปัญหา duplicate key
   - UserShift เพิ่ม column ToTAserver โดยค่า NULL = ยังไม่ส่งไปยัง TA Server, 1 = สร้าง file สำหรับส่ง TA Server แล้ว
   - RevenueEntry เพิ่ม column ToTAserver โดยค่า NULL = ยังไม่ส่งไปยัง TA Server, 1 = สร้าง file สำหรับส่ง TA Server แล้ว
-
+- ย้าย log config, log file จาก Program Data Folder ไปที่ App Folder
 ----------------------------------------------------------------------------------------------------------------------
 TOD version 1.4 build 10060 2564/06/24 06:00
 - ปรับแก้ไขข้อมูลเวลา เริ่มต้น/สิ้นสุด กะ โดย
@@ -47,6 +47,7 @@ TA version  1.4 build 10070 2564/06/29 09:00
   - กะดึก 20:00 - 04:00
 - Local database (TA) 
   - Update query check การคืนถุงเงินโดยดึงเฉพาะรายการล่าสุดที่ หพ กำหนดให้พนักงานคนนั้น ๆ
+- ย้าย log config, log file จาก Program Data Folder ไปที่ App Folder
 ----------------------------------------------------------------------------------------------------------------------
 TA version  1.4 build 10060 2564/06/24 06:00
 - ปรับแก้ไขข้อมูลเวลา เริ่มต้น/สิ้นสุด กะ โดย
@@ -76,6 +77,7 @@ Account version  1.4 build 10060 2564/06/24 06:00
   - TAxTOD
 - เพิ่ม splash screen
 - เพิ่ม service สำหรับการ resend message ที่ค้างอยู่ใน error folder (โดยเมื่อทำการ resend message จะมี message ใน log เพื่อบอกว่า เป็นการ resend).
+- ย้าย log config, log file จาก Program Data Folder ไปที่ App Folder
 ----------------------------------------------------------------------------------------------------------------------
 
 

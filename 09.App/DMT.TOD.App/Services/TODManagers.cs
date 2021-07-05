@@ -24,6 +24,8 @@ using NLib.Reflection;
 
 using RestSharp;
 
+using WebSocketSharp;
+
 #endregion
 
 namespace DMT.Services
@@ -3014,6 +3016,89 @@ namespace DMT.Services
         /// The PlazaGroupChanged Event Handler.
         /// </summary>
         public event System.EventHandler PlazaGroupChanged;
+
+        #endregion
+    }
+
+    #endregion
+
+    #region SupAdjManager
+
+    /// <summary>
+    /// The SupAdj Manager.
+    /// </summary>
+    public class SupAdjManager
+    {
+        #region Internal Variables
+
+        private WebSocket ws = null;
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public SupAdjManager() : base() { }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~SupAdjManager() { }
+
+        #endregion
+
+        #region Private Methods
+
+        #region WS Handlers
+
+        private void Ws_OnOpen(object sender, EventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+        }
+
+        private void Ws_OnMessage(object sender, WebSocketSharp.MessageEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            // Cross thread wrapper.
+            /*
+            Invoke(new MethodInvoker(delegate () {
+                string message = e.Data;
+                Log(string.Format("WS OnMessage: {0}", message));
+                txtRecv.Text = message;
+            }));
+            */
+        }
+
+        private void Ws_OnClose(object sender, WebSocketSharp.CloseEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            //Reconnect(e.Code, e.Reason);
+            //Log(string.Format("WS OnClose : Code:{0}, Reason:{1}", e.Code, e.Reason));
+        }
+
+        private void Ws_OnError(object sender, WebSocketSharp.ErrorEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            //Log(string.Format("WS OnError: {0}", e.Message));
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Method
+
+        /// <summary>
+        /// Checks has adjust event.
+        /// </summary>
+        /// <returns>Returns true if has one or more adjust events.</returns>
+        public bool HasAdjustEvents()
+        {
+            bool ret = false;
+
+            return ret;
+        }
 
         #endregion
     }

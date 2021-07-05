@@ -30,6 +30,8 @@ namespace WebSocketClientTest
         #region Internal Variables
 
         private WebSocket ws = null;
+        private bool disconnectByUser = false;
+        private int iRetry = 0;
 
         #endregion
 
@@ -37,14 +39,12 @@ namespace WebSocketClientTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cmdConnect.Enabled = true;
-            cmdDisconnect.Enabled = true;
-            cmdSend.Enabled = false;
+            UpdateUI();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Disconnect();
+            Disconnect(true);
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace WebSocketClientTest
 
         private void cmdDisconnect_Click(object sender, EventArgs e)
         {
-            Disconnect();
+            Disconnect(true);
         }
 
         private void cmdSend_Click(object sender, EventArgs e)
@@ -88,6 +88,7 @@ namespace WebSocketClientTest
         private void Ws_OnOpen(object sender, EventArgs e)
         {
             Log("WS OnOpen handler execute.");
+            UpdateUI();
         }
 
         private void Ws_OnMessage(object sender, MessageEventArgs e)
@@ -97,23 +98,41 @@ namespace WebSocketClientTest
                 string message = e.Data;
                 Log(string.Format("WS OnMessage: {0}", message));
                 txtRecv.Text = message;
+                UpdateUI();
             }));
         }
 
         private void Ws_OnClose(object sender, CloseEventArgs e)
         {
-            //Reconnect(e.Code, e.Reason);
-            Log(string.Format("WS OnClose : Code:{0}, Reason:{1}", e.Code, e.Reason));
+            if (!disconnectByUser)
+            {
+                Reconnect(e.Code, e.Reason);
+            }
+            else
+            {
+                Log(string.Format("WS OnClose : Code:{0}, Reason:{1}", e.Code, e.Reason));
+            }
+            UpdateUI();
         }
 
         private void Ws_OnError(object sender, ErrorEventArgs e)
         {
             Log(string.Format("WS OnError: {0}", e.Message));
+            //UpdateUI();
+            Disconnect(false);
         }
 
         #endregion
 
         #region Private Methods
+
+        private void UpdateUI()
+        {
+            bool connected = (null != ws && ws.ReadyState == WebSocketState.Open);
+            cmdConnect.Enabled = !connected;
+            cmdDisconnect.Enabled = connected;
+            cmdSend.Enabled = connected;
+        }
 
         private void Connect()
         {
@@ -126,11 +145,12 @@ namespace WebSocketClientTest
                 {
                     Log("Current connection is not in open state. Try to disconnect before send message.");
                 }
-
+                UpdateUI();
                 return;
             }
             else
             {
+                iRetry = 0; // reset retry,
                 string url = txtUrl.Text;
                 if (string.IsNullOrWhiteSpace(url))
                 {
@@ -153,15 +173,14 @@ namespace WebSocketClientTest
                 {
                     Log(string.Format("WS Open error: {0}", ex.Message));
                 }
+                UpdateUI();
             }
-
-            cmdConnect.Enabled = (null == ws || ws.ReadyState != WebSocketState.Open);
-            cmdDisconnect.Enabled = true;
-            cmdSend.Enabled = !cmdConnect.Enabled;
         }
 
-        private void Disconnect()
+        private void Disconnect(bool byUser)
         {
+            disconnectByUser = byUser;
+
             if (null != ws)
             {
                 try
@@ -187,15 +206,28 @@ namespace WebSocketClientTest
             }
             ws = null;
 
+            disconnectByUser = false; // reset flag.
+
             Log("web socket connection is closed.");
+            UpdateUI();
         }
 
         private void Reconnect(ushort code, string error)
         {
+            Log(string.Format("Reconnect: last status {0}, {1}", code, error));
+            if (iRetry >= 3)
+            {
+                Log("Conenct to ws server failed.");
+                Disconnect(false); // force disconnect.
+                return;
+            }
+            iRetry++;
+            Log(string.Format("Retry {0}.", iRetry));
             if (null != ws && code != (ushort)CloseStatusCode.Normal)
             {
                 ws.Connect();
             }
+            UpdateUI();
         }
 
         private void SendMsg()
@@ -204,17 +236,20 @@ namespace WebSocketClientTest
             if (string.IsNullOrWhiteSpace(msg))
             {
                 MessageBox.Show("No message to send.");
+                UpdateUI();
                 return;
             }
 
             if (null == ws || ws.ReadyState != WebSocketState.Open)
             {
                 MessageBox.Show("No Web socket connect.");
+                UpdateUI();
                 return;
             }
 
             Log(string.Format("Sending Message: {0}", msg));
             ws.Send(msg);
+            UpdateUI();
         }
 
         private void ClearSendMsg()

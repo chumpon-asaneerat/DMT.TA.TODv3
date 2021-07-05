@@ -3031,6 +3031,10 @@ namespace DMT.Services
     {
         #region Internal Variables
 
+        private int iRetry = 0;
+        private int iReq = 0;
+        private int iRes = 0;
+        private bool _reconnect = false;
         private WebSocket ws = null;
 
         #endregion
@@ -3044,7 +3048,10 @@ namespace DMT.Services
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~SupAdjManager() { }
+        ~SupAdjManager() 
+        {
+            Disconnect(false);
+        }
 
         #endregion
 
@@ -3073,14 +3080,140 @@ namespace DMT.Services
         private void Ws_OnClose(object sender, WebSocketSharp.CloseEventArgs e)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            //Reconnect(e.Code, e.Reason);
-            //Log(string.Format("WS OnClose : Code:{0}, Reason:{1}", e.Code, e.Reason));
+            if (_reconnect)
+            {
+                Reconnect(e.Code, e.Reason);
+            }
+            else
+            {
+                med.Info(string.Format("SUPADJ - WS OnClose : Code:{0}, Reason:{1}", e.Code, e.Reason));
+            }
         }
 
         private void Ws_OnError(object sender, WebSocketSharp.ErrorEventArgs e)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            //Log(string.Format("WS OnError: {0}", e.Message));
+            med.Err(string.Format("SUPADJ - WS OnError: {0}", e.Message));
+            Disconnect(true);
+        }
+
+        #endregion
+
+        #region Connect/Reconnect/Disconnect/Send
+
+        private void Connect() 
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            if (null != ws)
+            {
+                med.Info("SUPADJ - Already create web socket.");
+                med.Info(string.Format("SUPADJ - Ready State: {0}.", ws.ReadyState));
+                if (ws.ReadyState != WebSocketState.Open)
+                {
+                    med.Info("SUPADJ - Current connection is not in open state. Try to disconnect before send message.");
+                }
+                return;
+            }
+            else
+            {
+                iRetry = 0; // reset retry,
+                iReq = 0;
+                iRes = 0;
+
+                string url = txtUrl.Text;
+                if (string.IsNullOrWhiteSpace(url))
+                {
+                    med.Err(string.Format("SUPADJ - Invalid Url. Url: {0}", url));
+                    return;
+                }
+
+                med.Info("SUPADJ - Create new web socket connection.");
+
+                try
+                {
+                    ws = new WebSocket(url);
+                    ws.OnOpen += Ws_OnOpen;
+                    ws.OnMessage += Ws_OnMessage;
+                    ws.OnError += Ws_OnError;
+                    ws.OnClose += Ws_OnClose;
+                    ws.Connect();
+                }
+                catch (Exception ex)
+                {
+                    med.Err(string.Format("SUPADJ - WS Open error: {0}", ex.Message));
+                }
+            }
+        }
+
+        private void Disconnect(bool reconnect)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            _reconnect = reconnect; // update flag.
+
+            if (null != ws)
+            {
+                try
+                {
+                    ws.OnOpen -= Ws_OnOpen;
+                    ws.OnMessage -= Ws_OnMessage;
+                    ws.OnError -= Ws_OnError;
+                    ws.OnClose -= Ws_OnClose;
+                    ws.Close();
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+                try
+                {
+                    (ws as IDisposable).Dispose();
+                }
+                catch (Exception)
+                {
+                    //med.Err(ex2);
+                }
+            }
+            ws = null;
+
+            if (!reconnect)
+            {
+                med.Info("SUPADJ - successfully disconnected.");
+            }
+
+            _reconnect = false; // reset flag.
+        }
+
+        private void Reconnect(ushort code, string error)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Format("SUPADJ - Reconnect: last status {0}, {1}", code, error);
+            med.Info(msg);
+
+            if (iRetry >= 3)
+            {
+                med.Info("SUPADJ - Re-conenct to ws server failed.");
+                Disconnect(false); // force disconnect.
+                return;
+            }
+
+            iRetry++;
+            med.Info(string.Format("SUPADJ - Retry {0}.", iRetry));
+            if (null != ws && code != (ushort)CloseStatusCode.Normal)
+            {
+                ws.Connect();
+            }
+            else
+            {
+                med.Info(string.Format("SUPADJ - Retry failed close status: {0} or ws is null.", code));
+            }
+        }
+
+        private void Send()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            iReq++;
         }
 
         #endregion

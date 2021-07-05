@@ -7,8 +7,10 @@ Refactor DMT.TA.TODv4 #2179
 Refactor DMT.TA.TODv4 #2178
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2177
-- 
+- DMT.TAxTODv3
+  - All apps move log to application folder.
 
 [commited]
 Refactor DMT.TA.TODv4 #2176

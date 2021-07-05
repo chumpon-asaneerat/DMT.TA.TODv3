@@ -54,7 +54,7 @@ namespace DMT
                 /* Setup Storage */
                 Storage = new NAppStorage()
                 {
-                    StorageType = NAppFolder.ProgramData
+                    StorageType = NAppFolder.Application
                 },
                 /* Setup Behaviors */
                 Behaviors = new NAppBehaviors()

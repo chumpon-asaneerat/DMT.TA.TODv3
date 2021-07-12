@@ -34,6 +34,16 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = @"/api/TCT/coupons/sold";
                 }
+
+                // Url: /api/TCT/CheckTODBoj
+                /// <summary>The Check TOD Boj Class.</summary>
+                public static partial class CheckTODBoj
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "CheckTODBoj";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/TCT/CheckTODBoj";
+                }
             }
         }
     }

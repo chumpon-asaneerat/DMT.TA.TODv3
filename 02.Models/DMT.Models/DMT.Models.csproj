@@ -170,6 +170,7 @@
     <Compile Include="Models\Plaza\Users\Role.cs" />
     <Compile Include="Models\Plaza\Users\User.cs" />
     <Compile Include="Models\TAxTOD\TASAPClasses.cs" />
+    <Compile Include="Models\TAxTOD\TCTCheckBoj.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

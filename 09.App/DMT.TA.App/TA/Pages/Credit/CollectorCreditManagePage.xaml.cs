@@ -2,11 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
 using DMT.Models;
 using DMT.Services;
+using NLib;
 using NLib.Services;
 using NLib.Reflection;
 
@@ -105,6 +107,18 @@ namespace DMT.TA.Pages.Credit
         {
             if (null == balance) 
                 return;
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            // Check is open user shift from TOD by call TA Server.
+            if (!TAServerManager.CheckTODBoj(balance.UserId))
+            {
+                var msgbox = TAApp.Windows.MessageBox;
+                string msg = "พนักงานยังไม่เปิดกะทำงาน กรุณาเปิดกะทำงานที่ระบบ TOD ก่อนรับถุงเงิน";
+                med.Info(msg); // write log.
+                msgbox.Setup(msg, "DMT - Toll Admin");
+                msgbox.ShowDialog();
+                return;
+            }
 
             var win = TAApp.Windows.CollectorReceivedBag;
             win.Setup(balance);

@@ -36,6 +36,18 @@ namespace DMT.Services.Operations
                     RouteConsts.TAxTOD.TCT.SoldCoupon.Url, new { });
                 return ret;
             }
+
+            /// <summary>
+            /// Execute Check TOD Boj api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult<List<Models.CheckTODBoj>> CheckTODBoj(Search.TAxTOD.CheckBoj value)
+            {
+                var ret = Execute<List<Models.CheckTODBoj>>(
+                    RouteConsts.TAxTOD.TCT.CheckTODBoj.Url, value);
+                return ret;
+            }
         }
     }
 }

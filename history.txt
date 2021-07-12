@@ -25,8 +25,11 @@ Refactor DMT.TA.TODv4 #2193
 Refactor DMT.TA.TODv4 #2192
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2191
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Received bag check TOD is User has BOJ.
 
 [commited]
 Refactor DMT.TA.TODv4 #2190

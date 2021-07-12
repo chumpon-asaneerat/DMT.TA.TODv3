@@ -57,6 +57,7 @@ namespace DMT.TOD.Windows
                 else progress.Value = progress.Maximum;
             }), DispatcherPriority.Normal);
 
+            ApplicationManager.Instance.DoEvents();
             System.Threading.Thread.Sleep(10);
         }
         /// <summary>

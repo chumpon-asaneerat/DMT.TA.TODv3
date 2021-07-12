@@ -4,8 +4,15 @@
 Refactor DMT.TA.TODv4 #2189
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2188
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update SplashScreenWindow code -> use ApplicationManager DoEvents method.
+  - DMT.Account.App project
+    - Update SplashScreenWindow code -> use ApplicationManager DoEvents method.
+  - DMT.TA.App project
+    - Update SplashScreenWindow code -> use ApplicationManager DoEvents method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2187

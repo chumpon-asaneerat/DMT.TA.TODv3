@@ -22,8 +22,11 @@ Refactor DMT.TA.TODv4 #2194
 Refactor DMT.TA.TODv4 #2193
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2192
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Add Close Shift button in JobList page (for close user shift that has no job).
 
 [commited]
 Refactor DMT.TA.TODv4 #2191

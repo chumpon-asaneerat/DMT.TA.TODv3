@@ -49,6 +49,13 @@
                                       ImageSource="/DMT.TOD.App;component/Images/Button/Refresh.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="เริ่มใหม่ (Refresh)" />
                     </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdCloseShift"
+                                      Click="cmdCloseShift_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TOD.App;component/Images/Button/Cancel.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ปิดกะ" />
+                    </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->

@@ -21,7 +21,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <!--  Shift  -->
-    <Border BorderBrush="Silver" BorderThickness="1">
+    <Border x:Name="borderDT"
+            BorderBrush="Silver"
+            BorderThickness="1">
         <DockPanel Margin="5">
             <Border Background="DarkGray"
                     BorderBrush="Silver"

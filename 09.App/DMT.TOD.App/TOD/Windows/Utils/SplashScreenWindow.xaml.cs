@@ -26,31 +26,6 @@ namespace DMT.TOD.Windows
 
         #endregion
 
-        #region Private Method
-
-        private void AllowUIToUpdate()
-        {
-            DispatcherFrame frame = new DispatcherFrame();
-            if (null != Dispatcher.CurrentDispatcher)
-            {
-                Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Render,
-                new DispatcherOperationCallback((object parameter) =>
-                {
-                    frame.Continue = false;
-                    return null;
-                }), null);
-
-                Dispatcher.PushFrame(frame);
-            }
-
-            if (null != Application.Current)
-            {
-                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => { }));
-            }
-        }
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
@@ -71,7 +46,7 @@ namespace DMT.TOD.Windows
         /// <param name="msg"></param>
         public void Next(string msg)
         {
-            AllowUIToUpdate();
+            ApplicationManager.Instance.DoEvents();
             System.Threading.Thread.Sleep(10);
 
             Dispatcher.BeginInvoke(new Action(() => 

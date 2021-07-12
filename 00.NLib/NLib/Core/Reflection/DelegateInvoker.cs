@@ -227,8 +227,8 @@ namespace NLib.Reflection
                 handled = true;
                 try
                 {
-                    Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background,
-                        new EmptyDelegate(delegate { }));
+                    Wpf.DoEvents(DispatcherPriority.Background, true);
+                    //Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.Background, new Action(() => { }));
                 }
                 catch (Exception)
                 {
@@ -305,6 +305,46 @@ namespace NLib.Reflection
                 }
             }
             return result;
+        }
+
+        #endregion
+
+        #region Wpf helper class
+
+        /// <summary>
+        /// Wpf helper class.
+        /// </summary>
+        public static class Wpf
+        {
+            /// <summary>
+            /// Application DoEvents (WPF).
+            /// </summary>
+            /// <param name="dp">The DispatcherPriority mode.</param>
+            /// <param name="simple">True for simple mode.</param>
+            public static void DoEvents(DispatcherPriority dp = DispatcherPriority.Render, bool simple = true)
+            {
+                if (!simple)
+                {
+                    if (null != Dispatcher.CurrentDispatcher)
+                    {
+                        var frame = new DispatcherFrame();
+                        Dispatcher.CurrentDispatcher.BeginInvoke(dp,
+                            new DispatcherOperationCallback((object parameter) =>
+                            {
+                                ((DispatcherFrame)parameter).Continue = false;
+                                return null;
+                            }), frame);
+                        Dispatcher.PushFrame(frame);
+                    }
+                }
+                else
+                {
+                    if (null != Dispatcher.CurrentDispatcher)
+                    {
+                        Dispatcher.CurrentDispatcher.Invoke(dp, new Action(() => { }));
+                    }
+                }
+            }
         }
 
         #endregion

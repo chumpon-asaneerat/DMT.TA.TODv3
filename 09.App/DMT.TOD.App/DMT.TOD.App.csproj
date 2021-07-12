@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Message\MQResendService.cs" />
     <Compile Include="Models\Lane.Models.cs" />
+    <Compile Include="Services\SupAdjClient.cs" />
     <Compile Include="Services\TODManagers.cs" />
     <Compile Include="Services\TODApp.cs" />
     <Compile Include="Services\RuntimeManager.cs" />

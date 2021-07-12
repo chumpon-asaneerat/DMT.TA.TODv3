@@ -7,8 +7,14 @@ Refactor DMT.TA.TODv4 #2189
 Refactor DMT.TA.TODv4 #2188
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2187
-- 
+- DMT.TAxTODv3
+  - Update NLib DelegateInvoker 
+    - add Wpf class + DoEvents method.
+    - rewrite DoEvents method.
+  - DMT.TOD.App project
+    - Update SplashScreenWindow code -> use ApplicationManager DoEvents method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2186

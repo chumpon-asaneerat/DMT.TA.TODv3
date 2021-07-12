@@ -215,7 +215,7 @@ namespace DMT.Simulator.Pages
                 LogMessage(string.Format("detected request by client data: {0}.", e.Data));
                 string ret = OnRequest(e.Data);
                 LogMessage(string.Format("server response to client ack: {0}.", ret));
-                Sessions.Broadcast(string.Format("Response: {0}", ret));
+                Sessions.Broadcast(ret);
             }
             catch (Exception ex) 
             {

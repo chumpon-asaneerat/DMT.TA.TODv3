@@ -160,6 +160,9 @@ namespace DMT.TOD.Pages.Revenue
 
         private void GotoRevenueEntry()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg;
+
             #region Check RevenueEntryManager
 
             if (null == manager)
@@ -195,7 +198,9 @@ namespace DMT.TOD.Pages.Revenue
                     manager.RevenueShift.RevenueDate.Value != DateTime.MinValue)
                 {
                     var win = TODApp.Windows.MessageBox;
-                    win.Setup("กะของพนักงานนี้ ถูกป้อนรายได้แล้ว", "DMT - Tour of Duty");
+                    msg = "กะของพนักงานนี้ ถูกป้อนรายได้แล้ว";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
                     win.ShowDialog();
                     return;
                 }
@@ -205,14 +210,18 @@ namespace DMT.TOD.Pages.Revenue
                 if (manager.IsNewRevenueShift)
                 {
                     var win = TODApp.Windows.MessageBox;
-                    win.Setup("ไม่สามารถนำส่งรายได้ เนื่องจากไม่พบข้อมูลการทำงาน", "DMT - Tour of Duty");
+                    msg = "ไม่สามารถนำส่งรายได้ เนื่องจากไม่พบข้อมูลการทำงาน";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
                     win.ShowDialog();
                     return;
                 }
                 else
                 {
                     var win = TODApp.Windows.MessageBox;
-                    win.Setup("กะนี้ถูกจัดเก็บรายได้แล้ว.", "DMT - Tour of Duty");
+                    msg = "กะนี้ถูกจัดเก็บรายได้แล้ว.";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
                     win.ShowDialog();
                     return;
                 }
@@ -228,7 +237,9 @@ namespace DMT.TOD.Pages.Revenue
             {
                 // Online but no jobs on current plaza group.
                 var win = TODApp.Windows.MessageBox;
-                win.Setup("ไม่พบข้อมูลเลนที่ยังไม่ถูกป้อนรายได้", "DMT - Tour of Duty");
+                msg = "ไม่พบข้อมูลเลนที่ยังไม่ถูกป้อนรายได้";
+                med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                win.Setup(msg, "DMT - Tour of Duty");
                 win.ShowDialog();
                 return;
             }
@@ -236,46 +247,109 @@ namespace DMT.TOD.Pages.Revenue
             #endregion
 
             #region Check Sup Adjust
-            /*
-            var subAdj = TODApp.Windows.SupAdjStatus;
-            subAdj.Notify("เริ่มดำเนินการเชื่อมต่อ ระบบ SUP ADJUST");
-            subAdj.Show();
 
-            SupAdjClient wcli = new SupAdjClient();
-            wcli.Connect();
-            System.Threading.Thread.Sleep(10);
-
-            if (wcli.Connected)
+            if (SupAdjClient.Enabled)
             {
-                subAdj.Notify("เชื่อมต่อ ระบบ SUP ADJUST สำเร็จ");
+                bool connected = false;
+
+                var subAdj = TODApp.Windows.SupAdjStatus;
+                msg = "เริ่มดำเนินการเชื่อมต่อ ระบบ SUP ADJUST";
+                subAdj.Notify(msg);
+                med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                subAdj.Show();
+
+                ApplicationManager.Instance.DoEvents();
                 System.Threading.Thread.Sleep(10);
 
-                subAdj.Notify("ตรวจสอบ จํานวนเหตุการณ์ ที่ยังไม่ทำการ ADJUST");
-                wcli.Send(_user, manager.UserShift.Begin.Value);
+                SupAdjClient wcli = new SupAdjClient();
+                wcli.Connect();
+
+                ApplicationManager.Instance.DoEvents();
                 System.Threading.Thread.Sleep(10);
+
+                if (wcli.Connected)
+                {
+                    msg = "เชื่อมต่อ ระบบ SUP ADJUST สำเร็จ";
+                    subAdj.Notify(msg);
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+
+                    connected = true;
+
+                    ApplicationManager.Instance.DoEvents();
+                    System.Threading.Thread.Sleep(10);
+
+                    msg = "ตรวจสอบ จํานวนเหตุการณ์ ที่ยังไม่ทำการ ADJUST";
+                    subAdj.Notify(msg);
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    wcli.Send(_user, manager.UserShift.Begin.Value);
+
+                    ApplicationManager.Instance.DoEvents();
+                    System.Threading.Thread.Sleep(10);
+                }
+                else
+                {
+                    msg = "เชื่อมต่อ ระบบ SUP ADJUST ไม่สำเร็จ";
+                    subAdj.Notify(msg);
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+
+                    ApplicationManager.Instance.DoEvents();
+                    System.Threading.Thread.Sleep(10);
+                }
+
+                msg = "จบการเชื่อมต่อ ระบบ SUP ADJUST";
+                subAdj.Notify(msg);
+                med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                wcli.Disconnect();
+
+                ApplicationManager.Instance.DoEvents();
+                System.Threading.Thread.Sleep(10);
+
+                bool hasAdjust = wcli.HasAdjustEvents();
+                subAdj.Close();
+
+                if (connected)
+                {
+                    if (hasAdjust)
+                    {
+                        var win = TODApp.Windows.MessageBox;
+                        msg = "ระบบตรวจพบว่ายังมีรายการเหตุการณ์ ที่ยังไม่ได้ทำการ Adjust กรุณาติดต่อพนักงานควบคุม.";
+                        med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                        win.Setup(msg, "DMT - Tour of Duty");
+                        win.ShowDialog();
+                        return;
+                    }
+                    else
+                    {
+                        msg = "ระบบตรวจพบว่าไม่มีรายการเหตุการณ์ ดำเนินการต่อไปได้.";
+                        med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    }
+                }
+                else
+                {
+                    var win = TODApp.Windows.MessageBox;
+                    msg = "เชื่อมต่อ ระบบ SUP ADJUST ไม่สำเร็จ.";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    //return; // allow to do revenue entry.
+                }
             }
             else
             {
-                subAdj.Notify("เชื่อมต่อ ระบบ SUP ADJUST ไม่สำเร็จ");
-                System.Threading.Thread.Sleep(10);
+                msg = "ตรวจสอบพบว่า config มีการปิดการเชื่อมต่อ ระบบ SUP ADJUST ไว้.";
+                med.Info("REVENUE ENTRY UI - " + msg); // Write log
             }
 
-
-            subAdj.Notify("จบการเชื่อมต่อ ระบบ SUP ADJUST");
-            wcli.Disconnect();
-            System.Threading.Thread.Sleep(10);
-
-            subAdj.Close();
-            */
             #endregion
-
 
             #region Check Return Bag
 
             if (!manager.IsReturnBag())
             {
                 var win = TODApp.Windows.MessageBox;
-                win.Setup("ระบบตรวจพบว่ายังไม่มีการคืนถุงเงิน กรุณาคืนถุงเงินก่อนป้อนรายได้.", "DMT - Tour of Duty");
+                msg = "ระบบตรวจพบว่ายังไม่มีการคืนถุงเงิน กรุณาคืนถุงเงินก่อนป้อนรายได้.";
+                med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                win.Setup(msg, "DMT - Tour of Duty");
                 win.ShowDialog();
                 return;
             }
@@ -285,7 +359,9 @@ namespace DMT.TOD.Pages.Revenue
             if (!manager.NewRevenueEntry())
             {
                 var win = TODApp.Windows.MessageBox;
-                win.Setup("ไม่พบข้อมูลกะรายได้ของพนักงาน หรือไม่พบข้อมูลที่เกี่ยวข้อง", "DMT - Tour of Duty");
+                msg = "ไม่พบข้อมูลกะรายได้ของพนักงาน หรือไม่พบข้อมูลที่เกี่ยวข้อง";
+                med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                win.Setup(msg, "DMT - Tour of Duty");
                 win.ShowDialog();
                 return;
             }

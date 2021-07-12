@@ -9,6 +9,7 @@ using System.IO;
 //using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Reflection;
+using System.Globalization;
 
 using DMT.Configurations;
 using DMT.Controls;
@@ -24,7 +25,9 @@ using NLib.Reflection;
 using RestSharp;
 
 using WebSocketSharp;
+
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 #endregion
@@ -68,12 +71,22 @@ namespace DMT.Services
 
         #region Private Methods
 
+        private static JsonSerializerSettings DefaultSettings = new JsonSerializerSettings()
+        {
+            DateFormatHandling = DateFormatHandling.IsoDateFormat,
+            DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+            DateParseHandling = DateParseHandling.DateTimeOffset,
+            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK"
+            //DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffK"
+            //DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFK"
+            DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffK"
+        };
+
         #region WS Handlers
 
         private void Ws_OnOpen(object sender, EventArgs e)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-
             med.Info("SUPADJ - WS OnOpen detected.");
         }
 
@@ -91,7 +104,9 @@ namespace DMT.Services
             // {"jsonrpc":"2.0","method":"TOD_adjustSizeResponse","staffId":123456,"adjustSize":0}
             try
             {
+                //File.WriteAllText(@"C:\Users\chump\Desktop\resp.json", json); // write file on desktop.
                 JObject jobj = JObject.Parse(json);
+
                 string ver = jobj.Property("jsonrpc").HasValues ?
                     jobj.Property("jsonrpc").Value.ToString() : string.Empty;
                 string method = jobj.Property("method").HasValues ?
@@ -194,6 +209,7 @@ namespace DMT.Services
 
             iRetry = 0; // reset retry,
 
+            PlazaSupAdjConfigManager.Instance.LoadConfig(); // reload.
             var cfg = Configurations.PlazaSupAdjConfigManager.Instance.SupAdj;
             if (null == cfg)
             {
@@ -335,10 +351,15 @@ namespace DMT.Services
                 staffId = Convert.ToInt32(user.UserId),
                 staffName = user.FirstNameTH,
                 staffLastName = user.LastNameTH,
-                bojDateTime = jobBegin
+                //bojDateTime = jobBegin
+                bojDateTime = new DateTime(jobBegin.Ticks, DateTimeKind.Utc) // mark as UTC without substract timezone
             };
 
-            string json = JsonConvert.SerializeObject(jobj);
+
+            string json = JsonConvert.SerializeObject(jobj, SupAdjClient.DefaultSettings);
+
+            //File.WriteAllText(@"C:\Users\chump\Desktop\ws.json", json); // write file on desktop.
+
             med.Info(string.Format("SUPADJ - SEND: {0}", json));
             med.Info(string.Format("     jsonrpc: {0}", jobj.jsonrpc));
             med.Info(string.Format("     method: {0}", jobj.method));
@@ -388,6 +409,28 @@ namespace DMT.Services
         public bool Connected
         {
             get { return (null != ws && ws.ReadyState == WebSocketState.Open); }
+        }
+
+        #endregion
+
+        #region Public Properties (static)
+
+        /// <summary>
+        /// Check is Enable (by config).
+        /// </summary>
+        public static bool Enabled
+        {
+            get 
+            {
+                PlazaSupAdjConfigManager.Instance.LoadConfig(); // reload.
+                var cfg = Configurations.PlazaSupAdjConfigManager.Instance.SupAdj;
+                if (null == cfg)
+                {
+                    return false;
+                }
+
+                return cfg.Enabled;
+            }
         }
 
         #endregion

@@ -19,8 +19,13 @@ Refactor DMT.TA.TODv4 #2195
 Refactor DMT.TA.TODv4 #2194
 - 
 
-Refactor DMT.TA.TODv4 #2193
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2193 - Build 10080
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update Shift Header -> Change BG to Red when chief forget to change shift.
+  - Update version.history.txt
+  - Update app version to Build 10080
 
 [commited]
 Refactor DMT.TA.TODv4 #2192
@@ -35,7 +40,7 @@ Refactor DMT.TA.TODv4 #2191
     - Received bag check TOD is User has BOJ.
 
 [commited]
-Refactor DMT.TA.TODv4 #2190
+Refactor DMT.TA.TODv4 #2190 - Build 10070
 - DMT.TAxTODv3
   - Implements SupAdj communication #8.
   - Update version.history.txt

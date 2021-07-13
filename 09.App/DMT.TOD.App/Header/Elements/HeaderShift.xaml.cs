@@ -34,6 +34,8 @@ namespace DMT.Controls.Header
 
         private SolidColorBrush ValidColor = new SolidColorBrush(Colors.Transparent);
         private SolidColorBrush ErrorColor = new SolidColorBrush(Colors.Maroon);
+        private SolidColorBrush CapValidColor = new SolidColorBrush(Colors.DarkGray);
+        private SolidColorBrush CapErrorColor = new SolidColorBrush(Colors.OrangeRed);
 
         private HeaderBarService service = HeaderBarService.Instance;
         private DispatcherTimer timer = null;
@@ -52,7 +54,7 @@ namespace DMT.Controls.Header
             RuntimeManager.Instance.TSBShiftChanged += Instance_TSBShiftChanged;
 
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer_Tick;
             timer.Start();
         }
@@ -99,12 +101,38 @@ namespace DMT.Controls.Header
 
         private void UpdateBG()
         {
-            bool isMatchShift = false;
+            var curr = TSBShift.GetTSBShift().Value();
 
-            //Models.Shift.GetShifts
+            bool isMatchShift = false;
+            if (curr.Begin.HasValue)
+            {
+                TimeSpan ts = DateTime.Now - curr.Begin.Value;
+                if (ts.TotalDays < 1)
+                {
+                    // within 24 hours.
+                    var now = Models.Shift.Now();
+                    if (null != curr && null != now)
+                    {
+                        if (now.ShiftId == 3 && curr.ShiftId == 1)
+                        {
+                            isMatchShift = true;
+                        }
+                        else if (now.ShiftId <= curr.ShiftId)
+                        {
+                            isMatchShift = true;
+                        }
+                        else
+                        {
+                            isMatchShift = false;
+                        }
+                    }
+                }
+            }
+
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                borderDT.Background = (isMatchShift) ? ValidColor : ErrorColor;
+                borderShift.Background = isMatchShift ? ValidColor : ErrorColor;
+                borderCaption.Background = isMatchShift ? CapValidColor : CapErrorColor;
             }));
         }
 
@@ -125,6 +153,8 @@ namespace DMT.Controls.Header
                     txtShiftTime.Text = string.Empty;
                     txtShiftId.Text = string.Empty;
                 }
+
+                UpdateBG();
             }));
         }
     }

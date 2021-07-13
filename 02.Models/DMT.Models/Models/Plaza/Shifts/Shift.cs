@@ -41,6 +41,9 @@ namespace DMT.Models
         private DateTime? _TimeStart = new DateTime?();
         private DateTime? _TimeEnd = new DateTime?();
 
+        private DateTime? _ChiefStart = new DateTime?();
+        private DateTime? _ChiefEnd = new DateTime?();
+
         #endregion
 
         #region Constructor
@@ -84,9 +87,9 @@ namespace DMT.Models
             {
                 return false; // Same Hour/Minute/Second
             }
+
             DateTime start = new DateTime(dt.Year, dt.Month, dt.Day,
                 timeStart.Hour, timeStart.Minute, timeStart.Second, timeStart.Millisecond);
-
             DateTime end = new DateTime(dt.Year, dt.Month, dt.Day,
                 timeEnd.Hour, timeEnd.Minute, timeEnd.Second, timeEnd.Millisecond);
 
@@ -111,7 +114,69 @@ namespace DMT.Models
                 string msg = string.Format(
                     "Match Shift {0}, Start: {1:dd/MM/yyyy HH:mm} - End: {2:dd/MM/yyyy HH:mm}, Curr: {3:dd/MM/yyyy HH:mm}",
                     ShiftId, start, end, dt);
-                Console.WriteLine(msg);
+                //Console.WriteLine(msg);
+                med.Info(msg);
+            }
+            return ret;
+        }
+        /// <summary>
+        /// Check is current datetime is between current Chief's shift.
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckIsChiefCurrent()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            DateTime now = DateTime.Now;
+            DateTime dt = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, now.Millisecond);
+
+            // Test 2021-02-12 01:xx:xx
+            //DateTime dt = new DateTime(now.Year, now.Month, 12, 01, now.Minute, now.Second, now.Millisecond);
+            // Test 2021-02-12 22:xx:xx
+            //DateTime dt = new DateTime(now.Year, now.Month, 12, 22, now.Minute, now.Second, now.Millisecond);
+
+            if (!TimeStart.HasValue || !TimeEnd.HasValue)
+            {
+                return false; // No data found.
+            }
+
+            DateTime timeStart = ChiefStart.Value;
+            DateTime timeEnd = ChiefEnd.Value;
+
+            if (timeStart.Hour == timeEnd.Hour &&
+                timeStart.Minute == timeEnd.Minute &&
+                timeStart.Second == timeEnd.Second)
+            {
+                return false; // Same Hour/Minute/Second
+            }
+
+            DateTime start = new DateTime(dt.Year, dt.Month, dt.Day,
+                timeStart.Hour, timeStart.Minute, timeStart.Second, timeStart.Millisecond);
+            DateTime end = new DateTime(dt.Year, dt.Month, dt.Day,
+                timeEnd.Hour, timeEnd.Minute, timeEnd.Second, timeEnd.Millisecond);
+
+            if (TimeStart.Value.Hour > TimeEnd.Value.Hour)
+            {
+                if (dt.Hour < TimeStart.Value.Hour)
+                {
+                    // If current time less than TimeStart that mean its yesterday so substract day.
+                    start = start.AddDays(-1);
+                }
+                else
+                {
+                    // Condition - Shift cover between 2 days (normaly shift - 3).
+                    end = end.AddDays(1);
+                }
+            }
+
+            bool ret = (dt >= start && dt < end);
+
+            if (ret)
+            {
+                string msg = string.Format(
+                    "Match Chief Shift {0}, Start: {1:dd/MM/yyyy HH:mm} - End: {2:dd/MM/yyyy HH:mm}, Curr: {3:dd/MM/yyyy HH:mm}",
+                    ShiftId, start, end, dt);
+                //Console.WriteLine(msg);
                 med.Info(msg);
             }
             return ret;
@@ -214,7 +279,7 @@ namespace DMT.Models
         /// Gets or sets Time End.
         /// </summary>
         [Category("Common")]
-        [Description("Gets or sets TimeEnd.")]
+        [Description("Gets or sets Time End.")]
         [PropertyMapName("TimeEnd")]
         public DateTime? TimeEnd
         {
@@ -228,6 +293,48 @@ namespace DMT.Models
                 {
                     _TimeEnd = value;
                     this.RaiseChanged("TimeEnd");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Chief Start.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Chief Start.")]
+        [PropertyMapName("ChiefStart")]
+        public DateTime? ChiefStart
+        {
+            get
+            {
+                return _ChiefStart;
+            }
+            set
+            {
+                if (_ChiefStart != value)
+                {
+                    _ChiefStart = value;
+                    this.RaiseChanged("ChiefStart");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Chief End.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Chief End.")]
+        [PropertyMapName("ChiefEnd")]
+        public DateTime? ChiefEnd
+        {
+            get
+            {
+                return _ChiefEnd;
+            }
+            set
+            {
+                if (_ChiefEnd != value)
+                {
+                    _ChiefEnd = value;
+                    this.RaiseChanged("ChiefEnd");
                 }
             }
         }
@@ -266,6 +373,9 @@ namespace DMT.Models
                         data.ForEach(shift => 
                         {
                             bool needSave = false;
+
+                            #region User Prefered Shift Start/End
+                            
                             if (!shift.TimeStart.HasValue)
                             {
                                 if (shift.ShiftId == 1)
@@ -306,6 +416,54 @@ namespace DMT.Models
                                 }
                                 needSave = true;
                             }
+
+                            #endregion
+
+                            #region Chief Prefered Shift Start/End
+
+                            if (!shift.ChiefStart.HasValue)
+                            {
+                                if (shift.ShiftId == 1)
+                                {
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 7, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 2)
+                                {
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 15, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 3)
+                                {
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 23, 0, 0, 0, 0);
+                                }
+                                else
+                                {
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
+                                }
+                                needSave = true;
+                            }
+                            if (!shift.ChiefEnd.HasValue)
+                            {
+                                if (shift.ShiftId == 1)
+                                {
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 15, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 2)
+                                {
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 23, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 3)
+                                {
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 7, 0, 0, 0, 0);
+                                }
+                                else
+                                {
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
+                                }
+                                needSave = true;
+                            }
+
+                            #endregion
+
                             if (needSave)
                             {
                                 /*
@@ -377,6 +535,23 @@ namespace DMT.Models
         }
 
         #endregion
+
+        public static Shift Now()
+        {
+            Shift ret = null;
+            var shifts = GetShifts().Value();            
+            if (null != shifts)
+            {
+                shifts.ForEach(sft => 
+                {
+                    if (sft.CheckIsChiefCurrent())
+                    {
+                        ret = sft;
+                    }
+                });
+            }
+            return ret;
+        }
 
         #endregion
     }

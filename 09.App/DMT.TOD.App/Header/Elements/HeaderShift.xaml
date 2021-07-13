@@ -21,11 +21,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <!--  Shift  -->
-    <Border x:Name="borderDT"
+    <Border x:Name="borderShift"
             BorderBrush="Silver"
             BorderThickness="1">
         <DockPanel Margin="5">
             <Border Background="DarkGray"
+                    x:Name="borderCaption"
                     BorderBrush="Silver"
                     BorderThickness="1"
                     DockPanel.Dock="Top">

@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2196
 Refactor DMT.TA.TODv4 #2195
 - 
 
-Refactor DMT.TA.TODv4 #2194
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2194 - Build 10080 (fixed)
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - SubAdjClient -> Send method used local datetime (when send will substract 7:00 for zulu time).
 
 [commited]
 Refactor DMT.TA.TODv4 #2193 - Build 10080

@@ -351,8 +351,8 @@ namespace DMT.Services
                 staffId = Convert.ToInt32(user.UserId),
                 staffName = user.FirstNameTH,
                 staffLastName = user.LastNameTH,
-                //bojDateTime = jobBegin
-                bojDateTime = new DateTime(jobBegin.Ticks, DateTimeKind.Utc) // mark as UTC without substract timezone
+                bojDateTime = new DateTime(jobBegin.Ticks, DateTimeKind.Local) // mark as Local so when convert will substract with -7:00
+                //bojDateTime = new DateTime(jobBegin.Ticks, DateTimeKind.Utc) // mark as UTC without substract timezone
             };
 
 

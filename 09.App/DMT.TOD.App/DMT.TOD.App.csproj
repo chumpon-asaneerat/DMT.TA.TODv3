@@ -231,6 +231,9 @@
     <Compile Include="TOD\Controls\Revenue\Elements\EMVEntry.xaml.cs">
       <DependentUpon>EMVEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TOD\Controls\Revenue\Elements\NonRevenueEntry.xaml.cs">
+      <DependentUpon>NonRevenueEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TOD\Controls\Revenue\Elements\OtherEntry.xaml.cs">
       <DependentUpon>OtherEntry.xaml</DependentUpon>
     </Compile>
@@ -380,6 +383,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TOD\Controls\Revenue\Elements\EMVEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TOD\Controls\Revenue\Elements\NonRevenueEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

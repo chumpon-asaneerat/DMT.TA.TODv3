@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:DMT.TOD.Controls.Revenue.Elements"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:util="clr-namespace:DMT.Controls.Utils;assembly=DMT.Controls"
-             d:DesignHeight="600"
+             d:DesignHeight="640"
              d:DesignWidth="1100"
              Focusable="False"
              IsTabStop="False"
@@ -26,11 +26,13 @@
                           VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
-                            <RowDefinition Height="2" />
-                            <RowDefinition Height="240" />
-                            <RowDefinition Height="2" />
-                            <RowDefinition Height="240" />
-                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="155" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="155" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="155" />
+                            <RowDefinition Height="1" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1" />
@@ -81,8 +83,8 @@
                         </Grid>
                         <!--  TRAFFIC  -->
                         <local:TrafficEntry x:Name="trafficRevenue"
-                                            Grid.Row="1"
-                                            Grid.RowSpan="4"
+                                            Grid.Row="2"
+                                            Grid.RowSpan="5"
                                             Grid.Column="1"
                                             Margin="3"
                                             Background="ForestGreen"
@@ -96,9 +98,18 @@
                                           Background="CornflowerBlue"
                                           Foreground="Black" />
 
+                        <!--  NON REVENUE  -->
+                        <local:NonRevenueEntry x:Name="nonRevenue"
+                                          Grid.Row="4"
+                                          Grid.Column="2"
+                                          Margin="3"
+                                          VerticalAlignment="Stretch"
+                                          Background="CornflowerBlue"
+                                          Foreground="Black" />
+
                         <!--  COUPON SOLD  -->
                         <local:CouponRevenueEntry x:Name="couponSold"
-                                                  Grid.Row="4"
+                                                  Grid.Row="6"
                                                   Grid.Column="2"
                                                   Margin="3"
                                                   VerticalAlignment="Stretch"
@@ -107,13 +118,14 @@
                         <!--  COUPON USAGE  -->
                         <local:CouponUsageEntry x:Name="couponUsage"
                                                 Grid.Row="2"
+                                                Grid.RowSpan="3"
                                                 Grid.Column="3"
                                                 Margin="3"
                                                 Background="Purple"
                                                 Foreground="WhiteSmoke" />
                         <!--  FREE PASS  -->
                         <local:CouponDMTEntry x:Name="freePass"
-                                              Grid.Row="4"
+                                              Grid.Row="6"
                                               Grid.Column="3"
                                               Margin="3"
                                               Background="Purple"

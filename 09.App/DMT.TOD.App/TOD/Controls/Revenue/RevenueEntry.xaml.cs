@@ -142,6 +142,7 @@ namespace DMT.TOD.Controls.Revenue
 
             this.trafficRevenue.Setup(manager);
             this.otherRevenue.Setup(manager);
+            this.nonRevenue.Setup(manager);
             this.freePass.Setup(manager);
             this.couponSold.Setup(manager);
             this.couponUsage.Setup(manager);

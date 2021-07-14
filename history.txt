@@ -7,8 +7,17 @@ Refactor DMT.TA.TODv4 #2198
 Refactor DMT.TA.TODv4 #2198
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2197
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update RevenueEntryStyle.xaml -> for NonRevenue related proeprties.
+  - DMT.TOD.App project
+    - Add NonRevenueEntry control.
+    - Update RevenueEntry control
+      - Change layout
+      - reduce all remark height
+      - remove vertical space in all element entries.
 
 [commited]
 Refactor DMT.TA.TODv4 #2196

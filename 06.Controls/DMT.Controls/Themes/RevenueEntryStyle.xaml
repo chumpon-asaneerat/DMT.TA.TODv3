@@ -181,6 +181,32 @@
         <Setter Property="Text" Value="บาท" />
     </Style>
 
+    <!--  NON REVENUE DESCRIPTION  -->
+    <Style x:Key="NonRevenueTotalDescription"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="ยอดรวม" />
+    </Style>
+
+    <!--  NON REVENUE ENTRY (TEXTBOX)  -->
+    <Style x:Key="NonRevenueBHTTotal"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Text" Value="{Binding NonRevenueBHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+
+    <!--  NON REVENUE UNIT  -->
+    <Style x:Key="NonRevenueTotalUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="บาท" />
+    </Style>
+
     <!--  COUPON USAGE DESCRIPTION  -->
     <Style x:Key="CouponUsage30Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"

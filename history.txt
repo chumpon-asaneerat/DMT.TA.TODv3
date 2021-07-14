@@ -4,8 +4,11 @@
 Refactor DMT.TA.TODv4 #2198
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2198
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update all Revenue reports.
 
 [commited]
 Refactor DMT.TA.TODv4 #2197

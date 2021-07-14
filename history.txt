@@ -10,8 +10,13 @@ Refactor DMT.TA.TODv4 #2198
 Refactor DMT.TA.TODv4 #2197
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2196
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update RevenueEntry class.
+      - Add static constructor
+      - Seperate code in GetUnSyncRevenueEnties to new static method CheckDefaultValues for auto check default value.
 
 [commited]
 Refactor DMT.TA.TODv4 #2195

@@ -32,6 +32,18 @@ namespace DMT.Models
     //[Table("RevenueEntry")]
     public class RevenueEntry : NTable<RevenueEntry>
     {
+        #region Static Constructor
+
+        /// <summary>
+        /// Static Constructor.
+        /// </summary>
+        static RevenueEntry()
+        {
+            CheckDefaultValues();
+        }
+
+        #endregion
+
         #region Intenral Variables
 
         private Guid _PKId = Guid.NewGuid();
@@ -2005,23 +2017,13 @@ namespace DMT.Models
         }
         */
 
-        /// <summary>
-        /// Gets all UnSync Revenue Enties.
-        /// </summary>
-        /// <returns>Returns List of RevenueEntry.</returns>
-        public static NDbResult<List<RevenueEntry>> GetUnSyncRevenueEnties()
+        public static void CheckDefaultValues()
         {
-            var result = new NDbResult<List<RevenueEntry>>();
+            MethodBase med = MethodBase.GetCurrentMethod();
             SQLiteConnection db = Default;
-            if (null == db)
-            {
-                result.DbConenctFailed();
-                return result;
-            }
+            if (null == db) return;
             lock (sync)
             {
-                MethodBase med = MethodBase.GetCurrentMethod();
-
                 try
                 {
                     int iCnt = db.ExecuteScalar<int>(
@@ -2050,6 +2052,24 @@ namespace DMT.Models
                 {
                     med.Err(updateErr2);
                 }
+            }
+        }
+        /// <summary>
+        /// Gets all UnSync Revenue Enties.
+        /// </summary>
+        /// <returns>Returns List of RevenueEntry.</returns>
+        public static NDbResult<List<RevenueEntry>> GetUnSyncRevenueEnties()
+        {
+            var result = new NDbResult<List<RevenueEntry>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
 
                 try
                 {

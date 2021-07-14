@@ -28,8 +28,10 @@ Refactor DMT.TA.TODv4 #2202
 Refactor DMT.TA.TODv4 #2201
 - 
 
-Refactor DMT.TA.TODv4 #2200
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2200 - Build 10085
+- Update version.history.txt
+- Update app version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2198

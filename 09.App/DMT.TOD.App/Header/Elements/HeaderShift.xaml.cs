@@ -113,6 +113,7 @@ namespace DMT.Controls.Header
                     var now = Models.Shift.Now();
                     if (null != curr && null != now)
                     {
+                        /*
                         if (now.ShiftId == 3 && curr.ShiftId == 1)
                         {
                             isMatchShift = true;
@@ -125,6 +126,8 @@ namespace DMT.Controls.Header
                         {
                             isMatchShift = false;
                         }
+                        */
+                        isMatchShift = now.ShiftId == curr.ShiftId;
                     }
                 }
             }

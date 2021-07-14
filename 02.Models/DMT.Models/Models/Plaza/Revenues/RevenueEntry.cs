@@ -88,6 +88,10 @@ namespace DMT.Models
         // Other
         private decimal _OtherBHTTotal = decimal.Zero;
         private string _OtherRemark = "";
+        // NonRevenue
+        private decimal _NonRevenueBHTTotal = decimal.Zero;
+        private string _NonRevenueRemark = "";
+
         // Coupon Usage
         private int _CouponUsageBHT30 = 0;
         private int _CouponUsageBHT35 = 0;
@@ -1321,6 +1325,51 @@ namespace DMT.Models
 
         #endregion
 
+        #region NonRevenue
+
+        /// <summary>
+        /// Gets or sets total value in baht (NonRevenue).
+        /// </summary>
+        [Category("NonRevenue")]
+        [Description("Gets or sets total value in baht (NonRevenue).")]
+        [PropertyMapName("NonRevenueBHTTotal")]
+        public decimal NonRevenueBHTTotal
+        {
+            get { return _NonRevenueBHTTotal; }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_NonRevenueBHTTotal != value)
+                {
+                    _NonRevenueBHTTotal = value;
+                    // Raise event.
+                    this.RaiseChanged("NonRevenueBHTTotal");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets NonRevenue Remark.
+        /// </summary>
+        [Category("NonRevenue")]
+        [Description("Gets or sets NonRevenue Remark.")]
+        [MaxLength(255)]
+        [PropertyMapName("NonRevenueRemark")]
+        public string NonRevenueRemark
+        {
+            get { return _NonRevenueRemark; }
+            set
+            {
+                if (_NonRevenueRemark != value)
+                {
+                    _NonRevenueRemark = value;
+                    // Raise event.
+                    this.RaiseChanged("NonRevenueRemark");
+                }
+            }
+        }
+
+        #endregion
+
         #region Coupon Usage
 
         /// <summary>
@@ -1972,6 +2021,36 @@ namespace DMT.Models
             lock (sync)
             {
                 MethodBase med = MethodBase.GetCurrentMethod();
+
+                try
+                {
+                    int iCnt = db.ExecuteScalar<int>(
+                        "SELECT COUNT(*) FROM RevenueEntry WHERE NonRevenueBHTTotal IS NULL");
+                    if (iCnt > 0)
+                    {
+                        med.Info("SET DEFAULT VALUE FOR RevenueEntry.NonRevenueBHTTotal.");
+                        db.Execute("UPDATE RevenueEntry SET NonRevenueBHTTotal = 0 WHERE NonRevenueBHTTotal IS NULL");
+                    }
+                }
+                catch (Exception updateErr1)
+                {
+                    med.Err(updateErr1);
+                }
+                try
+                {
+                    int iCnt = db.ExecuteScalar<int>(
+                        "SELECT COUNT(*) FROM RevenueEntry WHERE NonRevenueRemark IS NULL");
+                    if (iCnt > 0)
+                    {
+                        med.Info("SET DEFAULT VALUE FOR RevenueEntry.NonRevenueRemark.");
+                        db.Execute("UPDATE RevenueEntry SET NonRevenueRemark = '' WHERE NonRevenueRemark IS NULL");
+                    }
+                }
+                catch (Exception updateErr2)
+                {
+                    med.Err(updateErr2);
+                }
+
                 try
                 {
                     string cmd = string.Empty;

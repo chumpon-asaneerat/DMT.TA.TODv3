@@ -197,6 +197,10 @@ namespace DMT.Models
         [PropertyMapName("otherTotalAmount")]
         public decimal? otherTotalAmount { get; set; }
 
+        /// <summary>Gets or sets nonRevenue. NEW!.</summary>
+        [PropertyMapName("nonRevenue")]
+        public decimal? nonRevenue { get; set; }
+
         /// <summary>Gets or sets cashRemark.</summary>
         [PropertyMapName("cashRemark")]
         public string cashRemark { get; set; }
@@ -204,6 +208,11 @@ namespace DMT.Models
         /// <summary>Gets or sets otherRemark.</summary>
         [PropertyMapName("otherRemark")]
         public string otherRemark { get; set; }
+
+        /// <summary>Gets or sets nonRevenueRemark. NEW!.</summary>
+        [PropertyMapName("nonRevenueRemark")]
+        public string nonRevenueRemark { get; set; }
+
 
         /// <summary>Gets or sets chiefId.</summary>
         [PropertyMapName("chiefId")]

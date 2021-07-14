@@ -242,6 +242,10 @@ namespace DMT.Models.ExtensionMethods
             // Other
             inst.otherTotalAmount = value.OtherBHTTotal;
             inst.otherRemark = value.OtherRemark;
+            // NonRevenue NEW!!
+            inst.nonRevenue = value.NonRevenueBHTTotal;
+            inst.nonRevenueRemark = value.NonRevenueRemark;
+
             // QR Code
             inst.qrcodeTotalAmount = 0; // Amount in BHT
             inst.qrcodeList = new List<SCWDeclareQRCode>();

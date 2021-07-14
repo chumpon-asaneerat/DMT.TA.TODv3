@@ -13,8 +13,21 @@ Refactor DMT.TA.TODv4 #2197
 Refactor DMT.TA.TODv4 #2196
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2195
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update SCWDeclare class.
+      - Add property nonRevenue
+      - Add property nonRevenueRemark
+    - Update RevenueEntry class.
+      - Add property NonRevenueBHTTotal
+      - Add property NonRevenueRemark
+      - Update GetUnSyncRevenueEnties static method -> auto check if default value is null
+        - NonRevenueBHTTotal -> set as zero
+        - NonRevenueRemark -> empty string.
+    - Update SCWExtensionMethods class
+      - Update ToServer method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2194 - Build 10080 (fixed)

@@ -46,6 +46,31 @@
             </DockPanel>
             <Grid />
         </DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+            <DockPanel DockPanel.Dock="Left" LastChildFill="True">
+                <TextBlock Margin="3"
+                           VerticalAlignment="Center"
+                           DockPanel.Dock="Left"
+                           FontSize="18"
+                           Text="Delay (time before response. defaut is 500 ms) :"
+                           TextAlignment="Right" />
+                <TextBox x:Name="txtDelay"
+                         Width="75"
+                         Margin="3"
+                         VerticalAlignment="Center"
+                         DockPanel.Dock="Left"
+                         FontSize="18"
+                         Text="500"
+                         TextAlignment="Center" />
+                <TextBlock Margin="3"
+                           VerticalAlignment="Center"
+                           DockPanel.Dock="Left"
+                           FontSize="18"
+                           Text=" ms."
+                           TextAlignment="Right" />
+            </DockPanel>
+            <Grid />
+        </DockPanel>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />

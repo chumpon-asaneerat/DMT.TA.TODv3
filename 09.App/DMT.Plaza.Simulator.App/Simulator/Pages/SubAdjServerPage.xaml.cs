@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using NLib;
 using WebSocketSharp;
 using WebSocketSharp.Net;
 using WebSocketSharp.Server;
@@ -94,7 +95,7 @@ namespace DMT.Simulator.Pages
             Dispatcher.Invoke(() =>
             {
                 string message = string.Empty;
-                message += DateTime.Now.ToString("HH:mm:ss: ");
+                message += DateTime.Now.ToString("HH:mm:ss.fff: ");
                 message += msg;
                 message += Environment.NewLine;
                 txtMessages.Text += message;
@@ -104,13 +105,29 @@ namespace DMT.Simulator.Pages
         private string OnRequest(string request)
         {
             string ret = string.Empty;
-            JObject obj = JObject.Parse(request);
-            if (null != obj && obj.Property("method").HasValues &&
-                obj.Property("method").Value.ToString() == "TOD_adjustSizeRequest")
-            {
-                Dispatcher.Invoke(() => { ret = txtAnswer.Text; });
-            }
 
+            object val = Dispatcher.Invoke(() => {
+                int delay = 500;
+                int num;
+                if (int.TryParse(txtDelay.Text, out num))
+                {
+                    delay = num;
+                }
+                // add sime delay wait.
+                ApplicationManager.Instance.Wait(delay);
+
+                string msg = string.Empty;
+                JObject obj = JObject.Parse(request);
+                if (null != obj && obj.Property("method").HasValues &&
+                    obj.Property("method").Value.ToString() == "TOD_adjustSizeRequest")
+                {
+                    msg = txtAnswer.Text;
+                }
+
+                return msg;
+            });
+
+            if (null != val) ret = val.ToString();
             return ret;
         }
 

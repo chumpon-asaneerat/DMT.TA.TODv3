@@ -25,8 +25,11 @@ Refactor DMT.TA.TODv4 #2203
 Refactor DMT.TA.TODv4 #2202
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2201
-- 
+- DMT.TAxTODv3
+  - DMT.Plaza.Suimulator.App project
+    - Update SupAdj server simulator - add delay option UI.
 
 [commited]
 Refactor DMT.TA.TODv4 #2200 - Build 10085

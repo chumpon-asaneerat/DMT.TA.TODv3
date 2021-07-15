@@ -19,8 +19,10 @@ Refactor DMT.TA.TODv4 #2205
 Refactor DMT.TA.TODv4 #2204
 - 
 
-Refactor DMT.TA.TODv4 #2203
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2203 - Build 10085 (fixed #1)
+- DMT.TAxTODv3
+  - Recompile all projects.
 
 [commited]
 Refactor DMT.TA.TODv4 #2202

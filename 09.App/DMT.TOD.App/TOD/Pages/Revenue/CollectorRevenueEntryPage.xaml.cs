@@ -283,8 +283,25 @@ namespace DMT.TOD.Pages.Revenue
                     med.Info("REVENUE ENTRY UI - " + msg); // Write log
                     wcli.Send(_user, manager.UserShift.Begin.Value);
 
-                    ApplicationManager.Instance.DoEvents();
-                    System.Threading.Thread.Sleep(10);
+                    // wait for timeout or message arrive.
+                    while (!wcli.IsTimeout && !wcli.AllAck &&
+                        !ApplicationManager.Instance.IsExit)
+                    {
+                        ApplicationManager.Instance.Wait(50);
+                        ApplicationManager.Instance.DoEvents();
+                    }
+
+                    if (!wcli.AllAck && wcli.IsTimeout)
+                    {
+                        msg = "ไม่พบการตอบกลับ (TIMEOUT) จากระบบ SUP ADJUST";
+                        med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    }
+
+                    med.Info("REVENUE ENTRY UI - INFO");
+                    med.Info(string.Format("     IsTimeout: {0}", wcli.IsTimeout));
+                    med.Info(string.Format("     AllAck: {0} ", wcli.AllAck));
+                    med.Info(string.Format("     SendCount: {0} ", wcli.SendCount));
+                    med.Info(string.Format("     ReceiveCount: {0} ", wcli.RecvCount));
                 }
                 else
                 {
@@ -299,6 +316,7 @@ namespace DMT.TOD.Pages.Revenue
                 msg = "จบการเชื่อมต่อ ระบบ SUP ADJUST";
                 subAdj.Notify(msg);
                 med.Info("REVENUE ENTRY UI - " + msg); // Write log
+
                 wcli.Disconnect();
 
                 ApplicationManager.Instance.DoEvents();
@@ -320,8 +338,32 @@ namespace DMT.TOD.Pages.Revenue
                     }
                     else
                     {
-                        msg = "ระบบตรวจพบว่าไม่มีรายการเหตุการณ์ ดำเนินการต่อไปได้.";
-                        med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                        if (!wcli.AllAck && wcli.IsTimeout)
+                        {
+                            var win = TODApp.Windows.MessageBoxYesNo;
+                            msg = "ไม่สามารถติดต่อกับ Sup Adjust ได้ ต้องการนำส่งรายได้ ต่อ หรือไม่?";
+                            med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                            win.Setup(msg, "DMT - Tour of Duty");
+                            if (win.ShowDialog() == false)
+                            {
+                                // Write log
+                                med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ timeout)");
+                                med.Info("     ผู้ใช้ยืนยัน: ไม่ดำเนินการต่อ");
+                                return; // stay on current page.
+                            }
+                            else
+                            {
+                                // allow to do revenue entry.
+                                // Write log
+                                med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ timeout)");
+                                med.Info("     ผู้ใช้ยืนยัน: ดำเนินการต่อ");
+                            }
+                        }
+                        else
+                        {
+                            msg = "ระบบตรวจพบว่าไม่มีรายการเหตุการณ์ ดำเนินการต่อไปได้.";
+                            med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                        }
                     }
                 }
                 else

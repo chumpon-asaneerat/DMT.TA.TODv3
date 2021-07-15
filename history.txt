@@ -22,8 +22,13 @@ Refactor DMT.TA.TODv4 #2204
 Refactor DMT.TA.TODv4 #2203
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2202
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Fixed SubAdj client problem timeout.
+    - Add dialog to allow user to choose between enter revenue entry or stay on current screen (case websocket ack timeout).
+    - Add a lot of log.
 
 [commited]
 Refactor DMT.TA.TODv4 #2201

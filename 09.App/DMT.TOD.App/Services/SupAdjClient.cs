@@ -41,11 +41,22 @@ namespace DMT.Services
     /// </summary>
     public class SupAdjClient
     {
+        #region Static Variables
+
+        /// <summary>Set default timeout in second. default is 5 s.</summary>
+        public static int TimeoutInSecond = 5;
+
+        #endregion
+
         #region Internal Variables
 
         private int iRetry = 0;
         private bool _reconnect = false;
         private WebSocket ws = null;
+
+        private DateTime _sendMsgTime = DateTime.MinValue;
+        private int _sendCnt = 0;
+        private int _recvCnt = 0;
 
         private Models.User _user = null;
         private int? adjCnt = new int?();
@@ -94,12 +105,18 @@ namespace DMT.Services
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
+            // increase received counter
+            _recvCnt++;
+
             if (null == _user)
             {
                 med.Info("SUPADJ - WS OnMessage: No user assigned.");
             }
+
             string json = e.Data;
             adjCnt = new int?(); // Reset
+
+            med.Info(string.Format("SUPADJ - RECV: {0}", json));
 
             // {"jsonrpc":"2.0","method":"TOD_adjustSizeResponse","staffId":123456,"adjustSize":0}
             try
@@ -114,8 +131,8 @@ namespace DMT.Services
                 if (ver != "2.0" || method != "TOD_adjustSizeResponse")
                 {
                     med.Info("SUPADJ - WS OnMessage: Invalid version or method.");
-                    med.Info(string.Format("     - jsonrpc: {0}.", ver));
-                    med.Info(string.Format("     - method: {0}.", method));
+                    med.Info(string.Format("     jsonrpc: {0}.", ver));
+                    med.Info(string.Format("     method: {0}.", method));
                     return;
                 }
                 int? staffId = new int?();
@@ -125,11 +142,11 @@ namespace DMT.Services
                     if (int.TryParse(jobj.Property("staffId").Value.ToString(), out id))
                     {
                         staffId = id;
-                        med.Info(string.Format("     - staffId: {0}.", id));
+                        med.Info(string.Format("     staffId: {0}.", id));
                     }
                     else
                     {
-                        med.Info(string.Format("     - staffId: {0} -> parse error.", id));
+                        med.Info(string.Format("     staffId: {0} -> parse error.", id));
                     }
                 }
 
@@ -145,11 +162,11 @@ namespace DMT.Services
                     if (int.TryParse(jobj.Property("adjustSize").Value.ToString(), out sz))
                     {
                         adjCnt = new int?(sz);
-                        med.Info(string.Format("     - adjustSize: {0}.", sz));
+                        med.Info(string.Format("     adjustSize: {0}.", sz));
                     }
                     else
                     {
-                        med.Info(string.Format("     - adjustSize: {0} -> parse error.", sz));
+                        med.Info(string.Format("     adjustSize: {0} -> parse error.", sz));
                     }
                 }
 
@@ -199,6 +216,10 @@ namespace DMT.Services
         /// </summary>
         public void Connect()
         {
+            // reset counter.
+            _sendCnt = 0;
+            _recvCnt = 0;
+
             MethodBase med = MethodBase.GetCurrentMethod();
 
             if (null != ws)
@@ -371,6 +392,11 @@ namespace DMT.Services
             adjCnt = new int?(); // reset count.
             try
             {
+                // increase send counter.
+                _sendCnt++;
+                // update time.
+                _sendMsgTime = DateTime.Now;
+
                 ws.Send(json); // sending
             }
             catch (Exception ex)
@@ -392,7 +418,7 @@ namespace DMT.Services
             bool ret = false;
             if (isEnabled)
             {
-                ret = (adjCnt.HasValue && adjCnt.Value > 0);
+                ret = adjCnt.HasValue && adjCnt.Value > 0;
             }
             return ret;
         }
@@ -409,6 +435,42 @@ namespace DMT.Services
         public bool Connected
         {
             get { return (null != ws && ws.ReadyState == WebSocketState.Open); }
+        }
+        /// <summary>
+        /// Checks is timeout after send message.
+        /// </summary>
+        public bool IsTimeout
+        {
+            get 
+            {
+                bool ret = false;
+                if (_sendMsgTime != DateTime.MinValue)
+                {
+                    // Message send.
+                    TimeSpan ts = DateTime.Now - _sendMsgTime;
+                    if (ts.TotalSeconds > SupAdjClient.TimeoutInSecond)
+                    {
+                        // Timeout.
+                        ret = true;
+                    }
+                }
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Gets number of send message to server.
+        /// </summary>
+        public int SendCount { get { return _sendCnt; } }
+        /// <summary>
+        /// Gets number of receive message from server.
+        /// </summary>
+        public int RecvCount { get { return _recvCnt; } }
+        /// <summary>
+        /// Checks is number of send equals to recv counter.
+        /// </summary>
+        public bool AllAck
+        {
+            get { return _sendCnt > 0 && _recvCnt == _sendCnt; }
         }
 
         #endregion

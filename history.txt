@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #2207
 Refactor DMT.TA.TODv4 #2206
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2205
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Show Adjust Size (count) in Dialog.
 
 [commited]
 Refactor DMT.TA.TODv4 #2204

@@ -422,6 +422,21 @@ namespace DMT.Services
             }
             return ret;
         }
+        /// <summary>
+        /// Gets Adjust Count.
+        /// </summary>
+        public int AdjustCount
+        {
+            get
+            {
+                int ret = 0;
+                if (isEnabled && adjCnt.HasValue)
+                {
+                    ret = adjCnt.Value;
+                }
+                return ret;
+            }
+        }
 
         #endregion
 

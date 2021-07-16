@@ -330,10 +330,17 @@ namespace DMT.TOD.Pages.Revenue
                     if (hasAdjust)
                     {
                         var win = TODApp.Windows.MessageBox;
-                        msg = "ระบบตรวจพบว่ายังมีรายการเหตุการณ์ ที่ยังไม่ได้ทำการ Adjust กรุณาติดต่อพนักงานควบคุม.";
+                        var ht = win.Height;
+                        win.Height = ht + 50; // set new height.
+                        
+                        //msg = "ระบบตรวจพบว่ายังมีรายการเหตุการณ์ ที่ยังไม่ได้ทำการ Adjust. กรุณาติดต่อพนักงานควบคุม.";
+                        var iCnt = wcli.AdjustCount;
+                        msg = string.Format("ระบบตรวจพบว่ายังมีรายการเหตุการณ์ ที่ยังไม่ได้ทำการ Adjust จำนวน {0:n0} รายการ. กรุณาติดต่อพนักงานควบคุม.", iCnt);
                         med.Info("REVENUE ENTRY UI - " + msg); // Write log
                         win.Setup(msg, "DMT - Tour of Duty");
                         win.ShowDialog();
+
+                        win.Height = ht; // restore height.
                         return;
                     }
                     else

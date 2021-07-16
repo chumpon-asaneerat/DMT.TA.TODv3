@@ -16,8 +16,12 @@ Refactor DMT.TA.TODv4 #2206
 Refactor DMT.TA.TODv4 #2205
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2204
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Change Dialog when connect SUPADJ failed -> Yes/No dialog.
+    - Change log message when connect SUPADJ failed -> Yes/No dialog.
 
 [commited]
 Refactor DMT.TA.TODv4 #2203 - Build 10085 (fixed #1)

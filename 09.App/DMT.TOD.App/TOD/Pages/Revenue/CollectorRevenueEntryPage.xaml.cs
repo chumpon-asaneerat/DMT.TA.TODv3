@@ -347,7 +347,7 @@ namespace DMT.TOD.Pages.Revenue
                             if (win.ShowDialog() == false)
                             {
                                 // Write log
-                                med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ timeout)");
+                                med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ recv timeout).");
                                 med.Info("     ผู้ใช้ยืนยัน: ไม่ดำเนินการต่อ");
                                 return; // stay on current page.
                             }
@@ -355,7 +355,7 @@ namespace DMT.TOD.Pages.Revenue
                             {
                                 // allow to do revenue entry.
                                 // Write log
-                                med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ timeout)");
+                                med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ recv timeout).");
                                 med.Info("     ผู้ใช้ยืนยัน: ดำเนินการต่อ");
                             }
                         }
@@ -368,12 +368,32 @@ namespace DMT.TOD.Pages.Revenue
                 }
                 else
                 {
+                    /*
                     var win = TODApp.Windows.MessageBox;
                     msg = "เชื่อมต่อ ระบบ SUP ADJUST ไม่สำเร็จ.";
                     med.Info("REVENUE ENTRY UI - " + msg); // Write log
                     win.Setup(msg, "DMT - Tour of Duty");
                     win.ShowDialog();
                     //return; // allow to do revenue entry.
+                    */
+                    var win = TODApp.Windows.MessageBoxYesNo;
+                    msg = "ไม่สามารถติดต่อกับ Sup Adjust ได้ ต้องการนำส่งรายได้ ต่อ หรือไม่?";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
+                    if (win.ShowDialog() == false)
+                    {
+                        // Write log
+                        med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ connect failed).");
+                        med.Info("     ผู้ใช้ยืนยัน: ไม่ดำเนินการต่อ");
+                        return; // stay on current page.
+                    }
+                    else
+                    {
+                        // allow to do revenue entry.
+                        // Write log
+                        med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณี SUPADJ connect failed).");
+                        med.Info("     ผู้ใช้ยืนยัน: ดำเนินการต่อ");
+                    }
                 }
             }
             else

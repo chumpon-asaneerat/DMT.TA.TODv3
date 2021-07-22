@@ -104,7 +104,7 @@ namespace DMT.Controls.Header
             var curr = TSBShift.GetTSBShift().Value();
 
             bool isMatchShift = false;
-            if (curr.Begin.HasValue)
+            if (null != curr && curr.Begin.HasValue)
             {
                 TimeSpan ts = DateTime.Now - curr.Begin.Value;
                 if (ts.TotalDays < 1)

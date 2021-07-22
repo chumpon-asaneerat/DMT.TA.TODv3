@@ -10,8 +10,11 @@ Refactor DMT.TA.TODv4 #2208
 Refactor DMT.TA.TODv4 #2207
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2206
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - fixed bug when new database create TOD immediately close because null TSBShift. 
 
 [commited]
 Refactor DMT.TA.TODv4 #2205

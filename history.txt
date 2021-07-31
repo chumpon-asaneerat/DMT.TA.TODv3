@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2209
 Refactor DMT.TA.TODv4 #2208
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2207
-- 
+- DMT.TAxTODv3
+  - DMT.TAxTOD.Rest.Client project
+    - Implements Exchange (TA) api for client access #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2206

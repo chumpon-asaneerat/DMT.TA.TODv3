@@ -43,7 +43,7 @@ namespace DMT
                 public static partial class User { }
             }
 
-            /// <summary>The AccountExchange class.</summary>
+            /// <summary>The Account/TA Exchange class.</summary>
             public static partial class Exchange
             {
                 /// <summary>Gets route url.</summary>

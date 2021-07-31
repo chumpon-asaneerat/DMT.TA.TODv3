@@ -4,8 +4,11 @@
 Refactor DMT.TA.TODv4 #2209
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2208
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Implements Exchange (TAxTOD) model #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2207

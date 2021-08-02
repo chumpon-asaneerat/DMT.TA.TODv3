@@ -19,8 +19,10 @@ Refactor DMT.TA.TODv4 #2215
 Refactor DMT.TA.TODv4 #2214
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2213
-- 
+- DMT.TAxTODv3
+  - Add TODO for compression in all message folder(s).
 
 [commited]
 Refactor DMT.TA.TODv4 #2212 - Build 10085 (fixed #2)

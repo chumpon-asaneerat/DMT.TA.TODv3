@@ -289,6 +289,7 @@ namespace DMT.Services
                     }
                 });
 
+                //TODO: Need Re-check auto compress old message.
                 /*
                 // Compress.
                 string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);

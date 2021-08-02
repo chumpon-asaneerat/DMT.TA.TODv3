@@ -416,7 +416,7 @@ namespace DMT.TOD.Pages.Revenue
             if (!manager.IsReturnBag())
             {
                 var win = TODApp.Windows.MessageBox;
-                msg = "ระบบตรวจพบว่ายังไม่มีการคืนถุงเงิน กรุณาคืนถุงเงินก่อนป้อนรายได้.";
+                msg = "ระบบตรวจพบว่า ยังไม่มีการคืนเงินยืมทอน กรุณาคืนเงินยืมทอนก่อนป้อนรายได้";
                 med.Info("REVENUE ENTRY UI - " + msg); // Write log
                 win.Setup(msg, "DMT - Tour of Duty");
                 win.ShowDialog();

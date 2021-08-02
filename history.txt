@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2216
 Refactor DMT.TA.TODv4 #2215
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2214
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - change nofify message.
 
 [commited]
 Refactor DMT.TA.TODv4 #2213

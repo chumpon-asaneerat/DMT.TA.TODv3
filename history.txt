@@ -22,8 +22,10 @@ Refactor DMT.TA.TODv4 #2214
 Refactor DMT.TA.TODv4 #2213
 - 
 
-Refactor DMT.TA.TODv4 #2212
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2212 - Build 10085 (fixed #2)
+- DMT.TAxTODv3
+  - Update version history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2211

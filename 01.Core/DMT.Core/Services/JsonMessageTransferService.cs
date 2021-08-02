@@ -248,6 +248,7 @@ namespace DMT.Services
             DateTime today = DateTime.Today;
             DateTime firstOnMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             DateTime targetDT = firstOnMonth.AddMonths(-2); // last 2 month.
+            //DateTime targetDT = firstOnMonth.AddDays(-20); // last 20 days.
 
             files.ForEach(file => 
             {
@@ -288,10 +289,14 @@ namespace DMT.Services
                     }
                 });
 
+                /*
                 // Compress.
                 string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
                 string outputFile = Path.Combine(this.MessageFolder, "Backup", targetFile);
+
+                med.Info("Begin CompressFiles - Current directory: {0}", this.MessageFolder);
+
                 try
                 {
                     NLib.Utils.SevenZipManager.CompressDirectory(targetDir, outputFile, true);
@@ -314,6 +319,9 @@ namespace DMT.Services
                 {
                     med.Err(ex4);
                 }
+
+                med.Info("End CompressFiles - Current directory: {0}", this.MessageFolder);
+                */
             }
         }
 

@@ -43,8 +43,8 @@ namespace DMT.Services
     {
         #region Static Variables
 
-        /// <summary>Set default timeout in second. default is 5 s.</summary>
-        public static int TimeoutInSecond = 5;
+        /// <summary>Set default timeout in second. default is 15 s.</summary>
+        public static int TimeoutInSecond = 15;
 
         #endregion
 

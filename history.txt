@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #2217
 Refactor DMT.TA.TODv4 #2216
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2215
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - change supadj timeout to 15 s.
 
 [commited]
 Refactor DMT.TA.TODv4 #2214

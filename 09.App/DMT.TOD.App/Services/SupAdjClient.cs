@@ -238,6 +238,8 @@ namespace DMT.Services
                 return;
             }
 
+            SupAdjClient.TimeoutInSecond = cfg.TimeoutInSeconds;
+
             isEnabled = cfg.Enabled;
             if (!isEnabled)
             {

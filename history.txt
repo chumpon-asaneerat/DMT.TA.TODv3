@@ -10,8 +10,13 @@ Refactor DMT.TA.TODv4 #2218
 Refactor DMT.TA.TODv4 #2217
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2216
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - change SupAdjWebSocketConfig class add property TimeoutInSeconds.
+    - change PlazaSupAdjConfigManager class
+      - SupAdj property check is TimeoutInSeconds is zero set default to 15 s and save config,
 
 [commited]
 Refactor DMT.TA.TODv4 #2215

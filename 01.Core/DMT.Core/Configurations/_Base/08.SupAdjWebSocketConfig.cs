@@ -34,6 +34,7 @@ namespace DMT.Configurations
             this.Route = "";
             this.PortNumber = 8090;
             this.Enabled = true;
+            this.TimeoutInSeconds = 0;
         }
 
         #endregion
@@ -60,6 +61,10 @@ namespace DMT.Configurations
         /// Gets or sets Enabled.
         /// </summary>
         public bool Enabled { get; set; }
+        /// <summary>
+        /// Gets or sets Timeout in seconds.
+        /// </summary>
+        public int TimeoutInSeconds { get; set; }
 
         #endregion
     }

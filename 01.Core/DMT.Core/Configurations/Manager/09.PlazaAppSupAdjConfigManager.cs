@@ -88,6 +88,11 @@ namespace DMT.Configurations
             get
             {
                 if (null == Value) LoadConfig();
+                if (Value.TimeoutInSeconds <= 0)
+                {
+                    Value.TimeoutInSeconds = 15; // default.
+                    SaveConfig();
+                }
                 return Value;
             }
         }

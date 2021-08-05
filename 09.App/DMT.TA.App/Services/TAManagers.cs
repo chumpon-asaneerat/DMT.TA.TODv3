@@ -2423,7 +2423,7 @@ namespace DMT.Services
         /// <summary>
         /// Save.
         /// </summary>
-        /// <returns>Returns true if sace success.</returns>
+        /// <returns>Returns true if save success.</returns>
         public override bool Save()
         {
             if (null == Coupons || Coupons.Count <= 0) return true;
@@ -2454,6 +2454,15 @@ namespace DMT.Services
 
             if (null != saveList && saveList.Count > 0)
             {
+                // update invoice id
+                var invoiceId = this.InvoiceId;
+                saveList.ForEach(coupon => 
+                {
+                    coupon.TSBInvoiceId = invoiceId; // keep id in each coupon before save.
+                });
+                // increase TSB Coupon Sale invoice running number.
+                UniqueCode.IncreaseUniqueId("TSBCouponSaleInvoice");
+
                 msg = string.Format("Update local db start: {0:HH:mm:ss.fff}", DateTime.Now);
                 med.Info(msg);
                 Console.WriteLine(msg);
@@ -2662,6 +2671,19 @@ namespace DMT.Services
                 }).OrderBy(x => x.CouponId).ToList();
 
                 return results;
+            }
+        }
+        /// <summary>
+        /// Gets current TSB Coupon sold invoice id.
+        /// </summary>
+        public string InvoiceId
+        {
+            get 
+            {
+                var unique = UniqueCode.GetUniqueId("TSBCouponSaleInvoice").Value();
+                string yr = DateTime.Now.ToThaiDateTimeString("yy");
+                string autoId = (null != unique) ? yr + unique.LastNumber.ToString("D5") : string.Empty; // auto generate.
+                return autoId;
             }
         }
 

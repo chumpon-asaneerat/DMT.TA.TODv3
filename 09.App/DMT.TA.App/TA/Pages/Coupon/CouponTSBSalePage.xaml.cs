@@ -538,7 +538,8 @@ namespace DMT.TA.Pages.Coupon
             string supervisorFullName = TAApp.User.Current.FullNameTH;
             inst.Parameters.Add(RdlcReportParameter.Create("supervisorFullName", supervisorFullName));
 
-            var _runningNumber = "630000x"; // TODO: Implements Running Number for Receipt.
+            // get TSB Coupon Sale invoice running number
+            string _runningNumber = manager.InvoiceId;
             inst.Parameters.Add(RdlcReportParameter.Create("runningNumber", _runningNumber));
 
             return inst;

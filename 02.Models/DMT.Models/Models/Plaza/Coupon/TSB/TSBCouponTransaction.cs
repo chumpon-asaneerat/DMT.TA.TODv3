@@ -96,6 +96,8 @@ namespace DMT.Models
         private string _SoldByFullNameEN = string.Empty;
         private string _SoldByFullNameTH = string.Empty;
 
+        private string _TSBInvoiceId = string.Empty;
+
         private TSBCouponFinishedFlags _FinishFlag = TSBCouponFinishedFlags.Avaliable;
 
         private int _Status = 0;
@@ -859,6 +861,28 @@ namespace DMT.Models
                 return ret;
             }
             set { }
+        }
+        /// <summary>
+        /// Gets or sets TSBInvoiceId
+        /// </summary>
+        [Category("Sold")]
+        [Description("Gets or sets TSBInvoiceId")]
+        [MaxLength(15)]
+        [PropertyMapName("TSBInvoiceId")]
+        public virtual string TSBInvoiceId
+        {
+            get
+            {
+                return _TSBInvoiceId;
+            }
+            set
+            {
+                if (_TSBInvoiceId != value)
+                {
+                    _TSBInvoiceId = value;
+                    this.RaiseChanged("TSBInvoiceId");
+                }
+            }
         }
 
         #endregion

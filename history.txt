@@ -7,8 +7,13 @@ Refactor DMT.TA.TODv4 #2219
 Refactor DMT.TA.TODv4 #2218
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2217
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update TSBCouponTransaction class add TSBInvoiceId property.
+  - DMT.TA.App project
+    - TSB Sold Coupon process -> Update auto invoice id code.
 
 [commited]
 Refactor DMT.TA.TODv4 #2216

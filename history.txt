@@ -1,8 +1,11 @@
 ﻿Refactor DMT.TA.TODv4 #2220
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2219
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Fixed HeaderPlaza control (invalid null check).
 
 [commited]
 Refactor DMT.TA.TODv4 #2218

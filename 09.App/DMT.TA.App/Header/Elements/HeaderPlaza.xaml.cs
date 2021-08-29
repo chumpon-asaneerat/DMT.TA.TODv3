@@ -70,7 +70,7 @@ namespace DMT.Controls.Header
             var tsb = TSB.GetCurrent().Value();
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                if (null != Config)
+                if (null != tsb)
                 {
                     txtPlazaId.Text = "รหัสด่าน : " + tsb.TSBId;
                     txtPlazaName.Text = "ชื่อด่าน : " + tsb.TSBNameTH;

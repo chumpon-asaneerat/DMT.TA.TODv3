@@ -1,32 +1,33 @@
-﻿Refactor DMT.TA.TODv4 #2220
+﻿Refactor DMT.TA.TODv4 #2230
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2229
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2228
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2227
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2226
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2225
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2224
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2223
 - 
 
-Refactor DMT.TA.TODv4 #2220
+Refactor DMT.TA.TODv4 #2222
 - 
 
-Refactor DMT.TA.TODv4 #2220
-- 
+[commited]
+Refactor DMT.TA.TODv4 #2221
+- Rebuild all projects.
 
 [commited]
 Refactor DMT.TA.TODv4 #2220

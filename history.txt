@@ -4,8 +4,12 @@
 Refactor DMT.TA.TODv4 #2219
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2218
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Fixed KeyboardOptions class
+      - remove check for Keys.system.
 
 [commited]
 Refactor DMT.TA.TODv4 #2217

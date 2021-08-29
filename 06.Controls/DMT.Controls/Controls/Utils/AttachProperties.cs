@@ -262,12 +262,13 @@ namespace DMT.Controls.Utils
 
             if (!(ue is TextBox || ue is PasswordBox)) return;
 
-            var sys = Keyboard.IsKeyDown(Key.System);
+            //var sys = Keyboard.IsKeyDown(Key.System);
             var alt = Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt);
             var ctrl = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
             var shf = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
 
-            if (sys || alt || ctrl || shf) return; // ignore if Ctrl/Alt/Shift/System key hold.
+            //if (sys || alt || ctrl || shf) return; // ignore if Ctrl/Alt/Shift/System key hold.
+            if (alt || ctrl || shf) return; // ignore if Ctrl/Alt/Shift key hold.
 
             if ((e.Key == Key.Enter || e.Key == Key.Return) && GetEnterAsTab(ue))
             {

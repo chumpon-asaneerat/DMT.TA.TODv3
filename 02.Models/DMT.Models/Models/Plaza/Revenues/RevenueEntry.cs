@@ -1973,6 +1973,10 @@ namespace DMT.Models
         /// <returns>Returns List of RevenueEntry.</returns>
         public static NDbResult<List<RevenueEntry>> FindByRevnueDate(DateTime date, int? shiftId)
         {
+            // TODO: Change start time here.
+            // Find today shiftid = 1 for begin date.
+            // next find tomorrow first shift time if exists minus 1 ms
+            //   if tomorrow no first shift used previous start time + 24 hrs.
             DateTime begin = date.Date;
             DateTime end = date.Date.AddDays(1).AddMilliseconds(-1);
             return FindByRevnueDate(begin, end, shiftId);

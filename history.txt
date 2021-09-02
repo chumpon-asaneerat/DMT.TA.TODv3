@@ -22,8 +22,9 @@ Refactor DMT.TA.TODv4 #2224
 Refactor DMT.TA.TODv4 #2223
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2222
-- 
+- Update Revenue Entry Daily Report logic (comment).
 
 [commited]
 Refactor DMT.TA.TODv4 #2221

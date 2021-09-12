@@ -141,6 +141,7 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
+            // Note. : when direct change date on TSBShift Table UI is not update.
             var shift = TSBShift.GetTSBShift().Value();
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {

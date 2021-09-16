@@ -16,8 +16,9 @@ Refactor DMT.TA.TODv4 #2226
 Refactor DMT.TA.TODv4 #2225
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2224
-- 
+- Update note api for SCW checking (comment).
 
 [commited]
 Refactor DMT.TA.TODv4 #2223

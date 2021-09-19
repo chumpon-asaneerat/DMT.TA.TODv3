@@ -135,6 +135,7 @@ namespace DMT.Services
                     }
                     else
                     {
+                        // TODO: Recheck HTTP Error in return object.
                         ret.RestResponseError();
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
@@ -222,6 +223,7 @@ namespace DMT.Services
                     }
                     else
                     {
+                        // TODO: Recheck HTTP Error in return object.
                         ret.RestResponseError();
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
@@ -299,6 +301,7 @@ namespace DMT.Services
                     }
                     else
                     {
+                        // TODO: Recheck HTTP Error in return object.
                         ret.RestResponseError();
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
@@ -320,7 +323,18 @@ namespace DMT.Services
 
             return ret;
         }
-
+        /// <summary>
+        /// Execute (POST).
+        /// </summary>
+        /// <typeparam name="TReturn">The Target Type parameter.</typeparam>
+        /// <param name="apiUrl">The action api url.</param>
+        /// <param name="pObj">The parameter.</param>
+        /// <param name="timeout">The timeout in ms.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>
+        /// Returns instance of NRestResult object.
+        /// </returns>
         public TReturn Execute2<TReturn>(string apiUrl,
             object pObj = default,
             int timeout = 1000,
@@ -364,6 +378,8 @@ namespace DMT.Services
                     }
                     else
                     {
+                        // TODO: ***Recheck HTTP Error in return object.
+                        // This is special case because SCW result will not has NResult content.
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
                             (int)response.StatusCode, response.Content);
@@ -490,7 +506,6 @@ namespace DMT.Services
 
             return new NRestClient(protocol, hostName, portNo);
         }
-
         /// <summary>
         /// Create Rest Client for TA App.
         /// </summary>

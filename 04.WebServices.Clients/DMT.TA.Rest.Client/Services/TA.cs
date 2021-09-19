@@ -45,6 +45,7 @@ namespace DMT.Services.Operations
                 ret.RestInvalidConfig();
                 return ret;
             }
+            // TODO: Rest API Call.
             ret = client.Execute(url, new { }, Timeout, UserName, Password);
             return ret;
 
@@ -65,6 +66,7 @@ namespace DMT.Services.Operations
                 ret.RestInvalidConfig();
                 return ret;
             }
+            // TODO: Rest API Call.
             ret = client.Execute(url, value, Timeout, UserName, Password);
             return ret;
 

@@ -43,6 +43,7 @@ namespace DMT.Services.Operations
             NRestClient client = GetClient();
             if (null != client)
             {
+                // TODO: Rest API Call.
                 ret = client.Execute2<TResult>(url, new { }, Timeout, UserName, Password);
             }
             return ret;
@@ -63,8 +64,15 @@ namespace DMT.Services.Operations
             if (null != client)
             {
                 if (null != value)
+                {
+                    // TODO: Rest API Call.
                     ret = client.Execute2<TResult>(url, value, Timeout, UserName, Password);
-                else ret = client.Execute2<TResult>(url, new { }, Timeout, UserName, Password);
+                }
+                else
+                {
+                    // TODO: Rest API Call.
+                    ret = client.Execute2<TResult>(url, new { }, Timeout, UserName, Password);
+                }
             }
             return ret;
 
@@ -84,6 +92,7 @@ namespace DMT.Services.Operations
             NRestClient client = GetClient();
             if (null != client && null != value)
             {
+                // TODO: Rest API Call.
                 ret = client.Execute2<TResult>(url, value, Timeout, UserName, Password);
             }
             return ret;

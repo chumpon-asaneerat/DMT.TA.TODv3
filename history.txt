@@ -7,8 +7,10 @@ Refactor DMT.TA.TODv4 #2229
 Refactor DMT.TA.TODv4 #2228
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2227
-- 
+- Sub branch for implements NRestResult, NRestClient 
+  - Provide more information about HTTP status code.
 
 [commited]
 Refactor DMT.TA.TODv4 #2226

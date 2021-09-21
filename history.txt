@@ -22,8 +22,15 @@ Refactor DMT.TA.TODv4 #2234
 Refactor DMT.TA.TODv4 #2233
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2232
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server
+    - TODClientManager class update
+      - Remove commpress files feature.
+      - Update ProcessJson method
+        - Json parse error move file to 'Invalid' folder.
+      - Add MoveErrorToBackup and MoveErrorToInvalid method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2231

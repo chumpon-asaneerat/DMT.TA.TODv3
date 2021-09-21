@@ -72,6 +72,8 @@ namespace DMT.Services
 
         #region Private Methods
 
+        #region Check
+
         private void CheckSendError(MethodBase med, string fullFileName, NRestResult ret)
         {
             if (null == ret)
@@ -147,6 +149,8 @@ namespace DMT.Services
         }
 
 
+        #endregion
+
         #region Send
 
         private void SendChangeTSBShift(string fullFileName, Models.TSBShift value)
@@ -154,7 +158,6 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Shift.TSB.Update(value);
-
             CheckSendError(med, fullFileName, ret);
         }
 
@@ -163,7 +166,6 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Shift.User.Update(value);
-
             CheckSendError(med, fullFileName, ret);
         }
 
@@ -172,7 +174,6 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Revenue.Update(value);
-
             CheckSendError(med, fullFileName, ret);
         }
 
@@ -186,7 +187,6 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Shift.TSB.Update(value);
-
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -196,7 +196,6 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Shift.User.Update(value);
-
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -206,7 +205,6 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Revenue.Update(value);
-
             CheckResendError(med, fullFileName, ret);
         }
 

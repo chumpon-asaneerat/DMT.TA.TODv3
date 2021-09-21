@@ -257,6 +257,8 @@ namespace DMT.Services
                     }
                 });
 
+                //TODO: Need Re-check auto compress old message.
+                /*
                 // Compress.
                 string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
@@ -283,6 +285,7 @@ namespace DMT.Services
                 {
                     med.Err(ex4);
                 }
+                */
             }
         }
 
@@ -482,6 +485,56 @@ namespace DMT.Services
         {
             MoveTo(file, "NotSupports");
         }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'Backup' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToBackup(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, "Backup");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'Invalid' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToInvalid(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, "Invalid");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
 
         #endregion
 
@@ -573,7 +626,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("user.shift.change"))
@@ -588,7 +641,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("revenue.entry.save"))
@@ -603,7 +656,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else
@@ -639,7 +692,6 @@ namespace DMT.Services
                 med.Err("Cannot connect to TOD App Web Service.");
                 return;
             }
-
             // Success
             MoveToBackup(fullFileName);
         }
@@ -665,7 +717,6 @@ namespace DMT.Services
                 med.Err("Cannot connect to TOD App Web Service.");
                 return;
             }
-
             // Success
             MoveToBackup(fullFileName);
         }
@@ -691,7 +742,6 @@ namespace DMT.Services
                 med.Err("Cannot connect to TOD App Web Service.");
                 return;
             }
-
             // Success
             MoveToBackup(fullFileName);
         }

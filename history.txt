@@ -13,8 +13,9 @@ Refactor DMT.TA.TODv4 #2247
 Refactor DMT.TA.TODv4 #2246
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2245
-- 
+- Update version.history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2244

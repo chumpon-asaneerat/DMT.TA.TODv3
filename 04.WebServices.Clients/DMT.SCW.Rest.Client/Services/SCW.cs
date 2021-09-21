@@ -94,6 +94,21 @@ namespace DMT.Services.Operations
             return ret;
 
         }
+        /// <summary>
+        /// Call Gets Url.
+        /// </summary>
+        /// <param name="url">The Url.</param>
+        /// <returns>Returns HTTP Gets response.</returns>
+        public static object Get(string url)
+        {
+            object ret = null;
+            NRestClient client = GetClient();
+            if (null != client)
+            {
+                ret = client.Get(url);
+            }
+            return ret;
+        }
 
         #endregion
 

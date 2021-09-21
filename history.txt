@@ -19,11 +19,27 @@ Refactor DMT.TA.TODv4 #2245
 Refactor DMT.TA.TODv4 #2244
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2243
-- 
+  - DMT.Account.App project
+    - Update HeaderDateTime control -> used GetVersion (GET) instead call passwordexpiresdays (POST).
+    - Update SCWStatus control -> used GetVersion (GET) instead call passwordexpiresdays (POST).
+  - DMT.TA.App project
+    - Update HeaderDateTime control -> used GetVersion (GET) instead call passwordexpiresdays (POST).
+    - Update SCWStatus control -> used GetVersion (GET) instead call passwordexpiresdays (POST).
+  - DMT.TOD.App project
+    - Update HeaderDateTime control -> used GetVersion (GET) instead call passwordexpiresdays (POST).
+    - Update SCWStatus control -> used GetVersion (GET) instead call passwordexpiresdays (POST).
 
+[commited]
 Refactor DMT.TA.TODv4 #2242
-- 
+- DMT.TAxTODv3
+  - DMT.Rest.Client project
+    - NRestClient class update
+      - Add Get method. (basic http get call).
+  - DMT.SCW.Rest.Client project
+    - SCW class
+      - Add Get method. (basic http get call).
 
 [commited]
 Refactor DMT.TA.TODv4 #2241

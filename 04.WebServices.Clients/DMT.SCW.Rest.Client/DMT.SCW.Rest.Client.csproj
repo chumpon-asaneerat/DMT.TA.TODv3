@@ -60,6 +60,7 @@
     <Compile Include="Services\SCWMQService.cs" />
     <Compile Include="Services\Security\Security.Operations.cs" />
     <Compile Include="Services\TOD\TOD.Operations.cs" />
+    <Compile Include="Services\Version\Version.Operaions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib\NLib.csproj">

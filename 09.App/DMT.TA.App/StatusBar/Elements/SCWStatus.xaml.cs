@@ -104,9 +104,8 @@ namespace DMT.Controls.StatusBar
         private void CallWS()
         {
             if (!needCallWs) return;
-            var ret = wsOps.passwordExpiresDays();
-            isOnline = (null != ret && null != ret.status &&
-                !string.IsNullOrEmpty(ret.status.code) && ret.status.code == "S200");
+            var ret = wsOps.GetVersion();
+            isOnline = !string.IsNullOrWhiteSpace(ret);
             needCallWs = false;
         }
 

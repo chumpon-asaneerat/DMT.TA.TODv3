@@ -100,6 +100,7 @@
     <Compile Include="Routes\SCW\SCW.RouteConsts.cs" />
     <Compile Include="Routes\SCW\Security\SCW.Security.RouteConsts.cs" />
     <Compile Include="Routes\SCW\TOD\SCW.TOD.RouteConsts.cs" />
+    <Compile Include="Routes\SCW\Version\SCW.Version.RouteConsts.cs" />
     <Compile Include="Routes\TAxTOD\Credit\TAxTOD.Account.RouteConsts.cs" />
     <Compile Include="Routes\TAxTOD\Coupons\TAxTOD.Coupon.RouteConsts.cs" />
     <Compile Include="Routes\TAxTOD\Exchange\TAxTOD.Exchange.RouteConsts.cs" />

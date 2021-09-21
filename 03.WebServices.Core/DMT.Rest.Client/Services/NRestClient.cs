@@ -411,6 +411,55 @@ namespace DMT.Services
 
             return ret;
         }
+        /// <summary>
+        /// Basic HTTP Get without paraneter.
+        /// </summary>
+        /// <param name="apiUrl">The Url.</param>
+        /// <param name="timeout">The timeout in ms.</param>
+        /// <returns>Returns Response content.</returns>
+        public object Get(string apiUrl, int timeout = 1000)
+        {
+            object ret = null;
+            string actionUrl = (!apiUrl.StartsWith("/")) ? @"/" + apiUrl : apiUrl;
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                med.Info("api: {0}", BaseUrl + actionUrl);
+
+                var client = new RestClient(BaseUrl);
+                //client.ReadWriteTimeout = timeout;
+                client.Timeout = timeout;
+                var request = new RestRequest(actionUrl, Method.GET);
+
+                var response = client.Execute(request);
+                if (null != response)
+                {
+                    med.Info("result (GET): {0}", response.Content);
+                    int code = (int)response.StatusCode;
+                    string desc = response.StatusDescription;
+                    HttpStatus status = (code >= 200 && code <= 399) ? HttpStatus.Success : HttpStatus.Failed;
+                    if (response.IsSuccessful() && null != response.Content)
+                    {
+                        ret = response.Content;
+                    }
+                    else
+                    {
+                        ret = null;
+                        string msg = string.Format(
+                            "Rest Client Content Error (GET) - Code: {0}, Content: {1}",
+                            (int)response.StatusCode, response.Content);
+                        Console.WriteLine(msg);
+                        med.Err(msg);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+
+            return ret;
+        }
 
         #endregion
 

@@ -1,9 +1,4 @@
 ﻿- Note:
-  - Check api for SCW
-    - http://172.30.52.2:8000/dmt-scw/api/v1/version (GET)
-      - Return 
-        Content-Type: text/plain;charset=UTF-8
-        Data (RAW): version : 1.0.7 (2021-09-14)
   - Request 
     - Check if both total side (left/right) is match.
     - Need to check with TSB max balance.

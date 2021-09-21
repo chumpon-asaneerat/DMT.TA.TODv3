@@ -7,6 +7,16 @@ using System.Collections.Generic;
 
 namespace DMT
 {
+    /// <summary>
+    /// The Rest HTTP Status enum
+    /// </summary>
+    public enum HttpStatus : int
+    {
+        None = -1,
+        Failed = 0,
+        Success = 1
+    }
+
     // TODO: Required to add more error code.
     public enum ErrNums : int
     {
@@ -15,14 +25,11 @@ namespace DMT
         DbConenctFailed = 100,
         // Web Service Connection (150-199)
         RestConenctFailed = 150,
-        RestResponseError = 151,
+        // Note. remove err num and used http status code instead.
+        //RestResponseError = 151,
         RestInvalidConfig = 152,
         // Models - Common (200-210)
         ParameterIsNull = 200,
-        // Models - User (invalid password, invalid role, etc.) (211-230)
-
-        // Models - TSB (Active TSB not found, etc.) (231-240)
-
         // Common Exception
         Exception = 900,
         // Unknown (999)
@@ -43,14 +50,13 @@ namespace DMT
 
             // Web Service Connection
             _msgs.Add(ErrNums.RestConenctFailed, "Web Service connection failed.");
-            _msgs.Add(ErrNums.RestResponseError, "Web Service response error.");
+            // Note. remove err message and used http error message instead. 
+            //_msgs.Add(ErrNums.RestResponseError, "Web Service response error.");
 
             // Models - common
             _msgs.Add(ErrNums.ParameterIsNull, "Parameter is null.");
-
             // Common Exception
             _msgs.Add(ErrNums.Exception, "Exception detected.");
-
             // Unknown
             _msgs.Add(ErrNums.UnknownError, "Unknown error.");
         }

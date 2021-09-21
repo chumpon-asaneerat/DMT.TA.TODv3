@@ -13,7 +13,6 @@ using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Serializers.NewtonsoftJson;
 
-
 #endregion
 
 namespace DMT.Services
@@ -135,8 +134,8 @@ namespace DMT.Services
                     }
                     else
                     {
-                        // TODO: Recheck HTTP Error in return object.
-                        ret.RestResponseError();
+                        // Keep HTTP status code in result.
+                        ret.RestResponseError((int)response.StatusCode, response.StatusDescription);
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
                             (int)response.StatusCode, response.Content);
@@ -223,8 +222,8 @@ namespace DMT.Services
                     }
                     else
                     {
-                        // TODO: Recheck HTTP Error in return object.
-                        ret.RestResponseError();
+                        // Keep HTTP status code in result.
+                        ret.RestResponseError((int)response.StatusCode, response.StatusDescription);
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
                             (int)response.StatusCode, response.Content);
@@ -301,8 +300,8 @@ namespace DMT.Services
                     }
                     else
                     {
-                        // TODO: Recheck HTTP Error in return object.
-                        ret.RestResponseError();
+                        // Keep HTTP status code in result.
+                        ret.RestResponseError((int)response.StatusCode, response.StatusDescription);
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
                             (int)response.StatusCode,  response.Content);
@@ -324,7 +323,7 @@ namespace DMT.Services
             return ret;
         }
         /// <summary>
-        /// Execute (POST).
+        /// Execute2 (POST).
         /// </summary>
         /// <typeparam name="TReturn">The Target Type parameter.</typeparam>
         /// <param name="apiUrl">The action api url.</param>
@@ -380,6 +379,10 @@ namespace DMT.Services
                     {
                         // TODO: ***Recheck HTTP Error in return object.
                         // This is special case because SCW result will not has NResult content.
+                        
+                        // Keep HTTP status code in result.
+                        //ret.RestResponseError((int)response.StatusCode, response.StatusDescription);
+
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
                             (int)response.StatusCode, response.Content);

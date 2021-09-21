@@ -85,6 +85,7 @@ namespace DMT.Services
         /// </summary>
         public NRestResult() : base()
         {
+            this.Status = HttpStatus.None; // default set http status to None.
             this.errors = new NRestError();
             UnknownError();
         }
@@ -105,11 +106,16 @@ namespace DMT.Services
         /// <summary>
         /// Set Web Service (REST API) Response Error.
         /// </summary>
-        public virtual void RestResponseError()
+        /// <param name="statusCode">The HTTP error status.</param>
+        /// <param name="errorMsg">The HTTP error status.</param>
+        public virtual void RestResponseError(int statusCode, string errorMsg)
         {
-            var err = ErrNums.RestResponseError;
-            this.errors.errNum = (int)err;
-            this.errors.errMsg = ErrConsts.ErrMsg(err);
+            bool success = (statusCode >= 200 && statusCode <= 399); // check success code in range.
+            this.Status = (success) ? HttpStatus.Success : HttpStatus.Failed; // mark http status.
+
+            this.errors.errNum = statusCode;
+            this.errors.errMsg = (string.IsNullOrWhiteSpace(errorMsg)) ? 
+                ErrConsts.ErrMsg(ErrNums.UnknownError) : errorMsg;
         }
         /// <summary>
         /// Set Web Service (REST API) Invalid Config Error.
@@ -143,6 +149,8 @@ namespace DMT.Services
         /// </summary>
         public virtual void Success()
         {
+            this.Status = HttpStatus.Success; // set http error to success.
+
             var err = ErrNums.Success;
             this.errors.errNum = (int)err;
             this.errors.errMsg = ErrConsts.ErrMsg(err);
@@ -182,6 +190,14 @@ namespace DMT.Services
             get { return this.errors.hasError; }
             set { }
         }
+        /// <summary>
+        /// Checks http status.
+        /// </summary>
+        public virtual HttpStatus Status
+        {
+            get;
+            protected set;
+        }
 
         #endregion
     }
@@ -219,9 +235,11 @@ namespace DMT.Services
         /// <summary>
         /// Set Web Service (REST API) Response Error.
         /// </summary>
-        public override void RestResponseError()
+        /// <param name="statusCode">The HTTP error status.</param>
+        /// <param name="errorMsg">The HTTP error status.</param>
+        public override void RestResponseError(int statusCode, string errorMsg)
         {
-            base.RestResponseError();
+            base.RestResponseError(statusCode, errorMsg);
             this.data = Default();
         }
         /// <summary>
@@ -337,9 +355,11 @@ namespace DMT.Services
         /// <summary>
         /// Set Web Service (REST API) Response Error.
         /// </summary>
-        public override void RestResponseError()
+        /// <param name="statusCode">The HTTP error status.</param>
+        /// <param name="errorMsg">The HTTP error status.</param>
+        public override void RestResponseError(int statusCode, string errorMsg)
         {
-            base.RestResponseError();
+            base.RestResponseError(statusCode, errorMsg);
             this.data = DefaultData();
             this.Output = DefaultOutput();
         }
@@ -525,6 +545,7 @@ namespace DMT.Services
             if (null != value)
             {
                 ret.data = value.data;
+                //ret.Status = HttpStatus.Success;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
             }

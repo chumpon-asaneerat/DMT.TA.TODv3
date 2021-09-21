@@ -4,8 +4,16 @@
 Refactor DMT.TA.TODv4 #2229
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2228
-- 
+- DMT.TAxTODv3
+  - DMT.Rest.Client project
+    - Remove ErrNums RestResponseError -> Used HTTP status code instead.
+    - Remove ErrConsts RestResponseError -> Used HTTP status message instead.
+    - NRestResult class
+      - Reimplement RestResponseError method(s) ->Used HTTP status code, message instead.
+    - NRestClient class
+      - Execute method(s) -> Update code call RestResponseError method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2227

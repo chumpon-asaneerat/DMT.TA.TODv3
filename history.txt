@@ -13,8 +13,15 @@ Refactor DMT.TA.TODv4 #2237
 Refactor DMT.TA.TODv4 #2236
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2235
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - TAServerStatus update code - add check null result from server.
+  - DMT.TA.App project
+    - TAServerStatus update code - add check null result from server.
+  - DMT.TOD.App project
+    - TAServerStatus update code - add check null result from server.
 
 [commited]
 Refactor DMT.TA.TODv4 #2234

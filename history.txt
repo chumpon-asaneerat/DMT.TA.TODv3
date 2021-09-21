@@ -25,8 +25,15 @@ Refactor DMT.TA.TODv4 #2243
 Refactor DMT.TA.TODv4 #2242
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2241
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Update signin auto load expired days from SCW WS.
+  - DMT.TA.App project
+    - Update signin auto load expired days from SCW WS.
+  - DMT.TOD.App project
+    - Update signin auto load expired days from SCW WS.
 
 [commited]
 Refactor DMT.TA.TODv4 #2240

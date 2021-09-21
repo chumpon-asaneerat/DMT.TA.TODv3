@@ -19,6 +19,8 @@ using System.Reflection;
 
 namespace DMT.Pages
 {
+    using wsOps = Services.Operations.SCW.Security;
+
     /// <summary>
     /// Interaction logic for SignInPage.xaml
     /// </summary>
@@ -537,6 +539,33 @@ namespace DMT.Pages
             */
         }
 
+        private void UpdateExpiredDays()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                var ret = wsOps.passwordExpiresDays();
+                if (null != ret && null != ret.status &&
+                    !string.IsNullOrEmpty(ret.status.code) && ret.status.code == "S200" &&
+                    ret.expiresIn.HasValue)
+                {
+                    User.DefaultExpiredDays = ret.expiresIn.Value;
+                    med.Err("Get expired days from SCW. Current expired days is " + 
+                        User.DefaultExpiredDays.ToString("n0") + " days.");
+                }
+                else
+                {
+                    med.Err("Cannot get expired days from SCW. Use default 90 days.");
+                }
+            }
+            catch (Exception ex)
+            {
+                User.DefaultExpiredDays = 90;
+                med.Err(ex);
+                med.Err("Cannot get expired days from SCW. Use default 90 days.");
+            }
+        }
+
         #endregion
 
         #region Public Methods and Properties
@@ -547,6 +576,8 @@ namespace DMT.Pages
         /// <param name="roles">The Role list.</param>
         public void Setup(params string[] roles)
         {
+            UpdateExpiredDays(); // Call WS to update expired days.
+
             // Clear Inputs.
             ClearInputs();
             tabs.SelectedIndex = 0;

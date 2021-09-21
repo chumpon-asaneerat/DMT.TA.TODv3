@@ -24,7 +24,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.boj.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute eoj api.
             /// </summary>
@@ -36,7 +35,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.eoj.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute allJobs api.
             /// </summary>
@@ -48,7 +46,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.allJobs.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute removeJobs api.
             /// </summary>
@@ -60,7 +57,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.removeJobs.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute clearJobs api.
             /// </summary>
@@ -72,7 +68,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.clearJobs.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute add EMV api.
             /// </summary>
@@ -84,7 +79,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.addEMV.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute remove EMV api.
             /// </summary>
@@ -96,7 +90,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.removeEMV.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute clear EMVs api.
             /// </summary>
@@ -108,7 +101,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.clearEMVs.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute add QRCode api.
             /// </summary>
@@ -120,7 +112,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.addQRCode.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute remove QRCode api.
             /// </summary>
@@ -132,7 +123,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Emulator.removeQRCode.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute clear QRCodes api.
             /// </summary>

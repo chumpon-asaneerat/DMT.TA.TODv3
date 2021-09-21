@@ -24,7 +24,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.TOD.cheifOnDuty.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute saveCheifDuty api.
             /// </summary>
@@ -36,7 +35,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.TOD.saveCheifDuty.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute jobList api.
             /// </summary>
@@ -48,7 +46,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.TOD.jobList.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute jobList2 api.
             /// </summary>
@@ -60,7 +57,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.TOD.jobList2.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute emvTransactionList api.
             /// </summary>
@@ -73,7 +69,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.TOD.emvTransactionList.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute qrcodeTransactionList api.
             /// </summary>
@@ -86,7 +81,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.TOD.qrcodeTransactionList.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute declare api.
             /// </summary>

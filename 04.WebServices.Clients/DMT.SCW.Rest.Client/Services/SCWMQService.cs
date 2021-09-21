@@ -46,10 +46,6 @@ namespace DMT.Services
 
         #endregion
 
-        #region Internal Variables
-
-        #endregion
-
         #region Constructor and Destructor
 
         /// <summary>
@@ -68,6 +64,156 @@ namespace DMT.Services
 
         #region Private Methods
 
+        #region Check
+
+        private void CheckSendError(MethodBase med, string fullFileName, Models.SCWResult ret)
+        {
+            if (null == ret)
+            {
+                // Error may be cannot connect to WS. Move to error folder for resend.
+                med.Err("Cannot connect to SCW Web Service. Move to 'Error' folder.");
+                // Error
+                MoveToError(fullFileName);
+            }
+            else
+            {
+                //if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
+                if (!ret.Ok && ret.HttpStatus != HttpStatus.Success)
+                {
+                    // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
+                    med.Err("Send data to SCW Web Service failed (HTTP error). Move to 'Error' folder.");
+                    // Error
+                    MoveToError(fullFileName);
+                }
+                else if (!ret.Ok && ret.HttpStatus == HttpStatus.Success)
+                {
+                    // Connection is OK but result is not valid. so no need to resend anymore.
+                    if (null != ret.status && !string.IsNullOrWhiteSpace(ret.status.code))
+                    {
+                        if (ret.status.code.ToUpperInvariant() == "F500")
+                        {
+                            // Connection is OK but result is 'API Error'. so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is 'API Error'. Move to 'F500' folder.");
+                            // API Error
+                            MoveToErrorF500(fullFileName);
+                        }
+                        else if (ret.status.code.ToUpperInvariant() == "F203")
+                        {
+                            // Connection is OK but result is 'User not authenticated'. so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is 'User not authenticated'. Move to 'F203' folder.");
+                            // User not authenticated
+                            MoveToErrorF203(fullFileName);
+                        }
+                        else if (ret.status.code.ToUpperInvariant() == "F302")
+                        {
+                            // Connection is OK but result is 'API Bad request'. so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is 'API Bad request'. Move to 'F302' folder.");
+                            // API Bad request
+                            MoveToErrorF302(fullFileName);
+                        }
+                        else
+                        {
+                            // Connection is OK but result is not success (unhandle case). so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is not 'F200' (unhandle case). Move to 'FXXX' folder.");
+                            // Other
+                            MoveToErrorFXXX(fullFileName);
+                        }
+                    }
+                    else
+                    {
+                        // Connection is OK but result is not valid. so no need to resend anymore.
+                        med.Err("Send data to SCW Web Service success but content is invalid. Move to 'Invalid' folder.");
+                        // Invalid
+                        MoveErrorToInvalid(fullFileName);
+                    }
+                }
+                else if (ret.Ok)
+                {
+                    // Result is OK, so HttpStatus not concern
+                    med.Info("Send data to SCW Web Service success and content is valid. Move to 'Backup' folder.");
+                    // Success
+                    MoveToBackup(fullFileName);
+                }
+                else
+                {
+                    med.Err("Send data to SCW Web Service failed <Unhandled case>. Wait for next loop for resend.");
+                }
+            }
+        }
+
+        private void CheckResendError(MethodBase med, string fullFileName, Models.SCWResult ret)
+        {
+            if (null == ret)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to SCW Web Service. Wait for next loop for resend.");
+            }
+            else
+            {
+                if (!ret.Ok && ret.HttpStatus != HttpStatus.Success)
+                {
+                    // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
+                    med.Err("Send data to SCW Web Service failed (HTTP error). Wait for next loop for resend.");
+                }
+                else if (!ret.Ok && ret.HttpStatus == HttpStatus.Success)
+                {
+                    if (null != ret.status && !string.IsNullOrWhiteSpace(ret.status.code))
+                    {
+                        if (ret.status.code.ToUpperInvariant() == "F500")
+                        {
+                            // Connection is OK but result is 'API Error'. so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is 'API Error'. Move to 'F500' folder.");
+                            // API Error
+                            MoveErrorToErrorF500(fullFileName);
+                        }
+                        else if (ret.status.code.ToUpperInvariant() == "F203")
+                        {
+                            // Connection is OK but result is 'User not authenticated'. so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is 'User not authenticated'. Move to 'F203' folder.");
+                            // User not authenticated
+                            MoveErrorToErrorF203(fullFileName);
+                        }
+                        else if (ret.status.code.ToUpperInvariant() == "F302")
+                        {
+                            // Connection is OK but result is 'API Bad request'. so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is 'API Bad request'. Move to 'F302' folder.");
+                            // API Bad request
+                            MoveErrorToErrorF302(fullFileName);
+                        }
+                        else
+                        {
+                            // Connection is OK but result is not success (unhandle case). so no need to resend anymore.
+                            med.Err("Send data to SCW Web Service success but content code is not success (unhandle case). Move to 'FXXX' folder.");
+                            // Other
+                            MoveErrorToErrorFXXX(fullFileName);
+                        }
+                    }
+                    else
+                    {
+                        // Connection is OK but result is not valid. so no need to resend anymore.
+                        med.Err("Send data to SCW Web Service success but content is invalid. Move to 'Invalid' folder.");
+                        // Invalid
+                        MoveErrorToInvalid(fullFileName);
+                    }
+
+                }
+                else if (ret.Ok)
+                {
+                    // Result is OK, so HttpStatus not concern
+                    med.Info("Send data to SCW Web Service success and content is valid. Move to 'Backup' folder.");
+                    // Success
+                    MoveErrorToBackup(fullFileName);
+                }
+                else
+                {
+                    med.Err("Send data to SCW Web Service failed <Unhandled case>. Wait for next loop for resend.");
+                }
+            }
+        }
+
+
+        #endregion
+
         #region Send
 
         private void SendDeclare(string fullFileName, Models.SCWDeclare value)
@@ -75,21 +221,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.TOD.declare(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendLogInAudit(string fullFileName, Models.SCWLogInAudit value)
@@ -97,21 +229,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Security.loginAudit(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendChangePassword(string fullFileName, Models.SCWChangePassword value)
@@ -119,21 +237,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Security.changePassword(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendSaveChiefDuty(string fullFileName, Models.SCWSaveChiefDuty value)
@@ -141,21 +245,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.TOD.saveCheifDuty(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                MoveToError(fullFileName);
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         #endregion
@@ -168,20 +258,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.TOD.declare(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendLogInAudit(string fullFileName, Models.SCWLogInAudit value)
@@ -190,20 +267,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Security.loginAudit(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendChangePassword(string fullFileName, Models.SCWChangePassword value)
@@ -212,20 +276,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Security.changePassword(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendSaveChiefDuty(string fullFileName, Models.SCWSaveChiefDuty value)
@@ -234,20 +285,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.TOD.saveCheifDuty(value);
-            if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to SCW Web Service.");
-                return;
-            }
-            if (ret.status.code != "S200")
-            {
-                // Execute Result is not Success so move to error folder.
-                med.Err("SCW Web Service returns error.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         #endregion

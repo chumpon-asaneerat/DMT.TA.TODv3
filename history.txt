@@ -7,8 +7,40 @@ Refactor DMT.TA.TODv4 #2239
 Refactor DMT.TA.TODv4 #2238
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2237
-- 
+- DMT.TAxTODv3
+  - DMT.SCW.Rest.Client project
+    - SCW.Emulator class -> remove line space.
+    - SCW.Master class -> remove line space.
+    - SCW.Security class -> remove line space.
+    - SCW.TOD class -> remove line space.
+    - SCWMQService class update
+      - Add CheckSendError with logic below
+        - If connect to web server failed move file to 'Error' and wait for to resend
+        - If connect OK check data and HTTP status
+          - If data is not OK and HTTP status is not 'Success' move file to 'Error' and wait for to resend
+          - Else If data is not OK and HTTP status is 'Success'
+            - If data return from server
+              - If status code == 'F500' move file to 'F500' and no need to send anymore
+              - Else If status code == 'F203' move file to 'F203' and no need to send anymore
+              - Else If status code == 'F302' move file to 'F302' and no need to send anymore
+              - Else move file to 'FXXX' and no need to send anymore
+            - Else (no data return from server) move file to 'Invalid' and no need to send anymore
+          - Else (seem data is OK) move file to 'Backup'
+      - Add CheckResendError with logic below
+        - If connect to web server failed wait for to resend
+        - If connect OK check data and HTTP status
+          - If data is not OK and HTTP status is not 'Success' wait for to resend
+          - Else If data is not OK and HTTP status is 'Success'
+            - If data return from server
+              - If status code == 'F500' move file to 'F500' and no need to send anymore
+              - Else If status code == 'F203' move file to 'F203' and no need to send anymore
+              - Else If status code == 'F302' move file to 'F302' and no need to send anymore
+              - Else move file to 'FXXX' and no need to send anymore
+            - Else (no data return from server) move file to 'Invalid' and no need to send anymore
+          - Else (assume data is OK and HTTP status is what ever) move file to 'Backup'
+          - Else wait for next loop
 
 [commited]
 Refactor DMT.TA.TODv4 #2236
@@ -50,9 +82,8 @@ Refactor DMT.TA.TODv4 #2234
         - If connect to web server failed move file to 'Error' and wait for to resend
         - If connect OK check data and HTTP status
           - If data is not OK and HTTP status is not 'Success' move file to 'Error' and wait for to resend
-          - Else If data is not OK and HTTP status is 'Success' move file to 'Invalid'
-          - Else If data is OK  move file to 'Backup'
-          - Else wait for next loop
+          - Else If data is not OK and HTTP status is 'Success' move file to 'Error' and wait for to resend
+          - Else (seem data is OK) move file to 'Backup'
       - Add CheckResendError with logic below
         - If connect to web server failed wait for to resend
         - If connect OK check data and HTTP status

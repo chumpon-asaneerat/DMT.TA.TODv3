@@ -507,6 +507,143 @@ namespace DMT.Services
             }
         }
 
+        #region SCW
+
+        /// <summary>
+        /// Move File to 'F203' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveToErrorF203(string file)
+        {
+            MoveTo(file, @"Error\F203");
+        }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'F203' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToErrorF203(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, @"Error\F203");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+        /// <summary>
+        /// Move File to 'F302' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveToErrorF302(string file)
+        {
+            MoveTo(file, @"Error\F302");
+        }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'F302' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToErrorF302(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, @"Error\F302");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+        /// <summary>
+        /// Move File to 'F500' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveToErrorF500(string file)
+        {
+            MoveTo(file, @"Error\F500");
+        }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'F500' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToErrorF500(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, @"Error\F500");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+        /// <summary>
+        /// Move File to 'FXXX' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveToErrorFXXX(string file)
+        {
+            MoveTo(file, @"Error\FXXX");
+        }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'FXXX' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToErrorFXXX(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, @"Error\FXXX");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region OnStart/OnShutdown

@@ -34,7 +34,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Master.cardAllowList.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute couponList api.
             /// </summary>
@@ -56,7 +55,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Master.couponList.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute couponBookList api.
             /// </summary>
@@ -78,7 +76,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Master.couponBookList.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute currencyDenomList api.
             /// </summary>

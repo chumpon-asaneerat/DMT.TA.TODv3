@@ -24,7 +24,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Security.loginAudit.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute changePassword api.
             /// </summary>
@@ -36,7 +35,6 @@ namespace DMT.Services.Operations
                     RouteConsts.SCW.Security.changePassword.Url, value);
                 return ret;
             }
-
             /// <summary>
             /// Execute passwordExpiresDays api.
             /// </summary>

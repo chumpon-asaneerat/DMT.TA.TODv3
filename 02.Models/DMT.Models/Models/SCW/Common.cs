@@ -3,6 +3,9 @@
 using System;
 using System.Collections.Generic;
 using NLib.Reflection;
+using DMT;
+// required for JsonIgnore.
+using Newtonsoft.Json;
 
 #endregion
 
@@ -39,12 +42,29 @@ namespace DMT.Models
         }
 
         /// <summary>Gets or sets http status.</summary>
+        [JsonIgnore]
         [PropertyMapName("HttpStatus")]
         public HttpStatus HttpStatus { get; set; }
         /// <summary>Gets or sets http status Description.</summary>
+        [JsonIgnore]
         [PropertyMapName("Description")]
+        
         public string Description { get; set; }
-
+        /// <summary>
+        /// Checks is Ok (not include Http status).
+        /// </summary>
+        [JsonIgnore]
+        [PropertyMapName("Ok")]
+        public bool Ok
+        {
+            get 
+            {
+                bool statusObjOk = (null != this.status && !string.IsNullOrWhiteSpace(this.status.code));
+                bool servDbsOk = (statusObjOk && this.status.code.ToUpperInvariant() == "S200");
+                return statusObjOk && servDbsOk; 
+            }
+            set { }
+        }
         /// <summary>Gets or sets status.</summary>
         [PropertyMapName("status")]
         public SCWStatus status { get; set; }

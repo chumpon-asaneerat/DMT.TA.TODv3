@@ -50,10 +50,6 @@ namespace DMT.Services
 
         #endregion
 
-        #region Internal Variables
-
-        #endregion
-
         #region Constructor and Destructor
 
         /// <summary>
@@ -88,7 +84,7 @@ namespace DMT.Services
                 if (!ret.Ok && ret.HttpStatus != HttpStatus.Success)
                 {
                     // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
-                    med.Err("Send data to TA App Web Service failed. Move to 'Error' folder.");
+                    med.Err("Send data to TA App Web Service failed (HTTP error). Move to 'Error' folder.");
                     // Error
                     MoveToError(fullFileName);
                 }
@@ -125,7 +121,7 @@ namespace DMT.Services
                 if (!ret.Ok && ret.HttpStatus != HttpStatus.Success)
                 {
                     // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
-                    med.Err("Send data to TA App Web Service failed. Wait for next loop for resend.");
+                    med.Err("Send data to TA App Web Service failed (HTTP error). Wait for next loop for resend.");
                 }
                 else if (!ret.Ok && ret.HttpStatus == HttpStatus.Success)
                 {

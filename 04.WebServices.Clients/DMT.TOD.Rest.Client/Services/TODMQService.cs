@@ -50,10 +50,6 @@ namespace DMT.Services
 
         #endregion
 
-        #region Internal Variables
-
-        #endregion
-
         #region Constructor and Destructor
 
         /// <summary>
@@ -76,9 +72,9 @@ namespace DMT.Services
 
         private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)
         {
+            /*
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            /*
             var ret = ops.Security.changePassword(value);
             if (null == ret || null == ret.status || string.IsNullOrWhiteSpace(ret.status.code))
             {
@@ -104,7 +100,11 @@ namespace DMT.Services
 
         private void ResendRevenueEntry(string fullFileName, Models.RevenueEntry value)
         {
+            /*
+            MethodBase med = MethodBase.GetCurrentMethod();
 
+
+            */
         }
 
         #endregion

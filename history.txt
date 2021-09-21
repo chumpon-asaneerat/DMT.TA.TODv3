@@ -1,8 +1,9 @@
 ﻿Refactor DMT.TA.TODv4 #2240
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2239
-- 
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2238

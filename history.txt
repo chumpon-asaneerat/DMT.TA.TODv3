@@ -4,8 +4,12 @@
 Refactor DMT.TA.TODv4 #2239
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2238
-- 
+- DMT.TAxTODv3
+  - DMT.SCW.Rest.Client project
+    - SCWMQService class
+      - Reimplements all send/resend message method(s).
 
 [commited]
 Refactor DMT.TA.TODv4 #2237

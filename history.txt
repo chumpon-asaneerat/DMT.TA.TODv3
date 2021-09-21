@@ -25,8 +25,39 @@ Refactor DMT.TA.TODv4 #2233
 Refactor DMT.TA.TODv4 #2232
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2231
-- 
+- DMT.TAxTODv3
+  - DMT.Core project
+    - JsonMessageTransferService class add MoveErrorToInvalid method.
+  - DMT.Rest.Client project
+    - ToRest extension method(s) -> add missing code in some method.
+  - DMT.TA.Rest.Client project
+    - TAxTODMQService class update
+      - Add CheckSendError with logic below
+        - If connect to web server failed move file to 'Error' and wait for to resend
+        - If connect OK check data and HTTP status
+          - If data is not OK and HTTP status is not 'Success' move file to 'Error' and wait for to resend
+          - Else If data is not OK and HTTP status is 'Success' move file to 'Invalid'
+          - Else If data is OK  move file to 'Backup'
+          - Else wait for next loop
+      - Add CheckResendError with logic below
+        - If connect to web server failed wait for to resend
+        - If connect OK check data and HTTP status
+          - If data is not OK and HTTP status is not 'Success' wait for to resend
+          - Else If data is not OK and HTTP status is 'Success' move file to 'Invalid'
+          - Else (assume data is OK and HTTP status is what ever) move file to 'Backup'
+          - Else wait for next loop
+      - Update SendChangeTSBShift - update code use CheckSendError.
+      - Update SendChangeUserShift - update code use CheckSendError.
+      - Update SendRevenueEntry - update code use CheckSendError.
+      - Update ResendChangeTSBShift - update code use CheckResendError.
+      - Update ResendChangeUserShift - update code use CheckResendError.
+      - Update ResendRevenueEntry - update code use CheckResendError.
+      - Update ProcessJson method
+        - Json parse error move file to 'Invalid' folder.
+      - Update ResendJson method
+        - Json parse error move file from 'Error' to 'Invalid' folder.
 
 [commited]
 Refactor DMT.TA.TODv4 #2230

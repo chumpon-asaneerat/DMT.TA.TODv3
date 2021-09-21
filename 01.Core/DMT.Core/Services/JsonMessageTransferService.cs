@@ -481,6 +481,31 @@ namespace DMT.Services
                 med.Err(ex);
             }
         }
+        /// <summary>
+        /// Move File from 'Error' sub folder to 'Invalid' sub folder.
+        /// </summary>
+        /// <param name="file">The target fule (Full File Name).</param>
+        protected void MoveErrorToInvalid(string file)
+        {
+            string errDir = Path.GetDirectoryName(file);
+            var di = new DirectoryInfo(errDir);
+            string parentDir = di.Parent.FullName;
+            string fileName = Path.GetFileName(file);
+            string targetPath = Path.Combine(parentDir, "Invalid");
+            if (!Directory.Exists(targetPath)) Directory.CreateDirectory(targetPath);
+            if (!Directory.Exists(targetPath)) return;
+            string targetFile = Path.Combine(targetPath, fileName);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(targetFile)) File.Delete(targetFile);
+                File.Move(file, targetFile);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
 
         #endregion
 

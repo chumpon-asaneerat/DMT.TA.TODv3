@@ -529,6 +529,8 @@ namespace DMT.Services
 
             if (null != value)
             {
+                ret.HttpOK(); // Mark HTTP status.
+
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
             }

@@ -72,6 +72,85 @@ namespace DMT.Services
 
         #region Private Methods
 
+        #region Check
+
+        private void CheckSendError(MethodBase med, string fullFileName, NRestResult ret)
+        {
+            if (null == ret)
+            {
+                // Error may be cannot connect to WS. Move to error folder for resend.
+                med.Err("Cannot connect to TA Server Web Service. Move to 'Error' folder.");
+                // Error
+                MoveToError(fullFileName);
+            }
+            else
+            {
+                if (!ret.Ok && ret.HttpStatus != HttpStatus.Success)
+                {
+                    // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
+                    med.Err("Send data to TA Server Web Service failed. Move to 'Error' folder.");
+                    // Error
+                    MoveToError(fullFileName);
+                }
+                else if (!ret.Ok && ret.HttpStatus == HttpStatus.Success)
+                {
+                    // Connection is OK but result is not valid. so no need to resend anymore.
+                    med.Err("Send data to TA Server Web Service success but content is invalid. Move to 'Invalid' folder.");
+                    // Invalid
+                    MoveToInvalid(fullFileName);
+                }
+                else if (ret.Ok)
+                {
+                    // Result is OK, so HttpStatus not concern
+                    med.Info("Send data to TA Server Web Service success and content is valid. Move to 'Backup' folder.");
+                    // Success
+                    MoveToBackup(fullFileName);
+                }
+                else
+                {
+                    med.Err("Send data to TA Server Web Service failed <Unhandled case>. Wait for next loop for resend.");
+                }
+            }
+        }
+
+        private void CheckResendError(MethodBase med, string fullFileName, NRestResult ret)
+        {
+            if (null == ret)
+            {
+                // Error may be cannot connect to WS. Wait for next loop.
+                med.Err("Cannot connect to TA Server Web Service. Wait for next loop for resend.");
+            }
+            else
+            {
+                if (!ret.Ok && ret.HttpStatus != HttpStatus.Success)
+                {
+                    // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
+                    med.Err("Send data to TA Server Web Service failed. Wait for next loop for resend.");
+                }
+                else if (!ret.Ok && ret.HttpStatus == HttpStatus.Success)
+                {
+                    // Connection is OK but result is not valid. so no need to resend anymore.
+                    med.Err("Send data to TA Server Web Service success but content is invalid. Move to 'Invalid' folder.");
+                    // Invalid
+                    MoveErrorToInvalid(fullFileName);
+                }
+                else if (ret.Ok)
+                {
+                    // Result is OK, so HttpStatus not concern
+                    med.Info("Send data to TA Server Web Service success and content is valid. Move to 'Backup' folder.");
+                    // Success
+                    MoveErrorToBackup(fullFileName);
+                }
+                else
+                {
+                    med.Err("Send data to TA Server Web Service failed <Unhandled case>. Wait for next loop for resend.");
+                }
+            }
+        }
+
+
+        #endregion
+
         #region Send
 
         private void SendTSBCreditBalance(string fullFileName, Models.TAATSBCredit value) 
@@ -79,14 +158,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Credit.TSB.Save(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendUserCreditBalance(string fullFileName, Models.TAAUserCredit value) 
@@ -94,14 +166,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Credit.User.Save(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendTAServerCouponTransaction(string fullFileName, Models.TAServerCouponTransaction value)
@@ -109,14 +174,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Coupon.Save(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendUpdateCouponReceived(string fullFileName, Models.TAServerCouponReceived value)
@@ -124,14 +182,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Coupon.Received(value.Serialno);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendSaveAR(string fullFileName, Models.SAPSaveAR value)
@@ -139,14 +190,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.SAP.SaveAR(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendChangeTSBShift(string fullFileName, Models.TSBShift value)
@@ -154,14 +198,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.TOD.TSBShift.Save(value);
-            if (null == ret || !ret.Ok)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA App Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendChangeUserShift(string fullFileName, Models.UserShift value)
@@ -169,14 +206,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.TOD.UserShift.Save(value);
-            if (null == ret || !ret.Ok)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA App Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         private void SendRevenueEntry(string fullFileName, Models.RevenueEntry value)
@@ -184,14 +214,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.TOD.RevenueEntry.Save(value);
-            if (null == ret || !ret.Ok)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA App Web Service.");
-                return;
-            }
-            // Success
-            MoveToBackup(fullFileName);
+            CheckSendError(med, fullFileName, ret);
         }
 
         #endregion
@@ -204,14 +227,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Credit.TSB.Save(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendUserCreditBalance(string fullFileName, Models.TAAUserCredit value)
@@ -220,14 +236,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Credit.User.Save(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendTAServerCouponTransaction(string fullFileName, Models.TAServerCouponTransaction value)
@@ -236,14 +245,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Coupon.Save(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendUpdateCouponReceived(string fullFileName, Models.TAServerCouponReceived value)
@@ -252,14 +254,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Coupon.Received(value.Serialno);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendSaveAR(string fullFileName, Models.SAPSaveAR value)
@@ -268,14 +263,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.SAP.SaveAR(value);
-            if (null == ret || ret.Failed)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA Server Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendChangeTSBShift(string fullFileName, Models.TSBShift value)
@@ -284,14 +272,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.TOD.TSBShift.Save(value);
-            if (null == ret || !ret.Ok)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA App Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendChangeUserShift(string fullFileName, Models.UserShift value)
@@ -300,14 +281,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.TOD.UserShift.Save(value);
-            if (null == ret || !ret.Ok)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA App Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         private void ResendRevenueEntry(string fullFileName, Models.RevenueEntry value)
@@ -316,14 +290,7 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.TOD.RevenueEntry.Save(value);
-            if (null == ret || !ret.Ok)
-            {
-                // Error may be cannot connect to WS. Wait for next loop.
-                med.Err("Cannot connect to TA App Web Service.");
-                return;
-            }
-            // Success
-            MoveErrorToBackup(fullFileName);
+            CheckResendError(med, fullFileName, ret);
         }
 
         #endregion
@@ -360,7 +327,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("update.user.credit.balance"))
@@ -375,7 +342,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("save.coupon.transaction"))
@@ -390,7 +357,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("update.coupon.received"))
@@ -405,7 +372,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("sap.send.ar"))
@@ -420,7 +387,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("tsb.shift.change"))
@@ -450,7 +417,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("revenue.entry.update"))
@@ -465,7 +432,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
-                    MoveToError(fullFileName);
+                    MoveToInvalid(fullFileName);
                 }
             }
             else
@@ -499,6 +466,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("update.user.credit.balance"))
@@ -513,6 +481,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("save.coupon.transaction"))
@@ -527,6 +496,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("update.coupon.received"))
@@ -541,6 +511,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("sap.send.ar"))
@@ -555,6 +526,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("tsb.shift.change"))
@@ -569,6 +541,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("user.shift.change"))
@@ -583,6 +556,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else if (fullFileName.Contains("revenue.entry.update"))
@@ -597,6 +571,7 @@ namespace DMT.Services
                     // Parse Error.
                     med.Err(ex);
                     med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
                 }
             }
             else

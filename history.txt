@@ -16,8 +16,48 @@ Refactor DMT.TA.TODv4 #2236
 Refactor DMT.TA.TODv4 #2235
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2234
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server project
+    - TODClientManager class update
+      - SendXXX methods add check Http Status.
+  - DMT.TAxTOD.Rest.Client project
+    - TAxTODMQService class update
+      - Add CheckSendError with logic below
+        - If connect to web server failed move file to 'Error' and wait for to resend
+        - If connect OK check data and HTTP status
+          - If data is not OK and HTTP status is not 'Success' move file to 'Error' and wait for to resend
+          - Else If data is not OK and HTTP status is 'Success' move file to 'Invalid'
+          - Else If data is OK  move file to 'Backup'
+          - Else wait for next loop
+      - Add CheckResendError with logic below
+        - If connect to web server failed wait for to resend
+        - If connect OK check data and HTTP status
+          - If data is not OK and HTTP status is not 'Success' wait for to resend
+          - Else If data is not OK and HTTP status is 'Success' move file to 'Invalid'
+          - Else (assume data is OK and HTTP status is what ever) move file to 'Backup'
+          - Else wait for next loop
+      - Update SendTSBCreditBalance - update code use CheckSendError.
+      - Update SendUserCreditBalance - update code use CheckSendError.
+      - Update SendTAServerCouponTransaction - update code use CheckSendError.
+      - Update SendUpdateCouponReceived - update code use CheckSendError.
+      - Update SendSaveAR - update code use CheckSendError.
+      - Update SendChangeTSBShift - update code use CheckSendError.
+      - Update SendChangeUserShift - update code use CheckSendError.
+      - Update SendRevenueEntry - update code use CheckSendError.
+      - Update ResendTSBCreditBalance - update code use CheckResendError.
+      - Update ResendUserCreditBalance - update code use CheckResendError.
+      - Update ResendTAServerCouponTransaction - update code use CheckResendError.
+      - Update ResendUpdateCouponReceived - update code use CheckResendError.
+      - Update ResendSaveAR - update code use CheckResendError.
+      - Update ResendChangeTSBShift - update code use CheckResendError.
+      - Update ResendChangeUserShift - update code use CheckResendError.
+      - Update ResendRevenueEntry - update code use CheckResendError.
+      - Update ProcessJson method
+        - Json parse error move file to 'Invalid' folder.
+      - Update ResendJson method
+        - Json parse error move file from 'Error' to 'Invalid' folder.
 
 [commited]
 Refactor DMT.TA.TODv4 #2233

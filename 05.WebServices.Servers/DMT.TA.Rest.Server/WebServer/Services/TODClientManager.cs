@@ -686,7 +686,7 @@ namespace DMT.Services
             Operations.TOD.Config = cfg; // varies by client config
 
             var ret = ops.Shift.TSB.Update(value);
-            if (null == ret || ret.Failed)
+            if (null == ret || ret.Failed || ret.HttpStatus != HttpStatus.Success)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
                 med.Err("Cannot connect to TOD App Web Service.");
@@ -711,7 +711,7 @@ namespace DMT.Services
             Operations.TOD.Config = cfg; // varies by client config
 
             var ret = ops.Shift.User.Update(value);
-            if (null == ret || ret.Failed)
+            if (null == ret || ret.Failed || ret.HttpStatus != HttpStatus.Success)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
                 med.Err("Cannot connect to TOD App Web Service.");
@@ -736,7 +736,7 @@ namespace DMT.Services
             Operations.TOD.Config = cfg; // varies by client config
 
             var ret = ops.Revenue.Update(value);
-            if (null == ret || ret.Failed)
+            if (null == ret || ret.Failed || ret.HttpStatus != HttpStatus.Success)
             {
                 // Error may be cannot connect to WS. Wait for next loop.
                 med.Err("Cannot connect to TOD App Web Service.");

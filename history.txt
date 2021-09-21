@@ -19,8 +19,12 @@ Refactor DMT.TA.TODv4 #2235
 Refactor DMT.TA.TODv4 #2234
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2233
-- 
+- DMT.TAxTODv3
+  - DMT.TA.Rest.Server
+    - TODClientManager class update
+      - Change scan time interval from 1s to 10s.
 
 [commited]
 Refactor DMT.TA.TODv4 #2232

@@ -850,7 +850,7 @@ namespace DMT.Services
             // Init Scanning Timer
             _scanning = false;
             _timer = new Timer();
-            _timer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
+            _timer.Interval = TimeSpan.FromSeconds(10).TotalMilliseconds;
             _timer.Elapsed += _timer_Elapsed;
             _timer.Start();
         }

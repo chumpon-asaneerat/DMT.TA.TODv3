@@ -85,7 +85,7 @@ namespace DMT.Services
         /// </summary>
         public NRestResult() : base()
         {
-            this.Status = HttpStatus.None; // default set http status to None.
+            this.HttpStatus = HttpStatus.None; // default set http status to None.
             this.errors = new NRestError();
             UnknownError();
         }
@@ -93,6 +93,14 @@ namespace DMT.Services
         #endregion
 
         #region Virtual Methods
+
+        /// <summary>
+        /// Force set HTTP status to success.
+        /// </summary>
+        public virtual void HttpOK()
+        {
+            this.HttpStatus = HttpStatus.Success;
+        }
 
         /// <summary>
         /// Set Web Service (REST API) Connection Error.
@@ -111,7 +119,7 @@ namespace DMT.Services
         public virtual void RestResponseError(int statusCode, string errorMsg)
         {
             bool success = (statusCode >= 200 && statusCode <= 399); // check success code in range.
-            this.Status = (success) ? HttpStatus.Success : HttpStatus.Failed; // mark http status.
+            this.HttpStatus = (success) ? HttpStatus.Success : HttpStatus.Failed; // mark http status.
 
             this.errors.errNum = statusCode;
             this.errors.errMsg = (string.IsNullOrWhiteSpace(errorMsg)) ? 
@@ -149,7 +157,7 @@ namespace DMT.Services
         /// </summary>
         public virtual void Success()
         {
-            this.Status = HttpStatus.Success; // set http error to success.
+            this.HttpStatus = HttpStatus.Success; // set http error to success.
 
             var err = ErrNums.Success;
             this.errors.errNum = (int)err;
@@ -193,7 +201,7 @@ namespace DMT.Services
         /// <summary>
         /// Checks http status.
         /// </summary>
-        public virtual HttpStatus Status
+        public virtual HttpStatus HttpStatus
         {
             get;
             protected set;
@@ -544,8 +552,9 @@ namespace DMT.Services
 
             if (null != value)
             {
+                ret.HttpOK(); // Mark HTTP status.
+
                 ret.data = value.data;
-                //ret.Status = HttpStatus.Success;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
             }
@@ -571,6 +580,8 @@ namespace DMT.Services
 
             if (null != value)
             {
+                ret.HttpOK(); // Mark HTTP status.
+
                 ret.data = value.data;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;

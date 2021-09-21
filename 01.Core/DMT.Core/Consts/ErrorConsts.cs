@@ -12,8 +12,11 @@ namespace DMT
     /// </summary>
     public enum HttpStatus : int
     {
+        /// <summary>Initial value.</summary>
         None = -1,
+        /// <summary>HTTP is not in success range 200-399.</summary>
         Failed = 0,
+        /// <summary>HTTP is in success range 200-399.</summary>
         Success = 1
     }
 

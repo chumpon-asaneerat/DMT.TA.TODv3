@@ -1,8 +1,12 @@
 ﻿Refactor DMT.TA.TODv4 #2230
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2229
-- 
+- DMT.TAxTODv3
+  - DMT.Rest.Client project
+    - NRestResult class change property Status to HttpStatus
+    - ToRest extension method(s) -> mark HttpStatus to success.
 
 [commited]
 Refactor DMT.TA.TODv4 #2228

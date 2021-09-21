@@ -47,11 +47,9 @@ namespace DMT.Models
     /// <summary>
     /// SCW BOJ Result class.
     /// </summary>
-    public class SCWBOJResult
+    public class SCWBOJResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -95,11 +93,9 @@ namespace DMT.Models
     /// <summary>
     /// SCW EOJ Result class.
     /// </summary>
-    public class SCWEOJResult
+    public class SCWEOJResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -129,11 +125,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWRemoveJobsResult class
     /// </summary>
-    public class SCWRemoveJobsResult
+    public class SCWRemoveJobsResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -156,11 +150,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWClearJobsResult class.
     /// </summary>
-    public class SCWClearJobsResult
+    public class SCWClearJobsResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -192,15 +184,11 @@ namespace DMT.Models
     /// <summary>
     /// SCW AllJob Result class.
     /// </summary>
-    public class SCWAllJobResult
+    public class SCWAllJobResult : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWJob> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion
@@ -262,11 +250,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWAddEMVResult class
     /// </summary>
-    public class SCWAddEMVResult
+    public class SCWAddEMVResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -298,11 +284,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWRemoveEMVResult class
     /// </summary>
-    public class SCWRemoveEMVResult
+    public class SCWRemoveEMVResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -325,11 +309,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWClearEMVsResult class.
     /// </summary>
-    public class SCWClearEMVsResult
+    public class SCWClearEMVsResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -391,11 +373,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWAddQRCodeResult class
     /// </summary>
-    public class SCWAddQRCodeResult
+    public class SCWAddQRCodeResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -427,11 +407,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWRemoveQRCodeResult class
     /// </summary>
-    public class SCWRemoveQRCodeResult
+    public class SCWRemoveQRCodeResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion
@@ -454,11 +432,9 @@ namespace DMT.Models
     /// <summary>
     /// The SCWClearJobsResult class.
     /// </summary>
-    public class SCWClearQRCodesResult
+    public class SCWClearQRCodesResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion

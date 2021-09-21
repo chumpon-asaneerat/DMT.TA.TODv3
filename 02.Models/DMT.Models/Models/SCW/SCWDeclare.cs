@@ -256,11 +256,9 @@ namespace DMT.Models
     #region Result class
 
     /// <summary>The SCWDeclareResult class.</summary>
-    public class SCWDeclareResult
+    public class SCWDeclareResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion

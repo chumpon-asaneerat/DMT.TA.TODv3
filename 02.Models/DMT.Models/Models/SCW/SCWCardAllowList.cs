@@ -43,15 +43,11 @@ namespace DMT.Models
     #region Result related classes
 
     /// <summary>The SCWCardAllowListResult class.</summary>
-    public class SCWCardAllowListResult
+    public class SCWCardAllowListResult : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWCardAllow> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

@@ -51,15 +51,11 @@ namespace DMT.Models
     }
 
     /// <summary>The SCWCurrencyDemonListResult class.</summary>
-    public class SCWCurrencyDemonListResult
+    public class SCWCurrencyDemonListResult : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWCurrencyDemon> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

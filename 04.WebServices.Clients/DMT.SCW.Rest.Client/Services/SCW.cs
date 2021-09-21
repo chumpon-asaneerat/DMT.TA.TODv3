@@ -37,13 +37,12 @@ namespace DMT.Services.Operations
         /// <param name="url">The api url.</param>
         /// <returns>Returns TResult instance.</returns>
         public static TResult Execute<TResult>(string url)
-            where TResult : new()
+            where TResult : SCWResult, new()
         {
             TResult ret = default(TResult);
             NRestClient client = GetClient();
             if (null != client)
             {
-                // TODO: Rest API Call.
                 ret = client.Execute2<TResult>(url, new { }, Timeout, UserName, Password);
             }
             return ret;
@@ -57,7 +56,7 @@ namespace DMT.Services.Operations
         /// <param name="value">The parameter object.</param>
         /// <returns>Returns TResult instance.</returns>
         public static TResult Execute<TResult>(string url, object value)
-            where TResult : new()
+            where TResult : SCWResult, new()
         {
             TResult ret = default(TResult);
             NRestClient client = GetClient();
@@ -65,12 +64,10 @@ namespace DMT.Services.Operations
             {
                 if (null != value)
                 {
-                    // TODO: Rest API Call.
                     ret = client.Execute2<TResult>(url, value, Timeout, UserName, Password);
                 }
                 else
                 {
-                    // TODO: Rest API Call.
                     ret = client.Execute2<TResult>(url, new { }, Timeout, UserName, Password);
                 }
             }
@@ -86,13 +83,12 @@ namespace DMT.Services.Operations
         /// <param name="value">The parameter object.</param>
         /// <returns>Returns TResult instance.</returns>
         public static TResult Execute<TResult, TValue>(string url, TValue value)
-            where TResult : new()
+            where TResult : SCWResult, new()
         {
             TResult ret = default(TResult);
             NRestClient client = GetClient();
             if (null != client && null != value)
             {
-                // TODO: Rest API Call.
                 ret = client.Execute2<TResult>(url, value, Timeout, UserName, Password);
             }
             return ret;

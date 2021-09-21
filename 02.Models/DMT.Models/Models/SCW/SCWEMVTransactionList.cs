@@ -116,15 +116,11 @@ namespace DMT.Models
     }
 
     /// <summary>The SCWEMVTransactionListResult class.</summary>
-    public class SCWEMVTransactionListResult
+    public class SCWEMVTransactionListResult : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWEMVTransaction> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

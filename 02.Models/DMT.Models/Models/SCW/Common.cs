@@ -25,4 +25,28 @@ namespace DMT.Models
         [PropertyMapName("message")]
         public string message { get; set; }
     }
+
+    /// <summary>The Common SCWResult class.</summary>
+    public class SCWResult
+    {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public SCWResult() : base() 
+        {
+            this.HttpStatus = HttpStatus.None;
+            this.Description = string.Empty;
+        }
+
+        /// <summary>Gets or sets http status.</summary>
+        [PropertyMapName("HttpStatus")]
+        public HttpStatus HttpStatus { get; set; }
+        /// <summary>Gets or sets http status Description.</summary>
+        [PropertyMapName("Description")]
+        public string Description { get; set; }
+
+        /// <summary>Gets or sets status.</summary>
+        [PropertyMapName("status")]
+        public SCWStatus status { get; set; }
+    }
 }

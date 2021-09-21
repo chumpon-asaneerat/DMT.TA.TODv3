@@ -68,15 +68,11 @@ namespace DMT.Models
     }
 
     /// <summary>The SCWJobList2Result class.</summary>
-    public class SCWJobList2Result
+    public class SCWJobList2Result : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWJob2> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

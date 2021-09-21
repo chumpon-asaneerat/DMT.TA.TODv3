@@ -35,11 +35,9 @@ namespace DMT.Models
     #region Result related classes
 
     /// <summary>The SCWChangePasswordResult class.</summary>
-    public class SCWChangePasswordResult
+    public class SCWChangePasswordResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion

@@ -338,7 +338,7 @@ namespace DMT.Services
             object pObj = default,
             int timeout = 1000,
             string username = "", string password = "")
-            where TReturn : new()
+            where TReturn : SCWResult, new()
         {
             TReturn ret = new TReturn();
 
@@ -371,17 +371,21 @@ namespace DMT.Services
                 {
                     med.Info("result: {0}", response.Content);
 
+                    int code = (int)response.StatusCode;
+                    string desc = response.StatusDescription;
+                    HttpStatus status = (code >= 200 && code <= 399) ? HttpStatus.Success : HttpStatus.Failed;
+
                     if (response.IsSuccessful() && null != response.Content)
                     {
                         ret = response.Content.FromJson<TReturn>();
+                        ret.HttpStatus = status;
+                        ret.Description = desc;
                     }
                     else
                     {
-                        // TODO: ***Recheck HTTP Error in return object.
-                        // This is special case because SCW result will not has NResult content.
-                        
-                        // Keep HTTP status code in result.
-                        //ret.RestResponseError((int)response.StatusCode, response.StatusDescription);
+                        // read HTTP status and description.
+                        ret.HttpStatus = status;
+                        ret.Description = desc;
 
                         string msg = string.Format(
                             "Rest Client Content Error - Code: {0}, Content: {1}",
@@ -392,6 +396,10 @@ namespace DMT.Services
                 }
                 else
                 {
+                    // No response.
+                    ret.HttpStatus = HttpStatus.Failed;
+                    ret.Description = string.Empty;
+
                     // Connect Failed
                     med.Err("Connect Failed.");
                 }

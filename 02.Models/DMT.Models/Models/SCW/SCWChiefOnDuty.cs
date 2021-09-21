@@ -31,11 +31,9 @@ namespace DMT.Models
     #region Result related classes
 
     /// <summary>The SCWChiefOnDutyResult class.</summary>
-    public class SCWChiefOnDutyResult
+    public class SCWChiefOnDutyResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion

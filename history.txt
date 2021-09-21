@@ -10,8 +10,23 @@ Refactor DMT.TA.TODv4 #2238
 Refactor DMT.TA.TODv4 #2237
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2236
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Add SCWResult class
+      - Add HttpStatus property.
+      - Add Description property.
+    - Update all SCWXXXResult class
+      - Inherited from SCWResult class
+  - DMT.SCW.Rest.Client project
+    - Update SCW class (main operation class)
+      - Execute method(s) add type Constrains for TResult class must inhetited from SCWResult.
+  - DMT.Rest.Client project
+    - NRestClient class update
+      - Execute2 method 
+        - Add type Constrains for TReturn class must inhetited from SCWResult.
+        - Update code to read Http status and description.
 
 [commited]
 Refactor DMT.TA.TODv4 #2235

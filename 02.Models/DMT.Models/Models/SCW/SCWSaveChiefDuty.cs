@@ -40,11 +40,9 @@ namespace DMT.Models
     #region Result class
 
     /// <summary>The SCWSaveChiefDutyResult class.</summary>
-    public class SCWSaveChiefDutyResult
+    public class SCWSaveChiefDutyResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion

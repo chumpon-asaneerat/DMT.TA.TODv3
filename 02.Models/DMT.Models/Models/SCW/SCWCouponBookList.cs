@@ -43,15 +43,11 @@ namespace DMT.Models
     }
 
     /// <summary>The SCWCouponBookListResult class.</summary>
-    public class SCWCouponBookListResult
+    public class SCWCouponBookListResult : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWCouponBook> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

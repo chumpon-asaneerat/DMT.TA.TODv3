@@ -40,11 +40,9 @@ namespace DMT.Models
     #region Result related classes
 
     /// <summary>The SCWLogInAuditResult class.</summary>
-    public class SCWLogInAuditResult
+    public class SCWLogInAuditResult : SCWResult
     {
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
+
     }
 
     #endregion

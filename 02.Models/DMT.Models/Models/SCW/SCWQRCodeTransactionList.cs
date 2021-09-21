@@ -116,15 +116,11 @@ namespace DMT.Models
     }
 
     /// <summary>The SCWQRCodeTransactionListResult class.</summary>
-    public class SCWQRCodeTransactionListResult
+    public class SCWQRCodeTransactionListResult : SCWResult
     {
         /// <summary>Gets or sets list.</summary>
         //[PropertyMapName("list")]
         public List<SCWQRCodeTransaction> list { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

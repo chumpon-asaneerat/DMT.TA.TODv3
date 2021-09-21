@@ -23,15 +23,11 @@ namespace DMT.Models
     #region Result Class
 
     /// <summary>The SCWPasswordExpiresDaysResult class.</summary>
-    public class SCWPasswordExpiresDaysResult
+    public class SCWPasswordExpiresDaysResult : SCWResult
     {
         /// <summary>Gets or sets expiresIn.</summary>
         [PropertyMapName("expiresIn")]
         public int? expiresIn { get; set; }
-
-        /// <summary>Gets or sets status.</summary>
-        [PropertyMapName("status")]
-        public SCWStatus status { get; set; }
     }
 
     #endregion

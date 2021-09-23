@@ -10,8 +10,9 @@ Refactor DMT.TA.TODv4 #2248
 Refactor DMT.TA.TODv4 #2247
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2246
-- 
+- Update Revenue Entry mode for daily summary report logic comment.
 
 [commited]
 Refactor DMT.TA.TODv4 #2245

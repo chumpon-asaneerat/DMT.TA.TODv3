@@ -2332,12 +2332,14 @@ namespace DMT.Services
             var dtNow = DateTime.Now;
             if (!ByChief)
             {
+                // TODO: Required to detect ShiftId = 3, Date sould be +1 (incase AppOption is > 0)
                 Entry.RevenueDate = new DateTime?(new DateTime(
                     RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
                     dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond, DateTimeKind.Local));
             }
             else
             {
+                // TODO: Required to detect ShiftId = 3, Date sould be +1 (incase AppOption is > 0)
                 if (!Entry.RevenueDate.HasValue)
                 {
                     Entry.RevenueDate = new DateTime?(new DateTime(

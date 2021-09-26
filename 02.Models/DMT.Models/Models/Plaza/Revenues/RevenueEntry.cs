@@ -1947,7 +1947,8 @@ namespace DMT.Models
                     {
                         cmd += "   AND ShiftId = ? ";
                     }
-                    cmd += "   ORDER BY RevenueDate, ShiftId, BagNo ";
+                    //cmd += "   ORDER BY RevenueDate, ShiftId, BagNo ";
+                    cmd += "   ORDER BY ShiftId, BagNo ";
 
                     if (shiftId.HasValue && shiftId.Value > 0)
                     {
@@ -1984,14 +1985,14 @@ namespace DMT.Models
             var option = AppOption.GetOption(RevenueEntry.DailyRevenueTimeCutOff);
             if (null == option || null == option.data)
             {
-                option = AppOption.SetOption(RevenueEntry.DailyRevenueTimeCutOff, "12:00:00.000");
+                option = AppOption.SetOption(RevenueEntry.DailyRevenueTimeCutOff, "00:00:00.000");
             }
             DateTime begin, end;
             // Begin Time.
             if (null == option || null == option.data || !option.data.ToDateTime().HasValue)
             {
-                med.Info("Daily Revenue Time Cut off is not set or invalid format. So used dafault 12:00:00.000.");
-                begin = date.Date.AddHours(12); // set as 12:00:00.000
+                med.Info("Daily Revenue Time Cut off is not set or invalid format. So used dafault 00:00:00.000.");
+                begin = date.Date.AddHours(00); // set as 00:00:00.000
             }
             else
             {

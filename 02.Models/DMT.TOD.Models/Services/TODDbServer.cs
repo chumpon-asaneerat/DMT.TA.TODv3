@@ -154,7 +154,7 @@ namespace DMT.Services
             item = new AppOption()
             {
                 Key = RevenueEntry.DailyRevenueTimeCutOff,
-                Value = "12:00:00.000"
+                Value = "00:00:00.000"
             };
             if (!AppOption.Exists(item)) AppOption.Save(item);
         }

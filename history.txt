@@ -22,8 +22,10 @@ Refactor DMT.TA.TODv4 #2254
 Refactor DMT.TA.TODv4 #2253
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2252
-- 
+- Update view.history.txt
+- Change AppOption init value from 12:00 to 00:00
 
 [commited]
 Refactor DMT.TA.TODv4 #2251

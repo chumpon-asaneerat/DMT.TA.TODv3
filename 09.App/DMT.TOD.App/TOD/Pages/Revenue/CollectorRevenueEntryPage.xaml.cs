@@ -413,14 +413,49 @@ namespace DMT.TOD.Pages.Revenue
 
             #region Check Return Bag
 
-            if (!manager.IsReturnBag())
+            var usrCdtBalStatus = manager.GetUserCreditBalanceStatus();
+
+            if (null == usrCdtBalStatus)
             {
-                var win = TODApp.Windows.MessageBox;
-                msg = "ระบบตรวจพบว่า ยังไม่มีการคืนเงินยืมทอน กรุณาคืนเงินยืมทอนก่อนป้อนรายได้";
-                med.Info("REVENUE ENTRY UI - " + msg); // Write log
-                win.Setup(msg, "DMT - Tour of Duty");
-                win.ShowDialog();
+                // Critical error. Must not execute this code. This should be imposible case.
                 return;
+            }
+
+            if (null != usrCdtBalStatus && !usrCdtBalStatus.IsReturnBag)
+            {
+                if (usrCdtBalStatus.WSStatus != HttpStatus.Success)
+                {
+                    // Call WS has HTTP error or timeout.
+                    //var win = TODApp.Windows.MessageBox;
+                    var win = TODApp.Windows.MessageBoxYesNo;
+                    msg = "ไม่สามารถติดต่อกับ Toll Admin ได้ ต้องการนำส่งรายได้ ต่อ หรือไม่?";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
+                    if (win.ShowDialog() == false)
+                    {
+                        // Write log
+                        med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณีเรียก WS ของ TA APP timeout หรือ HTTP error).");
+                        med.Info("     ผู้ใช้ยืนยัน: ไม่ดำเนินการต่อ");
+                        return;
+                    }
+                    else
+                    {
+                        // allow to do revenue entry.
+                        // Write log
+                        med.Info("REVENUE ENTRY UI - ยืนยันการดำเนินการนำส่งรายได้ (กรณีเรียก WS ของ TA APP timeout หรือ HTTP error).");
+                        med.Info("     ผู้ใช้ยืนยัน: ดำเนินการต่อ");
+                    }
+                }
+                else
+                {
+                    // Call WS is success. But bag status is not complted.
+                    var win = TODApp.Windows.MessageBox;
+                    msg = "ระบบตรวจพบว่า ยังไม่มีการคืนเงินยืมทอน กรุณาคืนเงินยืมทอนก่อนป้อนรายได้";
+                    med.Info("REVENUE ENTRY UI - " + msg); // Write log
+                    win.Setup(msg, "DMT - Tour of Duty");
+                    win.ShowDialog();
+                    return;
+                }
             }
 
             #endregion

@@ -4,11 +4,20 @@
 Refactor DMT.TA.TODv4 #2249
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2248
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update code for CheckUserCredit, CheckReturnBag process.
+      - Revenue Entry (Collector) page - When WS call timeout or HTTP error occur. The Popup window show to let
+        - user choose to process next to entry screen.
 
+[commited]
 Refactor DMT.TA.TODv4 #2247
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TODManager.cs -> Add log in CheckUserCredit method (in some case when TA App busy it will not returns data
+      so need to write log for track this problem later).
 
 [commited]
 Refactor DMT.TA.TODv4 #2246

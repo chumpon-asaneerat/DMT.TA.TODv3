@@ -1861,6 +1861,26 @@ namespace DMT.Services
 
     #endregion
 
+    #region ReturnBagStatus
+
+    /// <summary>
+    /// The User Credit Balance Status class.
+    /// </summary>
+    public class UserCreditBalanceStatus
+    {
+        /// <summary>Gets or sets WS (HTTP) Status.</summary>
+        public HttpStatus WSStatus { get; set; }
+        /// <summary>Gets or sets user credit balance object.</summary>
+        public UserCreditBalance Balance { get; set; }
+        /// <summary>Checks is return bag.</summary>
+        public bool IsReturnBag
+        {
+            get { return (null != Balance && Balance.State == UserCreditBalance.StateTypes.Completed); }
+        }
+    }
+
+    #endregion
+
     #region RevenueEntryManager
 
     /// <summary>
@@ -1975,24 +1995,57 @@ namespace DMT.Services
 
         #region User Credit Methods
 
-        private UserCreditBalance CheckUserCredit(bool isNew)
+        class UserCreditBalanceResult
         {
-            UserCreditBalance usrCredit;
+            public UserCreditBalanceResult() : base()
+            {
+                this.Status = HttpStatus.None;
+            }
+            internal HttpStatus Status { get; set; }
+            internal UserCreditBalance Value { get; set; }
+        }
+
+        private UserCreditBalanceResult CheckUserCredit(bool isNew)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string msg = string.Empty;
+            UserCreditBalanceResult result = new UserCreditBalanceResult();
             if (!ByChief)
             {
+                // By collector call WS.
                 var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
-                usrCredit = taaOps.Credit.User.Completed(search).Value();
-
-                //TODO: UserCredit offline need some model and logic.
-                /*
                 var ret = taaOps.Credit.User.Completed(search);
-                usrCredit = (null != ret && ret.Ok) ? ret.Value() : null;
-                */
+                if (null == ret)
+                {
+                    // TODO: Call WS failed no result returns. UserCredit offline need some model and logic.
+                    msg += "<<< CheckUserCredit >>> " + Environment.NewLine;
+                    msg += "Cannot get UserCreditBalance from TA App. ";
+                    msg += "This may occur due to no data match ";
+                    msg += "or in some case the TA App is busy ";
+                    msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";
+                    msg += "Please check TA App computer and try again.";
+                    med.Err(msg);
+                    // Call WS failed. Setup null results.
+                    result.Status = HttpStatus.None;
+                    result.Value = null;
+                }
+                else
+                {
+                    msg += "<<< CheckUserCredit >>> " + Environment.NewLine;
+                    msg += " - UserCreditBalance info: " + Environment.NewLine;
+                    msg += "   - Ok: " + ret.Ok.ToString() + Environment.NewLine;
+                    msg += "   - http status: " + ret.HttpStatus.ToString() + Environment.NewLine;
+                    med.Err(msg);
+                    //  Call ws success and has WS execute result returns UserCreditBalance object.
+                    result.Status = ret.HttpStatus;
+                    result.Value = (ret.Ok) ? ret.Value() : null;
+                }
             }
             else
             {
                 // By chief create empty balance - update from Revenue Entry and save.
-                usrCredit = new UserCreditBalance();
+                var usrCredit = new UserCreditBalance();
                 usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
 
                 usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
@@ -2014,8 +2067,11 @@ namespace DMT.Services
                     usrCredit.BeltNo = string.Empty;
                     usrCredit.RevenueId = string.Empty;
                 }
+                // Update result (due to create new one. so always in success state).
+                result.Status = HttpStatus.Success;
+                result.Value = usrCredit;
             }
-            return usrCredit;
+            return result;
         }
 
         #endregion
@@ -2176,7 +2232,8 @@ namespace DMT.Services
 
             #region Check User Credit Balance
 
-            var usrCredit = CheckUserCredit(true);
+            var usrCdtRet = CheckUserCredit(true);
+            var usrCredit = (null != usrCdtRet) ? usrCdtRet.Value : null;
 
             #endregion
 
@@ -2373,7 +2430,9 @@ namespace DMT.Services
             med.Info("RevenueId : {0}", Entry.RevenueId);
 
             // Reload usrCredit for update Revenue Id.
-            var usrCredit = CheckUserCredit(false);
+            var usrCdtRet = CheckUserCredit(false);
+            var usrCredit = (null != usrCdtRet) ? usrCdtRet.Value : null;
+
             if (null != usrCredit)
             {
                 usrCredit.RevenueId = Entry.RevenueId;
@@ -2442,7 +2501,6 @@ namespace DMT.Services
 
             return !bCloseUserShift;
         }
-
         private void GenerateUserShiftFile(UserShift value)
         {
             if (null == value)
@@ -2571,23 +2629,22 @@ namespace DMT.Services
             Entry = entry;
         }
         /// <summary>
-        /// Checks is return Bag.
+        /// Checks user credit balance status.
         /// </summary>
         /// <returns></returns>
-        public bool IsReturnBag()
+        public UserCreditBalanceStatus GetUserCreditBalanceStatus()
         {
-            bool ret = false;
-
-            // TODO: Need check state 1 (received bag) and 2 (completed).
-            // and when check each state need difference dialog.
-            var usrCredit = CheckUserCredit(true);
-            
-            //TODO: UserCredit offline need some model and logic.
-            //if (null == usrCredit) return true; // Assume cannot connect to TA.
-            
-            if (null != usrCredit && usrCredit.State == UserCreditBalance.StateTypes.Completed)
+            UserCreditBalanceStatus ret = new UserCreditBalanceStatus();
+            var usrCdtRet = CheckUserCredit(true);
+            if (null != usrCdtRet)
             {
-                ret = true;
+                ret.WSStatus = usrCdtRet.Status;
+                ret.Balance = usrCdtRet.Value;
+            }
+            else
+            {
+                ret.WSStatus = HttpStatus.None;
+                ret.Balance = null;
             }
 
             return ret;

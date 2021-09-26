@@ -2018,7 +2018,6 @@ namespace DMT.Services
                 var ret = taaOps.Credit.User.Completed(search);
                 if (null == ret)
                 {
-                    // TODO: Call WS failed no result returns. UserCredit offline need some model and logic.
                     msg += "<<< CheckUserCredit >>> " + Environment.NewLine;
                     msg += "Cannot get UserCreditBalance from TA App. ";
                     msg += "This may occur due to no data match ";

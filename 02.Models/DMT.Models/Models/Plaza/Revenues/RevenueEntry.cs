@@ -32,6 +32,13 @@ namespace DMT.Models
     //[Table("RevenueEntry")]
     public class RevenueEntry : NTable<RevenueEntry>
     {
+        #region Consts
+
+        /// <summary>The DailyRevenueTimeCutOff const key string.</summary>
+        public static string DailyRevenueTimeCutOff = "DailyRevenueTimeCutOff";
+
+        #endregion
+
         #region Static Constructor
 
         /// <summary>
@@ -1973,41 +1980,28 @@ namespace DMT.Models
         /// <returns>Returns List of RevenueEntry.</returns>
         public static NDbResult<List<RevenueEntry>> FindByRevnueDate(DateTime date, int? shiftId)
         {
-            // TODO: Change start time here.
-            // Find today shiftid = 1 for begin date.
-            // next find tomorrow first shift time if exists minus 1 ms
-            //   if tomorrow no first shift used previous start time + 24 hrs.
-            // - Logic
-            // 1. เลือกวันที่ เช่น 2021-09-02
-            // 2. จากวันที่ที่ได้ หาเวลาเรื่มต้น (Begin) จาก Table TSBShift โดยให้มี ShiftId = 1 โดยในกรณีที่มี มากว่า 1 รายการ
-            //    เช่นในกรณี หพ. เปิดกะซ้อนเป็นกะ 1 มากกว่า 1 ครั้ง ให้ใช้เวลา Begin ที่น้อยที่สุด
-            //    QUERY: 
-            /*
-                    SELECT UserId, ShiftId, Begin, End
-                      FROM TSBShift
-                     WHERE Begin IS NOT NULL
-                       AND Begin >= '2021-09-02T00:00:00.000'
-                       AND Begin <= '2021-09-02T23:59:59.999'
-                       AND ShiftId = 1
-                     ORDER BY Begin
-            */
-            // 3. นำเวลาที่ได้ในข้อ 2. มาลบ 1 ms เพื่อเป็นเวลาเริ่มต้นในการหาข้อมูล ( RevenueStartDateTime ).
-            // 4. จากวันที่ในข้อ 1. ทำการเอาวันที่ที่ได้ มาเพิ่ม 1 วัน ( AddDays(1) ) แล้ว ค้นหา Table TSBShift -> Begin โดย
-            //    เอาวันที่ที่เพิ่ม 1 วัน (day+1) ไปหา ShiftId = 1 เพื่อให้ได้ เวลาของกะเช้ารายการแรก โดยถ้ามีมากกว่า 1 รายการให้ใช้รายการที่เวลาเริ่ม
-            //    ShiftStart น้อยที่สุด
-            //    QUERY: 
-            /*
-                    SELECT UserId, ShiftId, Begin, End
-                      FROM TSBShift
-                     WHERE Begin IS NOT NULL
-                       AND Begin >= '2021-09-03T00:00:00.000'
-                       AND Begin <= '2021-09-03T23:59:59.999'
-                       AND ShiftId = 1
-                     ORDER BY Begin
-            */
-            // 5. เอาเวลาที่ได้ในข้อ 4. ไปลบออก 1 ms. ซึ่งจะได้เวลาสิ้นสุดในการหาข้อมูล ( RevenueEndDateTime ).
-            DateTime begin = date.Date;
-            DateTime end = date.Date.AddDays(1).AddMilliseconds(-1);
+            MethodBase med = MethodBase.GetCurrentMethod();
+            var option = AppOption.GetOption(RevenueEntry.DailyRevenueTimeCutOff);
+            if (null == option || null == option.data)
+            {
+                option = AppOption.SetOption(RevenueEntry.DailyRevenueTimeCutOff, "12:00:00.000");
+            }
+            DateTime begin, end;
+            // Begin Time.
+            if (null == option || null == option.data || !option.data.ToDateTime().HasValue)
+            {
+                med.Info("Daily Revenue Time Cut off is not set or invalid format. So used dafault 12:00:00.000.");
+                begin = date.Date.AddHours(12); // set as 12:00:00.000
+            }
+            else
+            {
+                var dt = option.data.ToDateTime().Value;
+                // set time from config
+                begin = date.Date.AddHours(dt.Hour).AddMinutes(dt.Minute).AddMinutes(dt.Second).AddMilliseconds(dt.Millisecond);
+            }
+            // End time.
+            end = begin.AddDays(1).AddMilliseconds(-1);
+
             return FindByRevnueDate(begin, end, shiftId);
         }
 

@@ -1,8 +1,16 @@
 ﻿Refactor DMT.TA.TODv4 #2250
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2249
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Add AppOption class (for TOD used).
+  - DMT.TOD.Models project
+    - Init AppOption class/table.
+    - Update RevenueEntry class
+  - DMT.TOD.App project
+    - Update Daily Revenue report.
 
 [commited]
 Refactor DMT.TA.TODv4 #2248

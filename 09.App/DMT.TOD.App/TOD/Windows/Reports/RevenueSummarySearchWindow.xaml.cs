@@ -65,6 +65,7 @@ namespace DMT.TOD.Windows.Reports
 
         private void cmdOK_Click(object sender, RoutedEventArgs e)
         {
+            LoadRevenues();
             DialogResult = true;
         }
 
@@ -79,7 +80,7 @@ namespace DMT.TOD.Windows.Reports
 
         private void dtDate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            LoadRevenues();
+            //LoadRevenues();
         }
 
         #endregion
@@ -108,7 +109,7 @@ namespace DMT.TOD.Windows.Reports
             _user = user;
             dtDate.DefaultValue = DateTime.Now;
             dtDate.Value = DateTime.Now.Date;
-            LoadRevenues();
+            //LoadRevenues();
         }
 
         #endregion

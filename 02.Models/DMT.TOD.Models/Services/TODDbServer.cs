@@ -107,6 +107,7 @@ namespace DMT.Services
         {
             Db.CreateTable<ViewHistory>();
             Db.CreateTable<UniqueCode>();
+            Db.CreateTable<AppOption>();
 
             Db.CreateTable<MCurrency>();
             Db.CreateTable<MCoupon>();
@@ -133,6 +134,7 @@ namespace DMT.Services
 
         private void InitDefaults()
         {
+            InitAppOptions();
             InitMCurrency();
             InitMCoupon();
             InitMCouponBook();
@@ -140,6 +142,21 @@ namespace DMT.Services
             InitTSBAndPlazaAndLanes();
             InitShifts();
             InitRoleAndUsers();
+        }
+
+        private void InitAppOptions()
+        {
+            if (null == Db) return;
+
+            if (Db.Table<AppOption>().Count() > 0) return; // already exists.\
+
+            AppOption item;
+            item = new AppOption()
+            {
+                Key = RevenueEntry.DailyRevenueTimeCutOff,
+                Value = "12:00:00.000"
+            };
+            if (!AppOption.Exists(item)) AppOption.Save(item);
         }
 
         private void InitMCurrency()

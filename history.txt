@@ -25,8 +25,10 @@ Refactor DMT.TA.TODv4 #2253
 Refactor DMT.TA.TODv4 #2252
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2251
-- 
+- Update view.history.txt
+- Update TOD App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2250

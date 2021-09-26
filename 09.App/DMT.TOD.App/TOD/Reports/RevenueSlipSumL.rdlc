@@ -1437,6 +1437,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -2049,6 +2050,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>4</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -3068,9 +3070,9 @@
               <HideIfNoRows>true</HideIfNoRows>
             </TablixMember>
             <TablixMember>
-              <Group Name="EntryDateString">
+              <Group Name="RevenueDateString">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!EntryDateString.Value</GroupExpression>
+                  <GroupExpression>=Fields!RevenueDateString.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
@@ -3110,7 +3112,7 @@
         <Top>0.0375in</Top>
         <Left>0.06333in</Left>
         <Height>0.85in</Height>
-        <Width>10.47132in</Width>
+        <Width>10.47131in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>

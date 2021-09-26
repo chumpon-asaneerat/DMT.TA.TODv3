@@ -3067,9 +3067,9 @@
               <HideIfNoRows>true</HideIfNoRows>
             </TablixMember>
             <TablixMember>
-              <Group Name="EntryDateString">
+              <Group Name="RevenueDateString">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!EntryDateString.Value</GroupExpression>
+                  <GroupExpression>=Fields!RevenueDateString.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>

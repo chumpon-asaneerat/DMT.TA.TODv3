@@ -1947,7 +1947,7 @@ namespace DMT.Models
                     {
                         cmd += "   AND ShiftId = ? ";
                     }
-                    cmd += "   ORDER BY ShiftId, BagNo ";
+                    cmd += "   ORDER BY RevenueDate, ShiftId, BagNo ";
 
                     if (shiftId.HasValue && shiftId.Value > 0)
                     {

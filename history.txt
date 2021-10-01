@@ -19,8 +19,19 @@ Refactor DMT.TA.TODv4 #2255
 Refactor DMT.TA.TODv4 #2254
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2253
-- 
+- DMT.TAxTODv3
+  - Update Shift Model default value
+    - Shift 1: Chief prefered time: 06:00 to 14:00.
+    - Shift 2: Chief prefered time: 14:00 to 22:00.
+    - Shift 3: Chief prefered time: 22:00 to 06:00.
+  - Update TSB Model default networkId change from 31 to 10.
+  - Update DMTConfig (json file for TOD, TA, Account in configs folder) change networkId change from 31 to 10.
+  - Update User Model 
+    - Update SaveUsers method 
+      - When RabbitMQ's new message file arrived and processed. After all user data saved add code to delete all records 
+        in UserAccess table.
 
 [commited]
 Refactor DMT.TA.TODv4 #2252

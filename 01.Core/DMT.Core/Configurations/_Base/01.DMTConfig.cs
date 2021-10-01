@@ -32,7 +32,7 @@ namespace DMT.Configurations
             this.network = "4";
             this.tsb = "97";
             this.terminal = "49701";
-            this.networkId = 31;
+            this.networkId = 10;
         }
 
         #endregion

@@ -379,7 +379,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "01";
             item.TSBNameEN = "DIN DAENG";
             item.TSBNameTH = "ดินแดง";
@@ -583,7 +583,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "02";
             item.TSBNameEN = "SUTHISARN";
             item.TSBNameTH = "สุทธิสาร";
@@ -669,7 +669,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "03";
             item.TSBNameEN = "LAD PRAO";
             item.TSBNameTH = "ลาดพร้าว";
@@ -834,7 +834,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "04";
             item.TSBNameEN = "RATCHADA PHISEK";
             item.TSBNameTH = "รัชดาภิเษก";
@@ -972,7 +972,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "05";
             item.TSBNameEN = "BANGKHEN";
             item.TSBNameTH = "บางเขน";
@@ -1046,7 +1046,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "06";
             item.TSBNameEN = "CHANGEWATTANA";
             item.TSBNameTH = "แจ้งวัฒนะ";
@@ -1173,7 +1173,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "07";
             item.TSBNameEN = "LAKSI";
             item.TSBNameTH = "หลักสี่";
@@ -1325,7 +1325,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "08";
             item.TSBNameEN = "DON MUANG";
             item.TSBNameTH = "ดอนเมือง";
@@ -1507,7 +1507,7 @@ namespace DMT.Services
             #region TSB
 
             item = new TSB();
-            item.NetworkId = "31";
+            item.NetworkId = "10";
             item.TSBId = "09";
             item.TSBNameEN = "ANUSORN SATHAN";
             item.TSBNameTH = "อนุสรณ์สถาน";

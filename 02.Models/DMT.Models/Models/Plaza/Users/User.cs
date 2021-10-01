@@ -1204,6 +1204,7 @@ namespace DMT.Models
                 {
                     db.BeginTransaction();
 
+                    med.Info("Begin Update all users from RabbitMQ message...");
                     var roles = Models.Role.GetRoles().Value();
 
                     users.ForEach(user =>
@@ -1240,13 +1241,37 @@ namespace DMT.Models
                             Save(match); // update
                         }
                     });
+
                     db.Commit();
+
+                    med.Info("All users from RabbitMQ message successfully updated.");
                 }
                 catch (Exception ex)
                 {
                     med.Err(ex);
                     db.Rollback();
                 }
+                finally
+                {
+                    med.Info("End Update all users from RabbitMQ message...");
+                }
+
+                try
+                {
+                    db.BeginTransaction();
+
+                    // Remove all users access lock.
+                    med.Info("Delete all user access lock record(s).");
+                    var cnt = db.ExecuteScalar<object>("DELETE FROM UserAccess");
+
+                    db.Commit();
+                }
+                catch (Exception ex2)
+                {
+                    med.Err(ex2);
+                    db.Rollback();
+                }
+
                 return result;
             }
 

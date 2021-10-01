@@ -425,15 +425,15 @@ namespace DMT.Models
                             {
                                 if (shift.ShiftId == 1)
                                 {
-                                    shift.ChiefStart = new DateTime(1, 1, 1, 7, 0, 0, 0, 0);
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 6, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 2)
                                 {
-                                    shift.ChiefStart = new DateTime(1, 1, 1, 15, 0, 0, 0, 0);
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 14, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 3)
                                 {
-                                    shift.ChiefStart = new DateTime(1, 1, 1, 23, 0, 0, 0, 0);
+                                    shift.ChiefStart = new DateTime(1, 1, 1, 22, 0, 0, 0, 0);
                                 }
                                 else
                                 {
@@ -445,15 +445,15 @@ namespace DMT.Models
                             {
                                 if (shift.ShiftId == 1)
                                 {
-                                    shift.ChiefEnd = new DateTime(1, 1, 1, 15, 0, 0, 0, 0);
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 14, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 2)
                                 {
-                                    shift.ChiefEnd = new DateTime(1, 1, 1, 23, 0, 0, 0, 0);
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 22, 0, 0, 0, 0);
                                 }
                                 else if (shift.ShiftId == 3)
                                 {
-                                    shift.ChiefEnd = new DateTime(1, 1, 1, 7, 0, 0, 0, 0);
+                                    shift.ChiefEnd = new DateTime(1, 1, 1, 6, 0, 0, 0, 0);
                                 }
                                 else
                                 {

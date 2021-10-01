@@ -16,8 +16,25 @@ Refactor DMT.TA.TODv4 #2256
 Refactor DMT.TA.TODv4 #2255
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2254
-- 
+- DMT.TAxTODv3
+  - Update default PlazaId (for SCW) in local db (used when create new).
+  - TOD, TA, Account app
+    - DIN DAENG 1         (SCWPlazaId =  1)
+    - DIN DAENG 2         (SCWPlazaId =  2)
+    - SUTHISARN           (SCWPlazaId =  6)
+    - RATCHADA PHISEK 1   (SCWPlazaId = 16)
+    - RATCHADA PHISEK 2   (SCWPlazaId = 17)
+    - BANGKHEN            (SCWPlazaId = 21)
+    - CHANGEWATTANA 1     (SCWPlazaId = 26)
+    - CHANGEWATTANA 1     (SCWPlazaId = 27)
+    - LAKSI INBOUND       (SCWPlazaId = 31)
+    - LAKSI OUTBOUND      (SCWPlazaId = 32)
+    - DON MUANG 1         (SCWPlazaId = 36)
+    - DON MUANG 2         (SCWPlazaId = 37)
+    - ANUSORN SATHAN 1    (SCWPlazaId = 41)
+    - ANUSORN SATHAN 2    (SCWPlazaId = 42)
 
 [commited]
 Refactor DMT.TA.TODv4 #2253

@@ -1,4 +1,40 @@
 ﻿[== TOD ============================================================================================================]
+TOD version 1.4 build 10110 2564/10/01 18:15
+- ปรับแก้ไขข้อมูลเวลาตั้งต้น เริ่มต้น/สิ้นสุด กะของหัวหน้า โดย
+  - กะเช้า 06:00 - 14:00
+  - กะบ่าย 14:00 - 22:00
+  - กะดึก 22:00 - 06:00
+- ปรับแก้ค่า default ของตาราง TSB เมื่อไม่่พบข้อมูล โดยค่า NetworkId เป็น 10 (กรณีสร้างฐานข้อมูลใหม่ หรือลบข้อมูลออก)
+- ปรับแก้ค่า default ของ file TOD.app.config.json โดยค่า networkId (integer) จะเปลี่ยนเป็น 10 (โดยค่านี้ต้องใส่เป็นตัวเลขที่ไม่มี 0 นำหน้า) 
+*** หมายเหตุค่า Plazas ซึ่งจะมีรายการ PlazaId อยู่ 1 หรือ 2 ค่า ตามตัวอย่าง 
+,
+  "Plazas": [
+    {
+      "PlazaId": 15
+    },
+    {
+      "PlazaId": 16
+    }
+  ]
+  ค่าที่ใส่ต้องเป็นตัวเลขที่ไม่มี 0 นำหน้า เท่านั้นเนื่องจากการแปลงข้อมูลอาจผิดปรกติได้
+- ตาราง Plaza ทำการปรับแก้ไขเลข SCWPlazaId ให้ มีค่าตั้งต้นเป็นค่าใหม่ โดย มีรายละเอียดดังนี้
+    - DIN DAENG 1         (SCWPlazaId =  1)
+    - DIN DAENG 2         (SCWPlazaId =  2)
+    - SUTHISARN           (SCWPlazaId =  6)
+    - RATCHADA PHISEK 1   (SCWPlazaId = 16)
+    - RATCHADA PHISEK 2   (SCWPlazaId = 17)
+    - BANGKHEN            (SCWPlazaId = 21)
+    - CHANGEWATTANA 1     (SCWPlazaId = 26)
+    - CHANGEWATTANA 1     (SCWPlazaId = 27)
+    - LAKSI INBOUND       (SCWPlazaId = 31)
+    - LAKSI OUTBOUND      (SCWPlazaId = 32)
+    - DON MUANG 1         (SCWPlazaId = 36)
+    - DON MUANG 2         (SCWPlazaId = 37)
+    - ANUSORN SATHAN 1    (SCWPlazaId = 41)
+    - ANUSORN SATHAN 2    (SCWPlazaId = 42)
+- ปรับปรุงขั้นตอนการ process ข้อมูล STAFF ที่ได้รับจาก RabbitMQ โดย เมื่อทำการ update ข้อมูลลงในตาราง User หมดแล้ว จะทำการลบข้อมูลทั้งหมดจาก ตาราง UserAccess
+  เพื่อเป็นการ reset การ lock หน้าจอ sign in ของพนักงานทั้งหมด ที่ทำการใส่รหัสผ่านไม่สำเร็จ
+----------------------------------------------------------------------------------------------------------------------
 TOD version 1.4 build 10105 2564/09/26 17:00
 - ปรับแก้ไข การนำส่งรายได้ ในขณะที่ ระบบ TA (App) ปิด หรือไม่มีการตอบสนอง เมื่อมีการตรวจสอบการคืนถุงเงิน
   - ถ้าไม่สามารถเชื่อมต่อกับ TA (App) ได้ หน้าจอจะแจ้งว่าทำการเชื่อมต่อไม่ได้ และมีทางเลือกให้ สามารถป้อนรายได้ต่อไปได้
@@ -93,6 +129,27 @@ TOD version 1.4 build 10035 2564/06/04 16:30
 
 
 [== TA ============================================================================================================]
+TA version 1.4 build 10110 2564/10/01 18:15
+- ปรับแก้ค่า default ของตาราง TSB เมื่อไม่่พบข้อมูล โดยค่า NetworkId เป็น 10 (กรณีสร้างฐานข้อมูลใหม่ หรือลบข้อมูลออก)
+- ปรับแก้ค่า default ของ file TA.app.config.json โดยค่า networkId (integer) จะเปลี่ยนเป็น 10 (โดยค่านี้ต้องใส่เป็นตัวเลขที่ไม่มี 0 นำหน้า) 
+- ตาราง Plaza ทำการปรับแก้ไขเลข SCWPlazaId ให้ มีค่าตั้งต้นเป็นค่าใหม่ โดย มีรายละเอียดดังนี้
+    - DIN DAENG 1         (SCWPlazaId =  1)
+    - DIN DAENG 2         (SCWPlazaId =  2)
+    - SUTHISARN           (SCWPlazaId =  6)
+    - RATCHADA PHISEK 1   (SCWPlazaId = 16)
+    - RATCHADA PHISEK 2   (SCWPlazaId = 17)
+    - BANGKHEN            (SCWPlazaId = 21)
+    - CHANGEWATTANA 1     (SCWPlazaId = 26)
+    - CHANGEWATTANA 1     (SCWPlazaId = 27)
+    - LAKSI INBOUND       (SCWPlazaId = 31)
+    - LAKSI OUTBOUND      (SCWPlazaId = 32)
+    - DON MUANG 1         (SCWPlazaId = 36)
+    - DON MUANG 2         (SCWPlazaId = 37)
+    - ANUSORN SATHAN 1    (SCWPlazaId = 41)
+    - ANUSORN SATHAN 2    (SCWPlazaId = 42)
+- ปรับปรุงขั้นตอนการ process ข้อมูล STAFF ที่ได้รับจาก RabbitMQ โดย เมื่อทำการ update ข้อมูลลงในตาราง User หมดแล้ว จะทำการลบข้อมูลทั้งหมดจาก ตาราง UserAccess
+  เพื่อเป็นการ reset การ lock หน้าจอ sign in ของพนักงานทั้งหมด ที่ทำการใส่รหัสผ่านไม่สำเร็จ
+----------------------------------------------------------------------------------------------------------------------
 TA version 1.4 build 10100 2564/09/21 17:00
 - ปรับแก้ การตรวจสอบ สถานะ Web Service (SCW/TA Server) ในกรณีการส่ง message ต่าง ๆ โดย 
   - กรณีปรกติ
@@ -149,6 +206,27 @@ TA version  1.4 build 10035 2564/06/04 16:30
 
 
 [== Account ============================================================================================================]
+Account version 1.4 build 10110 2564/10/01 18:15
+- ปรับแก้ค่า default ของตาราง TSB เมื่อไม่่พบข้อมูล โดยค่า NetworkId เป็น 10 (กรณีสร้างฐานข้อมูลใหม่ หรือลบข้อมูลออก)
+- ปรับแก้ค่า default ของ file Account.app.config.json โดยค่า networkId (integer) จะเปลี่ยนเป็น 10 (โดยค่านี้ต้องใส่เป็นตัวเลขที่ไม่มี 0 นำหน้า) 
+- ตาราง Plaza ทำการปรับแก้ไขเลข SCWPlazaId ให้ มีค่าตั้งต้นเป็นค่าใหม่ โดย มีรายละเอียดดังนี้
+    - DIN DAENG 1         (SCWPlazaId =  1)
+    - DIN DAENG 2         (SCWPlazaId =  2)
+    - SUTHISARN           (SCWPlazaId =  6)
+    - RATCHADA PHISEK 1   (SCWPlazaId = 16)
+    - RATCHADA PHISEK 2   (SCWPlazaId = 17)
+    - BANGKHEN            (SCWPlazaId = 21)
+    - CHANGEWATTANA 1     (SCWPlazaId = 26)
+    - CHANGEWATTANA 1     (SCWPlazaId = 27)
+    - LAKSI INBOUND       (SCWPlazaId = 31)
+    - LAKSI OUTBOUND      (SCWPlazaId = 32)
+    - DON MUANG 1         (SCWPlazaId = 36)
+    - DON MUANG 2         (SCWPlazaId = 37)
+    - ANUSORN SATHAN 1    (SCWPlazaId = 41)
+    - ANUSORN SATHAN 2    (SCWPlazaId = 42)
+- ปรับปรุงขั้นตอนการ process ข้อมูล STAFF ที่ได้รับจาก RabbitMQ โดย เมื่อทำการ update ข้อมูลลงในตาราง User หมดแล้ว จะทำการลบข้อมูลทั้งหมดจาก ตาราง UserAccess
+  เพื่อเป็นการ reset การ lock หน้าจอ sign in ของพนักงานทั้งหมด ที่ทำการใส่รหัสผ่านไม่สำเร็จ
+----------------------------------------------------------------------------------------------------------------------
 Account version 1.4 build 10100 2564/09/21 17:00
 - ปรับแก้ การตรวจสอบ สถานะ Web Service (SCW/TA Server) ในกรณีการส่ง message ต่าง ๆ โดย 
   - กรณีปรกติ

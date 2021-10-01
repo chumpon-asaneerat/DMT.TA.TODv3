@@ -10,8 +10,10 @@ Refactor DMT.TA.TODv4 #2258
 Refactor DMT.TA.TODv4 #2257
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2256
-- 
+- DMT.TAxTODv3
+  - Update version.history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2255

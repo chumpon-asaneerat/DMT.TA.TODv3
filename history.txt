@@ -7,8 +7,10 @@ Refactor DMT.TA.TODv4 #2259
 Refactor DMT.TA.TODv4 #2258
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2257
-- 
+- DMT.TAxTODv3
+  - Move project parent folder.
 
 [commited]
 Refactor DMT.TA.TODv4 #2256

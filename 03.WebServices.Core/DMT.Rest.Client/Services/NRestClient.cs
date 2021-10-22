@@ -142,6 +142,8 @@ namespace DMT.Services
                         Console.WriteLine(msg);
                         med.Err(msg);
                     }
+                    // update http status.
+                    ret.SetHttpStatus((int)response.StatusCode, response.StatusDescription);
                 }
                 else
                 {
@@ -230,6 +232,8 @@ namespace DMT.Services
                         Console.WriteLine(msg);
                         med.Err(msg);
                     }
+                    // update http status.
+                    ret.SetHttpStatus((int)response.StatusCode, response.StatusDescription);
                 }
                 else
                 {
@@ -308,6 +312,8 @@ namespace DMT.Services
                         Console.WriteLine(msg);
                         med.Err(msg);
                     }
+                    // update http status.
+                    ret.SetHttpStatus((int)response.StatusCode, response.StatusDescription);
                 }
                 else
                 {

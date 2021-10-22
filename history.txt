@@ -4,8 +4,13 @@
 Refactor DMT.TA.TODv4 #2259
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2258
-- 
+- DMT.TAxTODv3
+  - Update NRestResult ToRest method(s).
+  - Update SCWMQService Send, Resend method.
+  - Update TAMQService Send, Resend method.
+  - Update TAxTODMQService Send, Resend method.
 
 [commited]
 Refactor DMT.TA.TODv4 #2257

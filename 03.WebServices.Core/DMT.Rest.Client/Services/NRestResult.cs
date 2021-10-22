@@ -95,11 +95,14 @@ namespace DMT.Services
         #region Virtual Methods
 
         /// <summary>
-        /// Force set HTTP status to success.
+        /// Set HTTP status.
         /// </summary>
-        public virtual void HttpOK()
+        /// <param name="statusCode">The HTTP error status.</param>
+        /// <param name="errorMsg">The HTTP error status.</param>
+        public virtual void SetHttpStatus(int statusCode, string errorMsg)
         {
-            this.HttpStatus = HttpStatus.Success;
+            bool success = (statusCode >= 200 && statusCode <= 399); // check success code in range.
+            this.HttpStatus = (success) ? HttpStatus.Success : HttpStatus.Failed; // mark http status.
         }
 
         /// <summary>
@@ -529,8 +532,6 @@ namespace DMT.Services
 
             if (null != value)
             {
-                ret.HttpOK(); // Mark HTTP status.
-
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
             }
@@ -554,8 +555,6 @@ namespace DMT.Services
 
             if (null != value)
             {
-                ret.HttpOK(); // Mark HTTP status.
-
                 ret.data = value.data;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;
@@ -582,8 +581,6 @@ namespace DMT.Services
 
             if (null != value)
             {
-                ret.HttpOK(); // Mark HTTP status.
-
                 ret.data = value.data;
                 ret.errors.errNum = value.errors.errNum;
                 ret.errors.errMsg = value.errors.errMsg;

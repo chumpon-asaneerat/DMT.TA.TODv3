@@ -127,9 +127,16 @@ namespace DMT.Services
                         MoveErrorToInvalid(fullFileName);
                     }
                 }
-                else if (ret.Ok)
+                else if (ret.Ok && ret.HttpStatus != HttpStatus.Success)
                 {
-                    // Result is OK, so HttpStatus not concern
+                    // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
+                    med.Err("Send data to SCW Web Service failed (HTTP error). Move to 'Error' folder.");
+                    // Error
+                    MoveToError(fullFileName);
+                }
+                else if (ret.Ok && ret.HttpStatus == HttpStatus.Success)
+                {
+                    // Result is OK, and HttpStatus is succcess
                     med.Info("Send data to SCW Web Service success and content is valid. Move to 'Backup' folder.");
                     // Success
                     MoveToBackup(fullFileName);
@@ -197,9 +204,14 @@ namespace DMT.Services
                     }
 
                 }
-                else if (ret.Ok)
+                else if (ret.Ok && ret.HttpStatus != HttpStatus.Success)
                 {
-                    // Result is OK, so HttpStatus not concern
+                    // Connection has HTTP Status Code not in 200-399. so move to error folder for resend.
+                    med.Err("Send data to SCW Web Service failed (HTTP error). Wait for next loop for resend.");
+                }
+                else if (ret.Ok && ret.HttpStatus == HttpStatus.Success)
+                {
+                    // Result is OK, and HttpStatus is succcess
                     med.Info("Send data to SCW Web Service success and content is valid. Move to 'Backup' folder.");
                     // Success
                     MoveErrorToBackup(fullFileName);

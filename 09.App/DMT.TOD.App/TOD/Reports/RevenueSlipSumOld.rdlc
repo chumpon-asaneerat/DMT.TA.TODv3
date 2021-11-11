@@ -2225,7 +2225,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>DMT-FM-OC-006</Value>
+                  <Value>DMT-FM-OC-006 /REV 0.0</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontFamily>Tahoma</FontFamily>
@@ -2242,7 +2242,7 @@
           <Top>1.525in</Top>
           <Left>2.19036in</Left>
           <Height>0.25in</Height>
-          <Width>1.42188in</Width>
+          <Width>2.06771in</Width>
           <Style>
             <Border>
               <Style>None</Style>

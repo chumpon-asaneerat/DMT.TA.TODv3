@@ -1133,7 +1133,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>DMT-FM-OC-005</Value>
+                    <Value>DMT-FM-OC-005 /REV 0.0</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Tahoma</FontFamily>
@@ -1150,7 +1150,7 @@
             <Top>10.83333in</Top>
             <Left>0.09713in</Left>
             <Height>0.25in</Height>
-            <Width>1.35787in</Width>
+            <Width>2.13912in</Width>
             <ZIndex>22</ZIndex>
             <Style>
               <Border>

@@ -22,8 +22,13 @@ Refactor DMT.TA.TODv4 #2264
 Refactor DMT.TA.TODv4 #2263
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2262
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Implement TAServerStatus use thread #2.
+  - DMT.TOD.App
+    - Implement TAServerStatus use thread #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2261

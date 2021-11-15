@@ -10,6 +10,7 @@ using System.Windows.Threading;
 
 using NLib;
 using System.Threading;
+using System.Reflection;
 
 using DMT.Configurations;
 using DMT.Services;
@@ -48,6 +49,7 @@ namespace DMT.Controls.StatusBar
 #if RUN_IN_THREAD
         private Thread _th = null;
         private bool _running = false;
+        private bool _onCallWS = false;
 #endif
 
         #endregion
@@ -135,9 +137,13 @@ namespace DMT.Controls.StatusBar
                 {
                     Thread.ResetAbort();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Console.WriteLine(ex);
+                    //Console.WriteLine(ex);
+                }
+                finally
+                {
+                    
                 }
             }
             _th = null;
@@ -145,12 +151,25 @@ namespace DMT.Controls.StatusBar
 
         private void Processing()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
             while (null != _th && _running && !ApplicationManager.Instance.IsExit)
             {
                 TimeSpan ts = DateTime.Now - _lastUpdate;
-                if (ts.TotalSeconds > this.Interval)
+                if (ts.TotalSeconds > this.Interval && !_onCallWS)
                 {
-                    CallWS();
+                    _onCallWS = true;
+
+                    try
+                    {                        
+                        needCallWs = true;
+                        CallWS();
+                    }
+                    catch (Exception ex)
+                    {
+                        med.Err(ex);
+                    }
+
+                    _onCallWS = false;
                     _lastUpdate = DateTime.Now;
                 }
             }

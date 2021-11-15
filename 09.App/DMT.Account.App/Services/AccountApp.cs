@@ -19,6 +19,11 @@ namespace DMT
     public static class AccountApp
     {
         /// <summary>
+        /// Gets or sets is SCW Service online.
+        /// </summary>
+        public static bool SCWOnline { get; set; }
+
+        /// <summary>
         /// Permissions Static class.
         /// </summary>
         public static class Permissions

@@ -16,8 +16,18 @@ Refactor DMT.TA.TODv4 #2266
 Refactor DMT.TA.TODv4 #2265
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2264
-- 
+- DMT.TAxTODv3
+  - DMT.Acount.App
+    - Implement HeaderDateTime use thread/share ws.
+    - Implement SCWStatus use share ws.
+  - DMT.TA.App
+    - Implement HeaderDateTime use thread/share ws.
+    - Implement SCWStatus use share ws.
+  - DMT.TOD.App
+    - Implement HeaderDateTime use thread/share ws.
+    - Implement SCWStatus use share ws.
 
 [commited]
 Refactor DMT.TA.TODv4 #2263

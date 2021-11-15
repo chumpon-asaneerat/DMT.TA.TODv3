@@ -27,7 +27,10 @@ namespace DMT
         /// Gets or sets IsRegistered.
         /// </summary>
         public static bool IsRegistered { get; set; }
-
+        /// <summary>
+        /// Gets or sets is SCW Service online.
+        /// </summary>
+        public static bool SCWOnline { get; set; }
 
         /// <summary>
         /// Variables Static class.

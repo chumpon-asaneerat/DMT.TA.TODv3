@@ -1,10 +1,17 @@
-﻿#region Using
+﻿#define RUN_IN_THREAD
+#define SHARE_SCW_ONLINE_STATUS
+
+#region Using
 
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+
+using NLib;
+using System.Threading;
+using System.Reflection;
 
 //using NLib.Services;
 using DMT.Configurations;
@@ -44,6 +51,11 @@ namespace DMT.Controls.Header
         private DispatcherTimer timer = null;
         private bool needCallWs = false;
         private bool isOnline = false;
+#if RUN_IN_THREAD
+        private Thread _th = null;
+        private bool _running = false;
+        private bool _onCallWS = false;
+#endif
 
         #endregion
 
@@ -60,10 +72,18 @@ namespace DMT.Controls.Header
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+
+#if RUN_IN_THREAD
+            Start();
+#endif
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+#if RUN_IN_THREAD
+            Shutdown();
+#endif
+
             if (null != service) service.Unregister(this.ForceUpdateUI);
 
             if (null != timer)
@@ -80,6 +100,7 @@ namespace DMT.Controls.Header
 
         void timer_Tick(object sender, EventArgs e)
         {
+#if !RUN_IN_THREAD
             TimeSpan ts = DateTime.Now - _lastUpdate;
             if (ts.TotalSeconds > this.Interval)
             {
@@ -90,10 +111,76 @@ namespace DMT.Controls.Header
             {
                 needCallWs = false;
             }
+#endif
             UpdateUI();
         }
 
         #endregion
+
+#if RUN_IN_THREAD
+        private void Start()
+        {
+            if (null != _th)
+                return;
+            _th = new Thread(Processing);
+            _th.Name = "Check SCW Server (HDR)";
+            _th.Priority = ThreadPriority.BelowNormal;
+            _th.IsBackground = true;
+            _running = true;
+            _th.Start();
+        }
+        private void Shutdown()
+        {
+            _running = false;
+            if (null != _th)
+            {
+                try
+                {
+                    _th.Abort();
+                }
+                catch (ThreadAbortException)
+                {
+                    Thread.ResetAbort();
+                }
+                catch (Exception)
+                {
+                    //Console.WriteLine(ex);
+                }
+                finally
+                {
+
+                }
+            }
+            _th = null;
+        }
+
+        private void Processing()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            while (null != _th && _running && !ApplicationManager.Instance.IsExit)
+            {
+                TimeSpan ts = DateTime.Now - _lastUpdate;
+                if (ts.TotalSeconds > this.Interval && !_onCallWS)
+                {
+                    _onCallWS = true;
+
+                    try
+                    {
+                        needCallWs = true;
+                        CallWS();
+                    }
+                    catch (Exception ex)
+                    {
+                        med.Err(ex);
+                    }
+
+                    _onCallWS = false;
+                    _lastUpdate = DateTime.Now;
+                }
+            }
+            Shutdown();
+        }
+#endif
 
         private int Interval
         {
@@ -110,6 +197,9 @@ namespace DMT.Controls.Header
             if (!needCallWs) return;
             var ret = wsOps.GetVersion();
             isOnline = !string.IsNullOrWhiteSpace(ret);
+#if SHARE_SCW_ONLINE_STATUS
+            TODApp.SCWOnline = isOnline;
+#endif
             needCallWs = false;
         }
 
@@ -121,7 +211,9 @@ namespace DMT.Controls.Header
 
         private void UpdateUI()
         {
-            CallWS();
+#if !RUN_IN_THREAD
+                CallWS();
+#endif
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {

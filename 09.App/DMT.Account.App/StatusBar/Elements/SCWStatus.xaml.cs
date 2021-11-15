@@ -1,4 +1,5 @@
 ﻿#define RUN_IN_THREAD
+#define SHARE_SCW_ONLINE_STATUS
 
 #region Using
 
@@ -189,9 +190,13 @@ namespace DMT.Controls.StatusBar
 
         private void CallWS()
         {
+#if SHARE_SCW_ONLINE_STATUS
+            isOnline = AccountApp.SCWOnline;
+#else
             if (!needCallWs) return;
             var ret = wsOps.GetVersion();
             isOnline = !string.IsNullOrWhiteSpace(ret);
+#endif
             needCallWs = false;
         }
 

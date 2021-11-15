@@ -191,7 +191,7 @@ namespace DMT.Controls.StatusBar
         {
             if (!needCallWs) return;
             var ret = wsOps.IsAlive();
-            var obj = (ret.Ok) ? ret.Value() : null;
+            var obj = (null != ret && ret.Ok && ret.HttpStatus == HttpStatus.Success) ? ret.Value() : null;
             isOnline = (null != obj) ? obj.TimeStamp.HasValue : false;
             //if (isOnline) Console.WriteLine(ret.Value().TimeStamp.Value.ToString("HH:mm:ss.fff"));
             needCallWs = false;

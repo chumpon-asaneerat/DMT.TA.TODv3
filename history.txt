@@ -19,8 +19,19 @@ Refactor DMT.TA.TODv4 #2265
 Refactor DMT.TA.TODv4 #2264
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2263
-- 
+- DMT.TAxTODv3
+  - DMT.Acount.App
+    - Implement TAServerStatus use thread.
+    - Implement SCWStatus use thread.
+  - DMT.TA.App
+    - Implement TAServerStatus use thread #3.
+    - Implement SCWStatus use thread.
+  - DMT.TOD.App
+    - Implement TAServerStatus use thread #3.
+    - Implement SCWStatus use thread.
+    - Implement TAAppStatus use thread.
 
 [commited]
 Refactor DMT.TA.TODv4 #2262

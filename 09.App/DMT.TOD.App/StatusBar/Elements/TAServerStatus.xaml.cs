@@ -1,10 +1,15 @@
-﻿#region Using
+﻿#define RUN_IN_THREAD
+
+#region Using
 
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+
+using NLib;
+using System.Threading;
 
 using DMT.Configurations;
 using DMT.Services;
@@ -40,6 +45,10 @@ namespace DMT.Controls.StatusBar
         private DispatcherTimer timer = null;
         private bool needCallWs = false;
         private bool isOnline = false;
+#if RUN_IN_THREAD
+        private Thread _th = null;
+        private bool _running = false;
+#endif
 
         #endregion
 
@@ -56,10 +65,18 @@ namespace DMT.Controls.StatusBar
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+
+#if RUN_IN_THREAD
+            Start();
+#endif
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+#if RUN_IN_THREAD
+            Shutdown();
+#endif
+
             if (null != service) service.Unregister(this.ForceUpdateUI);
 
             if (null != timer)
@@ -76,6 +93,7 @@ namespace DMT.Controls.StatusBar
 
         void timer_Tick(object sender, EventArgs e)
         {
+#if !RUN_IN_THREAD
             TimeSpan ts = DateTime.Now - _lastUpdate;
             if (ts.TotalSeconds > this.Interval)
             {
@@ -86,10 +104,59 @@ namespace DMT.Controls.StatusBar
             {
                 needCallWs = false;
             }
+#endif
             UpdateUI();
         }
 
         #endregion
+
+#if RUN_IN_THREAD
+        private void Start()
+        {
+            if (null != _th)
+                return;
+            _th = new Thread(Processing);
+            _th.Name = "Check TA Server";
+            _th.Priority = ThreadPriority.BelowNormal;
+            _th.IsBackground = true;
+            _running = true;
+            _th.Start();
+        }
+        private void Shutdown()
+        {
+            _running = false;
+            if (null != _th)
+            {
+                try
+                {
+                    _th.Abort();
+                }
+                catch (ThreadAbortException)
+                {
+                    Thread.ResetAbort();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            _th = null;
+        }
+
+        private void Processing()
+        {
+            while (null != _th && _running && !ApplicationManager.Instance.IsExit)
+            {
+                TimeSpan ts = DateTime.Now - _lastUpdate;
+                if (ts.TotalSeconds > this.Interval)
+                {
+                    CallWS();
+                    _lastUpdate = DateTime.Now;
+                }
+            }
+            Shutdown();
+        }
+#endif
 
         private int Interval
         {
@@ -134,7 +201,9 @@ namespace DMT.Controls.StatusBar
                     if (this.Visibility != Visibility.Visible) this.Visibility = Visibility.Visible;
                 }
 
+#if !RUN_IN_THREAD
                 CallWS();
+#endif
 
                 if (isOnline)
                 {

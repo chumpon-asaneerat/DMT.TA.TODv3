@@ -1,4 +1,4 @@
-﻿#define RUN_IN_THREAD
+﻿//#define RUN_IN_THREAD
 #define SHARE_SCW_ONLINE_STATUS
 
 #region Using
@@ -124,7 +124,7 @@ namespace DMT.Controls.Header
                 return;
             _th = new Thread(Processing);
             _th.Name = "Check SCW Server (HDR)";
-            _th.Priority = ThreadPriority.BelowNormal;
+            _th.Priority = ThreadPriority.Lowest;
             _th.IsBackground = true;
             _running = true;
             _th.Start();
@@ -153,7 +153,6 @@ namespace DMT.Controls.Header
             }
             _th = null;
         }
-
         private void Processing()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -181,7 +180,6 @@ namespace DMT.Controls.Header
             Shutdown();
         }
 #endif
-
         private int Interval
         {
             get
@@ -195,10 +193,11 @@ namespace DMT.Controls.Header
         private void CallWS()
         {
             if (!needCallWs) return;
+#if SHARE_SCW_ONLINE_STATUS
+            isOnline = TODApp.SCWOnline;
+#else
             var ret = wsOps.GetVersion();
             isOnline = !string.IsNullOrWhiteSpace(ret);
-#if SHARE_SCW_ONLINE_STATUS
-            TODApp.SCWOnline = isOnline;
 #endif
             needCallWs = false;
         }
@@ -212,9 +211,12 @@ namespace DMT.Controls.Header
         private void UpdateUI()
         {
 #if !RUN_IN_THREAD
-                CallWS();
+            CallWS();
 #endif
 
+#if RUN_IN_THREAD && SHARE_SCW_ONLINE_STATUS
+            isOnline = TODApp.SCWOnline;
+#endif
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
                 borderDT.Background = (isOnline) ? OnlineColor : OfflineColor;

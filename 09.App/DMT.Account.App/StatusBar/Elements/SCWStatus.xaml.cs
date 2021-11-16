@@ -1,4 +1,4 @@
-﻿#define RUN_IN_THREAD
+﻿//#define RUN_IN_THREAD
 #define SHARE_SCW_ONLINE_STATUS
 
 #region Using
@@ -149,7 +149,6 @@ namespace DMT.Controls.StatusBar
             }
             _th = null;
         }
-
         private void Processing()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -177,7 +176,6 @@ namespace DMT.Controls.StatusBar
             Shutdown();
         }
 #endif
-
         private int Interval
         {
             get
@@ -187,15 +185,13 @@ namespace DMT.Controls.StatusBar
                 return interval;
             }
         }
-
         private void CallWS()
         {
-#if SHARE_SCW_ONLINE_STATUS
-            isOnline = AccountApp.SCWOnline;
-#else
             if (!needCallWs) return;
             var ret = wsOps.GetVersion();
             isOnline = !string.IsNullOrWhiteSpace(ret);
+#if SHARE_SCW_ONLINE_STATUS
+            AccountApp.SCWOnline = isOnline;
 #endif
             needCallWs = false;
         }

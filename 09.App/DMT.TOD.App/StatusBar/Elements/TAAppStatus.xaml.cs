@@ -1,4 +1,4 @@
-﻿#define RUN_IN_THREAD
+﻿//#define RUN_IN_THREAD
 
 #region Using
 

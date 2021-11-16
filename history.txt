@@ -1,8 +1,14 @@
 ﻿Refactor DMT.TA.TODv4 #2270
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2269
-- 
+  - DMT.Acount.App
+    - MQResendService -> re-implement use thread.
+  - DMT.TA.App
+    - MQResendService -> re-implement use thread.
+  - DMT.TOD.App
+    - MQResendService -> re-implement use thread.
 
 [commited]
 Refactor DMT.TA.TODv4 #2268

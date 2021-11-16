@@ -1,10 +1,17 @@
-﻿#region Using
+﻿#define RUN_IN_THREAD
+
+#if RUN_IN_THREAD
+#else
+#endif
+
+#region Using
 
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using System.Timers;
+using System.Threading;
 using System.Threading.Tasks;
 
 using NLib;
@@ -37,7 +44,7 @@ namespace DMT.Services
 
         #region Internal Variables
 
-        private Timer _timer = null;
+        private System.Timers.Timer _timer = null;
         private bool _scanning = false;
         private bool _resending = false;
         private DateTime _lastErrorCheck = DateTime.MinValue;
@@ -671,7 +678,7 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
             // Init Scanning Timer
             _scanning = false;
-            _timer = new Timer();
+            _timer = new System.Timers.Timer();
             _timer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
             _timer.Elapsed += _timer_Elapsed;
             _timer.Start();
@@ -716,7 +723,8 @@ namespace DMT.Services
                 {
                     var msgFiles = Directory.GetFiles(errorFolder, "*.json");
                     if (null != msgFiles && msgFiles.Length > 0) files.AddRange(msgFiles);
-                    files.ForEach(file =>
+
+                    foreach (string file in files)
                     {
                         try
                         {
@@ -728,7 +736,7 @@ namespace DMT.Services
                             // Read file error.
                             med.Err(ex2);
                         }
-                    });
+                    }
                 }
                 else
                 {

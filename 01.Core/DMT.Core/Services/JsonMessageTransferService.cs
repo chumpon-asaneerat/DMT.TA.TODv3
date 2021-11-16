@@ -1,9 +1,5 @@
 ﻿#define RUN_IN_THREAD
 
-#if RUN_IN_THREAD
-#else
-#endif
-
 #region Using
 
 using System;
@@ -44,8 +40,15 @@ namespace DMT.Services
 
         #region Internal Variables
 
+#if RUN_IN_THREAD
+        private Thread _th = null;
+        private bool _running = false;
+        private DateTime _lastScan = DateTime.MinValue;
+#else
         private System.Timers.Timer _timer = null;
         private bool _scanning = false;
+#endif
+
         private bool _resending = false;
         private DateTime _lastErrorCheck = DateTime.MinValue;
         private int _msgCnt = 0;
@@ -57,6 +60,70 @@ namespace DMT.Services
 
         #region Timer Handlers
 
+#if RUN_IN_THREAD
+        private void Processing()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            while (null != _th && _running && !ApplicationManager.Instance.IsExit)
+            {
+                TimeSpan ts1 = DateTime.Now - _lastScan;
+                // every second
+                if (ts1.TotalMilliseconds > 1000)
+                {                    
+                    try
+                    {
+                        CompressFiles();
+                        List<string> files = new List<string>();
+                        var msgFiles = Directory.GetFiles(this.MessageFolder, "*.json");
+
+                        _msgCnt = 0;
+                        if (null != msgFiles && msgFiles.Length > 0)
+                        {
+                            _msgCnt = msgFiles.Length;
+                            files.AddRange(msgFiles);
+                        }
+
+                        files.ForEach(file =>
+                        {
+                            try
+                            {
+                                string json = ReadAllText(file);
+                                ProcessJson(file, json);
+                            }
+                            catch (Exception ex2)
+                            {
+                            // Invalid. Read file error.
+                            MoveToInvalid(file);
+                                med.Err(ex2);
+                            }
+                        });
+
+                        // Get error file count
+                        TimeSpan ts = DateTime.Now - _lastErrorCheck;
+                        if (ts.TotalSeconds >= 5)
+                        {
+                            string errDir = Path.Combine(this.MessageFolder, "Error");
+                            _errCnt = 0;
+                            if (Directory.Exists(errDir))
+                            {
+                                var errFiles = Directory.GetFiles(errDir, "*.json");
+                                _errCnt = (null != errFiles) ? errFiles.Length : 0;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        med.Err(ex);
+                    }
+
+                    _lastScan = DateTime.Now;
+                }
+                ApplicationManager.Instance.Sleep(50);
+                ApplicationManager.Instance.DoEvents();
+            }
+            Shutdown();
+        }
+#else
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (_scanning) return;
@@ -110,6 +177,7 @@ namespace DMT.Services
             }
             _scanning = false;
         }
+#endif
 
         #endregion
 
@@ -676,13 +744,23 @@ namespace DMT.Services
         public void Start()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+#if RUN_IN_THREAD
+            if (null != _th)
+                return;
+            _th = new Thread(Processing);
+            _th.Name = "Json Message Transfer";
+            _th.Priority = ThreadPriority.BelowNormal;
+            _th.IsBackground = true;
+            _running = true;
+            _th.Start();
+#else
             // Init Scanning Timer
             _scanning = false;
             _timer = new System.Timers.Timer();
             _timer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
             _timer.Elapsed += _timer_Elapsed;
             _timer.Start();
-
+#endif
             OnStart(); // call virtual method.
         }
         /// <summary>
@@ -690,6 +768,29 @@ namespace DMT.Services
         /// </summary>
         public void Shutdown()
         {
+#if RUN_IN_THREAD
+            _running = false;
+            if (null != _th)
+            {
+                try
+                {
+                    _th.Abort();
+                }
+                catch (ThreadAbortException)
+                {
+                    Thread.ResetAbort();
+                }
+                catch (Exception)
+                {
+                    //Console.WriteLine(ex);
+                }
+                finally
+                {
+
+                }
+            }
+            _th = null;
+#else
             // Free Scanning Timer 
             try
             {
@@ -703,7 +804,7 @@ namespace DMT.Services
             catch { }
             _timer = null;
             _scanning = false;
-
+#endif
             OnShutdown(); // call virtual method.
         }
         /// <summary>

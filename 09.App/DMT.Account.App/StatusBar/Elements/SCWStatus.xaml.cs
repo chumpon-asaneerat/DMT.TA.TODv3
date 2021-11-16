@@ -1,4 +1,4 @@
-﻿//#define RUN_IN_THREAD
+﻿#define RUN_IN_THREAD
 #define SHARE_SCW_ONLINE_STATUS
 
 #region Using
@@ -172,6 +172,8 @@ namespace DMT.Controls.StatusBar
                     _onCallWS = false;
                     _lastUpdate = DateTime.Now;
                 }
+                ApplicationManager.Instance.Sleep(50);
+                ApplicationManager.Instance.DoEvents();
             }
             Shutdown();
         }

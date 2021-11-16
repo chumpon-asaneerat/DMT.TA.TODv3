@@ -10,8 +10,15 @@ Refactor DMT.TA.TODv4 #2268
 Refactor DMT.TA.TODv4 #2267
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2266
-- 
+- DMT.TAxTODv3
+  - DMT.Acount.App
+    - Server check related elements -> add sleep/do events in thread processing methods.
+  - DMT.TA.App
+    - Server check related elements -> add sleep/do events in thread processing methods.
+  - DMT.TOD.App
+    - Server check related elements -> add sleep/do events in thread processing methods.
 
 [commited]
 Refactor DMT.TA.TODv4 #2265

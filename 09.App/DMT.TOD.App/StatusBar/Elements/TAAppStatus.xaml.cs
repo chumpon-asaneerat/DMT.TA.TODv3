@@ -1,4 +1,4 @@
-﻿//#define RUN_IN_THREAD
+﻿#define RUN_IN_THREAD
 
 #region Using
 
@@ -148,7 +148,6 @@ namespace DMT.Controls.StatusBar
             }
             _th = null;
         }
-
         private void Processing()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -172,11 +171,12 @@ namespace DMT.Controls.StatusBar
                     _onCallWS = false;
                     _lastUpdate = DateTime.Now;
                 }
+                ApplicationManager.Instance.Sleep(50);
+                ApplicationManager.Instance.DoEvents();
             }
             Shutdown();
         }
 #endif
-
         private int Interval
         {
             get
@@ -186,7 +186,6 @@ namespace DMT.Controls.StatusBar
                 return interval;
             }
         }
-
         private void CallWS()
         {
             if (!needCallWs) return;

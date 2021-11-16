@@ -526,10 +526,12 @@ namespace DMT.Pages
 
         private void LogInLog(bool success)
         {
+            if (!success)
+                return; // not send to SCW if login failed
             /*
             var inst = new SCWLogInAudit();
             inst.networkId = (null != Configurations.AccountConfigManager.Instance.DMT) ?
-                Configurations.AccountConfigManager.Instance.DMT.networkId : 31;
+                Configurations.AccountConfigManager.Instance.DMT.networkId : 10;
             inst.plazaId = ??;
             inst.description = (success) ? "LogIn Success" : "Invalid Password.";
             inst.staffId = _user.UserId;

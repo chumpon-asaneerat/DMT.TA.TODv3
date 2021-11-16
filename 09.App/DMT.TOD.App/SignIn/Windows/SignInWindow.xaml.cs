@@ -558,17 +558,21 @@ namespace DMT.Windows
 
         private void LogInLog(bool success)
         {
-            /*
+            if (!success)
+                return; // not send to SCW if login failed
+            var plazas = Services.TODAPI.TSBPlazas;
+            if (null == plazas || plazas.Count <= 0)
+                return; // cannot find plaza.
+
             var inst = new SCWLogInAudit();
             inst.networkId = (null != Configurations.AccountConfigManager.Instance.DMT) ?
-                Configurations.AccountConfigManager.Instance.DMT.networkId : 31;
-            inst.plazaId = ??;
+                Configurations.AccountConfigManager.Instance.DMT.networkId : 10;
+            inst.plazaId = plazas[0].SCWPlazaId;
             inst.description = (success) ? "LogIn Success" : "Invalid Password.";
             inst.staffId = _user.UserId;
             inst.status = (success) ? "success" : "fail";
 
             SCWMQService.Instance.WriteQueue(inst);
-            */
         }
 
         private void UpdateExpiredDays()

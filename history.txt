@@ -7,8 +7,13 @@ Refactor DMT.TA.TODv4 #2269
 Refactor DMT.TA.TODv4 #2268
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2267
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - SignIn -> send loginAudit to SCW if success (used first plaza on TSB plazas).
+  - DMT.TOD.App
+    - SignIn -> send loginAudit to SCW if success (used first plaza on TSB plazas).
 
 [commited]
 Refactor DMT.TA.TODv4 #2266

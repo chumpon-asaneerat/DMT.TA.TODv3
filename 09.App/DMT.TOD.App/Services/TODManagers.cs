@@ -537,9 +537,6 @@ namespace DMT.Services
                 TSBPlazas = TODAPI.TSBPlazas;
                 TSBLanes = TODAPI.TSBLanes;
 
-                TODPlazaGroups = TODAPI.TODPlazaGroups;
-                TODPlazas = TODAPI.TODPlazas;
-                TODLanes = TODAPI.TODLanes;
                 // Get Current TSB Shift
                 TSBShift = TODAPI.TSBShift;
                 // Gets Chief

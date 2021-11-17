@@ -16,8 +16,11 @@ Refactor DMT.TA.TODv4 #2276
 Refactor DMT.TA.TODv4 #2275
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2274
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App
+    - remove duplicate code in TOD manager class.
 
 [commited]
 Refactor DMT.TA.TODv4 #2273

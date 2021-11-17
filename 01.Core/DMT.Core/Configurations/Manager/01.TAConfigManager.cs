@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using NLib;
@@ -76,6 +77,22 @@ namespace DMT.Configurations
         /// Gets Config File Name.
         /// </summary>
         public override string FileName { get { return _fileName; } }
+        /// <summary>
+        /// Load Config.
+        /// </summary>
+        public override void LoadConfig()
+        {
+            base.LoadConfig();
+
+            if (null != this.Value && 
+                (null == this.Value.PlazaGroups || (null != this.Value && this.Value.PlazaGroups.Count <= 0)))
+            {
+                this.Value.PlazaGroups = new List<TAPlazaGroupConfig>();
+                this.Value.PlazaGroups.Add(new TAPlazaGroupConfig() { PlazaGroupId = "" });
+                this.Value.PlazaGroups.Add(new TAPlazaGroupConfig() { PlazaGroupId = "" });
+                this.SaveConfig();
+            }
+        }
 
         #endregion
 

@@ -165,7 +165,7 @@ namespace DMT.TA.Windows.Credit
             cbPlzaGroups.ItemsSource = null;
             if (null != manager && null != manager)
             {
-                var plazaGroups = TAAPI.TSBPlazaGroups;
+                var plazaGroups = TAAPI.TAPlazaGroups;
                 cbPlzaGroups.ItemsSource = plazaGroups;
                 if (plazaGroups.Count > 0) cbPlzaGroups.SelectedIndex = 0;
             }

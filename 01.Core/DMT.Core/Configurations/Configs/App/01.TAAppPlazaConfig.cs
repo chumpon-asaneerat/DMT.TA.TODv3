@@ -170,6 +170,38 @@ namespace DMT.Configurations
 
     #endregion
 
+    #region TAPlazaGroupConfig (Need for TA App Plaza Group Config class)
+
+    /// <summary>
+    /// The TAPlazaGroupConfig class.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptOut)]
+    public class TAPlazaGroupConfig
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public TAPlazaGroupConfig() : base()
+        {
+            this.PlazaGroupId = "";
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Plaza Group Id.
+        /// </summary>
+        public string PlazaGroupId { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
     #region TAHeaderBars
 
     /// <summary>
@@ -300,6 +332,11 @@ namespace DMT.Configurations
         public TAAppPlazaConfig() : base()
         {
             this.Services = new TAAppServiceConfig();
+
+            this.PlazaGroups = new List<TAPlazaGroupConfig>();
+            this.PlazaGroups.Add(new TAPlazaGroupConfig() { PlazaGroupId = "" });
+            this.PlazaGroups.Add(new TAPlazaGroupConfig() { PlazaGroupId = "" });
+
             this.UIConfig = new TAUIConfig();
         }
 
@@ -311,6 +348,11 @@ namespace DMT.Configurations
         /// Gets or sets TA App Service Config.
         /// </summary>
         public TAAppServiceConfig Services { get; set; }
+        /// <summary>
+        /// Gets or sets Plaza Groups.
+        /// </summary>
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        public List<TAPlazaGroupConfig> PlazaGroups { get; set; }
         /// <summary>
         /// Gets or sets TA UI Config.
         /// </summary>

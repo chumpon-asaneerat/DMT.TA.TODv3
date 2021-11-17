@@ -145,6 +145,18 @@ namespace DMT.Services
 
         #endregion
 
+        #region TA
+
+        /// <summary>
+        /// Gets TA PlazaGroups.
+        /// </summary>
+        public static List<PlazaGroup> TAPlazaGroups
+        {
+            get { return GetTAPlazaGroups(); }
+        }
+
+        #endregion
+
         #region Shifts
 
         /// <summary>
@@ -172,6 +184,42 @@ namespace DMT.Services
         #endregion
 
         #region Static Methods
+
+        #region TA PlazaGroup/Plaza methods
+
+        /// <summary>
+        /// Get TA's PlazaGroups.
+        /// </summary>
+        /// <returns>Returns list of PlazaGroup.</returns>
+        public static List<PlazaGroup> GetTAPlazaGroups()
+        {
+            List<PlazaGroup> results = new List<PlazaGroup>();
+
+            var cfg = TAConfigManager.Instance.Value;
+            var plazaGroups = (null != cfg && null != cfg.PlazaGroups) ? cfg.PlazaGroups : null;
+            if (null != plazaGroups && plazaGroups.Count > 0)
+            {
+                plazaGroups.ForEach(plazaGroup =>
+                {
+                    if (null == plazaGroup && string.IsNullOrWhiteSpace(plazaGroup.PlazaGroupId)) return;
+                    var match = PlazaGroup.GetPlazaGroup(plazaGroup.PlazaGroupId).Value();
+                    if (null != match && match.PlazaGroupId != string.Empty)
+                    {
+                        var exist = results.Find(plazagroup =>
+                        {
+                            return plazagroup.PlazaGroupId == match.PlazaGroupId;
+                        });
+                        if (null != exist) return; // already exist.
+
+                        results.Add(match); // Append if not exists
+                    }
+                });
+            }
+
+            return results;
+        }
+
+        #endregion
 
         /// <summary>
         /// Search User By partial User Id.

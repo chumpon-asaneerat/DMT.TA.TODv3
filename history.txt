@@ -13,8 +13,11 @@ Refactor DMT.TA.TODv4 #2277
 Refactor DMT.TA.TODv4 #2276
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2275
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Add PlazaGroups in TA Config.
 
 [commited]
 Refactor DMT.TA.TODv4 #2274

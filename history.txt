@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2279
 Refactor DMT.TA.TODv4 #2278
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2277
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App
+    - Fixed bug load PlazaGroups in TA Config #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2276

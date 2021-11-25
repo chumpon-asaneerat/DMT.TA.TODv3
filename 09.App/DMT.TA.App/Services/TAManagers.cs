@@ -216,12 +216,6 @@ namespace DMT.Services
                     }
                 });
             }
-            else
-            {
-                var groups = PlazaGroup.GetPlazaGroups().Value();
-                if (null != groups)
-                    results.AddRange(groups);
-            }
 
             return results;
         }

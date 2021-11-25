@@ -1,5 +1,13 @@
-﻿Refactor DMT.TA.TODv4 #2280
+﻿Refactor DMT.TA.TODv4 #2281
 - 
+
+[commited]
+Refactor DMT.TA.TODv4 #2280
+- DMT.TAxTODv3
+  - TOD fixed bug
+    - Fixed bug TODManager -> Not load TODPlazaGroups property.
+  - Revenue Entry
+    - Add check null access to TODPlazaGroups property
 
 [commited]
 Refactor DMT.TA.TODv4 #2279

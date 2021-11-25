@@ -531,7 +531,10 @@ namespace DMT.TOD.Pages.Revenue
             if (null != manager && null != manager.Current)
             {
                 cbPlazas.ItemsSource = manager.Current.TODPlazaGroups;
-                if (manager.Current.TODPlazaGroups.Count > 0) cbPlazas.SelectedIndex = 0;
+                if (null != manager.Current.TODPlazaGroups && manager.Current.TODPlazaGroups.Count > 0)
+                {
+                    cbPlazas.SelectedIndex = 0;
+                }
             }
         }
 

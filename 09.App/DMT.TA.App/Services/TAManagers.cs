@@ -201,7 +201,8 @@ namespace DMT.Services
             {
                 plazaGroups.ForEach(plazaGroup =>
                 {
-                    if (null == plazaGroup && string.IsNullOrWhiteSpace(plazaGroup.PlazaGroupId)) return;
+                    if (null == plazaGroup) return;
+                    if (string.IsNullOrWhiteSpace(plazaGroup.PlazaGroupId)) return;
                     var match = PlazaGroup.GetPlazaGroup(plazaGroup.PlazaGroupId).Value();
                     if (null != match && match.PlazaGroupId != string.Empty)
                     {
@@ -214,6 +215,12 @@ namespace DMT.Services
                         results.Add(match); // Append if not exists
                     }
                 });
+            }
+            else
+            {
+                var groups = PlazaGroup.GetPlazaGroups().Value();
+                if (null != groups)
+                    results.AddRange(groups);
             }
 
             return results;

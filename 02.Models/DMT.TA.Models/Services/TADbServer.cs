@@ -442,7 +442,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 12,
@@ -453,7 +453,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 13,
@@ -464,7 +464,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 14,
@@ -475,7 +475,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 15,
@@ -486,7 +486,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 16,
@@ -497,7 +497,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -528,7 +528,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -539,7 +539,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 3,
@@ -550,7 +550,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 4,
@@ -561,7 +561,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 5,
@@ -572,7 +572,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 6,
@@ -583,7 +583,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -646,7 +646,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -657,7 +657,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 3,
@@ -668,7 +668,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
 
             #endregion
@@ -732,7 +732,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             lane = new Lane()
             {
@@ -744,7 +744,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             lane = new Lane()
             {
@@ -756,7 +756,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -801,7 +801,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -812,7 +812,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 3,
@@ -823,7 +823,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 4,
@@ -834,7 +834,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -897,7 +897,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -908,7 +908,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 3,
@@ -919,7 +919,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -950,7 +950,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 12,
@@ -961,7 +961,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 13,
@@ -972,7 +972,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1037,7 +1037,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -1048,7 +1048,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1109,7 +1109,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 22,
@@ -1120,7 +1120,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 23,
@@ -1131,7 +1131,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1162,7 +1162,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 32,
@@ -1173,7 +1173,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1236,7 +1236,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 22,
@@ -1247,7 +1247,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 23,
@@ -1258,7 +1258,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 24,
@@ -1269,7 +1269,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1314,7 +1314,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -1325,7 +1325,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1388,7 +1388,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 32,
@@ -1399,7 +1399,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 33,
@@ -1410,7 +1410,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 34,
@@ -1421,7 +1421,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 35,
@@ -1432,7 +1432,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1463,7 +1463,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 22,
@@ -1474,7 +1474,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 23,
@@ -1485,7 +1485,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 24,
@@ -1496,7 +1496,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 25,
@@ -1507,7 +1507,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1570,7 +1570,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 2,
@@ -1581,7 +1581,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 3,
@@ -1592,7 +1592,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 4,
@@ -1603,7 +1603,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 5,
@@ -1614,7 +1614,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 
@@ -1645,7 +1645,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 12,
@@ -1656,7 +1656,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 13,
@@ -1667,7 +1667,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 14,
@@ -1678,7 +1678,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
             lane = new Lane()
             {
                 LaneNo = 15,
@@ -1689,7 +1689,7 @@ namespace DMT.Services
                 PlazaGroupId = plazaGroup.PlazaGroupId,
                 PlazaId = plaza.PlazaId
             };
-            if (!Lane.Exists(lane)) Lane.Save(lane);
+            if (null == Lane.GetLane(lane.LaneId).Value()) Lane.Save(lane);
 
             #endregion
 

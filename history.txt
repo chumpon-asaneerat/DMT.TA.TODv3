@@ -4,8 +4,11 @@
 Refactor DMT.TA.TODv4 #2279
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2278
-- 
+- DMT.TAxTODv3
+  - TOD/TA/Account all model projects fixed bug
+    - Fixed bug create duplicate lane records every time app start.
 
 [commited]
 Refactor DMT.TA.TODv4 #2277

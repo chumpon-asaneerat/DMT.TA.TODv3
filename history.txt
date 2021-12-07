@@ -19,8 +19,14 @@ Refactor DMT.TA.TODv4 #2285
 Refactor DMT.TA.TODv4 #2284
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2283
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Creadit borrow screen
+      - Set window size in case borror over amount in TSB (due to long message).
+    - Internal Credit Exchange screen
+      - Add Code to check replace out not over than amount on TSB.
 
 [commited]
 Refactor DMT.TA.TODv4 #2282

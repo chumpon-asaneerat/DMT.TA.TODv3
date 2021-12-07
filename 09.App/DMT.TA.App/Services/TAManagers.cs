@@ -2823,6 +2823,36 @@ namespace DMT.Services
 
         #endregion
 
+        #region Private Methods
+
+        private bool CheckCanReplaceOut()
+        {
+            bool ret = false;
+
+            if (null == this.TSB) return ret;
+            if (null == this.ReplaceOut) return ret;
+            var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
+            if (null == tsbBal) return ret;
+
+            if (this.ReplaceOut.AmountST25 > tsbBal.AmountST25) return ret;
+            if (this.ReplaceOut.AmountST50 > tsbBal.AmountST50) return ret;
+            if (this.ReplaceOut.AmountBHT1 > tsbBal.AmountBHT1) return ret;
+            if (this.ReplaceOut.AmountBHT2 > tsbBal.AmountBHT2) return ret;
+            if (this.ReplaceOut.AmountBHT5 > tsbBal.AmountBHT5) return ret;
+            if (this.ReplaceOut.AmountBHT10 > tsbBal.AmountBHT10) return ret;
+            if (this.ReplaceOut.AmountBHT20 > tsbBal.AmountBHT20) return ret;
+            if (this.ReplaceOut.AmountBHT50 > tsbBal.AmountBHT50) return ret;
+            if (this.ReplaceOut.AmountBHT100 > tsbBal.AmountBHT100) return ret;
+            if (this.ReplaceOut.AmountBHT500 > tsbBal.AmountBHT500) return ret;
+            if (this.ReplaceOut.AmountBHT1000 > tsbBal.AmountBHT1000) return ret;
+
+            ret = true; // all ok.
+
+            return ret;
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -2904,6 +2934,14 @@ namespace DMT.Services
         /// Gets Replace In.
         /// </summary>
         public TSBCreditTransaction ReplaceIn { get; private set; }
+        /// <summary>
+        /// Check can replace out (check is amount in TSB is enough?).
+        /// </summary>
+        public bool CanReplaceOut
+        {
+            get { return CheckCanReplaceOut(); }
+            private set { }
+        }
 
         #endregion
 

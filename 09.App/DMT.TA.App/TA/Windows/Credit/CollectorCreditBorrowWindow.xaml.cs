@@ -114,6 +114,9 @@ namespace DMT.TA.Windows.Credit
             if (manager.HasNegative())
             {
                 var win = TAApp.Windows.MessageBox;
+                // Need to change window size due to long message.
+                win.Width = 650;
+                win.Height = 350;
                 win.Setup(
                     "ไม่สามารถดำเนินการบันทึกข้อมูลได้ เนื่องจากระบบพบว่ามีการ ยอดการยืมเงินในบางรายการ เกินจำนวนที่่ด่านมีอยู่", 
                     "DMT - Toll Admin");

@@ -16,8 +16,12 @@ Refactor DMT.TA.TODv4 #2286
 Refactor DMT.TA.TODv4 #2285
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2284
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Internal Credit Exchange screen
+      - Fixed misspell message.
 
 [commited]
 Refactor DMT.TA.TODv4 #2283

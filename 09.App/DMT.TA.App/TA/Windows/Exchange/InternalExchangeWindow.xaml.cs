@@ -51,7 +51,7 @@ namespace DMT.TA.Windows.Exchange
                 if (!_manager.CanReplaceOut)
                 {
                     var win = TAApp.Windows.MessageBox;
-                    win.Setup("จำนวนเงินขอแลกออกในบางรายการ เกินจำนวนที่่ด่านมีอยู่ กรุณาตรวจสอบข้อมูล", "Toll Admin");
+                    win.Setup("จำนวนเงินขอแลกออกในบางรายการ เกินจำนวนที่ด่านมีอยู่ กรุณาตรวจสอบข้อมูล", "Toll Admin");
                     win.ShowDialog();
                     return;
                 }

@@ -22,8 +22,22 @@ Refactor DMT.TA.TODv4 #2284
 Refactor DMT.TA.TODv4 #2283
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2282
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Coupon History page
+      - Update clear inputs method to clear stock count and grid.
+      - Add clear inputs call in Setup method to clear all data when enter page.
+  - DMT.Account.App project
+    - Coupon History page
+      - Add clear button
+      - Update clear inputs method to clear stock count and grid.
+      - Update code to re-calc stock when search
+      - Add clear inputs call in Setup method to clear all data when enter page.
+- Update App version (TA, Account).
+- Update history.txt
+- Update version.history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2281

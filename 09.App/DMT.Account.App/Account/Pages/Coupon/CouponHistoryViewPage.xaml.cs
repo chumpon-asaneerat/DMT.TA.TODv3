@@ -57,6 +57,11 @@ namespace DMT.Account.Pages.Coupon
             Search();
         }
 
+        private void cmdClear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearInputs();
+        }
+
         #endregion
 
         #region Private Methods
@@ -108,6 +113,29 @@ namespace DMT.Account.Pages.Coupon
             dtWorkDateTo.Value = new DateTime?();
         }
 
+        private void ClearInputs()
+        {
+            Reset();
+
+            CheckComboDefaultItem(cbTSBs);
+            CheckComboDefaultItem(cbStatus);
+            CheckComboDefaultItem(cbShifts);
+
+            txtStockBalance.Text = "0"; // clear stock.
+            grid.ItemsSource = null; // clear grid.
+        }
+
+        private void CheckComboDefaultItem(ComboBox cb)
+        {
+            if (null == cb) return;
+            cb.SelectedIndex = -1;
+            if (null != cb.ItemsSource)
+            {
+                var lst = cb.ItemsSource as IList;
+                if (null != lst && lst.Count > 0) cb.SelectedIndex = 0;
+            }
+        }
+
         private void Search()
         {
             string sapItemCode = string.IsNullOrWhiteSpace(txtSAPItemCode.Text) ? null : txtSAPItemCode.Text.Trim();
@@ -133,7 +161,21 @@ namespace DMT.Account.Pages.Coupon
             var searchOp = Models.Search.TAxTOD.Coupon.Inquiry.Create(sapItemCode, sapIntrSerial, sapTransferNo,
                 sapARInvoice, itemStatusDigit, tollWayId, shiftId, workingDateFrom, workingDateTo);
             var ret = ops.Inquiry(searchOp);
-            grid.ItemsSource = ret.Value();
+            var coupons = ret.Value();
+            grid.ItemsSource = coupons;
+
+            if (null != coupons)
+            {
+                int cnt = coupons.Count;
+                /*
+                int cnt = coupons.Count(coupon => 
+                { 
+                    return (coupon.ItemStatusDigit.HasValue && coupon.ItemStatusDigit.Value == 1);
+                });
+                */
+                txtStockBalance.Text = string.Format("{0:n0}", cnt);
+            }
+            else txtStockBalance.Text = "0";
         }
 
         #endregion
@@ -156,7 +198,7 @@ namespace DMT.Account.Pages.Coupon
             LoadTSBs(); // TollwayId
             LoadShifts();
             LoadInquiryStatus();
-            Reset();
+            ClearInputs();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

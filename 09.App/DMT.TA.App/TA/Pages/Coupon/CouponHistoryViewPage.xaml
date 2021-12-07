@@ -9,9 +9,9 @@
              xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DesignHeight="650"
              d:DesignWidth="1000"
-             mc:Ignorable="d"
              Loaded="UserControl_Loaded"
-             Unloaded="UserControl_Unloaded">
+             Unloaded="UserControl_Unloaded"
+             mc:Ignorable="d">
     <UserControl.Resources>
         <!--  IMAGE BUTTON STYLE  -->
         <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
@@ -260,8 +260,8 @@
                                     Width="150"
                                     Height="30"
                                     VerticalAlignment="Center"
-                                    Content="เคลียร์"
                                     Click="cmdClear_Click"
+                                    Content="เคลียร์"
                                     FontSize="{StaticResource InputFontSize18}"
                                     Style="{DynamicResource InlineButton}" />
                         </Grid>

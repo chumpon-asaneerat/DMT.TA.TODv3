@@ -147,6 +147,9 @@ namespace DMT.TA.Pages.Coupon
             CheckComboDefaultItem(cbTSBs);
             CheckComboDefaultItem(cbStatus);
             CheckComboDefaultItem(cbShifts);
+
+            txtStockBalance.Text = "0"; // clear stock.
+            grid.ItemsSource = null; // clear grid.
         }
 
         private void CheckComboDefaultItem(ComboBox cb)
@@ -224,7 +227,7 @@ namespace DMT.TA.Pages.Coupon
             LoadTSBs(); // TollwayId
             LoadShifts();
             LoadInquiryStatus();
-            Reset();
+            ClearInputs();
 
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>

@@ -243,13 +243,23 @@
                                      TextAlignment="Center" />
                             <Button x:Name="cmdSearch"
                                     Grid.Row="7"
-                                    Grid.Column="4"
+                                    Grid.Column="5"
                                     Grid.ColumnSpan="3"
                                     Width="150"
                                     Height="30"
                                     VerticalAlignment="Center"
                                     Click="cmdSearch_Click"
                                     Content="แสดงข้อมูล"
+                                    FontSize="{StaticResource InputFontSize18}"
+                                    Style="{DynamicResource InlineButton}" />
+                            <Button x:Name="cmdClear"
+                                    Grid.Row="7"
+                                    Grid.Column="8"
+                                    Width="150"
+                                    Height="30"
+                                    VerticalAlignment="Center"
+                                    Click="cmdClear_Click"
+                                    Content="เคลียร์"
                                     FontSize="{StaticResource InputFontSize18}"
                                     Style="{DynamicResource InlineButton}" />
                         </Grid>
@@ -294,6 +304,12 @@
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource SAPARInvoice}"
                                                 Header="AR Invoice" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CouponSoldBy}"
+                                                Header="ขายโดย" />
+                                <GridViewColumn Width="80"
+                                                CellTemplate="{StaticResource CouponSoldLaneId}"
+                                                Header="เลน" />
                             </GridView>
                         </ListView.View>
                     </ListView>

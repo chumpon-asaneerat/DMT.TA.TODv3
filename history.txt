@@ -13,8 +13,12 @@ Refactor DMT.TA.TODv4 #2287
 Refactor DMT.TA.TODv4 #2286
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2285
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Fixed bug in declare assignment -> declareByName
+      - old use TSB Name -> new use Collector Name
 
 [commited]
 Refactor DMT.TA.TODv4 #2284

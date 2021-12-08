@@ -113,7 +113,7 @@ namespace DMT.Models.ExtensionMethods
             }
 
             inst.declareById = value.UserId;
-            inst.declareByName = value.TSBNameTH;
+            inst.declareByName = value.CollectorNameTH;
 
             // Lane information - Job List
             if (value.ShiftBegin.HasValue)

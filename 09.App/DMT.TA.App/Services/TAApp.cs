@@ -349,6 +349,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region Return Coupon
+
+            private static TA.Pages.Reports.ExchangeHistoryPreviewPage _ExchangeHistoryPage;
+
+            /// <summary>Gets Exchange History Page.</summary>
+            public static TA.Pages.Reports.ExchangeHistoryPreviewPage ExchangeHistory
+            {
+                get
+                {
+                    if (null == _ExchangeHistoryPage)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _ExchangeHistoryPage = new TA.Pages.Reports.ExchangeHistoryPreviewPage();
+                        }
+                    }
+                    return _ExchangeHistoryPage;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>
@@ -457,6 +479,21 @@ namespace DMT
                 get 
                 {
                     var ret = new TA.Windows.Exchange.ReceiveExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Exchange History
+
+            /// <summary>Gets Exchange History Search Window.</summary>
+            public static TA.Windows.Reports.ExchangeHistorySearchWindow ExchangeHistorySearch
+            {
+                get
+                {
+                    var ret = new TA.Windows.Reports.ExchangeHistorySearchWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

@@ -281,6 +281,9 @@
     <Compile Include="TA\Pages\Menu\ReportMenu.xaml.cs">
       <DependentUpon>ReportMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Pages\Reports\ExchangeHistoryPreviewPage.xaml.cs">
+      <DependentUpon>ExchangeHistoryPreviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Coupon\CollectorCouponBorrowWindow.xaml.cs">
       <DependentUpon>CollectorCouponBorrowWindow.xaml</DependentUpon>
     </Compile>
@@ -475,6 +478,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Pages\Menu\ReportMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Pages\Reports\ExchangeHistoryPreviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

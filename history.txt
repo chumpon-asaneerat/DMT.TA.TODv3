@@ -7,8 +7,11 @@ Refactor DMT.TA.TODv4 #2289
 Refactor DMT.TA.TODv4 #2288
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2287
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements Exchange history reports #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2286

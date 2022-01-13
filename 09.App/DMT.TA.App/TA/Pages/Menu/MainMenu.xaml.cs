@@ -120,11 +120,24 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // รายงานสรุปการยืมเงินทอน
-            /*
-            var page = new Reports.CollectorFundSummaryReportPage();
-            page.Setup(TAApp.User.Current);
+            var win = TAApp.Windows.ExchangeHistorySearch;
+            win.Setup(TAApp.User.Current);
+            if (win.ShowDialog() == false) return;
+            if (win.ExchangeHistories == null)
+            {
+                // write log
+                med.Info("ไม่พบรายการ ในวันที่เลือก.");
+
+                // No Selected Entry.
+                var msg = TAApp.Windows.MessageBox;
+                msg.Setup("ไม่พบรายการ ในวันที่เลือก", "DMT - Tour of Duty");
+                msg.ShowDialog();
+                return;
+            }
+
+            var page = TAApp.Pages.ExchangeHistory;
+            page.Setup(TAApp.User.Current, win.ExchangeHistories);
             PageContentManager.Instance.Current = page;
-            */
         }
 
         // OK - เงินยืมทอน (collector)

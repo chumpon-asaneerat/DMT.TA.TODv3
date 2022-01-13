@@ -308,6 +308,9 @@
     <Compile Include="TA\Windows\Plaza\PlazaBalanceSummaryWindow.xaml.cs">
       <DependentUpon>PlazaBalanceSummaryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Reports\ExchangeHistorySearchWindow.xaml.cs">
+      <DependentUpon>ExchangeHistorySearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Utils\SplashScreenWindow.xaml.cs">
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
@@ -511,6 +514,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TA\Windows\Reports\ExchangeHistorySearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TA\Windows\Utils\SplashScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -536,6 +543,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TA\Reports\CollectorCouponReceived.rdlc" />
     <EmbeddedResource Include="TA\Reports\CouponSalesReceiptRep.rdlc" />
+    <EmbeddedResource Include="TA\Reports\ExchangeHistoryReport.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\DataSources\DMT.Models.RevenueEntry.datasource" />
     <None Include="Properties\DataSources\DMT.Models.TSBCouponSummary.datasource" />

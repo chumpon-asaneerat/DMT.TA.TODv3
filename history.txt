@@ -10,8 +10,13 @@ Refactor DMT.TA.TODv4 #2288
 Refactor DMT.TA.TODv4 #2287
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2286
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements Exchange history reports #1.
+  - DMT.TOD.App project
+    - Remove unused code in RevenueSummarySearchWindow.
 
 [commited]
 Refactor DMT.TA.TODv4 #2285

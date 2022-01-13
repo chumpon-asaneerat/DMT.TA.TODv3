@@ -22,19 +22,19 @@ using System.Windows.Threading;
 
 #endregion
 
-namespace DMT.TOD.Windows.Reports
+namespace DMT.TA.Windows.Reports
 {
     /// <summary>
-    /// Interaction logic for RevenueSummarySearchWindow.xaml
+    /// Interaction logic for ExchangeHistorySearchWindow.xaml
     /// </summary>
-    public partial class RevenueSummarySearchWindow : Window
+    public partial class ExchangeHistorySearchWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public RevenueSummarySearchWindow()
+        public ExchangeHistorySearchWindow()
         {
             InitializeComponent();
         }
@@ -65,7 +65,7 @@ namespace DMT.TOD.Windows.Reports
 
         private void cmdOK_Click(object sender, RoutedEventArgs e)
         {
-            LoadRevenues();
+            LoadExchangeHistory();
             DialogResult = true;
         }
 
@@ -87,13 +87,15 @@ namespace DMT.TOD.Windows.Reports
 
         #region Private Methods
 
-        private void LoadRevenues()
+        private void LoadExchangeHistory()
         {
-            Revenues = null;
+            ExchangeHistories = null;
             if (!dtDate.Value.HasValue) return;
             var dt = dtDate.Value.Value.Date;
+            /*
             int? shiftId = new int?(); // all shift.
             Revenues = RevenueEntry.FindByRevnueDate(dt, shiftId).Value();
+            */
         }
 
         #endregion
@@ -116,9 +118,9 @@ namespace DMT.TOD.Windows.Reports
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets Selected Revenue Entry.
+        /// Gets or sets Selected Exchange Histories.
         /// </summary>
-        public List<Models.RevenueEntry> Revenues { get; private set; }
+        public List<Models.RevenueEntry> ExchangeHistories { get; private set; }
 
         #endregion
     }

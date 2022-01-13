@@ -205,5 +205,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Coupons\UserCouponSoldByLaneTransactionView.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditHistoryView.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

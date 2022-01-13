@@ -2006,6 +2006,7 @@ namespace DMT.Services
             InitView("UserCreditReturnSummaryView", 1, prefix);
             // !!! Required UserCreditBorrowSummaryView and UserCreditBorrowSummaryView
             InitView("UserCreditSummaryView", 1, prefix);
+            InitView("UserCreditHistoryView", 1, prefix);
 
             InitView("TSBCreditTransactionView", 1, prefix);
             // User Total.

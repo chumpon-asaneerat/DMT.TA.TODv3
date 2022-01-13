@@ -25,16 +25,16 @@ using System.Windows.Threading;
 namespace DMT.TA.Windows.Reports
 {
     /// <summary>
-    /// Interaction logic for ExchangeHistorySearchWindow.xaml
+    /// Interaction logic for CreditTransactionHistorySearchWindow.xaml
     /// </summary>
-    public partial class ExchangeHistorySearchWindow : Window
+    public partial class CreditTransactionHistorySearchWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ExchangeHistorySearchWindow()
+        public CreditTransactionHistorySearchWindow()
         {
             InitializeComponent();
         }

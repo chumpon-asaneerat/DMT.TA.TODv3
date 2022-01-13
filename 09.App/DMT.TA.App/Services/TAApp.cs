@@ -350,23 +350,23 @@ namespace DMT
 
             #endregion
 
-            #region Return Coupon
+            #region Credit Transaction History
 
-            private static TA.Pages.Reports.ExchangeHistoryPreviewPage _ExchangeHistoryPage;
+            private static TA.Pages.Reports.CreditTransactionHistoryPreviewPage _CreditTransactionHistory;
 
-            /// <summary>Gets Exchange History Page.</summary>
-            public static TA.Pages.Reports.ExchangeHistoryPreviewPage ExchangeHistory
+            /// <summary>Gets Credit History Page.</summary>
+            public static TA.Pages.Reports.CreditTransactionHistoryPreviewPage CreditTransactionHistory
             {
                 get
                 {
-                    if (null == _ExchangeHistoryPage)
+                    if (null == _CreditTransactionHistory)
                     {
                         lock (typeof(TAApp))
                         {
-                            _ExchangeHistoryPage = new TA.Pages.Reports.ExchangeHistoryPreviewPage();
+                            _CreditTransactionHistory = new TA.Pages.Reports.CreditTransactionHistoryPreviewPage();
                         }
                     }
-                    return _ExchangeHistoryPage;
+                    return _CreditTransactionHistory;
                 }
             }
 
@@ -486,14 +486,14 @@ namespace DMT
 
             #endregion
 
-            #region Exchange History
+            #region Credit Transaction History SearchWindow History
 
-            /// <summary>Gets Exchange History Search Window.</summary>
-            public static TA.Windows.Reports.ExchangeHistorySearchWindow ExchangeHistorySearch
+            /// <summary>Gets Credit Transaction History Search Window.</summary>
+            public static TA.Windows.Reports.CreditTransactionHistorySearchWindow CreditTransactionHistorySearch
             {
                 get
                 {
-                    var ret = new TA.Windows.Reports.ExchangeHistorySearchWindow();
+                    var ret = new TA.Windows.Reports.CreditTransactionHistorySearchWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

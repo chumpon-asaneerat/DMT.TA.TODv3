@@ -18,22 +18,21 @@ using System.Reflection;
 namespace DMT.TA.Pages.Reports
 {
     /// <summary>
-    /// Interaction logic for ExchangeHistoryPreviewPage.xaml
+    /// Interaction logic for CreditTransactionHistoryPreviewPage.xaml
     /// </summary>
-    public partial class ExchangeHistoryPreviewPage : UserControl
+    public partial class CreditTransactionHistoryPreviewPage : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ExchangeHistoryPreviewPage()
+        public CreditTransactionHistoryPreviewPage()
         {
             InitializeComponent();
         }
 
         #endregion
-
 
         #region Internal Variables
 
@@ -103,7 +102,7 @@ namespace DMT.TA.Pages.Reports
             // Set Display Name (default file name).
             inst.DisplayName = ReportDisplayName;
 
-            inst.Definition.EmbededReportName = "DMT.TA.Reports.ExchangeHistoryReport.rdlc";
+            inst.Definition.EmbededReportName = "DMT.TA.Reports.CreditTransactionHistoryReport.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
             // clear reprot datasource.

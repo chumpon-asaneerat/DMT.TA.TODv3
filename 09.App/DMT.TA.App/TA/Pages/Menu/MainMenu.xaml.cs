@@ -120,7 +120,7 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // รายงานสรุปการยืมเงินทอน
-            var win = TAApp.Windows.ExchangeHistorySearch;
+            var win = TAApp.Windows.CreditTransactionHistorySearch;
             win.Setup(TAApp.User.Current);
             if (win.ShowDialog() == false) return;
             if (win.ExchangeHistories == null)
@@ -135,7 +135,7 @@ namespace DMT.TA.Pages.Menu
                 return;
             }
 
-            var page = TAApp.Pages.ExchangeHistory;
+            var page = TAApp.Pages.CreditTransactionHistory;
             page.Setup(TAApp.User.Current, win.ExchangeHistories);
             PageContentManager.Instance.Current = page;
         }

@@ -126,6 +126,7 @@
     <Compile Include="Models\Plaza\Credit\TSB\TSBCreditBanalce.cs" />
     <Compile Include="Models\Plaza\Credit\TSB\TSBCreditTransaction.cs" />
     <Compile Include="Models\Plaza\Credit\User\UserCreditBalance.cs" />
+    <Compile Include="Models\Plaza\Credit\User\UserCreditHistory.cs" />
     <Compile Include="Models\Plaza\Credit\User\UserCreditTransaction.cs" />
     <Compile Include="Models\Plaza\Exchange\TSBExchangeGroup.cs" />
     <Compile Include="Models\Plaza\Exchange\TSBExchangeTransaction.cs" />

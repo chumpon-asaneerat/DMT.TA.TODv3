@@ -25,8 +25,12 @@ Refactor DMT.TA.TODv4 #2293
 Refactor DMT.TA.TODv4 #2292
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2291
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements Exchange history reports #5.
+      - Add UserCreditHistory model class.
 
 [commited]
 Refactor DMT.TA.TODv4 #2290

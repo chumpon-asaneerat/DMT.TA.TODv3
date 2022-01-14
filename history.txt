@@ -22,8 +22,12 @@ Refactor DMT.TA.TODv4 #2294
 Refactor DMT.TA.TODv4 #2293
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2292
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements Exchange history reports #6.
+      - Add UserCreditBalanceEx.txt file - example for find tsb shift from specificed date.
 
 [commited]
 Refactor DMT.TA.TODv4 #2291

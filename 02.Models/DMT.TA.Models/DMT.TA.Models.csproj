@@ -208,5 +208,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Credits\UserCreditHistoryView.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Scripts\Credits\UserCreditBalanceEx.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

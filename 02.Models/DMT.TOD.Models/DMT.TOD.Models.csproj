@@ -133,5 +133,14 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Scripts\Infrastructures\PlazaView.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftSSView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftSSFixedNullBeginView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\UserShiftSSFixedNullEndView.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

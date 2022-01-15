@@ -19,8 +19,17 @@ Refactor DMT.TA.TODv4 #2295
 Refactor DMT.TA.TODv4 #2294
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2293
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Add UserCreditHistoryView view (on progress)
+    - Update code to init new views in database
+  - DMT.TOD.App project
+    - Add UserShiftSSFixedNullBeginView view
+    - Add UserShiftSSFixedNullEndView view
+    - Add UserShiftSSView view
+    - Update code to init new views in database
 
 [commited]
 Refactor DMT.TA.TODv4 #2292

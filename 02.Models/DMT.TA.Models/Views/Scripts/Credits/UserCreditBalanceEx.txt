@@ -24,7 +24,7 @@
 	    SELECT TSBShift.TSBId
 		     , TSBShift.ShiftId AS TSBShiftId
 		     , IFNULL(TSBShift.Begin, (SELECT MAX(End) FROM TSBShift)) AS TSBShiftBegin
-			 , IFNULL(TSBShift.End, strftime('%Y-%m-%dT%H:%M:%f', 'now')) AS TSBShiftEnd
+			 , IFNULL(TSBShift.End, strftime('%Y-%m-%dT%H:%M:%f', 'now', 'localtime')) AS TSBShiftEnd
 			 , TSBShift.UserId AS ChiefId
 			 , TSBShift.FullNameEN AS ChiefNameEN
 			 , TSBShift.FullNameTH AS ChiefNameTH

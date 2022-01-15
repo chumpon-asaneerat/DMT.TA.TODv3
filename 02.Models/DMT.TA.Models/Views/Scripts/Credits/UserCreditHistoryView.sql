@@ -38,10 +38,10 @@ AS
 	 WHERE B.TSBId = R.TSBId
 	   AND B.PlazaGroupId = R.PlazaGroupId
 	   AND B.UserId = R.UserId
-	   AND STRFTIME('%Y-%m-%d %H:%M:%S.%f', B.UserCreditDate) >= STRFTIME('%Y-%m-%d 00:00:00.000', B.UserCreditDate)
-	   AND STRFTIME('%Y-%m-%d %H:%M:%S.%f', B.UserCreditDate) <= STRFTIME('%Y-%m-%d 23:59:59.999', B.UserCreditDate)
-	   AND STRFTIME('%Y-%m-%d %H:%M:%S.%f', R.UserCreditDate) >= STRFTIME('%Y-%m-%d 00:00:00.000', R.UserCreditDate)
-	   AND STRFTIME('%Y-%m-%d %H:%M:%S.%f', R.UserCreditDate) <= STRFTIME('%Y-%m-%d 23:59:59.999', R.UserCreditDate)
+	   AND STRFTIME('%Y-%m-%d %H:%M:%f', B.UserCreditDate) >= STRFTIME('%Y-%m-%d 00:00:00.000', B.UserCreditDate)
+	   AND STRFTIME('%Y-%m-%d %H:%M:%f', B.UserCreditDate) <= STRFTIME('%Y-%m-%d 23:59:59.999', B.UserCreditDate)
+	   AND STRFTIME('%Y-%m-%d %H:%M:%f', R.UserCreditDate) >= STRFTIME('%Y-%m-%d 00:00:00.000', R.UserCreditDate)
+	   AND STRFTIME('%Y-%m-%d %H:%M:%f', R.UserCreditDate) <= STRFTIME('%Y-%m-%d 23:59:59.999', R.UserCreditDate)
 	 GROUP BY B.TSBId
 		 , B.PlazaGroupId
 		 , STRFTIME('%Y-%m-%d', B.UserCreditDate)

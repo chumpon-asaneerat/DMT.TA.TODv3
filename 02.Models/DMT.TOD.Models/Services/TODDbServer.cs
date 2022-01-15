@@ -1991,6 +1991,10 @@ namespace DMT.Services
             InitView("TSBShiftView", 1, prefix);
             InitView("UserShiftView", 1, prefix);
             InitView("UserShiftRevenueView", 1, prefix);
+            // Fixed null begin/end time
+            InitView("UserShiftSSFixedNullBeginView", 1, prefix);
+            InitView("UserShiftSSFixedNullEndView", 1, prefix);
+            InitView("UserShiftSSView", 1, prefix); // required 2 views above.
 
             // Revenues - Embeded resource used . instead / to access sub contents.
             prefix = @"Revenues";

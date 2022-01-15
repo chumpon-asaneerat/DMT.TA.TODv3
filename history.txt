@@ -1,4 +1,9 @@
-﻿Refactor DMT.TA.TODv4 #2300
+﻿[TODO]
+- < TOD >
+  [ ] UserShiftView need to modify to used UserShiftSSFixedNullBeginView instead of UserShift
+  [ ] Need to recheck all UserShift model methods for make sure all code work after changed.
+
+Refactor DMT.TA.TODv4 #2300
 - 
 
 Refactor DMT.TA.TODv4 #2299
@@ -13,11 +18,26 @@ Refactor DMT.TA.TODv4 #2297
 Refactor DMT.TA.TODv4 #2296
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2295
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements Exchange history reports #6.
+      - Add TSBShiftSSView.
+      - Add UserCreditBalanceSSView.
+      - Update UserCreditHistoryView.
+      - Update UserCreditHistory model class.
+      - Update Credit History Report.
+  - DMT.TOD.App project
+    - Update code to init new views in database
 
+[commited]
 Refactor DMT.TA.TODv4 #2294
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Add TSBShiftSSView view
+    - Add UserCreditBalanceSSView view
+    - Update code to init new views in database
 
 [commited]
 Refactor DMT.TA.TODv4 #2293

@@ -89,13 +89,12 @@ namespace DMT.TA.Windows.Reports
 
         private void LoadExchangeHistory()
         {
+            CreditDate = new DateTime?();
             ExchangeHistories = null;
             if (!dtDate.Value.HasValue) return;
             var dt = dtDate.Value.Value.Date;
-            /*
-            int? shiftId = new int?(); // all shift.
-            Revenues = RevenueEntry.FindByRevnueDate(dt, shiftId).Value();
-            */
+            CreditDate = dt;
+            ExchangeHistories = UserCreditHistory.GetUserCreditHistories(dt).Value();
         }
 
         #endregion
@@ -118,9 +117,13 @@ namespace DMT.TA.Windows.Reports
         #region Public Properties
 
         /// <summary>
+        /// Gets Credit Date.
+        /// </summary>
+        public DateTime? CreditDate { get; private set; }
+        /// <summary>
         /// Gets or sets Selected Exchange Histories.
         /// </summary>
-        public List<Models.RevenueEntry> ExchangeHistories { get; private set; }
+        public List<Models.UserCreditHistory> ExchangeHistories { get; private set; }
 
         #endregion
     }

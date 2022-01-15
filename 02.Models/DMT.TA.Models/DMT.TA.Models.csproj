@@ -209,7 +209,10 @@
     <EmbeddedResource Include="Views\Scripts\Credits\UserCreditHistoryView.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditBalanceEx.txt" />
+    <EmbeddedResource Include="Views\Scripts\Credits\UserCreditBalanceSSView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Scripts\Shifts\TSBShiftSSView.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

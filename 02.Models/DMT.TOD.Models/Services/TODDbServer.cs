@@ -1989,12 +1989,13 @@ namespace DMT.Services
             // Shifts - Embeded resource used . instead / to access sub contents.
             prefix = @"Shifts";
             InitView("TSBShiftView", 1, prefix);
-            InitView("UserShiftView", 1, prefix);
-            InitView("UserShiftRevenueView", 1, prefix);
             // Fixed null begin/end time
             InitView("UserShiftSSFixedNullBeginView", 1, prefix);
             InitView("UserShiftSSFixedNullEndView", 1, prefix);
             InitView("UserShiftSSView", 1, prefix); // required 2 views above.
+            // TODO: UserShiftView need to modify to used UserShiftSSFixedNullBeginView instead of UserShift table
+            InitView("UserShiftView", 1, prefix);
+            InitView("UserShiftRevenueView", 1, prefix);
 
             // Revenues - Embeded resource used . instead / to access sub contents.
             prefix = @"Revenues";

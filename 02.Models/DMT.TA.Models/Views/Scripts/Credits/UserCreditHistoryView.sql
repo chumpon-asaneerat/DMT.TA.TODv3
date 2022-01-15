@@ -1,14 +1,23 @@
 ﻿CREATE VIEW UserCreditHistoryView
 AS
-	SELECT STRFTIME('%Y-%m-%d', B.UserCreditDate) AS CreditDate
-		 , B.UserId
-		 , B.FullNameEN
-		 , B.FullNameTH
-		 , B.TSBId
-		 , B.TSBNameEN
-		 , B.TSBNameTH
-		 , B.PlazaGroupId
-		 , B.PlazaGroupNameEN, B.PlazaGroupNameTH, B.Direction 
+	SELECT C.UserCreditId
+	     , strftime('%Y-%m-%d', C.UserCreditDate, 'localtime') AS BagCreateDate
+		 , C.UserId
+		 , C.FullNameEN
+		 , C.FullNameTH
+		 , C.BagNo
+		 , C.BeltNo
+		 -- TOTAL BORROW/RETURN
+		 , SUM(  B.AmountST25 + B.AmountST50
+		       + B.AmountBHT1 + B.AmountBHT2 + B.AmountBHT5
+		       + B.AmountBHT10 + B.AmountBHT20 + B.AmountBHT50
+		       + B.AmountBHT100 + B.AmountBHT500
+		       + B.AmountBHT1000) AS BorrowBHTTotal
+		 , SUM(  R.AmountST25 + R.AmountST50
+		       + R.AmountBHT1 + R.AmountBHT2 + R.AmountBHT5
+		       + R.AmountBHT10 + R.AmountBHT20 + R.AmountBHT50
+		       + R.AmountBHT100 + R.AmountBHT500
+		       + R.AmountBHT1000) AS ReturnBHTTotal
 		 -- BORROWS
 		 , SUM(B.AmountST25) AS BorrowST25
 		 , SUM(B.AmountST50) AS BorrowST50
@@ -33,21 +42,18 @@ AS
 		 , SUM(R.AmountBHT100) AS ReturnBHT100
 		 , SUM(R.AmountBHT500) AS ReturnBHT500
 		 , SUM(R.AmountBHT1000) AS ReturnBHT1000
-	  FROM UserCreditBorrowSummaryView B,
-		   UserCreditReturnSummaryView R
-	 WHERE B.TSBId = R.TSBId
-	   AND B.PlazaGroupId = R.PlazaGroupId
-	   AND B.UserId = R.UserId
-	   AND STRFTIME('%Y-%m-%d %H:%M:%f', B.UserCreditDate) >= STRFTIME('%Y-%m-%d 00:00:00.000', B.UserCreditDate)
-	   AND STRFTIME('%Y-%m-%d %H:%M:%f', B.UserCreditDate) <= STRFTIME('%Y-%m-%d 23:59:59.999', B.UserCreditDate)
-	   AND STRFTIME('%Y-%m-%d %H:%M:%f', R.UserCreditDate) >= STRFTIME('%Y-%m-%d 00:00:00.000', R.UserCreditDate)
-	   AND STRFTIME('%Y-%m-%d %H:%M:%f', R.UserCreditDate) <= STRFTIME('%Y-%m-%d 23:59:59.999', R.UserCreditDate)
-	 GROUP BY B.TSBId
-		 , B.PlazaGroupId
-		 , STRFTIME('%Y-%m-%d', B.UserCreditDate)
-		 , B.UserId
-	 ORDER BY B.TSBId
-		 , B.PlazaGroupId
-		 , B.UserCreditDate
-		 , B.UserId
-   
+		 , C.TSBId
+		 , C.TSBNameEN
+		 , C.TSBNameTH
+		 , C.PlazaGroupId
+		 , C.PlazaGroupNameEN
+		 , C.PlazaGroupNameTH
+	  FROM UserCreditBalanceSSView C
+	     , UserCreditBorrowSummaryView B
+	     , UserCreditReturnSummaryView R
+	 WHERE B.UserCreditId = C.UserCreditId
+	   AND R.UserCreditId = C.UserCreditId
+	 GROUP BY C.UserCreditId
+	     , BagCreateDate
+	 ORDER BY C.UserCreditId
+	        , BagCreateDate

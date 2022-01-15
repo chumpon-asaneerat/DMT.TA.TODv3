@@ -37,7 +37,8 @@ namespace DMT.TA.Pages.Reports
         #region Internal Variables
 
         private User _user = null;
-        private List<Models.RevenueEntry> _histories = null;
+        private DateTime? _creditDate = new DateTime?();
+        private List<Models.UserCreditHistory> _histories = null;
 
         #endregion
 
@@ -108,7 +109,7 @@ namespace DMT.TA.Pages.Reports
             // clear reprot datasource.
             inst.DataSources.Clear();
 
-            List<RevenueEntry> items = new List<RevenueEntry>();
+            List<UserCreditHistory> items = new List<UserCreditHistory>();
             if (null != _histories)
             {
                 items.AddRange(_histories); // Add new because is blank.
@@ -122,6 +123,10 @@ namespace DMT.TA.Pages.Reports
             inst.DataSources.Add(mainDS);
 
             // Add parameters (if required).
+            string creditSDate = (_creditDate.HasValue) ? 
+                _creditDate.Value.ToThaiDateTimeString("dd/MM/yyyy") : string.Empty;
+            inst.Parameters.Add(RdlcReportParameter.Create("CreditDate", creditSDate));
+
             DateTime today = DateTime.Now;
             string printDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
             inst.Parameters.Add(RdlcReportParameter.Create("PrintDate", printDate));
@@ -139,10 +144,12 @@ namespace DMT.TA.Pages.Reports
         /// Setup.
         /// </summary>
         /// <param name="user">The user instance.</param>
-        /// <param name="histories">The Exchange Histories instance.</param>
-        public void Setup(User user, List<Models.RevenueEntry> histories)
+        /// <param name="creditDate">The selected date instance.</param>
+        /// <param name="histories">The User Credit Histories instance.</param>
+        public void Setup(User user, DateTime? creditDate, List<Models.UserCreditHistory> histories)
         {
             _user = user;
+            _creditDate = creditDate;
             _histories = histories;
             if (null != _user && null != _histories)
             {

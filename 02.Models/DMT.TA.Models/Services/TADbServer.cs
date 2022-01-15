@@ -1994,6 +1994,7 @@ namespace DMT.Services
             // Shifts - Embeded resource used . instead / to access sub contents.
             prefix = @"Shifts";
             InitView("TSBShiftView", 1, prefix);
+            InitView("TSBShiftSSView", 1, prefix);
 
             // Revenues - Embeded resource used . instead / to access sub contents.
             prefix = @"Revenues";
@@ -2006,7 +2007,9 @@ namespace DMT.Services
             InitView("UserCreditReturnSummaryView", 1, prefix);
             // !!! Required UserCreditBorrowSummaryView and UserCreditBorrowSummaryView
             InitView("UserCreditSummaryView", 1, prefix);
-            InitView("UserCreditHistoryView", 1, prefix);
+
+            InitView("UserCreditBalanceSSView", 1, prefix);
+            InitView("UserCreditHistoryView", 1, prefix); // required UserCreditBalanceSSView
 
             InitView("TSBCreditTransactionView", 1, prefix);
             // User Total.

@@ -136,7 +136,7 @@ namespace DMT.TA.Pages.Menu
             }
 
             var page = TAApp.Pages.CreditTransactionHistory;
-            page.Setup(TAApp.User.Current, win.ExchangeHistories);
+            page.Setup(TAApp.User.Current, win.CreditDate, win.ExchangeHistories);
             PageContentManager.Instance.Current = page;
         }
 

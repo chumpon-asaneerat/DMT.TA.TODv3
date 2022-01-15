@@ -15,8 +15,16 @@ Refactor DMT.TA.TODv4 #2298
 Refactor DMT.TA.TODv4 #2297
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2296
-- 
+- DMT.TAxTODv3
+  - DMT.SCW.Rest.Client
+    - SCW operation class
+      - add all execute overload method to supports timeout.
+    - TOD operation class
+      - declare method set timeout to 5000 ms.
+  - Update app version
+  - Update version history.
 
 [commited]
 Refactor DMT.TA.TODv4 #2295

@@ -89,7 +89,7 @@ namespace DMT.Services.Operations
             public static SCWDeclareResult declare(SCWDeclare value)
             {
                 var ret = Execute<SCWDeclareResult>(
-                    RouteConsts.SCW.TOD.declare.Url, value);
+                    RouteConsts.SCW.TOD.declare.Url, value, 5000);
                 return ret;
             }
         }

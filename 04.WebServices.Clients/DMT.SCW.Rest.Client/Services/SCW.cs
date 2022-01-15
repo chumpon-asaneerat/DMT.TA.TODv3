@@ -53,6 +53,25 @@ namespace DMT.Services.Operations
         /// </summary>
         /// <typeparam name="TResult">The Result type paramter.</typeparam>
         /// <param name="url">The api url.</param>
+        /// <param name="timeout">The timeout in millisecond.</param>
+        /// <returns>Returns TResult instance.</returns>
+        public static TResult Execute<TResult>(string url, int timeout)
+            where TResult : SCWResult, new()
+        {
+            TResult ret = default(TResult);
+            NRestClient client = GetClient();
+            if (null != client)
+            {
+                ret = client.Execute2<TResult>(url, new { }, timeout, UserName, Password);
+            }
+            return ret;
+
+        }
+        /// <summary>
+        /// Execute.
+        /// </summary>
+        /// <typeparam name="TResult">The Result type paramter.</typeparam>
+        /// <param name="url">The api url.</param>
         /// <param name="value">The parameter object.</param>
         /// <returns>Returns TResult instance.</returns>
         public static TResult Execute<TResult>(string url, object value)
@@ -78,6 +97,33 @@ namespace DMT.Services.Operations
         /// Execute.
         /// </summary>
         /// <typeparam name="TResult">The Result type paramter.</typeparam>
+        /// <param name="url">The api url.</param>
+        /// <param name="value">The parameter object.</param>
+        /// <param name="timeout">The timeout in millisecond.</param>
+        /// <returns>Returns TResult instance.</returns>
+        public static TResult Execute<TResult>(string url, object value, int timeout)
+            where TResult : SCWResult, new()
+        {
+            TResult ret = default(TResult);
+            NRestClient client = GetClient();
+            if (null != client)
+            {
+                if (null != value)
+                {
+                    ret = client.Execute2<TResult>(url, value, timeout, UserName, Password);
+                }
+                else
+                {
+                    ret = client.Execute2<TResult>(url, new { }, timeout, UserName, Password);
+                }
+            }
+            return ret;
+
+        }
+        /// <summary>
+        /// Execute.
+        /// </summary>
+        /// <typeparam name="TResult">The Result type paramter.</typeparam>
         /// <typeparam name="TValue">The Value type parameter.</typeparam>
         /// <param name="url">The api url.</param>
         /// <param name="value">The parameter object.</param>
@@ -90,6 +136,27 @@ namespace DMT.Services.Operations
             if (null != client && null != value)
             {
                 ret = client.Execute2<TResult>(url, value, Timeout, UserName, Password);
+            }
+            return ret;
+
+        }
+        /// <summary>
+        /// Execute.
+        /// </summary>
+        /// <typeparam name="TResult">The Result type paramter.</typeparam>
+        /// <typeparam name="TValue">The Value type parameter.</typeparam>
+        /// <param name="url">The api url.</param>
+        /// <param name="value">The parameter object.</param>
+        /// <param name="timeout">The timeout in millisecond.</param>
+        /// <returns>Returns TResult instance.</returns>
+        public static TResult Execute<TResult, TValue>(string url, TValue value, int timeout)
+            where TResult : SCWResult, new()
+        {
+            TResult ret = default(TResult);
+            NRestClient client = GetClient();
+            if (null != client && null != value)
+            {
+                ret = client.Execute2<TResult>(url, value, timeout, UserName, Password);
             }
             return ret;
 

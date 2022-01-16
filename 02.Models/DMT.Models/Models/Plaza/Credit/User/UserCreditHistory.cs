@@ -450,10 +450,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of .25 baht coin.")]
-		[PropertyMapName("BorrowAmountST25")]
+		[PropertyMapName("BorrowST25")]
 		[Ignore]
 		[PropertyOrder(21)]
-		public virtual decimal BorrowAmountST25
+		public virtual decimal BorrowST25
 		{
 			get { return _BorrowAmtST25; }
 			set
@@ -462,7 +462,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtST25 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountST25");
+					this.RaiseChanged("BorrowST25");
 				}
 			}
 		}
@@ -471,10 +471,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of .50 baht coin.")]
-		[PropertyMapName("BorrowAmountST50")]
+		[PropertyMapName("BorrowST50")]
 		[Ignore]
 		[PropertyOrder(22)]
-		public virtual decimal BorrowAmountST50
+		public virtual decimal BorrowST50
 		{
 			get { return _BorrowAmtST50; }
 			set
@@ -483,7 +483,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtST50 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountST50");
+					this.RaiseChanged("BorrowST50");
 				}
 			}
 		}
@@ -492,10 +492,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 1 baht coin.")]
-		[PropertyMapName("BorrowAmountBHT1")]
+		[PropertyMapName("BorrowBHT1")]
 		[Ignore]
 		[PropertyOrder(23)]
-		public virtual decimal BorrowAmountBHT1
+		public virtual decimal BorrowBHT1
 		{
 			get { return _BorrowAmtBHT1; }
 			set
@@ -504,7 +504,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT1 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT1");
+					this.RaiseChanged("BorrowBHT1");
 				}
 			}
 		}
@@ -513,10 +513,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 2 baht coin.")]
-		[PropertyMapName("BorrowAmountBHT2")]
+		[PropertyMapName("BorrowBHT2")]
 		[Ignore]
 		[PropertyOrder(24)]
-		public virtual decimal BorrowAmountBHT2
+		public virtual decimal BorrowBHT2
 		{
 			get { return _BorrowAmtBHT2; }
 			set
@@ -525,7 +525,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT2 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT2");
+					this.RaiseChanged("BorrowBHT2");
 				}
 			}
 		}
@@ -534,10 +534,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 5 baht coin.")]
-		[PropertyMapName("BorrowAmountBHT5")]
+		[PropertyMapName("BorrowBHT5")]
 		[Ignore]
 		[PropertyOrder(25)]
-		public virtual decimal BorrowAmountBHT5
+		public virtual decimal BorrowBHT5
 		{
 			get { return _BorrowAmtBHT5; }
 			set
@@ -546,7 +546,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT5 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT5");
+					this.RaiseChanged("BorrowBHT5");
 				}
 			}
 		}
@@ -555,10 +555,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 10 baht coin.")]
-		[PropertyMapName("BorrowAmountBHT10")]
+		[PropertyMapName("BorrowBHT10")]
 		[Ignore]
 		[PropertyOrder(26)]
-		public virtual decimal BorrowAmountBHT10
+		public virtual decimal BorrowBHT10
 		{
 			get { return _BorrowAmtBHT10; }
 			set
@@ -567,7 +567,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT10 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT10");
+					this.RaiseChanged("BorrowBHT10");
 				}
 			}
 		}
@@ -576,10 +576,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 20 baht bill.")]
-		[PropertyMapName("BorrowAmountBHT20")]
+		[PropertyMapName("BorrowBHT20")]
 		[Ignore]
 		[PropertyOrder(27)]
-		public virtual decimal BorrowAmountBHT20
+		public virtual decimal BorrowBHT20
 		{
 			get { return _BorrowAmtBHT20; }
 			set
@@ -588,7 +588,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT20 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT20");
+					this.RaiseChanged("BorrowBHT20");
 				}
 			}
 		}
@@ -597,10 +597,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 50 baht bill.")]
-		[PropertyMapName("BorrowAmountBHT50")]
+		[PropertyMapName("BorrowBHT50")]
 		[Ignore]
 		[PropertyOrder(28)]
-		public virtual decimal BorrowAmountBHT50
+		public virtual decimal BorrowBHT50
 		{
 			get { return _BorrowAmtBHT50; }
 			set
@@ -609,7 +609,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT50 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT50");
+					this.RaiseChanged("BorrowBHT50");
 				}
 			}
 		}
@@ -618,10 +618,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 100 baht bill.")]
-		[PropertyMapName("BorrowAmountBHT100")]
+		[PropertyMapName("BorrowBHT100")]
 		[Ignore]
 		[PropertyOrder(29)]
-		public virtual decimal BorrowAmountBHT100
+		public virtual decimal BorrowBHT100
 		{
 			get { return _BorrowAmtBHT100; }
 			set
@@ -630,7 +630,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT100 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT100");
+					this.RaiseChanged("BorrowBHT100");
 				}
 			}
 		}
@@ -639,10 +639,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 500 baht bill.")]
-		[PropertyMapName("BorrowAmountBHT500")]
+		[PropertyMapName("BorrowBHT500")]
 		[Ignore]
 		[PropertyOrder(30)]
-		public virtual decimal BorrowAmountBHT500
+		public virtual decimal BorrowBHT500
 		{
 			get { return _BorrowAmtBHT500; }
 			set
@@ -651,7 +651,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT500 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT500");
+					this.RaiseChanged("BorrowBHT500");
 				}
 			}
 		}
@@ -660,10 +660,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Borrow amount of 1000 baht bill.")]
-		[PropertyMapName("BorrowAmountBHT1000")]
+		[PropertyMapName("BorrowBHT1000")]
 		[Ignore]
 		[PropertyOrder(31)]
-		public virtual decimal BorrowAmountBHT1000
+		public virtual decimal BorrowBHT1000
 		{
 			get { return _BorrowAmtBHT1000; }
 			set
@@ -672,7 +672,7 @@ namespace DMT.Models
 				{
 					_BorrowAmtBHT1000 = value;
 					// Raise event.
-					this.RaiseChanged("BorrowAmountBHT1000");
+					this.RaiseChanged("BorrowBHT1000");
 				}
 			}
 		}
@@ -712,10 +712,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of .25 baht coin.")]
-		[PropertyMapName("ReturnAmountST25")]
+		[PropertyMapName("ReturnST25")]
 		[Ignore]
 		[PropertyOrder(21)]
-		public virtual decimal ReturnAmountST25
+		public virtual decimal ReturnST25
 		{
 			get { return _ReturnAmtST25; }
 			set
@@ -724,7 +724,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtST25 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountST25");
+					this.RaiseChanged("ReturnST25");
 				}
 			}
 		}
@@ -733,10 +733,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of .50 baht coin.")]
-		[PropertyMapName("ReturnAmountST50")]
+		[PropertyMapName("ReturnST50")]
 		[Ignore]
 		[PropertyOrder(22)]
-		public virtual decimal ReturnAmountST50
+		public virtual decimal ReturnST50
 		{
 			get { return _ReturnAmtST50; }
 			set
@@ -745,7 +745,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtST50 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountST50");
+					this.RaiseChanged("ReturnST50");
 				}
 			}
 		}
@@ -754,10 +754,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 1 baht coin.")]
-		[PropertyMapName("ReturnAmountBHT1")]
+		[PropertyMapName("ReturnBHT1")]
 		[Ignore]
 		[PropertyOrder(23)]
-		public virtual decimal ReturnAmountBHT1
+		public virtual decimal ReturnBHT1
 		{
 			get { return _ReturnAmtBHT1; }
 			set
@@ -766,7 +766,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT1 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT1");
+					this.RaiseChanged("ReturnBHT1");
 				}
 			}
 		}
@@ -775,10 +775,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 2 baht coin.")]
-		[PropertyMapName("ReturnAmountBHT2")]
+		[PropertyMapName("ReturnBHT2")]
 		[Ignore]
 		[PropertyOrder(24)]
-		public virtual decimal ReturnAmountBHT2
+		public virtual decimal ReturnBHT2
 		{
 			get { return _ReturnAmtBHT2; }
 			set
@@ -787,7 +787,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT2 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT2");
+					this.RaiseChanged("ReturnBHT2");
 				}
 			}
 		}
@@ -796,10 +796,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 5 baht coin.")]
-		[PropertyMapName("ReturnAmountBHT5")]
+		[PropertyMapName("ReturnBHT5")]
 		[Ignore]
 		[PropertyOrder(25)]
-		public virtual decimal ReturnAmountBHT5
+		public virtual decimal ReturnBHT5
 		{
 			get { return _ReturnAmtBHT5; }
 			set
@@ -808,7 +808,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT5 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT5");
+					this.RaiseChanged("ReturnBHT5");
 				}
 			}
 		}
@@ -817,10 +817,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 10 baht coin.")]
-		[PropertyMapName("ReturnAmountBHT10")]
+		[PropertyMapName("ReturnBHT10")]
 		[Ignore]
 		[PropertyOrder(26)]
-		public virtual decimal ReturnAmountBHT10
+		public virtual decimal ReturnBHT10
 		{
 			get { return _ReturnAmtBHT10; }
 			set
@@ -829,7 +829,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT10 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT10");
+					this.RaiseChanged("ReturnBHT10");
 				}
 			}
 		}
@@ -838,10 +838,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 20 baht bill.")]
-		[PropertyMapName("ReturnAmountBHT20")]
+		[PropertyMapName("ReturnBHT20")]
 		[Ignore]
 		[PropertyOrder(27)]
-		public virtual decimal ReturnAmountBHT20
+		public virtual decimal ReturnBHT20
 		{
 			get { return _ReturnAmtBHT20; }
 			set
@@ -850,7 +850,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT20 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT20");
+					this.RaiseChanged("ReturnBHT20");
 				}
 			}
 		}
@@ -859,10 +859,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 50 baht bill.")]
-		[PropertyMapName("ReturnAmountBHT50")]
+		[PropertyMapName("ReturnBHT50")]
 		[Ignore]
 		[PropertyOrder(28)]
-		public virtual decimal ReturnAmountBHT50
+		public virtual decimal ReturnBHT50
 		{
 			get { return _ReturnAmtBHT50; }
 			set
@@ -871,7 +871,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT50 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT50");
+					this.RaiseChanged("ReturnBHT50");
 				}
 			}
 		}
@@ -880,10 +880,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 100 baht bill.")]
-		[PropertyMapName("ReturnAmountBHT100")]
+		[PropertyMapName("ReturnBHT100")]
 		[Ignore]
 		[PropertyOrder(29)]
-		public virtual decimal ReturnAmountBHT100
+		public virtual decimal ReturnBHT100
 		{
 			get { return _ReturnAmtBHT100; }
 			set
@@ -892,7 +892,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT100 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT100");
+					this.RaiseChanged("ReturnBHT100");
 				}
 			}
 		}
@@ -901,10 +901,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 500 baht bill.")]
-		[PropertyMapName("ReturnAmountBHT500")]
+		[PropertyMapName("ReturnBHT500")]
 		[Ignore]
 		[PropertyOrder(30)]
-		public virtual decimal ReturnAmountBHT500
+		public virtual decimal ReturnBHT500
 		{
 			get { return _ReturnAmtBHT500; }
 			set
@@ -913,7 +913,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT500 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT500");
+					this.RaiseChanged("ReturnBHT500");
 				}
 			}
 		}
@@ -922,10 +922,10 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Coin/Bill (Amount)")]
 		[Description("Gets or sets Return amount of 1000 baht bill.")]
-		[PropertyMapName("ReturnAmountBHT1000")]
+		[PropertyMapName("ReturnBHT1000")]
 		[Ignore]
 		[PropertyOrder(31)]
-		public virtual decimal ReturnAmountBHT1000
+		public virtual decimal ReturnBHT1000
 		{
 			get { return _ReturnAmtBHT1000; }
 			set
@@ -934,7 +934,7 @@ namespace DMT.Models
 				{
 					_ReturnAmtBHT1000 = value;
 					// Raise event.
-					this.RaiseChanged("ReturnAmountBHT1000");
+					this.RaiseChanged("ReturnBHT1000");
 				}
 			}
 		}
@@ -1130,101 +1130,101 @@ namespace DMT.Models
 			/// <summary>
 			/// Gets or sets Borrow amount of .25 baht coin.
 			/// </summary>
-			[PropertyMapName("BorrowAmountST25")]
-			public override decimal BorrowAmountST25
+			[PropertyMapName("BorrowST25")]
+			public override decimal BorrowST25
 			{
-				get { return base.BorrowAmountST25; }
-				set { base.BorrowAmountST25 = value; }
+				get { return base.BorrowST25; }
+				set { base.BorrowST25 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of .50 baht coin.
 			/// </summary>
-			[PropertyMapName("BorrowAmountST50")]
-			public override decimal BorrowAmountST50
+			[PropertyMapName("BorrowST50")]
+			public override decimal BorrowST50
 			{
-				get { return base.BorrowAmountST50; }
-				set { base.BorrowAmountST50 = value; }
+				get { return base.BorrowST50; }
+				set { base.BorrowST50 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 1 baht coin.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT1")]
-			public override decimal BorrowAmountBHT1
+			[PropertyMapName("BorrowBHT1")]
+			public override decimal BorrowBHT1
 			{
-				get { return base.BorrowAmountBHT1; }
-				set { base.BorrowAmountBHT1 = value; }
+				get { return base.BorrowBHT1; }
+				set { base.BorrowBHT1 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 2 baht coin.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT2")]
-			public override decimal BorrowAmountBHT2
+			[PropertyMapName("BorrowBHT2")]
+			public override decimal BorrowBHT2
 			{
-				get { return base.BorrowAmountBHT2; }
-				set { base.BorrowAmountBHT2 = value; }
+				get { return base.BorrowBHT2; }
+				set { base.BorrowBHT2 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 5 baht coin.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT5")]
-			public override decimal BorrowAmountBHT5
+			[PropertyMapName("BorrowBHT5")]
+			public override decimal BorrowBHT5
 			{
-				get { return base.BorrowAmountBHT5; }
-				set { base.BorrowAmountBHT5 = value; }
+				get { return base.BorrowBHT5; }
+				set { base.BorrowBHT5 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 10 baht coin.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT10")]
-			public override decimal BorrowAmountBHT10
+			[PropertyMapName("BorrowBHT10")]
+			public override decimal BorrowBHT10
 			{
-				get { return base.BorrowAmountBHT10; }
-				set { base.BorrowAmountBHT10 = value; }
+				get { return base.BorrowBHT10; }
+				set { base.BorrowBHT10 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 20 baht bill.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT20")]
-			public override decimal BorrowAmountBHT20
+			[PropertyMapName("BorrowBHT20")]
+			public override decimal BorrowBHT20
 			{
-				get { return base.BorrowAmountBHT20; }
-				set { base.BorrowAmountBHT20 = value; }
+				get { return base.BorrowBHT20; }
+				set { base.BorrowBHT20 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 50 baht bill.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT50")]
-			public override decimal BorrowAmountBHT50
+			[PropertyMapName("BorrowBHT50")]
+			public override decimal BorrowBHT50
 			{
-				get { return base.BorrowAmountBHT50; }
-				set { base.BorrowAmountBHT50 = value; }
+				get { return base.BorrowBHT50; }
+				set { base.BorrowBHT50 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 100 baht bill.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT100")]
-			public override decimal BorrowAmountBHT100
+			[PropertyMapName("BorrowBHT100")]
+			public override decimal BorrowBHT100
 			{
-				get { return base.BorrowAmountBHT100; }
-				set { base.BorrowAmountBHT100 = value; }
+				get { return base.BorrowBHT100; }
+				set { base.BorrowBHT100 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 500 baht bill.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT500")]
-			public override decimal BorrowAmountBHT500
+			[PropertyMapName("BorrowBHT500")]
+			public override decimal BorrowBHT500
 			{
-				get { return base.BorrowAmountBHT500; }
-				set { base.BorrowAmountBHT500 = value; }
+				get { return base.BorrowBHT500; }
+				set { base.BorrowBHT500 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Borrow amount of 1000 baht bill.
 			/// </summary>
-			[PropertyMapName("BorrowAmountBHT1000")]
-			public override decimal BorrowAmountBHT1000
+			[PropertyMapName("BorrowBHT1000")]
+			public override decimal BorrowBHT1000
 			{
-				get { return base.BorrowAmountBHT1000; }
-				set { base.BorrowAmountBHT1000 = value; }
+				get { return base.BorrowBHT1000; }
+				set { base.BorrowBHT1000 = value; }
 			}
 
 			#endregion
@@ -1248,101 +1248,101 @@ namespace DMT.Models
 			/// <summary>
 			/// Gets or sets Return amount of .25 baht coin.
 			/// </summary>
-			[PropertyMapName("ReturnAmountST25")]
-			public override decimal ReturnAmountST25
+			[PropertyMapName("ReturnST25")]
+			public override decimal ReturnST25
 			{
-				get { return base.ReturnAmountST25; }
-				set { base.ReturnAmountST25 = value; }
+				get { return base.ReturnST25; }
+				set { base.ReturnST25 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of .50 baht coin.
 			/// </summary>
-			[PropertyMapName("ReturnAmountST50")]
-			public override decimal ReturnAmountST50
+			[PropertyMapName("ReturnST50")]
+			public override decimal ReturnST50
 			{
-				get { return base.ReturnAmountST50; }
-				set { base.ReturnAmountST50 = value; }
+				get { return base.ReturnST50; }
+				set { base.ReturnST50 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 1 baht coin.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT1")]
-			public override decimal ReturnAmountBHT1
+			[PropertyMapName("ReturnBHT1")]
+			public override decimal ReturnBHT1
 			{
-				get { return base.ReturnAmountBHT1; }
-				set { base.ReturnAmountBHT1 = value; }
+				get { return base.ReturnBHT1; }
+				set { base.ReturnBHT1 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 2 baht coin.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT2")]
-			public override decimal ReturnAmountBHT2
+			[PropertyMapName("ReturnBHT2")]
+			public override decimal ReturnBHT2
 			{
-				get { return base.ReturnAmountBHT2; }
-				set { base.ReturnAmountBHT2 = value; }
+				get { return base.ReturnBHT2; }
+				set { base.ReturnBHT2 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 5 baht coin.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT5")]
-			public override decimal ReturnAmountBHT5
+			[PropertyMapName("ReturnBHT5")]
+			public override decimal ReturnBHT5
 			{
-				get { return base.ReturnAmountBHT5; }
-				set { base.ReturnAmountBHT5 = value; }
+				get { return base.ReturnBHT5; }
+				set { base.ReturnBHT5 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 10 baht coin.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT10")]
-			public override decimal ReturnAmountBHT10
+			[PropertyMapName("ReturnBHT10")]
+			public override decimal ReturnBHT10
 			{
-				get { return base.ReturnAmountBHT10; }
-				set { base.ReturnAmountBHT10 = value; }
+				get { return base.ReturnBHT10; }
+				set { base.ReturnBHT10 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 20 baht bill.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT20")]
-			public override decimal ReturnAmountBHT20
+			[PropertyMapName("ReturnBHT20")]
+			public override decimal ReturnBHT20
 			{
-				get { return base.ReturnAmountBHT20; }
-				set { base.ReturnAmountBHT20 = value; }
+				get { return base.ReturnBHT20; }
+				set { base.ReturnBHT20 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 50 baht bill.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT50")]
-			public override decimal ReturnAmountBHT50
+			[PropertyMapName("ReturnBHT50")]
+			public override decimal ReturnBHT50
 			{
-				get { return base.ReturnAmountBHT50; }
-				set { base.ReturnAmountBHT50 = value; }
+				get { return base.ReturnBHT50; }
+				set { base.ReturnBHT50 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 100 baht bill.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT100")]
-			public override decimal ReturnAmountBHT100
+			[PropertyMapName("ReturnBHT100")]
+			public override decimal ReturnBHT100
 			{
-				get { return base.ReturnAmountBHT100; }
-				set { base.ReturnAmountBHT100 = value; }
+				get { return base.ReturnBHT100; }
+				set { base.ReturnBHT100 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 500 baht bill.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT500")]
-			public override decimal ReturnAmountBHT500
+			[PropertyMapName("ReturnBHT500")]
+			public override decimal ReturnBHT500
 			{
-				get { return base.ReturnAmountBHT500; }
-				set { base.ReturnAmountBHT500 = value; }
+				get { return base.ReturnBHT500; }
+				set { base.ReturnBHT500 = value; }
 			}
 			/// <summary>
 			/// Gets or sets Return amount of 1000 baht bill.
 			/// </summary>
-			[PropertyMapName("ReturnAmountBHT1000")]
-			public override decimal ReturnAmountBHT1000
+			[PropertyMapName("ReturnBHT1000")]
+			public override decimal ReturnBHT1000
 			{
-				get { return base.ReturnAmountBHT1000; }
-				set { base.ReturnAmountBHT1000 = value; }
+				get { return base.ReturnBHT1000; }
+				set { base.ReturnBHT1000 = value; }
 			}
 
 			#endregion

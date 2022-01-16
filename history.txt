@@ -9,8 +9,19 @@ Refactor DMT.TA.TODv4 #2300
 Refactor DMT.TA.TODv4 #2299
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2298
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Recheck UserShiftSSFixedNullBeginView - OK
+    - Recheck UserShiftSSFixedNullEndView - OK
+    - Recheck UserShiftSSView -> 'now' must used with 'localtime'
+    - all above views increace version to 2
+  - DMT.TA.App project
+    - Recheck TSBShiftSSView -> 'now' must used with 'localtime'
+    - Recheck UserCreditBalanceSSView - OK
+    - Recheck UserCreditHistoryView -> 
+    - all above views increace version to 2
 
 [commited]
 Refactor DMT.TA.TODv4 #2297

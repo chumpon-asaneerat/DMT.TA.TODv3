@@ -1990,9 +1990,9 @@ namespace DMT.Services
             prefix = @"Shifts";
             InitView("TSBShiftView", 1, prefix);
             // Fixed null begin/end time
-            InitView("UserShiftSSFixedNullBeginView", 1, prefix);
-            InitView("UserShiftSSFixedNullEndView", 1, prefix);
-            InitView("UserShiftSSView", 1, prefix); // required 2 views above.
+            InitView("UserShiftSSFixedNullBeginView", 2, prefix);
+            InitView("UserShiftSSFixedNullEndView", 2, prefix);
+            InitView("UserShiftSSView", 2, prefix); // required 2 views above.
             // TODO: UserShiftView need to modify to used UserShiftSSFixedNullBeginView instead of UserShift table
             InitView("UserShiftView", 1, prefix);
             InitView("UserShiftRevenueView", 1, prefix);

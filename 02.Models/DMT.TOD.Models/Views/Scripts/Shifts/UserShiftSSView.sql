@@ -9,6 +9,7 @@ AS
 		 , USEV.FullNameTH
 		 , USEV.ToTAServer
 		 , USEV.[Begin]
+		 /* 'now' is in UTC required 'localtime' */
 		 , IFNULL(USEV.[End], strftime('%Y-%m-%dT%H:%M:%f', 'now', 'localtime')) AS [End]
 		 , USEV.BeginOriginal
 		 , USEV.EndOriginal

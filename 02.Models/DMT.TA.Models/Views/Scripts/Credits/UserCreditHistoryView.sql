@@ -1,7 +1,11 @@
 ﻿CREATE VIEW UserCreditHistoryView
 AS
 	SELECT C.UserCreditId
-	     , strftime('%Y-%m-%d', C.UserCreditDate, 'localtime') AS BagCreateDate
+	     -- Note:
+		 -- no need 'localtime' here because the UserCreateDate is already in localtime.
+		 -- so strftime will convert UserCreditDate to match format that is YYYY-MM-DD
+		 -- without time correctly without shift timezone.
+	     , strftime('%Y-%m-%d', C.UserCreditDate) AS BagCreateDate
 		 , C.UserId
 		 , C.FullNameEN
 		 , C.FullNameTH

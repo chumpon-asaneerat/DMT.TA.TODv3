@@ -6,8 +6,21 @@
 Refactor DMT.TA.TODv4 #2300
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2299
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update UserCreditTransactionView -> add TransDate (date part on TransactionDate).
+    - Update UserCreditBorrowSummaryView -> add CreditDate (date part on UserCreditDate).
+    - Update UserCreditReturnSummaryView -> add CreditDate (date part on UserCreditDate).
+    - Update UserCreditBalanceSSView -> add CreditDate (date part on UserCreditDate).
+    - Update UserCreditSummaryView -> add CreditDate (date part on UserCreditDate).
+    - Add UserCreditBaseTransactionHistoryView
+    - Add UserCreditBorrowTransactionHistoryView
+    - Add UserCreditReturnTransactionHistoryView
+    - Update UserCreditHistoryView -> used new above 3 views
+    - all above views increace version to 3
+    - Update code to init/update views in database
 
 [commited]
 Refactor DMT.TA.TODv4 #2298

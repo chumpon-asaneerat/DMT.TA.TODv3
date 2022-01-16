@@ -1,7 +1,8 @@
 ﻿CREATE VIEW UserCreditBalanceSSView
 AS
-	SELECT UCB.UserCreditId
-		 , UCB.UserCreditDate
+	SELECT strftime('%Y-%m-%d', UCB.UserCreditDate) AS CreditDate
+		 , UCB.UserCreditId
+	     , UCB.UserCreditDate
 		 , UCB.UserId
 		 , UCB.FullNameEN
 		 , UCB.FullNameTH

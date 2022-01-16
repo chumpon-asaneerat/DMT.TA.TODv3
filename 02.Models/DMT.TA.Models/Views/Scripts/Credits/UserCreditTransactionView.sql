@@ -1,6 +1,7 @@
 ﻿CREATE VIEW UserCreditTransactionView
 AS
-	SELECT UserCreditTransaction.*
+	SELECT strftime('%Y-%m-%d', UserCreditTransaction.TransactionDate) AS TransDate
+		 , UserCreditTransaction.*
 	     , TSB.TSBNameEN, TSB.TSBNameTH
 		 , PlazaGroup.PlazaGroupNameEN, PlazaGroup.PlazaGroupNameTH, PlazaGroup.Direction
 		 , UserCreditBalance.UserCreditDate

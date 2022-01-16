@@ -1,7 +1,7 @@
-﻿/* USE IN UserCreditBorrowSummaryView */
-CREATE VIEW UserCreditReturnSummaryView
+﻿CREATE VIEW UserCreditReturnSummaryView
 AS
-	SELECT UserCreditBalance.* 
+	SELECT strftime('%Y-%m-%d', UserCreditBalance.UserCreditDate) AS CreditDate
+		 , UserCreditBalance.*
 		 , TSB.TSBNameEN
 		 , TSB.TSBNameTH
 		 , PlazaGroup.PlazaGroupNameEN, PlazaGroup.PlazaGroupNameTH, PlazaGroup.Direction 
@@ -74,4 +74,4 @@ AS
 	  FROM UserCreditBalance, TSB, PlazaGroup
 	 WHERE PlazaGroup.TSBId = TSB.TSBId 
 	   AND UserCreditBalance.TSBId = TSB.TSBId 
-	   AND UserCreditBalance.PlazaGroupId = PlazaGroup.PlazaGroupId 
+	   AND UserCreditBalance.PlazaGroupId = PlazaGroup.PlazaGroupId

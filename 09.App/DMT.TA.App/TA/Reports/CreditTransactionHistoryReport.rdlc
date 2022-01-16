@@ -149,6 +149,10 @@
           <DataField>ReturnST50</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="TransDate">
+          <DataField>TransDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TSBId">
           <DataField>TSBId</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1932,7 +1936,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

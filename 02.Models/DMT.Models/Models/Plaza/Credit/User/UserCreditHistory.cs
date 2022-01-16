@@ -36,6 +36,8 @@ namespace DMT.Models
 		#region Internal Variables
 
 		private int _UserCreditId = 0;
+
+		private string _TransDate = string.Empty;
 		private string _BagCreateDate = string.Empty;
 		private string _BagNo = string.Empty;
 		private string _BeltNo = string.Empty;
@@ -47,7 +49,6 @@ namespace DMT.Models
 		private string _PlazaGroupId = string.Empty;
 		private string _PlazaGroupNameEN = string.Empty;
 		private string _PlazaGroupNameTH = string.Empty;
-		private string _Direction = string.Empty;
 
 		private string _UserId = string.Empty;
 		private string _FullNameEN = string.Empty;
@@ -122,13 +123,12 @@ namespace DMT.Models
 			}
 		}
 		/// <summary>
-		/// Gets or sets Bag Create Date (string)
+		/// Gets or sets Bag Create Date (date part only in string)
 		/// </summary>
 		[Category("Common")]
-		[Description("Gets or sets Bag Create Date (string).")]
+		[Description("Gets or sets Bag Create Date (date part only in string).")]
 		[ReadOnly(true)]
 		[Ignore]
-		[MaxLength(30)]
 		[PropertyMapName("BagCreateDate")]
 		public virtual string BagCreateDate
 		{
@@ -190,6 +190,29 @@ namespace DMT.Models
 				{
 					_BeltNo = value;
 					this.RaiseChanged("BeltNo");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Transaction Date (date part only in string)
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets or sets Transaction Date (date part only in string).")]
+		[ReadOnly(true)]
+		[Ignore]
+		[PropertyMapName("TransDate")]
+		public virtual string TransDate
+		{
+			get
+			{
+				return _TransDate;
+			}
+			set
+			{
+				if (_TransDate != value)
+				{
+					_TransDate = value;
+					this.RaiseChanged("TransDate");
 				}
 			}
 		}
@@ -339,29 +362,6 @@ namespace DMT.Models
 				{
 					_PlazaGroupNameTH = value;
 					this.RaiseChanged("PlazaGroupNameTH");
-				}
-			}
-		}
-		/// <summary>
-		/// Gets or sets Direction.
-		/// </summary>
-		[Category("Plaza Group")]
-		[Description("Gets or sets Direction.")]
-		[ReadOnly(true)]
-		[Ignore]
-		[PropertyMapName("Direction")]
-		public virtual string Direction
-		{
-			get
-			{
-				return _Direction;
-			}
-			set
-			{
-				if (_Direction != value)
-				{
-					_Direction = value;
-					this.RaiseChanged("Direction");
 				}
 			}
 		}
@@ -988,9 +988,9 @@ namespace DMT.Models
 				set { base.UserCreditId = value; }
 			}
 			/// <summary>
-			/// Gets or sets Bag Create Date (string)
+			/// Gets or sets Bag Create Date  (date part only in string)
 			/// </summary>
-			[MaxLength(30)]
+			[MaxLength(20)]
 			[PropertyMapName("BagCreateDate")]
 			public override string BagCreateDate
 			{
@@ -1016,6 +1016,16 @@ namespace DMT.Models
 			{
 				get { return base.BeltNo; }
 				set { base.BeltNo = value; }
+			}
+			/// <summary>
+			/// Gets or sets Transaction Date  (date part only in string)
+			/// </summary>
+			[MaxLength(20)]
+			[PropertyMapName("TransDate")]
+			public override string TransDate
+			{
+				get { return base.TransDate; }
+				set { base.TransDate = value; }
 			}
 
 			#endregion
@@ -1076,16 +1086,6 @@ namespace DMT.Models
 			{
 				get { return base.PlazaGroupNameTH; }
 				set { base.PlazaGroupNameTH = value; }
-			}
-			/// <summary>
-			/// Gets or sets Direction.
-			/// </summary>
-			[MaxLength(10)]
-			[PropertyMapName("Direction")]
-			public override string Direction
-			{
-				get { return base.Direction; }
-				set { base.Direction = value; }
 			}
 
 			#endregion
@@ -1418,7 +1418,7 @@ namespace DMT.Models
 					SELECT * 
 					  FROM UserCreditHistoryView
 					 WHERE TSBId = ? 
-					   AND BagCreateDate = ? ";
+					   AND TransDate = ? ";
 
 					string dStr = dt.ToString("yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
 					var rets = NQuery.Query<FKs>(cmd,

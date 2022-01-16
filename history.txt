@@ -30,8 +30,12 @@ Refactor DMT.TA.TODv4 #2303
 Refactor DMT.TA.TODv4 #2302
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2301
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update Model -> UserCreditHistory class.
+    - Update report datasource (refresh).
 
 [commited]
 Refactor DMT.TA.TODv4 #2300

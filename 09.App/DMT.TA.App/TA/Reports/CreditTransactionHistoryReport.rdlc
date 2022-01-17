@@ -260,7 +260,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.17in</Height>
+                  <Height>0.19in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -271,10 +271,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>รหัส</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -292,7 +292,7 @@
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -310,10 +310,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>รายชื่อพนักงาน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -331,6 +331,7 @@
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
+                            <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -348,10 +349,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>เลขที่</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -369,6 +370,7 @@
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
+                            <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -386,10 +388,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>จำนวนเหรียญ / ฉบับ</Value>
+                                  <Value>จำนวนเเงิน (บาท)</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -442,7 +444,7 @@
                                   <Value>ยอดเงินรวม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -474,7 +476,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.17in</Height>
+                  <Height>0.19in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -485,10 +487,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>รหัสพนักงาน</Value>
+                                  <Value>พนักงาน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -509,13 +511,14 @@
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -527,10 +530,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>รายชื่อพนักงาน</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -551,13 +554,14 @@
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -569,10 +573,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>เลขที่ถุงเงิน</Value>
+                                  <Value>ถุงเงิน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -593,13 +597,14 @@
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -614,7 +619,7 @@
                                   <Value>1 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -652,7 +657,7 @@
                                   <Value>2 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -690,7 +695,7 @@
                                   <Value>5 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -728,7 +733,7 @@
                                   <Value>10 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -766,7 +771,7 @@
                                   <Value>20 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -804,7 +809,7 @@
                                   <Value>50 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -842,7 +847,7 @@
                                   <Value>100 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -880,7 +885,7 @@
                                   <Value>500 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -918,7 +923,7 @@
                                   <Value>1000 บาท</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -956,7 +961,7 @@
                                   <Value>(บาท)</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -988,7 +993,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.17in</Height>
+                  <Height>0.19in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1002,7 +1007,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1020,7 +1025,7 @@
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1041,7 +1046,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1079,7 +1084,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1097,6 +1102,7 @@
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
+                            <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1117,7 +1123,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1153,7 +1159,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1189,7 +1195,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1225,7 +1231,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1261,7 +1267,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1297,7 +1303,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1333,7 +1339,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1369,7 +1375,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1405,7 +1411,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1441,7 +1447,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1477,7 +1483,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1513,7 +1519,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1549,7 +1555,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1585,7 +1591,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1621,7 +1627,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1657,7 +1663,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1693,7 +1699,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1729,7 +1735,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1765,7 +1771,7 @@
                                   <Value>ยืม</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1801,7 +1807,7 @@
                                   <Value>คืน</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1828,7 +1834,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.18in</Height>
+                  <Height>0.19in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1842,7 +1848,7 @@
                                   <Value>=Fields!UserId.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1878,7 +1884,7 @@
                                   <Value>=Fields!FullNameTH.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1914,7 +1920,7 @@
                                   <Value>=Fields!BagNo.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1950,7 +1956,7 @@
                                   <Value>=Fields!BorrowBHT1.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -1987,7 +1993,7 @@
                                   <Value>=Fields!ReturnBHT1.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2024,7 +2030,7 @@
                                   <Value>=Fields!BorrowBHT2.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2061,7 +2067,7 @@
                                   <Value>=Fields!ReturnBHT2.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2098,7 +2104,7 @@
                                   <Value>=Fields!BorrowBHT5.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2135,7 +2141,7 @@
                                   <Value>=Fields!ReturnBHT5.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2172,7 +2178,7 @@
                                   <Value>=Fields!BorrowBHT10.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2209,7 +2215,7 @@
                                   <Value>=Fields!ReturnBHT10.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2246,7 +2252,7 @@
                                   <Value>=Fields!BorrowBHT20.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2283,7 +2289,7 @@
                                   <Value>=Fields!ReturnBHT20.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2320,7 +2326,7 @@
                                   <Value>=Fields!BorrowBHT50.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2357,7 +2363,7 @@
                                   <Value>=Fields!ReturnBHT50.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2394,7 +2400,7 @@
                                   <Value>=Fields!BorrowBHT100.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2431,7 +2437,7 @@
                                   <Value>=Fields!ReturnBHT100.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2468,7 +2474,7 @@
                                   <Value>=Fields!BorrowBHT500.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2505,7 +2511,7 @@
                                   <Value>=Fields!ReturnBHT500.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2542,7 +2548,7 @@
                                   <Value>=Fields!BorrowBHT1000.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2579,7 +2585,7 @@
                                   <Value>=Fields!ReturnBHT1000.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2616,7 +2622,7 @@
                                   <Value>=Fields!BorrowBHTTotal.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2653,7 +2659,7 @@
                                   <Value>=Fields!ReturnBHTTotal.Value</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
-                                    <FontSize>5pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>#,##0</Format>
                                   </Style>
                                 </TextRun>
@@ -2728,7 +2734,7 @@
             <DataSetName>main</DataSetName>
             <Top>0.04444in</Top>
             <Left>0.0625in</Left>
-            <Height>0.69in</Height>
+            <Height>0.76in</Height>
             <Width>10.94in</Width>
             <Style>
               <Border>
@@ -2737,7 +2743,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.78298in</Height>
+        <Height>0.8409in</Height>
         <Style />
       </Body>
       <Width>11.07265in</Width>

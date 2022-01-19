@@ -1045,7 +1045,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1411,7 +1410,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.28in</Height>
+              <Height>0.23in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1499,7 +1498,6 @@
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2041,7 +2039,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.28in</Height>
+              <Height>0.23in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -2580,7 +2578,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.28in</Height>
+              <Height>0.23in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -3192,7 +3190,7 @@
         <DataSetName>main</DataSetName>
         <Top>0.0375in</Top>
         <Left>0.02583in</Left>
-        <Height>1.4in</Height>
+        <Height>1.25in</Height>
         <Width>7.43936in</Width>
         <Style>
           <Border>
@@ -3201,7 +3199,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.75708cm</Height>
+    <Height>3.38666cm</Height>
     <Style />
   </Body>
   <Width>19.13995cm</Width>

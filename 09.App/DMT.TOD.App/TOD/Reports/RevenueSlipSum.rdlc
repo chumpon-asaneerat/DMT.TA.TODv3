@@ -6,55 +6,55 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.3in</Width>
+              <Width>0.29in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.4in</Width>
+              <Width>0.39in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.21936in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.27in</Width>
+              <Width>0.26in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.46in</Width>
+              <Width>0.44in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.46in</Width>
+              <Width>0.44in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.52in</Width>
+              <Width>0.5in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.52in</Width>
+              <Width>0.48in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.52in</Width>
+              <Width>0.48in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.52in</Width>
+              <Width>0.48in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.55in</Width>
+              <Width>0.48in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.27in</Width>
+              <Width>0.33in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.27in</Width>
+              <Width>0.33in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.27in</Width>
+              <Width>0.33in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.27in</Width>
+              <Width>0.33in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.30061in</Width>
+              <Width>0.33in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.30061in</Width>
+              <Width>0.33in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -349,7 +349,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ค่าผ่านทาง </Value>
+                              <Value>ค่าผ่านทาง</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -397,7 +397,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>รายได้อื่นๆ </Value>
+                              <Value>รายได้อื่นๆ</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -493,7 +493,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ขายคูปอง </Value>
+                              <Value>ขายคูปอง</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -541,7 +541,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>รายได้รวม </Value>
+                              <Value>รายได้รวม</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -1045,6 +1045,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1461,6 +1462,7 @@
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1497,11 +1499,12 @@
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Left</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -3188,9 +3191,9 @@
         </TablixRowHierarchy>
         <DataSetName>main</DataSetName>
         <Top>0.0375in</Top>
-        <Left>0.05083in</Left>
+        <Left>0.02583in</Left>
         <Height>1.4in</Height>
-        <Width>7.42058in</Width>
+        <Width>7.43936in</Width>
         <Style>
           <Border>
             <Style>Solid</Style>

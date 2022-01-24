@@ -2,6 +2,9 @@
 - < TOD >
   [ ] UserShiftView need to modify to used UserShiftSSFixedNullBeginView instead of UserShift
   [ ] Need to recheck all UserShift model methods for make sure all code work after changed.
+- < TA >
+  [ ] All bank note entry can enter decimal that should be round to integer like key 0.16 instead of 0 need to prevent.
+  [ ] All bank note entry can save event decimal number is invlid i.e. enter 9 in 2bht show red color but can save.
 
 Refactor DMT.TA.TODv4 #2310
 - 

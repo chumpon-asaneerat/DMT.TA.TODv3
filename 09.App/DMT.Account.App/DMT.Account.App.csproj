@@ -155,8 +155,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionEntry.xaml.cs">
+      <DependentUpon>TSBExchangeTransactionEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionExtendEntry.xaml.cs">
+      <DependentUpon>TSBExchangeTransactionExtendEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Controls\TSBCreditTransactionEntry.xaml.cs">
       <DependentUpon>TSBCreditTransactionEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Controls\TSBRequestExchangeEntry.xaml.cs">
+      <DependentUpon>TSBRequestExchangeEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\Pages\Balance\TSBCheckBalancePage.xaml.cs">
       <DependentUpon>TSBCheckBalancePage.xaml</DependentUpon>
@@ -231,9 +240,21 @@
     <Compile Include="StatusBar\AccountStatusBar.xaml.cs">
       <DependentUpon>AccountStatusBar.xaml</DependentUpon>
     </Compile>
+    <Page Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionExtendEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Account\Controls\TSBCreditTransactionEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Controls\TSBRequestExchangeEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Account\Pages\Balance\TSBCheckBalancePage.xaml">
       <SubType>Designer</SubType>

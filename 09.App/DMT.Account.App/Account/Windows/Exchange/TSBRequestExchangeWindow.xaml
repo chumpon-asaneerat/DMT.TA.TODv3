@@ -5,8 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="รายละเอียดคำร้องการขอ/แลก เงินยืมทอน - "
-        Width="1000"
+        xmlns:exchange="clr-namespace:DMT.Account.Controls"
+        Title="คำร้องขอการแลกเปลี่ยนเงิน"
+        Width="900"
         Height="600"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
@@ -63,7 +64,9 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <Grid />
+                <Grid>
+                    <exchange:TSBRequestExchangeEntry x:Name="entry" />
+                </Grid>
             </DockPanel>
         </Grid>
     </Grid>

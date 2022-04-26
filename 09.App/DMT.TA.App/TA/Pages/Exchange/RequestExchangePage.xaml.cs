@@ -39,7 +39,6 @@ namespace DMT.TA.Pages.Exchange
 
         #endregion
 
-
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)

@@ -30,8 +30,11 @@ Refactor DMT.TA.TODv4 #2304
 Refactor DMT.TA.TODv4 #2303
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2302
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Minor update - remove unused space.
 
 [commited]
 Refactor DMT.TA.TODv4 #2301

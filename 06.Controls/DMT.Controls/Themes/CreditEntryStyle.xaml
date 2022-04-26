@@ -173,6 +173,62 @@
         -->
         <Setter Property="Text" Value="{Binding BHTTotal, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
+    <Style x:Key="ST25Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountST25, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="ST50Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountST50, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT1Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT1, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT2Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT2, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT5Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT5, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT10Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT10, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT20Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT20, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT50Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT50, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT100Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT100, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT500Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT500, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="BHT1000Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CountBHT1000, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+
 
     <!--  EACH BANK NOTE AMOUNT UNIT  -->
     <Style x:Key="CoinAmountUnitStyle"

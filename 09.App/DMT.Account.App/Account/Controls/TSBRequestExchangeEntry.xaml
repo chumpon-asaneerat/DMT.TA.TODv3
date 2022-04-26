@@ -23,18 +23,24 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="6*" />
             <ColumnDefinition Width="5" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="5" />
         </Grid.ColumnDefinitions>
+        <!--
         <exchange:TSBExchangeTransactionEntry Grid.Column="1"
                                               x:Name="tranEntry"
                                               Background="Indigo"
                                               Foreground="WhiteSmoke" />
-        <exchange:TSBExchangeTransactionExtendEntry Grid.Column="3"
-                                                    x:Name="extEntry"
-                                                    Background="Indigo"
-                                                    Foreground="WhiteSmoke" />
+        -->
+        <exchange:TSBRequestTransactionEntry Grid.Column="1"
+                                              x:Name="tranEntry"
+                                              Background="Indigo"
+                                              Foreground="WhiteSmoke" />
+        <exchange:TSBExchangeTransactionEntry Grid.Column="3"
+                                              x:Name="extEntry"
+                                              Background="Indigo"
+                                              Foreground="WhiteSmoke" />
     </Grid>
 </UserControl>

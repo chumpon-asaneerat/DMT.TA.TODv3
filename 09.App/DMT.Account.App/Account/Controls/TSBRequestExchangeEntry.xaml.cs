@@ -42,7 +42,7 @@ namespace DMT.Account.Controls
         #endregion
 
         #region Public Properties
-
+        /*
         /// <summary>
         /// Gets or sets Period Begin.
         /// </summary>
@@ -59,7 +59,7 @@ namespace DMT.Account.Controls
             get { return extEntry.PeriodEnd; }
             set { extEntry.PeriodEnd = value; }
         }
-
+        */
         #endregion
     }
 }

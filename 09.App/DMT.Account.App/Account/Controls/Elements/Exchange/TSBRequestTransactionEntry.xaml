@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="500"
-             d:DesignWidth="450"
+             d:DesignWidth="650"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
@@ -34,7 +34,7 @@
             </Border.Background>
             <TextBlock DockPanel.Dock="Left"
                        Style="{StaticResource EntryHeaderCaption}"
-                       Text="{Binding Description}" />
+                       Text="รายการขอยืม/แลก เงินยืมทอน" />
         </Border>
         <!--  SEPERATOR  -->
         <TextBlock Height="5" DockPanel.Dock="Top" />
@@ -44,54 +44,72 @@
                 <!--  1 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT1Description}" />
+                    <TextBox Style="{StaticResource BHT1Count}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT1Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  2 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT2Description}" />
+                    <TextBox Style="{StaticResource BHT2Count}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT2Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  5 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT5Description}" />
+                    <TextBox Style="{StaticResource BHT5Count}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT5Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  10 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT10Description}" />
+                    <TextBox Style="{StaticResource BHT10Count}" />
+                    <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT10Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  20 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT20Description}" />
+                    <TextBox Style="{StaticResource BHT20Count}" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT20Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  50 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT50Description}" />
+                    <TextBox Style="{StaticResource BHT50Count}" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT50Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  100 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT100Description}" />
+                    <TextBox Style="{StaticResource BHT100Count}" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT100Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  500 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT500Description}" />
+                    <TextBox Style="{StaticResource BHT500Count}" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT500Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  1000 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT1000Description}" />
+                    <TextBox Style="{StaticResource BHT1000Count}" />
+                    <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT1000Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>

@@ -15,8 +15,10 @@ Refactor DMT.TA.TODv4 #2309
 Refactor DMT.TA.TODv4 #2308
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2307
-- 
+  - DMT.Account.App project
+    - Add TSB Exchange process UI #3.
 
 [commited]
 Refactor DMT.TA.TODv4 #2306

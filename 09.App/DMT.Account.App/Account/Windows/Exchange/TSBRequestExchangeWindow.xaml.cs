@@ -60,7 +60,7 @@ namespace DMT.Windows
             //this.Title = "รายละเอียดคำร้องการขอ/แลก เงินยืมทอน";
             if (null != request)
             {
-
+                entry.Setup(request, new TSBExchangeTransaction());
             }
         }
 

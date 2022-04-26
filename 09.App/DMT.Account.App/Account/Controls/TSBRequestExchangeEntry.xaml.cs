@@ -33,10 +33,10 @@ namespace DMT.Account.Controls
 
         #region Public Methods
 
-        public void Setup()
+        public void Setup(TSBExchangeTransaction req, TSBExchangeTransaction approve)
         {
-            //tranEntry.Setup(manager.Request);
-            //extEntry.Setup(manager.Request);
+            requestEntry.Setup(req);
+            approveEntry.Setup(approve);
         }
 
         #endregion

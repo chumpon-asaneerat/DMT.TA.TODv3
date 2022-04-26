@@ -18,8 +18,13 @@ Refactor DMT.TA.TODv4 #2308
 Refactor DMT.TA.TODv4 #2307
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2306
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - TSBExchangeTransaction add counts properties.
+  - DMT.TA.App project
+    - TSB Exchange process UI #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2305

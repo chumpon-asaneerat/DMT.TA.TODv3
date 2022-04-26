@@ -740,6 +740,7 @@ namespace DMT.Models
 					_AmtST25 = value;
 					// Raise event.
 					this.RaiseChanged("AmountST25");
+					this.RaiseChanged("CountST25");
 					this.RaiseChanged("IsValidST25");
 
 					CalcTotalAmount();
@@ -764,6 +765,7 @@ namespace DMT.Models
 					_AmtST50 = value;
 					// Raise event.
 					this.RaiseChanged("AmountST50");
+					this.RaiseChanged("CountST50");
 					this.RaiseChanged("IsValidST50");
 					this.RaiseChanged("ST50Foreground");
 
@@ -789,6 +791,7 @@ namespace DMT.Models
 					_AmtBHT1 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT1");
+					this.RaiseChanged("CountBHT1");
 					this.RaiseChanged("IsValidBHT1");
 					this.RaiseChanged("BHT1Foreground");
 
@@ -814,6 +817,7 @@ namespace DMT.Models
 					_AmtBHT2 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT2");
+					this.RaiseChanged("CountBHT2");
 					this.RaiseChanged("IsValidBHT2");
 					this.RaiseChanged("BHT2Foreground");
 
@@ -839,6 +843,7 @@ namespace DMT.Models
 					_AmtBHT5 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT5");
+					this.RaiseChanged("CountBHT5");
 					this.RaiseChanged("IsValidBHT5");
 					this.RaiseChanged("BHT5Foreground");
 
@@ -864,6 +869,7 @@ namespace DMT.Models
 					_AmtBHT10 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT10");
+					this.RaiseChanged("CountBHT10");
 					this.RaiseChanged("IsValidBHT10");
 					this.RaiseChanged("BHT10Foreground");
 
@@ -889,6 +895,7 @@ namespace DMT.Models
 					_AmtBHT20 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT20");
+					this.RaiseChanged("CountBHT20");
 					this.RaiseChanged("IsValidBHT20");
 					this.RaiseChanged("BHT20Foreground");
 
@@ -914,6 +921,7 @@ namespace DMT.Models
 					_AmtBHT50 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT50");
+					this.RaiseChanged("CountBHT50");
 					this.RaiseChanged("IsValidBHT50");
 					this.RaiseChanged("BHT50Foreground");
 
@@ -939,6 +947,7 @@ namespace DMT.Models
 					_AmtBHT100 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT100");
+					this.RaiseChanged("CountBHT100");
 					this.RaiseChanged("IsValidBHT100");
 					this.RaiseChanged("BHT100Foreground");
 
@@ -964,6 +973,7 @@ namespace DMT.Models
 					_AmtBHT500 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT500");
+					this.RaiseChanged("CountBHT500");
 					this.RaiseChanged("IsValidBHT500");
 					this.RaiseChanged("BHT500Foreground");
 
@@ -989,12 +999,172 @@ namespace DMT.Models
 					_AmtBHT1000 = value;
 					// Raise event.
 					this.RaiseChanged("AmountBHT1000");
+					this.RaiseChanged("CountBHT1000");
 					this.RaiseChanged("IsValidBHT1000");
 					this.RaiseChanged("BHT1000Foreground");
 
 					CalcTotalAmount();
 				}
 			}
+		}
+
+		#endregion
+
+		#region Coin/Bill (Count)
+
+		/// <summary>
+		/// Gets or sets amount of .25 baht coin.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of .25 baht coin.")]
+		[PropertyMapName("CountST25")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(21)]
+		public virtual int CountST25
+		{
+			get { return Convert.ToInt32(_AmtST25 / (decimal)0.25); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of .50 baht coin.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of .50 baht coin.")]
+		[PropertyMapName("CountST50")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(22)]
+		public virtual int CountST50
+		{
+			get { return Convert.ToInt32(_AmtST50 / (decimal)0.50); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 1 baht coin.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 1 baht coin.")]
+		[PropertyMapName("CountBHT1")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(23)]
+		public virtual int CountBHT1
+		{
+			get { return Convert.ToInt32(_AmtBHT1); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 2 baht coin.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 2 baht coin.")]
+		[PropertyMapName("CountBHT2")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(24)]
+		public virtual int CountBHT2
+		{
+			get { return Convert.ToInt32(_AmtBHT2 / 2); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 5 baht coin.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 5 baht coin.")]
+		[PropertyMapName("CountBHT5")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(25)]
+		public virtual int CountBHT5
+		{
+			get { return Convert.ToInt32(_AmtBHT5 / 5); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 10 baht coin.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 10 baht coin.")]
+		[PropertyMapName("CountBHT10")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(26)]
+		public virtual int CountBHT10
+		{
+			get { return Convert.ToInt32(_AmtBHT10 / 10); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 20 baht bill.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 20 baht bill.")]
+		[PropertyMapName("CountBHT20")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(27)]
+		public virtual int CountBHT20
+		{
+			get { return Convert.ToInt32(_AmtBHT20 / 20); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 50 baht bill.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 50 baht bill.")]
+		[PropertyMapName("CountBHT50")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(28)]
+		public virtual int CountBHT50
+		{
+			get { return Convert.ToInt32(_AmtBHT50 / 50); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 100 baht bill.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 100 baht bill.")]
+		[PropertyMapName("CountBHT100")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(29)]
+		public virtual int CountBHT100
+		{
+			get { return Convert.ToInt32(_AmtBHT100/ 100); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets count of 500 baht bill.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets count of 500 baht bill.")]
+		[PropertyMapName("CountBHT500")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(30)]
+		public virtual int CountBHT500
+		{
+			get { return Convert.ToInt32(_AmtBHT500 / 500); }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets amount of 1000 baht bill.
+		/// </summary>
+		[Category("Coin/Bill (Count)")]
+		[Description("Gets or sets amount of 1000 baht bill.")]
+		[PropertyMapName("CountBHT1000")]
+		[Ignore]
+		[JsonIgnore]
+		[PropertyOrder(31)]
+		public virtual int CountBHT1000
+		{
+			get { return Convert.ToInt32(_AmtBHT1000 / 1000); }
+			set { }
 		}
 
 		#endregion

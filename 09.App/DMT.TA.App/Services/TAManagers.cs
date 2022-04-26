@@ -3172,67 +3172,67 @@ namespace DMT.Services
                     if (currency.denomValue == (decimal)0.25) 
                     {
                         item.CurrencyValue = this.Request.AmountST25;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountST25 / (decimal).25);
+                        item.CurrencyCount = this.Request.CountST25;
                         items.Add(item);
                     }
                     else if (currency.denomValue == (decimal)0.5) 
                     {
                         item.CurrencyValue = this.Request.AmountST50;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountST50 / (decimal).5);
+                        item.CurrencyCount = this.Request.CountST50;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 1) 
                     {
                         item.CurrencyValue = this.Request.AmountBHT1;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT1);
+                        item.CurrencyCount = this.Request.CountBHT1;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 2)
                     {
                         item.CurrencyValue = this.Request.AmountBHT2;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT2 / 2);
+                        item.CurrencyCount = this.Request.CountBHT2;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 5)
                     {
                         item.CurrencyValue = this.Request.AmountBHT5;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT5 / 5);
+                        item.CurrencyCount = this.Request.CountBHT5;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 10)
                     {
                         item.CurrencyValue = this.Request.AmountBHT10;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT10 / 10);
+                        item.CurrencyCount = this.Request.CountBHT10;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 20)
                     {
                         item.CurrencyValue = this.Request.AmountBHT20;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT20 / 20);
+                        item.CurrencyCount = this.Request.CountBHT20;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 50)
                     {
                         item.CurrencyValue = this.Request.AmountBHT50;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT50 / 50);
+                        item.CurrencyCount = this.Request.CountBHT50;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 100)
                     {
                         item.CurrencyValue = this.Request.AmountBHT100;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT100 / 100);
+                        item.CurrencyCount = this.Request.CountBHT100;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 500)
                     {
                         item.CurrencyValue = this.Request.AmountBHT500;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT500 / 500);
+                        item.CurrencyCount = this.Request.CountBHT500;
                         items.Add(item);
                     }
                     else if (currency.denomValue == 1000)
                     {
                         item.CurrencyValue = this.Request.AmountBHT1000;
-                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT1000 / 1000);
+                        item.CurrencyCount = this.Request.CountBHT1000;
                         items.Add(item);
                     }
                 });

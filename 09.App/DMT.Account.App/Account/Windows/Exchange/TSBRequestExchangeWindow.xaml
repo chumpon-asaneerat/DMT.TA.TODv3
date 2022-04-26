@@ -1,4 +1,4 @@
-﻿<Window x:Class="DMT.Account.Windows.Exchange.TSBRequestExchangeWindow"
+﻿<Window x:Class="DMT.Windows.TSBRequestExchangeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"

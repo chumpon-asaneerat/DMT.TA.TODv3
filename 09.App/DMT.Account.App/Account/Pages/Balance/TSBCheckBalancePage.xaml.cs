@@ -59,6 +59,7 @@ namespace DMT.Account.Pages.Balance
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // Show popup window
             if (null == sender || !(sender is Button)) return;
             var item = (sender as Button).DataContext as Models.TAATSBCreditResult;
             if (null != item)

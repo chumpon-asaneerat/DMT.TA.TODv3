@@ -81,6 +81,46 @@ namespace DMT.Account.Pages.Exchange
 
         }
 
+        private void cmdRequestDetail_Click(object sender, RoutedEventArgs e)
+        {
+            // Show Detail windows
+            if (null == sender || !(sender is Button)) return;
+            var item = (sender as Button).DataContext as Models.TAAExchangeSummary;
+            if (null != item)
+            {
+                var req = new TSBExchangeTransaction();
+                req.TransactionDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
+                req.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
+                req.Remark = item.RequestRemark;
+
+                var win = AccountApp.Windows.ResuestExchangeWindow;
+                win.Setup(req);
+                win.ShowDialog();
+
+                LoadAll(); // refresh.
+            }
+        }
+
+        private void cmdApproveDetail_Click(object sender, RoutedEventArgs e)
+        {
+            // Show Detail windows
+            if (null == sender || !(sender is Button)) return;
+            var item = (sender as Button).DataContext as Models.TAAExchangeSummary;
+            if (null != item)
+            {
+                var apprv = new TSBExchangeTransaction();
+                apprv.TransactionDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
+                apprv.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
+                apprv.Remark = item.RequestRemark;
+
+                var win = AccountApp.Windows.ResuestExchangeWindow;
+                win.Setup(apprv);
+                win.ShowDialog();
+
+                LoadAll(); // refresh.
+            }
+        }
+
         #endregion
 
         #region Private Methods

@@ -237,6 +237,21 @@ namespace DMT
 
             #endregion
 
+            #region Gets Request Exchange Window
+
+            /// <summary>Gets Request Exchange Window.</summary>
+            public static DMT.Windows.TSBRequestExchangeWindow ResuestExchangeWindow
+            {
+                get
+                {
+                    var ret = new DMT.Windows.TSBRequestExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region MessageBox(s)
 
             /// <summary>Gets MessageBox Window.</summary>

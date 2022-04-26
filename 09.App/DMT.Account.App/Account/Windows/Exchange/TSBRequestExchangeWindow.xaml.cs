@@ -12,7 +12,7 @@ using NLib.Reflection;
 
 #endregion
 
-namespace DMT.Account.Windows.Exchange
+namespace DMT.Windows
 {
     /// <summary>
     /// Interaction logic for TSBRequestExchangeWindow.xaml
@@ -55,9 +55,13 @@ namespace DMT.Account.Windows.Exchange
 
         #region Public Method
 
-        public void Setup()
+        public void Setup(Models.TSBExchangeTransaction request)
         {
-            this.Title = "รายละเอียดคำร้องการขอ/แลก เงินยืมทอน - " + "TSBName";
+            //this.Title = "รายละเอียดคำร้องการขอ/แลก เงินยืมทอน";
+            if (null != request)
+            {
+
+            }
         }
 
         #endregion

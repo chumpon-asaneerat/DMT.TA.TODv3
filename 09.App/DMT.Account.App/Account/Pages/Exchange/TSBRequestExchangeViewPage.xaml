@@ -141,7 +141,8 @@
                                                     <Button x:Name="cmdRequestDetail"
                                                             Height="30"
                                                             FontSize="{StaticResource InputFontSize18}"
-                                                            Style="{DynamicResource InlineButton}">
+                                                            Style="{DynamicResource InlineButton}"
+                                                            Click="cmdRequestDetail_Click">
                                                         <TextBlock Margin="5,0"
                                                                    Text="เรียกดู"
                                                                    TextAlignment="Left" />
@@ -225,7 +226,8 @@
                                                     <Button x:Name="cmdApproveDetail"
                                                             Height="30"
                                                             FontSize="{StaticResource InputFontSize18}"
-                                                            Style="{DynamicResource InlineButton}">
+                                                            Style="{DynamicResource InlineButton}"
+                                                            Click="cmdApproveDetail_Click">
                                                         <TextBlock Margin="5,0"
                                                                    Text="เรียกดู"
                                                                    TextAlignment="Left" />

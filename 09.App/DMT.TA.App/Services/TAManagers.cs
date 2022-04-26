@@ -3023,6 +3023,7 @@ namespace DMT.Services
 
             this.Request = new TSBExchangeTransaction();
             this.Request.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
+            this.Request.TransactionDate = DateTime.Now;
             this.Request.Description = "แลกเปลี่ยนเงินยืม/ทอน";
             this.Request.GroupId = this.Group.GroupId;
             this.Request.TSBId = this.Group.TSBId;
@@ -3119,6 +3120,8 @@ namespace DMT.Services
                     msg = "TSB Exchange Group successfully saved.";
                 }
                 else msg = "TSB Exchange Group failed to saved.";
+                // Write log.
+                med.Info(msg);
 
                 // Check transaction period.
                 if (this.Request.AdditionalBHT == decimal.Zero && this.Request.BorrowBHT == decimal.Zero)
@@ -3136,6 +3139,105 @@ namespace DMT.Services
                 else msg = "TSB Exchange Transaction (Request) failed to saved.";
                 // Write log.
                 med.Info(msg);
+
+                // Write to queue
+                TAAExchangeHeader exchangeHeader = new TAAExchangeHeader();
+                exchangeHeader.RequestId = this.Group.PkId;
+                exchangeHeader.TSBId = this.Request.TSBId;
+                exchangeHeader.TranactionDate = this.Request.TransactionDate;
+                exchangeHeader.ExchangeBHT = this.Request.ExchangeBHT;
+                exchangeHeader.BorrowBHT = this.Request.BorrowBHT;
+                exchangeHeader.AdditionalBHT = this.Request.AdditionalBHT;
+                exchangeHeader.PeriodBegin = this.Request.PeriodBegin;
+                exchangeHeader.PeriodEnd = this.Request.PeriodEnd;
+                exchangeHeader.Remark = this.Request.Remark;
+                exchangeHeader.FinishFlag = 0;
+                exchangeHeader.UserId = this.Request.UserId;
+                exchangeHeader.Status = "R"; // Request
+                TAxTODMQService.Instance.WriteQueue(exchangeHeader);
+
+                List<TAAExchangeItem> items = new List<TAAExchangeItem>();
+                
+                List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
+                currencies.ForEach(currency => 
+                {
+                    if (currency.currencyDenomId == 7)
+                        return; // ignore 10BHT note
+
+                    var item = new TAAExchangeItem();
+                    item.TSBId = this.Request.TSBId;
+                    item.RequestId = this.Group.PkId;
+                    item.CurrencyDenomId = currency.currencyDenomId;
+                    
+                    if (currency.denomValue == (decimal)0.25) 
+                    {
+                        item.CurrencyValue = this.Request.AmountST25;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountST25 / (decimal).25);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == (decimal)0.5) 
+                    {
+                        item.CurrencyValue = this.Request.AmountST50;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountST50 / (decimal).5);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 1) 
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT1;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT1);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 2)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT2;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT2 / 2);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 5)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT5;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT5 / 5);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 10)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT10;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT10 / 10);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 20)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT20;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT20 / 20);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 50)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT50;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT50 / 50);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 100)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT100;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT100 / 100);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 500)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT500;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT500 / 500);
+                        items.Add(item);
+                    }
+                    else if (currency.denomValue == 1000)
+                    {
+                        item.CurrencyValue = this.Request.AmountBHT1000;
+                        item.CurrencyCount = Convert.ToDecimal(this.Request.AmountBHT1000 / 1000);
+                        items.Add(item);
+                    }
+                });
+
+                TAxTODMQService.Instance.WriteQueue(items);
             }
         }
 

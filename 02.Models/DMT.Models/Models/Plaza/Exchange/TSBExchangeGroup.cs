@@ -101,13 +101,13 @@ namespace DMT.Models
 			/// </summary>
 			None = -1,
 			/// <summary>
-			/// Completed
+			/// Avaliable.
 			/// </summary>
-			Completed = 0,
+			Avaliable = 0,
 			/// <summary>
-			/// Avaliable
+			/// Completed.
 			/// </summary>
-			Avaliable = 1
+			Completed = 1,
 		}
 
 		#endregion

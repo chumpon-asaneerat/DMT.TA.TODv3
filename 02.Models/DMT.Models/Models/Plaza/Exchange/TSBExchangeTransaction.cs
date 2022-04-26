@@ -83,13 +83,13 @@ namespace DMT.Models
 		public enum FinishedFlags : int
 		{
 			/// <summary>
-			/// Completed.
-			/// </summary>
-			Completed = 0,
-			/// <summary>
 			/// Avaliable.
 			/// </summary>
-			Avaliable = 1
+			Avaliable = 0,
+			/// <summary>
+			/// Completed.
+			/// </summary>
+			Completed = 1
 		}
 
 		#endregion

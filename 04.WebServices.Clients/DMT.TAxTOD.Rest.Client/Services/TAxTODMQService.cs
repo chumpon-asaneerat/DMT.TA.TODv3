@@ -229,6 +229,22 @@ namespace DMT.Services
             CheckSendError(med, fullFileName, ret);
         }
 
+        private void SendRequestExchangeHeader(string fullFileName, Models.TAAExchangeHeader value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.Exchange.SaveRequestDocument(value);
+            CheckSendError(med, fullFileName, ret);
+        }
+
+        private void SendRequestExchangeItem(string fullFileName, Models.TAAExchangeItem value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.Exchange.SaveRequestItem(value);
+            CheckSendError(med, fullFileName, ret);
+        }
+
         #endregion
 
         #region Resend (from error folder)
@@ -302,6 +318,24 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.TOD.RevenueEntry.Save(value);
+            CheckResendError(med, fullFileName, ret);
+        }
+
+        private void ResendRequestExchangeHeader(string fullFileName, Models.TAAExchangeHeader value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Exchange.SaveRequestDocument(value);
+            CheckResendError(med, fullFileName, ret);
+        }
+
+        private void ResendRequestExchangeItem(string fullFileName, Models.TAAExchangeItem value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Exchange.SaveRequestItem(value);
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -438,6 +472,36 @@ namespace DMT.Services
                 {
                     var value = jsonString.FromJson<Models.RevenueEntry>();
                     SendRevenueEntry(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.request.exchange.header"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAExchangeHeader>();
+                    SendRequestExchangeHeader(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.request.exchange.item"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAExchangeItem>();
+                    SendRequestExchangeItem(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -586,6 +650,36 @@ namespace DMT.Services
                     MoveErrorToInvalid(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("save.request.exchange.header"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAExchangeHeader>();
+                    ResendRequestExchangeHeader(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.request.exchange.item"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAExchangeItem>();
+                    ResendRequestExchangeItem(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
+                }
+            }
             else
             {
                 // Not Supports file.
@@ -692,6 +786,34 @@ namespace DMT.Services
             string fileName = GetFileName("revenue.entry.update");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Save Request Exchange Header.
+        /// </summary>
+        /// <param name="value">The TAAExchangeHeader instance.</param>
+        public void WriteQueue(Models.TAAExchangeHeader value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("save.request.exchange.header");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Save Request Exchange Item.
+        /// </summary>
+        /// <param name="values">The List of TAAExchangeItem instance.</param>
+        public void WriteQueue(List<Models.TAAExchangeItem> values)
+        {
+            if (null == values) return;
+            for (int i = 0; i < values.Count; i++)
+            {
+                if (null == values[i]) 
+                    continue;
+                int iCnt = i + 1;
+                string fileName = GetFileName("save.request.exchange.item." + iCnt.ToString("D2"));
+                string msg = values[i].ToJson(false);
+                WriteFile(fileName, msg);
+            }
         }
 
         #endregion

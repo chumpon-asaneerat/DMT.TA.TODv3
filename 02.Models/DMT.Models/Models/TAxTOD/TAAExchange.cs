@@ -523,17 +523,17 @@ namespace DMT.Models
         [PropertyMapName("UserId")]
         public string UserId { get; set; }
 
-        /// <summary>Gets or sets TransactionDate.</summary>
-        [PropertyMapName("TransactionDate")]
-        public DateTime? TransactionDate { get; set; }
+        /// <summary>Gets or sets TranactionDate.</summary>
+        [PropertyMapName("TranactionDate")]
+        public DateTime? TranactionDate { get; set; }
         /// <summary>Gets or sets TransactionDateTimeString.</summary>
         [JsonIgnore]
         public string TransactionDateTimeString
         {
             get
             {
-                var ret = (!this.TransactionDate.HasValue || this.TransactionDate.Value == DateTime.MinValue) ?
-                    "" : this.TransactionDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+                var ret = (!this.TranactionDate.HasValue || this.TranactionDate.Value == DateTime.MinValue) ?
+                    "" : this.TranactionDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
                 return ret;
             }
             set { }

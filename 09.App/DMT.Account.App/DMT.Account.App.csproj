@@ -176,6 +176,9 @@
     <Compile Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml.cs">
       <DependentUpon>CouponHistoryViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Pages\Exchange\TSBExchangeHistoryViewPage.xaml.cs">
+      <DependentUpon>TSBExchangeHistoryViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Pages\Exchange\TSBRequestExchangeViewPage.xaml.cs">
       <DependentUpon>TSBRequestExchangeViewPage.xaml</DependentUpon>
     </Compile>
@@ -277,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Pages\Coupon\CouponHistoryViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Pages\Exchange\TSBExchangeHistoryViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

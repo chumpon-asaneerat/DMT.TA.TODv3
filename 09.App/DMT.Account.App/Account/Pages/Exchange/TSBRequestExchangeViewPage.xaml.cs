@@ -432,6 +432,7 @@ namespace DMT.Account.Pages.Exchange
         /// </summary>
         public void Setup()
         {
+            tabs.SelectedIndex = 0; // reset tab index.
             LoadAll();
         }
 

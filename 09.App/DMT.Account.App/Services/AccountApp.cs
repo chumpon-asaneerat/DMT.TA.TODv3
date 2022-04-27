@@ -142,6 +142,28 @@ namespace DMT
 
             #endregion
 
+            #region TSB Exchange History View Page
+
+            private static Account.Pages.Exchange.TSBExchangeHistoryViewPage _TSBExchangeHistoryView;
+
+            /// <summary>Gets TSB Request Exchange View Page.</summary>
+            public static Account.Pages.Exchange.TSBExchangeHistoryViewPage TSBExchangeHistoryView
+            {
+                get
+                {
+                    if (null == _TSBExchangeHistoryView)
+                    {
+                        lock (typeof(AccountApp))
+                        {
+                            _TSBExchangeHistoryView = new Account.Pages.Exchange.TSBExchangeHistoryViewPage();
+                        }
+                    }
+                    return _TSBExchangeHistoryView;
+                }
+            }
+
+            #endregion
+
             #region Coupon History View
 
             private static Account.Pages.Coupon.CouponHistoryViewPage _CouponHistoryView;

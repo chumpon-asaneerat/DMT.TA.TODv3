@@ -77,6 +77,9 @@ namespace DMT.Account.Pages.Menu
             med.Info("==> MENU - TSB Request Exchange History");
             LogUser(med, AccountApp.User.Current); // write current user to log.
 
+            var page = AccountApp.Pages.TSBExchangeHistoryView;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void cmdTSBBalanceSummary_Click(object sender, RoutedEventArgs e)

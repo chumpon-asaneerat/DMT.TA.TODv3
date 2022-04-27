@@ -51,6 +51,18 @@ namespace DMT.Windows
 
         private void cmdOK_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtReason.Text) && paReasonBox.Visibility == Visibility.Visible)
+            {
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("กรุณาระบุเหตุผลการไม่อนุมัติ.", "DMT - TA (Account)");
+                win.ShowDialog();
+                // Focus on Ok button.
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtReason.Focus();
+                }));
+                return;
+            }
             DialogResult = true;
         }
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
@@ -63,9 +75,14 @@ namespace DMT.Windows
         /// <summary>
         /// Setup.
         /// </summary>
+        /// <param name="hideReasonBox"></param>
         /// <param name="msg"></param>
-        public void Setup(string msg = "")
+        public void Setup(bool hideReasonBox, string msg = "")
         {
+            if (hideReasonBox)
+                paReasonBox.Visibility = Visibility.Collapsed;
+            else paReasonBox.Visibility = Visibility.Visible;
+
             if (!string.IsNullOrWhiteSpace(msg))
             {
                 txtMsg.Text = msg;
@@ -75,6 +92,13 @@ namespace DMT.Windows
             {
                 cmdOk.Focus();
             }));
+        }
+        /// <summary>
+        /// Gets reason.
+        /// </summary>
+        public string Reason
+        {
+            get { return txtReason.Text; }
         }
     }
 }

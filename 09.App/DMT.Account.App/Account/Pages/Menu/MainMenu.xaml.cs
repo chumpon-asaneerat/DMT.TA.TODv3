@@ -65,7 +65,7 @@ namespace DMT.Account.Pages.Menu
             LogUser(med, AccountApp.User.Current); // write current user to log.
 
             var page = AccountApp.Pages.TSBRequestExchangeView;
-            page.Setup(AccountApp.User.Current);
+            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 

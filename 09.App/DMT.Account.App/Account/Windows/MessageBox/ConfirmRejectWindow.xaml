@@ -80,6 +80,23 @@
                                    Text="ยืนยัน การไม่อนุมัติคำร้องของด่าน"
                                    FontSize="40" />
                     </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical"
+                                x:Name="paReasonBox"
+                                Visibility="Collapsed">
+                        <TextBlock Text="เหตุผลการไม่อนุมัติ"
+                                   Margin="10,0,0,0"
+                                   Style="{StaticResource TextMessageStyle}"
+                                   FontSize="18"
+                                   TextAlignment="Left"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Stretch" />
+                        <TextBox x:Name="txtReason"
+                                 Margin="10"
+                                 Height="75"
+                                 FontSize="18" />
+                    </StackPanel>
                 </DockPanel>
             </DockPanel>
         </Grid>

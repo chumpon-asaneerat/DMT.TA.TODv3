@@ -33,6 +33,7 @@ namespace DMT.Windows
 
         #region Internal Variables
 
+        private int _requestId = 0;
         private Models.TSBExchangeTransaction _request = null;
         private Models.TSBExchangeTransaction _approve = null;
         private bool _IsNewApprove = false;
@@ -56,18 +57,137 @@ namespace DMT.Windows
             win.Setup();
             if (win.ShowDialog() == false) return;
 
-            //TAxTODMQService.Instance.WriteQueue();
+            var header = new Models.TAAExchangeHeader();
+            header.AdditionalBHT = _approve.AdditionalBHT;
+            header.BorrowBHT = _approve.BorrowBHT;
+            header.ExchangeBHT = _approve.ExchangeBHT;
+            header.FinishFlag = 0;
+            header.PeriodBegin = _approve.PeriodBegin;
+            header.PeriodEnd = _approve.PeriodEnd;
+            header.Remark = _approve.Remark;
+            header.RequestId = _requestId;
+            header.TSBId = _approve.TSBId;
+            header.UserId = AccountApp.User.Current.UserId;
+            header.Status = "A";
+
+            List<TAAApproveExchangeItem> approveItems = new List<TAAApproveExchangeItem>();
+            List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
+            currencies.ForEach(currency =>
+            {
+                if (currency.currencyDenomId == 7)
+                    return; // ignore 10BHT note
+
+                var item = new TAAApproveExchangeItem();
+                item.TSBId = _approve.TSBId;
+                item.RequestId = _requestId;
+                item.CurrencyDenomId = currency.currencyDenomId;
+
+                if (currency.denomValue == (decimal)0.25)
+                {
+                    item.CurrencyValue = _approve.AmountST25;
+                    item.CurrencyCount = _approve.CountST25;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == (decimal)0.5)
+                {
+                    item.CurrencyValue = _approve.AmountST50;
+                    item.CurrencyCount = _approve.CountST50;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 1)
+                {
+                    item.CurrencyValue = _approve.AmountBHT1;
+                    item.CurrencyCount = _approve.CountBHT1;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 2)
+                {
+                    item.CurrencyValue = _approve.AmountBHT2;
+                    item.CurrencyCount = _approve.CountBHT2;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 5)
+                {
+                    item.CurrencyValue = _approve.AmountBHT5;
+                    item.CurrencyCount = _approve.CountBHT5;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 10)
+                {
+                    item.CurrencyValue = _approve.AmountBHT10;
+                    item.CurrencyCount = _approve.CountBHT10;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 20)
+                {
+                    item.CurrencyValue = _approve.AmountBHT20;
+                    item.CurrencyCount = _approve.CountBHT20;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 50)
+                {
+                    item.CurrencyValue = _approve.AmountBHT50;
+                    item.CurrencyCount = _approve.CountBHT50;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 100)
+                {
+                    item.CurrencyValue = _approve.AmountBHT100;
+                    item.CurrencyCount = _approve.CountBHT100;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 500)
+                {
+                    item.CurrencyValue = _approve.AmountBHT500;
+                    item.CurrencyCount = _approve.CountBHT500;
+                    approveItems.Add(item);
+                }
+                else if (currency.denomValue == 1000)
+                {
+                    item.CurrencyValue = _approve.AmountBHT1000;
+                    item.CurrencyCount = _approve.CountBHT1000;
+                    approveItems.Add(item);
+                }
+            });
+
+            // Write Queue
+            TAxTODMQService.Instance.WriteQueue(header);
+            TAxTODMQService.Instance.WriteQueue(approveItems);
+
             DialogResult = true;
         }
 
         private void cmdReject_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(_approve.Remark))
+            {
+                var win2 = AccountApp.Windows.MessageBox;
+                win2.Setup("กรุณาระบุเหตุผลการไม่อนุมัติ.", "DMT - TA (Account)");
+                win2.ShowDialog();
+                return;
+            }
+
             // Reject and close Window
             var win = AccountApp.Windows.ConfirmRejectMessageBox;
-            win.Setup();
+            win.Setup(true);
             if (win.ShowDialog() == false) return;
 
-            //TAxTODMQService.Instance.WriteQueue();
+            var header = new Models.TAAExchangeHeader();
+            header.AdditionalBHT = _request.AdditionalBHT;
+            header.BorrowBHT = _request.BorrowBHT;
+            header.ExchangeBHT = _request.ExchangeBHT;
+            header.FinishFlag = 1;
+            header.PeriodBegin = _request.PeriodBegin;
+            header.PeriodEnd = _request.PeriodEnd;
+            header.Remark = _approve.Remark; // use remark from approve item.
+            header.RequestId = _requestId;
+            header.TSBId = _request.TSBId;
+            header.UserId = AccountApp.User.Current.UserId;
+            header.Status = "C";
+
+            // Write Queue
+            TAxTODMQService.Instance.WriteQueue(header);
+
             DialogResult = true;
         }
 
@@ -117,8 +237,10 @@ namespace DMT.Windows
 
         #region Public Method
 
-        public void Setup(Models.TSBExchangeTransaction request, Models.TSBExchangeTransaction approve = null)
+        public void Setup(int requestId,
+            Models.TSBExchangeTransaction request, Models.TSBExchangeTransaction approve = null)
         {
+            _requestId = requestId;
             _request = request;
             _approve = approve;
 

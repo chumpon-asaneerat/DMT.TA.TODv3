@@ -252,6 +252,21 @@ namespace DMT
 
             #endregion
 
+            #region Gets Approve Exchange Window
+
+            /// <summary>Gets Approve Exchange Window.</summary>
+            public static DMT.Windows.TSBApproveExchangeWindow ApproveExchangeWindow
+            {
+                get
+                {
+                    var ret = new DMT.Windows.TSBApproveExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region MessageBox(s)
 
             /// <summary>Gets MessageBox Window.</summary>

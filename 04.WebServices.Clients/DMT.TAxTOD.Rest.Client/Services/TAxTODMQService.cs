@@ -235,6 +235,10 @@ namespace DMT.Services
 
             var ret = ops.Exchange.SaveRequestDocument(value);
             CheckSendError(med, fullFileName, ret);
+            if (ret.Ok)
+            {
+                OnSendExchange.Call(this, EventArgs.Empty);
+            }
         }
 
         private void SendRequestExchangeItem(string fullFileName, Models.TAARequestExchangeItem value)
@@ -336,6 +340,10 @@ namespace DMT.Services
 
             var ret = ops.Exchange.SaveRequestDocument(value);
             CheckResendError(med, fullFileName, ret);
+            if (ret.Ok)
+            {
+                OnSendExchange.Call(this, EventArgs.Empty);
+            }
         }
 
         private void ResendRequestExchangeItem(string fullFileName, Models.TAARequestExchangeItem value)
@@ -883,6 +891,16 @@ namespace DMT.Services
         #endregion
 
         #region Public Properties
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// OnSendExchange event handler.
+        /// </summary>
+        public event System.EventHandler OnSendExchange;
+
 
         #endregion
     }

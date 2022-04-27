@@ -47,6 +47,29 @@ namespace DMT.Account.Pages.Exchange
 
         #endregion
 
+        #region Loaded/Unloaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            TAxTODMQService.Instance.OnSendExchange += Instance_OnSendExchange;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            TAxTODMQService.Instance.OnSendExchange -= Instance_OnSendExchange;
+        }
+
+        #endregion
+
+        #region MQ Send
+
+        private void Instance_OnSendExchange(object sender, EventArgs e)
+        {
+            LoadAll();
+        }
+
+        #endregion
+
         #region TabControl Handler
 
         private void tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -118,11 +141,11 @@ namespace DMT.Account.Pages.Exchange
             }
 
             var win = AccountApp.Windows.ConfirmRejectMessageBox;
-            win.Setup("ยืนยันการไม่อนุมัติคำร้องของด่านที่เลือก");
+            win.Setup(false, "ยืนยันการไม่อนุมัติคำร้องของด่านที่เลือก");
             if (win.ShowDialog() == false)
                 return;
 
-            string reason = string.Empty;
+            string reason = win.Reason;
             RejectAll(reason);
         }
 
@@ -209,10 +232,8 @@ namespace DMT.Account.Pages.Exchange
                 }
 
                 var win = AccountApp.Windows.RequestExchangeWindow;
-                win.Setup(doc);
+                win.Setup(reqId, doc);
                 win.ShowDialog();
-
-                LoadAll(); // refresh.
             }
         }
 
@@ -242,34 +263,34 @@ namespace DMT.Account.Pages.Exchange
                 doc.TSBNameTH = tsb.TSBNameTH;
 
                 // get request details
-                var details = ops.Exchange.GetRequestItems(tsbId, reqId).Value();
+                var details = ops.Exchange.GetApproveItems(tsbId, reqId).Value();
                 if (null != details && details.Count > 0)
                 {
                     details.ForEach(detail =>
                     {
                         if (detail.CurrencyDenomId == 1)
                         {
-                            doc.AmountST25 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountST25 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 2)
                         {
-                            doc.AmountST50 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountST50 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 3)
                         {
-                            doc.AmountBHT1 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT1 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 4)
                         {
-                            doc.AmountBHT2 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT2 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 5)
                         {
-                            doc.AmountBHT5 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT5 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 6)
                         {
-                            doc.AmountBHT10 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT10 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 7)
                         {
@@ -277,32 +298,30 @@ namespace DMT.Account.Pages.Exchange
                         }
                         else if (detail.CurrencyDenomId == 8)
                         {
-                            doc.AmountBHT20 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT20 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 9)
                         {
-                            doc.AmountBHT50 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT50 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 10)
                         {
-                            doc.AmountBHT100 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT100 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 11)
                         {
-                            doc.AmountBHT500 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT500 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                         else if (detail.CurrencyDenomId == 12)
                         {
-                            doc.AmountBHT1000 = (detail.CurrencyValue.HasValue) ? detail.CurrencyValue.Value : decimal.Zero;
+                            doc.AmountBHT1000 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
                         }
                     });
                 }
 
-                var win = AccountApp.Windows.RequestExchangeWindow;
+                var win = AccountApp.Windows.ApproveExchangeWindow;
                 win.Setup(doc);
                 win.ShowDialog();
-
-                LoadAll(); // refresh.
             }
         }
 
@@ -344,7 +363,7 @@ namespace DMT.Account.Pages.Exchange
                     header.AdditionalBHT = item.AdditionalBHT;
                     header.BorrowBHT = item.BorrowBHT;
                     header.ExchangeBHT = item.ExchangeBHT;
-                    header.FinishFlag = 1;
+                    header.FinishFlag = 0;
                     header.PeriodBegin = item.PeriodBegin;
                     header.PeriodEnd = item.PeriodEnd;
                     header.Remark = reason;
@@ -371,7 +390,6 @@ namespace DMT.Account.Pages.Exchange
                     TAxTODMQService.Instance.WriteQueue(approveItems);
                 }
             });
-            LoadAll(); // refresh.
         }
 
         private void RejectAll(string reason)
@@ -398,7 +416,6 @@ namespace DMT.Account.Pages.Exchange
                     TAxTODMQService.Instance.WriteQueue(header);
                 }
             });
-            LoadAll(); // refresh.
         }
 
         private void LoadAll()
@@ -413,8 +430,7 @@ namespace DMT.Account.Pages.Exchange
         /// <summary>
         /// Setup
         /// </summary>
-        /// <param name="chief">The Current User.</param>
-        public void Setup(User chief)
+        public void Setup()
         {
             LoadAll();
         }

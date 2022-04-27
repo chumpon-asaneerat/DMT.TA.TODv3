@@ -3155,7 +3155,7 @@ namespace DMT.Services
                 exchangeHeader.UserId = this.Request.UserId;
                 exchangeHeader.Status = "R"; // Request
 
-                List<TAAExchangeItem> items = new List<TAAExchangeItem>();
+                List<TAARequestExchangeItem> items = new List<TAARequestExchangeItem>();
                 
                 List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
                 currencies.ForEach(currency => 
@@ -3163,7 +3163,7 @@ namespace DMT.Services
                     if (currency.currencyDenomId == 7)
                         return; // ignore 10BHT note
 
-                    var item = new TAAExchangeItem();
+                    var item = new TAARequestExchangeItem();
                     item.TSBId = this.Request.TSBId;
                     item.RequestId = this.Group.PkId;
                     item.CurrencyDenomId = currency.currencyDenomId;

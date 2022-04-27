@@ -70,7 +70,7 @@ namespace DMT.Services.Operations
             /// </summary>
             /// <param name="value">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
-            public static NRestResult SaveRequestItem(TAAExchangeItem value)
+            public static NRestResult SaveRequestItem(TAARequestExchangeItem value)
             {
                 var ret = Execute(
                     RouteConsts.TAxTOD.Exchange.SaveRequestItem.Url, value);
@@ -100,6 +100,17 @@ namespace DMT.Services.Operations
             {
                 var ret = Execute<List<TAAApproveItem>>(
                     RouteConsts.TAxTOD.Exchange.GetApproveItems.Url, new { TSBId = tsbId, RequestId = requestId });
+                return ret;
+            }
+            /// <summary>
+            /// Execute Save Approve Item (detail) api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult SaveApproveItem(TAAApproveExchangeItem value)
+            {
+                var ret = Execute(
+                    RouteConsts.TAxTOD.Exchange.ApproveRequestItem.Url, value);
                 return ret;
             }
         }

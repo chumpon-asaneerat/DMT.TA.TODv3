@@ -354,12 +354,24 @@ namespace DMT.Account.Pages.Exchange
                     header.Status = "A";
 
                     List<TAAExchangeItem> reqitems = ops.Exchange.GetRequestItems(item.TSBId, item.RequestId.Value).Value();
+                    List<TAAApproveExchangeItem> approveItems = new List<TAAApproveExchangeItem>();
+                    reqitems.ForEach(reqitem => 
+                    {
+                        var approveItem = new TAAApproveExchangeItem();
+                        approveItem.TSBId = reqitem.TSBId;
+                        approveItem.RequestId = reqitem.RequestId;
+                        approveItem.CurrencyDenomId = reqitem.CurrencyDenomId;
+                        approveItem.CurrencyValue = reqitem.CurrencyValue;
+                        approveItem.CurrencyCount = reqitem.CurrencyCount;
 
+                        approveItems.Add(approveItem);
+                    });
                     // Write Queue
                     TAxTODMQService.Instance.WriteQueue(header);
-                    TAxTODMQService.Instance.WriteQueue(reqitems);
+                    TAxTODMQService.Instance.WriteQueue(approveItems);
                 }
             });
+            LoadAll(); // refresh.
         }
 
         private void RejectAll(string reason)
@@ -386,6 +398,7 @@ namespace DMT.Account.Pages.Exchange
                     TAxTODMQService.Instance.WriteQueue(header);
                 }
             });
+            LoadAll(); // refresh.
         }
 
         private void LoadAll()

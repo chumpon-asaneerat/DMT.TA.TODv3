@@ -237,11 +237,19 @@ namespace DMT.Services
             CheckSendError(med, fullFileName, ret);
         }
 
-        private void SendRequestExchangeItem(string fullFileName, Models.TAAExchangeItem value)
+        private void SendRequestExchangeItem(string fullFileName, Models.TAARequestExchangeItem value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Exchange.SaveRequestItem(value);
+            CheckSendError(med, fullFileName, ret);
+        }
+
+        private void SendRequestExchangeItem(string fullFileName, Models.TAAApproveExchangeItem value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.Exchange.SaveApproveItem(value);
             CheckSendError(med, fullFileName, ret);
         }
 
@@ -330,12 +338,21 @@ namespace DMT.Services
             CheckResendError(med, fullFileName, ret);
         }
 
-        private void ResendRequestExchangeItem(string fullFileName, Models.TAAExchangeItem value)
+        private void ResendRequestExchangeItem(string fullFileName, Models.TAARequestExchangeItem value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Exchange.SaveRequestItem(value);
+            CheckResendError(med, fullFileName, ret);
+        }
+
+        private void ResendRequestExchangeItem(string fullFileName, Models.TAAApproveExchangeItem value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Exchange.SaveApproveItem(value);
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -500,7 +517,22 @@ namespace DMT.Services
             {
                 try
                 {
-                    var value = jsonString.FromJson<Models.TAAExchangeItem>();
+                    var value = jsonString.FromJson<Models.TAARequestExchangeItem>();
+                    SendRequestExchangeItem(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.approve.exchange.item"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAApproveExchangeItem>();
                     SendRequestExchangeItem(fullFileName, value);
                 }
                 catch (Exception ex)
@@ -669,7 +701,22 @@ namespace DMT.Services
             {
                 try
                 {
-                    var value = jsonString.FromJson<Models.TAAExchangeItem>();
+                    var value = jsonString.FromJson<Models.TAARequestExchangeItem>();
+                    ResendRequestExchangeItem(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.approve.exchange.item"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAApproveExchangeItem>();
                     ResendRequestExchangeItem(fullFileName, value);
                 }
                 catch (Exception ex)
@@ -801,8 +848,8 @@ namespace DMT.Services
         /// <summary>
         /// Save Request Exchange Item.
         /// </summary>
-        /// <param name="values">The List of TAAExchangeItem instance.</param>
-        public void WriteQueue(List<Models.TAAExchangeItem> values)
+        /// <param name="values">The List of TAARequestExchangeItem instance.</param>
+        public void WriteQueue(List<Models.TAARequestExchangeItem> values)
         {
             if (null == values) return;
             for (int i = 0; i < values.Count; i++)
@@ -811,6 +858,23 @@ namespace DMT.Services
                     continue;
                 int iCnt = i + 1;
                 string fileName = GetFileName("save.request.exchange.item." + iCnt.ToString("D2"));
+                string msg = values[i].ToJson(false);
+                WriteFile(fileName, msg);
+            }
+        }
+        /// <summary>
+        /// Save Approve Exchange Item.
+        /// </summary>
+        /// <param name="values">The List of TAAApproveExchangeItem instance.</param>
+        public void WriteQueue(List<Models.TAAApproveExchangeItem> values)
+        {
+            if (null == values) return;
+            for (int i = 0; i < values.Count; i++)
+            {
+                if (null == values[i])
+                    continue;
+                int iCnt = i + 1;
+                string fileName = GetFileName("save.approve.exchange.item." + iCnt.ToString("D2"));
                 string msg = values[i].ToJson(false);
                 WriteFile(fileName, msg);
             }

@@ -180,7 +180,7 @@ namespace DMT.Models
         public string ApproveRemark { get; set; }
     }
 
-    // // http://localhost:8000/api/account/request/getdetail (as parameter)
+    // http://localhost:8000/api/account/request/getdetail (as parameter)
     /*
     {
         "requestid": 1 ,
@@ -188,8 +188,6 @@ namespace DMT.Models
     }
     */
     // http://localhost:8000/api/account/request/getdetail (as result)
-    // http://localhost:8000/api/account/request/savedetail (as parameter)
-    // http://localhost:8000/api/account/request/approve (as parameter)
     /*
     {
       "RequestId": 1,
@@ -200,6 +198,102 @@ namespace DMT.Models
     }
     */
     public class TAAExchangeItem
+    {
+        /// <summary>Gets or sets RequestId.</summary>
+        [PropertyMapName("RequestId")]
+        public int? RequestId { get; set; }
+        /// <summary>Gets or sets TSBId.</summary>
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+
+        /// <summary>Gets or sets CurrencyDenomId.</summary>
+        [PropertyMapName("CurrencyDenomId")]
+        public int? CurrencyDenomId { get; set; }
+
+        /// <summary>Gets or sets CurrencyValue.</summary>
+        [PropertyMapName("CurrencyValue")]
+        public decimal? CurrencyValue { get; set; }
+
+        /// <summary>Gets or sets CurrencyCount.</summary>
+        [PropertyMapName("CurrencyCount")]
+        public decimal? CurrencyCount { get; set; }
+    }
+
+    // http://localhost:8000/api/account/request/savedetail (as parameter)
+    /*
+    {
+      "RequestId": 1,
+      "TSBId": "09",
+      "CurrencyDenomId": 5,
+      "CurrencyValue": 5000,
+      "CurrencyCount": 500
+    }
+    */
+    public class TAARequestExchangeItem
+    {
+        /// <summary>Gets or sets RequestId.</summary>
+        [PropertyMapName("RequestId")]
+        public int? RequestId { get; set; }
+        /// <summary>Gets or sets TSBId.</summary>
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+
+        /// <summary>Gets or sets CurrencyDenomId.</summary>
+        [PropertyMapName("CurrencyDenomId")]
+        public int? CurrencyDenomId { get; set; }
+
+        /// <summary>Gets or sets CurrencyValue.</summary>
+        [PropertyMapName("CurrencyValue")]
+        public decimal? CurrencyValue { get; set; }
+
+        /// <summary>Gets or sets CurrencyCount.</summary>
+        [PropertyMapName("CurrencyCount")]
+        public decimal? CurrencyCount { get; set; }
+    }
+
+    // http://localhost:8000/api/account/request/approve (as parameter)
+    /*
+    {
+      "RequestId": 1,
+      "TSBId": "09",
+      "CurrencyDenomId": 5,
+      "CurrencyValue": 5000,
+      "CurrencyCount": 500
+    }
+    */
+    public class TAAApproveExchangeItem
+    {
+        /// <summary>Gets or sets RequestId.</summary>
+        [PropertyMapName("RequestId")]
+        public int? RequestId { get; set; }
+        /// <summary>Gets or sets TSBId.</summary>
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+
+        /// <summary>Gets or sets CurrencyDenomId.</summary>
+        [PropertyMapName("CurrencyDenomId")]
+        public int? CurrencyDenomId { get; set; }
+
+        /// <summary>Gets or sets CurrencyValue.</summary>
+        [PropertyMapName("CurrencyValue")]
+        public decimal? CurrencyValue { get; set; }
+
+        /// <summary>Gets or sets CurrencyCount.</summary>
+        [PropertyMapName("CurrencyCount")]
+        public decimal? CurrencyCount { get; set; }
+    }
+
+    // http://localhost:8000/api/???? (as parameter)
+    /*
+    {
+      "RequestId": 1,
+      "TSBId": "09",
+      "CurrencyDenomId": 5,
+      "CurrencyValue": 5000,
+      "CurrencyCount": 500
+    }
+    */
+    public class TAAReceiveExchangeItem
     {
         /// <summary>Gets or sets RequestId.</summary>
         [PropertyMapName("RequestId")]

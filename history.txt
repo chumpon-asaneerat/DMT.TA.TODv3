@@ -24,8 +24,15 @@ Refactor DMT.TA.TODv4 #2316
 Refactor DMT.TA.TODv4 #2315
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2314
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Add TSB Exchange process UI #9.
+  - DMT.Models project
+    - Add TAA ExchnageItem classes for seperate api.
+  - DMT.TA.App project
+    - TSB Exchange process UI #3.
 
 [commited]
 Refactor DMT.TA.TODv4 #2313

@@ -483,6 +483,36 @@ namespace DMT.Models
 			set { }
 		}
 		/// <summary>
+		/// Gets State String.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets State String.")]
+		[Ignore]
+		public string StateString
+		{
+			get 
+			{
+				string ret = string.Empty;
+				switch (_State)
+				{
+					case StateTypes.Request:
+						ret = "รออนุมัติ";
+						break;
+					case StateTypes.Approve:
+						ret = "อนุมัติ";
+						break;
+					case StateTypes.Received:
+						ret = "รับเงินแล้ว";
+						break;
+					case StateTypes.Reject:
+						ret = "ไม่อนุมัติ";
+						break;
+				}
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
 		/// Gets or sets has remark.
 		/// </summary>
 		[Category("Runtime")]

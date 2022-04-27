@@ -51,6 +51,11 @@ namespace DMT.TA.Pages.Exchange
             NewRequest();
         }
 
+        private void cmdRequestDetail_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Private Methods
@@ -64,6 +69,15 @@ namespace DMT.TA.Pages.Exchange
 
         private void Refresh()
         {
+            gridRequest.ItemsSource = null;
+            var items = Models.TSBExchangeGroup.GetRequestExchangeGroups(TAAPI.TSB).Value();
+            if (null != items)
+            {
+                items.ForEach(item => 
+                { 
+                });
+            }
+            gridRequest.ItemsSource = items;
             plazaSummary.Setup(); // Call for refresh.
         }
 
@@ -126,5 +140,10 @@ namespace DMT.TA.Pages.Exchange
         }
 
         #endregion
+
+        private void cmdReceivedDetail_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -935,6 +935,20 @@
         <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
 
+    <!--  Request UserId CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestUserId">
+        <TextBlock Text="{Binding Path=UserId, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+    <!--  Request FullNameTH CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestFullNameTH">
+        <TextBlock Text="{Binding Path=FullNameTH, Mode=OneWay}" TextAlignment="Left" />
+    </DataTemplate>
+
+    <!--  Request State CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestState">
+        <TextBlock Text="{Binding Path=StateString, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+
     <!--  PeriodBegin CELL TEMPLATE  -->
     <DataTemplate x:Key="PeriodBegin">
         <TextBlock Text="{Binding Path=PeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />

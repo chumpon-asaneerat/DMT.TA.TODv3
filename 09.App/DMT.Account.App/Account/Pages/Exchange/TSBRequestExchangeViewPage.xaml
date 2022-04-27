@@ -128,7 +128,7 @@
                                                 <DataTemplate>
                                                     <CheckBox HorizontalAlignment="Center"
                                                               VerticalAlignment="Center"
-                                                              IsChecked="{Binding Path=Selected, Mode=OneWay}" />
+                                                              IsChecked="{Binding Path=Selected, Mode=TwoWay}" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>

@@ -945,14 +945,14 @@
     </DataTemplate>
     <!--  Period GridView Columns Collections  -->
     <GridViewColumnCollection x:Key="PediodGridViewColumns">
-        <GridViewColumn Width="{StaticResource ListViewColWidth}"
-                        CellTemplate="{StaticResource PeriodBegin}"
+        <GridViewColumn CellTemplate="{StaticResource PeriodBegin}"
                         Header=" วันที่เริ่มต้น "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
-        <GridViewColumn Width="{StaticResource ListViewColWidth}"
-                        CellTemplate="{StaticResource PeriodEnd}"
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110" />
+        <GridViewColumn CellTemplate="{StaticResource PeriodEnd}"
                         Header=" วันที่สิ้นสุด "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" />
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
     </GridViewColumnCollection>
     <!--  Pediod Columns HEADER TEMPLATE  -->
     <DataTemplate x:Key="PediodColumnsHeader">

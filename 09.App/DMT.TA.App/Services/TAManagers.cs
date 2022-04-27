@@ -3154,7 +3154,6 @@ namespace DMT.Services
                 exchangeHeader.FinishFlag = 0;
                 exchangeHeader.UserId = this.Request.UserId;
                 exchangeHeader.Status = "R"; // Request
-                TAxTODMQService.Instance.WriteQueue(exchangeHeader);
 
                 List<TAAExchangeItem> items = new List<TAAExchangeItem>();
                 
@@ -3237,6 +3236,7 @@ namespace DMT.Services
                     }
                 });
 
+                TAxTODMQService.Instance.WriteQueue(exchangeHeader);
                 TAxTODMQService.Instance.WriteQueue(items);
             }
         }

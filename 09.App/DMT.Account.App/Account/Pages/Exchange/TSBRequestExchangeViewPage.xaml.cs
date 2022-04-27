@@ -39,6 +39,14 @@ namespace DMT.Account.Pages.Exchange
 
         #endregion
 
+        #region Private Methods
+
+        private List<TAAExchangeSummary> requests = new List<TAAExchangeSummary>();
+        private List<TAAExchangeSummary> approves = new List<TAAExchangeSummary>();
+
+
+        #endregion
+
         #region TabControl Handler
 
         private void tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,12 +75,55 @@ namespace DMT.Account.Pages.Exchange
 
         private void cmdApprove_Click(object sender, RoutedEventArgs e)
         {
+            // approve all selected
+            if (null == requests || requests.Count <= 0) return;
+            int iCnt = 0;
+            requests.ForEach(item => 
+            {
+                if (item.Selected) iCnt++;
+            });
 
+            if (iCnt <= 0)
+            {
+                var msgbox = AccountApp.Windows.MessageBox;
+                msgbox.Setup("กรุณาเลือกรายการ", "DMT - TA (Account)");
+                msgbox.ShowDialog();
+                return;
+            }
+
+            var win = AccountApp.Windows.ConfirmApproveMessageBox;
+            win.Setup("ยืนยันการอนุมัติคำร้องของด่านที่เลือก");
+            if (win.ShowDialog() == false)
+                return;
+
+            ApproveAll();
         }
 
         private void cmdNotApprove_Click(object sender, RoutedEventArgs e)
         {
+            // reject all selected
+            if (null == requests || requests.Count <= 0) return;
+            int iCnt = 0;
+            requests.ForEach(item =>
+            {
+                if (item.Selected) iCnt++;
+            });
 
+            if (iCnt <= 0)
+            {
+                var msgbox = AccountApp.Windows.MessageBox;
+                msgbox.Setup("กรุณาเลือกรายการ", "DMT - TA (Account)");
+                msgbox.ShowDialog();
+                return;
+            }
+
+            var win = AccountApp.Windows.ConfirmRejectMessageBox;
+            win.Setup("ยืนยันการไม่อนุมัติคำร้องของด่านที่เลือก");
+            if (win.ShowDialog() == false)
+                return;
+
+            string reason = string.Empty;
+            RejectAll(reason);
         }
 
         private void cmdRequestDetail_Click(object sender, RoutedEventArgs e)
@@ -270,16 +321,71 @@ namespace DMT.Account.Pages.Exchange
         {
             gridRequest.ItemsSource = null;
             // get by (R)equest status.
-            var list = ops.Exchange.Gets("R").Value();
-            gridRequest.ItemsSource = list;
+            requests = ops.Exchange.Gets("R").Value();
+            gridRequest.ItemsSource = requests;
         }
 
         private void LoadApproveList()
         {
             gridApprove.ItemsSource = null;
             // get by (A)pprove status.
-            var list = ops.Exchange.Gets("A").Value();
-            gridApprove.ItemsSource = list;
+            approves = ops.Exchange.Gets("A").Value();
+            gridApprove.ItemsSource = approves;
+        }
+
+        private void ApproveAll(string reason = "")
+        {
+            if (null == requests || requests.Count <= 0) return;
+            requests.ForEach(item =>
+            {
+                if (item.Selected)
+                {
+                    var header = new Models.TAAExchangeHeader();
+                    header.AdditionalBHT = item.AdditionalBHT;
+                    header.BorrowBHT = item.BorrowBHT;
+                    header.ExchangeBHT = item.ExchangeBHT;
+                    header.FinishFlag = 1;
+                    header.PeriodBegin = item.PeriodBegin;
+                    header.PeriodEnd = item.PeriodEnd;
+                    header.Remark = reason;
+                    header.RequestId = item.RequestId;
+                    header.TSBId = item.TSBId;
+                    header.UserId = AccountApp.User.Current.UserId;
+                    header.Status = "A";
+
+                    List<TAAExchangeItem> reqitems = ops.Exchange.GetRequestItems(item.TSBId, item.RequestId.Value).Value();
+
+                    // Write Queue
+                    TAxTODMQService.Instance.WriteQueue(header);
+                    TAxTODMQService.Instance.WriteQueue(reqitems);
+                }
+            });
+        }
+
+        private void RejectAll(string reason)
+        {
+            if (null == requests || requests.Count <= 0) return;
+            requests.ForEach(item =>
+            {
+                if (item.Selected)
+                {
+                    var header = new Models.TAAExchangeHeader();
+                    header.AdditionalBHT = item.AdditionalBHT;
+                    header.BorrowBHT = item.BorrowBHT;
+                    header.ExchangeBHT = item.ExchangeBHT;
+                    header.FinishFlag = 1;
+                    header.PeriodBegin = item.PeriodBegin;
+                    header.PeriodEnd = item.PeriodEnd;
+                    header.Remark = reason;
+                    header.RequestId = item.RequestId;
+                    header.TSBId = item.TSBId;
+                    header.UserId = AccountApp.User.Current.UserId;
+                    header.Status = "C";
+
+                    // Write Queue
+                    TAxTODMQService.Instance.WriteQueue(header);
+                }
+            });
         }
 
         private void LoadAll()

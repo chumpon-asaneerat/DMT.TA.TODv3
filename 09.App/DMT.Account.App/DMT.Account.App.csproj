@@ -133,7 +133,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -169,6 +168,9 @@
     </Compile>
     <Compile Include="Account\Controls\TSBRequestExchangeEntry.xaml.cs">
       <DependentUpon>TSBRequestExchangeEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Pages\Balance\TSBApproveBalanceViewPage.xaml.cs">
+      <DependentUpon>TSBApproveBalanceViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\Pages\Balance\TSBCheckBalancePage.xaml.cs">
       <DependentUpon>TSBCheckBalancePage.xaml</DependentUpon>
@@ -274,6 +276,10 @@
     <Page Include="Account\Controls\TSBRequestExchangeEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\Pages\Balance\TSBApproveBalanceViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\Pages\Balance\TSBCheckBalancePage.xaml">
       <SubType>Designer</SubType>

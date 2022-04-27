@@ -155,6 +155,8 @@ namespace DMT.Account.Pages.Exchange
         {
             //dtRequestDate.Value = DateTime.Now.Date;
             dtRequestDate.Value = new DateTime?();
+            grid.DataContext = null; // reset
+
             LoadAllTSB();
             LoadAllStatus();
         }

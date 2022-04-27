@@ -164,6 +164,28 @@ namespace DMT
 
             #endregion
 
+            #region Gets TSB Approve Balance View Page
+
+            private static Account.Pages.Balance.TSBApproveBalanceViewPage _TSBApproveBalanceView;
+
+            /// <summary>Gets TSB Approve Balance View Page.</summary>
+            public static Account.Pages.Balance.TSBApproveBalanceViewPage TSBApproveBalanceView
+            {
+                get
+                {
+                    if (null == _TSBApproveBalanceView)
+                    {
+                        lock (typeof(AccountApp))
+                        {
+                            _TSBApproveBalanceView = new Account.Pages.Balance.TSBApproveBalanceViewPage();
+                        }
+                    }
+                    return _TSBApproveBalanceView;
+                }
+            }
+
+            #endregion
+
             #region Coupon History View
 
             private static Account.Pages.Coupon.CouponHistoryViewPage _CouponHistoryView;

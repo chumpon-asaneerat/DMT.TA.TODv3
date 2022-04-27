@@ -1153,4 +1153,38 @@
         </Grid>
     </DataTemplate>
 
+    <!--  Common TSB Approve Balance Data Template (HEADER/CELL)  -->
+
+    <!--  TSBApproveBalanceTSBName HEADER TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceTSBNameHeader">
+        <TextBlock Text="ด่าน"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+    </DataTemplate>
+    <!--  TSBApproveBalanceTSBName CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceTSBName">
+        <TextBlock Text="{Binding Path=TSB_Th_Name, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  TSBApproveBalanceMaxLimit HEADER TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceMaxLimitHeader">
+        <TextBlock Text="วงเงินอนุมัติ"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+    </DataTemplate>
+    <!--  TSBApproveBalanceMaxLimit CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceMaxLimit">
+        <TextBlock Text="{Binding Path=MaxCredit, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  TSBApproveCurrentBalance HEADER TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveCurrentBalanceHeader">
+        <TextBlock Text="เงินด่านปัจจุบัน"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+    </DataTemplate>
+    <!--  TSBApproveBalanceMaxLimit CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveCurrentBalance">
+        <TextBlock Text="{Binding Path=TSBBalance, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
 </ResourceDictionary>

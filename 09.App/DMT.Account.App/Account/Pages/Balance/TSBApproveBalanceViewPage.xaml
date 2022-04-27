@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="DMT.Account.Pages.Balance.TSBApproveBalanceViewPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="650"
+             d:DesignWidth="1000"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--  IMAGE BUTTON STYLE  -->
+            <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  Force Merge related resource dictionary  -->
+                <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonStyle.xaml" />
+                <ResourceDictionary Source="/DMT.Controls;component/Themes/CommonEntryStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="DimGray">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdBack"
+                                      Click="cmdBack_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Home.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <DockPanel>
+                    <DockPanel LastChildFill="True">
+                        <Border Margin="10,1"
+                                Background="CornflowerBlue"
+                                BorderBrush="Silver"
+                                BorderThickness="1"
+                                DockPanel.Dock="Top">
+                            <TextBlock Margin="5,3"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Style="{StaticResource LabelText}"
+                                       Text="วงเงินด่าน" />
+                        </Border>
+                        <!--  SEPERATOR  -->
+                        <TextBlock Height="10" DockPanel.Dock="Top" />
+                        <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
+                        <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="5" />
+                            </Grid.ColumnDefinitions>
+                            <!--  LIST VIEW BALANCE  -->
+                            <ListView x:Name="gridBalance"
+                                      Margin="5,0"
+                                      Grid.Column="1"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                      ItemsSource="{Binding}"
+                                      Style="{StaticResource SingleSelectListView}"
+                                      SelectionChanged="gridBalance_SelectionChanged">
+                                <ListView.View>
+                                    <GridView>
+                                        <!--  TSB  -->
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource TSBApproveBalanceTSBName}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource TSBApproveBalanceTSBNameHeader}" />
+                                        <!--  MAX LIMIT  -->
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource TSBApproveBalanceMaxLimit}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource TSBApproveBalanceMaxLimitHeader}" />
+                                        <!--  CURRENT BALANCE  -->
+                                        <GridViewColumn Width="150"
+                                                        CellTemplate="{StaticResource TSBApproveCurrentBalance}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                        HeaderTemplate="{StaticResource TSBApproveCurrentBalanceHeader}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <!--  LIST VIEW Transactions  -->
+                            <ListView x:Name="gridTransactions"
+                                      Margin="5,0"
+                                      Grid.Column="3"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                      ItemsSource="{Binding}"
+                                      Style="{StaticResource SingleSelectListView}">
+                                <ListView.View>
+                                    <GridView>
+                                        <!--  ApproveDate  -->
+                                        <GridViewColumn Width="150"
+                                                        Header=" วันที่ทำรายการ "
+                                                        DisplayMemberBinding="{Binding ApproveDate}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                        <!--  ApproveType  -->
+                                        <GridViewColumn Width="150"
+                                                        Header=" ประเภทรายการ "
+                                                        DisplayMemberBinding="{Binding ApproveType}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                        <!--  PREVIOUS BALANCE  -->
+                                        <GridViewColumn Width="150"
+                                                        Header=" วงเงินก่อนปรับ "
+                                                        DisplayMemberBinding="{Binding ActualApprove}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                        <!--  CURRENT BALANCE  -->
+                                        <GridViewColumn Width="150"
+                                                        Header=" วงเงินหลังปรับ "
+                                                        DisplayMemberBinding="{Binding CreditApprove}"
+                                                        HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </DockPanel>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -158,9 +158,6 @@
     <Compile Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionEntry.xaml.cs">
       <DependentUpon>TSBExchangeTransactionEntry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionExtendEntry.xaml.cs">
-      <DependentUpon>TSBExchangeTransactionExtendEntry.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Account\Controls\Elements\Exchange\TSBRequestTransactionEntry.xaml.cs">
       <DependentUpon>TSBRequestTransactionEntry.xaml</DependentUpon>
     </Compile>
@@ -190,6 +187,12 @@
     </Compile>
     <Compile Include="Account\Windows\Exchange\TSBRequestExchangeWindow.xaml.cs">
       <DependentUpon>TSBRequestExchangeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Windows\MessageBox\ConfirmRejectWindow.xaml.cs">
+      <DependentUpon>ConfirmRejectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Windows\MessageBox\ConfirmApproveWindow.xaml.cs">
+      <DependentUpon>ConfirmApproveWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\Windows\SAP\SAPCustomerWindow.xaml.cs">
       <DependentUpon>SAPCustomerWindow.xaml</DependentUpon>
@@ -247,10 +250,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Account\Controls\Elements\Exchange\TSBExchangeTransactionExtendEntry.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Account\Controls\Elements\Exchange\TSBRequestTransactionEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -290,6 +289,14 @@
     <Page Include="Account\Windows\Exchange\TSBRequestExchangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\Windows\MessageBox\ConfirmRejectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\Windows\MessageBox\ConfirmApproveWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Account\Windows\SAP\SAPCustomerWindow.xaml">
       <SubType>Designer</SubType>

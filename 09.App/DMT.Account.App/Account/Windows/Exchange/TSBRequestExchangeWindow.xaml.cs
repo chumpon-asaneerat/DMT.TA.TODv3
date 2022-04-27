@@ -31,6 +31,14 @@ namespace DMT.Windows
 
         #endregion
 
+        #region Internal Variables
+
+        private Models.TSBExchangeTransaction _request = null;
+        private Models.TSBExchangeTransaction _approve = null;
+        private bool _IsNewApprove = false;
+
+        #endregion
+
         #region Loaded
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -44,12 +52,22 @@ namespace DMT.Windows
         private void cmdApprove_Click(object sender, RoutedEventArgs e)
         {
             // Approve and close Window
+            var win = AccountApp.Windows.ConfirmApproveMessageBox;
+            win.Setup();
+            if (win.ShowDialog() == false) return;
+
+            //TAxTODMQService.Instance.WriteQueue();
             DialogResult = true;
         }
 
         private void cmdReject_Click(object sender, RoutedEventArgs e)
         {
             // Reject and close Window
+            var win = AccountApp.Windows.ConfirmRejectMessageBox;
+            win.Setup();
+            if (win.ShowDialog() == false) return;
+
+            //TAxTODMQService.Instance.WriteQueue();
             DialogResult = true;
         }
 
@@ -61,40 +79,59 @@ namespace DMT.Windows
 
         #endregion
 
+        #region Private Methods
+
+        private void CreateNewApprove()
+        {
+            if (null != _request)
+            {
+                _approve = new TSBExchangeTransaction();
+
+                _approve.TransactionDate = DateTime.Now;
+                _approve.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
+
+                _approve.AmountST25 = _request.AmountST25;
+                _approve.AmountST50 = _request.AmountST50;
+                _approve.AmountBHT1 = _request.AmountBHT1;
+                _approve.AmountBHT2 = _request.AmountBHT2;
+                _approve.AmountBHT5 = _request.AmountBHT5;
+                _approve.AmountBHT10 = _request.AmountBHT10;
+                _approve.AmountBHT20 = _request.AmountBHT20;
+                _approve.AmountBHT50 = _request.AmountBHT50;
+                _approve.AmountBHT100 = _request.AmountBHT100;
+                _approve.AmountBHT500 = _request.AmountBHT500;
+                _approve.AmountBHT1000 = _request.AmountBHT1000;
+
+                _approve.AdditionalBHT = _request.AdditionalBHT;
+                _approve.BorrowBHT = _request.BorrowBHT;
+                _approve.ExchangeBHT = _request.ExchangeBHT;
+                _approve.TSBId = _request.TSBId;
+                _approve.UserId = AccountApp.User.Current.UserId; // current approve user.
+
+                _approve.PeriodBegin = _request.PeriodBegin;
+                _approve.PeriodEnd = _request.PeriodEnd;
+            }
+        }
+
+        #endregion
+
         #region Public Method
 
-        public void Setup(Models.TSBExchangeTransaction request)
+        public void Setup(Models.TSBExchangeTransaction request, Models.TSBExchangeTransaction approve = null)
         {
-            if (null != request)
+            _request = request;
+            _approve = approve;
+
+            if (null != _request)
             {
-                this.Title = "รายละเอียดคำร้องการขอ/แลก เงินยืมทอน - " + request.TSBNameTH;
-                var appExchange = new TSBExchangeTransaction();
+                this.Title = "รายละเอียดคำร้องการขอ/แลก เงินยืมทอน - " + _request.TSBNameTH;
+                _IsNewApprove = (null == _approve);
+                if (_IsNewApprove)
+                {
+                    CreateNewApprove();
+                }
 
-                appExchange.TransactionDate = DateTime.Now;
-                appExchange.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
-
-                appExchange.AmountST25 = request.AmountST25;
-                appExchange.AmountST50 = request.AmountST50;
-                appExchange.AmountBHT1 = request.AmountBHT1;
-                appExchange.AmountBHT2 = request.AmountBHT2;
-                appExchange.AmountBHT5 = request.AmountBHT5;
-                appExchange.AmountBHT10 = request.AmountBHT10;
-                appExchange.AmountBHT20 = request.AmountBHT20;
-                appExchange.AmountBHT50 = request.AmountBHT50;
-                appExchange.AmountBHT100 = request.AmountBHT100;
-                appExchange.AmountBHT500 = request.AmountBHT500;
-                appExchange.AmountBHT1000 = request.AmountBHT1000;
-
-                appExchange.AdditionalBHT = request.AdditionalBHT;
-                appExchange.BorrowBHT = request.BorrowBHT;
-                appExchange.ExchangeBHT = request.ExchangeBHT;
-                appExchange.TSBId = request.TSBId;
-                appExchange.UserId = AccountApp.User.Current.UserId; // current approve user.
-
-                appExchange.PeriodBegin = request.PeriodBegin;
-                appExchange.PeriodEnd = request.PeriodEnd;
-
-                entry.Setup(request, appExchange);
+                entry.Setup(_request, _approve);
             }
             else
             {

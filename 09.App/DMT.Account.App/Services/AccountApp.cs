@@ -240,7 +240,7 @@ namespace DMT
             #region Gets Request Exchange Window
 
             /// <summary>Gets Request Exchange Window.</summary>
-            public static DMT.Windows.TSBRequestExchangeWindow ResuestExchangeWindow
+            public static DMT.Windows.TSBRequestExchangeWindow RequestExchangeWindow
             {
                 get
                 {
@@ -303,6 +303,27 @@ namespace DMT
                 get
                 {
                     var ret = new DMT.Windows.MessageBoxYesNo3Window();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            /// <summary>Gets Confirm Approve Window.</summary>
+            public static DMT.Windows.ConfirmApproveWindow ConfirmApproveMessageBox
+            {
+                get
+                {
+                    var ret = new DMT.Windows.ConfirmApproveWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            /// <summary>Gets Confirm Reject Window.</summary>
+            public static DMT.Windows.ConfirmRejectWindow ConfirmRejectMessageBox
+            {
+                get
+                {
+                    var ret = new DMT.Windows.ConfirmRejectWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

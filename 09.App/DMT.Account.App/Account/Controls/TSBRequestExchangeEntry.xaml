@@ -4,8 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:exchange="clr-namespace:DMT.Account.Controls.Elements"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="500"
-             d:DesignWidth="800"
+             d:DesignHeight="700"
+             d:DesignWidth="1400"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
@@ -23,9 +23,9 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
-            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="5" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="5" />
         </Grid.ColumnDefinitions>
         <!--
@@ -35,9 +35,10 @@
                                               Foreground="WhiteSmoke" />
         -->
         <exchange:TSBRequestTransactionEntry Grid.Column="1"
-                                              x:Name="requestEntry"
-                                              Background="Indigo"
-                                              Foreground="WhiteSmoke" />
+                                             IsEnabled="False"
+                                             x:Name="requestEntry"
+                                             Background="Indigo"
+                                             Foreground="WhiteSmoke" />
         <exchange:TSBExchangeTransactionEntry Grid.Column="3"
                                               x:Name="approveEntry"
                                               Background="ForestGreen"

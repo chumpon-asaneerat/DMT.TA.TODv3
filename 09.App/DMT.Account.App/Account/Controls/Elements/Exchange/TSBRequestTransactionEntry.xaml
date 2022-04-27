@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="500"
-             d:DesignWidth="650"
+             d:DesignHeight="550"
+             d:DesignWidth="600"
              BorderBrush="Silver"
              BorderThickness="1"
              Focusable="False"
              IsTabStop="False"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -41,10 +42,24 @@
         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
             <!--  ENTRY  -->
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <StackPanel Style="{StaticResource EntryStackPanel}" Height="33">
+                    <TextBlock Text="วันที่ต้องการใช้งาน" Style="{StaticResource PeriodDescriptionStyle}" />
+                    <!--  PERIOD BEGIN  -->
+                    <TextBlock Text="{Binding PeriodBeginDateString}"
+                               Style="{StaticResource PeriodDescriptionStyle}"
+                               FontWeight="Bold"
+                               Width="120" />
+                    <!--  PERIOD END  -->
+                    <TextBlock Text="ถึงวันที่" Style="{StaticResource PeriodDescriptionStyle}" />
+                    <TextBlock Text="{Binding PeriodEndDateString}"
+                               Style="{StaticResource PeriodDescriptionStyle}"
+                               FontWeight="Bold"
+                               Width="120" />
+                </StackPanel>
                 <!--  1 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT1Description}" />
-                    <TextBox Style="{StaticResource BHT1Count}" />
+                    <TextBox Style="{StaticResource BHT1Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT1Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
@@ -52,7 +67,7 @@
                 <!--  2 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT2Description}" />
-                    <TextBox Style="{StaticResource BHT2Count}" />
+                    <TextBox Style="{StaticResource BHT2Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT2Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
@@ -60,7 +75,7 @@
                 <!--  5 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT5Description}" />
-                    <TextBox Style="{StaticResource BHT5Count}" />
+                    <TextBox Style="{StaticResource BHT5Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT5Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
@@ -68,7 +83,7 @@
                 <!--  10 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT10Description}" />
-                    <TextBox Style="{StaticResource BHT10Count}" />
+                    <TextBox Style="{StaticResource BHT10Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource CoinCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT10Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
@@ -76,7 +91,7 @@
                 <!--  20 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT20Description}" />
-                    <TextBox Style="{StaticResource BHT20Count}" />
+                    <TextBox Style="{StaticResource BHT20Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT20Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
@@ -84,7 +99,7 @@
                 <!--  50 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT50Description}" />
-                    <TextBox Style="{StaticResource BHT50Count}" />
+                    <TextBox Style="{StaticResource BHT50Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT50Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
@@ -92,7 +107,7 @@
                 <!--  100 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT100Description}" />
-                    <TextBox Style="{StaticResource BHT100Count}" />
+                    <TextBox Style="{StaticResource BHT100Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT100Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
@@ -100,7 +115,7 @@
                 <!--  500 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT500Description}" />
-                    <TextBox Style="{StaticResource BHT500Count}" />
+                    <TextBox Style="{StaticResource BHT500Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT500Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
@@ -108,13 +123,14 @@
                 <!--  1000 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource BHT1000Description}" />
-                    <TextBox Style="{StaticResource BHT1000Count}" />
+                    <TextBox Style="{StaticResource BHT1000Count}" IsEnabled="False" />
                     <TextBlock Style="{StaticResource BillCountUnitStyle}" />
                     <TextBox Style="{StaticResource BHT1000Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  TOTAL BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Width="170" />
                     <TextBlock Style="{StaticResource BHTTotalDescription}" />
                     <TextBox IsEnabled="False" Style="{StaticResource BHTTotalAmount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
@@ -122,33 +138,73 @@
             </StackPanel>
             <!--  SEPERATOR  -->
             <TextBlock Height="5" DockPanel.Dock="Top" />
-            <!--  REMARK  -->
-            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2" />
+                    <ColumnDefinition Width="350" />
+                    <ColumnDefinition Width="2" />
+                </Grid.ColumnDefinitions>
                 <!--  REMARK  -->
                 <StackPanel HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center"
                             Orientation="Vertical"
-                            Visibility="{Binding RemarkVisibility}">
-                    <TextBlock Height="5" />
-                    <TextBlock Margin="12,0"
-                               FontSize="{StaticResource EntryFontSize18}"
-                               Foreground="{StaticResource EntryTextForeground}"
-                               Text="หมายเหตุ"
-                               TextAlignment="Left" />
-                    <TextBox Height="75"
-                             Margin="10,0"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Top"
-                             AcceptsReturn="True"
-                             IsTabStop="False"
-                             Text="{Binding Remark}"
-                             TextAlignment="Left"
-                             TextWrapping="Wrap"
-                             VerticalScrollBarVisibility="Auto" />
+                            Grid.Column="1">
+                    <!--  REMARK  -->
+                    <StackPanel HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical"
+                                Visibility="{Binding RemarkVisibility}">
+                        <TextBlock Height="5" />
+                        <TextBlock Margin="12,0"
+                                   FontSize="{StaticResource EntryFontSize18}"
+                                   Foreground="{StaticResource EntryTextForeground}"
+                                   Text="หมายเหตุ"
+                                   TextAlignment="Left" />
+                        <TextBox Height="90"
+                                 Margin="10,0"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Top"
+                                 AcceptsReturn="True"
+                                 IsTabStop="False"
+                                 Text="{Binding Remark}"
+                                 TextAlignment="Left"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto" />
+                    </StackPanel>
                 </StackPanel>
-                <!--  SEPERATOR  -->
-                <TextBlock Height="10" />
-            </StackPanel>
+                <!--  EXCHANGE/ADDITION/BORROW  -->
+                <StackPanel HorizontalAlignment="Stretch"
+                            Orientation="Vertical"
+                            Grid.Column="3">
+                    <!--  EXCHANGE BHT  -->
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
+                        <TextBlock Style="{StaticResource RequestExchangeBHTDescription}" />
+                        <TextBox Style="{StaticResource RequestExchangeBHT}" />
+                        <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
+                    </StackPanel>
+                    <!--  BORROW BHT  -->
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
+                        <TextBlock Style="{StaticResource RequestBorrowBHTDescription}" />
+                        <TextBox Style="{StaticResource RequestBorrowBHT}" />
+                        <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                    </StackPanel>
+                    <!--  ADDITION BHT  -->
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
+                        <TextBlock Style="{StaticResource RequestAdditionalBHTDescription}" />
+                        <TextBox Style="{StaticResource RequestAdditionBHT}" />
+                        <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                    </StackPanel>
+                    <!--  TOTAL BHT  -->
+                    <StackPanel Style="{StaticResource EntryStackPanel}">
+                        <TextBlock Style="{StaticResource RequestGrandTotalBHTDescription}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource RequestGrandTotalBHT}" />
+                        <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <!--  SEPERATOR  -->
+            <TextBlock Height="10" />
         </StackPanel>
     </DockPanel>
 </UserControl>

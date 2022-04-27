@@ -35,31 +35,13 @@ namespace DMT.Account.Controls
 
         public void Setup(TSBExchangeTransaction req, TSBExchangeTransaction approve)
         {
+            req.HasRemark = true;
             requestEntry.Setup(req);
+
+            approve.HasRemark = true;
             approveEntry.Setup(approve);
         }
 
-        #endregion
-
-        #region Public Properties
-        /*
-        /// <summary>
-        /// Gets or sets Period Begin.
-        /// </summary>
-        public DateTime? PeriodBegin 
-        {
-            get { return extEntry.PeriodBegin; }
-            set { extEntry.PeriodBegin = value; }
-        }
-        /// <summary>
-        /// Gets or sets Period End.
-        /// </summary>
-        public DateTime? PeriodEnd
-        {
-            get { return extEntry.PeriodEnd; }
-            set { extEntry.PeriodEnd = value; }
-        }
-        */
         #endregion
     }
 }

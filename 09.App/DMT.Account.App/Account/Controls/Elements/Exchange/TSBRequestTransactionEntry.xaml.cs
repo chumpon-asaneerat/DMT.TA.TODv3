@@ -2,8 +2,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 using DMT.Configurations;
 using DMT.Controls;
@@ -27,6 +29,14 @@ namespace DMT.Account.Controls.Elements
         public TSBRequestTransactionEntry()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Loaded
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion

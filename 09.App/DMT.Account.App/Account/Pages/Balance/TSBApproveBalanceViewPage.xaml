@@ -118,22 +118,22 @@
                                         <!--  ApproveDate  -->
                                         <GridViewColumn Width="150"
                                                         Header=" วันที่ทำรายการ "
-                                                        DisplayMemberBinding="{Binding ApproveDate}"
+                                                        CellTemplate="{StaticResource TSBApproveBalanceTransactionApproveDate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  ApproveType  -->
                                         <GridViewColumn Width="150"
                                                         Header=" ประเภทรายการ "
-                                                        DisplayMemberBinding="{Binding ApproveType}"
+                                                        CellTemplate="{StaticResource TSBApproveBalanceTransactionApproveType}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  PREVIOUS BALANCE  -->
                                         <GridViewColumn Width="150"
                                                         Header=" วงเงินก่อนปรับ "
-                                                        DisplayMemberBinding="{Binding ActualApprove}"
+                                                        CellTemplate="{StaticResource TSBApproveBalanceTransactionActualApprove}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  CURRENT BALANCE  -->
                                         <GridViewColumn Width="150"
                                                         Header=" วงเงินหลังปรับ "
-                                                        DisplayMemberBinding="{Binding CreditApprove}"
+                                                        CellTemplate="{StaticResource TSBApproveBalanceTransactionCreditApprove}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                     </GridView>
                                 </ListView.View>

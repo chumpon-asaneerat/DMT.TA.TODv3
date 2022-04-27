@@ -597,11 +597,52 @@ namespace DMT.Models
         [PropertyMapName("CreditApprove")]
         public decimal? CreditApprove { get; set; }
 
+        [JsonIgnore]
+        public decimal CreditApprove2 
+        {
+            get 
+            {
+                return (CreditApprove.HasValue) ? CreditApprove.Value : decimal.Zero;
+            }
+            set { }
+        }
+
+
         [PropertyMapName("CreditActual")]
         public decimal? CreditActual { get; set; }
 
+        [JsonIgnore]
+        public decimal CreditActual2
+        {
+            get
+            {
+                return (CreditActual.HasValue) ? CreditActual.Value : decimal.Zero;
+            }
+            set { }
+        }
+
+        [JsonIgnore]
+        public decimal CreditCurrent2
+        {
+            get
+            {
+                return CreditActual2 + CreditApprove2;
+            }
+            set { }
+        }
+
         [PropertyMapName("ApproveDate")]
         public DateTime? ApproveDate { get; set; }
+
+        [JsonIgnore]
+        public string ApproveDateString
+        {
+            get 
+            {
+                return (ApproveDate.HasValue) ? ApproveDate.Value.ToThaiDateString() : string.Empty;
+            }
+            set { }
+        }
 
         [PropertyMapName("ApproveType")]
         public string ApproveType { get; set; }

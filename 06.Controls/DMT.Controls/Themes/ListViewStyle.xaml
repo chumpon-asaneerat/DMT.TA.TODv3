@@ -1187,4 +1187,26 @@
     <DataTemplate x:Key="TSBApproveCurrentBalance">
         <TextBlock Text="{Binding Path=TSBBalance, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
+
+
+    <!--  TSBApproveBalanceTransactionApproveDate CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceTransactionApproveDate">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ApproveDateString, Mode=OneWay}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <!--  TSBApproveBalanceTransactionApproveType CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceTransactionApproveType">
+        <TextBlock Text="{Binding Path=ApproveType, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  TSBApproveBalanceTransactionActualApprove CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceTransactionActualApprove">
+        <TextBlock Text="{Binding Path=CreditActial2, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  TSBApproveBalanceTransactionCreditApprove CELL TEMPLATE  -->
+    <DataTemplate x:Key="TSBApproveBalanceTransactionCreditApprove">
+        <TextBlock Text="{Binding Path=CreditCurrent2, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
 </ResourceDictionary>

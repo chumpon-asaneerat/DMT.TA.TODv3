@@ -99,7 +99,7 @@ namespace DMT.Account.Pages.Exchange
         private void LoadAllTSB()
         {
             List<TSB> tsbs = TSB.GetTSBs().Value();
-            tsbs.Insert(0, new TSB() { TSBId = "00", TSBNameEN = "[ None ]", TSBNameTH = "[ ทุกด่าน ]" });
+            tsbs.Insert(0, new TSB() { TSBId = null, TSBNameEN = "[ None ]", TSBNameTH = "[ ทุกด่าน ]" });
             cbTSB.ItemsSource = tsbs;
             if (tsbs.Count > 0) cbTSB.SelectedIndex = 0;
         }
@@ -113,14 +113,28 @@ namespace DMT.Account.Pages.Exchange
 
         private void Search()
         {
-            string tsbId = (null != cbTSB.SelectedItem && cbTSB.SelectedItem is TSB) ? 
-                string.Empty : (cbTSB.SelectedItem as TSB).TSBId;
-            string status = string.Empty;
+            string tsbId = (null != cbTSB.SelectedItem && cbTSB.SelectedItem is TSB) ?
+                (cbTSB.SelectedItem as TSB).TSBId: null;
+            string status = (null != cbStatus.SelectedItem && cbStatus.SelectedItem is ExchangeStatusItem) ?
+                (cbStatus.SelectedItem as ExchangeStatusItem).Code: null;
             DateTime? requestDate = dtRequestDate.Value;
+            
             grid.DataContext = null;
 
+            List<TAAExchangeSummary> results = new List<TAAExchangeSummary>(); ;
+            var rets = ops.Exchange.Gets(status).Value();
+            if (null != rets)
+            {
+                rets.ForEach(ret => 
+                {
+                    if (null == tsbId)
+                        results.Add(ret); // all tsb case.
+                    else if (null != tsbId && ret.TSBId == tsbId) 
+                        results.Add(ret); // filter by selected tsbid
+                });
+            }
 
-            grid.DataContext = null;
+            grid.DataContext = results;
         }
 
         private void GotoMainMenu()

@@ -113,6 +113,28 @@ namespace DMT.Services.Operations
                     RouteConsts.TAxTOD.Exchange.ApproveRequestItem.Url, value);
                 return ret;
             }
+
+            /// <summary>
+            /// Get TSB Approve Credits.
+            /// </summary>
+            /// <returns></returns>
+            public static NRestResult<List<TAATSBApproveCredit>> GetTSBApproveCredits()
+            {
+                var ret = Execute<List<TAATSBApproveCredit>>(
+                    RouteConsts.TAxTOD.Exchange.GetTSBApproveCredits.Url, new { });
+                return ret;
+            }
+            /// <summary>
+            /// Get TSB Approve Credit Transactions.
+            /// </summary>
+            /// <param name="tsbId">The TSB Id.</param>
+            /// <returns></returns>
+            public static NRestResult<List<TAATSBApproveCreditTransaction>> GetTSBApproveCreditTransactions(string tsbId)
+            {
+                var ret = Execute<List<TAATSBApproveCreditTransaction>>(
+                    RouteConsts.TAxTOD.Exchange.GetTSBApproveCreditTransactions.Url, new { TSBId = tsbId });
+                return ret;
+            }
         }
     }
 }

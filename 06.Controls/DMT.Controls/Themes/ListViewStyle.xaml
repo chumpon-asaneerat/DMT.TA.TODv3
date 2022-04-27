@@ -1064,4 +1064,93 @@
                    Text="รายละเอียด"
                    TextAlignment="Center" />
     </DataTemplate>
+
+
+    <!--  Request Exchange GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="RequestExchangeViewColumns">
+        <GridViewColumn CellTemplate="{StaticResource ExchangeBHT}"
+                        Header=" เงินขอแลก "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110" />
+        <GridViewColumn CellTemplate="{StaticResource BorrowBHT}"
+                        Header=" เงินยืมเพิ่ม "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+        <GridViewColumn CellTemplate="{StaticResource AdditionalBHT}"
+                        Header=" เพิ่มวงเงิน "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+    </GridViewColumnCollection>
+    <!--  Request Exchange Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestExchangeColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource RequestExchangeViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Request Exchange Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestExchangeColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource RequestExchangeViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
+    <!--  Approve ExchangeBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AppExchangeBHT">
+        <TextBlock Text="{Binding Path=AppExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Approve BorrowBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AppBorrowBHT">
+        <TextBlock Text="{Binding Path=AppBorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Approve AdditionalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AppAdditionalBHT">
+        <TextBlock Text="{Binding Path=AppAdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Approve Exchange GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="ApproveExchangeViewColumns">
+        <GridViewColumn CellTemplate="{StaticResource AppExchangeBHT}"
+                        Header=" เงินขอแลก "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110" />
+        <GridViewColumn CellTemplate="{StaticResource AppBorrowBHT}"
+                        Header=" เงินยืมเพิ่ม "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+        <GridViewColumn CellTemplate="{StaticResource AppAdditionalBHT}"
+                        Header=" เพิ่มวงเงิน "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+    </GridViewColumnCollection>
+    <!--  Approve Exchange Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ApproveExchangeColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource ApproveExchangeViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Approve Exchange Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="ApproveExchangeColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource ApproveExchangeViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

@@ -543,6 +543,77 @@ namespace DMT.Models
     }
 }
 
+// for TAxTOD TSB Balance
+namespace DMT.Models
+{
+    // http://localhost:8000/api/account/appcredit/list (as result)
+    /*
+    {
+      "TSBId": "01",
+      "TSB_Th_Name": "ดินแดง",
+      "MaxCredit": 200000,
+      "tsbbalance": 185000
+    }
+    */
+    public class TAATSBApproveCredit
+    {
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+
+        [PropertyMapName("TSB_Th_Name")]
+        public string TSB_Th_Name { get; set; }
+
+        [PropertyMapName("MaxCredit")]
+        public decimal? MaxCredit { get; set; }
+
+        [PropertyMapName("TSBBalance")]
+        public decimal? TSBBalance { get; set; }
+    }
+
+    // http://localhost:8000/api/account/appcredit/translist (as result)
+    // Parameter
+    /*
+    {
+        "TSBId": "09"
+    }
+    */
+    // Result
+    /*
+    {
+      "TSBId": "09",
+      "CreditApprove": 200000,
+      "CreditActual": 0,
+      "ApproveDate": "2021-05-08T00:00:00.000Z",
+      "ApproveType": "I",
+      "ApproveFileName": "09In.pdf  ",
+      "ApproveBy": "00444"
+    }
+    */
+    public class TAATSBApproveCreditTransaction
+    {
+        [PropertyMapName("TSBId")]
+        public string TSBId { get; set; }
+
+        [PropertyMapName("CreditApprove")]
+        public decimal? CreditApprove { get; set; }
+
+        [PropertyMapName("CreditActual")]
+        public decimal? CreditActual { get; set; }
+
+        [PropertyMapName("ApproveDate")]
+        public DateTime? ApproveDate { get; set; }
+
+        [PropertyMapName("ApproveType")]
+        public string ApproveType { get; set; }
+
+        [PropertyMapName("ApproveFileName")]
+        public string ApproveFileName { get; set; }
+
+        [PropertyMapName("ApproveBy")]
+        public string ApproveBy { get; set; }
+    }
+}
+
 // for TA App used
 namespace DMT.Models
 {

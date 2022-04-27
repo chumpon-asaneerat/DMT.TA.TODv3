@@ -104,7 +104,6 @@ namespace DMT.Account.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
-
         private void cndSendDataToSAP_Click(object sender, RoutedEventArgs e)
         {
             // SAP Send Coupon Sold.

@@ -12,8 +12,15 @@ Refactor DMT.TA.TODv4 #2320
 Refactor DMT.TA.TODv4 #2319
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2318
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Add TSB Exchange process UI #12.
+  - DMT.Models project
+    - Add TSBApprove credit balance classes.
+  - DMT.TAxTOD.Rest.Client project
+    - Add TSBApprove credit balance rest api call methods.
 
 [commited]
 Refactor DMT.TA.TODv4 #2317

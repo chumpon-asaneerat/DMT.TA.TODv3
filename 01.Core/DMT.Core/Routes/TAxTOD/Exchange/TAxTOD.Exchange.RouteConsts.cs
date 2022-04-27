@@ -86,6 +86,29 @@ namespace DMT
                     public const string Url = @"/api/account/request/getapprovedetail";
                 }
             }
+
+            static partial class Exchange
+            {
+                // Url: /api/account/appcredit/list
+                /// <summary>The Request Exchange Get TSB Approve Credit Balance Items Class.</summary>
+                public static partial class GetTSBApproveCredits
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "GetTSBApproveCredits";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/account/appcredit/list";
+                }
+
+                // Url: /api/account/appcredit/translist
+                /// <summary>The Request Exchange Get TSB Approve Credit Balance Items Class.</summary>
+                public static partial class GetTSBApproveCreditTransactions
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "GetTSBApproveCreditTransactions";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/account/appcredit/translist";
+                }
+            }
         }
     }
 }

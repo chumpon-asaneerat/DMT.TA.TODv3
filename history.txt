@@ -30,8 +30,12 @@ Refactor DMT.TA.TODv4 #2324
 Refactor DMT.TA.TODv4 #2323
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2322
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Add TSB Exchange process UI #15 (all UI completed).
+      - need some data not returns from server i.e. need status in api http://localhost:8000/api/account/request/getlist
 
 [commited]
 Refactor DMT.TA.TODv4 #2321

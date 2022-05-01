@@ -340,7 +340,7 @@ namespace DMT.Account.Pages.Exchange
         {
             gridRequest.ItemsSource = null;
             // get by (R)equest status.
-            requests = ops.Exchange.Gets("R").Value();
+            requests = ops.Exchange.Gets("R", null, new DateTime?()).Value();
             gridRequest.ItemsSource = requests;
         }
 
@@ -348,7 +348,7 @@ namespace DMT.Account.Pages.Exchange
         {
             gridApprove.ItemsSource = null;
             // get by (A)pprove status.
-            approves = ops.Exchange.Gets("A").Value();
+            approves = ops.Exchange.Gets("A", null, new DateTime?()).Value();
             gridApprove.ItemsSource = approves;
         }
 

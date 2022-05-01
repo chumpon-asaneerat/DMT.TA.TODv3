@@ -17,12 +17,21 @@ namespace DMT.Services.Operations
             /// Execute Gets api.
             /// </summary>
             /// <param name="value">The api parameter.</param>
+            /// <param name="tsbId">The api parameter.</param>
+            /// <param name="requestDate">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
             public static NRestResult<List<TAAExchangeSummary>> Gets(
-                string value)
+                string value,
+                string tsbId = null,
+                DateTime? requestDate = new DateTime?())
             {
                 var ret = Execute<List<TAAExchangeSummary>>(
-                    RouteConsts.TAxTOD.Exchange.Gets.Url, new { status = value });
+                    RouteConsts.TAxTOD.Exchange.Gets.Url, new 
+                    { 
+                        TSBId = tsbId,
+                        status = value,
+                        RequestDate = requestDate
+                    });
                 return ret;
             }
             /// <summary>

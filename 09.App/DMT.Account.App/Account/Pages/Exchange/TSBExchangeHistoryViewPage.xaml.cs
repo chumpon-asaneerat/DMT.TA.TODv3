@@ -87,6 +87,10 @@ namespace DMT.Account.Pages.Exchange
             public static List<ExchangeStatusItem> Gets()
             {
                 List<ExchangeStatusItem> results = new List<ExchangeStatusItem>();
+                // R = รออนุมัติ
+                // A = อนุมัติ
+                // C = ไม่อนุมัติ (finish = 1) 
+                // F = ด่านรับเงิน (finish = 1)
                 results.Add(new ExchangeStatusItem() { Code = null, DisplayText = "[ ทุกสถานะ ]" });
                 results.Add(new ExchangeStatusItem() { Code = "R", DisplayText = "รออนุมัติ" });
                 results.Add(new ExchangeStatusItem() { Code = "A", DisplayText = "อนุมัติแล้ว" });
@@ -122,7 +126,7 @@ namespace DMT.Account.Pages.Exchange
             grid.DataContext = null;
 
             List<TAAExchangeSummary> results = new List<TAAExchangeSummary>(); ;
-            var rets = ops.Exchange.Gets(status).Value();
+            var rets = ops.Exchange.Gets(status, tsbId, requestDate).Value();
             if (null != rets)
             {
                 rets.ForEach(ret => 

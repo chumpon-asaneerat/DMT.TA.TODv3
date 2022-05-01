@@ -160,6 +160,7 @@
     <Compile Include="Header\Elements\HeaderBarService.cs" />
     <Compile Include="Message\MQResendService.cs" />
     <Compile Include="Services\CouponSyncService.cs" />
+    <Compile Include="Services\ExchangeSyncService.cs" />
     <Compile Include="Services\TAApp.cs" />
     <Compile Include="Header\Elements\HeaderChief.xaml.cs">
       <DependentUpon>HeaderChief.xaml</DependentUpon>

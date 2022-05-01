@@ -24,8 +24,12 @@ Refactor DMT.TA.TODv4 #2326
 Refactor DMT.TA.TODv4 #2325
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2324
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Add TSB Exchange process UI #16.
+      - Add transdate in all http://localhost:8000/api/account/request/save api call
 
 [commited]
 Refactor DMT.TA.TODv4 #2323

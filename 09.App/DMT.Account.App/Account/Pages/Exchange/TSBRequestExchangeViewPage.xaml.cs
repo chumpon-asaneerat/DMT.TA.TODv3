@@ -371,6 +371,7 @@ namespace DMT.Account.Pages.Exchange
                     header.TSBId = item.TSBId;
                     header.UserId = AccountApp.User.Current.UserId;
                     header.Status = "A";
+                    header.TranactionDate = DateTime.Now;
 
                     List<TAAExchangeItem> reqitems = ops.Exchange.GetRequestItems(item.TSBId, item.RequestId.Value).Value();
                     List<TAAApproveExchangeItem> approveItems = new List<TAAApproveExchangeItem>();
@@ -411,6 +412,7 @@ namespace DMT.Account.Pages.Exchange
                     header.TSBId = item.TSBId;
                     header.UserId = AccountApp.User.Current.UserId;
                     header.Status = "C";
+                    header.TranactionDate = DateTime.Now;
 
                     // Write Queue
                     TAxTODMQService.Instance.WriteQueue(header);

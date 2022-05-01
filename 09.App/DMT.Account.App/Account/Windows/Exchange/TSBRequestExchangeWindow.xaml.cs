@@ -69,6 +69,7 @@ namespace DMT.Windows
             header.TSBId = _approve.TSBId;
             header.UserId = AccountApp.User.Current.UserId;
             header.Status = "A";
+            header.TranactionDate = DateTime.Now;
 
             List<TAAApproveExchangeItem> approveItems = new List<TAAApproveExchangeItem>();
             List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
@@ -184,6 +185,7 @@ namespace DMT.Windows
             header.TSBId = _request.TSBId;
             header.UserId = AccountApp.User.Current.UserId;
             header.Status = "C";
+            header.TranactionDate = DateTime.Now;
 
             // Write Queue
             TAxTODMQService.Instance.WriteQueue(header);

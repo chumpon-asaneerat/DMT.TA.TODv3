@@ -21,8 +21,12 @@ Refactor DMT.TA.TODv4 #2327
 Refactor DMT.TA.TODv4 #2326
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2325
-- 
+- DMT.TAxTODv3
+  - Rewrite code compress files -> json backup files in all services in
+    - JsonMessageTransferService.cs
+    - TODClientManager.cs
 
 [commited]
 Refactor DMT.TA.TODv4 #2324

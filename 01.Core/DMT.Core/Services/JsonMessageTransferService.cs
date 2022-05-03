@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 
 using NLib;
 using NLib.IO;
+// zip required
+using System.IO.Compression;
 
 #endregion
 
@@ -364,18 +366,15 @@ namespace DMT.Services
                     }
                 });
 
-                //TODO: Need Re-check auto compress old message.
-                /*
                 // Compress.
                 string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
                 string outputFile = Path.Combine(this.MessageFolder, "Backup", targetFile);
-
                 med.Info("Begin CompressFiles - Current directory: {0}", this.MessageFolder);
 
                 try
                 {
-                    NLib.Utils.SevenZipManager.CompressDirectory(targetDir, outputFile, true);
+                    ZipFile.CreateFromDirectory(targetDir, outputFile, CompressionLevel.Fastest, true);
                 }
                 catch (Exception ex3)
                 {
@@ -397,7 +396,6 @@ namespace DMT.Services
                 }
 
                 med.Info("End CompressFiles - Current directory: {0}", this.MessageFolder);
-                */
             }
         }
 

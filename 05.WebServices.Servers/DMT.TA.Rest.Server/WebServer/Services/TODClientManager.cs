@@ -21,6 +21,7 @@ using NLib;
 using NLib.IO;
 using NLib.Services;
 using NLib.Reflection;
+using System.IO.Compression;
 
 using RestSharp;
 using System.Threading.Tasks;
@@ -217,6 +218,7 @@ namespace DMT.Services
             DateTime today = DateTime.Today;
             DateTime firstOnMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             DateTime targetDT = firstOnMonth.AddMonths(-2); // last 2 month.
+            //DateTime targetDT = firstOnMonth.AddDays(-20); // last 20 days.
 
             files.ForEach(file =>
             {
@@ -257,15 +259,15 @@ namespace DMT.Services
                     }
                 });
 
-                //TODO: Need Re-check auto compress old message.
-                /*
-                // Compress.
-                string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);
+                // Compress (becareful path should be todFolder not MessageFolder).
+                string targetDir = Path.Combine(todFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
-                string outputFile = Path.Combine(this.MessageFolder, "Backup", targetFile);
+                string outputFile = Path.Combine(todFolder, "Backup", targetFile);
+                med.Info("Begin CompressFiles - Current directory: {0}", todFolder);
+
                 try
                 {
-                    NLib.Utils.SevenZipManager.CompressDirectory(targetDir, outputFile, true);
+                    ZipFile.CreateFromDirectory(targetDir, outputFile, CompressionLevel.Fastest, true);
                 }
                 catch (Exception ex3)
                 {
@@ -285,7 +287,8 @@ namespace DMT.Services
                 {
                     med.Err(ex4);
                 }
-                */
+
+                med.Info("End CompressFiles - Current directory: {0}", todFolder);
             }
         }
 

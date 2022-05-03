@@ -2986,6 +2986,128 @@ namespace DMT.Services
 
         #endregion
 
+        #region Utils class
+
+        public class Utils
+        {
+            public static TAAExchangeHeader CreateRequestExchangeHeader(TSBExchangeGroup group, TSBExchangeTransaction req)
+            {
+                if (null == group || null == req)
+                    return null;
+
+                TAAExchangeHeader ret = new TAAExchangeHeader();
+
+                ret.TSBId = req.TSBId;
+                ret.UserId = req.UserId;
+
+                ret.RequestId = group.PkId;
+                ret.TranactionDate = req.TransactionDate;
+
+                ret.ExchangeBHT = req.ExchangeBHT;
+                ret.BorrowBHT = req.BorrowBHT;
+                ret.AdditionalBHT = req.AdditionalBHT;
+
+                ret.PeriodBegin = req.PeriodBegin;
+                ret.PeriodEnd = req.PeriodEnd;
+
+                ret.Remark = req.Remark;
+
+                //ret.FinishFlag = 1; // completed.
+                //ret.Status = "C"; // Cancel
+                return ret;
+            }
+            public static List<TAARequestExchangeItem> CreateRequestExchangeDetails(TSBExchangeGroup group, 
+                TSBExchangeTransaction req)
+            {
+                if (null == group || null == req)
+                    return null;
+
+                List<TAARequestExchangeItem> rets = new List<TAARequestExchangeItem>();
+
+                List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
+                currencies.ForEach(currency =>
+                {
+                    if (currency.currencyDenomId == 7)
+                        return; // ignore 10BHT note
+
+                    var item = new TAARequestExchangeItem();
+                    item.TSBId = req.TSBId;
+                    item.RequestId = group.PkId;
+                    item.CurrencyDenomId = currency.currencyDenomId;
+
+                    if (currency.denomValue == (decimal)0.25)
+                    {
+                        item.CurrencyValue = req.AmountST25;
+                        item.CurrencyCount = req.CountST25;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == (decimal)0.5)
+                    {
+                        item.CurrencyValue = req.AmountST50;
+                        item.CurrencyCount = req.CountST50;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 1)
+                    {
+                        item.CurrencyValue = req.AmountBHT1;
+                        item.CurrencyCount = req.CountBHT1;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 2)
+                    {
+                        item.CurrencyValue = req.AmountBHT2;
+                        item.CurrencyCount = req.CountBHT2;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 5)
+                    {
+                        item.CurrencyValue = req.AmountBHT5;
+                        item.CurrencyCount = req.CountBHT5;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 10)
+                    {
+                        item.CurrencyValue = req.AmountBHT10;
+                        item.CurrencyCount = req.CountBHT10;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 20)
+                    {
+                        item.CurrencyValue = req.AmountBHT20;
+                        item.CurrencyCount = req.CountBHT20;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 50)
+                    {
+                        item.CurrencyValue = req.AmountBHT50;
+                        item.CurrencyCount = req.CountBHT50;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 100)
+                    {
+                        item.CurrencyValue = req.AmountBHT100;
+                        item.CurrencyCount = req.CountBHT100;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 500)
+                    {
+                        item.CurrencyValue = req.AmountBHT500;
+                        item.CurrencyCount = req.CountBHT500;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 1000)
+                    {
+                        item.CurrencyValue = req.AmountBHT1000;
+                        item.CurrencyCount = req.CountBHT1000;
+                        rets.Add(item);
+                    }
+                });
+                return rets;
+            }
+        }
+
+        #endregion
+
         #region Private Methods
 
         #region Event Raisers
@@ -3005,6 +3127,45 @@ namespace DMT.Services
 
         #region Public Methods
 
+        /// <summary>
+        /// Checks is both total amount is match.
+        /// </summary>
+        /// <returns>Returns true if match.</returns>
+        public bool IsMatchAmount()
+        {
+            bool ret = false;
+
+            if (null != this.Request)
+            {
+                decimal detailTotal = this.Request.GrandTotalBHT;
+                decimal creditTotal = this.Request.BHTTotal;
+                ret = (detailTotal == creditTotal);
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Checks has period begin/end date.
+        /// </summary>
+        /// <returns>Returns true if period begin/end date assigned (if required)</returns>
+        public bool CheckPeriod()
+        {
+            bool ret = false;
+
+            if (null != this.Request)
+            {
+                if (this.Request.AdditionalBHT != decimal.Zero || this.Request.BorrowBHT != decimal.Zero)
+                {
+                    ret = (this.Request.PeriodBegin.HasValue && this.Request.PeriodEnd.HasValue);
+                }
+                else
+                {
+                    ret = true; // only exchange so no need period begin/end.
+                }
+            }
+
+            return ret;
+        }
         /// <summary>
         /// New Request.
         /// </summary>
@@ -3107,66 +3268,16 @@ namespace DMT.Services
                 med.Info(msg);
 
                 // Write to queue
-                TAAExchangeHeader exchangeHeader = new TAAExchangeHeader();
-                exchangeHeader.RequestId = this.Group.PkId;
-                exchangeHeader.TSBId = this.Request.TSBId;
-                exchangeHeader.TranactionDate = this.Request.TransactionDate;
-                exchangeHeader.ExchangeBHT = this.Request.ExchangeBHT;
-                exchangeHeader.BorrowBHT = this.Request.BorrowBHT;
-                exchangeHeader.AdditionalBHT = this.Request.AdditionalBHT;
-                exchangeHeader.PeriodBegin = this.Request.PeriodBegin;
-                exchangeHeader.PeriodEnd = this.Request.PeriodEnd;
-                exchangeHeader.Remark = this.Request.Remark;
-                exchangeHeader.FinishFlag = 1; // completed.
-                exchangeHeader.UserId = this.Request.UserId;
-                exchangeHeader.Status = "C"; // Cancel
+                TAAExchangeHeader header = Utils.CreateRequestExchangeHeader(this.Group, this.Request);
+                header.FinishFlag = 1; // completed.
+                header.Status = "C"; // Cancel
 
                 Task.Run(() =>
                 {
-                    TAxTODMQService.Instance.WriteQueue(exchangeHeader);
+                    TAxTODMQService.Instance.WriteQueue(header);
                 });
             }
         }
-        /// <summary>
-        /// Checks is both total amount is match.
-        /// </summary>
-        /// <returns>Returns true if match.</returns>
-        public bool IsMatchAmount()
-        {
-            bool ret = false;
-
-            if (null != this.Request)
-            {
-                decimal detailTotal = this.Request.GrandTotalBHT;
-                decimal creditTotal = this.Request.BHTTotal;
-                ret = (detailTotal == creditTotal);
-            }
-
-            return ret;
-        }
-        /// <summary>
-        /// Checks has period begin/end date.
-        /// </summary>
-        /// <returns>Returns true if period begin/end date assigned (if required)</returns>
-        public bool CheckPeriod()
-        {
-            bool ret = false;
-
-            if (null != this.Request)
-            {
-                if (this.Request.AdditionalBHT != decimal.Zero || this.Request.BorrowBHT != decimal.Zero)
-                {
-                    ret = (this.Request.PeriodBegin.HasValue && this.Request.PeriodEnd.HasValue);
-                }
-                else
-                {
-                    ret = true; // only exchange so no need period begin/end.
-                }
-            }
-
-            return ret;
-        }
-
         /// <summary>
         /// Save Request (both group/transaction).
         /// </summary>
@@ -3205,104 +3316,27 @@ namespace DMT.Services
                 med.Info(msg);
 
                 // Write to queue
-                TAAExchangeHeader exchangeHeader = new TAAExchangeHeader();
-                exchangeHeader.RequestId = this.Group.PkId;
-                exchangeHeader.TSBId = this.Request.TSBId;
-                exchangeHeader.TranactionDate = this.Request.TransactionDate;
-                exchangeHeader.ExchangeBHT = this.Request.ExchangeBHT;
-                exchangeHeader.BorrowBHT = this.Request.BorrowBHT;
-                exchangeHeader.AdditionalBHT = this.Request.AdditionalBHT;
-                exchangeHeader.PeriodBegin = this.Request.PeriodBegin;
-                exchangeHeader.PeriodEnd = this.Request.PeriodEnd;
-                exchangeHeader.Remark = this.Request.Remark;
-                exchangeHeader.FinishFlag = 0;
-                exchangeHeader.UserId = this.Request.UserId;
-                exchangeHeader.Status = "R"; // Request
-
-                List<TAARequestExchangeItem> items = new List<TAARequestExchangeItem>();
-                
-                List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
-                currencies.ForEach(currency => 
+                TAAExchangeHeader header = Utils.CreateRequestExchangeHeader(this.Group, this.Request);
+                if (null == header)
                 {
-                    if (currency.currencyDenomId == 7)
-                        return; // ignore 10BHT note
+                    msg = "Cannot create request exchange header.";
+                    med.Err(msg);
+                    return;
+                }
+                header.FinishFlag = 0;
+                header.Status = "R"; // Request
 
-                    var item = new TAARequestExchangeItem();
-                    item.TSBId = this.Request.TSBId;
-                    item.RequestId = this.Group.PkId;
-                    item.CurrencyDenomId = currency.currencyDenomId;
-                    
-                    if (currency.denomValue == (decimal)0.25) 
-                    {
-                        item.CurrencyValue = this.Request.AmountST25;
-                        item.CurrencyCount = this.Request.CountST25;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == (decimal)0.5) 
-                    {
-                        item.CurrencyValue = this.Request.AmountST50;
-                        item.CurrencyCount = this.Request.CountST50;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 1) 
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT1;
-                        item.CurrencyCount = this.Request.CountBHT1;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 2)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT2;
-                        item.CurrencyCount = this.Request.CountBHT2;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 5)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT5;
-                        item.CurrencyCount = this.Request.CountBHT5;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 10)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT10;
-                        item.CurrencyCount = this.Request.CountBHT10;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 20)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT20;
-                        item.CurrencyCount = this.Request.CountBHT20;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 50)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT50;
-                        item.CurrencyCount = this.Request.CountBHT50;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 100)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT100;
-                        item.CurrencyCount = this.Request.CountBHT100;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 500)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT500;
-                        item.CurrencyCount = this.Request.CountBHT500;
-                        items.Add(item);
-                    }
-                    else if (currency.denomValue == 1000)
-                    {
-                        item.CurrencyValue = this.Request.AmountBHT1000;
-                        item.CurrencyCount = this.Request.CountBHT1000;
-                        items.Add(item);
-                    }
-                });
+                List<TAARequestExchangeItem> items = Utils.CreateRequestExchangeDetails(this.Group, this.Request);
+                if (null == items)
+                {
+                    msg = "Cannot create request exchange details.";
+                    med.Err(msg);
+                    return;
+                }
 
                 Task.Run(() => 
                 {
-                    TAxTODMQService.Instance.WriteQueue(exchangeHeader);
+                    TAxTODMQService.Instance.WriteQueue(header);
                     TAxTODMQService.Instance.WriteQueue(items);
                 });
             }

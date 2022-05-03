@@ -51,7 +51,7 @@ namespace DMT.TA.Windows.Exchange
                 // Cancel Request and close window
                 _manager.CancelRequest();
 
-                DialogResult = false;
+                DialogResult = true;
             }
         }
 

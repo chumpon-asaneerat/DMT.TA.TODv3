@@ -1366,7 +1366,8 @@ namespace DMT.Models
 			{
 				MethodBase med = MethodBase.GetCurrentMethod();
 
-				StateTypes state = StateTypes.Request;
+				StateTypes state1 = StateTypes.Request;
+				StateTypes state2 = StateTypes.Approve;
 				FinishedFlags flag = FinishedFlags.Avaliable;
 
 				try
@@ -1376,12 +1377,9 @@ namespace DMT.Models
 					cmd += "  FROM TSBExchangeGroupView ";
 					cmd += " WHERE TSBId = ? ";
 					cmd += "   AND FinishFlag = ? ";
-					if (state != StateTypes.None)
-					{
-						cmd += "   AND State = ? ";
-					}
+					cmd += "   AND (State = ? OR State = ?)";
 
-					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state).ToList();
+					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state1, state2).ToList();
 					var results = rets.ToModels();
 					result.Success(results);
 				}

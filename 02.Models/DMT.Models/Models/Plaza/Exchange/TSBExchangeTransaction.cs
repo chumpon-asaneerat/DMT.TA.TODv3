@@ -49,7 +49,7 @@ namespace DMT.Models
 			/// </summary>
 			Request = 1,
 			/// <summary>
-			/// Canceled (unused).
+			/// Canceled (by user).
 			/// </summary>
 			Canceled = 2,
 			/// <summary>
@@ -57,7 +57,7 @@ namespace DMT.Models
 			/// </summary>
 			Approve = 3,
 			/// <summary>
-			/// Reject (unused).
+			/// Reject (by account dept).
 			/// </summary>
 			Reject = 4,
 			/// <summary>
@@ -1903,6 +1903,68 @@ namespace DMT.Models
 			}
 			result = Save(value);
 			return result;
+		}
+		/// <summary>
+		/// Clone Transaction.
+		/// </summary>
+		/// <param name="src"></param>
+		public static TSBExchangeTransaction CloneTransaction(TSBExchangeTransaction src)
+		{
+			if (null == src)
+				return null;
+			TSBExchangeTransaction dst = new TSBExchangeTransaction();
+			CloneTransaction(src, dst);
+			return dst;
+
+		}
+		/// <summary>
+		/// Clone Transaction.
+		/// </summary>
+		/// <param name="src"></param>
+		/// <param name="dst"></param>
+		public static void CloneTransaction(TSBExchangeTransaction src, TSBExchangeTransaction dst)
+		{
+			if (null == src || null == dst)
+				return;
+
+			dst.GroupId = src.GroupId;
+			dst.TransactionDate = src.TransactionDate;
+
+			dst.TSBId = src.TSBId;
+			dst.TSBNameEN = src.TSBNameEN;
+			dst.TSBNameTH = src.TSBNameTH;
+			dst.MaxCredit = src.MaxCredit;
+
+			dst.UserId = src.UserId;
+			dst.FullNameEN = src.FullNameEN;
+			dst.FullNameTH = src.FullNameTH;
+
+			dst.PeriodBegin = src.PeriodBegin;
+			dst.PeriodEnd = src.PeriodEnd;
+
+			dst.AmountST25 = src.AmountST25;
+			dst.AmountST50 = src.AmountST50;
+			dst.AmountBHT1 = src.AmountBHT1;
+			dst.AmountBHT2 = src.AmountBHT2;
+			dst.AmountBHT5 = src.AmountBHT5;
+			dst.AmountBHT10 = src.AmountBHT10;
+			dst.AmountBHT20 = src.AmountBHT20;
+			dst.AmountBHT50 = src.AmountBHT50;
+			dst.AmountBHT100 = src.AmountBHT100;
+			dst.AmountBHT500 = src.AmountBHT500;
+			dst.AmountBHT1000 = src.AmountBHT1000;
+
+			dst.ExchangeBHT = src.ExchangeBHT;
+			dst.BorrowBHT = src.BorrowBHT;
+			dst.AdditionalBHT = src.AdditionalBHT;
+
+			dst.HasRemark = true;
+			var remark = (string.IsNullOrWhiteSpace(src.Remark)) ? 
+				"(cancel request by user)" : src.Remark + " (cancel request by user)";
+			dst.Remark = remark.Trim();
+			//dst.Description = src.Description;
+
+			dst.FinishFlag = src.FinishFlag;
 		}
 
 		#endregion

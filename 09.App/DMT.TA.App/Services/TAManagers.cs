@@ -25,6 +25,7 @@ using NLib.Reflection;
 
 using RestSharp;
 using System.Windows.Media;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -3046,7 +3047,9 @@ namespace DMT.Services
             if (null != grp)
             {
                 this.Group = grp;
-                this.Request = null; // get request transaction.
+                // get request transaction.
+                this.Request = TSBExchangeTransaction.GetTransaction(
+                    this.TSB, grp.GroupId, TSBExchangeTransaction.TransactionTypes.Request).Value();
             }
             else
             {
@@ -3061,7 +3064,68 @@ namespace DMT.Services
         /// </summary>
         public void CancelRequest()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            if (null != this.Group && null != this.Request && this.Group.State == TSBExchangeGroup.StateTypes.Request)
+            {
+                string msg = string.Empty;
 
+                // change group flag.
+                this.Group.State = TSBExchangeGroup.StateTypes.Canceled;
+                this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Completed;
+
+
+                // clone transaction from Request transaction.
+                var cancelTran = TSBExchangeTransaction.CloneTransaction(this.Request);
+                // update cancel information.
+                cancelTran.TransactionDate = DateTime.Now;
+                cancelTran.TransactionType = TSBExchangeTransaction.TransactionTypes.Canceled;
+
+                cancelTran.UserId = TAApp.User.Current.UserId; // set cancel user.
+                cancelTran.FullNameEN = TAApp.User.Current.FullNameEN;
+                cancelTran.FullNameTH = TAApp.User.Current.FullNameTH;
+                // set finished flag to completed.
+                cancelTran.FinishFlag = TSBExchangeTransaction.FinishedFlags.Completed;
+
+                // Save group
+                var ret = TSBExchangeGroup.SaveTSBExchangeGroup(this.Group).Value();
+                if (null != ret)
+                {
+                    msg = "TSB Exchange Group successfully saved.";
+                }
+                else msg = "TSB Exchange Group failed to saved.";
+                // Write log.
+                med.Info(msg);
+
+                // Save transaction
+                var ret2 = TSBExchangeTransaction.SaveTransaction(cancelTran).Value();
+                if (null != ret2)
+                {
+                    msg = "TSB Exchange Transaction (Request) successfully saved.";
+                }
+                else msg = "TSB Exchange Transaction (Request) failed to saved.";
+                // Write log.
+                med.Info(msg);
+
+                // Write to queue
+                TAAExchangeHeader exchangeHeader = new TAAExchangeHeader();
+                exchangeHeader.RequestId = this.Group.PkId;
+                exchangeHeader.TSBId = this.Request.TSBId;
+                exchangeHeader.TranactionDate = this.Request.TransactionDate;
+                exchangeHeader.ExchangeBHT = this.Request.ExchangeBHT;
+                exchangeHeader.BorrowBHT = this.Request.BorrowBHT;
+                exchangeHeader.AdditionalBHT = this.Request.AdditionalBHT;
+                exchangeHeader.PeriodBegin = this.Request.PeriodBegin;
+                exchangeHeader.PeriodEnd = this.Request.PeriodEnd;
+                exchangeHeader.Remark = this.Request.Remark;
+                exchangeHeader.FinishFlag = 1; // completed.
+                exchangeHeader.UserId = this.Request.UserId;
+                exchangeHeader.Status = "C"; // Cancel
+
+                Task.Run(() =>
+                {
+                    TAxTODMQService.Instance.WriteQueue(exchangeHeader);
+                });
+            }
         }
         /// <summary>
         /// Checks is both total amount is match.
@@ -3236,8 +3300,11 @@ namespace DMT.Services
                     }
                 });
 
-                TAxTODMQService.Instance.WriteQueue(exchangeHeader);
-                TAxTODMQService.Instance.WriteQueue(items);
+                Task.Run(() => 
+                {
+                    TAxTODMQService.Instance.WriteQueue(exchangeHeader);
+                    TAxTODMQService.Instance.WriteQueue(items);
+                });
             }
         }
 

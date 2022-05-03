@@ -41,6 +41,11 @@ namespace DMT.TA.Windows.Exchange
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
+            var win = TAApp.Windows.MessageBoxYesNo;
+            win.Setup("ยืนยันยกเลิกคำร้องขอแลกเปลี่ยนเงิน", "DMT - Toll Admin");
+            if (win.ShowDialog() == false)
+                return;
+
             if (null != _manager && null != _manager.Request)
             {
                 // Cancel Request and close window
@@ -62,7 +67,7 @@ namespace DMT.TA.Windows.Exchange
                     return;
                 }
 
-                // update period
+                // update period begin/end
                 _manager.Request.PeriodBegin =  entry.PeriodBegin;
                 _manager.Request.PeriodEnd = entry.PeriodEnd;
 
@@ -98,7 +103,7 @@ namespace DMT.TA.Windows.Exchange
         {
             this._manager = manager;
 
-            if ((null != _manager.Request))
+            if (null != _manager && null != _manager.Request)
             {
                 entry.PeriodBegin = _manager.Request.PeriodBegin;
                 entry.PeriodEnd = _manager.Request.PeriodEnd;

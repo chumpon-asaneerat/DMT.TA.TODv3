@@ -70,8 +70,8 @@ namespace DMT.TA.Controls.Elements
         /// <param name="value">The TSB Exchange Transaction.</param>
         public void Setup(TSBExchangeTransaction value)
         {
-            dtPreiodBegin.Value = new DateTime?();
-            dtPreiodEnd.Value = new DateTime?();
+            dtPreiodBegin.Value = (null != value) ? value.PeriodBegin : new DateTime?();
+            dtPreiodEnd.Value = (null != value) ? value.PeriodEnd : new DateTime?();
             this.DataContext = value;
         }
 

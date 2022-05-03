@@ -128,13 +128,13 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button x:Name="cmdRequestDetail"
+                                            <Button x:Name="cmdRequestEdit"
                                                     Height="30"
                                                     Width="80"
                                                     FontSize="{StaticResource InputFontSize18}"
                                                     Style="{DynamicResource InlineButton}"
                                                     IsEnabled="{Binding CanEdit}"
-                                                    Click="cmdRequestDetail_Click">
+                                                    Click="cmdRequestEdit_Click">
                                                 <TextBlock Margin="5,0"
                                                            Text="แก้ไข"
                                                            TextAlignment="Left" />

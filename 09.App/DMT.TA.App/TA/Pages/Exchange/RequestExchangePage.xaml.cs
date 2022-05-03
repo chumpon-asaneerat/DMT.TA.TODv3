@@ -51,7 +51,20 @@ namespace DMT.TA.Pages.Exchange
             NewRequest();
         }
 
-        private void cmdRequestDetail_Click(object sender, RoutedEventArgs e)
+        private void cmdRequestEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button))
+                return;
+            var btn = (sender as Button);
+            if (null == btn || null == btn.DataContext || !(btn.DataContext is Models.TSBExchangeGroup))
+                return;
+            var ctx = (btn.DataContext as Models.TSBExchangeGroup);
+            if (null == ctx)
+                return;
+            EditRequest(ctx.PkId);
+        }
+
+        private void cmdReceivedDetail_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -102,7 +115,7 @@ namespace DMT.TA.Pages.Exchange
             Refresh();
         }
 
-        private void EditRequest()
+        private void EditRequest(int requestId)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             if (null == manager)
@@ -110,7 +123,6 @@ namespace DMT.TA.Pages.Exchange
                 med.Info("TSBRequestCreditManager is null.");
             }
 
-            int requestId = 0;
             manager.LoadRequest(requestId);
 
             var win = TAApp.Windows.RequestExchange;
@@ -140,10 +152,5 @@ namespace DMT.TA.Pages.Exchange
         }
 
         #endregion
-
-        private void cmdReceivedDetail_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

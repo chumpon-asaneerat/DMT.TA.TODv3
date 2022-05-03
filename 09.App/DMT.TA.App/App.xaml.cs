@@ -1,4 +1,4 @@
-﻿#define ENABLE_COUPON_SYNC_SERVICE
+﻿#define ENABLE_SYNC_SERVICE
 
 #region Using
 
@@ -126,8 +126,9 @@ namespace DMT
             TANotifyService.Instance.TSBShiftChanged += TSBShiftChanged;
 
             // Start coupon sync service.
-#if ENABLE_COUPON_SYNC_SERVICE
+#if ENABLE_SYNC_SERVICE
             CouponSyncService.Instance.Start();
+            ExchangeSyncService.Instance.Start();
 #endif
             // start message resend manager.
             Services.MQResendService.Instance.Start();
@@ -156,7 +157,8 @@ namespace DMT
             Services.MQResendService.Instance.Shutdown();
 
             // Shutdown coupon sync service.
-#if ENABLE_COUPON_SYNC_SERVICE
+#if ENABLE_SYNC_SERVICE
+            ExchangeSyncService.Instance.Shutdown();
             CouponSyncService.Instance.Shutdown();
 #endif
 

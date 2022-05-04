@@ -129,9 +129,11 @@ namespace DMT.Models
 		private decimal _MaxCredit = decimal.Zero;
 
 		// Request Transaction (runtime)
+		/*
 		private int _TransactionId = 0;
 		private DateTime _TransactionDate = DateTime.MinValue;
 		private TSBExchangeTransaction.TransactionTypes _TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
+		*/
 		// Request User (runtime)
 		private string _UserId = string.Empty;
 		private string _FullNameEN = string.Empty;
@@ -553,6 +555,7 @@ namespace DMT.Models
 
 		#region Common
 
+		/*
 		/// <summary>
 		/// Gets or sets TransactionId
 		/// </summary>
@@ -670,6 +673,7 @@ namespace DMT.Models
 				}
 			}
 		}
+		*/
 
 		#endregion
 
@@ -1152,6 +1156,7 @@ namespace DMT.Models
 
 			#region Common
 
+			/*
 			[PropertyMapName("TransactionId")]
 			public override int TransactionId
 			{
@@ -1170,6 +1175,7 @@ namespace DMT.Models
 				get { return base.TransactionType; }
 				set { base.TransactionType = value; }
 			}
+			*/
 
 			#endregion
 
@@ -1346,8 +1352,9 @@ namespace DMT.Models
 		/// Gets TSB Request Exchange Groups.
 		/// </summary>
 		/// <param name="tsb">The TSB instance.</param>
+		/// <param name="requestOnly">true for filter only request state.</param>
 		/// <returns></returns>
-		public static NDbResult<List<TSBExchangeGroup>> GetRequestExchangeGroups(TSB tsb)
+		public static NDbResult<List<TSBExchangeGroup>> GetRequestExchangeGroups(TSB tsb, bool requestOnly = false)
 		{
 			var result = new NDbResult<List<TSBExchangeGroup>>();
 			SQLiteConnection db = Default;
@@ -1377,11 +1384,27 @@ namespace DMT.Models
 					cmd += "  FROM TSBExchangeGroupView ";
 					cmd += " WHERE TSBId = ? ";
 					cmd += "   AND FinishFlag = ? ";
-					cmd += "   AND (State = ? OR State = ?)";
+					if (requestOnly)
+					{
+						// request only
+						cmd += "   AND State = ?";
+						cmd += " ORDER BY RequestDate DESC";
 
-					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state1, state2).ToList();
-					var results = rets.ToModels();
-					result.Success(results);
+						var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state1).ToList();
+						var results = rets.ToModels();
+						result.Success(results);
+					}
+					else
+					{
+						// request and approve
+						cmd += "   AND (State = ? OR State = ?)";
+						cmd += " ORDER BY RequestDate DESC";
+
+						var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, flag, state1, state2).ToList();
+						var results = rets.ToModels();
+						result.Success(results);
+					}
+
 				}
 				catch (Exception ex)
 				{
@@ -1391,7 +1414,7 @@ namespace DMT.Models
 				return result;
 			}
 		}
-
+		/*
 		private static TSBCreditTransaction CloneTransaction(TSBExchangeTransaction value, bool isMinuis = false)
 		{
 			int sign = (isMinuis) ? -1 : 1;
@@ -1420,24 +1443,10 @@ namespace DMT.Models
 			inst.AmountBHT100 = sign * value.AmountBHT100;
 			inst.AmountBHT500 = sign * value.AmountBHT500;
 			inst.AmountBHT1000 = sign * value.AmountBHT1000;
-			// Count - no need because auto calc in model class.
-			/*
-			inst.CountST25 = sign * value.CountST25;
-			inst.CountST50 = sign * value.CountST50;
-			inst.CountBHT1 = sign * value.CountBHT1;
-			inst.CountBHT2 = sign * value.CountBHT2;
-			inst.CountBHT5 = sign * value.CountBHT5;
-			inst.CountBHT10 = sign * value.CountBHT10;
-			inst.CountBHT20 = sign * value.CountBHT20;
-			inst.CountBHT50 = sign * value.CountBHT50;
-			inst.CountBHT100 = sign * value.CountBHT100;
-			inst.CountBHT500 = sign * value.CountBHT500;
-			inst.CountBHT1000 = sign * value.CountBHT1000;
-			*/
 
 			return inst;
 		}
-
+		*/
 		/// <summary>
 		/// Save TSB Exchange Group.
 		/// </summary>
@@ -1461,61 +1470,7 @@ namespace DMT.Models
 				value.GroupId = Guid.NewGuid();
 			}
 			result = Save(value); // save group.
-			/*
-			// save each transaction
-			if (null != value.Request)
-			{
-				value.Request.GroupId = value.GroupId;
-				value.Request.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
-				TSBExchangeTransaction.Save(value.Request);
-			}
-			if (null != value.Approve)
-			{
-				value.Approve.GroupId = value.GroupId;
-				value.Approve.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
-				TSBExchangeTransaction.Save(value.Approve);
-			}
-			if (null != value.Received)
-			{
-				bool updateCredit = (value.Received.TransactionId == 0); // add new.
-				value.Received.GroupId = value.GroupId;
-				value.Received.TransactionType = TSBExchangeTransaction.TransactionTypes.Received;
-				TSBExchangeTransaction.Save(value.Received);
-				if (updateCredit)
-				{
-					//TODO: Update TSBCreditTransaction Remove Temporary
-					//TSBCreditTransaction tran = CloneTransaction(value.Received);
-					//// Set property here.
-					//tran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
-					//// Additional keep only received
-					//tran.AdditionalBHT = value.Received.AdditionalBHT;
-					//// Save.
-					//TSBCreditTransaction.Save(tran);
-				}
-			}
-			if (null != value.Exchange)
-			{
-				bool updateCredit = (value.Exchange.TransactionId == 0); // add new.
-				value.Exchange.GroupId = value.GroupId;
-				value.Exchange.TransactionType = TSBExchangeTransaction.TransactionTypes.Exchange;
-				TSBExchangeTransaction.Save(value.Exchange);
-				if (updateCredit)
-				{
-					//TODO: Update TSBCreditTransaction Remove Temporary
-					//TSBCreditTransaction tran = CloneTransaction(value.Exchange, true);
-					//// Set property here.
-					//tran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
-					//// Save.
-					//TSBCreditTransaction.Save(tran);
-				}
-			}
-			if (null != value.Return)
-			{
-				value.Return.GroupId = value.GroupId;
-				value.Return.TransactionType = TSBExchangeTransaction.TransactionTypes.Return;
-				TSBExchangeTransaction.Save(value.Return);
-			}
-			*/
+
 			return result;
 		}
 

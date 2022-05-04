@@ -96,15 +96,118 @@ namespace DMT.Services
 
         #region Private Methods
 
-        private NRestResult<List<TAAApproveSummary>> GetApproves(string tsbId)
+        private NRestResult<List<TAAApproveSummary>> GetApproves(string tsbId, int requestId)
         {
-            var ret = ops.GetApproves(tsbId, DateTime.Today);
+            var ret = ops.GetApproves(tsbId, requestId);
             return ret;
         }
 
         private NRestResult<List<TAAApproveItem>> GetApproveItems(string tsbId, int reqId)
         {
             var ret = ops.GetApproveItems(tsbId, reqId);
+            return ret;
+        }
+
+        private TSBExchangeTransaction CreateApproveTransaction(TAAApproveSummary header, List<TAAApproveItem> values)
+        {
+            if (null == values)
+                return null;
+
+            var ret = new TSBExchangeTransaction();
+            ret.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
+            ret.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable;
+            ret.TransactionDate = (header.ApproveDate.HasValue) ? header.ApproveDate.Value : DateTime.Now;
+            ret.TSBId = header.TSBId;
+            ret.UserId = header.ApproveBy;
+            ret.PeriodBegin = header.PeriodBegin;
+            ret.PeriodEnd = header.PeriodEnd;
+            ret.BorrowBHT = (header.AppBorrowBHT.HasValue) ? header.AppBorrowBHT.Value : decimal.Zero;
+            ret.ExchangeBHT = (header.AppExchangeBHT.HasValue) ? header.AppExchangeBHT.Value : decimal.Zero;
+            ret.AdditionalBHT = (header.AppAdditionalBHT.HasValue) ? header.AppAdditionalBHT.Value : decimal.Zero;
+            ret.Remark = header.ApproveRemark;
+
+            values.ForEach(value => 
+            {
+                int demonId = (value.CurrencyDenomId.HasValue) ? value.CurrencyDenomId.Value : -1;
+                decimal approveVal = (value.ApproveValue.HasValue) ? value.ApproveValue.Value : decimal.Zero;
+
+                switch (demonId)
+                {
+                    case 1:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / (decimal)0.25);
+                            ret.AmountST25 = amt;
+                        }
+                        break;
+                    case 2:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / (decimal)0.50);
+                            ret.AmountST50 = amt;
+                        }
+                        break;
+                    case 3:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal);
+                            ret.AmountBHT1 = amt;
+                        }
+                        break;
+                    case 4:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 2);
+                            ret.AmountBHT2 = amt;
+                        }
+                        break;
+                    case 5:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 5);
+                            ret.AmountBHT5 = amt;
+                        }
+                        break;
+                    case 6:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 10);
+                            ret.AmountBHT10 = amt;
+                        }
+                        break;
+                    case 7:
+                        // 10 BHT Bill
+                        //{
+                        //    decimal amt = Convert.ToDecimal(approveVal / 10);
+                        //    ret.AmountBHT10 = amt;
+                        //}
+                        break;
+                    case 8:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 20);
+                            ret.AmountBHT20 = amt;
+                        }
+                        break;
+                    case 9:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 50);
+                            ret.AmountBHT50 = amt;
+                        }
+                        break;
+                    case 10:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 100);
+                            ret.AmountBHT100 = amt;
+                        }
+                        break;
+                    case 11:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 500);
+                            ret.AmountBHT500 = amt;
+                        }
+                        break;
+                    case 12:
+                        {
+                            decimal amt = Convert.ToDecimal(approveVal / 1000);
+                            ret.AmountBHT1000 = amt;
+                        }
+                        break;
+                }
+            });
             return ret;
         }
 
@@ -115,37 +218,73 @@ namespace DMT.Services
             MethodBase med = MethodBase.GetCurrentMethod();
 
             TimeSpan ts = DateTime.Now - _lastSync;
-
             IsSync = true;
+            int hours = 0;
+            int mins = 0;
+            int secs = 20;
+            int totalSeconds = (hours * 3600) + (mins * 60) + secs;
 
             try
             {
-                // run every hour
-                if (ForceSync || ts.TotalHours > 1)
+                // run every specificed period
+                if (ForceSync || ts.TotalSeconds >= totalSeconds)
                 {
                     var tsb = TSB.GetCurrent().Value();
                     if (tsb != null)
                     {
-                        var approves = GetApproves(tsb.TSBId).Value();
-                        if (null != approves && approves.Count > 0)
+                        var localGroups = TSBExchangeGroup.GetRequestExchangeGroups(tsb, true).Value();
+                        if (null != localGroups && localGroups.Count > 0)
                         {
-                            approves.ForEach(approve =>
+                            localGroups.ForEach(localGroup =>
                             {
-                                int reqId = (approve.RequestId.HasValue) ? approve.RequestId.Value : -1;
-                                if (reqId > -1)
+                                try
                                 {
-                                    var group = TSBExchangeGroup.GetTSBExchangeGroup(tsb, reqId).Value();
-                                    if (null != group && group.State == TSBExchangeGroup.StateTypes.Request)
+                                    int reqId = localGroup.PkId;
+                                    // cast to List
+                                    var approves = GetApproves(tsb.TSBId, reqId).Value();
+                                    // get first item
+                                    var approve = (null != approves) ? approves.FirstOrDefault() : null;
+
+                                    if (null != approve)
                                     {
-                                        // update only request group.
-
-                                        // get approve details from server.
-                                        var items = GetApproveItems(tsb.TSBId, reqId);
-                                        if (null != items)
+                                        // need to update local group status
+                                        if (approve.Status == "A")
                                         {
+                                            // Approve
+                                            localGroup.RequestType = TSBExchangeGroup.RequestTypes.Account;
+                                            localGroup.State = TSBExchangeGroup.StateTypes.Approve;
+                                            localGroup.FinishFlag = TSBExchangeGroup.FinishedFlags.Avaliable;
 
+                                            // load approve details from server
+                                            var items = GetApproveItems(tsb.TSBId, reqId).Value();
+                                            var tran = CreateApproveTransaction(approve, items);
+                                            // set FKs
+                                            tran.GroupId = localGroup.GroupId;
+                                            // save changes
+                                            TSBExchangeGroup.SaveTSBExchangeGroup(localGroup);
+                                            TSBExchangeTransaction.SaveTransaction(tran);
+                                        }
+                                        else if (approve.Status == "C")
+                                        {
+                                            // Reject by Account dept.
+                                            localGroup.RequestType = TSBExchangeGroup.RequestTypes.Account;
+                                            localGroup.State = TSBExchangeGroup.StateTypes.Reject;
+                                            localGroup.FinishFlag = TSBExchangeGroup.FinishedFlags.Completed;
+
+                                            // save changes
+                                            TSBExchangeGroup.SaveTSBExchangeGroup(localGroup);
+                                        }
+                                        else
+                                        {
+                                            // other case.
                                         }
                                     }
+                                }
+                                catch (Exception ex1)
+                                {
+                                    med.Err("Error get approve from TA Server: TSB: {0}, RequestId: {1}", 
+                                        tsb.TSBId, localGroup.PkId);
+                                    med.Err(ex1);
                                 }
                             });
                         }

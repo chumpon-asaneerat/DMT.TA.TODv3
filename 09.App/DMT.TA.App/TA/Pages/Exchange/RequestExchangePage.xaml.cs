@@ -48,11 +48,13 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdRequest_Click(object sender, RoutedEventArgs e)
         {
+            // New Request
             NewRequest();
         }
 
         private void cmdRequestEdit_Click(object sender, RoutedEventArgs e)
         {
+            // Edit Request
             if (!(sender is Button))
                 return;
             var btn = (sender as Button);
@@ -66,7 +68,7 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdReceivedDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            // Received.
         }
 
         #endregion
@@ -83,14 +85,11 @@ namespace DMT.TA.Pages.Exchange
         private void Refresh()
         {
             gridRequest.ItemsSource = null;
+
             var items = Models.TSBExchangeGroup.GetRequestExchangeGroups(TAAPI.TSB).Value();
-            if (null != items)
-            {
-                items.ForEach(item => 
-                { 
-                });
-            }
+
             gridRequest.ItemsSource = items;
+
             plazaSummary.Setup(); // Call for refresh.
         }
 

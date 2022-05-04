@@ -92,10 +92,11 @@ namespace DMT.Services.Operations
             /// <param name="transactionDate">The api parameter (TransactionDate).</param>
             /// <returns>Returns instance of NRestResult.</returns>
             public static NRestResult<List<TAAApproveSummary>> GetApproves(
-                string tsbId, DateTime? transactionDate)
+                string tsbId, int requestId, DateTime? transactionDate = new DateTime?())
             {
                 var ret = Execute<List<TAAApproveSummary>>(
-                    RouteConsts.TAxTOD.Exchange.GetApproves.Url, new { TSBId = tsbId, TransDate = transactionDate });
+                    RouteConsts.TAxTOD.Exchange.GetApproves.Url, 
+                    new { TSBId = tsbId, RequestId = requestId, TransDate = transactionDate });
                 return ret;
             }
             /// <summary>

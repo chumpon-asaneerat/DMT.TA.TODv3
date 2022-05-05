@@ -31,6 +31,12 @@ namespace DMT.TA.Windows.Exchange
 
         #endregion
 
+        #region Internal Variables
+
+        private TSBRequestCreditManager _manager = null;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
@@ -53,9 +59,20 @@ namespace DMT.TA.Windows.Exchange
 
         #region Public Methods
 
-        public void Setup()
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="manager">The TSB Request Exchange Manager.</param>
+        public void Setup(TSBRequestCreditManager manager)
         {
+            this._manager = manager;
 
+            if (null != _manager && null != _manager.Request)
+            {
+
+            }
+
+            entry.Setup(manager);
         }
 
         #endregion

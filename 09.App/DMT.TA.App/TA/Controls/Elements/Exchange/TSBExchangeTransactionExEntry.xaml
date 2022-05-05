@@ -52,65 +52,70 @@
                 </StackPanel>
                 <!--  2 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT2Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT2Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT2Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  5 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT5Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT5Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT5Amount}" />
                     <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                 </StackPanel>
                 <!--  10 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT10Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT10Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT10Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  20 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT20Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT20Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT20Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  50 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT50Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT50Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT50Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  100 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT100Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT100Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT100Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  500 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT500Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT500Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT500Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  1000 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHT1000Description}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHT1000Description}" Width="170" />
                     <TextBox Style="{StaticResource BHT1000Amount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
                 <!--  TOTAL BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource BHTTotalDescription}"  Width="170"/>
+                    <TextBlock Style="{StaticResource BHTTotalDescription}" Width="170" />
                     <TextBox IsEnabled="False" Style="{StaticResource BHTTotalAmount}" />
                     <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                 </StackPanel>
             </StackPanel>
-            <!--  SEPERATOR  -->
-            <TextBlock Height="4" />
-            <TextBlock Height="1" Background="{StaticResource EntryTextForeground}"  Margin="20, 0" />
-            <TextBlock Height="4" />
             <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Vertical"
+                            x:Name="extendPanel"
+                            Visibility="{Binding ExtendInfoVisibility}">
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="4" />
+                    <TextBlock Height="1"
+                               Background="{StaticResource EntryTextForeground}"
+                               Margin="20,0" />
+                    <TextBlock Height="4" />
                     <!--  EXCHANGE/ADDITION/BORROW  -->
                     <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
                         <!--  EXCHANGE BHT  -->
@@ -132,41 +137,40 @@
                             <TextBlock Style="{StaticResource BillAmountUnitStyle}" Width="115" />
                         </StackPanel>
                         <!--  TOTAL BHT  -->
-                        <!--
                         <StackPanel Style="{StaticResource EntryStackPanel}">
                             <TextBlock Style="{StaticResource RequestGrandTotalBHTDescription}" />
                             <TextBox IsEnabled="False" Style="{StaticResource RequestGrandTotalBHT}" />
                             <TextBlock Style="{StaticResource BillAmountUnitStyle}" Width="115" />
                         </StackPanel>
-                        -->
                     </StackPanel>
+                </StackPanel>
+                <!--  REMARK  -->
+                <StackPanel HorizontalAlignment="Stretch"
+                            Orientation="Horizontal"
+                            Visibility="{Binding RemarkVisibility}"
+                            x:Name="remarkPanel">
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="5" />
                     <!--  REMARK  -->
-                    <StackPanel HorizontalAlignment="Stretch"
-                                Orientation="Horizontal"
-                                Visibility="{Binding RemarkVisibility}">
-                        <!--  SEPERATOR  -->
-                        <TextBlock Height="5" />
-                        <!--  REMARK  -->
-                        <DockPanel LastChildFill="True">
-                            <TextBlock Margin="12,0"
-                                       FontSize="{StaticResource EntryFontSize18}"
-                                       Foreground="{StaticResource EntryTextForeground}"
-                                       Text="หมายเหตุ"
-                                       TextAlignment="Left"
-                                       DockPanel.Dock="Top" />
-                            <TextBox Height="65"
-                                     Margin="10,0"
-                                     HorizontalAlignment="Stretch"
-                                     VerticalAlignment="Top"
-                                     AcceptsReturn="True"
-                                     IsTabStop="False"
-                                     Text="{Binding Remark}"
-                                     TextAlignment="Left"
-                                     TextWrapping="Wrap"
-                                     VerticalScrollBarVisibility="Auto"
-                                     Width="340" />
-                        </DockPanel>
-                    </StackPanel>
+                    <DockPanel LastChildFill="True">
+                        <TextBlock Margin="12,0"
+                                   FontSize="{StaticResource EntryFontSize18}"
+                                   Foreground="{StaticResource EntryTextForeground}"
+                                   Text="หมายเหตุ"
+                                   TextAlignment="Left"
+                                   DockPanel.Dock="Top" />
+                        <TextBox Height="65"
+                                 Margin="10,0"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Top"
+                                 AcceptsReturn="True"
+                                 IsTabStop="False"
+                                 Text="{Binding Remark}"
+                                 TextAlignment="Left"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Width="340" />
+                    </DockPanel>
                 </StackPanel>
             </StackPanel>
             <!--  SEPERATOR  -->

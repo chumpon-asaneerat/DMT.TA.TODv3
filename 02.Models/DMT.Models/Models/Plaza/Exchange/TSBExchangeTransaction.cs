@@ -140,6 +140,7 @@ namespace DMT.Models
 		private DateTime? _PeriodEnd = new DateTime?();
 
 		private bool _hasRemark = false;
+		private bool _showExtendInfo = false;
 
 		private string _Remark = string.Empty;
 
@@ -230,6 +231,42 @@ namespace DMT.Models
 		public System.Windows.Visibility RemarkVisibility
 		{
 			get { return (_hasRemark) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
+			set { }
+		}
+		/// <summary>
+		/// Gets or sets show extend info.
+		/// </summary>
+		[Category("Runtime")]
+		[Description("Gets or sets ShowExtendInfo.")]
+		[ReadOnly(true)]
+		[Ignore]
+		[PropertyMapName("ShowExtendInfo")]
+		public bool ShowExtendInfo
+		{
+			get { return _showExtendInfo; }
+			set
+			{
+				if (_showExtendInfo != value)
+				{
+					_showExtendInfo = value;
+					// Raise event.
+					this.RaiseChanged("ShowExtendInfo");
+					this.RaiseChanged("ExtendInfoVisibility");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets ExtendInfo Visibility.
+		/// </summary>
+		[Category("Runtime")]
+		[Description("Gets or sets ExtendInfo Visibility.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		[PropertyMapName("ExtendInfoVisibility")]
+		public System.Windows.Visibility ExtendInfoVisibility
+		{
+			get { return (_showExtendInfo) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed; }
 			set { }
 		}
 

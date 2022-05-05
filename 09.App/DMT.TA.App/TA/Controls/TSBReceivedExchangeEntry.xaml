@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:exchange="clr-namespace:DMT.TA.Controls.Elements"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="580"
+             d:DesignHeight="605"
              d:DesignWidth="1500"
              BorderBrush="Silver"
              BorderThickness="1"

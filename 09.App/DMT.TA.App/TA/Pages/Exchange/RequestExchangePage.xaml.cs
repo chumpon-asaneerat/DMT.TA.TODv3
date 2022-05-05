@@ -69,6 +69,15 @@ namespace DMT.TA.Pages.Exchange
         private void cmdReceivedDetail_Click(object sender, RoutedEventArgs e)
         {
             // Received.
+            if (!(sender is Button))
+                return;
+            var btn = (sender as Button);
+            if (null == btn || null == btn.DataContext || !(btn.DataContext is Models.TSBExchangeGroup))
+                return;
+            var ctx = (btn.DataContext as Models.TSBExchangeGroup);
+            if (null == ctx)
+                return;
+            ReceivedRequest(ctx.PkId);
         }
 
         #endregion
@@ -125,6 +134,26 @@ namespace DMT.TA.Pages.Exchange
             manager.LoadRequest(requestId);
 
             var win = TAApp.Windows.RequestExchange;
+            win.Setup(manager);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+
+            Refresh();
+        }
+
+        private void ReceivedRequest(int requestId)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            if (null == manager)
+            {
+                med.Info("TSBRequestCreditManager is null.");
+            }
+
+            manager.LoadRequest(requestId);
+
+            var win = TAApp.Windows.ReceiveExchange;
             win.Setup(manager);
             if (win.ShowDialog() == false)
             {

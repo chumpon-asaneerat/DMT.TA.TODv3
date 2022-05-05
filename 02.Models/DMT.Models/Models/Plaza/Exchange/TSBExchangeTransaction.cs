@@ -1996,9 +1996,7 @@ namespace DMT.Models
 			dst.AdditionalBHT = src.AdditionalBHT;
 
 			dst.HasRemark = true;
-			var remark = (string.IsNullOrWhiteSpace(src.Remark)) ? 
-				"(cancel request by user)" : src.Remark + " (cancel request by user)";
-			dst.Remark = remark.Trim();
+			dst.Remark = src.Remark;
 			//dst.Description = src.Description;
 
 			dst.FinishFlag = src.FinishFlag;

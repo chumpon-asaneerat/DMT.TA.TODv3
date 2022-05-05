@@ -129,82 +129,46 @@ namespace DMT.Services
             values.ForEach(value => 
             {
                 int demonId = (value.CurrencyDenomId.HasValue) ? value.CurrencyDenomId.Value : -1;
-                decimal approveVal = (value.ApproveValue.HasValue) ? value.ApproveValue.Value : decimal.Zero;
+                decimal amt = (value.ApproveValue.HasValue) ? value.ApproveValue.Value : decimal.Zero;
 
                 switch (demonId)
                 {
                     case 1:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / (decimal)0.25);
-                            ret.AmountST25 = amt;
-                        }
+                        ret.AmountST25 = amt;
                         break;
                     case 2:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / (decimal)0.50);
-                            ret.AmountST50 = amt;
-                        }
+                        ret.AmountST50 = amt;
                         break;
                     case 3:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal);
-                            ret.AmountBHT1 = amt;
-                        }
+                        ret.AmountBHT1 = amt;
                         break;
                     case 4:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 2);
-                            ret.AmountBHT2 = amt;
-                        }
+                        ret.AmountBHT2 = amt;
                         break;
                     case 5:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 5);
-                            ret.AmountBHT5 = amt;
-                        }
+                        ret.AmountBHT5 = amt;
                         break;
                     case 6:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 10);
-                            ret.AmountBHT10 = amt;
-                        }
+                        ret.AmountBHT10 = amt;
                         break;
                     case 7:
                         // 10 BHT Bill
-                        //{
-                        //    decimal amt = Convert.ToDecimal(approveVal / 10);
-                        //    ret.AmountBHT10 = amt;
-                        //}
+                        //ret.AmountBHT10 = amt;
                         break;
                     case 8:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 20);
-                            ret.AmountBHT20 = amt;
-                        }
+                        ret.AmountBHT20 = amt;
                         break;
                     case 9:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 50);
-                            ret.AmountBHT50 = amt;
-                        }
+                        ret.AmountBHT50 = amt;
                         break;
                     case 10:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 100);
-                            ret.AmountBHT100 = amt;
-                        }
+                        ret.AmountBHT100 = amt;
                         break;
                     case 11:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 500);
-                            ret.AmountBHT500 = amt;
-                        }
+                        ret.AmountBHT500 = amt;
                         break;
                     case 12:
-                        {
-                            decimal amt = Convert.ToDecimal(approveVal / 1000);
-                            ret.AmountBHT1000 = amt;
-                        }
+                        ret.AmountBHT1000 = amt;
                         break;
                 }
             });

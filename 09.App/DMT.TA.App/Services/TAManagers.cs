@@ -3235,6 +3235,7 @@ namespace DMT.Services
                     recv.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable; // set finished flag.
                     recv.Description = "เงินที่ได้รับจริง";
                     recv.HasRemark = true;
+                    recv.Remark = string.Empty;
                     recv.ShowExtendInfo = false;
                     this.Receive = recv;
 
@@ -3249,6 +3250,7 @@ namespace DMT.Services
                     exchange.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable; // set finished flag.
                     exchange.Description = "จ่ายออก ธนบัตร/เหรียญ";
                     exchange.HasRemark = true;
+                    exchange.Remark = string.Empty;
                     exchange.ShowExtendInfo = false;
                     this.ExchangeOut = exchange;
                 }

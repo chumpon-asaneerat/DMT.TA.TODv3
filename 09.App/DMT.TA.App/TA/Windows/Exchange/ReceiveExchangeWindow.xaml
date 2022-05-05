@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="ยืนยันข้อมูลการแลกเปลี่ยนเงิน"
-        Width="800"
+        Width="1100"
         Height="600"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"

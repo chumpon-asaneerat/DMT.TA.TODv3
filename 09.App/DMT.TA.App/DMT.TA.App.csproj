@@ -243,6 +243,9 @@
     <Compile Include="TA\Controls\TSBPlazaCreditSummaryEntry.xaml.cs">
       <DependentUpon>TSBPlazaCreditSummaryEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Controls\TSBReceivedExchangeEntry.xaml.cs">
+      <DependentUpon>TSBReceivedExchangeEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Controls\TSBRequestExchangeEntry.xaml.cs">
       <DependentUpon>TSBRequestExchangeEntry.xaml</DependentUpon>
     </Compile>
@@ -430,6 +433,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Controls\TSBPlazaCreditSummaryEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Controls\TSBReceivedExchangeEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

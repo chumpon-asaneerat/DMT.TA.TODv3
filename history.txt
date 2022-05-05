@@ -12,8 +12,11 @@ Refactor DMT.TA.TODv4 #2340
 Refactor DMT.TA.TODv4 #2339
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2338
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TSB Exchange process UI #17.
 
 [commited]
 Refactor DMT.TA.TODv4 #2337

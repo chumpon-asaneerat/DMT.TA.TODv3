@@ -36,8 +36,10 @@ namespace DMT.TA.Controls
         /// <param name="manager">The TSB Request Exchange Manager.</param>
         public void Setup(TSBRequestCreditManager manager)
         {
-            //tranEntry.Setup(manager.Request);
-            //extEntry.Setup(manager.Request);
+            requestEntry.Setup(manager.Request);
+            approveEntry.Setup(manager.Approve);
+            receivedEntry.Setup(manager.Receive);
+            exchangeOutEntry.Setup(manager.ExchangeOut);
         }
 
         #endregion

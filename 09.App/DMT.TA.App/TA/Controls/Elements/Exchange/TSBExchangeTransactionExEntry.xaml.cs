@@ -39,6 +39,7 @@ namespace DMT.TA.Controls.Elements
         /// <param name="value">The TSB Exchange Transaction.</param>
         public void Setup(TSBExchangeTransaction value)
         {
+            this.IsEnabled = (null != value);
             this.DataContext = value;
         }
 

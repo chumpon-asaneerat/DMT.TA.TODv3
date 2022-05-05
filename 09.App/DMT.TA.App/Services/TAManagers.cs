@@ -3211,11 +3211,61 @@ namespace DMT.Services
                 // get request transaction.
                 this.Request = TSBExchangeTransaction.GetTransaction(
                     this.TSB, grp.GroupId, TSBExchangeTransaction.TransactionTypes.Request).Value();
+                this.Request.Description = "รายการขอแลกเงินจากด่าน";
+                this.Request.HasRemark = true;
+                this.Request.ShowExtendInfo = true;
+
+                this.Approve = TSBExchangeTransaction.GetTransaction(
+                    this.TSB, grp.GroupId, TSBExchangeTransaction.TransactionTypes.Approve).Value();
+                this.Approve.Description = "รายการอนุมัติจากบัญชี";
+                this.Approve.HasRemark = true;
+                this.Approve.ShowExtendInfo = true;
+
+                var apprv = TSBExchangeTransaction.CloneTransaction(this.Approve);
+                if (null != apprv)
+                {
+                    // prepare received transaction.
+                    var recv = apprv;
+                    recv.TransactionId = 0; // NEW
+                    recv.TransactionDate = DateTime.Now;
+                    recv.TransactionType = TSBExchangeTransaction.TransactionTypes.Received;
+                    recv.UserId = TAApp.User.Current.UserId; // set cancel user.
+                    recv.FullNameEN = TAApp.User.Current.FullNameEN;
+                    recv.FullNameTH = TAApp.User.Current.FullNameTH;
+                    recv.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable; // set finished flag.
+                    recv.Description = "เงินที่ได้รับจริง";
+                    recv.HasRemark = true;
+                    recv.ShowExtendInfo = false;
+                    this.Receive = recv;
+
+                    // prepare exchange out (return to account dept) transaction.
+                    var exchange = new TSBExchangeTransaction();
+                    exchange.TransactionId = 0; // NEW
+                    exchange.TransactionDate = DateTime.Now;
+                    exchange.TransactionType = TSBExchangeTransaction.TransactionTypes.Exchange;
+                    exchange.UserId = TAApp.User.Current.UserId; // set cancel user.
+                    exchange.FullNameEN = TAApp.User.Current.FullNameEN;
+                    exchange.FullNameTH = TAApp.User.Current.FullNameTH;
+                    exchange.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable; // set finished flag.
+                    exchange.Description = "จ่ายออก ธนบัตร/เหรียญ";
+                    exchange.HasRemark = true;
+                    exchange.ShowExtendInfo = false;
+                    this.ExchangeOut = exchange;
+                }
+                else
+                {
+                    this.Approve = null;
+                    this.Receive = null;
+                    this.ExchangeOut = null;
+                }
             }
             else
             {
                 this.Group = null;
                 this.Request = null;
+                this.Approve = null;
+                this.Receive = null;
+                this.ExchangeOut = null;
             }
 
             return (grp != null);
@@ -3406,6 +3456,18 @@ namespace DMT.Services
         /// Gets TSB Exchange Request Transaction.
         /// </summary>
         public TSBExchangeTransaction Request { get; private set; }
+        /// <summary>
+        /// Gets TSB Exchange Approve Transaction.
+        /// </summary>
+        public TSBExchangeTransaction Approve { get; private set; }
+        /// <summary>
+        /// Gets TSB Exchange Receive Transaction.
+        /// </summary>
+        public TSBExchangeTransaction Receive { get; private set; }
+        /// <summary>
+        /// Gets TSB Exchange Out Transaction.
+        /// </summary>
+        public TSBExchangeTransaction ExchangeOut { get; private set; }
 
         #endregion
 

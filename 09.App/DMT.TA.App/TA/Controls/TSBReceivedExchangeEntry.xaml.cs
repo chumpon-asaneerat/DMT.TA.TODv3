@@ -1,17 +1,16 @@
-﻿using System;
+﻿#region Using
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+using DMT.Configurations;
+using DMT.Controls;
+using DMT.Models;
+using DMT.Services;
+
+#endregion
 
 namespace DMT.TA.Controls
 {
@@ -20,9 +19,27 @@ namespace DMT.TA.Controls
     /// </summary>
     public partial class TSBReceivedExchangeEntry : UserControl
     {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public TSBReceivedExchangeEntry()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <param name="manager">The TSB Request Exchange Manager.</param>
+        public void Setup(TSBRequestCreditManager manager)
+        {
+            //tranEntry.Setup(manager.Request);
+            //extEntry.Setup(manager.Request);
+        }
+
+        #endregion
     }
 }

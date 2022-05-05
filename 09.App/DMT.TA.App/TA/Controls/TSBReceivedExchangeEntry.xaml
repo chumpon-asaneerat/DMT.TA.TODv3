@@ -35,11 +35,13 @@
         <exchange:TSBExchangeTransactionExEntry Grid.Column="1"
                                                 x:Name="requestEntry"
                                                 Background="Indigo"
-                                                Foreground="WhiteSmoke" />
+                                                Foreground="WhiteSmoke"
+                                                IsEnabled="False" />
         <exchange:TSBExchangeTransactionExEntry Grid.Column="3"
                                                 x:Name="approveEntry"
                                                 Background="ForestGreen"
-                                                Foreground="WhiteSmoke" />
+                                                Foreground="WhiteSmoke"
+                                                IsEnabled="False" />
         <exchange:TSBExchangeTransactionExEntry Grid.Column="5"
                                                 x:Name="receivedEntry"
                                                 Background="Orange"

@@ -3104,6 +3104,95 @@ namespace DMT.Services
                 });
                 return rets;
             }
+
+            public static List<TAARequestExchangeItem> CreateReceiveExchangeDetails(TSBExchangeGroup group,
+                TSBExchangeTransaction recv)
+            {
+                if (null == group || null == recv)
+                    return null;
+
+                List<TAARequestExchangeItem> rets = new List<TAARequestExchangeItem>();
+
+                List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
+                currencies.ForEach(currency =>
+                {
+                    if (currency.currencyDenomId == 7)
+                        return; // ignore 10BHT note
+
+                    var item = new TAARequestExchangeItem();
+                    item.TSBId = recv.TSBId;
+                    item.RequestId = group.PkId;
+                    item.CurrencyDenomId = currency.currencyDenomId;
+
+                    if (currency.denomValue == (decimal)0.25)
+                    {
+                        item.CurrencyValue = recv.AmountST25;
+                        item.CurrencyCount = recv.CountST25;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == (decimal)0.5)
+                    {
+                        item.CurrencyValue = recv.AmountST50;
+                        item.CurrencyCount = recv.CountST50;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 1)
+                    {
+                        item.CurrencyValue = recv.AmountBHT1;
+                        item.CurrencyCount = recv.CountBHT1;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 2)
+                    {
+                        item.CurrencyValue = recv.AmountBHT2;
+                        item.CurrencyCount = recv.CountBHT2;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 5)
+                    {
+                        item.CurrencyValue = recv.AmountBHT5;
+                        item.CurrencyCount = recv.CountBHT5;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 10)
+                    {
+                        item.CurrencyValue = recv.AmountBHT10;
+                        item.CurrencyCount = recv.CountBHT10;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 20)
+                    {
+                        item.CurrencyValue = recv.AmountBHT20;
+                        item.CurrencyCount = recv.CountBHT20;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 50)
+                    {
+                        item.CurrencyValue = recv.AmountBHT50;
+                        item.CurrencyCount = recv.CountBHT50;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 100)
+                    {
+                        item.CurrencyValue = recv.AmountBHT100;
+                        item.CurrencyCount = recv.CountBHT100;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 500)
+                    {
+                        item.CurrencyValue = recv.AmountBHT500;
+                        item.CurrencyCount = recv.CountBHT500;
+                        rets.Add(item);
+                    }
+                    else if (currency.denomValue == 1000)
+                    {
+                        item.CurrencyValue = recv.AmountBHT1000;
+                        item.CurrencyCount = recv.CountBHT1000;
+                        rets.Add(item);
+                    }
+                });
+                return rets;
+            }
         }
 
         #endregion

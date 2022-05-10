@@ -105,6 +105,49 @@ AS
 			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
 			   AND TSBExchangeTransaction.TransactionType = 3 -- Approve = 3
 		   ) AS ApproveRemark
+		 -- RECEIVE
+		 , (
+		    SELECT ExchangeBHT 
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 5 -- Received = 5
+		   ) AS ReceiveExchangeBHT
+		 , (
+		    SELECT BorrowBHT
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 5 -- Received = 5
+		   ) AS ReceiveBorrowBHT
+		 , (
+		    SELECT AdditionalBHT
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 5 -- Received = 5
+		   ) AS ReceiveAdditionalBHT
+		 , (
+		    SELECT PeriodBegin
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 5 -- Received = 5
+		   ) AS ReceivePeriodBegin
+		 , (
+		    SELECT PeriodEnd
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 5 -- Received = 5
+		   ) AS ReceivePeriodEnd
+		 , (
+		    SELECT Remark
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 5 -- Received = 5
+		   ) AS ReceiveRemark
 	  FROM TSB
 		 , TSBExchangeGroup
 		 , TSBExchangeTransaction

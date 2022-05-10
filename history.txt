@@ -27,8 +27,14 @@ Refactor DMT.TA.TODv4 #2345
 Refactor DMT.TA.TODv4 #2344
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2343
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update TSBExchangeGroup
+      - Seperate Receive properties.
+  - DMT.TA.Models project
+    - Update TSBExchangeGroupView
 
 [commited]
 Refactor DMT.TA.TODv4 #2342

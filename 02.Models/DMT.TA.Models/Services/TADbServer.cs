@@ -2059,7 +2059,7 @@ namespace DMT.Services
 
             // Exchanges - Embeded resource used . instead / to access sub contents.
             prefix = @"Exchanges";
-            InitView("TSBExchangeGroupView", 3, prefix);
+            InitView("TSBExchangeGroupView", 4, prefix);
             InitView("TSBExchangeTransactionView", 1, prefix);
         }
 

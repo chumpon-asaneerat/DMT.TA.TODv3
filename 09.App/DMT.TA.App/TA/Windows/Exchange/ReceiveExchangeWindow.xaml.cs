@@ -48,12 +48,23 @@ namespace DMT.TA.Windows.Exchange
         private void cmdExchange_Click(object sender, RoutedEventArgs e)
         {
             // Accept Exchange and close Window
-            DialogResult = true;
+            if (SaveTransactions())
+            {
+                DialogResult = true;
+            }
         }
 
         #endregion
 
         #region Private Methods
+
+        private bool SaveTransactions()
+        {
+            bool success = false;
+
+            return success;
+        }
+
 
         #endregion
 
@@ -69,7 +80,7 @@ namespace DMT.TA.Windows.Exchange
 
             if (null != _manager && null != _manager.Request)
             {
-
+                // Need notify error when some items is missing.
             }
 
             entry.Setup(manager);

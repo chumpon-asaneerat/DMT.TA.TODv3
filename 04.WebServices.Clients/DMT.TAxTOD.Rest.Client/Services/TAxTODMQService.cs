@@ -249,11 +249,19 @@ namespace DMT.Services
             CheckSendError(med, fullFileName, ret);
         }
 
-        private void SendRequestExchangeItem(string fullFileName, Models.TAAApproveExchangeItem value)
+        private void SendApproveExchangeItem(string fullFileName, Models.TAAApproveExchangeItem value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
             var ret = ops.Exchange.SaveApproveItem(value);
+            CheckSendError(med, fullFileName, ret);
+        }
+
+        private void SendReceiveExchangeItem(string fullFileName, Models.TAAReceiveExchangeItem value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.Exchange.SaveRecivedItem(value);
             CheckSendError(med, fullFileName, ret);
         }
 
@@ -355,12 +363,21 @@ namespace DMT.Services
             CheckResendError(med, fullFileName, ret);
         }
 
-        private void ResendRequestExchangeItem(string fullFileName, Models.TAAApproveExchangeItem value)
+        private void ResendApproveExchangeItem(string fullFileName, Models.TAAApproveExchangeItem value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Exchange.SaveApproveItem(value);
+            CheckResendError(med, fullFileName, ret);
+        }
+
+        private void ResendReceiveExchangeItem(string fullFileName, Models.TAAReceiveExchangeItem value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Exchange.SaveRecivedItem(value);
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -541,7 +558,22 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TAAApproveExchangeItem>();
-                    SendRequestExchangeItem(fullFileName, value);
+                    SendApproveExchangeItem(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.receive.exchange.item"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAReceiveExchangeItem>();
+                    SendReceiveExchangeItem(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -725,7 +757,22 @@ namespace DMT.Services
                 try
                 {
                     var value = jsonString.FromJson<Models.TAAApproveExchangeItem>();
-                    ResendRequestExchangeItem(fullFileName, value);
+                    ResendApproveExchangeItem(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("save.receive.exchange.item"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAReceiveExchangeItem>();
+                    ResendReceiveExchangeItem(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -883,6 +930,23 @@ namespace DMT.Services
                     continue;
                 int iCnt = i + 1;
                 string fileName = GetFileName("save.approve.exchange.item." + iCnt.ToString("D2"));
+                string msg = values[i].ToJson(false);
+                WriteFile(fileName, msg);
+            }
+        }
+        /// <summary>
+        /// Save Receive Exchange Item.
+        /// </summary>
+        /// <param name="values">The List of TAAReceiveExchangeItem instance.</param>
+        public void WriteQueue(List<Models.TAAReceiveExchangeItem> values)
+        {
+            if (null == values) return;
+            for (int i = 0; i < values.Count; i++)
+            {
+                if (null == values[i])
+                    continue;
+                int iCnt = i + 1;
+                string fileName = GetFileName("save.receive.exchange.item." + iCnt.ToString("D2"));
                 string msg = values[i].ToJson(false);
                 WriteFile(fileName, msg);
             }

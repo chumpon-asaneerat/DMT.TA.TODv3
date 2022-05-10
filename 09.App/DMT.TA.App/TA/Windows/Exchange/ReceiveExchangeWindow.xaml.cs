@@ -62,6 +62,21 @@ namespace DMT.TA.Windows.Exchange
         {
             bool success = false;
 
+            var appv = (null != _manager) ? _manager.Approve : null;
+            var recv = (null != _manager) ? _manager.Receive : null;
+            var exch = (null != _manager) ? _manager.ExchangeOut : null;
+            if (null != appv && null != recv && null != exch)
+            {
+                if (appv.ExchangeBHT != exch.BHTTotal)
+                {
+                    var win = TAApp.Windows.MessageBox;
+                    win.Setup("จำนวนเงินขอแลกออก ไม่เท่ากับ เงินขอแลก กรุณาตรวจสอบข้อมูล", "Toll Admin");
+                    win.ShowDialog();
+                }
+                // save received.
+                _manager.SaveReceived();
+            }
+
             return success;
         }
 

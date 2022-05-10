@@ -3105,13 +3105,13 @@ namespace DMT.Services
                 return rets;
             }
 
-            public static List<TAARequestExchangeItem> CreateReceiveExchangeDetails(TSBExchangeGroup group,
+            public static List<TAAReceiveExchangeItem> CreateReceiveExchangeDetails(TSBExchangeGroup group,
                 TSBExchangeTransaction recv)
             {
                 if (null == group || null == recv)
                     return null;
 
-                List<TAARequestExchangeItem> rets = new List<TAARequestExchangeItem>();
+                List<TAAReceiveExchangeItem> rets = new List<TAAReceiveExchangeItem>();
 
                 List<MCurrency> currencies = MCurrency.GetCurrencies().Value();
                 currencies.ForEach(currency =>
@@ -3119,7 +3119,7 @@ namespace DMT.Services
                     if (currency.currencyDenomId == 7)
                         return; // ignore 10BHT note
 
-                    var item = new TAARequestExchangeItem();
+                    var item = new TAAReceiveExchangeItem();
                     item.TSBId = recv.TSBId;
                     item.RequestId = group.PkId;
                     item.CurrencyDenomId = currency.currencyDenomId;
@@ -3482,6 +3482,138 @@ namespace DMT.Services
                 });
             }
         }
+
+        /// <summary>
+        /// Save Receive Approved's request.
+        /// </summary>
+        public void SaveReceived()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            if (null != this.Group)
+            {
+                string msg = string.Empty;
+                // change group flag.
+                this.Group.State = TSBExchangeGroup.StateTypes.Received;
+                this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Avaliable;
+
+                var groupId = this.Group.GroupId;
+                var reqId = this.Group.PkId;
+                var tsbId = this.Group.TSBId;
+                // set finished flag to completed.
+                this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Completed;
+
+                // Save group
+                var ret = TSBExchangeGroup.SaveTSBExchangeGroup(this.Group).Value();
+                if (null != ret)
+                {
+                    msg = "TSB Exchange Group successfully saved.";
+                }
+                else msg = "TSB Exchange Group failed to saved.";
+                // Write log.
+                med.Info(msg);
+
+                if (null != this.Receive)
+                {
+                    var tran = this.Receive;
+
+                    // update reveiced information.
+                    tran.GroupId = groupId;
+                    tran.TransactionDate = DateTime.Now;
+                    tran.TransactionType = TSBExchangeTransaction.TransactionTypes.Received;
+
+                    tran.TSBId = tsbId;
+                    tran.TSBNameEN = this.Group.TSBNameEN;
+                    tran.TSBNameTH = this.Group.TSBNameTH;
+
+                    tran.UserId = TAApp.User.Current.UserId; // set cancel user.
+                    tran.FullNameEN = TAApp.User.Current.FullNameEN;
+                    tran.FullNameTH = TAApp.User.Current.FullNameTH;
+
+                    if (tran.AdditionalBHT == decimal.Zero && tran.BorrowBHT == decimal.Zero)
+                    {
+                        // Reset date time.
+                        tran.PeriodBegin = new DateTime?();
+                        tran.PeriodEnd = new DateTime?();
+                        // exchange only
+                        tran.FinishFlag = TSBExchangeTransaction.FinishedFlags.Completed;
+                    }
+                    else
+                    {
+                        // need to returns additional/borrow
+                        tran.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable;
+                    }
+
+                    // Save transaction
+                    var ret2 = TSBExchangeTransaction.SaveTransaction(tran).Value();
+                    if (null != ret2)
+                    {
+                        msg = "TSB Exchange Transaction (Receive) successfully saved.";
+                    }
+                    else msg = "TSB Exchange Transaction (Receive) failed to saved.";
+                    // Write log.
+                    med.Info(msg);
+                }
+
+                if (null != this.ExchangeOut)
+                {
+                    var tran = this.ExchangeOut;
+
+                    // update exchange out information.
+                    tran.GroupId = groupId;
+                    tran.TransactionDate = DateTime.Now;
+                    tran.TransactionType = TSBExchangeTransaction.TransactionTypes.Exchange;
+
+                    tran.TSBId = tsbId;
+                    tran.TSBNameEN = this.Group.TSBNameEN;
+                    tran.TSBNameTH = this.Group.TSBNameTH;
+
+                    tran.UserId = TAApp.User.Current.UserId; // set cancel user.
+                    tran.FullNameEN = TAApp.User.Current.FullNameEN;
+                    tran.FullNameTH = TAApp.User.Current.FullNameTH;
+                    // set finished flag to completed.
+                    tran.FinishFlag = TSBExchangeTransaction.FinishedFlags.Completed;
+
+                    // Reset Additional, Borrow
+                    tran.AdditionalBHT = decimal.Zero;
+                    tran.BorrowBHT = decimal.Zero;
+                    tran.ExchangeBHT = tran.BHTTotal; // set exchange BHT same as BHT total.
+
+                    // Reset date time.
+                    tran.PeriodBegin = new DateTime?();
+                    tran.PeriodEnd = new DateTime?();
+
+                    // Save transaction
+                    var ret2 = TSBExchangeTransaction.SaveTransaction(tran).Value();
+                    if (null != ret2)
+                    {
+                        msg = "TSB Exchange Transaction (Exchange) successfully saved.";
+                    }
+                    else msg = "TSB Exchange Transaction (Exchange) failed to saved.";
+                    // Write log.
+                    med.Info(msg);
+                }
+
+                // Write to queue
+                TAAExchangeHeader header = Utils.CreateRequestExchangeHeader(this.Group, this.Receive);
+                header.FinishFlag = 1; // finished
+                header.Status = "F"; // received
+
+                List<TAAReceiveExchangeItem> items = Utils.CreateReceiveExchangeDetails(this.Group, this.Receive);
+                if (null == items)
+                {
+                    msg = "Cannot create receive exchange details.";
+                    med.Err(msg);
+                    return;
+                }
+
+                Task.Run(() =>
+                {
+                    TAxTODMQService.Instance.WriteQueue(header);
+                    TAxTODMQService.Instance.WriteQueue(items);
+                });
+            }
+        }
+
 
         #endregion
 

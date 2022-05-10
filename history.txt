@@ -30,8 +30,16 @@ Refactor DMT.TA.TODv4 #2344
 Refactor DMT.TA.TODv4 #2343
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2342
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Fixed bug approve save data.
+  - DMT.Models project
+    - Update TSBExchangeGroup
+      - Seperate Request/Approve properties.
+  - DMT.TA.Models project
+    - Update TSBExchangeGroupView
 
 [commited]
 Refactor DMT.TA.TODv4 #2341

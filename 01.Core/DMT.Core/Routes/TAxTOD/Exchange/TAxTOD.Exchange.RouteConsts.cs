@@ -45,6 +45,16 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = @"/api/account/request/approve";
                 }
+
+                // Url: /api/account/request/receive
+                /// <summary>The Received Approve Item Class.</summary>
+                public static partial class ReceivedApproveItem
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "ReceivedApproveItem";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/account/request/receive";
+                }
             }
 
             static partial class Exchange

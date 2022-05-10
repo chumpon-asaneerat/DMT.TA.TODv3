@@ -52,6 +52,15 @@ namespace DMT.Windows
 
         private void cmdApprove_Click(object sender, RoutedEventArgs e)
         {
+            if (_approve.BHTTotal != _approve.GrandTotalBHT)
+            {
+                // Check total sum.
+                var win2 = AccountApp.Windows.MessageBox;
+                win2.Setup("ยอดรวมของเหรียญ/ธนบัตร และจำนวนเงินรวมไม่เท่ากัน กรุณาตรวจสอบข้อมูล.", "DMT - TA (Account)");
+                win2.ShowDialog();
+                return;
+            }
+
             // Approve and close Window
             var win = AccountApp.Windows.ConfirmApproveMessageBox;
             win.Setup();

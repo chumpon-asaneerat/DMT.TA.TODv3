@@ -125,6 +125,17 @@ namespace DMT.Services.Operations
             }
 
             /// <summary>
+            /// Execute Save Recived Item (detail) api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult SaveRecivedItem(TAAReceiveExchangeItem value)
+            {
+                var ret = Execute(
+                    RouteConsts.TAxTOD.Exchange.ReceivedApproveItem.Url, value);
+                return ret;
+            }
+            /// <summary>
             /// Get TSB Approve Credits.
             /// </summary>
             /// <returns></returns>

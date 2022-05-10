@@ -139,21 +139,33 @@ namespace DMT.Models
 		private string _FullNameEN = string.Empty;
 		private string _FullNameTH = string.Empty;
 		// Request Amounts (runtime)
-
 		// วงเงินขอเพิ่ม เป็นเงินที่ ขอเพิ่มไปยัง บ/ช โดย เมื่อรวมกับยอดรวม ต้องไม่เกิน ยอดวงเงินอนุมัติ
-		private decimal _AdditionalBHT = decimal.Zero;
+		private decimal _RequestAdditionalBHT = decimal.Zero;
 		// เงินยืมเพิ่ม ไม่จำกัด เพราะต้องคืน เท่ากับที่ยืมมา
-		private decimal _BorrowBHT = decimal.Zero;
+		private decimal _RequestBorrowBHT = decimal.Zero;
 		// เงินขอแลกเปลี่ยน 
-		private decimal _ExchangeBHT = decimal.Zero;
+		private decimal _RequestExchangeBHT = decimal.Zero;
 
 		// Request Period (runtime)
-		private DateTime? _PeriodBegin = new DateTime?();
-		private DateTime? _PeriodEnd = new DateTime?();
+		private DateTime? _RequestPeriodBegin = new DateTime?();
+		private DateTime? _RequestPeriodEnd = new DateTime?();
 
 		private bool _hasRemark = false;
 		// Request Remark (runtime)
-		private string _Remark = string.Empty;
+		private string _RequestRemark = string.Empty;
+
+		// Approve Amounts (runtime)
+		// วงเงินขอเพิ่ม เป็นเงินที่ ขอเพิ่มไปยัง บ/ช โดย เมื่อรวมกับยอดรวม ต้องไม่เกิน ยอดวงเงินอนุมัติ
+		private decimal _ApproveAdditionalBHT = decimal.Zero;
+		// เงินยืมเพิ่ม ไม่จำกัด เพราะต้องคืน เท่ากับที่ยืมมา
+		private decimal _ApproveBorrowBHT = decimal.Zero;
+		// เงินขอแลกเปลี่ยน 
+		private decimal _ApproveExchangeBHT = decimal.Zero;
+		// Approve Period (runtime)
+		private DateTime? _ApprovePeriodBegin = new DateTime?();
+		private DateTime? _ApprovePeriodEnd = new DateTime?();
+		// Approve Remark (runtime)
+		private string _ApproveRemark = string.Empty;
 
 
 		private int _Status = 0;
@@ -553,7 +565,7 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Common
+		#region Common (comment out)
 
 		/*
 		/// <summary>
@@ -751,26 +763,294 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Exchange/Borrow/Additional
+		#region Request Exchange/Borrow/Additional
 
 		/// <summary>
-		/// Gets or sets amount Exchange BHT.
+		/// Gets or sets Request amount Exchange BHT.
 		/// </summary>
-		[Category("Summary (Amount)")]
-		[Description("Gets or sets amount Exchange BHT.")]
+		[Category("Request Summary (Amount)")]
+		[Description("Gets or sets Request amount Exchange BHT.")]
 		[Ignore]
-		[PropertyMapName("ExchangeBHT")]
-		public virtual decimal ExchangeBHT
+		[PropertyMapName("RequestExchangeBHT")]
+		public virtual decimal RequestExchangeBHT
 		{
-			get { return _ExchangeBHT; }
+			get { return _RequestExchangeBHT; }
 			set
 			{
-				if (_ExchangeBHT != value)
+				if (_RequestExchangeBHT != value)
 				{
-					_ExchangeBHT = value;
+					_RequestExchangeBHT = value;
 					// Raise event.
-					this.RaiseChanged("ExchangeBHT");
-					this.RaiseChanged("GrandTotalBHT");
+					this.RaiseChanged("RequestExchangeBHT");
+					this.RaiseChanged("RequestGrandTotalBHT");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request amount Borrow BHT.
+		/// </summary>
+		[Category("Request Summary (Amount)")]
+		[Description("Gets or sets Request amount Borrow BHT.")]
+		[Ignore]
+		[PropertyMapName("RequestBorrowBHT")]
+		public virtual decimal RequestBorrowBHT
+		{
+			get { return _RequestBorrowBHT; }
+			set
+			{
+				if (_RequestBorrowBHT != value)
+				{
+					_RequestBorrowBHT = value;
+					// Raise event.
+					this.RaiseChanged("RequestBorrowBHT");
+					this.RaiseChanged("RequestGrandTotalBHT");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request amount Additional BHT.
+		/// </summary>
+		[Category("Summary (Amount)")]
+		[Description("Gets or sets Request amount Additional BHT.")]
+		[Ignore]
+		[PropertyMapName("RequestAdditionalBHT")]
+		public virtual decimal RequestAdditionalBHT
+		{
+			get { return _RequestAdditionalBHT; }
+			set
+			{
+				if (_RequestAdditionalBHT != value)
+				{
+					_RequestAdditionalBHT = value;
+					// Raise event.
+					this.RaiseChanged("RequestAdditionalBHT");
+					this.RaiseChanged("RequestGrandTotalBHT");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request Grand Total in baht.
+		/// </summary>
+		[Category("Summary (Amount)")]
+		[Description("Gets or sets Request Grand Total in baht.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		//[PropertyMapName("GrandTotalBHT")]
+		public decimal RequestGrandTotalBHT
+		{
+			get
+			{
+				return _RequestExchangeBHT + _RequestBorrowBHT + _RequestAdditionalBHT;
+			}
+			set { }
+		}
+
+		#endregion
+
+		#region Request Periods
+
+		/// <summary>
+		/// Gets or sets Request Period Begin Date.
+		/// </summary>
+		[Category("Period")]
+		[Description(" Gets or sets Request Period Begin Date")]
+		[Ignore]
+		[PropertyMapName("RequestPeriodBegin")]
+		public virtual DateTime? RequestPeriodBegin
+		{
+			get
+			{
+				return _RequestPeriodBegin;
+			}
+			set
+			{
+				if (_RequestPeriodBegin != value)
+				{
+					_RequestPeriodBegin = value;
+					this.RaiseChanged("RequestPeriodBegin");
+					this.RaiseChanged("RequestPeriodBeginDateString");
+					this.RaiseChanged("RequestPeriodBeginTimeString");
+					this.RaiseChanged("RequestPeriodBeginDateTimeString");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets Request Period Begin Date String.
+		/// </summary>
+		[Category("Period")]
+		[Description("Gets Request Period Begin Date String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestPeriodBeginDateString
+		{
+			get
+			{
+				var ret = (!this.RequestPeriodBegin.HasValue) ? "" : this.RequestPeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy");
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
+		/// Gets Request Period Begin Time String.
+		/// </summary>
+		[Category("Period")]
+		[Description("Gets Request Period Begin Time String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestPeriodBeginTimeString
+		{
+			get
+			{
+				var ret = (!this.RequestPeriodBegin.HasValue) ? "" : this.RequestPeriodBegin.Value.ToThaiTimeString();
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
+		/// Gets Request Period Begin Date Time String.
+		/// </summary>
+		[Category("Period")]
+		[Description("Gets Request Period Begin Date Time String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestPeriodBeginDateTimeString
+		{
+			get
+			{
+				var ret = (!this.RequestPeriodBegin.HasValue) ? "" : this.RequestPeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				return ret;
+			}
+			set { }
+		}
+
+		/// <summary>
+		/// Gets or sets Request Period End Date.
+		/// </summary>
+		[Category("Period")]
+		[Description(" Gets or sets Request Period End Date")]
+		[Ignore]
+		[PropertyMapName("RequestPeriodEnd")]
+		public virtual DateTime? RequestPeriodEnd
+		{
+			get
+			{
+				return _RequestPeriodEnd;
+			}
+			set
+			{
+				if (_RequestPeriodEnd != value)
+				{
+					_RequestPeriodEnd = value;
+					this.RaiseChanged("RequestPeriodEnd");
+					this.RaiseChanged("RequestPeriodEndDateString");
+					this.RaiseChanged("RequestPeriodEndTimeString");
+					this.RaiseChanged("RequestPeriodEndDateTimeString");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets Request Period End Date String.
+		/// </summary>
+		[Category("Period")]
+		[Description("Gets Request Period End Date String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestPeriodEndDateString
+		{
+			get
+			{
+				var ret = (!this.RequestPeriodEnd.HasValue) ? "" : this.RequestPeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy");
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
+		/// Gets Request Period End Time String.
+		/// </summary>
+		[Category("Period")]
+		[Description("Gets Request Period End Time String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestPeriodEndTimeString
+		{
+			get
+			{
+				var ret = (!this.RequestPeriodEnd.HasValue) ? "" : this.RequestPeriodEnd.Value.ToThaiTimeString();
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
+		/// Gets Request Period End Date Time String.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets Request Period End Date Time String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestPeriodEndDateTimeString
+		{
+			get
+			{
+				var ret = (!this.RequestPeriodEnd.HasValue) ? "" : this.RequestPeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				return ret;
+			}
+			set { }
+		}
+
+		#endregion
+
+		#region Request Remark
+
+		/// <summary>
+		/// Gets or sets Request Remark.
+		/// </summary>
+		[Category("Remark")]
+		[Description("Gets or sets Request Remark.")]
+		[Ignore]
+		[PropertyMapName("RequestRemark")]
+		public virtual string RequestRemark
+		{
+			get { return _RequestRemark; }
+			set
+			{
+				if (_RequestRemark != value)
+				{
+					_RequestRemark = value;
+					// Raise event.
+					this.RaiseChanged("Remark");
+				}
+			}
+		}
+
+		#endregion
+
+		#region Approve Exchange/Borrow/Additional
+
+		/// <summary>
+		/// Gets or sets Approve amount Exchange BHT.
+		/// </summary>
+		[Category("Summary (Amount)")]
+		[Description("Gets or sets Approve amount Exchange BHT.")]
+		[Ignore]
+		[PropertyMapName("ApproveExchangeBHT")]
+		public virtual decimal ApproveExchangeBHT
+		{
+			get { return _ApproveExchangeBHT; }
+			set
+			{
+				if (_ApproveExchangeBHT != value)
+				{
+					_ApproveExchangeBHT = value;
+					// Raise event.
+					this.RaiseChanged("ApproveExchangeBHT");
+					this.RaiseChanged("ApproveGrandTotalBHT");
 				}
 			}
 		}
@@ -778,215 +1058,215 @@ namespace DMT.Models
 		/// Gets or sets amount Borrow BHT.
 		/// </summary>
 		[Category("Summary (Amount)")]
-		[Description("Gets or sets amount Borrow BHT.")]
+		[Description("Gets or sets Approve amount Borrow BHT.")]
 		[Ignore]
-		[PropertyMapName("BorrowBHT")]
-		public virtual decimal BorrowBHT
+		[PropertyMapName("ApproveBorrowBHT")]
+		public virtual decimal ApproveBorrowBHT
 		{
-			get { return _BorrowBHT; }
+			get { return _ApproveBorrowBHT; }
 			set
 			{
-				if (_BorrowBHT != value)
+				if (_ApproveBorrowBHT != value)
 				{
-					_BorrowBHT = value;
+					_ApproveBorrowBHT = value;
 					// Raise event.
-					this.RaiseChanged("BorrowBHT");
-					this.RaiseChanged("GrandTotalBHT");
+					this.RaiseChanged("ApproveBorrowBHT");
+					this.RaiseChanged("ApproveGrandTotalBHT");
 				}
 			}
 		}
 		/// <summary>
-		/// Gets or sets amount Additional BHT.
+		/// Gets or sets Approve amount Additional BHT.
 		/// </summary>
 		[Category("Summary (Amount)")]
-		[Description("Gets or sets amount Additional BHT.")]
+		[Description("Gets or sets Approve amount Additional BHT.")]
 		[Ignore]
-		[PropertyMapName("AdditionalBHT")]
-		public virtual decimal AdditionalBHT
+		[PropertyMapName("ApproveAdditionalBHT")]
+		public virtual decimal ApproveAdditionalBHT
 		{
-			get { return _AdditionalBHT; }
+			get { return _ApproveAdditionalBHT; }
 			set
 			{
-				if (_AdditionalBHT != value)
+				if (_ApproveAdditionalBHT != value)
 				{
-					_AdditionalBHT = value;
+					_ApproveAdditionalBHT = value;
 					// Raise event.
-					this.RaiseChanged("AdditionalBHT");
-					this.RaiseChanged("GrandTotalBHT");
+					this.RaiseChanged("ApproveAdditionalBHT");
+					this.RaiseChanged("ApproveGrandTotalBHT");
 				}
 			}
 		}
 		/// <summary>
-		/// Gets or sets Grand Total in baht.
+		/// Gets or sets Approve Grand Total in baht.
 		/// </summary>
 		[Category("Summary (Amount)")]
-		[Description("Gets or sets Grand Total in baht.")]
+		[Description("Gets or sets Approve Grand Total in baht.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
 		//[PropertyMapName("GrandTotalBHT")]
-		public decimal GrandTotalBHT
+		public decimal ApproveGrandTotalBHT
 		{
 			get
 			{
-				return _ExchangeBHT + _BorrowBHT + _AdditionalBHT;
+				return _ApproveExchangeBHT + _ApproveBorrowBHT + _ApproveAdditionalBHT;
 			}
 			set { }
 		}
 
 		#endregion
 
-		#region Period
+		#region Approve Periods
 
 		/// <summary>
-		/// Gets or sets Period Begin Date.
+		/// Gets or sets Approve Period Begin Date.
 		/// </summary>
 		[Category("Period")]
-		[Description(" Gets or sets Period Begin Date")]
+		[Description(" Gets or sets Approve Period Begin Date")]
 		[Ignore]
-		[PropertyMapName("PeriodBegin")]
-		public virtual DateTime? PeriodBegin
+		[PropertyMapName("ApprovePeriodBegin")]
+		public virtual DateTime? ApprovePeriodBegin
 		{
 			get
 			{
-				return _PeriodBegin;
+				return _ApprovePeriodBegin;
 			}
 			set
 			{
-				if (_PeriodBegin != value)
+				if (_ApprovePeriodBegin != value)
 				{
-					_PeriodBegin = value;
-					this.RaiseChanged("PeriodBegin");
-					this.RaiseChanged("PeriodBeginDateString");
-					this.RaiseChanged("PeriodBeginTimeString");
-					this.RaiseChanged("PeriodBeginDateTimeString");
+					_ApprovePeriodBegin = value;
+					this.RaiseChanged("ApprovePeriodBegin");
+					this.RaiseChanged("ApprovePeriodBeginDateString");
+					this.RaiseChanged("ApprovePeriodBeginTimeString");
+					this.RaiseChanged("ApprovePeriodBeginDateTimeString");
 				}
 			}
 		}
 		/// <summary>
-		/// Gets Period Begin Date String.
+		/// Gets Approve Period Begin Date String.
 		/// </summary>
 		[Category("Period")]
-		[Description("Gets Period Begin Date String.")]
+		[Description("Gets Approve Period Begin Date String.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
-		public string PeriodBeginDateString
+		public string ApprovePeriodBeginDateString
 		{
 			get
 			{
-				var ret = (!this.PeriodBegin.HasValue) ? "" : this.PeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy");
+				var ret = (!this.ApprovePeriodBegin.HasValue) ? "" : this.ApprovePeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy");
 				return ret;
 			}
 			set { }
 		}
 		/// <summary>
-		/// Gets Period Begin Time String.
+		/// Gets Approve Period Begin Time String.
 		/// </summary>
 		[Category("Period")]
-		[Description("Gets Period Begin Time String.")]
+		[Description("Gets Approve Period Begin Time String.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
-		public string PeriodBeginTimeString
+		public string ApprovePeriodBeginTimeString
 		{
 			get
 			{
-				var ret = (!this.PeriodBegin.HasValue) ? "" : this.PeriodBegin.Value.ToThaiTimeString();
+				var ret = (!this.ApprovePeriodBegin.HasValue) ? "" : this.ApprovePeriodBegin.Value.ToThaiTimeString();
 				return ret;
 			}
 			set { }
 		}
 		/// <summary>
-		/// Gets Period Begin Date Time String.
+		/// Gets Approve Period Begin Date Time String.
 		/// </summary>
 		[Category("Period")]
-		[Description("Gets Period Begin Date Time String.")]
+		[Description("Gets Approve Period Begin Date Time String.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
-		public string PeriodBeginDateTimeString
+		public string ApprovePeriodBeginDateTimeString
 		{
 			get
 			{
-				var ret = (!this.PeriodBegin.HasValue) ? "" : this.PeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				var ret = (!this.ApprovePeriodBegin.HasValue) ? "" : this.ApprovePeriodBegin.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
 				return ret;
 			}
 			set { }
 		}
 
 		/// <summary>
-		/// Gets or sets Period End Date.
+		/// Gets or sets Approve Period End Date.
 		/// </summary>
 		[Category("Period")]
-		[Description(" Gets or sets Period End Date")]
+		[Description("Gets or sets Approve Period End Date")]
 		[Ignore]
-		[PropertyMapName("PeriodEnd")]
-		public virtual DateTime? PeriodEnd
+		[PropertyMapName("ApprovePeriodEnd")]
+		public virtual DateTime? ApprovePeriodEnd
 		{
 			get
 			{
-				return _PeriodEnd;
+				return _ApprovePeriodEnd;
 			}
 			set
 			{
-				if (_PeriodEnd != value)
+				if (_ApprovePeriodEnd != value)
 				{
-					_PeriodEnd = value;
-					this.RaiseChanged("PeriodEnd");
-					this.RaiseChanged("PeriodEndDateString");
-					this.RaiseChanged("PeriodEndTimeString");
-					this.RaiseChanged("PeriodEndDateTimeString");
+					_ApprovePeriodEnd = value;
+					this.RaiseChanged("ApprovePeriodEnd");
+					this.RaiseChanged("ApprovePeriodEndDateString");
+					this.RaiseChanged("ApprovePeriodEndTimeString");
+					this.RaiseChanged("ApprovePeriodEndDateTimeString");
 				}
 			}
 		}
 		/// <summary>
-		/// Gets Period End Date String.
+		/// Gets Approve Period End Date String.
 		/// </summary>
 		[Category("Period")]
-		[Description("Gets Period End Date String.")]
+		[Description("Gets Approve Period End Date String.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
-		public string PeriodEndDateString
+		public string ApprovePeriodEndDateString
 		{
 			get
 			{
-				var ret = (!this.PeriodEnd.HasValue) ? "" : this.PeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy");
+				var ret = (!this.ApprovePeriodEnd.HasValue) ? "" : this.ApprovePeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy");
 				return ret;
 			}
 			set { }
 		}
 		/// <summary>
-		/// Gets Period End Time String.
+		/// Gets Approve Period End Time String.
 		/// </summary>
 		[Category("Period")]
-		[Description("Gets Period End Time String.")]
+		[Description("Gets Approve Period End Time String.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
-		public string PeriodEndTimeString
+		public string ApprovePeriodEndTimeString
 		{
 			get
 			{
-				var ret = (!this.PeriodEnd.HasValue) ? "" : this.PeriodEnd.Value.ToThaiTimeString();
+				var ret = (!this.ApprovePeriodEnd.HasValue) ? "" : this.ApprovePeriodEnd.Value.ToThaiTimeString();
 				return ret;
 			}
 			set { }
 		}
 		/// <summary>
-		/// Gets Period End Date Time String.
+		/// Gets Approve Period End Date Time String.
 		/// </summary>
 		[Category("Common")]
-		[Description("Gets Period End Date Time String.")]
+		[Description("Gets Approve Period End Date Time String.")]
 		[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
-		public string PeriodEndDateTimeString
+		public string ApprovePeriodEndDateTimeString
 		{
 			get
 			{
-				var ret = (!this.PeriodEnd.HasValue) ? "" : this.PeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				var ret = (!this.ApprovePeriodEnd.HasValue) ? "" : this.ApprovePeriodEnd.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
 				return ret;
 			}
 			set { }
@@ -994,25 +1274,25 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Remark
+		#region Approve Remark
 
 		/// <summary>
-		/// Gets or sets  Remark.
+		/// Gets or sets Approve Remark.
 		/// </summary>
 		[Category("Remark")]
-		[Description("Gets or sets  Remark.")]
+		[Description("Gets or sets Approve Remark.")]
 		[Ignore]
 		[PropertyMapName("Remark")]
-		public virtual string Remark
+		public virtual string ApproveRemark
 		{
-			get { return _Remark; }
+			get { return _ApproveRemark; }
 			set
 			{
-				if (_Remark != value)
+				if (_ApproveRemark != value)
 				{
-					_Remark = value;
+					_ApproveRemark = value;
 					// Raise event.
-					this.RaiseChanged("Remark");
+					this.RaiseChanged("ApproveRemark");
 				}
 			}
 		}
@@ -1205,53 +1485,106 @@ namespace DMT.Models
 
 			#endregion
 
-			#region Exchange/Borrow/Additional
-			[PropertyMapName("ExchangeBHT")]
-			public override decimal ExchangeBHT
-			{
-				get { return base.ExchangeBHT; }
-				set { base.ExchangeBHT = value; }
-			}
-			[PropertyMapName("BorrowBHT")]
-			public override decimal BorrowBHT
-			{
-				get { return base.BorrowBHT; }
-				set { base.BorrowBHT = value; }
-			}
-			[PropertyMapName("AdditionalBHT")]
-			public override decimal AdditionalBHT
-			{
-				get { return base.AdditionalBHT; }
-				set { base.AdditionalBHT = value; }
-			}
+			#region Request Exchange/Borrow/Additional
 
-			#endregion
-
-			#region Period
-
-			[PropertyMapName("PeriodBegin")]
-			public override DateTime? PeriodBegin
+			[PropertyMapName("RequestExchangeBHT")]
+			public override decimal RequestExchangeBHT
 			{
-				get { return base.PeriodBegin; }
-				set { base.PeriodBegin = value; }
+				get { return base.RequestExchangeBHT; }
+				set { base.RequestExchangeBHT = value; }
 			}
-			[PropertyMapName("PeriodEnd")]
-			public override DateTime? PeriodEnd
+			[PropertyMapName("RequestBorrowBHT")]
+			public override decimal RequestBorrowBHT
 			{
-				get { return base.PeriodEnd; }
-				set { base.PeriodEnd = value; }
+				get { return base.RequestBorrowBHT; }
+				set { base.RequestBorrowBHT = value; }
+			}
+			[PropertyMapName("RequestAdditionalBHT")]
+			public override decimal RequestAdditionalBHT
+			{
+				get { return base.RequestAdditionalBHT; }
+				set { base.RequestAdditionalBHT = value; }
 			}
 
 			#endregion
 
-			#region Remark
+			#region Request Period
+
+			[PropertyMapName("RequestPeriodBegin")]
+			public override DateTime? RequestPeriodBegin
+			{
+				get { return base.RequestPeriodBegin; }
+				set { base.RequestPeriodBegin = value; }
+			}
+			[PropertyMapName("RequestPeriodEnd")]
+			public override DateTime? RequestPeriodEnd
+			{
+				get { return base.RequestPeriodEnd; }
+				set { base.RequestPeriodEnd = value; }
+			}
+
+			#endregion
+
+			#region Request Remark
 
 			[MaxLength(255)]
-			[PropertyMapName("Remark")]
-			public override string Remark
+			[PropertyMapName("RequestRemark")]
+			public override string RequestRemark
 			{
-				get { return base.Remark; }
-				set { base.Remark = value; }
+				get { return base.RequestRemark; }
+				set { base.RequestRemark = value; }
+			}
+
+			#endregion
+
+			#region Approve Exchange/Borrow/Additional
+
+			[PropertyMapName("ApproveExchangeBHT")]
+			public override decimal ApproveExchangeBHT
+			{
+				get { return base.ApproveExchangeBHT; }
+				set { base.ApproveExchangeBHT = value; }
+			}
+			[PropertyMapName("ApproveBorrowBHT")]
+			public override decimal ApproveBorrowBHT
+			{
+				get { return base.ApproveBorrowBHT; }
+				set { base.ApproveBorrowBHT = value; }
+			}
+			[PropertyMapName("ApproveAdditionalBHT")]
+			public override decimal ApproveAdditionalBHT
+			{
+				get { return base.ApproveAdditionalBHT; }
+				set { base.ApproveAdditionalBHT = value; }
+			}
+
+			#endregion
+
+			#region Approve Period
+
+			[PropertyMapName("ApprovePeriodBegin")]
+			public override DateTime? ApprovePeriodBegin
+			{
+				get { return base.ApprovePeriodBegin; }
+				set { base.ApprovePeriodBegin = value; }
+			}
+			[PropertyMapName("ApprovePeriodEnd")]
+			public override DateTime? ApprovePeriodEnd
+			{
+				get { return base.ApprovePeriodEnd; }
+				set { base.ApprovePeriodEnd = value; }
+			}
+
+			#endregion
+
+			#region Approve Remark
+
+			[MaxLength(255)]
+			[PropertyMapName("ApproveRemark")]
+			public override string ApproveRemark
+			{
+				get { return base.ApproveRemark; }
+				set { base.ApproveRemark = value; }
 			}
 
 			#endregion

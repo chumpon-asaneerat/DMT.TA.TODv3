@@ -24,8 +24,16 @@ Refactor DMT.TA.TODv4 #2346
 Refactor DMT.TA.TODv4 #2345
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2344
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update CreditEntryStyle.xaml
+    - Update ListViewStyle.xaml
+  - DMT.TA.Models project
+    - Update TAManager.cs
+    - Update TAExchangeTransactionExtendedEntry control
+    - Update RequestExchangePage control
 
 [commited]
 Refactor DMT.TA.TODv4 #2343

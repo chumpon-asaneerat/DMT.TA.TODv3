@@ -389,26 +389,26 @@
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
 
-    <!--  EXCHANGE TEXTBOX  -->
-    <Style x:Key="RequestExchangeBHT"
+    <!--  EXCHANGE TRANSACTION TEXTBOX  -->
+    <Style x:Key="ExchangeTransactionExchangeBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Text" Value="{Binding ExchangeBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
-    <Style x:Key="RequestBorrowBHT"
+    <Style x:Key="ExchangeTransactionBorrowBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Text" Value="{Binding BorrowBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
-    <Style x:Key="RequestAdditionBHT"
+    <Style x:Key="ExchangeTransactionAdditionBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Text" Value="{Binding AdditionalBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
         <Setter Property="TextAlignment" Value="Right" />
     </Style>
-    <Style x:Key="RequestGrandTotalBHT"
+    <Style x:Key="ExchangeTransactionGrandTotalBHT"
            BasedOn="{StaticResource BankNoteAmountStyle}"
            TargetType="TextBox">
         <Setter Property="Text" Value="{Binding GrandTotalBHT, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />

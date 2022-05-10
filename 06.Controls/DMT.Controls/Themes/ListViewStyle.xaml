@@ -925,51 +925,52 @@
     <!--  Common Exchange Data Template (HEADER/CELL)  -->
 
     <!--  RequestDate HEADER TEMPLATE  -->
-    <DataTemplate x:Key="RequestDateHeader">
+    <DataTemplate x:Key="RequestDateHeaderTemplate">
         <TextBlock Text="วันที่ร้องขอ"
                    TextAlignment="Center"
                    TextWrapping="Wrap" />
     </DataTemplate>
     <!--  RequestDate CELL TEMPLATE  -->
-    <DataTemplate x:Key="RequestDate">
+    <DataTemplate x:Key="RequestDateCellTemplate">
         <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
 
     <!--  Request UserId CELL TEMPLATE  -->
-    <DataTemplate x:Key="RequestUserId">
+    <DataTemplate x:Key="RequestUserIdCellTemplate">
         <TextBlock Text="{Binding Path=UserId, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
     <!--  Request FullNameTH CELL TEMPLATE  -->
-    <DataTemplate x:Key="RequestFullNameTH">
+    <DataTemplate x:Key="RequestFullNameTHCellTemplate">
         <TextBlock Text="{Binding Path=FullNameTH, Mode=OneWay}" TextAlignment="Left" />
     </DataTemplate>
 
     <!--  Request State CELL TEMPLATE  -->
-    <DataTemplate x:Key="RequestState">
+    <DataTemplate x:Key="RequestStateCellTemplate">
         <TextBlock Text="{Binding Path=StateString, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
 
-    <!--  PeriodBegin CELL TEMPLATE  -->
-    <DataTemplate x:Key="PeriodBegin">
-        <TextBlock Text="{Binding Path=PeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
+    <!--  REQUESTS CELL TEMPLATES  -->
+    <!--  RequestPeriodBegin CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestPeriodBeginCellTemplate">
+        <TextBlock Text="{Binding Path=RequestPeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
     </DataTemplate>
-    <!--  PeriodEnd CELL TEMPLATE  -->
-    <DataTemplate x:Key="PeriodEnd">
-        <TextBlock Text="{Binding Path=PeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
+    <!--  RequestPeriodEnd CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestPeriodEndCellTemplate">
+        <TextBlock Text="{Binding Path=RequestPeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
     </DataTemplate>
-    <!--  Period GridView Columns Collections  -->
-    <GridViewColumnCollection x:Key="PediodGridViewColumns">
-        <GridViewColumn CellTemplate="{StaticResource PeriodBegin}"
+    <!--  Request Period GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="RequestPediodGridViewColumns">
+        <GridViewColumn CellTemplate="{StaticResource RequestPeriodBeginCellTemplate}"
                         Header=" วันที่เริ่มต้น "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110" />
-        <GridViewColumn CellTemplate="{StaticResource PeriodEnd}"
+        <GridViewColumn CellTemplate="{StaticResource RequestPeriodEndCellTemplate}"
                         Header=" วันที่สิ้นสุด "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110"/>
     </GridViewColumnCollection>
-    <!--  Pediod Columns HEADER TEMPLATE  -->
-    <DataTemplate x:Key="PediodColumnsHeader">
+    <!--  Request Pediod Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestPediodColumnsHeader">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -980,18 +981,17 @@
                        Text="{Binding}" />
             <GridViewHeaderRowPresenter Grid.Row="1"
                                         HorizontalAlignment="Stretch"
-                                        Columns="{StaticResource PediodGridViewColumns}" />
+                                        Columns="{StaticResource RequestPediodGridViewColumns}" />
         </Grid>
     </DataTemplate>
-    <!--  Pediod Columns CELL TEMPLATE  -->
-    <DataTemplate x:Key="PediodColumns">
+    <!--  Request Pediod Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestPediodColumns">
         <Grid>
-            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource PediodGridViewColumns}" />
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource RequestPediodGridViewColumns}" />
         </Grid>
     </DataTemplate>
-
-    <!--  ExchangeBHT HEADER TEMPLATE  -->
-    <DataTemplate x:Key="ExchangeBHTHeader">
+    <!--  Request ExchangeBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestExchangeBHTHeader">
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
@@ -1000,13 +1000,13 @@
             <Run Text="(บาท)" />
         </TextBlock>
     </DataTemplate>
-    <!--  ExchangeBHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="ExchangeBHT">
-        <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    <!--  Request ExchangeBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestExchangeBHTCellTemplate">
+        <TextBlock Text="{Binding Path=RequestExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
 
-    <!--  BorrowBHT HEADER TEMPLATE  -->
-    <DataTemplate x:Key="BorrowBHTHeader">
+    <!--  Request BorrowBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestBorrowBHTHeaderTemplate">
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
@@ -1015,13 +1015,13 @@
             <Run Text="(บาท)" />
         </TextBlock>
     </DataTemplate>
-    <!--  BorrowBHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="BorrowBHT">
-        <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    <!--  Request BorrowBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestBorrowBHTCellTemplate">
+        <TextBlock Text="{Binding Path=RequestBorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
-
-    <!--  AdditionalBHT HEADER TEMPLATE  -->
-    <DataTemplate x:Key="AdditionalBHTHeader">
+    
+    <!--  Request AdditionalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestAdditionalBHTHeaderTemplate">
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
@@ -1030,13 +1030,13 @@
             <Run Text="(บาท)" />
         </TextBlock>
     </DataTemplate>
-    <!--  AdditionalBHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="AdditionalBHT">
-        <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    <!--  Request AdditionalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestAdditionalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=RequestAdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
 
-    <!--  AdditionalBHT HEADER TEMPLATE  -->
-    <DataTemplate x:Key="ExchangeTotalBHTHeader">
+    <!--  Request GrandTotalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="RequestGrandTotalBHTHeaderTemplate">
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    TextAlignment="Center">
@@ -1045,11 +1045,101 @@
             <Run Text="(บาท)" />
         </TextBlock>
     </DataTemplate>
-    <!--  Exchange Total BHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="ExchangeTotalBHT">
-        <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    <!--  Request GrandTotalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestGrandTotalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=RequestGrandTotalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
 
+
+    <!--  APPROVES CELL TEMPLATES  -->
+    <!--  ApprovePeriodBegin CELL TEMPLATE  -->
+    <DataTemplate x:Key="ApprovePeriodBeginCellTemplate">
+        <TextBlock Text="{Binding Path=ApprovePeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  ApprovePeriodEnd CELL TEMPLATE  -->
+    <DataTemplate x:Key="ApprovePeriodEndCellTemplate">
+        <TextBlock Text="{Binding Path=ApprovePeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Approve Period GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="ApprovePediodGridViewColumns">
+        <GridViewColumn CellTemplate="{StaticResource ApprovePeriodBeginCellTemplate}"
+                        Header=" วันที่เริ่มต้น "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110" />
+        <GridViewColumn CellTemplate="{StaticResource ApprovePeriodEndCellTemplate}"
+                        Header=" วันที่สิ้นสุด "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+    </GridViewColumnCollection>
+    <!--  Approve Pediod Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ApprovePediodColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource ApprovePediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Approve Pediod Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="ApprovePediodColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource ApprovePediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
+
+    <!--  RECEIVES CELL TEMPLATES  -->
+    <!--  ReceivePeriodBegin CELL TEMPLATE  -->
+    <DataTemplate x:Key="ReceivePeriodBeginCellTemplate">
+        <TextBlock Text="{Binding Path=ReceivePeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  ReceivePeriodEnd CELL TEMPLATE  -->
+    <DataTemplate x:Key="ReceivePeriodEndCellTemplate">
+        <TextBlock Text="{Binding Path=ReceivePeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Receive Period GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="ReceivePediodGridViewColumns">
+        <GridViewColumn CellTemplate="{StaticResource ReceivePeriodBeginCellTemplate}"
+                        Header=" วันที่เริ่มต้น "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110" />
+        <GridViewColumn CellTemplate="{StaticResource ReceivePeriodEndCellTemplate}"
+                        Header=" วันที่สิ้นสุด "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+    </GridViewColumnCollection>
+    <!--  Receive Pediod Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ReceivePediodColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource ReceivePediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Receive Pediod Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="ReceivePediodColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource ReceivePediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+
+
+
+
+    <!--  ACCOUNT APP -->
     <!--  SelectedRequestHeader HEADER TEMPLATE  -->
     <DataTemplate x:Key="SelectedRequestHeader">
         <TextBlock HorizontalAlignment="Center"

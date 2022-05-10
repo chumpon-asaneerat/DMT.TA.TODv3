@@ -3306,9 +3306,12 @@ namespace DMT.Services
 
                 this.Approve = TSBExchangeTransaction.GetTransaction(
                     this.TSB, grp.GroupId, TSBExchangeTransaction.TransactionTypes.Approve).Value();
-                this.Approve.Description = "รายการอนุมัติจากบัญชี";
-                this.Approve.HasRemark = true;
-                this.Approve.ShowExtendInfo = true;
+                if (null != this.Approve)
+                {
+                    this.Approve.Description = "รายการอนุมัติจากบัญชี";
+                    this.Approve.HasRemark = true;
+                    this.Approve.ShowExtendInfo = true;
+                }
 
                 var apprv = TSBExchangeTransaction.CloneTransaction(this.Approve);
                 if (null != apprv)

@@ -80,45 +80,45 @@
                         <GridView>
                             <!--  REQUEST DATE  -->
                             <GridViewColumn Width="120"
-                                            CellTemplate="{StaticResource RequestDate}"
+                                            CellTemplate="{StaticResource RequestDateCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestDateHeader}" />
+                                            HeaderTemplate="{StaticResource RequestDateHeaderTemplate}" />
                             <!--  REQUIRED DATE (BEGIN-END)  -->
                             <!--
                             <GridViewColumn Width="Auto"
-                                            CellTemplate="{StaticResource PediodColumns}"
+                                            CellTemplate="{StaticResource RequestPediodColumns}"
                                             Header="วันที่ใช้เงิน"
                                             HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
-                                            HeaderTemplate="{StaticResource PediodColumnsHeader}" />
+                                            HeaderTemplate="{StaticResource RequestPediodColumnsHeader}" />
                             -->
                             <!--  UserId  -->
                             <GridViewColumn Width="120"
-                                            CellTemplate="{StaticResource RequestUserId}"
+                                            CellTemplate="{StaticResource RequestUserIdCellTemplate}"
                                             Header="รหัสพนักงาน"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                             <!--  UserId  -->
                             <GridViewColumn Width="250"
-                                            CellTemplate="{StaticResource RequestFullNameTH}"
+                                            CellTemplate="{StaticResource RequestFullNameTHCellTemplate}"
                                             Header="ชื่อพนักงาน"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
-                            <!--  EXCHANGE TOTAL BHT  -->
+                            <!--  REQUEST EXCHANGE TOTAL BHT  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource ExchangeBHT}"
+                                            CellTemplate="{StaticResource RequestExchangeBHTCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource ExchangeBHTHeader}" />
-                            <!--  BORROW TOTAL BHT  -->
+                                            HeaderTemplate="{StaticResource RequestExchangeBHTHeader}" />
+                            <!--  REQUEST BORROW TOTAL BHT  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource BorrowBHT}"
+                                            CellTemplate="{StaticResource RequestBorrowBHTCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource BorrowBHTHeader}" />
-                            <!--  ADDITION TOTAL BHT  -->
+                                            HeaderTemplate="{StaticResource RequestBorrowBHTHeaderTemplate}" />
+                            <!--  REQUEST ADDITION TOTAL BHT  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource AdditionalBHT}"
+                                            CellTemplate="{StaticResource RequestAdditionalBHTCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource AdditionalBHTHeader}" />
+                                            HeaderTemplate="{StaticResource RequestAdditionalBHTHeaderTemplate}" />
                             <!--  STATUS  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestState}"
+                                            CellTemplate="{StaticResource RequestStateCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
                                             Header="สถานะ" />
                             <!--  SHOW DETAIL (BUTTON)  -->

@@ -949,7 +949,8 @@
         <TextBlock Text="{Binding Path=StateString, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
 
-    <!--  REQUESTS CELL TEMPLATES  -->
+    <!--  TA APP REQUESTS HEADER/CELL TEMPLATES  -->
+    
     <!--  RequestPeriodBegin CELL TEMPLATE  -->
     <DataTemplate x:Key="RequestPeriodBeginCellTemplate">
         <TextBlock Text="{Binding Path=RequestPeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
@@ -969,6 +970,12 @@
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110"/>
     </GridViewColumnCollection>
+    <!--  Request Pediod Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="RequestPediodColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource RequestPediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
     <!--  Request Pediod Columns HEADER TEMPLATE  -->
     <DataTemplate x:Key="RequestPediodColumnsHeader">
         <Grid>
@@ -984,12 +991,7 @@
                                         Columns="{StaticResource RequestPediodGridViewColumns}" />
         </Grid>
     </DataTemplate>
-    <!--  Request Pediod Columns CELL TEMPLATE  -->
-    <DataTemplate x:Key="RequestPediodColumns">
-        <Grid>
-            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource RequestPediodGridViewColumns}" />
-        </Grid>
-    </DataTemplate>
+
     <!--  Request ExchangeBHT HEADER TEMPLATE  -->
     <DataTemplate x:Key="RequestExchangeBHTHeader">
         <TextBlock HorizontalAlignment="Center"
@@ -1051,7 +1053,7 @@
     </DataTemplate>
 
 
-    <!--  APPROVES CELL TEMPLATES  -->
+    <!--  APPROVES CELL TEMPLATES (PREPARE BUT UNUSED)  -->
     <!--  ApprovePeriodBegin CELL TEMPLATE  -->
     <DataTemplate x:Key="ApprovePeriodBeginCellTemplate">
         <TextBlock Text="{Binding Path=ApprovePeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
@@ -1094,7 +1096,7 @@
     </DataTemplate>
 
 
-    <!--  RECEIVES CELL TEMPLATES  -->
+    <!--  RECEIVES CELL TEMPLATES (PREPARE BUT UNUSED)  -->
     <!--  ReceivePeriodBegin CELL TEMPLATE  -->
     <DataTemplate x:Key="ReceivePeriodBeginCellTemplate">
         <TextBlock Text="{Binding Path=ReceivePeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
@@ -1136,10 +1138,183 @@
         </Grid>
     </DataTemplate>
 
+    
+    
+    
+    
+    <!--  ACCOUNT APP TEMPLATES -->
 
+    <DataTemplate x:Key="AccRequestDateHeaderTemplate">
+        <TextBlock Text="วันที่ร้องขอ"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+    </DataTemplate>
+    <!--  RequestDate CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestDateCellTemplate">
+        <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
 
+    <!--  AccRequestPeriodBegin CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestPeriodBeginCellTemplate">
+        <TextBlock Text="{Binding Path=PeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  RequestPeriodEnd CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestPeriodEndCellTemplate">
+        <TextBlock Text="{Binding Path=PeriodEndDateString, Mode=OneWay}" TextAlignment="Right" />
+    </DataTemplate>
+    <!--  Request Period GridView Columns Collections  -->
+    <GridViewColumnCollection x:Key="AccRequestPediodGridViewColumns">
+        <GridViewColumn CellTemplate="{StaticResource AccRequestPeriodBeginCellTemplate}"
+                        Header=" วันที่เริ่มต้น "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110" />
+        <GridViewColumn CellTemplate="{StaticResource AccRequestPeriodEndCellTemplate}"
+                        Header=" วันที่สิ้นสุด "
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        Width="110"/>
+    </GridViewColumnCollection>
+    <!--  Request Pediod Columns CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestPediodColumns">
+        <Grid>
+            <GridViewRowPresenter HorizontalAlignment="Stretch" Columns="{DynamicResource AccRequestPediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
+    <!--  Request Pediod Columns HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestPediodColumnsHeader">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Text="{Binding}" />
+            <GridViewHeaderRowPresenter Grid.Row="1"
+                                        HorizontalAlignment="Stretch"
+                                        Columns="{StaticResource AccRequestPediodGridViewColumns}" />
+        </Grid>
+    </DataTemplate>
 
-    <!--  ACCOUNT APP -->
+    <!--  Acc Request ExchangeBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestExchangeBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอแลก" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Request ExchangeBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestExchangeBHTCellTemplate">
+        <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Request BorrowBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestBorrowBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอยืม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Request BorrowBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestBorrowBHTCellTemplate">
+        <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Request AdditionalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestAdditionalBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เพิ่มวงเงิน" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Request AdditionalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestAdditionalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Request Exchange TotalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestExchangeTotalBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินรวม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Request Exchange TotalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccRequestExchangeTotalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=Total, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Approve ExchangeBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveExchangeBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอแลก" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Approve ExchangeBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveExchangeBHTCellTemplate">
+        <TextBlock Text="{Binding Path=AppExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Approve BorrowBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveBorrowBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอยืม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Approve BorrowBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveBorrowBHTCellTemplate">
+        <TextBlock Text="{Binding Path=AppBorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Approve AdditionalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveAdditionalBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เพิ่มวงเงิน" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Approve AdditionalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveAdditionalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=AppAdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Acc Approve Exchange TotalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveExchangeTotalBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินรวม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Acc Approve Exchange TotalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="AccApproveExchangeTotalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=ApproveTotal, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
     <!--  SelectedRequestHeader HEADER TEMPLATE  -->
     <DataTemplate x:Key="SelectedRequestHeader">
         <TextBlock HorizontalAlignment="Center"
@@ -1158,15 +1333,15 @@
 
     <!--  Request Exchange GridView Columns Collections  -->
     <GridViewColumnCollection x:Key="RequestExchangeViewColumns">
-        <GridViewColumn CellTemplate="{StaticResource ExchangeBHT}"
+        <GridViewColumn CellTemplate="{StaticResource AccRequestExchangeBHTCellTemplate}"
                         Header=" เงินขอแลก "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110" />
-        <GridViewColumn CellTemplate="{StaticResource BorrowBHT}"
+        <GridViewColumn CellTemplate="{StaticResource AccRequestBorrowBHTCellTemplate}"
                         Header=" เงินยืมเพิ่ม "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110"/>
-        <GridViewColumn CellTemplate="{StaticResource AdditionalBHT}"
+        <GridViewColumn CellTemplate="{StaticResource AccRequestAdditionalBHTCellTemplate}"
                         Header=" เพิ่มวงเงิน "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110"/>
@@ -1194,29 +1369,29 @@
     </DataTemplate>
 
     <!--  Approve ExchangeBHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="AppExchangeBHT">
+    <DataTemplate x:Key="AppExchangeBHTCellTemplate">
         <TextBlock Text="{Binding Path=AppExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
     <!--  Approve BorrowBHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="AppBorrowBHT">
+    <DataTemplate x:Key="AppBorrowBHTCellTemplate">
         <TextBlock Text="{Binding Path=AppBorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
     <!--  Approve AdditionalBHT CELL TEMPLATE  -->
-    <DataTemplate x:Key="AppAdditionalBHT">
+    <DataTemplate x:Key="AppAdditionalBHTCellTemplate">
         <TextBlock Text="{Binding Path=AppAdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
 
     <!--  Approve Exchange GridView Columns Collections  -->
     <GridViewColumnCollection x:Key="ApproveExchangeViewColumns">
-        <GridViewColumn CellTemplate="{StaticResource AppExchangeBHT}"
+        <GridViewColumn CellTemplate="{StaticResource AppExchangeBHTCellTemplate}"
                         Header=" เงินขอแลก "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110" />
-        <GridViewColumn CellTemplate="{StaticResource AppBorrowBHT}"
+        <GridViewColumn CellTemplate="{StaticResource AppBorrowBHTCellTemplate}"
                         Header=" เงินยืมเพิ่ม "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110"/>
-        <GridViewColumn CellTemplate="{StaticResource AppAdditionalBHT}"
+        <GridViewColumn CellTemplate="{StaticResource AppAdditionalBHTCellTemplate}"
                         Header=" เพิ่มวงเงิน "
                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
                         Width="110"/>

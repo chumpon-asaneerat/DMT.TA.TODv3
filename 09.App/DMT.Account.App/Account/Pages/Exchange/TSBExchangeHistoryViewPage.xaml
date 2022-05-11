@@ -136,22 +136,22 @@
                                                     HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                     <!--  REQUEST DATE  -->
                                     <GridViewColumn Width="150"
-                                                    CellTemplate="{StaticResource RequestDate}"
+                                                    CellTemplate="{StaticResource RequestDateCellTemplate}"
                                                     HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                    HeaderTemplate="{StaticResource RequestDateHeader}" />
+                                                    HeaderTemplate="{StaticResource RequestDateHeaderTemplate}" />
 
                                     <!--  REQUEST (EXCHANGE/BORROW/ADDITIONAL)  -->
                                     <GridViewColumn Width="Auto"
-                                                        CellTemplate="{StaticResource RequestExchangeColumns}"
-                                                        Header="ขออนุมัติ"
-                                                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
-                                                        HeaderTemplate="{StaticResource RequestExchangeColumnsHeader}" />
+                                                    CellTemplate="{StaticResource RequestExchangeColumns}"
+                                                    Header="ขออนุมัติ"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                    HeaderTemplate="{StaticResource RequestExchangeColumnsHeader}" />
                                     <!--  APPROVE (EXCHANGE/BORROW/ADDITIONAL)  -->
                                     <GridViewColumn Width="Auto"
-                                                        CellTemplate="{StaticResource ApproveExchangeColumns}"
-                                                        Header="อนุมัติจริง"
-                                                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
-                                                        HeaderTemplate="{StaticResource ApproveExchangeColumnsHeader}" />
+                                                    CellTemplate="{StaticResource ApproveExchangeColumns}"
+                                                    Header="อนุมัติจริง"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                                                    HeaderTemplate="{StaticResource ApproveExchangeColumnsHeader}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>

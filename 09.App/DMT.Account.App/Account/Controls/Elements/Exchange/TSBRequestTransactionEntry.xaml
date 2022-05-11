@@ -180,25 +180,25 @@
                     <!--  EXCHANGE BHT  -->
                     <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource RequestExchangeBHTDescription}" />
-                        <TextBox Style="{StaticResource RequestExchangeBHT}" />
+                        <TextBox Style="{StaticResource ExchangeTransactionExchangeBHT}" />
                         <TextBlock Style="{StaticResource CoinAmountUnitStyle}" />
                     </StackPanel>
                     <!--  BORROW BHT  -->
                     <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource RequestBorrowBHTDescription}" />
-                        <TextBox Style="{StaticResource RequestBorrowBHT}" />
+                        <TextBox Style="{StaticResource ExchangeTransactionBorrowBHT}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  ADDITION BHT  -->
                     <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource RequestAdditionalBHTDescription}" />
-                        <TextBox Style="{StaticResource RequestAdditionBHT}" />
+                        <TextBox Style="{StaticResource ExchangeTransactionAdditionBHT}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                     <!--  TOTAL BHT  -->
                     <StackPanel Style="{StaticResource EntryStackPanel}">
                         <TextBlock Style="{StaticResource RequestGrandTotalBHTDescription}" />
-                        <TextBox IsEnabled="False" Style="{StaticResource RequestGrandTotalBHT}" />
+                        <TextBox IsEnabled="False" Style="{StaticResource ExchangeTransactionGrandTotalBHT}" />
                         <TextBlock Style="{StaticResource BillAmountUnitStyle}" />
                     </StackPanel>
                 </StackPanel>

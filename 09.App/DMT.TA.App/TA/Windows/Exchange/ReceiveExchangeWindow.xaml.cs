@@ -72,9 +72,11 @@ namespace DMT.TA.Windows.Exchange
                     var win = TAApp.Windows.MessageBox;
                     win.Setup("จำนวนเงินขอแลกออก ไม่เท่ากับ เงินขอแลก กรุณาตรวจสอบข้อมูล", "Toll Admin");
                     win.ShowDialog();
+                    return success;
                 }
                 // save received.
                 _manager.SaveReceived();
+                success = true; // setup flag.
             }
 
             return success;

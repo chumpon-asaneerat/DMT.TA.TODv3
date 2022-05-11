@@ -93,35 +93,35 @@
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  REQUEST DATE  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource RequestDate}"
+                                                        CellTemplate="{StaticResource AccRequestDateCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource RequestDateHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestDateHeaderTemplate}" />
                                         <!--  REQUIRED DATE (BEGIN-END)  -->
                                         <GridViewColumn Width="Auto"
-                                                        CellTemplate="{StaticResource PediodColumns}"
+                                                        CellTemplate="{StaticResource AccRequestPediodColumns}"
                                                         Header="วันที่ใช้เงิน"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
-                                                        HeaderTemplate="{StaticResource PediodColumnsHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestPediodColumnsHeader}" />
                                         <!--  EXCHANGE TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource ExchangeBHT}"
+                                                        CellTemplate="{StaticResource AccRequestExchangeBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource ExchangeBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestExchangeBHTHeader}" />
                                         <!--  BORROW TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource BorrowBHT}"
+                                                        CellTemplate="{StaticResource AccRequestBorrowBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource BorrowBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestBorrowBHTHeaderTemplate}" />
                                         <!--  ADDITION TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource AdditionalBHT}"
+                                                        CellTemplate="{StaticResource AccRequestAdditionalBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource AdditionalBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestAdditionalBHTHeaderTemplate}" />
                                         <!--  SUM TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource ExchangeTotalBHT}"
+                                                        CellTemplate="{StaticResource AccRequestExchangeTotalBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource ExchangeTotalBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestExchangeTotalBHTHeaderTemplate}" />
                                         <!--  SELECTED (CHECKBOX)  -->
                                         <GridViewColumn Width="90"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
@@ -190,35 +190,35 @@
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                         <!--  REQUEST DATE  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource RequestDate}"
+                                                        CellTemplate="{StaticResource AccRequestDateCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource RequestDateHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestDateHeaderTemplate}" />
                                         <!--  REQUIRED DATE (BEGIN-END)  -->
                                         <GridViewColumn Width="Auto"
-                                                        CellTemplate="{StaticResource PediodColumns}"
+                                                        CellTemplate="{StaticResource AccRequestPediodColumns}"
                                                         Header="วันที่ใช้เงิน"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
-                                                        HeaderTemplate="{StaticResource PediodColumnsHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestPediodColumnsHeader}" />
                                         <!--  EXCHANGE TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource ExchangeBHT}"
+                                                        CellTemplate="{StaticResource AccApproveExchangeBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource ExchangeBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccApproveExchangeBHTHeader}" />
                                         <!--  BORROW TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource BorrowBHT}"
+                                                        CellTemplate="{StaticResource AccApproveBorrowBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource BorrowBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccApproveBorrowBHTHeaderTemplate}" />
                                         <!--  ADDITION TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource AdditionalBHT}"
+                                                        CellTemplate="{StaticResource AccApproveAdditionalBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource AdditionalBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccApproveAdditionalBHTHeaderTemplate}" />
                                         <!--  SUM TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource ExchangeTotalBHT}"
+                                                        CellTemplate="{StaticResource AccApproveExchangeTotalBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource ExchangeTotalBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccApproveExchangeTotalBHTHeaderTemplate}" />
                                         <!--  SHOW DETAIL (BUTTON)  -->
                                         <GridViewColumn Width="150"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"

@@ -18,8 +18,17 @@ Refactor DMT.TA.TODv4 #2348
 Refactor DMT.TA.TODv4 #2347
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2346
-- 
+- DMT.TAxTODv3
+  - DMT.Controls project
+    - Update CreditEntryStyle.xaml
+    - Update ListViewStyle.xaml
+  - DMT.TA.App project
+    - TSB Exchange process UI #21.
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Add TSB Exchange process UI #15.
 
 [commited]
 Refactor DMT.TA.TODv4 #2345

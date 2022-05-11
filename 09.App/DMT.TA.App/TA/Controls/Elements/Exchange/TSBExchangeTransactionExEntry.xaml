@@ -121,25 +121,25 @@
                         <!--  EXCHANGE BHT  -->
                         <StackPanel Style="{StaticResource EntryStackPanel}">
                             <TextBlock Style="{StaticResource RequestExchangeBHTDescription}" />
-                            <TextBox IsEnabled="False" Style="{StaticResource RequestExchangeBHT}" />
+                            <TextBox IsEnabled="False" Style="{StaticResource ExchangeTransactionExchangeBHT}" />
                             <TextBlock Style="{StaticResource CoinAmountUnitStyle}" Width="115" />
                         </StackPanel>
                         <!--  BORROW BHT  -->
                         <StackPanel Style="{StaticResource EntryStackPanel}">
                             <TextBlock Style="{StaticResource RequestBorrowBHTDescription}" />
-                            <TextBox IsEnabled="False" Style="{StaticResource RequestBorrowBHT}" />
+                            <TextBox IsEnabled="False" Style="{StaticResource ExchangeTransactionBorrowBHT}" />
                             <TextBlock Style="{StaticResource BillAmountUnitStyle}" Width="115" />
                         </StackPanel>
                         <!--  ADDITION BHT  -->
                         <StackPanel Style="{StaticResource EntryStackPanel}">
                             <TextBlock Style="{StaticResource RequestAdditionalBHTDescription}" />
-                            <TextBox IsEnabled="False" Style="{StaticResource RequestAdditionBHT}" />
+                            <TextBox IsEnabled="False" Style="{StaticResource ExchangeTransactionAdditionBHT}" />
                             <TextBlock Style="{StaticResource BillAmountUnitStyle}" Width="115" />
                         </StackPanel>
                         <!--  TOTAL BHT  -->
                         <StackPanel Style="{StaticResource EntryStackPanel}">
                             <TextBlock Style="{StaticResource RequestGrandTotalBHTDescription}" />
-                            <TextBox IsEnabled="False" Style="{StaticResource RequestGrandTotalBHT}" />
+                            <TextBox IsEnabled="False" Style="{StaticResource ExchangeTransactionGrandTotalBHT}" />
                             <TextBlock Style="{StaticResource BillAmountUnitStyle}" Width="115" />
                         </StackPanel>
                     </StackPanel>

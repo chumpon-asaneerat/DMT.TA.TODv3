@@ -1,4 +1,4 @@
-﻿//#define ENABLE_COMPRESSION
+﻿#define ENABLE_COMPRESSION
 
 #region Usings
 

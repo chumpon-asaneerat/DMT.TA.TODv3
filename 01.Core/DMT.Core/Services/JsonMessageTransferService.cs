@@ -1,5 +1,5 @@
 ﻿#define RUN_IN_THREAD
-//#define ENABLE_COMPRESSION
+#define ENABLE_COMPRESSION
 
 #region Using
 

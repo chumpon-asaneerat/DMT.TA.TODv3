@@ -36,8 +36,10 @@ Refactor DMT.TA.TODv4 #2352
 Refactor DMT.TA.TODv4 #2351
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2350
-- 
+- DMT.TAxTODv3
+  - Enable Compression functional in JsonMessageTransferService and TODClientManager
 
 [commited]
 Refactor DMT.TA.TODv4 #2349

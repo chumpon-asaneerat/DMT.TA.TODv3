@@ -249,6 +249,12 @@ namespace DMT.Services
             if (null != oldFiles && oldFiles.Count > 0)
             {
                 string zipDir = targetDT.ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                string targetDir = Path.Combine(todFolder, "Backup", zipDir);
+
+                med.Info("=== MOVE OLD FILES ===");
+                med.Info("  + Backup folder: " + backupFolder);
+                med.Info("  + MoveTo folder: " + targetDir);
+
                 oldFiles.ForEach(file =>
                 {
                     try
@@ -263,7 +269,6 @@ namespace DMT.Services
 
 #if ENABLE_COMPRESSION
                 // Compress (becareful path should be todFolder not MessageFolder).
-                string targetDir = Path.Combine(todFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
                 string outputFile = Path.Combine(todFolder, "Backup", targetFile);
                 med.Info("Begin CompressFiles - Current directory: {0}", todFolder);

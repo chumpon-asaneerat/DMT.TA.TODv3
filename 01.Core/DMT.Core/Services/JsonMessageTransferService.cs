@@ -1,4 +1,5 @@
 ﻿#define RUN_IN_THREAD
+//#define ENABLE_COMPRESSION
 
 #region Using
 
@@ -366,6 +367,7 @@ namespace DMT.Services
                     }
                 });
 
+#if ENABLE_COMPRESSION
                 // Compress.
                 string targetDir = Path.Combine(this.MessageFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
@@ -396,6 +398,7 @@ namespace DMT.Services
                 }
 
                 med.Info("End CompressFiles - Current directory: {0}", this.MessageFolder);
+#endif
             }
         }
 

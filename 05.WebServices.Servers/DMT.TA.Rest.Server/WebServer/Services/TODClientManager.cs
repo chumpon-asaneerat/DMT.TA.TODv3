@@ -1,4 +1,6 @@
-﻿#region Usings
+﻿//#define ENABLE_COMPRESSION
+
+#region Usings
 
 using System;
 using System.Collections.Generic;
@@ -259,6 +261,7 @@ namespace DMT.Services
                     }
                 });
 
+#if ENABLE_COMPRESSION
                 // Compress (becareful path should be todFolder not MessageFolder).
                 string targetDir = Path.Combine(todFolder, "Backup", zipDir);
                 string targetFile = zipDir + ".zip";
@@ -289,6 +292,7 @@ namespace DMT.Services
                 }
 
                 med.Info("End CompressFiles - Current directory: {0}", todFolder);
+#endif
             }
         }
 

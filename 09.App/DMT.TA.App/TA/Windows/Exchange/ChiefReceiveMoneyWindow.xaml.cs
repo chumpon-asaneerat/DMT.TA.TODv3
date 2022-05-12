@@ -37,12 +37,6 @@ namespace DMT.TA.Windows.Exchange
 
         #endregion
 
-        #region Internal Variables
-
-        private string _userId = string.Empty;
-
-        #endregion
-
         #region TextBox Handlers
 
         private void txtPassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -105,7 +99,6 @@ namespace DMT.TA.Windows.Exchange
 
         private void CheckUser()
         {
-            /*
             string userId = txtUserId.Text.Trim();
             string pwd = txtPassword.Password.Trim();
             if (string.IsNullOrWhiteSpace(userId))
@@ -140,7 +133,7 @@ namespace DMT.TA.Windows.Exchange
             if (null == user)
             {
                 // write log.
-                msg = string.Format("RECEIVED BAG - USER NOT FOUND. USERID: {0}", userId);
+                msg = string.Format("CHIEF RECEIVED MONEY - USER NOT FOUND. USERID: {0}", userId);
                 med.Info(msg);
 
                 txtMsg.Text = "ไม่พบข้อมูลพนักงาน ตามรหัสที่ระบุ กรุณาใส่รหัสพนักงานใหม่";
@@ -154,27 +147,26 @@ namespace DMT.TA.Windows.Exchange
             }
 
             CheckUser(user);
-            */
         }
 
         private void CheckUser(User user)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             string msg = string.Empty;
-            /*
+
             if (null == user)
             {
                 // write log.
-                msg = "RECEIVED BAG - USER NOT FOUND.";
+                msg = "CHIEF RECEIVED MONEY - USER NOT FOUND.";
                 med.Info(msg);
             }
             else
             {
                 // write log.
-                msg = string.Format("RECEIVED BAG - USER FOUND. USERID: {0}, USERNAME: {1}", user.UserId, user.FullNameTH);
+                msg = string.Format("CHIEF RECEIVED MONEY - USER FOUND. USERID: {0}, USERNAME: {1}", user.UserId, user.FullNameTH);
                 med.Info(msg);
             }
-
+            /*
             if (string.IsNullOrEmpty(_userId) || null == user || (null != user && user.UserId != _userId))
             {
                 txtMsg.Text = "รหัสพนักงานไม่ตรงกับ พนักงานที่รับถุงเงิน";
@@ -198,24 +190,23 @@ namespace DMT.TA.Windows.Exchange
 
         #region Public Methods
 
-        public void Setup(/* UserCreditBalance balance */)
+        public void Setup(decimal bhtTotal)
         {
             StartService();
 
             /*
             _userId = (null != balance) ? balance.UserId : string.Empty;
-            string msg1 = (null != balance) ? balance.BagNo : string.Empty;
-            string msg2 = (null != balance) ? balance.BHTTotal.ToString("n0") : "0";
+            */
+
+            string msg2 = bhtTotal.ToString("n0");
 
             txtMsg.Text = string.Empty;
-            txtBagID.Text = msg1;
             txtAmount.Text = msg2;
 
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
                 txtUserId.Focus();
             }));
-            */
         }
 
         #endregion

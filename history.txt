@@ -33,8 +33,13 @@ Refactor DMT.TA.TODv4 #2353
 Refactor DMT.TA.TODv4 #2352
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2351
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TSB Exchange process UI #22.
+      - Add ChiefReceivedMoneyWindow #1.
+      - Add AccountReceivedMoneyWindow #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2350
@@ -63,7 +68,6 @@ Refactor DMT.TA.TODv4 #2346
     - Update ListViewStyle.xaml
   - DMT.TA.App project
     - TSB Exchange process UI #21.
-- DMT.TAxTODv3
   - DMT.Account.App project
     - Add TSB Exchange process UI #15.
 

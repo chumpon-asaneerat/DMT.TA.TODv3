@@ -18,19 +18,19 @@ using System.Reflection;
 
 #endregion
 
-namespace DMT.TA.Windows.Credit
+namespace DMT.TA.Windows.Exchange
 {
     /// <summary>
-    /// Interaction logic for CollectorReceivedBagWindow.xaml
+    /// Interaction logic for AccountReceivedMoneyWindow.xaml
     /// </summary>
-    public partial class CollectorReceivedBagWindow : Window
+    public partial class AccountReceivedMoneyWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public CollectorReceivedBagWindow()
+        public AccountReceivedMoneyWindow()
         {
             InitializeComponent();
         }
@@ -75,6 +75,7 @@ namespace DMT.TA.Windows.Credit
         #region Private Methods
 
         #region Start/Shutdown Smartcard service
+
         private void StartService()
         {
             SmartcardManager.Instance.UserChanged += Instance_UserChanged;
@@ -104,6 +105,7 @@ namespace DMT.TA.Windows.Credit
 
         private void CheckUser()
         {
+            /*
             string userId = txtUserId.Text.Trim();
             string pwd = txtPassword.Password.Trim();
             if (string.IsNullOrWhiteSpace(userId))
@@ -152,13 +154,14 @@ namespace DMT.TA.Windows.Credit
             }
 
             CheckUser(user);
+            */
         }
 
         private void CheckUser(User user)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             string msg = string.Empty;
-
+            /*
             if (null == user)
             {
                 // write log.
@@ -172,7 +175,7 @@ namespace DMT.TA.Windows.Credit
                 med.Info(msg);
             }
 
-            if (string.IsNullOrEmpty(_userId) ||  null == user || (null != user && user.UserId != _userId))
+            if (string.IsNullOrEmpty(_userId) || null == user || (null != user && user.UserId != _userId))
             {
                 txtMsg.Text = "รหัสพนักงานไม่ตรงกับ พนักงานที่รับถุงเงิน";
 
@@ -184,7 +187,7 @@ namespace DMT.TA.Windows.Credit
 
                 return;
             }
-
+            */
             ShutdownService();
             this.DialogResult = true;
         }
@@ -195,10 +198,11 @@ namespace DMT.TA.Windows.Credit
 
         #region Public Methods
 
-        public void Setup(UserCreditBalance balance)
+        public void Setup(/* UserCreditBalance balance */)
         {
             StartService();
 
+            /*
             _userId = (null != balance) ? balance.UserId : string.Empty;
             string msg1 = (null != balance) ? balance.BagNo : string.Empty;
             string msg2 = (null != balance) ? balance.BHTTotal.ToString("n0") : "0";
@@ -211,6 +215,7 @@ namespace DMT.TA.Windows.Credit
             {
                 txtUserId.Focus();
             }));
+            */
         }
 
         #endregion

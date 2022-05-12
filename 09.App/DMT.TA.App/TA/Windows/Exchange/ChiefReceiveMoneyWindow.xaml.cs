@@ -166,20 +166,25 @@ namespace DMT.TA.Windows.Exchange
                 msg = string.Format("CHIEF RECEIVED MONEY - USER FOUND. USERID: {0}, USERNAME: {1}", user.UserId, user.FullNameTH);
                 med.Info(msg);
             }
-            /*
-            if (string.IsNullOrEmpty(_userId) || null == user || (null != user && user.UserId != _userId))
+
+            if (null != user && !string.IsNullOrWhiteSpace(user.RoleId))
             {
-                txtMsg.Text = "รหัสพนักงานไม่ตรงกับ พนักงานที่รับถุงเงิน";
+                var roles = new List<string>(TAApp.Permissions.CHIEFS);
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                if (!roles.Contains(user.RoleId))
                 {
-                    txtUserId.SelectAll();
-                    txtUserId.Focus();
-                }));
+                    txtMsg.Text = "พนักงานตามรหัสที่ระบุ ไม่มีสิทธิในการรับเงิน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น";
 
-                return;
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtUserId.SelectAll();
+                        txtUserId.Focus();
+                    }));
+
+                    return;
+                }
             }
-            */
+
             ShutdownService();
             this.DialogResult = true;
         }

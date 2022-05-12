@@ -49,6 +49,28 @@ namespace DMT
                 "FINANCE", "SV",
                 "RAD_MGR", "RAD_SUP"
             };
+
+            /// <summary>Gets or sets Role for Chief user that can reveived money permission.</summary>
+            public static string[] CHIEFS = new string[]
+            {
+                "ADMINS",
+                //"ACCOUNT",
+                "CTC_MGR", "CTC", "TC",
+                //"MT_ADMIN", "MT_TECH",
+                "FINANCE", "SV",
+                "RAD_MGR", "RAD_SUP"
+            };
+
+            /// <summary>Gets or sets Role for Account user that can reveived money permission.</summary>
+            public static string[] ACCOUNTS = new string[]
+            {
+                "ADMINS",
+                "ACCOUNT",
+                //"CTC_MGR", "CTC", "TC",
+                //"MT_ADMIN", "MT_TECH",
+                "FINANCE", "SV",
+                "RAD_MGR", "RAD_SUP"
+            };
         }
 
         /// <summary>

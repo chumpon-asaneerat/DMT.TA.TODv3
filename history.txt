@@ -24,8 +24,13 @@ Refactor DMT.TA.TODv4 #2356
 Refactor DMT.TA.TODv4 #2355
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2354
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - TSB Exchange process UI #25.
+      - Update ChiefReceivedMoneyWindow #4.
+      - Update AccountReceivedMoneyWindow #4.
 
 [commited]
 Refactor DMT.TA.TODv4 #2353

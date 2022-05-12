@@ -74,6 +74,14 @@ namespace DMT.TA.Windows.Exchange
                     win.ShowDialog();
                     return success;
                 }
+
+                var confirm = TAApp.Windows.ConfirmChiefReceiveMoney;
+                confirm.Setup(appv.GrandTotalBHT);
+                if (confirm.ShowDialog() == false)
+                {
+                    // failed to verify user
+                    return success;
+                }
                 // save received.
                 _manager.SaveReceived();
                 success = true; // setup flag.

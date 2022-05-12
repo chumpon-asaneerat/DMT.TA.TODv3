@@ -306,8 +306,8 @@
     <Compile Include="TA\Windows\Credit\CollectorReceivedBagWindow.xaml.cs">
       <DependentUpon>CollectorReceivedBagWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TA\Windows\Exchange\AccountReceivedMoneyWindow.xaml.cs">
-      <DependentUpon>AccountReceivedMoneyWindow.xaml</DependentUpon>
+    <Compile Include="TA\Windows\Exchange\AccountReceiveMoneyWindow.xaml.cs">
+      <DependentUpon>AccountReceiveMoneyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TA\Windows\Exchange\ChiefReceiveMoneyWindow.xaml.cs">
       <DependentUpon>ChiefReceiveMoneyWindow.xaml</DependentUpon>
@@ -526,7 +526,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TA\Windows\Exchange\AccountReceivedMoneyWindow.xaml">
+    <Page Include="TA\Windows\Exchange\AccountReceiveMoneyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

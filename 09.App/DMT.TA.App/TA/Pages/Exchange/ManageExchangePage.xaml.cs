@@ -40,7 +40,19 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdReturnExchange_Click(object sender, RoutedEventArgs e)
         {
-
+            // FOR TEST ACCOUNT RECEIVE MONEY DIALOG
+            var confirm = TAApp.Windows.ConfirmAccountReceiveMoney;
+            confirm.Setup((decimal)1200);
+            if (confirm.ShowDialog() == false)
+            {
+                // failed to verify user
+                MessageBox.Show("Cancel");
+            }
+            else
+            {
+                // OK
+                MessageBox.Show("OK");
+            }
         }
 
         #endregion

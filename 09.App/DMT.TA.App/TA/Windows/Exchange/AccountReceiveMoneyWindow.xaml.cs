@@ -21,16 +21,16 @@ using System.Reflection;
 namespace DMT.TA.Windows.Exchange
 {
     /// <summary>
-    /// Interaction logic for AccountReceivedMoneyWindow.xaml
+    /// Interaction logic for AccountReceiveMoneyWindow.xaml
     /// </summary>
-    public partial class AccountReceivedMoneyWindow : Window
+    public partial class AccountReceiveMoneyWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public AccountReceivedMoneyWindow()
+        public AccountReceiveMoneyWindow()
         {
             InitializeComponent();
         }
@@ -174,6 +174,9 @@ namespace DMT.TA.Windows.Exchange
                 if (!roles.Contains(user.RoleId))
                 {
                     txtMsg.Text = "พนักงานตามรหัสที่ระบุ ไม่มีสิทธิในการรับเงิน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น";
+
+                    msg = string.Format("ACCOUNT RECEIVED MONEY - USERID: {0} HAS NO PERMISSION.", user.UserId);
+                    med.Info(msg);
 
                     Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                     {

@@ -175,6 +175,9 @@ namespace DMT.TA.Windows.Exchange
                 {
                     txtMsg.Text = "พนักงานตามรหัสที่ระบุ ไม่มีสิทธิในการรับเงิน" + Environment.NewLine + "กรุณาป้อนรหัสพนักงานอื่น";
 
+                    msg = string.Format("CHIEF RECEIVED MONEY - USERID: {0} HAS NO PERMISSION.", user.UserId);
+                    med.Info(msg);
+
                     Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                     {
                         txtUserId.SelectAll();

@@ -55,7 +55,7 @@ namespace DMT
             {
                 "ADMINS",
                 //"ACCOUNT",
-                "CTC_MGR", "CTC", "TC",
+                "CTC_MGR", "CTC",/*"TC",*/
                 //"MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",
                 "RAD_MGR", "RAD_SUP"
@@ -66,7 +66,7 @@ namespace DMT
             {
                 "ADMINS",
                 "ACCOUNT",
-                //"CTC_MGR", "CTC", "TC",
+                //"CTC_MGR", "CTC",/*"TC",*/
                 //"MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",
                 "RAD_MGR", "RAD_SUP"
@@ -501,6 +501,32 @@ namespace DMT
                 get 
                 {
                     var ret = new TA.Windows.Exchange.ReceiveExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Confirm Received Money User (Chief/Account)
+
+            /// <summary>Gets Chief Receive Money Window.</summary>
+            public static TA.Windows.Exchange.ChiefReceiveMoneyWindow ConfirmChiefReceiveMoney
+            {
+                get
+                {
+                    var ret = new TA.Windows.Exchange.ChiefReceiveMoneyWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            /// <summary>Gets Account Receive Money Window.</summary>
+            public static TA.Windows.Exchange.AccountReceiveMoneyWindow ConfirmAccountReceiveMoney
+            {
+                get
+                {
+                    var ret = new TA.Windows.Exchange.AccountReceiveMoneyWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

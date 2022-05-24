@@ -96,7 +96,7 @@
                                             CellTemplate="{StaticResource RequestUserIdCellTemplate}"
                                             Header="รหัสพนักงาน"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
-                            <!--  UserId  -->
+                            <!--  Full Name  -->
                             <GridViewColumn Width="250"
                                             CellTemplate="{StaticResource RequestFullNameTHCellTemplate}"
                                             Header="ชื่อพนักงาน"

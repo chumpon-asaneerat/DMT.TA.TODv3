@@ -40,6 +40,7 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdReturnExchange_Click(object sender, RoutedEventArgs e)
         {
+            /*
             // FOR TEST ACCOUNT RECEIVE MONEY DIALOG
             var confirm = TAApp.Windows.ConfirmAccountReceiveMoney;
             confirm.Setup((decimal)1200);
@@ -53,6 +54,7 @@ namespace DMT.TA.Pages.Exchange
                 // OK
                 MessageBox.Show("OK");
             }
+            */
         }
 
         #endregion

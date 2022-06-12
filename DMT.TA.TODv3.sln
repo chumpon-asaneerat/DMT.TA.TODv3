@@ -112,6 +112,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Dynamic.Entry.Sample", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketClientTest", "11.Samples\WebSocketClientTest\WebSocketClientTest.csproj", "{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{079D8234-DE52-4873-9272-836D86144266}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Designs", "Designs", "{245346C8-F969-4BA6-AF44-45B2E710F830}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Designs\TA - Data Dictionary.docx = Documents\Designs\TA - Data Dictionary.docx
+		Documents\Designs\TA Screen Layout.docx = Documents\Designs\TA Screen Layout.docx
+		Documents\Designs\TOD - Data Dictionary.docx = Documents\Designs\TOD - Data Dictionary.docx
+		Documents\Designs\TOD Screen Layout.docx = Documents\Designs\TOD Screen Layout.docx
+		Documents\Designs\TOD-TA - Software Spec.docx = Documents\Designs\TOD-TA - Software Spec.docx
+		Documents\Designs\TOD-TA-ERD.vsd = Documents\Designs\TOD-TA-ERD.vsd
+		Documents\Designs\TOD_TA Work Flow.vsd = Documents\Designs\TOD_TA Work Flow.vsd
+		Documents\Designs\TOD_TA Work Flow.vsdx = Documents\Designs\TOD_TA Work Flow.vsdx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MA", "MA", "{35D2626C-A2FA-43A8-8004-F2FA7B92853A}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\MA\TA TOD คู่มือการบำรุงรักษาระบบ.docx = Documents\MA\TA TOD คู่มือการบำรุงรักษาระบบ.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -276,6 +295,8 @@ Global
 		{CF4A70FA-50F5-42C5-B598-7B997E139910} = {F8082E1C-9F77-4746-BE89-525109F468E1}
 		{FCCE74DD-4AEF-43BD-8DBD-8220B131E313} = {F8082E1C-9F77-4746-BE89-525109F468E1}
 		{1193FC80-C31F-4D98-84EF-E8AE4C3E7CC0} = {9F850F11-2C93-4A59-8F2E-F37C8D6A8AB0}
+		{245346C8-F969-4BA6-AF44-45B2E710F830} = {079D8234-DE52-4873-9272-836D86144266}
+		{35D2626C-A2FA-43A8-8004-F2FA7B92853A} = {079D8234-DE52-4873-9272-836D86144266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

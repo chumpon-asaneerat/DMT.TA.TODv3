@@ -35,8 +35,9 @@ AS
 			 SELECT IFNULL(SUM(ExchangeBHT), 0) 
 			   FROM TSBCreditTransaction 
 			  WHERE (   TSBCreditTransaction.TransactionType = 2
+					 OR TSBCreditTransaction.TransactionType = 3
 					 OR TSBCreditTransaction.TransactionType = 11
-			        ) -- Returns = 2, Replace Out = 11
+			        ) -- Exchange = 2, Returns = 3, Replace Out = 11
 				AND TSBCreditTransaction.TSBId = TSB.TSBId
 			)) AS ExchangeBHTTotal
 		 , ((
@@ -52,8 +53,9 @@ AS
 			 SELECT IFNULL(SUM(BorrowBHT), 0) 
 			   FROM TSBCreditTransaction 
 			  WHERE (   TSBCreditTransaction.TransactionType = 2
+					 OR TSBCreditTransaction.TransactionType = 3
 					 OR TSBCreditTransaction.TransactionType = 11
-			        ) -- Returns = 2, Replace Out = 11
+			        ) -- Exchange = 2, Returns = 3, Replace Out = 11
 				AND TSBCreditTransaction.TSBId = TSB.TSBId
 			)) AS BorrowBHTTotal
 		 , ((
@@ -69,8 +71,9 @@ AS
 			 SELECT IFNULL(SUM(AdditionalBHT), 0) 
 			   FROM TSBCreditTransaction 
 			  WHERE (   TSBCreditTransaction.TransactionType = 2
+					 OR TSBCreditTransaction.TransactionType = 3
 					 OR TSBCreditTransaction.TransactionType = 11
-			        ) -- Returns = 2, Replace Out = 11
+			        ) -- Exchange = 2, Returns = 3, Replace Out = 11
 				AND TSBCreditTransaction.TSBId = TSB.TSBId
 			)) AS AdditionalBHTTotal
 	  FROM TSB

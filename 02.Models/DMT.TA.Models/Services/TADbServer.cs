@@ -2035,7 +2035,7 @@ namespace DMT.Services
             InitView("TSBCreditBHT500SummaryView", 1, prefix);
             InitView("TSBCreditBHT1000SummaryView", 1, prefix);
             // !!! Required Above views
-            InitView("TSBCreditSummaryView", 1, prefix);
+            InitView("TSBCreditSummaryView", 2, prefix);
 
             // Coupons - Embeded resource used . instead / to access sub contents.
             prefix = @"Coupons";

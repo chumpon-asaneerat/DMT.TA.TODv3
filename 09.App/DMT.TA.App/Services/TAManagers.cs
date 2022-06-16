@@ -3555,6 +3555,46 @@ namespace DMT.Services
                     else msg = "TSB Exchange Transaction (Receive) failed to saved.";
                     // Write log.
                     med.Info(msg);
+
+                    // Create TSB Credit Transaction (received)
+                    var creditTran = new TSBCreditTransaction();
+                    creditTran.TransactionDate = DateTime.Now;
+                    creditTran.GroupId = groupId;
+                    creditTran.TransactionType = TSBCreditTransaction.TransactionTypes.Received;
+
+                    creditTran.TSBId = this.Group.TSBId;
+                    creditTran.TSBNameEN = this.Group.TSBNameEN;
+                    creditTran.TSBNameTH = this.Group.TSBNameTH;
+
+                    creditTran.SupervisorId = TAApp.User.Current.UserId; // set current sup id.
+                    creditTran.SupervisorNameEN = TAApp.User.Current.FullNameEN;
+                    creditTran.SupervisorNameTH = TAApp.User.Current.FullNameTH;
+
+                    creditTran.AmountST25 = tran.AmountST25;
+                    creditTran.AmountST50 = tran.AmountST50;
+                    creditTran.AmountBHT1 = tran.AmountBHT1;
+                    creditTran.AmountBHT2 = tran.AmountBHT2;
+                    creditTran.AmountBHT5 = tran.AmountBHT5;
+                    creditTran.AmountBHT10 = tran.AmountBHT10;
+                    creditTran.AmountBHT20 = tran.AmountBHT20;
+                    creditTran.AmountBHT50 = tran.AmountBHT50;
+                    creditTran.AmountBHT100 = tran.AmountBHT100;
+                    creditTran.AmountBHT500 = tran.AmountBHT500;
+                    creditTran.AmountBHT1000 = tran.AmountBHT1000;
+
+                    creditTran.ExchangeBHT = tran.ExchangeBHT; // เงินขอแลก
+                    creditTran.BorrowBHT = tran.BorrowBHT; // เงินยืมเพิ่ม
+                    creditTran.AdditionalBHT = tran.AdditionalBHT; // เพิ่มวงเงิน
+
+                    // Save transaction
+                    var ret3 = TSBCreditTransaction.SaveTransaction(creditTran).Value();
+                    if (null != ret3)
+                    {
+                        msg = "TSB Credit Transaction (Receive) successfully saved.";
+                    }
+                    else msg = "TSB Credit Transaction (Receive) failed to saved.";
+                    // Write log.
+                    med.Info(msg);
                 }
 
                 if (null != this.ExchangeOut)
@@ -3592,6 +3632,46 @@ namespace DMT.Services
                         msg = "TSB Exchange Transaction (Exchange) successfully saved.";
                     }
                     else msg = "TSB Exchange Transaction (Exchange) failed to saved.";
+                    // Write log.
+                    med.Info(msg);
+
+                    // Create TSB Credit Transaction (exchange)
+                    var creditTran = new TSBCreditTransaction();
+                    creditTran.TransactionDate = DateTime.Now;
+                    creditTran.GroupId = groupId;
+                    creditTran.TransactionType = TSBCreditTransaction.TransactionTypes.Exchange;
+
+                    creditTran.TSBId = this.Group.TSBId;
+                    creditTran.TSBNameEN = this.Group.TSBNameEN;
+                    creditTran.TSBNameTH = this.Group.TSBNameTH;
+
+                    creditTran.SupervisorId = TAApp.User.Current.UserId; // set current sup id.
+                    creditTran.SupervisorNameEN = TAApp.User.Current.FullNameEN;
+                    creditTran.SupervisorNameTH = TAApp.User.Current.FullNameTH;
+
+                    creditTran.AmountST25 = tran.AmountST25;
+                    creditTran.AmountST50 = tran.AmountST50;
+                    creditTran.AmountBHT1 = tran.AmountBHT1;
+                    creditTran.AmountBHT2 = tran.AmountBHT2;
+                    creditTran.AmountBHT5 = tran.AmountBHT5;
+                    creditTran.AmountBHT10 = tran.AmountBHT10;
+                    creditTran.AmountBHT20 = tran.AmountBHT20;
+                    creditTran.AmountBHT50 = tran.AmountBHT50;
+                    creditTran.AmountBHT100 = tran.AmountBHT100;
+                    creditTran.AmountBHT500 = tran.AmountBHT500;
+                    creditTran.AmountBHT1000 = tran.AmountBHT1000;
+
+                    creditTran.ExchangeBHT = tran.ExchangeBHT; // เงินขอแลก
+                    creditTran.BorrowBHT = tran.BorrowBHT; // เงินยืมเพิ่ม
+                    creditTran.AdditionalBHT = tran.AdditionalBHT; // เพิ่มวงเงิน
+
+                    // Save transaction
+                    var ret3 = TSBCreditTransaction.SaveTransaction(creditTran).Value();
+                    if (null != ret3)
+                    {
+                        msg = "TSB Credit Transaction (Exchange) successfully saved.";
+                    }
+                    else msg = "TSB Credit Transaction (Exchange) failed to saved.";
                     // Write log.
                     med.Info(msg);
                 }

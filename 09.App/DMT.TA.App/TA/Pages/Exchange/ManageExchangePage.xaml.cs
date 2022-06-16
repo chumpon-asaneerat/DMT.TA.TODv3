@@ -31,6 +31,12 @@ namespace DMT.TA.Pages.Exchange
 
         #endregion
 
+        #region Internal Variables
+
+        private List<TSBExchangeTransaction> trans = new List<TSBExchangeTransaction>();
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdBack_Click(object sender, RoutedEventArgs e)
@@ -38,9 +44,8 @@ namespace DMT.TA.Pages.Exchange
             GotoMainMenu();
         }
 
-        private void cmdReturnExchange_Click(object sender, RoutedEventArgs e)
+        private void cmdReturn_Click(object sender, RoutedEventArgs e)
         {
-            /*
             // FOR TEST ACCOUNT RECEIVE MONEY DIALOG
             var confirm = TAApp.Windows.ConfirmAccountReceiveMoney;
             confirm.Setup((decimal)1200);
@@ -54,7 +59,6 @@ namespace DMT.TA.Pages.Exchange
                 // OK
                 MessageBox.Show("OK");
             }
-            */
         }
 
         #endregion
@@ -70,7 +74,16 @@ namespace DMT.TA.Pages.Exchange
 
         private void Refresh()
         {
+            LoadExchangeGroups();
             plazaSummary.Setup(); // Call for refresh.
+        }
+        private void LoadExchangeGroups()
+        {
+            gridBorrow.ItemsSource = null;
+
+            trans = TSBExchangeTransaction.GetBorrowTransactions(TAAPI.TSB).Value();
+
+            gridBorrow.ItemsSource = trans;
         }
 
         #endregion

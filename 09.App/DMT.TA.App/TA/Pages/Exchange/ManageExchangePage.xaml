@@ -59,12 +59,6 @@
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
                     </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdReturnExchange"
-                                      Click="cmdReturnExchange_Click"
-                                      DockPanel.Dock="Left"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Money.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="คืนเงินยืมทอน" />
-                    </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
@@ -102,49 +96,41 @@
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                             <!--  REQUEST EXCHANGE TOTAL BHT  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestExchangeBHTCellTemplate}"
+                                            CellTemplate="{StaticResource ReturnExchangeBHTCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestExchangeBHTHeader}" />
+                                            HeaderTemplate="{StaticResource ReturnExchangeBHTHeader}" />
                             <!--  REQUEST BORROW TOTAL BHT  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestBorrowBHTCellTemplate}"
+                                            CellTemplate="{StaticResource ReturnBorrowBHTCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestBorrowBHTHeaderTemplate}" />
+                                            HeaderTemplate="{StaticResource ReturnBorrowBHTHeaderTemplate}" />
                             <!--  REQUEST ADDITION TOTAL BHT  -->
                             <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestAdditionalBHTCellTemplate}"
+                                            CellTemplate="{StaticResource ReturnAdditionalBHTCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestAdditionalBHTHeaderTemplate}" />
+                                            HeaderTemplate="{StaticResource ReturnAdditionalBHTHeaderTemplate}" />
                             <!--  STATUS  -->
+                            <!--
                             <GridViewColumn Width="110"
                                             CellTemplate="{StaticResource RequestStateCellTemplate}"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
                                             Header="สถานะ" />
+                            -->
                             <!--  SHOW DETAIL (BUTTON)  -->
-                            <GridViewColumn Width="180"
+                            <GridViewColumn Width="150"
                                             HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestDetailHeader}">
+                                            HeaderTemplate="{StaticResource ReturnDetailHeader}">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button x:Name="cmdRequestEdit"
+                                            <Button x:Name="cmdReturn"
                                                     Height="30"
-                                                    Width="80"
+                                                    Width="140"
                                                     FontSize="{StaticResource InputFontSize18}"
                                                     Style="{DynamicResource InlineButton}"
-                                                    IsEnabled="{Binding CanEdit}">
+                                                    Click="cmdReturn_Click">
                                                 <TextBlock Margin="5,0"
-                                                           Text="แก้ไข"
-                                                           TextAlignment="Left" />
-                                            </Button>
-                                            <Button x:Name="cmdReceivedDetail"
-                                                    Height="30"
-                                                    Width="80"
-                                                    FontSize="{StaticResource InputFontSize18}"
-                                                    Style="{DynamicResource InlineButton}"
-                                                    IsEnabled="{Binding CanExchange}">
-                                                <TextBlock Margin="5,0"
-                                                           Text="รับแลก"
+                                                           Text="คืนเงินยืมทอน"
                                                            TextAlignment="Left" />
                                             </Button>
                                         </StackPanel>

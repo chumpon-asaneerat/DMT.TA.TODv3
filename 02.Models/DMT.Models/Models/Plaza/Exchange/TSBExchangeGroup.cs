@@ -1181,7 +1181,7 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Approve
+		#region Received
 
 		#region Exchange/Borrow/Additional
 

@@ -1053,6 +1053,56 @@
     </DataTemplate>
 
 
+    <!--  RETURNS CELL TEMPLATES (FOR RETURNS EXCHANGE SCREEN)  -->
+
+    <!--  Return ExchangeBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ReturnExchangeBHTHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอแลก" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Return ExchangeBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="ReturnExchangeBHTCellTemplate">
+        <TextBlock Text="{Binding Path=ExchangeBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Return BorrowBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ReturnBorrowBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เงินขอยืม" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Return BorrowBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="ReturnBorrowBHTCellTemplate">
+        <TextBlock Text="{Binding Path=BorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+    <!--  Return AdditionalBHT HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ReturnAdditionalBHTHeaderTemplate">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            <Run Text="เพิ่มวงเงิน" />
+            <LineBreak />
+            <Run Text="(บาท)" />
+        </TextBlock>
+    </DataTemplate>
+    <!--  Return AdditionalBHT CELL TEMPLATE  -->
+    <DataTemplate x:Key="ReturnAdditionalBHTCellTemplate">
+        <TextBlock Text="{Binding Path=AdditionalBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
+    </DataTemplate>
+
+
+
+
     <!--  APPROVES CELL TEMPLATES (PREPARE BUT UNUSED)  -->
     <!--  ApprovePeriodBegin CELL TEMPLATE  -->
     <DataTemplate x:Key="ApprovePeriodBeginCellTemplate">
@@ -1324,6 +1374,13 @@
     </DataTemplate>
     <!--  RequestDetailHeader HEADER TEMPLATE  -->
     <DataTemplate x:Key="RequestDetailHeader">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="รายละเอียด"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <!--  ReturnDetailHeader HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ReturnDetailHeader">
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Text="รายละเอียด"

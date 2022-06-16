@@ -101,7 +101,9 @@ namespace DMT.Models
 		private TransactionTypes _TransactionType = TransactionTypes.Request;
 
 		private Guid _GroupId = Guid.Empty; // Exchange group Id.
-											// TSB
+		private DateTime _RequestDate = DateTime.MinValue;
+
+		// TSB
 		private string _TSBId = string.Empty;
 		private string _TSBNameEN = string.Empty;
 		private string _TSBNameTH = string.Empty;
@@ -753,6 +755,88 @@ namespace DMT.Models
 					this.RaiseChanged("FullNameTH");
 				}
 			}
+		}
+
+		#endregion
+
+		#region Exchange Group
+
+		/// <summary>
+		/// Gets or sets Request Date.
+		/// </summary>
+		[Category("Common")]
+		[Description(" Gets or sets Request Date")]
+		[Ignore]
+		[ReadOnly(true)]
+		[PropertyMapName("RequestDate")]
+		public virtual DateTime RequestDate
+		{
+			get
+			{
+				return _RequestDate;
+			}
+			set
+			{
+				if (_RequestDate != value)
+				{
+					_RequestDate = value;
+					this.RaiseChanged("RequestDate");
+					this.RaiseChanged("RequestDateString");
+					this.RaiseChanged("RequestTimeString");
+					this.RaiseChanged("RequestDateTimeString");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets Request Date String.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets Request Date String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestDateString
+		{
+			get
+			{
+				var ret = (this.RequestDate == DateTime.MinValue) ? "" : this.RequestDate.ToThaiDateTimeString("dd/MM/yyyy");
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
+		/// Gets Request Time String.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets Request Time String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestTimeString
+		{
+			get
+			{
+				var ret = (this.RequestDate == DateTime.MinValue) ? "" : this.RequestDate.ToThaiTimeString();
+				return ret;
+			}
+			set { }
+		}
+		/// <summary>
+		/// Gets Request Date Time String.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets Request Date Time String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string RequestDateTimeString
+		{
+			get
+			{
+				var ret = (this.RequestDate == DateTime.MinValue) ? "" : this.RequestDate.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				return ret;
+			}
+			set { }
 		}
 
 		#endregion
@@ -1743,6 +1827,20 @@ namespace DMT.Models
 			}
 
 			#endregion
+
+			#region Exchange Group (Request Date)
+
+			/// <summary>
+			/// Gets or sets Request Date.
+			/// </summary>
+			[PropertyMapName("RequestDate")]
+			public override DateTime RequestDate
+			{
+				get { return base.RequestDate; }
+				set { base.RequestDate = value; }
+			}
+
+			#endregion
 		}
 
 		#endregion
@@ -1909,6 +2007,53 @@ namespace DMT.Models
 
 					var val = (null != ret) ? ret.ToModel() : null;
 					result.Success(val);
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
+		/// Gets TSB Exchange Transactions that need to returns (Borrow from account need to returns).
+		/// </summary>
+		/// <param name="tsb">The TSB instance.</param>
+		/// <returns>Returns List of TSB Exchange Transactions.</returns>
+		public static NDbResult<List<TSBExchangeTransaction>> GetBorrowTransactions(TSB tsb)
+		{
+			var result = new NDbResult<List<TSBExchangeTransaction>>();
+			SQLiteConnection db = Default;
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			if (null == tsb)
+			{
+				result.ParameterIsNull();
+				return result;
+			}
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+				try
+				{
+					List<FKs> rets;
+
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM TSBExchangeTransactionView ";
+					cmd += " WHERE TSBId = ? ";
+					cmd += "   AND TransactionType = ? ";
+					cmd += "   AND FinishFlag = ? ";
+
+					rets = NQuery.Query<FKs>(cmd, tsb.TSBId, 
+						TransactionTypes.Received, FinishedFlags.Avaliable).ToList();
+
+					var results = rets.ToModels();
+					result.Success(results);
 				}
 				catch (Exception ex)
 				{

@@ -13,8 +13,12 @@ AS
 		 , TSB.TSBNameEN
 		 , TSB.TSBNameTH
 		 --, UserView.FullNameEN, UserView.FullNameTH
+		 , TSBExchangeGroup.RequestDate
 	  FROM TSBExchangeTransaction
 		 , TSB
 		 --, UserView
+		 , TSBExchangeGroup
 	 WHERE TSBExchangeTransaction.TSBId = TSB.TSBId
+	   AND TSBExchangeGroup.TSBId = TSB.TSBId
 	   --AND TSBExchangeTransaction.UserId = UserView.UserId
+	   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId

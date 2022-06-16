@@ -3689,10 +3689,40 @@ namespace DMT.Services
                     return;
                 }
 
+                // Update TSB Balance to TA Server
+                var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value(); // Find current TSB balance.
+                TAATSBCredit tsbCdt = null;
+                if (null != tsbBal)
+                {
+                    // For Update TSB balance
+                    tsbCdt = new TAATSBCredit();
+                    tsbCdt.TSBId = tsbBal.TSBId;
+                    tsbCdt.Amnt1 = tsbBal.AmountBHT1;
+                    tsbCdt.Amnt2 = tsbBal.AmountBHT2;
+                    tsbCdt.Amnt5 = tsbBal.AmountBHT5;
+                    tsbCdt.Amnt10 = tsbBal.AmountBHT10;
+                    tsbCdt.Amnt20 = tsbBal.AmountBHT20;
+                    tsbCdt.Amnt50 = tsbBal.AmountBHT50;
+                    tsbCdt.Amnt100 = tsbBal.AmountBHT100;
+                    tsbCdt.Amnt500 = tsbBal.AmountBHT500;
+                    tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
+                    tsbCdt.Remark = null;
+                    tsbCdt.Updatedate = DateTime.Now;
+
+                    msg = "Send Update TSB Credit Balance to TA Server.";
+                    med.Info(msg);
+                }
+                else
+                {
+                    msg = "Cannot find TSB Credit Balance. No data send to TA Server.";
+                    med.Err(msg);
+                }
+
                 Task.Run(() =>
                 {
                     TAxTODMQService.Instance.WriteQueue(header);
                     TAxTODMQService.Instance.WriteQueue(items);
+                    TAxTODMQService.Instance.WriteQueue(tsbCdt);
                 });
             }
         }

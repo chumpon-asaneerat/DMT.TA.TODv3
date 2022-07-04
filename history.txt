@@ -12,8 +12,12 @@ Refactor DMT.TA.TODv4 #2370
 Refactor DMT.TA.TODv4 #2369
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2368
-- 
+- DMT.TAxTODv3
+  - Update Data Dictionary documents
+    Update TA API (rest) #1
+    Update TA Flowchart #1
 
 [commited]
 Refactor DMT.TA.TODv4 #2367

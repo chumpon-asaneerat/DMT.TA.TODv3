@@ -117,8 +117,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Designs", "Designs", "{245346C8-F969-4BA6-AF44-45B2E710F830}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\Designs\TA - Data Dictionary.docx = Documents\Designs\TA - Data Dictionary.docx
+		Documents\Designs\TA API.xlsx = Documents\Designs\TA API.xlsx
 		Documents\Designs\TA Screen Layout.docx = Documents\Designs\TA Screen Layout.docx
+		Documents\Designs\TA-Flowchart.vsd = Documents\Designs\TA-Flowchart.vsd
 		Documents\Designs\TOD - Data Dictionary.docx = Documents\Designs\TOD - Data Dictionary.docx
+		Documents\Designs\TOD API.xlsx = Documents\Designs\TOD API.xlsx
 		Documents\Designs\TOD Screen Layout.docx = Documents\Designs\TOD Screen Layout.docx
 		Documents\Designs\TOD-TA - Software Spec.docx = Documents\Designs\TOD-TA - Software Spec.docx
 		Documents\Designs\TOD-TA-ERD.vsd = Documents\Designs\TOD-TA-ERD.vsd

@@ -15,8 +15,11 @@ Refactor DMT.TA.TODv4 #2369
 Refactor DMT.TA.TODv4 #2368
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2367
-- 
+- DMT.TAxTODv3
+  - Update Data Dictionary documents
+    Update ERD #2
 
 [commited]
 Refactor DMT.TA.TODv4 #2366

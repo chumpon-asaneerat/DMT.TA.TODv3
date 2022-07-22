@@ -10,7 +10,7 @@ using DMT.Configurations;
 
 #endregion
 
-namespace DMT.DC.Import.App
+namespace DMT
 {
     /// <summary>
     /// Interaction logic for App.xaml

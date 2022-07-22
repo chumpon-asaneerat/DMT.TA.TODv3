@@ -12,8 +12,10 @@ Refactor DMT.TA.TODv4 #2380
 Refactor DMT.TA.TODv4 #2379
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2378
-- 
+- DMT.TAxTODv3
+  - Update DMT.DC.Import.App #7
 
 [commited]
 Refactor DMT.TA.TODv4 #2377

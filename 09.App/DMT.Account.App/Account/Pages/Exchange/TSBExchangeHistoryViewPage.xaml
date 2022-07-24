@@ -152,6 +152,11 @@
                                                     Header="อนุมัติจริง"
                                                     HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                                                     HeaderTemplate="{StaticResource ApproveExchangeColumnsHeader}" />
+                                    <!--  Status  -->
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource StatusText}"
+                                                    Header=" สถานะ "
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>

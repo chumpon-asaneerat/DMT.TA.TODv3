@@ -36,7 +36,8 @@ namespace DMT.Models
         "AppAdditionalBHT": null,
         "ApproveBy": null,
         "ApproveDate": null,
-        "ApproveRemark": null
+        "ApproveRemark": null,
+        "Status": "F"
     }
     */
     /// <summary>The TAAExchangeSummary class.</summary>
@@ -178,6 +179,31 @@ namespace DMT.Models
         /// <summary>Gets or sets ApproveRemark.</summary>
         [PropertyMapName("ApproveRemark")]
         public string ApproveRemark { get; set; }
+
+        [PropertyMapName("Status")]
+        public string Status { get; set; }
+        /// <summary>
+        /// Gets Status display text.
+        /// </summary>
+        [JsonIgnore]
+        public string StatusText 
+        { 
+            get 
+            {
+                // R = รออนุมัติ
+                // A = อนุมัติ
+                // C = ไม่อนุมัติ (finish = 1) 
+                // F = ด่านรับเงิน (finish = 1)
+                string ret = string.Empty;
+                if (this.Status == "R") ret = "รออนุมัติ";
+                else if (this.Status == "A") ret = "อนุมัติแล้ว";
+                else if (this.Status == "C") ret = "ไม่อนุมัติ";
+                else if (this.Status == "F") ret = "ด่านรับเงิน";
+                else ret = "N/A";
+                return ret;
+            } 
+        }
+
     }
 
     // http://localhost:8000/api/account/request/getdetail (as parameter)

@@ -685,6 +685,12 @@
                    TextAlignment="Left" />
     </DataTemplate>
 
+    <DataTemplate x:Key="StatusText">
+        <TextBlock Margin="5,0"
+                   Text="{Binding Path=StatusText}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
     <!--  Common BALANCE Data Template (HEADER/CELL)  -->
 
     <!--  AMOUNT CELL TEMPLATE(S)  -->
@@ -937,11 +943,11 @@
 
     <!--  Request UserId CELL TEMPLATE  -->
     <DataTemplate x:Key="RequestUserIdCellTemplate">
-        <TextBlock Text="{Binding Path=UserId, Mode=OneWay}" TextAlignment="Center" />
+        <TextBlock Text="{Binding Path=RequestUserId, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
     <!--  Request FullNameTH CELL TEMPLATE  -->
     <DataTemplate x:Key="RequestFullNameTHCellTemplate">
-        <TextBlock Text="{Binding Path=FullNameTH, Mode=OneWay}" TextAlignment="Left" />
+        <TextBlock Text="{Binding Path=RequestFullNameTH, Mode=OneWay}" TextAlignment="Left" />
     </DataTemplate>
 
     <!--  Request State CELL TEMPLATE  -->

@@ -33,8 +33,20 @@ Refactor DMT.TA.TODv4 #2383
 Refactor DMT.TA.TODv4 #2382
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2381
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update View TSBExchangeGroupView, TSBExchangeTransactionView
+    - Update Class TSBExchangeGroup, TSBExchangeTransaction
+    - Add Notify Message when exchange coin/bill over than amount on plaza
+  - DMT.Account.App project
+    - Change binding in TSBRequestExchangeViewPage
+      - AdditionalBHT -> AppAdditionalBHT
+      - BorrowBHT -> AppBorrowBHT
+      - ExchangeBHT -> AppExchangeBHT
+    - Change binding in TSBExchangeHistoryViewPage
+      - xaml -> add column StatusText
 
 [commited]
 Refactor DMT.TA.TODv4 #2380

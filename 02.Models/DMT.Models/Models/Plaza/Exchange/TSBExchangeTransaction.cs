@@ -114,6 +114,12 @@ namespace DMT.Models
 		private string _UserId = string.Empty;
 		private string _FullNameEN = string.Empty;
 		private string _FullNameTH = string.Empty;
+		// Request
+		private string _RequestUserId = string.Empty;
+		private string _RequestFullNameEN = string.Empty;
+		private string _RequestFullNameTH = string.Empty;
+
+
 		private DateTime _UserReceivedDate = DateTime.MinValue;
 
 		// Coin/Bill (Amount)
@@ -753,6 +759,80 @@ namespace DMT.Models
 				{
 					_FullNameTH = value;
 					this.RaiseChanged("FullNameTH");
+				}
+			}
+		}
+
+		#endregion
+
+		#region Rquest User
+
+		/// <summary>
+		/// Gets or sets Request User Id
+		/// </summary>
+		[Category("User")]
+		[Description("Gets or sets Request User Id.")]
+		[Ignore]
+		[ReadOnly(true)]
+		[PropertyMapName("RequestUserId")]
+		public virtual string RequestUserId
+		{
+			get
+			{
+				return _RequestUserId;
+			}
+			set
+			{
+				if (_RequestUserId != value)
+				{
+					_RequestUserId = value;
+					this.RaiseChanged("RequestUserId");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request User Full Name EN
+		/// </summary>
+		[Category("User")]
+		[Description("Gets or sets Request User Full Name EN.")]
+		[Ignore]
+		[ReadOnly(true)]
+		[PropertyMapName("RequestFullNameEN")]
+		public virtual string RequestFullNameEN
+		{
+			get
+			{
+				return _RequestFullNameEN;
+			}
+			set
+			{
+				if (_RequestFullNameEN != value)
+				{
+					_RequestFullNameEN = value;
+					this.RaiseChanged("RequestFullNameEN");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request User Full Name TH
+		/// </summary>
+		[Category("User")]
+		[Description("Gets or sets Request User Full Name TH.")]
+		[Ignore]
+		[ReadOnly(true)]
+		[PropertyMapName("RequestFullNameTH")]
+		public virtual string RequestFullNameTH
+		{
+			get
+			{
+				return _RequestFullNameTH;
+			}
+			set
+			{
+				if (_RequestFullNameTH != value)
+				{
+					_RequestFullNameTH = value;
+					this.RaiseChanged("RequestFullNameTH");
 				}
 			}
 		}
@@ -1828,7 +1908,7 @@ namespace DMT.Models
 
 			#endregion
 
-			#region Exchange Group (Request Date)
+			#region Exchange Group (Request Date/User)
 
 			/// <summary>
 			/// Gets or sets Request Date.
@@ -1838,6 +1918,36 @@ namespace DMT.Models
 			{
 				get { return base.RequestDate; }
 				set { base.RequestDate = value; }
+			}
+			/// <summary>
+			/// Gets or sets Request UserId.
+			/// </summary>
+			[MaxLength(10)]
+			[PropertyMapName("RequestUserId")]
+			public override string RequestUserId
+			{
+				get { return base.RequestUserId; }
+				set { base.RequestUserId = value; }
+			}
+			/// <summary>
+			/// Gets or sets Request Full Name EN.
+			/// </summary>
+			[MaxLength(150)]
+			[PropertyMapName("RequestFullNameEN")]
+			public override string RequestFullNameEN
+			{
+				get { return base.RequestFullNameEN; }
+				set { base.RequestFullNameEN = value; }
+			}
+			/// <summary>
+			/// Gets or sets Request Full Name TH.
+			/// </summary>
+			[MaxLength(150)]
+			[PropertyMapName("RequestFullNameTH")]
+			public override string RequestFullNameTH
+			{
+				get { return base.RequestFullNameTH; }
+				set { base.RequestFullNameTH = value; }
 			}
 
 			#endregion

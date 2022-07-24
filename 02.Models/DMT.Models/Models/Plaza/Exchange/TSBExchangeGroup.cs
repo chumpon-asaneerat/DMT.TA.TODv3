@@ -128,10 +128,15 @@ namespace DMT.Models
 		// วงเงินอนุมัติ เป็นวงเงินที่ บ/ช กำหนดให้แต่ละด่าน เป็นค่าสูงสุดที่แต่ละด่านจะมีได้ โดยยอดนี้จะต้อง มากกว่าหรือเท่ากับ ยอดรวม + เงินยืมเพิ่ม
 		private decimal _MaxCredit = decimal.Zero;
 
-		// Request User (runtime)
+		// Last Transaction Type User (runtime)
 		private string _UserId = string.Empty;
 		private string _FullNameEN = string.Empty;
 		private string _FullNameTH = string.Empty;
+		// Request User (runtime)
+		private string _RequestUserId = string.Empty;
+		private string _RequestFullNameEN = string.Empty;
+		private string _RequestFullNameTH = string.Empty;
+
 		// Request Amounts (runtime)
 		// วงเงินขอเพิ่ม เป็นเงินที่ ขอเพิ่มไปยัง บ/ช โดย เมื่อรวมกับยอดรวม ต้องไม่เกิน ยอดวงเงินอนุมัติ
 		private decimal _RequestAdditionalBHT = decimal.Zero;
@@ -638,6 +643,80 @@ namespace DMT.Models
 		#endregion
 
 		#region Request 
+
+		#region User
+
+		/// <summary>
+		/// Gets or sets Request User Id
+		/// </summary>
+		[Category("User")]
+		[Description("Gets or sets Request User Id.")]
+		[ReadOnly(true)]
+		[Ignore]
+		[PropertyMapName("RequestUserId")]
+		public virtual string RequestUserId
+		{
+			get
+			{
+				return _RequestUserId;
+			}
+			set
+			{
+				if (_RequestUserId != value)
+				{
+					_RequestUserId = value;
+					this.RaiseChanged("RequestUserId");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request User Full Name EN
+		/// </summary>
+		[Category("User")]
+		[Description("Gets or sets Request User Full Name EN.")]
+		[ReadOnly(true)]
+		[Ignore]
+		[PropertyMapName("RequestFullNameEN")]
+		public virtual string RequestFullNameEN
+		{
+			get
+			{
+				return _RequestFullNameEN;
+			}
+			set
+			{
+				if (_RequestFullNameEN != value)
+				{
+					_RequestFullNameEN = value;
+					this.RaiseChanged("RequestFullNameEN");
+				}
+			}
+		}
+		/// <summary>
+		/// Gets or sets Request User Full Name TH
+		/// </summary>
+		[Category("User")]
+		[Description("Gets or sets Request User Full Name TH.")]
+		[ReadOnly(true)]
+		[Ignore]
+		[PropertyMapName("RequestFullNameTH")]
+		public virtual string RequestFullNameTH
+		{
+			get
+			{
+				return _RequestFullNameTH;
+			}
+			set
+			{
+				if (_RequestFullNameTH != value)
+				{
+					_RequestFullNameTH = value;
+					this.RaiseChanged("RequestFullNameTH");
+				}
+			}
+		}
+
+		#endregion
 
 		#region Exchange/Borrow/Additional
 
@@ -1640,6 +1719,32 @@ namespace DMT.Models
 			#endregion
 
 			#region Request 
+
+			#region Request User
+
+			[MaxLength(10)]
+			[PropertyMapName("RequestUserId")]
+			public override string RequestUserId
+			{
+				get { return base.RequestUserId; }
+				set { base.RequestUserId = value; }
+			}
+			[MaxLength(150)]
+			[PropertyMapName("RequestFullNameEN")]
+			public override string RequestFullNameEN
+			{
+				get { return base.RequestFullNameEN; }
+				set { base.RequestFullNameEN = value; }
+			}
+			[MaxLength(150)]
+			[PropertyMapName("RequestFullNameTH")]
+			public override string RequestFullNameTH
+			{
+				get { return base.RequestFullNameTH; }
+				set { base.RequestFullNameTH = value; }
+			}
+
+			#endregion
 
 			#region Exchange/Borrow/Additional
 

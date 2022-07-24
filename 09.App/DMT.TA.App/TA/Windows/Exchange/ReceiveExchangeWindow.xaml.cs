@@ -75,6 +75,25 @@ namespace DMT.TA.Windows.Exchange
                     return success;
                 }
 
+                var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value(); // Find current TSB balance.
+                if (tsbBal.AmountST25 - exch.AmountST25 < 0 ||
+                    tsbBal.AmountST50 - exch.AmountST50 < 0 ||
+                    tsbBal.AmountBHT1 - exch.AmountBHT1 < 0 ||
+                    tsbBal.AmountBHT2 - exch.AmountBHT2 < 0 ||
+                    tsbBal.AmountBHT5 - exch.AmountBHT5 < 0 ||
+                    tsbBal.AmountBHT10 - exch.AmountBHT10 < 0 ||
+                    tsbBal.AmountBHT20 - exch.AmountBHT20 < 0 ||
+                    tsbBal.AmountBHT50 - exch.AmountBHT50 < 0 ||
+                    tsbBal.AmountBHT100 - exch.AmountBHT100 < 0 ||
+                    tsbBal.AmountBHT500 - exch.AmountBHT500 < 0 ||
+                    tsbBal.AmountBHT1000 - exch.AmountBHT1000 < 0)
+                {
+                    var win = TAApp.Windows.MessageBox;
+                    win.Setup("จำนวนเงินขอแลกออกในด่าน ไม่เพียงพอแลก กรุณาตรวจสอบข้อมูล", "Toll Admin");
+                    win.ShowDialog();
+                    return success;
+                }
+
                 var confirm = TAApp.Windows.ConfirmChiefReceiveMoney;
                 confirm.Setup(appv.GrandTotalBHT);
                 if (confirm.ShowDialog() == false)

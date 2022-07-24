@@ -21,6 +21,27 @@ AS
 		 , TSBExchangeTransaction.FullNameTH
 		 -- REQUEST
 		 , (
+		    SELECT UserId 
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 1 -- Request = 1
+		   ) AS RequestUserID
+		 , (
+		    SELECT FullNameEN 
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 1 -- Request = 1
+		   ) AS RequestFullNameEN
+		 , (
+		    SELECT FullNameTH 
+		      FROM TSBExchangeTransaction 
+		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 
+			   AND TSBExchangeTransaction.GroupId = TSBExchangeGroup.GroupId
+			   AND TSBExchangeTransaction.TransactionType = 1 -- Request = 1
+		   ) AS RequestFullNameTH
+		 , (
 		    SELECT ExchangeBHT 
 		      FROM TSBExchangeTransaction 
 		     WHERE TSBExchangeTransaction.TSBId = TSB.TSBId 

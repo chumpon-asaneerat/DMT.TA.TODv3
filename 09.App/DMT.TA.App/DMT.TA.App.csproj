@@ -249,6 +249,9 @@
     <Compile Include="TA\Controls\TSBRequestExchangeEntry.xaml.cs">
       <DependentUpon>TSBRequestExchangeEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Controls\TSBReturnExchangeEntry.xaml.cs">
+      <DependentUpon>TSBReturnExchangeEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Controls\UserCreditTransactionEntry.xaml.cs">
       <DependentUpon>UserCreditTransactionEntry.xaml</DependentUpon>
     </Compile>
@@ -320,6 +323,9 @@
     </Compile>
     <Compile Include="TA\Windows\Exchange\RequestExchangeWindow.xaml.cs">
       <DependentUpon>RequestExchangeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TA\Windows\Exchange\ReturnExchangeWindow.xaml.cs">
+      <DependentUpon>ReturnExchangeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TA\Windows\Plaza\PlazaBalanceSummaryWindow.xaml.cs">
       <DependentUpon>PlazaBalanceSummaryWindow.xaml</DependentUpon>
@@ -450,6 +456,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TA\Controls\TSBReturnExchangeEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TA\Controls\UserCreditTransactionEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -543,6 +553,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Windows\Exchange\RequestExchangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Exchange\ReturnExchangeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

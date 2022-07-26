@@ -46,19 +46,20 @@ namespace DMT.TA.Pages.Exchange
 
         private void cmdReturn_Click(object sender, RoutedEventArgs e)
         {
-            // FOR TEST ACCOUNT RECEIVE MONEY DIALOG
-            var confirm = TAApp.Windows.ConfirmAccountReceiveMoney;
-            confirm.Setup((decimal)1200);
-            if (confirm.ShowDialog() == false)
+            var item = gridBorrow.SelectedItem as TSBExchangeTransaction;
+            if (null == item)
             {
-                // failed to verify user
-                MessageBox.Show("Cancel");
+                return;
             }
-            else
+
+            var win = TAApp.Windows.ReturnExchange;
+            win.Setup(item);
+            if (win.ShowDialog() == false)
             {
-                // OK
-                MessageBox.Show("OK");
+                return;
             }
+
+            Refresh();
         }
 
         #endregion

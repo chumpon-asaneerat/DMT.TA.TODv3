@@ -508,6 +508,21 @@ namespace DMT
 
             #endregion
 
+            #region Return Exchange
+
+            /// <summary>Gets Return Exchange Window.</summary>
+            public static TA.Windows.Exchange.ReturnExchangeWindow ReturnExchange
+            {
+                get
+                {
+                    var ret = new TA.Windows.Exchange.ReturnExchangeWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Confirm Received Money User (Chief/Account)
 
             /// <summary>Gets Chief Receive Money Window.</summary>

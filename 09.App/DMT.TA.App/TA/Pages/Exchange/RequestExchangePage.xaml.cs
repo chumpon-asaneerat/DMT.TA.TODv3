@@ -52,6 +52,11 @@ namespace DMT.TA.Pages.Exchange
             NewRequest();
         }
 
+        private void cmdBack2_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
         private void cmdRequestEdit_Click(object sender, RoutedEventArgs e)
         {
             // Edit Request
@@ -91,14 +96,24 @@ namespace DMT.TA.Pages.Exchange
             PageContentManager.Instance.Current = page;
         }
 
-        private void Refresh()
+        private void LoadRequestList()
         {
             gridRequest.ItemsSource = null;
-
             var items = Models.TSBExchangeGroup.GetRequestExchangeGroups(TAAPI.TSB).Value();
-
             gridRequest.ItemsSource = items;
+        }
 
+        private void LoadHistoryList()
+        {
+            gridRequestHistory.ItemsSource = null;
+            var items = Models.TSBExchangeGroup.GetHistoryRequestExchangeGroups(TAAPI.TSB).Value();
+            gridRequestHistory.ItemsSource = items;
+        }
+
+        private void Refresh()
+        {
+            LoadRequestList();
+            LoadHistoryList();
             plazaSummary.Setup(); // Call for refresh.
         }
 

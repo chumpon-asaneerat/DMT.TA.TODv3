@@ -165,9 +165,9 @@ namespace DMT.Account.Pages.Exchange
                 doc.TransactionDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
                 doc.TransactionType = TSBExchangeTransaction.TransactionTypes.Request;
                 doc.Remark = item.RequestRemark;
-                doc.AdditionalBHT = (item.AppAdditionalBHT.HasValue) ? item.AppAdditionalBHT.Value : decimal.Zero;
-                doc.BorrowBHT = (item.AppBorrowBHT.HasValue) ? item.AppBorrowBHT.Value : decimal.Zero;
-                doc.ExchangeBHT = (item.AppExchangeBHT.HasValue) ? item.AppExchangeBHT.Value : decimal.Zero;
+                doc.AdditionalBHT = (item.AdditionalBHT.HasValue) ? item.AdditionalBHT.Value : decimal.Zero;
+                doc.BorrowBHT = (item.BorrowBHT.HasValue) ? item.BorrowBHT.Value : decimal.Zero;
+                doc.ExchangeBHT = (item.ExchangeBHT.HasValue) ? item.ExchangeBHT.Value : decimal.Zero;
                 doc.PeriodBegin = item.PeriodBegin;
                 doc.PeriodEnd = item.PeriodEnd;
                 doc.TSBId = tsb.TSBId;

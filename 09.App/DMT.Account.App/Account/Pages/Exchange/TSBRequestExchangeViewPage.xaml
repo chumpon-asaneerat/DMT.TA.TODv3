@@ -104,24 +104,24 @@
                                                         HeaderTemplate="{StaticResource AccRequestPediodColumnsHeader}" />
                                         <!--  EXCHANGE TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource AccApproveExchangeBHTCellTemplate}"
+                                                        CellTemplate="{StaticResource AccRequestExchangeBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource AccApproveExchangeBHTHeader}" />
+                                                        HeaderTemplate="{StaticResource AccRequestExchangeBHTHeader}" />
                                         <!--  BORROW TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource AccApproveBorrowBHTCellTemplate}"
+                                                        CellTemplate="{StaticResource AccRequestBorrowBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource AccApproveBorrowBHTHeaderTemplate}" />
+                                                        HeaderTemplate="{StaticResource AccRequestBorrowBHTHeaderTemplate}" />
                                         <!--  ADDITION TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource AccApproveAdditionalBHTCellTemplate}"
+                                                        CellTemplate="{StaticResource AccRequestAdditionalBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource AccApproveAdditionalBHTHeaderTemplate}" />
+                                                        HeaderTemplate="{StaticResource AccRequestAdditionalBHTHeaderTemplate}" />
                                         <!--  SUM TOTAL BHT  -->
                                         <GridViewColumn Width="150"
-                                                        CellTemplate="{StaticResource AccApproveExchangeTotalBHTCellTemplate}"
+                                                        CellTemplate="{StaticResource AccRequestExchangeTotalBHTCellTemplate}"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                                        HeaderTemplate="{StaticResource AccApproveExchangeTotalBHTHeaderTemplate}" />
+                                                        HeaderTemplate="{StaticResource AccRequestExchangeTotalBHTHeaderTemplate}" />
                                         <!--  SELECTED (CHECKBOX)  -->
                                         <GridViewColumn Width="90"
                                                         HeaderContainerStyle="{StaticResource CommonHeaderContainer}"

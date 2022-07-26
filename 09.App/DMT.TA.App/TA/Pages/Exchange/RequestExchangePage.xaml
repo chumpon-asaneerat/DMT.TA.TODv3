@@ -42,122 +42,194 @@
                 </DockPanel>
             </Border>
             <!--  CLIENT AREA  -->
-            <DockPanel Grid.Row="1"
-                       Grid.Column="3"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Stretch">
-                <!--  BUTTONS  -->
-                <DockPanel Height="60"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Stretch"
-                           DockPanel.Dock="Bottom">
-                    <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdBack"
-                                      Click="cmdBack_Click"
-                                      DockPanel.Dock="Right"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
-                    </ctrl:ImageButton>
-                    <Grid Width="5" DockPanel.Dock="Right" />
-                    <ctrl:ImageButton x:Name="cmdRequest"
-                                      Click="cmdRequest_Click"
-                                      DockPanel.Dock="Left"
-                                      ImageSource="/DMT.TA.App;component/Images/Button/User.png">
-                        <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="ส่งคำร้องขอ" />
-                        <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="การแลกเปลี่ยนเงิน" />
-                    </ctrl:ImageButton>
-                    <Grid />
-                </DockPanel>
-                <!--  WORK AREA  -->
-                <!--  LIST VIEW  -->
-                <ListView x:Name="gridRequest"
-                          Margin="10,0"
-                          FontSize="{StaticResource InputFontSize18}"
-                          ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
-                          ItemsSource="{Binding}"
-                          Style="{StaticResource SingleSelectListView}">
-                    <ListView.View>
-                        <GridView>
-                            <!--  REQUEST DATE  -->
-                            <GridViewColumn Width="120"
-                                            CellTemplate="{StaticResource RequestDateCellTemplate}"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestDateHeaderTemplate}" />
-                            <!--  REQUIRED DATE (BEGIN-END)  -->
-                            <!--
-                            <GridViewColumn Width="Auto"
+            <TabControl Grid.Row="1"
+                        Grid.Column="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="DimGray">
+                <TabItem Header="คำร้องขอแลกเปลี่ยนเงิน (ระหว่างดำเนินการ)">
+                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <!--  BUTTONS  -->
+                        <DockPanel Height="60"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   DockPanel.Dock="Bottom">
+                            <Grid Width="5" DockPanel.Dock="Right" />
+                            <ctrl:ImageButton x:Name="cmdBack"
+                                              Click="cmdBack_Click"
+                                              DockPanel.Dock="Right"
+                                              ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                            </ctrl:ImageButton>
+                            <Grid Width="5" DockPanel.Dock="Right" />
+                            <ctrl:ImageButton x:Name="cmdRequest"
+                                              Click="cmdRequest_Click"
+                                              DockPanel.Dock="Left"
+                                              ImageSource="/DMT.TA.App;component/Images/Button/User.png">
+                                <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="ส่งคำร้องขอ" />
+                                <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="การแลกเปลี่ยนเงิน" />
+                            </ctrl:ImageButton>
+                            <Grid />
+                        </DockPanel>
+                        <!--  WORK AREA  -->
+                        <!--  LIST VIEW  REQUEST  -->
+                        <ListView x:Name="gridRequest"
+                                  Margin="10,0"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  Style="{StaticResource SingleSelectListView}">
+                            <ListView.View>
+                                <GridView>
+                                    <!--  REQUEST DATE  -->
+                                    <GridViewColumn Width="120"
+                                                    CellTemplate="{StaticResource RequestDateCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestDateHeaderTemplate}" />
+                                    <!--  REQUIRED DATE (BEGIN-END)  -->
+                                    <!--
+                                    <GridViewColumn Width="Auto"
                                             CellTemplate="{StaticResource RequestPediodColumns}"
                                             Header="วันที่ใช้เงิน"
                                             HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                                             HeaderTemplate="{StaticResource RequestPediodColumnsHeader}" />
-                            -->
-                            <!--  UserId  -->
-                            <GridViewColumn Width="120"
-                                            CellTemplate="{StaticResource RequestUserIdCellTemplate}"
-                                            Header="รหัสพนักงาน"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
-                            <!--  Full Name  -->
-                            <GridViewColumn Width="250"
-                                            CellTemplate="{StaticResource RequestFullNameTHCellTemplate}"
-                                            Header="ชื่อพนักงาน"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
-                            <!--  REQUEST EXCHANGE TOTAL BHT  -->
-                            <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestExchangeBHTCellTemplate}"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestExchangeBHTHeader}" />
-                            <!--  REQUEST BORROW TOTAL BHT  -->
-                            <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestBorrowBHTCellTemplate}"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestBorrowBHTHeaderTemplate}" />
-                            <!--  REQUEST ADDITION TOTAL BHT  -->
-                            <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestAdditionalBHTCellTemplate}"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestAdditionalBHTHeaderTemplate}" />
-                            <!--  STATUS  -->
-                            <GridViewColumn Width="110"
-                                            CellTemplate="{StaticResource RequestStateCellTemplate}"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            Header="สถานะ" />
-                            <!--  SHOW DETAIL (BUTTON)  -->
-                            <GridViewColumn Width="180"
-                                            HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
-                                            HeaderTemplate="{StaticResource RequestDetailHeader}">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Button x:Name="cmdRequestEdit"
-                                                    Height="30"
-                                                    Width="80"
-                                                    FontSize="{StaticResource InputFontSize18}"
-                                                    Style="{DynamicResource InlineButton}"
-                                                    IsEnabled="{Binding CanEdit}"
-                                                    Click="cmdRequestEdit_Click">
-                                                <TextBlock Margin="5,0"
-                                                           Text="แก้ไข"
-                                                           TextAlignment="Left" />
-                                            </Button>
-                                            <Button x:Name="cmdReceivedDetail"
-                                                    Height="30"
-                                                    Width="80"
-                                                    FontSize="{StaticResource InputFontSize18}"
-                                                    Style="{DynamicResource InlineButton}"
-                                                    IsEnabled="{Binding CanExchange}"
-                                                    Click="cmdReceivedDetail_Click">
-                                                <TextBlock Margin="5,0"
-                                                           Text="รับแลก"
-                                                           TextAlignment="Left" />
-                                            </Button>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </DockPanel>
+                                    -->
+                                    <!--  UserId  -->
+                                    <GridViewColumn Width="120"
+                                                    CellTemplate="{StaticResource RequestUserIdCellTemplate}"
+                                                    Header="รหัสพนักงาน"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                    <!--  Full Name  -->
+                                    <GridViewColumn Width="250"
+                                                    CellTemplate="{StaticResource RequestFullNameTHCellTemplate}"
+                                                    Header="ชื่อพนักงาน"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                    <!--  REQUEST EXCHANGE TOTAL BHT  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestExchangeBHTCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestExchangeBHTHeader}" />
+                                    <!--  REQUEST BORROW TOTAL BHT  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestBorrowBHTCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestBorrowBHTHeaderTemplate}" />
+                                    <!--  REQUEST ADDITION TOTAL BHT  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestAdditionalBHTCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestAdditionalBHTHeaderTemplate}" />
+                                    <!--  STATUS  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestStateCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    Header="สถานะ" />
+                                    <!--  SHOW DETAIL (BUTTON)  -->
+                                    <GridViewColumn Width="180"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestDetailHeader}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <Button x:Name="cmdRequestEdit"
+                                                            Height="30"
+                                                            Width="80"
+                                                            FontSize="{StaticResource InputFontSize18}"
+                                                            Style="{DynamicResource InlineButton}"
+                                                            IsEnabled="{Binding CanEdit}"
+                                                            Click="cmdRequestEdit_Click">
+                                                        <TextBlock Margin="5,0"
+                                                                   Text="แก้ไข"
+                                                                   TextAlignment="Left" />
+                                                    </Button>
+                                                    <Button x:Name="cmdReceivedDetail"
+                                                            Height="30"
+                                                            Width="80"
+                                                            FontSize="{StaticResource InputFontSize18}"
+                                                            Style="{DynamicResource InlineButton}"
+                                                            IsEnabled="{Binding CanExchange}"
+                                                            Click="cmdReceivedDetail_Click">
+                                                        <TextBlock Margin="5,0"
+                                                                   Text="รับแลก"
+                                                                   TextAlignment="Left" />
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="ประวัติคำร้องขอแลกเปลี่ยนเงิน">
+                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <!--  BUTTONS  -->
+                        <DockPanel Height="60"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   DockPanel.Dock="Bottom">
+                            <Grid Width="5" DockPanel.Dock="Right" />
+                            <ctrl:ImageButton x:Name="cmdBack2"
+                                              Click="cmdBack2_Click"
+                                              DockPanel.Dock="Right"
+                                              ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                                <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                            </ctrl:ImageButton>
+                            <Grid />
+                        </DockPanel>
+                        <!--  WORK AREA  -->
+                        <!--  LIST VIEW  HISTORY  -->
+                        <ListView x:Name="gridRequestHistory"
+                                  Margin="10,0"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  Style="{StaticResource SingleSelectListView}">
+
+                            <ListView.View>
+                                <GridView>
+                                    <!--  REQUEST DATE  -->
+                                    <GridViewColumn Width="120"
+                                                    CellTemplate="{StaticResource RequestDateCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestDateHeaderTemplate}" />
+                                    <!--  UserId  -->
+                                    <GridViewColumn Width="120"
+                                                    CellTemplate="{StaticResource RequestUserIdCellTemplate}"
+                                                    Header="รหัสพนักงาน"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                    <!--  Full Name  -->
+                                    <GridViewColumn Width="250"
+                                                    CellTemplate="{StaticResource RequestFullNameTHCellTemplate}"
+                                                    Header="ชื่อพนักงาน"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                    <!--  REQUEST EXCHANGE TOTAL BHT  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestExchangeBHTCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestExchangeBHTHeader}" />
+                                    <!--  REQUEST BORROW TOTAL BHT  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestBorrowBHTCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestBorrowBHTHeaderTemplate}" />
+                                    <!--  REQUEST ADDITION TOTAL BHT  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestAdditionalBHTCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestAdditionalBHTHeaderTemplate}" />
+                                    <!--  STATUS  -->
+                                    <GridViewColumn Width="110"
+                                                    CellTemplate="{StaticResource RequestStateCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    Header="สถานะ" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </UserControl>

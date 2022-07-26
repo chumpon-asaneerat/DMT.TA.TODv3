@@ -3446,8 +3446,9 @@ namespace DMT.Services
                 if (this.Request.AdditionalBHT == decimal.Zero && this.Request.BorrowBHT == decimal.Zero)
                 {
                     // Reset date time.
-                    this.Request.PeriodBegin = new DateTime?();
-                    this.Request.PeriodEnd = new DateTime?();
+                    // Note: disable reset date time.
+                    //this.Request.PeriodBegin = new DateTime?();
+                    //this.Request.PeriodEnd = new DateTime?();
                 }
                 // Save transaction
                 var ret2 = TSBExchangeTransaction.SaveTransaction(this.Request).Value();

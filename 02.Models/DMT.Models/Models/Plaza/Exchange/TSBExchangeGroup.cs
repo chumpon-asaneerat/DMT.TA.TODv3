@@ -524,6 +524,12 @@ namespace DMT.Models
 					case StateTypes.Reject:
 						ret = "ไม่อนุมัติ";
 						break;
+					case StateTypes.Canceled:
+						ret = "ยกเลิกคำร้อง";
+						break;
+					case StateTypes.Completed:
+						ret = "คำร้องเสร็จสิ้น";
+						break;
 				}
 				return ret;
 			}
@@ -2061,6 +2067,50 @@ namespace DMT.Models
 						result.Success(results);
 					}
 
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
+		/// Gets TSB History Exchange Groups.
+		/// </summary>
+		/// <param name="tsb">The TSB instance.</param>
+		/// <returns></returns>
+		public static NDbResult<List<TSBExchangeGroup>> GetHistoryRequestExchangeGroups(TSB tsb)
+		{
+			var result = new NDbResult<List<TSBExchangeGroup>>();
+			SQLiteConnection db = Default;
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			if (null == tsb)
+			{
+				result.ParameterIsNull();
+				return result;
+			}
+
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+
+				try
+				{
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM TSBExchangeGroupView ";
+					cmd += " WHERE TSBId = ? ";
+					cmd += " ORDER BY RequestDate DESC";
+
+					var rets = NQuery.Query<FKs>(cmd, tsb.TSBId).ToList();
+					var results = rets.ToModels();
+					result.Success(results);
 				}
 				catch (Exception ex)
 				{

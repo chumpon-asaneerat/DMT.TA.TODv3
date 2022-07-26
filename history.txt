@@ -27,8 +27,13 @@ Refactor DMT.TA.TODv4 #2385
 Refactor DMT.TA.TODv4 #2384
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2383
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - RequestExchangePage add Tab for History view
+  - DMT.Account.App project
+    - Revert change binding in TSBRequestExchangeViewPage
 
 [commited]
 Refactor DMT.TA.TODv4 #2382

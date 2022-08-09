@@ -18,8 +18,12 @@ Refactor DMT.TA.TODv4 #2388
 Refactor DMT.TA.TODv4 #2387
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2386
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Update Credit Borrow process
+      - Allow to Received Bag if failed to connect to TA Server.
 
 [commited]
 Refactor DMT.TA.TODv4 #2385

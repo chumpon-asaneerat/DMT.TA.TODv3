@@ -31,6 +31,13 @@ namespace DMT.Services
 {
     using tctOps = Services.Operations.TAxTOD.TCT; // reference to static class.
 
+    public enum TODBOJStatus
+    {
+        HasBOJ = 1,
+        NoBOJ = 2,
+        WSFailed = 0
+    }
+
     public class TAServerManager
     {
         /// <summary>
@@ -38,9 +45,10 @@ namespace DMT.Services
         /// </summary>
         /// <param name="userId">The user id.</param>
         /// <returns>Returns true if user is already open shift.</returns>
-        public static bool CheckTODBoj(string userId)
+        public static TODBOJStatus CheckTODBoj(string userId)
         {
-            bool hasBoj = false;
+            TODBOJStatus hasBoj = TODBOJStatus.NoBOJ;
+
             MethodBase med = MethodBase.GetCurrentMethod();
 
             try
@@ -50,17 +58,24 @@ namespace DMT.Services
                 {
                     var search = Search.TAxTOD.CheckBoj.Create(tsb.TSBId, userId);
                     var ret = tctOps.CheckTODBoj(search);
-                    if (ret.Ok)
+                    if (ret.HttpStatus != HttpStatus.Failed)
                     {
                         // OK.
                         med.Info("CheckTODBoj - Successfully get data from WS on TA Server.");
-                        hasBoj = ret.Value().Count > 0;
+                        if (ret.Ok && ret.Value().Count > 0)
+                        {
+                            hasBoj = TODBOJStatus.HasBOJ;
+                        }
+                        else
+                        {
+                            hasBoj = TODBOJStatus.NoBOJ;
+                        }
                     }
                     else
                     {
                         // Error.
                         med.Err("CheckTODBoj - Cannot connect to WS on TA Server. Allow to received bag.");
-                        hasBoj = true;
+                        hasBoj = TODBOJStatus.WSFailed;
                     }
                 }
                 else
@@ -72,7 +87,7 @@ namespace DMT.Services
             {
                 med.Err(ex);
                 med.Err("CheckTODBoj - Detected error. Allow to received bag.");
-                hasBoj = true;
+                hasBoj = TODBOJStatus.WSFailed;
             }
 
             return hasBoj;

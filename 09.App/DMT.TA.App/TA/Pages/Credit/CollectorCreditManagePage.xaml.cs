@@ -109,8 +109,41 @@ namespace DMT.TA.Pages.Credit
                 return;
 
             MethodBase med = MethodBase.GetCurrentMethod();
-            // Check is open user shift from TOD by call TA Server.
-            if (!TAServerManager.CheckTODBoj(balance.UserId))
+
+            var status = TAServerManager.CheckTODBoj(balance.UserId);
+            bool allowReceivedBag = false;
+            if (status == TODBOJStatus.WSFailed)
+            {
+                var msgbox = TAApp.Windows.MessageBoxYesNo;
+                string msg = "ไม่สามารถติดต่อกับ TA Server ได้ ต้องการดำเนินการรับถุงเงินหรือไม่?";
+                med.Info("RECEIVED BAG UI - " + msg); // Write log
+                msgbox.Setup(msg, "DMT - Toll Admin");
+                if (msgbox.ShowDialog() == false)
+                {
+                    // Write log
+                    med.Info("RECEIVED BAG UI - ยืนยันการดำเนินการรับถุงเงิน (กรณีติดต่อกับ TA SERVER ไม่ได้).");
+                    med.Info("     ผู้ใช้ยืนยัน: ไม่ดำเนินการต่อ");
+                    return; // stay on current page.
+                }
+                else
+                {
+                    // allow to do received bag.
+                    // Write log
+                    med.Info("RECEIVED BAG UI - ยืนยันการดำเนินการรับถุงเงิน (กรณีติดต่อกับ TA SERVER ไม่ได้).");
+                    med.Info("     ผู้ใช้ยืนยัน: ดำเนินการต่อ");
+                }
+
+                allowReceivedBag = true;
+            }
+            else
+            {
+                allowReceivedBag = (status == TODBOJStatus.HasBOJ);
+                med.Info("RECEIVED BAG UI - TA SERVER ตอบสถานะการเปิดกะกลับมาได้.");
+            }
+
+
+            // Check is allow to received bag.
+            if (!allowReceivedBag)
             {
                 var msgbox = TAApp.Windows.MessageBox;
                 string msg = "พนักงานยังไม่เปิดกะทำงาน กรุณาเปิดกะทำงานที่ระบบ TOD ก่อนรับถุงเงิน";

@@ -2011,6 +2011,50 @@ namespace DMT.Models
 			}
 		}
 		/// <summary>
+		/// Gets TSB Exchange Group by GroupId.
+		/// </summary>
+		/// <param name="tsb">The TSB instance.</param>
+		/// <param name="groupId">The Group Id (Guid).</param>
+		/// <returns></returns>
+		public static NDbResult<TSBExchangeGroup> GetTSBExchangeGroup(TSB tsb, Guid groupId)
+		{
+			var result = new NDbResult<TSBExchangeGroup>();
+			SQLiteConnection db = Default;
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			if (null == tsb)
+			{
+				result.ParameterIsNull();
+				return result;
+			}
+
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+				try
+				{
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM TSBExchangeGroupView ";
+					cmd += " WHERE TSBId = ? ";
+					cmd += "   AND GroupId = ? ";
+
+					var ret = NQuery.Query<FKs>(cmd, tsb.TSBId, groupId).FirstOrDefault();
+					var val = (null != ret) ? ret.ToModel() : null;
+					result.Success(val);
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
 		/// Gets TSB Request Exchange Groups.
 		/// </summary>
 		/// <param name="tsb">The TSB instance.</param>

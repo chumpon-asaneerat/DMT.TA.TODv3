@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #2387
 Refactor DMT.TA.TODv4 #2386
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2385
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Implements Return Exchange process #2 (all process completed).
 
 [commited]
 Refactor DMT.TA.TODv4 #2384

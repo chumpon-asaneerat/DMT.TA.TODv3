@@ -2158,9 +2158,10 @@ namespace DMT.Models
 					cmd += " WHERE TSBId = ? ";
 					cmd += "   AND TransactionType = ? ";
 					cmd += "   AND FinishFlag = ? ";
+					cmd += "   AND GroupId NOT IN(SELECT GroupId FROM TSBExchangeTransaction WHERE TransactionType = ?) ";
 
 					rets = NQuery.Query<FKs>(cmd, tsb.TSBId, 
-						TransactionTypes.Received, FinishedFlags.Avaliable).ToList();
+						TransactionTypes.Received, FinishedFlags.Avaliable, TransactionTypes.Return).ToList();
 
 					var results = rets.ToModels();
 					result.Success(results);

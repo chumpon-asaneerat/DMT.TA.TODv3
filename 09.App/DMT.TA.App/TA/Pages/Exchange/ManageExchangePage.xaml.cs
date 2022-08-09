@@ -52,8 +52,27 @@ namespace DMT.TA.Pages.Exchange
                 return;
             }
 
+            // Create received transaction and set as return
+            var exchRet = new TSBExchangeTransaction();
+            exchRet.TransactionDate = DateTime.Now;
+            exchRet.TransactionType = TSBExchangeTransaction.TransactionTypes.Return;
+            exchRet.Description = "คืนเงินยืม/ทอน";
+            exchRet.GroupId = item.GroupId;
+            exchRet.TSBId = item.TSBId;
+            exchRet.TSBNameEN = item.TSBNameEN;
+            exchRet.TSBNameTH = item.TSBNameTH;
+            exchRet.UserId = TAApp.User.Current.UserId;
+            exchRet.FullNameEN = TAApp.User.Current.FullNameEN;
+            exchRet.FullNameTH = TAApp.User.Current.FullNameTH;
+            exchRet.RequestDate = item.RequestDate;
+            exchRet.RequestUserId = item.RequestUserId;
+            exchRet.RequestFullNameEN = item.RequestFullNameEN;
+            exchRet.RequestFullNameTH = item.RequestFullNameTH;
+            exchRet.BorrowBHT = item.BorrowBHT; // set borrow amount.
+            exchRet.HasRemark = true;
+
             var win = TAApp.Windows.ReturnExchange;
-            win.Setup(item);
+            win.Setup(exchRet);
             if (win.ShowDialog() == false)
             {
                 return;

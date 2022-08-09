@@ -5,7 +5,7 @@
              xmlns:exchange="clr-namespace:DMT.TA.Controls.Elements"
              xmlns:credit="clr-namespace:DMT.TA.Controls.Elements.TSBBalance"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="500"
+             d:DesignHeight="550"
              d:DesignWidth="700"
              BorderBrush="Silver"
              BorderThickness="1"
@@ -22,6 +22,13 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
@@ -29,13 +36,41 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="5" />
         </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Grid.ColumnSpan="3"
+              Background="DimGray">
+            <StackPanel Orientation="Horizontal"
+                        Margin="2"
+                        HorizontalAlignment="Center">
+                <TextBlock Foreground="WhiteSmoke"
+                           FontSize="20"
+                           Margin="0, 5, 0, 0"
+                           Text="ยอดเงินที่ต้องคืน"
+                           VerticalAlignment="Center" />
+                <TextBlock Width="10" />
+                <TextBlock x:Name="txtAmount" 
+                           Foreground="Yellow"
+                           FontSize="32"
+                           Text="0"
+                           VerticalAlignment="Center" />
+                <TextBlock Width="10" />
+                <TextBlock Foreground="WhiteSmoke"
+                           FontSize="20"
+                           Margin="0, 5, 0, 0"
+                           Text="บาท"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
         <exchange:TSBExchangeTransactionEntry Grid.Column="1"
+                                              Grid.Row="3"
                                               x:Name="tranEntry"
                                               Background="Indigo"
                                               Foreground="WhiteSmoke" />
         <credit:TSBCreditBalanceEntry Grid.Column="3"
+                                      Grid.Row="3"
                                       x:Name="tsbBalance"
                                       Background="Orange"
-                                      Foreground="WhiteSmoke" />
+                                      Foreground="Black" />
     </Grid>
 </UserControl>

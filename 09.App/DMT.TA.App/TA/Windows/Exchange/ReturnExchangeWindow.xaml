@@ -8,7 +8,7 @@
         xmlns:exchange="clr-namespace:DMT.TA.Controls"
         Title="คืนเงินยืมทอน"
         Width="750"
-        Height="600"
+        Height="650"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"

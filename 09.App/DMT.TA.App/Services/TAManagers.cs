@@ -3498,7 +3498,6 @@ namespace DMT.Services
                 string msg = string.Empty;
                 // change group flag.
                 this.Group.State = TSBExchangeGroup.StateTypes.Received;
-                this.Group.FinishFlag = TSBExchangeGroup.FinishedFlags.Avaliable;
 
                 var groupId = this.Group.GroupId;
                 var reqId = this.Group.PkId;
@@ -3536,8 +3535,8 @@ namespace DMT.Services
                     if (tran.AdditionalBHT == decimal.Zero && tran.BorrowBHT == decimal.Zero)
                     {
                         // Reset date time.
-                        tran.PeriodBegin = new DateTime?();
-                        tran.PeriodEnd = new DateTime?();
+                        //tran.PeriodBegin = new DateTime?();
+                        //tran.PeriodEnd = new DateTime?();
                         // exchange only
                         tran.FinishFlag = TSBExchangeTransaction.FinishedFlags.Completed;
                     }

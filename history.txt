@@ -12,8 +12,13 @@ Refactor DMT.TA.TODv4 #2390
 Refactor DMT.TA.TODv4 #2389
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2388
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - CollectorCreditManagePage.xaml modify layout
+      - Add Cancel button
+      - Add Shift information.
 
 [commited]
 Refactor DMT.TA.TODv4 #2387

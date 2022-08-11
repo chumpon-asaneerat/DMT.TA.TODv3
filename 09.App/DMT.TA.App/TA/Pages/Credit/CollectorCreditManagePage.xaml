@@ -82,7 +82,7 @@
                          Style="{StaticResource SingleSelectWrapListBox}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border Width="350"
+                            <Border Width="380"
                                     Background="Silver"
                                     BorderBrush="Black"
                                     BorderThickness="1"
@@ -92,23 +92,31 @@
                                     <Border Background="CornflowerBlue"
                                             CornerRadius="8,8,0,0"
                                             DockPanel.Dock="Top">
-                                        <TextBlock HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="18"
-                                                   Foreground="WhiteSmoke"
-                                                   Text="{Binding Path=FullNameTH}"
-                                                   TextAlignment="Center" />
+                                        <DockPanel LastChildFill="True">
+                                            <!--  SEPERATOR  -->
+                                            <TextBlock Width="5" DockPanel.Dock="Right" />
+                                            <TextBlock Text="ไม่ระบุ"
+                                                       DockPanel.Dock="Right"
+                                                       Foreground="Yellow"
+                                                       TextAlignment="Left"
+                                                       Width="50" />
+                                            <!--  SEPERATOR  -->
+                                            <TextBlock Width="5" DockPanel.Dock="Right" />
+                                            <TextBlock Text="กะ: "
+                                                       DockPanel.Dock="Right"
+                                                       TextAlignment="Right"
+                                                       Foreground="WhiteSmoke"
+                                                       Width="20 " />
+                                            <!--  SEPERATOR  -->
+                                            <TextBlock Width="5" DockPanel.Dock="Right" />
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="18"
+                                                       Foreground="WhiteSmoke"
+                                                       Text="{Binding Path=FullNameTH}"
+                                                       TextAlignment="Center" />
+                                        </DockPanel>
                                     </Border>
-                                    <!--  SEPERATOR  -->
-                                    <TextBlock Height="2" DockPanel.Dock="Top" />
-                                    <!--  PLAZA GROUP NAME  -->
-                                    <TextBlock HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               DockPanel.Dock="Top"
-                                               FontSize="20"
-                                               Foreground="Black"
-                                               Text="{Binding PlazaGroupNameTH}"
-                                               TextAlignment="Center" />
                                     <!--  SEPERATOR  -->
                                     <TextBlock Height="2" DockPanel.Dock="Top" />
                                     <!--  USER CREDIT CLIENT AREA  -->
@@ -140,7 +148,21 @@
                                                     Click="cmdReturn_Click"
                                                     Content="คืนเงิน"
                                                     Style="{DynamicResource InlineButton}" />
+                                            <Button x:Name="cmdCancel"
+                                                    Width="100"
+                                                    Margin="3"
+                                                    Content="ยกเลิก"
+                                                    Foreground="Red"
+                                                    Style="{DynamicResource InlineButton}" />
                                         </StackPanel>
+                                        <!--  PLAZA GROUP NAME  -->
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   DockPanel.Dock="Top"
+                                                   FontSize="20"
+                                                   Foreground="Black"
+                                                   Text="{Binding PlazaGroupNameTH}"
+                                                   TextAlignment="Center" />
                                         <!--  USER CREDIT INFO  -->
                                         <StackPanel HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"

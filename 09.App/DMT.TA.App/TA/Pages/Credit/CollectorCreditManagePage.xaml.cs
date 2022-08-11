@@ -79,6 +79,16 @@ namespace DMT.TA.Pages.Credit
             ReturnCredit(userCredit);
         }
 
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
+        {
+            var elem = (sender as FrameworkElement);
+            var context = (null != elem) ? elem.DataContext : null;
+            var userCredit = (null != context) ? (context as UserCreditBalance) : null;
+            if (null == userCredit) return;
+
+            CancelCredit(userCredit);
+        }
+
         #endregion
 
         #region Private Methods
@@ -226,6 +236,12 @@ namespace DMT.TA.Pages.Credit
             }
 
             Refresh();
+        }
+
+
+        private void CancelCredit(UserCreditBalance userCredit)
+        {
+
         }
 
         #endregion

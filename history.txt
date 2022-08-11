@@ -9,8 +9,12 @@
 Refactor DMT.TA.TODv4 #2390
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2389
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - CollectorCreditManagePage update
+      - Add Cancel button handler.
 
 [commited]
 Refactor DMT.TA.TODv4 #2388

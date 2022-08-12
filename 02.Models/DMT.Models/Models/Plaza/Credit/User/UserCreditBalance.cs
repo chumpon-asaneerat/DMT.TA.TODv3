@@ -82,6 +82,10 @@ namespace DMT.Models
         private string _PlazaGroupNameTH = string.Empty;
         private string _Direction = string.Empty;
 
+        private int? _ShiftId = new int?();
+        private string _ShiftNameTH = string.Empty;
+        private string _ShiftNameEN = string.Empty;
+
         private string _UserId = string.Empty;
         private string _FullNameEN = string.Empty;
         private string _FullNameTH = string.Empty;
@@ -713,6 +717,80 @@ namespace DMT.Models
 
         #endregion
 
+        #region Shift
+
+        /// <summary>
+        /// Gets or sets Shift Id.
+        /// </summary>
+        [Category("Shift")]
+        [Description("Gets or sets Shift Id.")]
+        [ReadOnly(true)]
+        [Indexed]
+        [PropertyMapName("ShiftId")]
+        public int? ShiftId
+        {
+            get
+            {
+                return _ShiftId;
+            }
+            set
+            {
+                if (_ShiftId != value)
+                {
+                    _ShiftId = value;
+                    this.RaiseChanged("ShiftId");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Shift Name EN.
+        /// </summary>
+        [Category("Shift")]
+        [Description("Gets or sets Shift Name EN.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("ShiftNameEN")]
+        public virtual string ShiftNameEN
+        {
+            get
+            {
+                return _ShiftNameEN;
+            }
+            set
+            {
+                if (_ShiftNameEN != value)
+                {
+                    _ShiftNameEN = value;
+                    this.RaiseChanged("ShiftNameEN");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Shift Name TH.
+        /// </summary>
+        [Category("Shift")]
+        [Description("Gets or sets Shift Name TH.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("ShiftNameTH")]
+        public virtual string ShiftNameTH
+        {
+            get
+            {
+                return _ShiftNameTH;
+            }
+            set
+            {
+                if (_ShiftNameTH != value)
+                {
+                    _ShiftNameTH = value;
+                    this.RaiseChanged("ShiftNameTH");
+                }
+            }
+        }
+
+        #endregion
+
         #region User
 
         /// <summary>
@@ -1246,6 +1324,10 @@ namespace DMT.Models
 
         #endregion
 
+        #region Cancel
+
+        #endregion
+
         #endregion
 
         #region Internal Class
@@ -1276,6 +1358,41 @@ namespace DMT.Models
             {
                 get { return base.TSBNameTH; }
                 set { base.TSBNameTH = value; }
+            }
+
+            #endregion
+
+            #region Shift
+
+            /// <summary>
+            /// Gets or sets Shift Name TH.
+            /// </summary>
+            [MaxLength(50)]
+            [PropertyMapName("ShiftNameTH")]
+            public override string ShiftNameTH
+            {
+                get 
+                {
+                    if (!this.ShiftId.HasValue)
+                        return "ไม่ระบุ";
+                    return base.ShiftNameTH; 
+                }
+                set { base.ShiftNameTH = value; }
+            }
+            /// <summary>
+            /// Gets or sets Shift Name EN.
+            /// </summary>
+            [MaxLength(50)]
+            [PropertyMapName("ShiftNameEN")]
+            public override string ShiftNameEN
+            {
+                get 
+                {
+                    if (!this.ShiftId.HasValue)
+                        return "[None]";
+                    return base.ShiftNameEN; 
+                }
+                set { base.ShiftNameEN = value; }
             }
 
             #endregion

@@ -39,6 +39,9 @@ AS
 		 , UCB.PlazaGroupId
 		 , UCB.PlazaGroupNameEN
 		 , UCB.PlazaGroupNameTH
+		 , UCB.ShiftId
+		 , UCB.ShiftNameEN
+		 , UCB.ShiftNameTH
 	  FROM UserCreditTransaction UCTB
 		 , UserCreditBalanceSSView UCB
 	 WHERE UCTB.TransactionType = 1 -- Borrow = 1
@@ -56,4 +59,7 @@ AS
 			, UCB.PlazaGroupId
 			, UCB.PlazaGroupNameEN
 			, UCB.PlazaGroupNameTH
+		    , UCB.ShiftId
+		    , UCB.ShiftNameEN
+		    , UCB.ShiftNameTH
 	 ORDER BY UCTB.TransactionDate

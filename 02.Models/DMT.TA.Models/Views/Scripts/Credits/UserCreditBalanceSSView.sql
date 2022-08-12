@@ -22,10 +22,16 @@ AS
 		 , PlazaGroup.PlazaGroupNameEN
 		 , PlazaGroup.PlazaGroupNameTH
 		 , TSS.TSBShiftId
+		 , UCB.ShiftId
+		 , SH.ShiftNameEN, SH.ShiftNameTH
 	  FROM TSB
 		 , PlazaGroup
-		 , UserCreditBalance UCB LEFT JOIN 
-		   TSBShiftSSView TSS ON 
+		 , UserCreditBalance UCB 
+		   LEFT JOIN Shift SH ON 
+		   (
+		         UCB.ShiftId = SH.ShiftId
+		   )
+		   LEFT JOIN TSBShiftSSView TSS ON 
 		   (
 				 UCB.UserCreditDate >= TSS.[Begin]
 			 AND UCB.UserCreditDate <  TSS.[End]

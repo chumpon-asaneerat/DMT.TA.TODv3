@@ -30,8 +30,28 @@ Refactor DMT.TA.TODv4 #2394
 Refactor DMT.TA.TODv4 #2393
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2392
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditBalance #1.
+      - Add ShiftId, ShiftNameEN, ShiftNameTH
+    - Update UserCreditHistory #1.
+      - Add ShiftId, ShiftNameEN, ShiftNameTH
+    - Update UserCreditTransaction #1.
+      - Add ShiftId, ShiftNameEN, ShiftNameTH
+  - DMT.TA.Models project
+    - Update Views (add join to Shift)
+      - UserCreditTransactionView
+      - UserCreditBorrowSummaryView
+      - UserCreditReturnSummaryView
+      - UserCreditSummaryView
+      - UserCreditBalanceSSView
+      - UserCreditBaseTransactionHistoryView
+      - UserCreditBorrowTransactionHistoryView
+      - UserCreditReturnTransactionHistoryView
+      - UserCreditHistoryView
+  - Update TADbServer (for update views).
 
 [commited]
 Refactor DMT.TA.TODv4 #2391

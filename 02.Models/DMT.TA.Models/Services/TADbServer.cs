@@ -2002,22 +2002,22 @@ namespace DMT.Services
 
             // Credits - Embeded resource used . instead / to access sub contents.
             prefix = @"Credits";
-            InitView("UserCreditTransactionView", 3, prefix);
-            InitView("UserCreditBorrowSummaryView", 3, prefix);
-            InitView("UserCreditReturnSummaryView", 3, prefix);
+            InitView("UserCreditTransactionView", 4, prefix);
+            InitView("UserCreditBorrowSummaryView", 4, prefix);
+            InitView("UserCreditReturnSummaryView", 4, prefix);
             // !!! Required UserCreditBorrowSummaryView and UserCreditBorrowSummaryView
-            InitView("UserCreditSummaryView", 3, prefix);
+            InitView("UserCreditSummaryView", 4, prefix);
 
-            InitView("UserCreditBalanceSSView", 3, prefix);
+            InitView("UserCreditBalanceSSView", 4, prefix);
 
-            InitView("UserCreditBaseTransactionHistoryView", 3, prefix);
-            InitView("UserCreditBorrowTransactionHistoryView", 3, prefix);
-            InitView("UserCreditReturnTransactionHistoryView", 3, prefix);
+            InitView("UserCreditBaseTransactionHistoryView", 4, prefix);
+            InitView("UserCreditBorrowTransactionHistoryView", 4, prefix);
+            InitView("UserCreditReturnTransactionHistoryView", 4, prefix);
             // required views
             // - UserCreditBaseTransactionHistoryView
             // - UserCreditBorrowTransactionHistoryView
             // - UserCreditReturnTransactionHistoryView
-            InitView("UserCreditHistoryView", 3, prefix); 
+            InitView("UserCreditHistoryView", 4, prefix); 
 
             InitView("TSBCreditTransactionView", 1, prefix);
             // User Total.

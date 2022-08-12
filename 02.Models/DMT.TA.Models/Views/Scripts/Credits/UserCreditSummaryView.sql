@@ -5,6 +5,7 @@ AS
 		 , TSB.TSBNameEN
 		 , TSB.TSBNameTH
 		 , PlazaGroup.PlazaGroupNameEN, PlazaGroup.PlazaGroupNameTH, PlazaGroup.Direction 
+		 , SH.ShiftNameEN, SH.ShiftNameTH
 		 , (
 			 SELECT UserCreditBorrowSummaryView.AmountST25 - UserCreditReturnSummaryView.AmountST25
 			   FROM UserCreditBorrowSummaryView, UserCreditReturnSummaryView 
@@ -72,6 +73,7 @@ AS
 				AND UserCreditReturnSummaryView.UserCreditId = UserCreditBalance.UserCreditId
 			) AS AmountBHT1000
 	  FROM UserCreditBalance, TSB, PlazaGroup
+		   LEFT JOIN Shift SH ON (UserCreditBalance.ShiftId = SH.ShiftId)
 	 WHERE PlazaGroup.TSBId = TSB.TSBId 
 	   AND UserCreditBalance.TSBId = TSB.TSBId 
 	   AND UserCreditBalance.PlazaGroupId = PlazaGroup.PlazaGroupId 

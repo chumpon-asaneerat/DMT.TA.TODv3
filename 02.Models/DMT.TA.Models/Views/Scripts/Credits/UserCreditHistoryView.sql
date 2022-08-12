@@ -41,6 +41,9 @@ AS
 		 , C.PlazaGroupId
 		 , C.PlazaGroupNameEN
 		 , C.PlazaGroupNameTH
+		 , C.ShiftId
+		 , C.ShiftNameEN
+		 , C.ShiftNameTH
 	  FROM UserCreditBaseTransactionHistoryView C 
 	       LEFT JOIN UserCreditBorrowTransactionHistoryView B 
 		         ON (

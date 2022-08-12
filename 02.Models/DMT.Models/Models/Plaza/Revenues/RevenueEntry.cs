@@ -2119,6 +2119,148 @@ namespace DMT.Models
             }
         }
 
+        /// <summary>
+        /// Gets all revenue entry by Bag No on specificed entry date.
+        /// </summary>
+        /// <param name="date">The Entry Date.</param>
+        /// <param name="bagNo">The Bag No.</param>
+        /// <returns>Returns List of RevenueEntry.</returns>
+        public static NDbResult<List<RevenueEntry>> GetRevenueEntriesByBagNo(DateTime date, string bagNo)
+        {
+            var result = new NDbResult<List<RevenueEntry>>();
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            #region Prepare Begin/End datetime
+
+            var option = AppOption.GetOption(RevenueEntry.DailyRevenueTimeCutOff);
+            if (null == option || null == option.data)
+            {
+                option = AppOption.SetOption(RevenueEntry.DailyRevenueTimeCutOff, "00:00:00.000");
+            }
+            DateTime begin, end;
+            // Begin Time.
+            if (null == option || null == option.data || !option.data.ToDateTime().HasValue)
+            {
+                med.Info("Daily Revenue Time Cut off is not set or invalid format. So used dafault 00:00:00.000.");
+                begin = date.Date.AddHours(00); // set as 00:00:00.000
+            }
+            else
+            {
+                var dt = option.data.ToDateTime().Value;
+                // set time from config
+                begin = date.Date.AddHours(dt.Hour).AddMinutes(dt.Minute).AddMinutes(dt.Second).AddMilliseconds(dt.Millisecond);
+            }
+            // End time.
+            end = begin.AddDays(1).AddMilliseconds(-1);
+
+            #endregion
+
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            lock (sync)
+            {
+                //MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM RevenueEntryView ";
+                    cmd += " WHERE EntryDate >= ? ";
+                    cmd += "   AND EntryDate <= ? ";
+                    cmd += "   AND BagNo = ? ";
+                    cmd += "   ORDER BY ShiftId ";
+
+                    var rets = NQuery.Query<FKs>(cmd, begin, end, bagNo).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+
+        }
+
+        /// <summary>
+        /// Gets all revenue entry by Belt No on specificed entry date.
+        /// </summary>
+        /// <param name="date">The Entry Date.</param>
+        /// <param name="beltNo">The Belt No.</param>
+        /// <returns>Returns List of RevenueEntry.</returns>
+        public static NDbResult<List<RevenueEntry>> GetRevenueEntriesByBeltNo(DateTime date, string beltNo)
+        {
+            var result = new NDbResult<List<RevenueEntry>>();
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            #region Prepare Begin/End datetime
+
+            var option = AppOption.GetOption(RevenueEntry.DailyRevenueTimeCutOff);
+            if (null == option || null == option.data)
+            {
+                option = AppOption.SetOption(RevenueEntry.DailyRevenueTimeCutOff, "00:00:00.000");
+            }
+            DateTime begin, end;
+            // Begin Time.
+            if (null == option || null == option.data || !option.data.ToDateTime().HasValue)
+            {
+                med.Info("Daily Revenue Time Cut off is not set or invalid format. So used dafault 00:00:00.000.");
+                begin = date.Date.AddHours(00); // set as 00:00:00.000
+            }
+            else
+            {
+                var dt = option.data.ToDateTime().Value;
+                // set time from config
+                begin = date.Date.AddHours(dt.Hour).AddMinutes(dt.Minute).AddMinutes(dt.Second).AddMilliseconds(dt.Millisecond);
+            }
+            // End time.
+            end = begin.AddDays(1).AddMilliseconds(-1);
+
+            #endregion
+
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            lock (sync)
+            {
+                //MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM RevenueEntryView ";
+                    cmd += " WHERE EntryDate >= ? ";
+                    cmd += "   AND EntryDate <= ? ";
+                    cmd += "   AND BeltNo = ? ";
+                    cmd += "   ORDER BY ShiftId ";
+
+                    var rets = NQuery.Query<FKs>(cmd, begin, end, beltNo).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+
+        }
+
         #endregion
     }
 

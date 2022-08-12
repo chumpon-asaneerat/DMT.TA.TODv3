@@ -62,6 +62,7 @@
                                          util:KeyboardOptions.UpDownNavigation="True"
                                          Style="{StaticResource CommonTextBox}"
                                          Text="{Binding BagNo}"
+                                         MaxLength="5"
                                          TextAlignment="Center" />
                                 <Grid Width="10" />
                                 <TextBlock Foreground="WhiteSmoke"
@@ -77,6 +78,7 @@
                                          util:KeyboardOptions.UpDownNavigation="True"
                                          Style="{StaticResource CommonTextBox}"
                                          Text="{Binding BeltNo}"
+                                         MaxLength="7"
                                          TextAlignment="Center" />
                                 <Grid Width="10" />
                             </StackPanel>

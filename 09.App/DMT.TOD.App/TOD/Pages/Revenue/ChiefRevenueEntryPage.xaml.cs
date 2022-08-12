@@ -352,7 +352,6 @@ namespace DMT.TOD.Pages.Revenue
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             med.Info("[<<<<   START PRINT PREVIEW   >>>>]");
-
             #region Check Has BagNo/BeltNo
 
             if (!entry.HasBagNo)
@@ -370,6 +369,55 @@ namespace DMT.TOD.Pages.Revenue
                 var win = TODApp.Windows.MessageBox;
                 win.Setup("กรุณาระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Tour of Duty");
                 win.ShowDialog();
+
+                entry.FocusBeltNo();
+
+                return;
+            }
+
+            #endregion
+
+            #region Check Valid and Duplicatate BagNo, BeltNo
+
+            if (!entry.IsValidBagNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("หมายเลขถุงเงิน ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Tour of Duty");
+                win.ShowDialog();
+
+                entry.FocusBagNo();
+
+                return;
+            }
+            if (!entry.IsValidBeltNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Tour of Duty");
+                win.ShowDialog();
+
+                entry.FocusBeltNo();
+
+                return;
+            }
+
+            if (entry.HasDuplicateBagNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                win.Setup("ไม่สามารถใช้ หมายเลขถุงเงินซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Tour of Duty");
+                win.ShowDialog();
+
+                entry.FocusBagNo();
+
+                return;
+            }
+            if (entry.HasDuplicateBeltNo)
+            {
+                var win = TODApp.Windows.MessageBox;
+                var oldHt = win.Height;
+                win.Height += 50;
+                win.Setup("ไม่สามารถใช้ หมายเลขเข็มขัดนิรภัยซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Tour of Duty");
+                win.ShowDialog();
+                win.Height = oldHt;
 
                 entry.FocusBeltNo();
 

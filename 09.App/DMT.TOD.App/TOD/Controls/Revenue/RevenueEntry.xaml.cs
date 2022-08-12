@@ -194,6 +194,48 @@ namespace DMT.TOD.Controls.Revenue
         /// </summary>
         public bool HasBeltNo { get { return !string.IsNullOrWhiteSpace(txtBeltNo.Text); } }
 
+        public bool IsValidBagNo
+        {
+            get 
+            {
+                int i;
+                return int.TryParse(txtBagNo.Text, out i);
+            }
+        }
+
+        public bool IsValidBeltNo
+        {
+            get
+            {
+                int i;
+                return int.TryParse(txtBeltNo.Text, out i);
+            }
+        }
+
+        public bool HasDuplicateBagNo
+        {
+            get
+            {
+                if (null == manager || !manager.EntryDate.HasValue)
+                    return false;
+                string bagNo = txtBagNo.Text;
+                var list = Models.RevenueEntry.GetRevenueEntriesByBagNo(manager.EntryDate.Value, bagNo).Value();
+                return (null != list && list.Count > 0);
+            }
+        }
+
+        public bool HasDuplicateBeltNo
+        {
+            get
+            {
+                if (null == manager || !manager.EntryDate.HasValue)
+                    return false;
+                string beltNo = txtBeltNo.Text;
+                var list = Models.RevenueEntry.GetRevenueEntriesByBeltNo(manager.EntryDate.Value, beltNo).Value();
+                return (null != list && list.Count > 0);
+            }
+        }
+
         #endregion
     }
 }

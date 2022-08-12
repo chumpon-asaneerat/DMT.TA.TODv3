@@ -33,8 +33,17 @@ Refactor DMT.TA.TODv4 #2393
 Refactor DMT.TA.TODv4 #2392
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2391
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - RevenueEntry model
+      - Add GetRevenueEntriesByBagNo method.
+      - Add GetRevenueEntriesByBeltNo method.
+  - DMT.TOD.App project
+    - Add MaxLength for BagNo (max 5), BeltNo (max 7).
+    - Add check valid BagNo, BeltNo (INTEGER only).
+    - Add check duplicate BagNo, BeltNo.
 
 [commited]
 Refactor DMT.TA.TODv4 #2390

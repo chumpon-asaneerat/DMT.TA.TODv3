@@ -18,8 +18,14 @@ Refactor DMT.TA.TODv4 #2398
 Refactor DMT.TA.TODv4 #2397
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2396
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditBalance #3.
+      - Add GetUserCreditBalances by BagNo, BeltNo for check duplicates.
+  - DMT.TOD.App project
+    - User Credit Borrow implements check duplicate and limit input size for Bag/Belt No.
 
 [commited]
 Refactor DMT.TA.TODv4 #2395

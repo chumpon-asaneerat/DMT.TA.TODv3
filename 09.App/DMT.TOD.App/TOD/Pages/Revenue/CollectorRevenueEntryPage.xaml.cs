@@ -532,8 +532,11 @@ namespace DMT.TOD.Pages.Revenue
             if (entry.HasDuplicateBagNo)
             {
                 var win = TODApp.Windows.MessageBox;
+                var oldHt = win.Height;
+                win.Height += 50;
                 win.Setup("ไม่สามารถใช้ หมายเลขถุงเงินซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Tour of Duty");
                 win.ShowDialog();
+                win.Height = oldHt;
 
                 entry.FocusBagNo();
 

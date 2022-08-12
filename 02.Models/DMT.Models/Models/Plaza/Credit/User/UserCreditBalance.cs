@@ -2109,6 +2109,119 @@ namespace DMT.Models
 
         #endregion
 
+
+        /// <summary>
+        /// Gets all User Credit Balances by Bag No on specificed entry date.
+        /// </summary>
+        /// <param name="date">The Credit Date.</param>
+        /// <param name="bagNo">The Bag No.</param>
+        /// <returns>Returns List of UserCreditBalance.</returns>
+        public static NDbResult<List<UserCreditBalance>> GetUserCreditBalancesByBagNo(DateTime date, string bagNo)
+        {
+            var result = new NDbResult<List<UserCreditBalance>>();
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            #region Prepare Begin/End datetime
+
+            DateTime begin, end;
+            // Begin Time.
+            begin = date.Date.AddHours(00); // set as 00:00:00.000
+            // End time.
+            end = begin.AddDays(1).AddMilliseconds(-1);
+
+            #endregion
+
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            lock (sync)
+            {
+                //MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserCreditSummaryView ";
+                    cmd += " WHERE UserCreditDate >= ? ";
+                    cmd += "   AND UserCreditDate <= ? ";
+                    cmd += "   AND BagNo = ? ";
+                    cmd += "   AND Canceled <> 1 ";
+
+                    var rets = NQuery.Query<FKs>(cmd, begin, end, bagNo).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+
+        }
+
+        /// <summary>
+        /// Gets all User Credit Balances by Belt No on specificed entry date.
+        /// </summary>
+        /// <param name="date">The Credit Date.</param>
+        /// <param name="beltNo">The Belt No.</param>
+        /// <returns>Returns List of UserCreditBalance.</returns>
+        public static NDbResult<List<UserCreditBalance>> GetUserCreditBalancesByBeltNo(DateTime date, string beltNo)
+        {
+            var result = new NDbResult<List<UserCreditBalance>>();
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            #region Prepare Begin/End datetime
+
+            DateTime begin, end;
+            // Begin Time.
+            begin = date.Date.AddHours(00); // set as 00:00:00.000
+            // End time.
+            end = begin.AddDays(1).AddMilliseconds(-1);
+
+            #endregion
+
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            lock (sync)
+            {
+                //MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserCreditSummaryView ";
+                    cmd += " WHERE UserCreditDate >= ? ";
+                    cmd += "   AND UserCreditDate <= ? ";
+                    cmd += "   AND BeltNo = ? ";
+                    cmd += "   AND Canceled <> 1 ";
+
+                    var rets = NQuery.Query<FKs>(cmd, begin, end, beltNo).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+
+        }
+
         #endregion
     }
 

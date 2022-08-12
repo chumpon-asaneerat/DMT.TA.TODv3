@@ -111,6 +111,74 @@ namespace DMT.TA.Windows.Credit
                 return;
             }
 
+            // Check valid Bag/belt number
+            int i;
+            if (!int.TryParse(txtBagNo.Text, out i))
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("หมายเลขถุงเงิน ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtBagNo.SelectAll();
+                    txtBagNo.Focus();
+                }));
+                return;
+            }
+            if (!int.TryParse(txtBeltNo.Text, out i))
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
+                win.ShowDialog();
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtBeltNo.SelectAll();
+                    txtBeltNo.Focus();
+                }));
+                return;
+            }
+
+            // Check duplicate Bag/belt number
+            string bagNo = txtBagNo.Text;
+            var listByBag = Models.UserCreditBalance.GetUserCreditBalancesByBagNo(DateTime.Now, bagNo).Value();
+            if (null != listByBag && listByBag.Count > 0)
+            {
+                var win = TAApp.Windows.MessageBox;
+                var oldHt = win.Height;
+                win.Height += 50;
+                win.Setup("ไม่สามารถใช้ หมายเลขถุงเงินซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
+                win.ShowDialog();
+                win.Height = oldHt;
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtBagNo.SelectAll();
+                    txtBagNo.Focus();
+                }));
+                return;
+            }
+
+            string beltNo = txtBeltNo.Text;
+            var listByBelt = Models.UserCreditBalance.GetUserCreditBalancesByBeltNo(DateTime.Now, beltNo).Value();
+            if (null != listByBelt && listByBelt.Count > 0)
+            {
+                var win = TAApp.Windows.MessageBox;
+                var oldHt = win.Height;
+                win.Height += 50;
+                win.Setup("ไม่สามารถใช้ หมายเลขเข็มขัดนิรภัยซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
+                win.ShowDialog();
+                win.Height = oldHt;
+
+                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    txtBeltNo.SelectAll();
+                    txtBeltNo.Focus();
+                }));
+                return;
+            }
+
             if (manager.HasNegative())
             {
                 var win = TAApp.Windows.MessageBox;
@@ -203,8 +271,17 @@ namespace DMT.TA.Windows.Credit
             if (manager.UserBalance.UserCreditId == 0)
             {
                 ShowUserSearchPanel();
+                // enable Bag/Belt
+                txtBagNo.IsReadOnly = false;
+                txtBeltNo.IsReadOnly = false;
             }
-            else HideUserSearchPanel();
+            else
+            {
+                HideUserSearchPanel();
+                // disable Bag/Belt
+                txtBagNo.IsReadOnly = true;
+                txtBeltNo.IsReadOnly = true;
+            }
 
 
             this.DataContext = manager.UserBalance;

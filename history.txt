@@ -24,8 +24,14 @@ Refactor DMT.TA.TODv4 #2396
 Refactor DMT.TA.TODv4 #2395
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2394
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditTransaction #1.
+      - Add CreateCancelTransaction method.
+  - DMT.TOD.App project
+    - User Credit Management implements cancel UserCreditBalance #1 (should be ok).
 
 [commited]
 Refactor DMT.TA.TODv4 #2393

@@ -241,7 +241,82 @@ namespace DMT.TA.Pages.Credit
 
         private void CancelCredit(UserCreditBalance userCredit)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
 
+            var msgbox = TAApp.Windows.MessageBoxYesNo;
+            string msg = "ยืนยันการยกเลิกถุงเงิน ต้องการดำเนินการยกเลิกถุงเงินหรือไม่?";
+            med.Info("CANCEL BAG UI - " + msg); // Write log
+            msgbox.Setup(msg, "DMT - Toll Admin");
+            if (msgbox.ShowDialog() == false)
+            {
+                // Write log
+                med.Info("CANCEL BAG UI - ยืนยันการดำเนินการยกเลิกถุงเงิน.");
+                med.Info("     ผู้ใช้ยืนยัน: ไม่ดำเนินการต่อ");
+                return; // stay on current page.
+            }
+            else
+            {
+                // allow to do received bag.
+                // Write log
+                med.Info("CANCEL BAG UI - ยืนยันการดำเนินการยกเลิกถุงเงิน.");
+                med.Info("     ผู้ใช้ยืนยัน: ดำเนินการต่อ");
+            }
+
+            var cancelTran = UserCreditTransaction.CreateCancelUserCreditTransaction(userCredit).Value();
+            if (null != cancelTran)
+            {
+                // Save new cancel transaction.
+                UserCreditTransaction.SaveUserCreditTransaction(cancelTran);
+
+                // Change state after received bag and update to database.
+                userCredit.State = UserCreditBalance.StateTypes.Completed;
+                userCredit.Canceled = true;
+                userCredit.CancelDate = DateTime.Now;
+                userCredit.CancelUserId = TAApp.User.Current.UserId;
+                userCredit.CancelFullNameEN = TAApp.User.Current.FullNameEN;
+                userCredit.CancelFullNameTH = TAApp.User.Current.FirstNameTH;
+                UserCreditBalance.SaveUserCreditBalance(userCredit);
+
+
+                // For Update User Bag Number and balance
+                var usr = User.GetByUserId(userCredit.UserId).Value();
+                var usrCdt = new TAAUserCredit();
+                usrCdt.TSBId = userCredit.TSBId;
+                usrCdt.UserId = userCredit.UserId;
+                usrCdt.UserPrefix = (null != usr) ? usr.PrefixTH : string.Empty;
+                usrCdt.UserFirstName = (null != userCredit) ? usr.FirstNameTH : userCredit.FullNameTH;
+                usrCdt.UserLastName = (null != userCredit) ? usr.LastNameTH : string.Empty;
+                //usrCdt.BagNo = (balance.State == UserCreditBalance.StateTypes.Initial) ? null : balance.BagNo;
+                usrCdt.BagNo = userCredit.BagNo;
+                usrCdt.CreditDate = userCredit.UserCreditDate;
+                usrCdt.Credit = userCredit.BHTTotal;
+                usrCdt.flag = 1; // Balance is zero @flag = 1
+                // write to quque
+                TAxTODMQService.Instance.WriteQueue(usrCdt);
+
+                // Find current TSB balance.
+                var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
+                if (null != tsbBal)
+                {
+                    // For Update TSB balance
+                    var tsbCdt = new TAATSBCredit();
+                    tsbCdt.TSBId = tsbBal.TSBId;
+                    tsbCdt.Amnt1 = tsbBal.AmountBHT1;
+                    tsbCdt.Amnt2 = tsbBal.AmountBHT2;
+                    tsbCdt.Amnt5 = tsbBal.AmountBHT5;
+                    tsbCdt.Amnt10 = tsbBal.AmountBHT10;
+                    tsbCdt.Amnt20 = tsbBal.AmountBHT20;
+                    tsbCdt.Amnt50 = tsbBal.AmountBHT50;
+                    tsbCdt.Amnt100 = tsbBal.AmountBHT100;
+                    tsbCdt.Amnt500 = tsbBal.AmountBHT500;
+                    tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
+                    tsbCdt.Remark = null;
+                    tsbCdt.Updatedate = DateTime.Now;
+                    TAxTODMQService.Instance.WriteQueue(tsbCdt);
+                }
+            }
+
+            Refresh();
         }
 
         #endregion

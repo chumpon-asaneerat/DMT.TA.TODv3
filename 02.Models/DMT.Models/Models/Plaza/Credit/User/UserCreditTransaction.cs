@@ -1665,6 +1665,107 @@ namespace DMT.Models
             return result;
         }
 
+        /// <summary>
+        /// Create Cancle User Credit transaction.
+        /// </summary>
+        /// <param name="userCredit">The User Credit to be cancel.</param>
+        /// <returns>
+        /// Returns New User Credit transaction for cancle balance.
+        /// </returns>
+        public static NDbResult<UserCreditTransaction> CreateCancelUserCreditTransaction(UserCreditBalance userCredit)
+        {
+            var result = new NDbResult<UserCreditTransaction>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == userCredit)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserCreditTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND PlazaGroupId = ? ";
+                    cmd += "   AND UserCreditId = ? ";
+
+                    var rets = NQuery.Query<FKs>(cmd, userCredit.TSBId, userCredit.PlazaGroupId, userCredit.UserCreditId).ToList();
+                    var results = rets.ToModels();
+
+                    if (null != results && results.Count > 0)
+                    {
+                        var tran = new UserCreditTransaction();
+                        tran.TransactionDate = DateTime.Now;
+                        tran.TransactionType = TransactionTypes.Return; // use return type
+                        tran.UserCreditId = userCredit.UserCreditId;
+
+                        tran._TSBId = userCredit.TSBId;
+                        tran.PlazaGroupId = userCredit.PlazaGroupId;
+                        tran.UserId = userCredit.UserId;
+                        tran.FullNameEN = userCredit.FullNameEN;
+                        tran.FullNameTH = userCredit.FullNameTH;
+                        tran.RefId = 0;
+                        tran.HasRemark = true;
+                        tran.Description = "ยกเลิกถุงเงิน";
+                        tran.Remark = "ยกเลิกถุงเงิน";
+
+                        results.ForEach(xx =>
+                        {
+                            if (xx.TransactionType == TransactionTypes.Borrow)
+                            {
+                                tran.AmountST25 += xx.AmountST25;
+                                tran.AmountST50 += xx.AmountST50;
+                                tran.AmountBHT1 += xx.AmountBHT1;
+                                tran.AmountBHT2 += xx.AmountBHT2;
+                                tran.AmountBHT5 += xx.AmountBHT5;
+                                tran.AmountBHT10 += xx.AmountBHT10;
+                                tran.AmountBHT20 += xx.AmountBHT20;
+                                tran.AmountBHT50 += xx.AmountBHT50;
+                                tran.AmountBHT100 += xx.AmountBHT100;
+                                tran.AmountBHT500 += xx.AmountBHT500;
+                                tran.AmountBHT1000 += xx.AmountBHT1000;
+                            }
+                            else if (xx.TransactionType == TransactionTypes.Return)
+                            {
+                                tran.AmountST25 -= xx.AmountST25;
+                                tran.AmountST50 -= xx.AmountST50;
+                                tran.AmountBHT1 -= xx.AmountBHT1;
+                                tran.AmountBHT2 -= xx.AmountBHT2;
+                                tran.AmountBHT5 -= xx.AmountBHT5;
+                                tran.AmountBHT10 -= xx.AmountBHT10;
+                                tran.AmountBHT20 -= xx.AmountBHT20;
+                                tran.AmountBHT50 -= xx.AmountBHT50;
+                                tran.AmountBHT100 -= xx.AmountBHT100;
+                                tran.AmountBHT500 -= xx.AmountBHT500;
+                                tran.AmountBHT1000 -= xx.AmountBHT1000;
+                            }
+                        });
+
+                        result.Success(tran);
+                    }
+                    else
+                    {
+                        // result is null.
+                    }
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
         #endregion
     }
 

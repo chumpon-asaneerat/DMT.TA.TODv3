@@ -27,8 +27,12 @@ Refactor DMT.TA.TODv4 #2395
 Refactor DMT.TA.TODv4 #2394
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2393
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditBalance #2.
+      - Add ReceivedDate, Canceled, CancelDate, CancelUserId, CancelFullNameEN, CancelFullNameTH
 
 [commited]
 Refactor DMT.TA.TODv4 #2392

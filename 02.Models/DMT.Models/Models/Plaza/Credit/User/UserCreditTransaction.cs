@@ -880,9 +880,9 @@ namespace DMT.Models
 
         #endregion
 
-        //TODO: Need to Create column to keep current Chift
+        //TODO: Need to Create column to keep current Chief
 
-        #region Supervisor - Need to Create column to keep current Chift
+        #region Supervisor - Need to Create column to keep current Chief
 
         /// <summary>
         /// Gets or sets SupervisorId.

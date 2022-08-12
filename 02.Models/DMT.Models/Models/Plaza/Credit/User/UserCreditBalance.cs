@@ -71,6 +71,15 @@ namespace DMT.Models
         private string _BagNo = string.Empty;
         private string _BeltNo = string.Empty;
 
+        private DateTime? _ReceivedDate = new DateTime?();
+
+        private bool? _Canceled = new bool?();
+        private DateTime? _CancelDate = new DateTime?();
+
+        private string _CancelUserId = string.Empty;
+        private string _CancelFullNameEN = string.Empty;
+        private string _CancelFullNameTH = string.Empty;
+
         private string _RevenueId = string.Empty;
 
         private string _TSBId = string.Empty;
@@ -517,6 +526,214 @@ namespace DMT.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Gets or sets Received Date.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Received Date.")]
+        [Indexed]
+        [ReadOnly(true)]
+        [PropertyMapName("ReceivedDate")]
+        public DateTime? ReceivedDate
+        {
+            get { return _ReceivedDate; }
+            set
+            {
+                if (_ReceivedDate != value)
+                {
+                    _ReceivedDate = value;
+                    // Raise event.
+                    this.RaiseChanged("ReceivedDate");
+                    this.RaiseChanged("ReceivedDateString");
+                    this.RaiseChanged("ReceivedDateTimeString");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets Received Date String.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets Received Date String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string ReceivedDateString
+        {
+            get
+            {
+                var ret = (!this._ReceivedDate.HasValue || this._ReceivedDate.Value == DateTime.MinValue) ?
+                    "" : this._ReceivedDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets Received DateTime String.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets Received DateTime String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string ReceivedDateTimeString
+        {
+            get
+            {
+                var ret = (!this._ReceivedDate.HasValue || this._ReceivedDate.Value == DateTime.MinValue) ?
+                    "" : this._ReceivedDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+                return ret;
+            }
+            set { }
+        }
+
+        [Category("Cancel")]
+        [Description("Gets or sets is cancel user credit.")]
+        [ReadOnly(true)]
+        [PropertyMapName("Canceled")]
+        public virtual bool? Canceled
+        {
+            get { return _Canceled; }
+            set
+            {
+                if (_Canceled != value)
+                {
+                    _Canceled = value;
+                    this.RaiseChanged("Canceled");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets Cancel User Id
+        /// </summary>
+        [Category("Cancel")]
+        [Description("Gets or sets Cancel User Id.")]
+        [ReadOnly(true)]
+        [Indexed]
+        [MaxLength(10)]
+        [PropertyMapName("CancelUserId")]
+        public string CancelUserId
+        {
+            get
+            {
+                return _CancelUserId;
+            }
+            set
+            {
+                if (_CancelUserId != value)
+                {
+                    _CancelUserId = value;
+                    this.RaiseChanged("CancelUserId");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Cancel User Full Name EN
+        /// </summary>
+        [Category("Cancel")]
+        [Description("Gets or sets Cancel User Full Name EN.")]
+        [ReadOnly(true)]
+        [MaxLength(150)]
+        [PropertyMapName("CancelFullNameEN")]
+        public virtual string CancelFullNameEN
+        {
+            get
+            {
+                return _CancelFullNameEN;
+            }
+            set
+            {
+                if (_CancelFullNameEN != value)
+                {
+                    _CancelFullNameEN = value;
+                    this.RaiseChanged("CancelFullNameEN");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Cancel User Full Name TH
+        /// </summary>
+        [Category("Cancel")]
+        [Description("Gets or sets Cancel User Full Name TH.")]
+        [ReadOnly(true)]
+        [MaxLength(150)]
+        [PropertyMapName("CancelFullNameTH")]
+        public virtual string CancelFullNameTH
+        {
+            get
+            {
+                return _CancelFullNameTH;
+            }
+            set
+            {
+                if (_CancelFullNameTH != value)
+                {
+                    _CancelFullNameTH = value;
+                    this.RaiseChanged("CancelFullNameTH");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Cancel Date.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Cancel Date.")]
+        [Indexed]
+        [ReadOnly(true)]
+        [PropertyMapName("CancelDate")]
+        public DateTime? CancelDate
+        {
+            get { return _CancelDate; }
+            set
+            {
+                if (_CancelDate != value)
+                {
+                    _CancelDate = value;
+                    // Raise event.
+                    this.RaiseChanged("CancelDate");
+                    this.RaiseChanged("CancelDateString");
+                    this.RaiseChanged("CancelDateTimeString");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets Cancel Date String.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets Cancel Date String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string CancelDateString
+        {
+            get
+            {
+                var ret = (!this._CancelDate.HasValue || this._CancelDate.Value == DateTime.MinValue) ?
+                    "" : this._CancelDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets Cancel DateTime String.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets Cancel DateTime String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string CancelDateTimeString
+        {
+            get
+            {
+                var ret = (!this._CancelDate.HasValue || this._CancelDate.Value == DateTime.MinValue) ?
+                    "" : this._CancelDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+                return ret;
+            }
+            set { }
+        }
+
         /// <summary>
         /// Gets or sets Revenue Id.
         /// </summary>
@@ -1321,10 +1538,6 @@ namespace DMT.Models
             get { return _BHTTotal; }
             set { }
         }
-
-        #endregion
-
-        #region Cancel
 
         #endregion
 

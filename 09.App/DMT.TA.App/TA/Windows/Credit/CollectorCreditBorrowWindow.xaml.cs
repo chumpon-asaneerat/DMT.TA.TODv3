@@ -45,6 +45,7 @@ namespace DMT.TA.Windows.Credit
             if (null != manager && null == manager.UserBalance)
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("โปรดระบุ พนักงาน", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -60,6 +61,7 @@ namespace DMT.TA.Windows.Credit
                 string.IsNullOrWhiteSpace(manager.UserBalance.UserId))
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("โปรดระบุ พนักงาน", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -74,6 +76,7 @@ namespace DMT.TA.Windows.Credit
             if (cbPlzaGroups.SelectedIndex == -1)
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("โปรดระบุ ด่าน", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -87,6 +90,7 @@ namespace DMT.TA.Windows.Credit
             if (string.IsNullOrEmpty(txtBagNo.Text))
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("โปรดระบุ หมายเลขถุงเงิน", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -100,6 +104,7 @@ namespace DMT.TA.Windows.Credit
             else if (string.IsNullOrEmpty(txtBeltNo.Text))
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("โปรดระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -116,6 +121,7 @@ namespace DMT.TA.Windows.Credit
             if (!int.TryParse(txtBagNo.Text, out i))
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("หมายเลขถุงเงิน ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -129,6 +135,7 @@ namespace DMT.TA.Windows.Credit
             if (!int.TryParse(txtBeltNo.Text, out i))
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
                 win.ShowDialog();
 
@@ -146,6 +153,7 @@ namespace DMT.TA.Windows.Credit
             if (null != listByBag && listByBag.Count > 0)
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 var oldHt = win.Height;
                 win.Height += 50;
                 win.Setup("ไม่สามารถใช้ หมายเลขถุงเงินซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
@@ -165,6 +173,7 @@ namespace DMT.TA.Windows.Credit
             if (null != listByBelt && listByBelt.Count > 0)
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 var oldHt = win.Height;
                 win.Height += 50;
                 win.Setup("ไม่สามารถใช้ หมายเลขเข็มขัดนิรภัยซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
@@ -182,6 +191,7 @@ namespace DMT.TA.Windows.Credit
             if (manager.HasNegative())
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 // Need to change window size due to long message.
                 win.Width = 650;
                 win.Height = 350;

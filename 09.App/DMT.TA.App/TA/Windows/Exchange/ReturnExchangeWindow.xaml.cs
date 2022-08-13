@@ -51,6 +51,7 @@ namespace DMT.TA.Windows.Exchange
             {
                 // not equal borrow amount.
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("จำนวนเงินคืน ไม่เท่ากันกับ ยอดเงินที่ยืม กรุณาตรวจสอบข้อมูล", "Toll Admin");
                 win.ShowDialog();
                 return;
@@ -60,6 +61,7 @@ namespace DMT.TA.Windows.Exchange
             {
                 // TSB has not enough coin/bill to returns.
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup("จำนวนเหรียญ/ธนบัตรในด่าน ไม่เพียงพอ กรุณาตรวจสอบข้อมูล", "Toll Admin");
                 win.ShowDialog();
                 return;

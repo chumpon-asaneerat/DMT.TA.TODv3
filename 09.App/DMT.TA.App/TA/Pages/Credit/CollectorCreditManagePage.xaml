@@ -92,21 +92,30 @@
                                     <Border Background="CornflowerBlue"
                                             CornerRadius="8,8,0,0"
                                             DockPanel.Dock="Top">
+                                        
                                         <DockPanel LastChildFill="True">
+                                            <!--  SHIFT -->
                                             <!--  SEPERATOR  -->
-                                            <TextBlock Width="5" DockPanel.Dock="Right" />
+                                            <TextBlock Width="5" 
+                                                       Visibility="Collapsed"
+                                                       DockPanel.Dock="Right" />
                                             <TextBlock Text="ไม่ระบุ"
                                                        DockPanel.Dock="Right"
                                                        Foreground="Yellow"
                                                        TextAlignment="Left"
+                                                       Visibility="Collapsed"
                                                        Width="50" />
                                             <!--  SEPERATOR  -->
-                                            <TextBlock Width="5" DockPanel.Dock="Right" />
+                                            <TextBlock Width="5" 
+                                                       Visibility="Collapsed"
+                                                       DockPanel.Dock="Right" />
                                             <TextBlock Text="กะ: "
                                                        DockPanel.Dock="Right"
                                                        TextAlignment="Right"
                                                        Foreground="WhiteSmoke"
+                                                       Visibility="Collapsed"
                                                        Width="20 " />
+                                            <!--  USER NAME -->
                                             <!--  SEPERATOR  -->
                                             <TextBlock Width="5" DockPanel.Dock="Right" />
                                             <TextBlock HorizontalAlignment="Center"

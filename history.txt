@@ -12,8 +12,16 @@ Refactor DMT.TA.TODv4 #2400
 Refactor DMT.TA.TODv4 #2399
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2398
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditBalance #4.
+      - fixed query bug GetUserCreditBalances by BagNo, BeltNo for check duplicates.
+  - DMT.TA.App project
+    - Update all message box's owner window when call by anoter popup window.
+  - DMT.TOD.App project
+    - Update all message box's owner window when call by anoter popup window.
 
 [commited]
 Refactor DMT.TA.TODv4 #2397
@@ -26,7 +34,7 @@ Refactor DMT.TA.TODv4 #2396
   - DMT.Models project
     - Update UserCreditBalance #3.
       - Add GetUserCreditBalances by BagNo, BeltNo for check duplicates.
-  - DMT.TOD.App project
+  - DMT.TA.App project
     - User Credit Borrow implements check duplicate and limit input size for Bag/Belt No.
 
 [commited]

@@ -11,6 +11,7 @@ using DMT.Services;
 using NLib;
 using NLib.Services;
 using NLib.Reflection;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -188,7 +189,10 @@ namespace DMT.TA.Pages.Credit
             usrCdt.Credit = balance.BHTTotal;
             usrCdt.flag = 0; // if Received Bag or Balance Not zero @flag = 0
 
-            TAxTODMQService.Instance.WriteQueue(usrCdt);
+            Task.Run(() =>
+            {
+                TAxTODMQService.Instance.WriteQueue(usrCdt);
+            });
 
             // Find current TSB balance.
             var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
@@ -208,7 +212,11 @@ namespace DMT.TA.Pages.Credit
                 tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
                 tsbCdt.Remark = null;
                 tsbCdt.Updatedate = DateTime.Now;
-                TAxTODMQService.Instance.WriteQueue(tsbCdt);
+
+                Task.Run(() =>
+                {
+                    TAxTODMQService.Instance.WriteQueue(tsbCdt);
+                });
             }
 
             Refresh();
@@ -277,7 +285,6 @@ namespace DMT.TA.Pages.Credit
                 userCredit.CancelFullNameTH = TAApp.User.Current.FirstNameTH;
                 UserCreditBalance.SaveUserCreditBalance(userCredit);
 
-
                 // For Update User Bag Number and balance
                 var usr = User.GetByUserId(userCredit.UserId).Value();
                 var usrCdt = new TAAUserCredit();
@@ -286,13 +293,15 @@ namespace DMT.TA.Pages.Credit
                 usrCdt.UserPrefix = (null != usr) ? usr.PrefixTH : string.Empty;
                 usrCdt.UserFirstName = (null != userCredit) ? usr.FirstNameTH : userCredit.FullNameTH;
                 usrCdt.UserLastName = (null != userCredit) ? usr.LastNameTH : string.Empty;
-                //usrCdt.BagNo = (balance.State == UserCreditBalance.StateTypes.Initial) ? null : balance.BagNo;
-                usrCdt.BagNo = userCredit.BagNo;
+                usrCdt.BagNo = (userCredit.State == UserCreditBalance.StateTypes.Initial) ? null : userCredit.BagNo;
                 usrCdt.CreditDate = userCredit.UserCreditDate;
                 usrCdt.Credit = userCredit.BHTTotal;
                 usrCdt.flag = 1; // Balance is zero @flag = 1
                 // write to quque
-                TAxTODMQService.Instance.WriteQueue(usrCdt);
+                Task.Run(() => 
+                {
+                    TAxTODMQService.Instance.WriteQueue(usrCdt);
+                });
 
                 // Find current TSB balance.
                 var tsbBal = TSBCreditBalance.GetCurrent(TAAPI.TSB).Value();
@@ -312,7 +321,11 @@ namespace DMT.TA.Pages.Credit
                     tsbCdt.Amnt1000 = tsbBal.AmountBHT1000;
                     tsbCdt.Remark = null;
                     tsbCdt.Updatedate = DateTime.Now;
-                    TAxTODMQService.Instance.WriteQueue(tsbCdt);
+
+                    Task.Run(() => 
+                    {
+                        TAxTODMQService.Instance.WriteQueue(tsbCdt);
+                    });
                 }
             }
 

@@ -44,6 +44,7 @@ namespace DMT.TA.Windows.Credit
             if (manager.HasNegative())
             {
                 var win = TAApp.Windows.MessageBox;
+                win.Owner = this; // change owner
                 win.Setup(
                     "ไม่สามารถดำเนินการบันทึกข้อมูลได้ เนื่องจากระบบพบว่ามีการ คืนเงิน เกินจำนวนที่่ได้ยืมไป",
                     "DMT - Toll Admin");
@@ -57,6 +58,7 @@ namespace DMT.TA.Windows.Credit
                 string amt = manager.Transaction.BHTTotal.ToString("n0");
 
                 var win = TAApp.Windows.MessageBoxYesNo1;
+                win.Owner = this; // change owner
                 win.Setup(msg1, usr, amt, "DMT - Toll Admin");
                 if (win.ShowDialog() == true)
                 {

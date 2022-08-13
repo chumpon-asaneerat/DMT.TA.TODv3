@@ -70,6 +70,7 @@ namespace DMT.TA.Windows.Exchange
                 if (appv.ExchangeBHT != exch.BHTTotal)
                 {
                     var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
                     win.Setup("จำนวนเงินขอแลกออก ไม่เท่ากับ เงินขอแลก กรุณาตรวจสอบข้อมูล", "Toll Admin");
                     win.ShowDialog();
                     return success;
@@ -89,12 +90,14 @@ namespace DMT.TA.Windows.Exchange
                     tsbBal.AmountBHT1000 - exch.AmountBHT1000 < 0)
                 {
                     var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
                     win.Setup("จำนวนเงินขอแลกออกในด่าน ไม่เพียงพอแลก กรุณาตรวจสอบข้อมูล", "Toll Admin");
                     win.ShowDialog();
                     return success;
                 }
 
                 var confirm = TAApp.Windows.ConfirmChiefReceiveMoney;
+                confirm.Owner = this; // change owner
                 confirm.Setup(appv.GrandTotalBHT);
                 if (confirm.ShowDialog() == false)
                 {

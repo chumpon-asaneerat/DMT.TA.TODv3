@@ -51,6 +51,7 @@ namespace DMT.TA.Windows.Exchange
                 if (!_manager.CanReplaceOut)
                 {
                     var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
                     win.Setup("จำนวนเงินขอแลกออกในบางรายการ เกินจำนวนที่ด่านมีอยู่ กรุณาตรวจสอบข้อมูล", "Toll Admin");
                     win.ShowDialog();
                     return;
@@ -59,6 +60,7 @@ namespace DMT.TA.Windows.Exchange
                 if (!_manager.IsEquals)
                 {
                     var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
                     win.Setup("จำนวนเงินขอแลก ไม่เท่ากัน กรุณาตรวจสอบข้อมูล", "Toll Admin");
                     win.ShowDialog();
                     return;

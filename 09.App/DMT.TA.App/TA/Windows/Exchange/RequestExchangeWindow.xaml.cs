@@ -42,6 +42,7 @@ namespace DMT.TA.Windows.Exchange
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
             var win = TAApp.Windows.MessageBoxYesNo;
+            win.Owner = this; // change owner
             win.Setup("ยืนยันยกเลิกคำร้องขอแลกเปลี่ยนเงิน", "DMT - Toll Admin");
             if (win.ShowDialog() == false)
                 return;
@@ -62,6 +63,7 @@ namespace DMT.TA.Windows.Exchange
                 if (!_manager.IsMatchAmount())
                 {
                     var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
                     win.Setup("ยอดเงินรวมไม่ตรงกัน กรุณาตรวจสอบข้อมูล.", "DMT - Toll Admin");
                     win.ShowDialog();
                     return;
@@ -74,6 +76,7 @@ namespace DMT.TA.Windows.Exchange
                 if (!_manager.CheckPeriod())
                 {
                     var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
                     win.Setup("กรุณาระบุวันที่ใช้เงิน และวันที่คืนเงิน.", "DMT - Toll Admin");
                     win.ShowDialog();
                     return;

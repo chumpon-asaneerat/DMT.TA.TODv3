@@ -11,6 +11,7 @@ using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
 using System.Windows.Threading;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -78,15 +79,19 @@ namespace DMT.TOD.Windows.UserShifts
                     {
                         // Show Message.
                         var msg = TODApp.Windows.MessageBox;
+                        msg.Owner = this; // change owner
                         msg.Setup("ไม่สามารถเปิดกะใหม่ได้ เนื่องจาก ยังมีกะที่ยังไม่ป้อนรายได้", "DMT - Tour of Duty");
                         msg.ShowDialog();
                     }
                     else
                     {
-                        // write to TAxTOD message queue.
-                        TAxTODMQService.Instance.WriteQueue(inst);
-                        // Send User Shift to TA Message Queue.
-                        TAMQService.Instance.WriteQueue(inst);
+                        Task.Run(() => 
+                        {
+                            // write to TAxTOD message queue.
+                            TAxTODMQService.Instance.WriteQueue(inst);
+                            // Send User Shift to TA Message Queue.
+                            TAMQService.Instance.WriteQueue(inst);
+                        });
                     }
                 }
             }

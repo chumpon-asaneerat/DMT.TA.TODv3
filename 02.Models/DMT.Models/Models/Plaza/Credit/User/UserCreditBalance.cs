@@ -2150,7 +2150,7 @@ namespace DMT.Models
                     cmd += " WHERE UserCreditDate >= ? ";
                     cmd += "   AND UserCreditDate <= ? ";
                     cmd += "   AND BagNo = ? ";
-                    cmd += "   AND Canceled <> 1 ";
+                    cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
 
                     var rets = NQuery.Query<FKs>(cmd, begin, end, bagNo).ToList();
                     var results = rets.ToModels();
@@ -2206,7 +2206,7 @@ namespace DMT.Models
                     cmd += " WHERE UserCreditDate >= ? ";
                     cmd += "   AND UserCreditDate <= ? ";
                     cmd += "   AND BeltNo = ? ";
-                    cmd += "   AND Canceled <> 1 ";
+                    cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
 
                     var rets = NQuery.Query<FKs>(cmd, begin, end, beltNo).ToList();
                     var results = rets.ToModels();

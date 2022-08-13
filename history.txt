@@ -9,8 +9,12 @@
 Refactor DMT.TA.TODv4 #2400
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2399
-- 
+- DMT.TAxTODv3
+  - DMT.Account.App project
+    - Update all message box's owner window when call by anoter popup window.
+  - Update App version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2398

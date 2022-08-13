@@ -56,6 +56,7 @@ namespace DMT.Windows
             {
                 // Check total sum.
                 var win2 = AccountApp.Windows.MessageBox;
+                win2.Owner = this; // change owner
                 win2.Setup("ยอดรวมของเหรียญ/ธนบัตร และจำนวนเงินรวมไม่เท่ากัน กรุณาตรวจสอบข้อมูล.", "DMT - TA (Account)");
                 win2.ShowDialog();
                 return;
@@ -172,6 +173,7 @@ namespace DMT.Windows
             if (string.IsNullOrWhiteSpace(_approve.Remark))
             {
                 var win2 = AccountApp.Windows.MessageBox;
+                win2.Owner = this; // change owner
                 win2.Setup("กรุณาระบุเหตุผลการไม่อนุมัติ.", "DMT - TA (Account)");
                 win2.ShowDialog();
                 return;
@@ -179,6 +181,7 @@ namespace DMT.Windows
 
             // Reject and close Window
             var win = AccountApp.Windows.ConfirmRejectMessageBox;
+            win.Owner = this; // change owner
             win.Setup(true);
             if (win.ShowDialog() == false) return;
 

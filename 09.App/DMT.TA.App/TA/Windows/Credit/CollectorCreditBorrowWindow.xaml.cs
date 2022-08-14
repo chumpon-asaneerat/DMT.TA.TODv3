@@ -87,105 +87,108 @@ namespace DMT.TA.Windows.Credit
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtBagNo.Text))
+            if (null != manager && manager.IsNew)
             {
-                var win = TAApp.Windows.MessageBox;
-                win.Owner = this; // change owner
-                win.Setup("โปรดระบุ หมายเลขถุงเงิน", "DMT - Toll Admin");
-                win.ShowDialog();
-
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                if (string.IsNullOrEmpty(txtBagNo.Text))
                 {
-                    txtBagNo.SelectAll();
-                    txtBagNo.Focus();
-                }));
-                return;
-            }
-            else if (string.IsNullOrEmpty(txtBeltNo.Text))
-            {
-                var win = TAApp.Windows.MessageBox;
-                win.Owner = this; // change owner
-                win.Setup("โปรดระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Toll Admin");
-                win.ShowDialog();
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    win.Setup("โปรดระบุ หมายเลขถุงเงิน", "DMT - Toll Admin");
+                    win.ShowDialog();
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBagNo.SelectAll();
+                        txtBagNo.Focus();
+                    }));
+                    return;
+                }
+                else if (string.IsNullOrEmpty(txtBeltNo.Text))
                 {
-                    txtBeltNo.SelectAll();
-                    txtBeltNo.Focus();
-                }));
-                return;
-            }
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    win.Setup("โปรดระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Toll Admin");
+                    win.ShowDialog();
 
-            // Check valid Bag/belt number
-            int i;
-            if (!int.TryParse(txtBagNo.Text, out i))
-            {
-                var win = TAApp.Windows.MessageBox;
-                win.Owner = this; // change owner
-                win.Setup("หมายเลขถุงเงิน ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
-                win.ShowDialog();
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBeltNo.SelectAll();
+                        txtBeltNo.Focus();
+                    }));
+                    return;
+                }
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                // Check valid Bag/belt number
+                int i;
+                if (!int.TryParse(txtBagNo.Text, out i))
                 {
-                    txtBagNo.SelectAll();
-                    txtBagNo.Focus();
-                }));
-                return;
-            }
-            if (!int.TryParse(txtBeltNo.Text, out i))
-            {
-                var win = TAApp.Windows.MessageBox;
-                win.Owner = this; // change owner
-                win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
-                win.ShowDialog();
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    win.Setup("หมายเลขถุงเงิน ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
+                    win.ShowDialog();
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBagNo.SelectAll();
+                        txtBagNo.Focus();
+                    }));
+                    return;
+                }
+                if (!int.TryParse(txtBeltNo.Text, out i))
                 {
-                    txtBeltNo.SelectAll();
-                    txtBeltNo.Focus();
-                }));
-                return;
-            }
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
+                    win.ShowDialog();
 
-            // Check duplicate Bag/belt number
-            string bagNo = txtBagNo.Text;
-            var listByBag = Models.UserCreditBalance.GetUserCreditBalancesByBagNo(DateTime.Now, bagNo).Value();
-            if (null != listByBag && listByBag.Count > 0)
-            {
-                var win = TAApp.Windows.MessageBox;
-                win.Owner = this; // change owner
-                var oldHt = win.Height;
-                win.Height += 50;
-                win.Setup("ไม่สามารถใช้ หมายเลขถุงเงินซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
-                win.ShowDialog();
-                win.Height = oldHt;
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBeltNo.SelectAll();
+                        txtBeltNo.Focus();
+                    }));
+                    return;
+                }
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                // Check duplicate Bag/belt number
+                string bagNo = txtBagNo.Text;
+                var listByBag = Models.UserCreditBalance.GetUserCreditBalancesByBagNo(DateTime.Now, bagNo).Value();
+                if (null != listByBag && listByBag.Count > 0)
                 {
-                    txtBagNo.SelectAll();
-                    txtBagNo.Focus();
-                }));
-                return;
-            }
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    var oldHt = win.Height;
+                    win.Height += 50;
+                    win.Setup("ไม่สามารถใช้ หมายเลขถุงเงินซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
+                    win.ShowDialog();
+                    win.Height = oldHt;
 
-            string beltNo = txtBeltNo.Text;
-            var listByBelt = Models.UserCreditBalance.GetUserCreditBalancesByBeltNo(DateTime.Now, beltNo).Value();
-            if (null != listByBelt && listByBelt.Count > 0)
-            {
-                var win = TAApp.Windows.MessageBox;
-                win.Owner = this; // change owner
-                var oldHt = win.Height;
-                win.Height += 50;
-                win.Setup("ไม่สามารถใช้ หมายเลขเข็มขัดนิรภัยซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
-                win.ShowDialog();
-                win.Height = oldHt;
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBagNo.SelectAll();
+                        txtBagNo.Focus();
+                    }));
+                    return;
+                }
 
-                Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                string beltNo = txtBeltNo.Text;
+                var listByBelt = Models.UserCreditBalance.GetUserCreditBalancesByBeltNo(DateTime.Now, beltNo).Value();
+                if (null != listByBelt && listByBelt.Count > 0)
                 {
-                    txtBeltNo.SelectAll();
-                    txtBeltNo.Focus();
-                }));
-                return;
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    var oldHt = win.Height;
+                    win.Height += 50;
+                    win.Setup("ไม่สามารถใช้ หมายเลขเข็มขัดนิรภัยซ้ำ ภายในวันเดียวกัน กรุณาเปลี่ยนเลขใหม่", "DMT - Toll Admin");
+                    win.ShowDialog();
+                    win.Height = oldHt;
+
+                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        txtBeltNo.SelectAll();
+                        txtBeltNo.Focus();
+                    }));
+                    return;
+                }
             }
 
             if (manager.HasNegative())

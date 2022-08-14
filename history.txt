@@ -15,8 +15,11 @@ Refactor DMT.TA.TODv4 #2409
 Refactor DMT.TA.TODv4 #2408
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2407
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - fixed bug cannot borrow money if not received bag.
 
 [commited]
 Refactor DMT.TA.TODv4 #2406

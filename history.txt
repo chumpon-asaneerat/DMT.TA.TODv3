@@ -21,8 +21,12 @@ Refactor DMT.TA.TODv4 #2407
 Refactor DMT.TA.TODv4 #2406
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2405
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditBalance #7.
+      - fixed query bug GetUserCreditBalances by BagNo, BeltNo for check duplicates.
 
 [commited]
 Refactor DMT.TA.TODv4 #2404

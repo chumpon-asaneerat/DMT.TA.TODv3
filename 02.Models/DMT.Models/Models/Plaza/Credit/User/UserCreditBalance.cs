@@ -1959,6 +1959,7 @@ namespace DMT.Models
                       FROM UserCreditSummaryView
                      WHERE UserId = ?
                        AND PlazaGroupId = ? 
+                       AND (Canceled IS NULL OR Canceled <> 1)
                        AND (RevenueId IS NULL OR RevenueId = '')
                        AND State <> ? 
                      ORDER BY UserId, UserCreditDate desc";
@@ -2034,6 +2035,7 @@ namespace DMT.Models
                       FROM UserCreditSummaryView
                      WHERE UserId = ?
                        AND PlazaGroupId = ? 
+                       AND (Canceled IS NULL OR Canceled <> 1)
                        AND (RevenueId IS NULL OR RevenueId = '')
                        AND State = ? 
                      ORDER BY UserId, UserCreditDate desc";
@@ -2109,6 +2111,7 @@ namespace DMT.Models
                       FROM UserCreditSummaryView
                      WHERE UserId = ?
                        AND PlazaGroupId = ? 
+                       AND (Canceled IS NULL OR Canceled <> 1)
                        AND (RevenueId IS NULL OR RevenueId = '')
                        AND State = ? 
                        AND UserCreditDate = (SELECT Max(UserCreditDate) 
@@ -2217,7 +2220,7 @@ namespace DMT.Models
                     cmd += " WHERE UserCreditDate >= ? ";
                     cmd += "   AND UserCreditDate <= ? ";
                     cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
-                    cmd += "   AND (RevenueBagNo IS NOT NULL AND BagNo <> RevenueBagNo) ";
+                    cmd += "   AND RevenueBagNo IS NOT NULL ";
                     cmd += "   AND (RevenueBagNo = ?) ";
 
                     var rets = NQuery.Query<FKs>(cmd, 
@@ -2284,7 +2287,7 @@ namespace DMT.Models
                     cmd += " WHERE UserCreditDate >= ? ";
                     cmd += "   AND UserCreditDate <= ? ";
                     cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
-                    cmd += "   AND (RevenueBeltNo IS NOT NULL AND BeltNo <> RevenueBeltNo) ";
+                    cmd += "   AND RevenueBeltNo IS NOT NULL ";
                     cmd += "   AND (RevenueBeltNo = ?) ";
 
                     var rets = NQuery.Query<FKs>(cmd, 

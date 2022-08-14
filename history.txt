@@ -12,8 +12,11 @@ Refactor DMT.TA.TODv4 #2410
 Refactor DMT.TA.TODv4 #2409
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2408
-- 
+- DMT.TAxTODv3
+  - DMT.TA.App project
+    - Fixed Credit History Report - add UsedBagNo/UsedBeltNo
 
 [commited]
 Refactor DMT.TA.TODv4 #2407

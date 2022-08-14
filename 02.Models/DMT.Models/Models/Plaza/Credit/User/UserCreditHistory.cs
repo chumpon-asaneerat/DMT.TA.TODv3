@@ -504,6 +504,43 @@ namespace DMT.Models
 
 		#endregion
 
+		#region Special property for report binding (Bag/Belt No)
+
+		[Category("Common")]
+		[Description("Gets Used Bag No.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string UsedBagNo
+		{
+			get 
+			{
+				if (!string.IsNullOrWhiteSpace(this.RevenueBagNo))
+					return this.RevenueBagNo;
+				else return this.BagNo;
+			}
+			set { }
+		}
+
+		[Category("Common")]
+		[Description("Gets Used Belt No.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string UsedBeltNo
+		{
+			get 
+			{
+				if (!string.IsNullOrWhiteSpace(this.RevenueBeltNo))
+					return this.RevenueBeltNo;
+				else return this.BeltNo;
+			}
+			set { }
+		}
+
+		#endregion
+
+
 		#region TSB
 
 		/// <summary>

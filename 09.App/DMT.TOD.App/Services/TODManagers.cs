@@ -2469,9 +2469,16 @@ namespace DMT.Services
 
             if (null != usrCredit)
             {
+                usrCredit.State = UserCreditBalance.StateTypes.Completed;
                 usrCredit.RevenueId = Entry.RevenueId;
                 usrCredit.RevenueBagNo = Entry.BagNo;
                 usrCredit.RevenueBeltNo = Entry.BeltNo;
+                usrCredit.TSBId = Entry.TSBId;
+                usrCredit.PlazaGroupId = Entry.PlazaGroupId;
+                usrCredit.UserId = Entry.UserId;
+                usrCredit.FullNameEN = Entry.CollectorNameEN;
+                usrCredit.FullNameTH = Entry.CollectorNameTH;
+
                 taaOps.Credit.User.Save(usrCredit);
             }
 

@@ -18,8 +18,11 @@ Refactor DMT.TA.TODv4 #2408
 Refactor DMT.TA.TODv4 #2407
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2406
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update RevenueEntryManager to send State TSBId, PlazaGroupId, UserId, CollectorName back to UserCreditBalance in TA app.
 
 [commited]
 Refactor DMT.TA.TODv4 #2405

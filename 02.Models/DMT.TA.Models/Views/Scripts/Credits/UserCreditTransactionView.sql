@@ -7,7 +7,13 @@ AS
 		 , UserCreditBalance.ShiftId
 		 , SH.ShiftNameEN, SH.ShiftNameTH
 		 , UserCreditBalance.UserCreditDate
-		 , UserCreditBalance.[State], UserCreditBalance.BagNo, UserCreditBalance.BeltNo
+		 , UserCreditBalance.[State]
+		 , UserCreditBalance.BagNo, UserCreditBalance.BeltNo
+		 , UserCreditBalance.ReceivedDate
+		 , UserCreditBalance.Canceled, UserCreditBalance.CancelDate
+		 , UserCreditBalance.CancelUserId, UserCreditBalance.CancelFullNameEN, UserCreditBalance.CancelFullNameTH
+		 , UserCreditBalance.RevenueId
+		 , UserCreditBalance.RevenueBagNo, UserCreditBalance.RevenueBeltNo
 	  FROM UserCreditTransaction, TSB, PlazaGroup
 		 , UserCreditBalance
 		   LEFT JOIN Shift SH ON (UserCreditBalance.ShiftId = SH.ShiftId)

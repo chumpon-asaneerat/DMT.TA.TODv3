@@ -81,6 +81,8 @@ namespace DMT.Models
         private string _CancelFullNameTH = string.Empty;
 
         private string _RevenueId = string.Empty;
+        private string _RevenueBagNo = string.Empty;
+        private string _RevenueBeltNo = string.Empty;
 
         private string _TSBId = string.Empty;
         private string _TSBNameEN = string.Empty;
@@ -753,6 +755,48 @@ namespace DMT.Models
                     _RevenueId = value;
                     // Raise event.
                     this.RaiseChanged("RevenueId");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Revenue Bag Number.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Revenue Bag Number.")]
+        //[ReadOnly(true)]
+        [MaxLength(10)]
+        [PropertyMapName("RevenueBagNo")]
+        public string RevenueBagNo
+        {
+            get { return _RevenueBagNo; }
+            set
+            {
+                if (_RevenueBagNo != value)
+                {
+                    _RevenueBagNo = value;
+                    // Raise event.
+                    this.RaiseChanged("RevenueBagNo");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Revenue Belt Number.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Revenue Belt Number.")]
+        //[ReadOnly(true)]
+        [MaxLength(20)]
+        [PropertyMapName("RevenueBeltNo")]
+        public string RevenueBeltNo
+        {
+            get { return _RevenueBeltNo; }
+            set
+            {
+                if (_RevenueBeltNo != value)
+                {
+                    _RevenueBeltNo = value;
+                    // Raise event.
+                    this.RaiseChanged("RevenueBeltNo");
                 }
             }
         }

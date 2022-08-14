@@ -6,6 +6,15 @@ AS
 		 , UCTB.FullNameTH
 		 , UCB.BagNo
 		 , UCB.BeltNo
+		 , UCB.ReceivedDate
+		 , UCB.Canceled
+		 , UCB.CancelDate
+		 , UCB.CancelUserId
+		 , UCB.CancelFullNameEN
+		 , UCB.CancelFullNameTH
+		 , UCB.RevenueId
+		 , UCB.RevenueBagNo
+		 , UCB.RevenueBeltNo
 		 , UCTB.UserCreditId
 		 , UCB.CreditDate
 		 , UCB.UserCreditDate
@@ -25,6 +34,15 @@ AS
 			, UCTB.UserId
 			, UCB.BagNo
 			, UCB.BeltNo
+		    , UCB.ReceivedDate
+		    , UCB.Canceled
+		    , UCB.CancelDate
+		    , UCB.CancelUserId
+		    , UCB.CancelFullNameEN
+		    , UCB.CancelFullNameTH
+		    , UCB.RevenueId
+		    , UCB.RevenueBagNo
+		    , UCB.RevenueBeltNo
 			, UCTB.UserCreditId
 			, UCB.CreditDate
 			, UCB.UserCreditDate

@@ -6,6 +6,15 @@ AS
 		 , UCTB.FullNameTH
 		 , UCB.BagNo
 		 , UCB.BeltNo
+		 , UCB.ReceivedDate
+		 , UCB.Canceled
+		 , UCB.CancelDate
+		 , UCB.CancelUserId
+		 , UCB.CancelFullNameEN
+		 , UCB.CancelFullNameTH
+		 , UCB.RevenueId
+		 , UCB.RevenueBagNo
+		 , UCB.RevenueBeltNo
 		 , (
 			  IFNULL(SUM(UCTB.AmountST25), 0)
 			+ IFNULL(SUM(UCTB.AmountST50), 0)
@@ -50,6 +59,15 @@ AS
 			, UCTB.UserId
 			, UCB.BagNo
 			, UCB.BeltNo
+		    , UCB.ReceivedDate
+		    , UCB.Canceled
+		    , UCB.CancelDate
+		    , UCB.CancelUserId
+		    , UCB.CancelFullNameEN
+		    , UCB.CancelFullNameTH
+		    , UCB.RevenueId
+		    , UCB.RevenueBagNo
+		    , UCB.RevenueBeltNo
 			, UCTB.UserCreditId
 			, UCB.CreditDate
 			, UCB.UserCreditDate

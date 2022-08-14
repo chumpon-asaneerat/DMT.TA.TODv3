@@ -33,8 +33,30 @@ Refactor DMT.TA.TODv4 #2403
 Refactor DMT.TA.TODv4 #2402
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2401
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update RevenueEntryManager to get UserCreditBalance from TA app (by chief mode).
+  - DMT.Models project
+    - UserCreditBalance
+      - Add RevenueBagNo, RevenueBeltNo
+    - UserCreditTransaction
+      - Add ReceivedDate, Canceled, CancelDate, CancelUserId, CancelFullNameEN, CancelFullNameTH, 
+        BagNo, BeltNo, RevenueId, RevenueBagNo, RevenueBeltNo
+    - UserCreditHistory
+      - Add ReceivedDate, Canceled, CancelDate, CancelUserId, CancelFullNameEN, CancelFullNameTH, 
+        RevenueId, RevenueBagNo, RevenueBeltNo
+  - DMT.TA.Models project
+    - Update View add ReceivedDate, Canceled, CancelDate, CancelUserId, CancelFullNameEN, CancelFullNameTH, 
+      BagNo, BeltNo, RevenueId, RevenueBagNo, RevenueBeltNo in below views
+      - UserCreditTransactionView
+      - UserCreditBorrowSummaryView (not change)
+      - UserCreditReturnSummaryView (not change)
+      - UserCreditSummaryView (not change)
+      - UserCreditBalanceSSView
+      - UserCreditBaseTransactionHistoryView
+      - UserCreditHistoryView
 
 [commited]
 Refactor DMT.TA.TODv4 #2400

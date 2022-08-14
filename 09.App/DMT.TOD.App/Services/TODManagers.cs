@@ -2044,33 +2044,65 @@ namespace DMT.Services
             }
             else
             {
-                // By chief create empty balance - update from Revenue Entry and save.
-                var usrCredit = new UserCreditBalance();
-                usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
-
-                usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
-                usrCredit.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
-                usrCredit.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
-                usrCredit.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
-                usrCredit.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
-                usrCredit.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
-
-                if (!isNew)
+                // By chief call WS first. If exists used it.
+                var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
+                var ret = taaOps.Credit.User.Completed(search);
+                if (null != ret)
                 {
-                    usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
-                    usrCredit.BeltNo = (null != Entry) ? Entry.BeltNo : string.Empty;
-                    usrCredit.RevenueId = (null != Entry) ? Entry.RevenueId : string.Empty;
+                    msg += "<<< CheckUserCredit >>> " + Environment.NewLine;
+                    msg += " - UserCreditBalance info: " + Environment.NewLine;
+                    msg += "   - Ok: " + ret.Ok.ToString() + Environment.NewLine;
+                    msg += "   - http status: " + ret.HttpStatus.ToString() + Environment.NewLine;
+                    med.Err(msg);
+                    //  Call ws success and has WS execute result returns UserCreditBalance object.
+                    result.Status = ret.HttpStatus;
+                    var usrCredit = (ret.Ok) ? ret.Value() : null;
+                    if (null == usrCredit)
+                    {
+                        // By chief - TA has no balance so create new one - update from Revenue Entry and save.
+                        usrCredit = new UserCreditBalance();
+                        usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
+
+                        usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
+                        usrCredit.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
+                        usrCredit.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
+                        usrCredit.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
+                        usrCredit.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
+                        usrCredit.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
+
+                        if (!isNew)
+                        {
+                            usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
+                            usrCredit.BeltNo = (null != Entry) ? Entry.BeltNo : string.Empty;
+                            usrCredit.RevenueId = (null != Entry) ? Entry.RevenueId : string.Empty;
+                        }
+                        else
+                        {
+                            usrCredit.BagNo = string.Empty;
+                            usrCredit.BeltNo = string.Empty;
+                            usrCredit.RevenueId = string.Empty;
+                        }
+                    }
+
+                    // Update result (due to create new one. so always in success state).
+                    result.Status = HttpStatus.Success;
+                    result.Value = usrCredit;
                 }
                 else
                 {
-                    usrCredit.BagNo = string.Empty;
-                    usrCredit.BeltNo = string.Empty;
-                    usrCredit.RevenueId = string.Empty;
+                    msg += "<<< CheckUserCredit >>> " + Environment.NewLine;
+                    msg += "Cannot get UserCreditBalance from TA App. ";
+                    msg += "This may occur due to no data match ";
+                    msg += "or in some case the TA App is busy ";
+                    msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";
+                    msg += "Please check TA App computer and try again.";
+                    med.Err(msg);
+                    // Call WS failed. Setup null results.
+                    result.Status = HttpStatus.None;
+                    result.Value = null;
                 }
-                // Update result (due to create new one. so always in success state).
-                result.Status = HttpStatus.Success;
-                result.Value = usrCredit;
             }
+
             return result;
         }
 

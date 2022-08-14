@@ -8,7 +8,15 @@ AS
 		 , UCB.FullNameTH
 		 , UCB.BagNo
 		 , UCB.BeltNo
+		 , UCB.ReceivedDate
+		 , UCB.Canceled
+		 , UCB.CancelDate
+		 , UCB.CancelUserId
+		 , UCB.CancelFullNameEN
+		 , UCB.CancelFullNameTH
 		 , UCB.RevenueId
+		 , UCB.RevenueBagNo
+		 , UCB.RevenueBeltNo
 		 , TSS.UserId AS ChiefId
 		 , TSS.FullNameEN AS ChiefNameEN
 		 , TSS.FullNameTH AS ChiefNameTH

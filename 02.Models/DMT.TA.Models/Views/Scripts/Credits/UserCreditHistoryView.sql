@@ -7,6 +7,15 @@ AS
 		 , C.FullNameTH
 		 , C.BagNo
 		 , C.BeltNo
+		 , C.ReceivedDate
+		 , C.Canceled
+		 , C.CancelDate
+		 , C.CancelUserId
+		 , C.CancelFullNameEN
+		 , C.CancelFullNameTH
+		 , C.RevenueId
+		 , C.RevenueBagNo
+		 , C.RevenueBeltNo
 		 -- TOTAL BORROW/RETURN
 		 , IFNULL(SUM(B.BorrowBHTTotal), 0) AS BorrowBHTTotal
 		 , IFNULL(SUM(R.ReturnBHTTotal), 0) AS ReturnBHTTotal

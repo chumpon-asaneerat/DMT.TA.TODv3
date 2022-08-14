@@ -30,8 +30,14 @@ Refactor DMT.TA.TODv4 #2404
 Refactor DMT.TA.TODv4 #2403
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2402
-- 
+- DMT.TAxTODv3
+  - DMT.TOD.App project
+    - Update RevenueEntryManager to send BagNo, BeltNo back to UserCreditBalance in TA app.
+  - DMT.Models project
+    - Update UserCreditBalance #5.
+      - Update GetUserCreditBalances by BagNo, BeltNo for check duplicates include check RevenueBagNo/RevenueBeltNo.
 
 [commited]
 Refactor DMT.TA.TODv4 #2401

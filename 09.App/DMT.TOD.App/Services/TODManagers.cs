@@ -2470,6 +2470,8 @@ namespace DMT.Services
             if (null != usrCredit)
             {
                 usrCredit.RevenueId = Entry.RevenueId;
+                usrCredit.RevenueBagNo = Entry.BagNo;
+                usrCredit.RevenueBeltNo = Entry.BeltNo;
                 taaOps.Credit.User.Save(usrCredit);
             }
 

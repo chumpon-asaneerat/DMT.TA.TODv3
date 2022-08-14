@@ -16,7 +16,7 @@ namespace DMT.Services
             [HttpPost]
             [ActionName(RouteConsts.TA.Credit.User.Save.Name)]
             //[AllowAnonymous]
-            public NDbResult<UserCreditBalance> CurSaverent([FromBody] UserCreditBalance value)
+            public NDbResult<UserCreditBalance> SaveCurrent([FromBody] UserCreditBalance value)
             {
                 NDbResult<UserCreditBalance> ret;
                 if (null == value)

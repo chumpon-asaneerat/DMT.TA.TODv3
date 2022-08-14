@@ -2193,10 +2193,21 @@ namespace DMT.Models
                     cmd += "  FROM UserCreditSummaryView ";
                     cmd += " WHERE UserCreditDate >= ? ";
                     cmd += "   AND UserCreditDate <= ? ";
-                    cmd += "   AND BagNo = ? ";
                     cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
+                    cmd += "   AND (RevenueBagNo IS NULL OR RevenueBagNo = '') ";
+                    cmd += "   AND (BagNo = ?) ";
+                    cmd += " UNION ";
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserCreditSummaryView ";
+                    cmd += " WHERE UserCreditDate >= ? ";
+                    cmd += "   AND UserCreditDate <= ? ";
+                    cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
+                    cmd += "   AND (RevenueBagNo IS NOT NULL AND BagNo <> RevenueBagNo) ";
+                    cmd += "   AND (RevenueBagNo = ?) ";
 
-                    var rets = NQuery.Query<FKs>(cmd, begin, end, bagNo).ToList();
+                    var rets = NQuery.Query<FKs>(cmd, 
+                        begin, end, bagNo, 
+                        begin, end, bagNo).ToList();
                     var results = rets.ToModels();
                     result.Success(results);
                 }
@@ -2249,10 +2260,21 @@ namespace DMT.Models
                     cmd += "  FROM UserCreditSummaryView ";
                     cmd += " WHERE UserCreditDate >= ? ";
                     cmd += "   AND UserCreditDate <= ? ";
-                    cmd += "   AND BeltNo = ? ";
                     cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
+                    cmd += "   AND (RevenueBeltNo IS NULL OR RevenueBeltNo = '') ";
+                    cmd += "   AND (BeltNo = ?) ";
+                    cmd += " UNION ";
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserCreditSummaryView ";
+                    cmd += " WHERE UserCreditDate >= ? ";
+                    cmd += "   AND UserCreditDate <= ? ";
+                    cmd += "   AND (Canceled IS NULL OR Canceled <> 1) ";
+                    cmd += "   AND (RevenueBeltNo IS NOT NULL AND BeltNo <> RevenueBeltNo) ";
+                    cmd += "   AND (RevenueBeltNo = ?) ";
 
-                    var rets = NQuery.Query<FKs>(cmd, begin, end, beltNo).ToList();
+                    var rets = NQuery.Query<FKs>(cmd, 
+                        begin, end, beltNo, 
+                        begin, end, beltNo).ToList();
                     var results = rets.ToModels();
                     result.Success(results);
                 }

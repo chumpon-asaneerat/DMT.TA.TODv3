@@ -33,8 +33,11 @@ Refactor DMT.TA.TODv4 #2413
 Refactor DMT.TA.TODv4 #2412
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2411
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Fixed Credit History - ignore cancel transaction.
 
 [commited]
 Refactor DMT.TA.TODv4 #2410

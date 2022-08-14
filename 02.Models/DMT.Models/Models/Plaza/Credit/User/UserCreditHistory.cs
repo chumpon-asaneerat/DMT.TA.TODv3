@@ -1924,7 +1924,8 @@ namespace DMT.Models
 					SELECT * 
 					  FROM UserCreditHistoryView
 					 WHERE TSBId = ? 
-					   AND TransDate = ? ";
+					   AND TransDate = ? 
+					   AND (Canceled IS NULL OR Canceled <> 1) ";
 
 					string dStr = dt.ToString("yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
 					var rets = NQuery.Query<FKs>(cmd,

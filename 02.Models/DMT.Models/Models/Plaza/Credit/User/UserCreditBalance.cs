@@ -226,6 +226,20 @@ namespace DMT.Models
             get { return (_State == StateTypes.Initial) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden; }
             set { }
         }
+        /// <summary>
+        /// Gets Cancel Bag Visibility.
+        /// </summary>
+        [Category("Runtime")]
+        [Description("Gets Cancel Bag Visibility.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        [PropertyMapName("CancelBagVisibility")]
+        public System.Windows.Visibility CancelBagVisibility
+        {
+            get { return (_State == StateTypes.Initial) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden; }
+            set { }
+        }
 
         #endregion
 
@@ -481,6 +495,7 @@ namespace DMT.Models
                     // Raise event.
                     this.RaiseChanged("State");
                     this.RaiseChanged("ReceivedBagVisibility");
+                    this.RaiseChanged("CancelBagVisibility");
                 }
             }
         }

@@ -27,8 +27,15 @@ Refactor DMT.TA.TODv4 #2405
 Refactor DMT.TA.TODv4 #2404
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2403
-- 
+- DMT.TAxTODv3
+  - DMT.Models project
+    - Update UserCreditBalance #6.
+      - Add CancelBagVisibility property.
+  - DMT.TA.App project
+    - CollectorCreditManagePage update
+      - Bind CancelBagVisibility property to cancel button.
 
 [commited]
 Refactor DMT.TA.TODv4 #2402

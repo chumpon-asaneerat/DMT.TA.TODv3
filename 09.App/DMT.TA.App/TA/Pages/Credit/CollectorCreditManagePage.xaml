@@ -163,7 +163,8 @@
                                                     Click="cmdCancel_Click"
                                                     Content="ยกเลิก"
                                                     Foreground="Red"
-                                                    Style="{DynamicResource InlineButton}" />
+                                                    Style="{DynamicResource InlineButton}" 
+                                                    Visibility="{Binding CancelBagVisibility}" />
                                         </StackPanel>
                                         <!--  PLAZA GROUP NAME  -->
                                         <TextBlock HorizontalAlignment="Center"

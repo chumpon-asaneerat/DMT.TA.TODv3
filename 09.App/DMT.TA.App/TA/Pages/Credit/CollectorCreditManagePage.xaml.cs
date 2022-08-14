@@ -246,7 +246,6 @@ namespace DMT.TA.Pages.Credit
             Refresh();
         }
 
-
         private void CancelCredit(UserCreditBalance userCredit)
         {
             MethodBase med = MethodBase.GetCurrentMethod();

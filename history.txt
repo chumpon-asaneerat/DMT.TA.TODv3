@@ -27,8 +27,10 @@ Refactor DMT.TA.TODv4 #2415
 Refactor DMT.TA.TODv4 #2414
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2413
-- 
+- DMT.TAxTODv3
+  - Try to add fonts to resource #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2412

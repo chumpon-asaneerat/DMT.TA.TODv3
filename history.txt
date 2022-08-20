@@ -24,8 +24,10 @@ Refactor DMT.TA.TODv4 #2416
 Refactor DMT.TA.TODv4 #2415
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2414
-- 
+- DMT.TAxTODv3
+  - Ignore previous commit.
 
 [commited]
 Refactor DMT.TA.TODv4 #2413

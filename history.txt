@@ -18,8 +18,10 @@ Refactor DMT.TA.TODv4 #2418
 Refactor DMT.TA.TODv4 #2417
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2416
-- 
+- DMT.TAxTODv3
+  - Sync code from Kik -> update RevenueSlipSum.rdlc (extended column width) #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2415

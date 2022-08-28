@@ -42,8 +42,10 @@ Refactor DMT.TA.TODv4 #2420
 Refactor DMT.TA.TODv4 #2419
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2418
-- 
+- DMT.TAxTODv3
+  - Fixed Query in TA UsrCredit Completed.
 
 [commited]
 Refactor DMT.TA.TODv4 #2417

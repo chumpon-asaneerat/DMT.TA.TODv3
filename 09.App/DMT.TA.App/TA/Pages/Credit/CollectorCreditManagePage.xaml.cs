@@ -173,6 +173,7 @@ namespace DMT.TA.Pages.Credit
 
             // Change state after received bag and update to database.
             balance.State = UserCreditBalance.StateTypes.Received;
+            balance.ReceivedDate = DateTime.Now; // set received date time.
             UserCreditBalance.SaveUserCreditBalance(balance);
 
             var usr = User.GetByUserId(balance.UserId).Value();

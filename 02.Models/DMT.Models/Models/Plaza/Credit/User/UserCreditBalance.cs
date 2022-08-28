@@ -2117,7 +2117,8 @@ namespace DMT.Models
                        AND UserCreditDate = (SELECT Max(UserCreditDate) 
                                                FROM UserCreditSummaryView 
                                               WHERE UserId = ?
-                                                AND PlazaGroupId = ?)
+                                                AND PlazaGroupId = ?
+                                                AND (RevenueId IS NULL OR RevenueId = ''))
                      ORDER BY UserId, UserCreditDate desc";
 
                     var ret = NQuery.Query<FKs>(cmd,

@@ -668,7 +668,10 @@ namespace NLib.Reflection
             else
                 _cache.Add(t, code = new IL(t));
             Set obj = code.PropertySetInvoker(info);
-            if (obj != null) obj(instance, Value);
+
+            //if (obj != null) obj(instance, Value); // old code.
+            object tVal = Convert.ChangeType(Value, info.PropertyType);
+            if (obj != null) obj(instance, tVal);
         }
 
         #endregion

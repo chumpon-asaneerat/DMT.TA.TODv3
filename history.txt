@@ -36,8 +36,11 @@ Refactor DMT.TA.TODv4 #2422
 Refactor DMT.TA.TODv4 #2421
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2420
-- 
+- DMT.TAxTODv3
+  - Update NLib project.
+    - NLib.Reflections.Cache -> update SetProperty code.
 
 [commited]
 Refactor DMT.TA.TODv4 #2419

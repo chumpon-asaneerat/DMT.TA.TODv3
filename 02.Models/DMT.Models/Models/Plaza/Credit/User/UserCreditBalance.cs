@@ -2119,11 +2119,13 @@ namespace DMT.Models
                                               WHERE UserId = ?
                                                 AND PlazaGroupId = ?
                                                 AND (Canceled IS NULL OR Canceled <> 1)
-                                                AND (RevenueId IS NULL OR RevenueId = ''))
+                                                AND (RevenueId IS NULL OR RevenueId = '')
+                                                AND State <> ?)
                      ORDER BY UserId, UserCreditDate desc";
 
                     var ret = NQuery.Query<FKs>(cmd,
-                        userId, plazaGroupId, StateTypes.Completed, userId, plazaGroupId).FirstOrDefault();
+                        userId, plazaGroupId, StateTypes.Completed, 
+                        userId, plazaGroupId, StateTypes.Initial).FirstOrDefault();
                     UserCreditBalance inst = ret.ToModel();
                     result.Success(inst);
                 }

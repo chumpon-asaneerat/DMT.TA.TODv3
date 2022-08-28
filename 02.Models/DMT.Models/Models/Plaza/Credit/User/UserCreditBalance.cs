@@ -2118,6 +2118,7 @@ namespace DMT.Models
                                                FROM UserCreditSummaryView 
                                               WHERE UserId = ?
                                                 AND PlazaGroupId = ?
+                                                AND (Canceled IS NULL OR Canceled <> 1)
                                                 AND (RevenueId IS NULL OR RevenueId = ''))
                      ORDER BY UserId, UserCreditDate desc";
 

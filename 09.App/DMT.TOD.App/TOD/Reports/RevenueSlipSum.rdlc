@@ -1638,7 +1638,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TrafficBHTTotal.Value</Value>
+                              <Value>=Sum(Fields!TrafficBHTTotal.Value-(Fields!OtherBHTTotal.Value+Fields!NonRevenueBHTTotal.Value+Fields!CouponSoldBHTTotal.Value))</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -1786,7 +1786,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TrafficBHTTotal.Value+Fields!OtherBHTTotal.Value+Fields!NonRevenueBHTTotal.Value+Fields!CouponSoldBHTTotal.Value)</Value>
+                              <Value>=Fields!TrafficBHTTotal.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -2166,7 +2166,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TrafficBHTTotal.Value)</Value>
+                              <Value>=Sum(Fields!TrafficBHTTotal.Value-(Fields!OtherBHTTotal.Value+Fields!NonRevenueBHTTotal.Value+Fields!CouponSoldBHTTotal.Value))</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -2318,7 +2318,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TrafficBHTTotal.Value+Fields!OtherBHTTotal.Value+Fields!NonRevenueBHTTotal.Value+Fields!CouponSoldBHTTotal.Value)</Value>
+                              <Value>=Sum(Fields!TrafficBHTTotal.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -2704,7 +2704,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TrafficBHTTotal.Value)</Value>
+                              <Value>=Sum(Fields!TrafficBHTTotal.Value-(Fields!OtherBHTTotal.Value+Fields!NonRevenueBHTTotal.Value+Fields!CouponSoldBHTTotal.Value))</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -2856,7 +2856,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TrafficBHTTotal.Value+Fields!OtherBHTTotal.Value+Fields!NonRevenueBHTTotal.Value+Fields!CouponSoldBHTTotal.Value)</Value>
+                              <Value>=Sum(Fields!TrafficBHTTotal.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>7pt</FontSize>
@@ -2883,6 +2883,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

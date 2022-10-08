@@ -40,6 +40,24 @@ namespace DMT.Account.Pages.Coupon
         public CouponHistoryViewPage()
         {
             InitializeComponent();
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                {
+                    LoadConfig();
+                }
+                else
+                {
+                    SaveConfig();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
         }
 
         #endregion
@@ -329,22 +347,22 @@ namespace DMT.Account.Pages.Coupon
         private void GenFileToSFTP()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            try
-            {
-                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
-                {
-                    LoadConfig();
-                }
-                else
-                {
-                    SaveConfig();
-                }
+            //try
+            //{
+            //    if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+            //    {
+            //        LoadConfig();
+            //    }
+            //    else
+            //    {
+            //        SaveConfig();
+            //    }
 
-            }
-            catch (Exception ex)
-            {
-                med.Err(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    med.Err(ex);
+            //}
 
             var tsb = (null != cbTSBs.SelectedItem && cbTSBs.SelectedItem is Models.TSB) ?
                 cbTSBs.SelectedItem as Models.TSB : null;

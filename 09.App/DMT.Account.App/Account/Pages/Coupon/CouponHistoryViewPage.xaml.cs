@@ -16,6 +16,11 @@ using NLib;
 using NLib.Services;
 using NLib.Reflection;
 
+using System.IO;
+using Renci.SshNet;
+using Newtonsoft.Json;
+using System.Linq;
+
 #endregion
 
 namespace DMT.Account.Pages.Coupon
@@ -60,6 +65,14 @@ namespace DMT.Account.Pages.Coupon
         private void cmdClear_Click(object sender, RoutedEventArgs e)
         {
             ClearInputs();
+        }
+
+        private void cmdGetCoupon_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbTSBs.SelectedIndex > 0)
+                GenFileToSFTP();
+            else
+                MessageBox.Show("โปรดเลือกด่านเก็บเงิน");
         }
 
         #endregion
@@ -178,6 +191,362 @@ namespace DMT.Account.Pages.Coupon
             else txtStockBalance.Text = "0";
         }
 
+        #region Get CSV
+
+        #region Default
+
+        string FolderToUpload = string.Empty;
+        string SFTPUploadFolder = string.Empty;
+
+        string Host = string.Empty;
+        string Host2 = string.Empty;
+        string UserName = string.Empty;
+        string Password = string.Empty;
+        int? Port = 22;
+
+
+        #endregion
+
+        #region ConfigInfo
+        public class ConfigInfo
+        {
+            public System.String FolderToUpload { get; set; }
+            public System.String SFTPUploadFolder { get; set; }
+
+            public System.String Host { get; set; }
+            public System.String Host2 { get; set; }
+            public System.String UserName { get; set; }
+            public System.String Password { get; set; }
+            public System.Int32? Port { get; set; }
+
+        }
+        #endregion
+
+        #region SaveConfig
+        private bool SaveConfig()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                string folderToUpload = @"D:\Test_INF_SAP\export\";
+                string sftpUploadFolder = @"/home/sapftp/SAP/coupon/";
+
+                string host = "203.114.69.22";
+                string host2 = "203.114.69.6";
+                string userName = "sapftp";
+                string password = "$apF+p";
+                int? port = 22;
+
+                ConfigInfo config = new ConfigInfo
+                {
+                    FolderToUpload = @folderToUpload,
+                    SFTPUploadFolder = @sftpUploadFolder,
+
+                    Host = host,
+                    Host2 = host2,
+                    UserName = userName,
+                    Password = password,
+                    Port = port
+                };
+
+                try
+                {
+                    if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                    {
+                        FileInfo fileCheck = new FileInfo(Directory.GetCurrentDirectory() + @"\\configSFTP.json");
+                        fileCheck.Delete();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+
+                string path = Directory.GetCurrentDirectory() + @"\\configSFTP.json";
+                //export data to json file. 
+                using (TextWriter tw = new StreamWriter(path))
+                {
+                    tw.WriteLine(json);
+                };
+
+                FolderToUpload = @folderToUpload;
+                SFTPUploadFolder = @sftpUploadFolder;
+
+                Host = host;
+                Host2 = host2;
+                UserName = userName;
+                Password = password;
+                Port = port;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                return false;
+            }
+        }
+        #endregion
+
+        #region LoadConfig
+        private bool LoadConfig()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                {
+                    using (StreamReader file = File.OpenText(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        ConfigInfo config = (ConfigInfo)serializer.Deserialize(file, typeof(ConfigInfo));
+
+                        FolderToUpload = config.FolderToUpload;
+                        SFTPUploadFolder = config.SFTPUploadFolder;
+
+                        Host = config.Host;
+                        Host2 = config.Host2;
+                        UserName = config.UserName;
+                        Password = config.Password;
+                        Port = config.Port;
+
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                return false;
+            }
+        }
+        #endregion
+
+        #region GenFileToSFTP
+        private void GenFileToSFTP()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                {
+                    LoadConfig();
+                }
+                else
+                {
+                    SaveConfig();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+
+            var tsb = (null != cbTSBs.SelectedItem && cbTSBs.SelectedItem is Models.TSB) ?
+                cbTSBs.SelectedItem as Models.TSB : null;
+            int? tollWayId = (null != tsb && tsb.TSBId != "00") ? Convert.ToInt32(tsb.TSBId) : new int?();
+
+            if (tollWayId != null)
+            {
+                string toll = string.Empty;
+
+                if (tollWayId <= 9)
+                    toll = "0" + tollWayId.ToString();
+                else
+                    toll = tollWayId.ToString();
+
+                string dateString = DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm") + DateTime.Now.ToString("ss");
+
+                string path = FolderToUpload;
+                FileInfo fileInfo = new FileInfo(path + @"\T" + toll + "_" + dateString + ".txt");
+
+                string newFileName = fileInfo.FullName;
+                try
+                {
+                    if (File.Exists(newFileName))
+                    {
+                        FileInfo fileCheck = new FileInfo(newFileName);
+                        fileCheck.Delete();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                try
+                {
+                    bool chkSFTP = false;
+
+                    string lastDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    File.WriteAllText(newFileName, lastDate);
+
+                    if (!string.IsNullOrEmpty(Host) || !string.IsNullOrEmpty(Host2))
+                    {
+                        #region SFTPAllFile
+                        if (SFTPAllFile(Host, SFTPUploadFolder) == false)
+                        {
+                            if (!string.IsNullOrEmpty(Host2))
+                            {
+                                if (SFTPAllFile(Host2, SFTPUploadFolder) == true)
+                                {
+                                    chkSFTP = true;
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            chkSFTP = true;
+                        }
+                        #endregion
+                    }
+
+                    if (chkSFTP == true)
+                        MessageBox.Show(newFileName, "Complete");
+                    else
+                        MessageBox.Show("Can't SFTP File Name : "+ newFileName, "Fail");
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+        #endregion
+
+        #region SFTPAllFile
+        private bool SFTPAllFile(string host, string ftpDirectory)
+        {
+
+            string msg = string.Empty;
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                bool chkSFTP = true;
+                int? countRow = 0;
+
+                string username = UserName;
+                string password = Password;
+                int port = 22;
+
+                if (Port != null)
+                    port = Port.Value;
+
+                SftpClient client = new SftpClient(host, port, username, password);
+                client.KeepAliveInterval = TimeSpan.FromSeconds(60);
+                client.ConnectionInfo.Timeout = TimeSpan.FromMinutes(180);
+                client.OperationTimeout = TimeSpan.FromMinutes(180);
+                client.Connect();
+
+                if (client.IsConnected == true)
+                {
+                    msg = "Connect success.";
+                    med.Info(msg);
+
+                    string localDirectory = FolderToUpload;
+                    //string localPattern = "*.*";
+                    //string[] files = Directory.GetFiles(localDirectory, localPattern);
+
+                    var files = Directory.GetFiles(localDirectory, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".txt") || s.EndsWith(".csv"));
+
+                    foreach (string file in files)
+                    {
+                        try
+                        {
+                            using (Stream inputStream = new FileStream(file, FileMode.Open))
+                            {
+                                string remoteFileName = System.IO.Path.GetFileName(file);
+
+                                if (!remoteFileName.StartsWith("."))
+                                {
+                                    if (!string.IsNullOrEmpty(remoteFileName) && remoteFileName.Length > 4)
+                                    {
+                                        if (System.IO.Path.GetExtension(remoteFileName) == ".txt" || System.IO.Path.GetExtension(remoteFileName) == ".csv")
+                                        {
+                                            client.UploadFile(inputStream, ftpDirectory + System.IO.Path.GetFileName(file));
+
+                                            countRow++;
+
+                                            msg = string.Format("Success Upload file to : {0}.", System.IO.Path.GetFileName(file));
+                                            med.Info(msg);
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            med.Err(ex);
+
+                            chkSFTP = false;
+                            break;
+                        }
+                    }
+
+                    client.Disconnect();
+                    client.Dispose();
+
+                    msg = "Disconnect.";
+                    med.Info(msg);
+
+
+                    if (chkSFTP == true && countRow > 0)
+                    {
+                        foreach (string file in files)
+                        {
+                            try
+                            {
+                                string remoteFileName = System.IO.Path.GetFileName(file);
+
+                                if (!remoteFileName.StartsWith("."))
+                                {
+                                    if (!string.IsNullOrEmpty(remoteFileName) && remoteFileName.Length > 4)
+                                    {
+                                        if (System.IO.Path.GetExtension(remoteFileName) == ".txt" || System.IO.Path.GetExtension(remoteFileName) == ".csv")
+                                        {
+                                            if (File.Exists(file))
+                                            {
+                                                FileInfo fileCheck = new FileInfo(file);
+                                                fileCheck.Delete();
+
+                                                msg = string.Format("Delete file: {0}.", file);
+                                                med.Info(msg);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                med.Err(ex);
+
+                                chkSFTP = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                return chkSFTP;
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+
+                return false;
+            }
+        }
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region Public Methods
@@ -209,5 +578,7 @@ namespace DMT.Account.Pages.Coupon
         }
 
         #endregion
+
+        
     }
 }

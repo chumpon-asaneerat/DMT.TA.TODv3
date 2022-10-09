@@ -401,7 +401,7 @@ namespace DMT.Account.Pages.Coupon
                 try
                 {
 
-                    string lastDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    string lastDate = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
                     File.WriteAllText(newFileName, lastDate);
                 }
                 catch (Exception ex)
@@ -444,7 +444,7 @@ namespace DMT.Account.Pages.Coupon
 
                         try
                         {
-                            string lastDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            string lastDate = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
                             File.WriteAllText(newFileName, lastDate);
                         }
                         catch (Exception ex)

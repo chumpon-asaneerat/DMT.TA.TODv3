@@ -138,7 +138,7 @@
                                     Width="150"
                                     Height="30"
                                     VerticalAlignment="Center"
-                                    Content="Get Coupon"
+                                    Content="ขอคูปอง"
                                     FontSize="{StaticResource InputFontSize18}"
                                     Style="{DynamicResource InlineButton}" Click="cmdGetCoupon_Click" />
                             <!--  LINE 2  -->

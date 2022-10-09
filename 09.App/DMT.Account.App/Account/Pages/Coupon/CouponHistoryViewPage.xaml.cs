@@ -44,7 +44,7 @@ namespace DMT.Account.Pages.Coupon
             MethodBase med = MethodBase.GetCurrentMethod();
             try
             {
-                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configs\\configSFTP.json"))
                 {
                     LoadConfig();
                 }
@@ -87,10 +87,10 @@ namespace DMT.Account.Pages.Coupon
 
         private void cmdGetCoupon_Click(object sender, RoutedEventArgs e)
         {
-            if (cbTSBs.SelectedIndex > 0)
+            //if (cbTSBs.SelectedIndex > 0)
                 GenFileToSFTP();
-            else
-                MessageBox.Show("โปรดเลือกด่านเก็บเงิน");
+            //else
+            //    MessageBox.Show("โปรดเลือกด่านเก็บเงิน");
         }
 
         #endregion
@@ -272,9 +272,9 @@ namespace DMT.Account.Pages.Coupon
 
                 try
                 {
-                    if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                    if (File.Exists(Directory.GetCurrentDirectory() + @"\\configs\\configSFTP.json"))
                     {
-                        FileInfo fileCheck = new FileInfo(Directory.GetCurrentDirectory() + @"\\configSFTP.json");
+                        FileInfo fileCheck = new FileInfo(Directory.GetCurrentDirectory() + @"\\configs\\configSFTP.json");
                         fileCheck.Delete();
                     }
                 }
@@ -285,7 +285,7 @@ namespace DMT.Account.Pages.Coupon
 
                 string json = JsonConvert.SerializeObject(config, Formatting.Indented);
 
-                string path = Directory.GetCurrentDirectory() + @"\\configSFTP.json";
+                string path = Directory.GetCurrentDirectory() + @"\\configs\\configSFTP.json";
                 //export data to json file. 
                 using (TextWriter tw = new StreamWriter(path))
                 {
@@ -319,9 +319,9 @@ namespace DMT.Account.Pages.Coupon
             MethodBase med = MethodBase.GetCurrentMethod();
             try
             {
-                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                if (File.Exists(Directory.GetCurrentDirectory() + @"\\configs\\configSFTP.json"))
                 {
-                    using (StreamReader file = File.OpenText(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
+                    using (StreamReader file = File.OpenText(Directory.GetCurrentDirectory() + @"\\configs\\configSFTP.json"))
                     {
                         JsonSerializer serializer = new JsonSerializer();
                         ConfigInfo config = (ConfigInfo)serializer.Deserialize(file, typeof(ConfigInfo));
@@ -354,31 +354,17 @@ namespace DMT.Account.Pages.Coupon
         private void GenFileToSFTP()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            //try
-            //{
-            //    if (File.Exists(Directory.GetCurrentDirectory() + @"\\configSFTP.json"))
-            //    {
-            //        LoadConfig();
-            //    }
-            //    else
-            //    {
-            //        SaveConfig();
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    med.Err(ex);
-            //}
 
             var tsb = (null != cbTSBs.SelectedItem && cbTSBs.SelectedItem is Models.TSB) ?
                 cbTSBs.SelectedItem as Models.TSB : null;
             int? tollWayId = (null != tsb && tsb.TSBId != "00") ? Convert.ToInt32(tsb.TSBId) : new int?();
 
+            string toll = string.Empty;
+            bool chkSFTP = true;
+
+
             if (tollWayId != null)
             {
-                string toll = string.Empty;
-
                 if (tollWayId <= 9)
                     toll = "0" + tollWayId.ToString();
                 else
@@ -401,47 +387,99 @@ namespace DMT.Account.Pages.Coupon
                 catch (Exception ex)
                 {
                     med.Err(ex);
+                    chkSFTP = false;
                 }
 
                 try
                 {
-                    bool chkSFTP = false;
 
                     string lastDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     File.WriteAllText(newFileName, lastDate);
-
-                    if (!string.IsNullOrEmpty(Host) || !string.IsNullOrEmpty(Host2))
-                    {
-                        #region SFTPAllFile
-                        if (SFTPAllFile(Host, SFTPUploadFolder) == false)
-                        {
-                            if (!string.IsNullOrEmpty(Host2))
-                            {
-                                if (SFTPAllFile(Host2, SFTPUploadFolder) == true)
-                                {
-                                    chkSFTP = true;
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            chkSFTP = true;
-                        }
-                        #endregion
-                    }
-
-                    if (chkSFTP == true)
-                        MessageBox.Show(newFileName, "Complete");
-                    else
-                        MessageBox.Show("Can't SFTP File Name : "+ newFileName, "Fail");
                 }
                 catch (Exception ex)
                 {
                     med.Err(ex);
                     MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    chkSFTP = false;
                 }
             }
+            else
+            {
+                var tsbs = TSB.GetTSBs().Value();
+
+                for (int i = 0; i < tsbs.Count(); i++)
+                {
+                    if (!string.IsNullOrEmpty(tsbs[i].TSBId))
+                    {
+                        toll = tsbs[i].TSBId;
+
+                        string dateString = DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm") + DateTime.Now.ToString("ss");
+
+                        string path = FolderToUpload;
+                        FileInfo fileInfo = new FileInfo(path + @"\T" + toll + "_" + dateString + ".txt");
+
+                        string newFileName = fileInfo.FullName;
+                        try
+                        {
+                            if (File.Exists(newFileName))
+                            {
+                                FileInfo fileCheck = new FileInfo(newFileName);
+                                fileCheck.Delete();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            med.Err(ex);
+                            chkSFTP = false;
+                            break;
+                        }
+
+                        try
+                        {
+                            string lastDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            File.WriteAllText(newFileName, lastDate);
+                        }
+                        catch (Exception ex)
+                        {
+                            med.Err(ex);
+                            MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            chkSFTP = false;
+                            break;
+                        }
+                    }
+                
+                }
+            }
+
+            if (chkSFTP == true)
+            {
+                if (!string.IsNullOrEmpty(Host) || !string.IsNullOrEmpty(Host2))
+                {
+                    #region SFTPAllFile
+                    if (SFTPAllFile(Host, SFTPUploadFolder) == false)
+                    {
+                        if (!string.IsNullOrEmpty(Host2))
+                        {
+                            if (SFTPAllFile(Host2, SFTPUploadFolder) == true)
+                            {
+                                chkSFTP = true;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        chkSFTP = true;
+                    }
+                    #endregion
+                }
+
+                if (chkSFTP == true)
+                    MessageBox.Show("Sync coupon Complete", "Complete");
+                else
+                    MessageBox.Show("Can't Sync coupon", "Fail");
+            }
+
         }
 
         #endregion

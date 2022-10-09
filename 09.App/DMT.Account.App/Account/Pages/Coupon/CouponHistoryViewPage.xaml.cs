@@ -16,6 +16,9 @@ using NLib;
 using NLib.Services;
 using NLib.Reflection;
 
+
+using System.Globalization;
+using System.Threading;
 using System.IO;
 using Renci.SshNet;
 using Newtonsoft.Json;
@@ -40,6 +43,11 @@ namespace DMT.Account.Pages.Coupon
         public CouponHistoryViewPage()
         {
             InitializeComponent();
+
+            CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");
+            ci.DateTimeFormat.ShortDatePattern = "dd/MM/yy";
+            Thread.CurrentThread.CurrentCulture = ci;
+            IFormatProvider culture = new System.Globalization.CultureInfo("en-US", true);
 
             MethodBase med = MethodBase.GetCurrentMethod();
             try
@@ -464,8 +472,15 @@ namespace DMT.Account.Pages.Coupon
                             {
                                 chkSFTP = true;
                             }
+                            else
+                            {
+                                chkSFTP = false;
+                            }
                         }
-
+                        else
+                        {
+                            chkSFTP = false;
+                        }
                     }
                     else
                     {

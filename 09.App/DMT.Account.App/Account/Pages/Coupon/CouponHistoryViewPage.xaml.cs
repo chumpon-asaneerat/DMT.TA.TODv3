@@ -209,38 +209,41 @@ namespace DMT.Account.Pages.Coupon
             else txtStockBalance.Text = "0";
         }
 
-        #region Get CSV
+        #endregion
+
+        #region Private Methods - FTP Coupon CSVs
 
         #region Default
 
-        string FolderToUpload = string.Empty;
-        string SFTPUploadFolder = string.Empty;
+        private string FolderToUpload = string.Empty;
+        private string SFTPUploadFolder = string.Empty;
 
-        string Host = string.Empty;
-        string Host2 = string.Empty;
-        string UserName = string.Empty;
-        string Password = string.Empty;
-        int? Port = 22;
-
+        private string Host = string.Empty;
+        private string Host2 = string.Empty;
+        private string UserName = string.Empty;
+        private string Password = string.Empty;
+        private int? Port = 22;
 
         #endregion
 
         #region ConfigInfo
+
         public class ConfigInfo
         {
-            public System.String FolderToUpload { get; set; }
-            public System.String SFTPUploadFolder { get; set; }
-
-            public System.String Host { get; set; }
-            public System.String Host2 { get; set; }
-            public System.String UserName { get; set; }
-            public System.String Password { get; set; }
-            public System.Int32? Port { get; set; }
+            public string FolderToUpload { get; set; }
+            public string SFTPUploadFolder { get; set; }
+            public string Host { get; set; }
+            public string Host2 { get; set; }
+            public string UserName { get; set; }
+            public string Password { get; set; }
+            public int? Port { get; set; }
 
         }
+
         #endregion
 
         #region SaveConfig
+
         private bool SaveConfig()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -306,9 +309,11 @@ namespace DMT.Account.Pages.Coupon
                 return false;
             }
         }
+
         #endregion
 
         #region LoadConfig
+
         private bool LoadConfig()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -341,9 +346,11 @@ namespace DMT.Account.Pages.Coupon
                 return false;
             }
         }
+
         #endregion
 
         #region GenFileToSFTP
+
         private void GenFileToSFTP()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -436,9 +443,11 @@ namespace DMT.Account.Pages.Coupon
                 }
             }
         }
+
         #endregion
 
         #region SFTPAllFile
+
         private bool SFTPAllFile(string host, string ftpDirectory)
         {
 
@@ -561,7 +570,6 @@ namespace DMT.Account.Pages.Coupon
                 return false;
             }
         }
-        #endregion
 
         #endregion
 
@@ -596,7 +604,5 @@ namespace DMT.Account.Pages.Coupon
         }
 
         #endregion
-
-        
     }
 }

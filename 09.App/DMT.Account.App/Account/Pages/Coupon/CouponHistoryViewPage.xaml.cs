@@ -461,33 +461,33 @@ namespace DMT.Account.Pages.Coupon
 
             if (chkSFTP == true)
             {
-                if (!string.IsNullOrEmpty(Host) || !string.IsNullOrEmpty(Host2))
-                {
-                    #region SFTPAllFile
-                    if (SFTPAllFile(Host, SFTPUploadFolder) == false)
-                    {
-                        if (!string.IsNullOrEmpty(Host2))
-                        {
-                            if (SFTPAllFile(Host2, SFTPUploadFolder) == true)
-                            {
-                                chkSFTP = true;
-                            }
-                            else
-                            {
-                                chkSFTP = false;
-                            }
-                        }
-                        else
-                        {
-                            chkSFTP = false;
-                        }
-                    }
-                    else
-                    {
-                        chkSFTP = true;
-                    }
-                    #endregion
-                }
+                //if (!string.IsNullOrEmpty(Host) || !string.IsNullOrEmpty(Host2))
+                //{
+                //    #region SFTPAllFile
+                //    if (SFTPAllFile(Host, SFTPUploadFolder) == false)
+                //    {
+                //        if (!string.IsNullOrEmpty(Host2))
+                //        {
+                //            if (SFTPAllFile(Host2, SFTPUploadFolder) == true)
+                //            {
+                //                chkSFTP = true;
+                //            }
+                //            else
+                //            {
+                //                chkSFTP = false;
+                //            }
+                //        }
+                //        else
+                //        {
+                //            chkSFTP = false;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        chkSFTP = true;
+                //    }
+                //    #endregion
+                //}
 
                 if (chkSFTP == true)
                     MessageBox.Show("Sync coupon Complete", "Complete");

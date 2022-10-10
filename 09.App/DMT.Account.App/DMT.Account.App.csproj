@@ -208,6 +208,9 @@
     <Compile Include="Account\Windows\MessageBox\ConfirmApproveWindow.xaml.cs">
       <DependentUpon>ConfirmApproveWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Windows\SAP\GetCouponWindow.xaml.cs">
+      <DependentUpon>GetCouponWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Windows\SAP\SAPCustomerWindow.xaml.cs">
       <DependentUpon>SAPCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Account\Windows\MessageBox\ConfirmApproveWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\Windows\SAP\GetCouponWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -218,6 +218,12 @@
                         Style="{StaticResource ExitButtonStyle}">
                     <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />
                 </Button>
+                <Button x:Name="cndGetCoupon"
+                        Grid.Row="6"
+                        Grid.Column="2"
+                        Style="{StaticResource SAPButtonStyle}" Click="cndGetCoupon_Click">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ขอคูปอง" />
+                </Button>
             </Grid>
         </Grid>
     </ScrollViewer>

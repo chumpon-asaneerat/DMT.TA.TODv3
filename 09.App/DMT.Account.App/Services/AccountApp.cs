@@ -389,6 +389,20 @@ namespace DMT
             }
 
             #endregion
+
+            //New10/10/22
+            #region SAP Get Coupon
+
+            public static DMT.Windows.GetCouponWindow SAPGetCouponWindow
+            {
+                get
+                {
+                    var ret = new DMT.Windows.GetCouponWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            #endregion
         }
     }
 }

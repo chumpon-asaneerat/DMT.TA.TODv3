@@ -132,15 +132,6 @@
                                       DisplayMemberPath="TSBNameTH"
                                       FontSize="{StaticResource InputFontSize18}"
                                       ItemsSource="{Binding}" />
-                            <Button x:Name="cmdGetCoupon"
-                                    Grid.Row="1"
-                                    Grid.Column="12"
-                                    Width="150"
-                                    Height="30"
-                                    VerticalAlignment="Center"
-                                    Content="ขอคูปอง"
-                                    FontSize="{StaticResource InputFontSize18}"
-                                    Style="{DynamicResource InlineButton}" Click="cmdGetCoupon_Click" />
                             <!--  LINE 2  -->
                             <TextBlock Grid.Row="3"
                                        Grid.Column="0"

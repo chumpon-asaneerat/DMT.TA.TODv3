@@ -137,6 +137,16 @@ namespace DMT.Account.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+
+        private void cndGetCoupon_Click(object sender, RoutedEventArgs e)
+        {
+            var win = AccountApp.Windows.SAPGetCouponWindow;
+            win.Setup();
+            win.ShowDialog();
+        }
+
         #endregion
+
+
     }
 }

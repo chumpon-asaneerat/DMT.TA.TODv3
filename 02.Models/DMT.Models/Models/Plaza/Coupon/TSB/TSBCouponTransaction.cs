@@ -1543,6 +1543,79 @@ namespace DMT.Models
             }
         }
 
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon35sStock(TSB tsb)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND CouponType = ? ";
+                    cmd += "   AND TransactionType = ? ";
+                    cmd += "   AND SapChooseFlag = 1 ";
+
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        CouponType.BHT35,
+                        TSBCouponTransactionTypes.Stock).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon80sStock(TSB tsb)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND CouponType = ? ";
+                    cmd += "   AND TransactionType = ? ";
+                    cmd += "   AND SapChooseFlag = 1 ";
+
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        CouponType.BHT80,
+                        TSBCouponTransactionTypes.Stock).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
         #endregion
     }
 

@@ -157,11 +157,31 @@ namespace DMT.TA.Pages.Coupon
         private void VoidC35(TSBCouponTransaction tran)
         {
             if (null == tran) return;
+
+            var win = TAApp.Windows.MessageBoxYesNo;
+            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่:{0}", tran.CouponId);
+            win.Setup(msg, "Toll Admin");
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+
+            Search(); // refresh
         }
 
         private void VoidC80(TSBCouponTransaction tran)
         {
             if (null == tran) return;
+
+            var win = TAApp.Windows.MessageBoxYesNo;
+            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่:{0}", tran.CouponId);
+            win.Setup(msg, "Toll Admin");
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+
+            Search(); // refresh
         }
 
         #endregion

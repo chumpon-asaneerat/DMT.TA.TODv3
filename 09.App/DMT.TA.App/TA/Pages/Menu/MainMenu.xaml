@@ -335,20 +335,23 @@
                 <TextBlock Grid.Row="5"
                            Grid.Column="1"
                            Width="{StaticResource ButtonSpace}" />
-                <Button x:Name="cmdExit"
+                <Button x:Name="cmdEditSoldCoupon"
                         Grid.Row="5"
+                        Grid.Column="2"
+                        Click="cmdEditSoldCoupon_Click"
+                        Style="{StaticResource CollectorCreditAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="แก้ไข" />
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ข้อมูลขายคูปอง" />
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="cmdExit"
+                        Grid.Row="7"
                         Grid.Column="2"
                         Click="cmdExit_Click"
                         Style="{StaticResource ConfigAndExitButtonStyle}">
                     <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />
-                </Button>
-
-                <Button x:Name="cmdSetting"
-                        Grid.Row="7"
-                        Grid.Column="2"
-                        Click="cmdSetting_Click"
-                        Style="{StaticResource ConfigAndExitButtonStyle}">
-                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ตั้งค่า" />
                 </Button>
             </Grid>
         </Grid>

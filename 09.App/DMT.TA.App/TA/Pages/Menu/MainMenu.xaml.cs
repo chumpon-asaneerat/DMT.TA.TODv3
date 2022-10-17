@@ -182,6 +182,7 @@ namespace DMT.TA.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - ประวัติการแลกเงินยืมทอน (collector)
         private void cmdUserCreditHistory_Click(object sender, RoutedEventArgs e)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -209,6 +210,17 @@ namespace DMT.TA.Pages.Menu
             win.ShowDialog();
         }
 
+        // IMPLEM - แก้ไขข้อมูลขายคูปอง
+        private void cmdEditSoldCoupon_Click(object sender, RoutedEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - แก้ไขข้อมูลขายคูปอง (TSB EDIT SOLD COUPONS)");
+            LogUser(med, TAApp.User.Current); // write current user to log.
+
+            // แก้ไข ข้อมูลขายคูปอง
+        }
+
         // OK - ออกจากระบบ.
         private void cmdExit_Click(object sender, RoutedEventArgs e)
         {
@@ -222,11 +234,6 @@ namespace DMT.TA.Pages.Menu
             var page = TAApp.Pages.SignIn;
             page.Setup(TAApp.Permissions.CTC);
             PageContentManager.Instance.Current = page;
-        }
-
-        private void cmdSetting_Click(object sender, RoutedEventArgs e)
-        {
-            // ตั้งค่า
         }
 
         #endregion

@@ -159,12 +159,14 @@ namespace DMT.TA.Pages.Coupon
             if (null == tran) return;
 
             var win = TAApp.Windows.MessageBoxYesNo;
-            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่:{0}", tran.CouponId);
+            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่: {0} ?", tran.CouponId);
             win.Setup(msg, "Toll Admin");
             if (win.ShowDialog() == false)
             {
                 return;
             }
+            // Void
+            TSBCouponEditManager.VoidCoupon(tran);
 
             Search(); // refresh
         }
@@ -174,12 +176,14 @@ namespace DMT.TA.Pages.Coupon
             if (null == tran) return;
 
             var win = TAApp.Windows.MessageBoxYesNo;
-            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่:{0}", tran.CouponId);
+            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่: {0} ?", tran.CouponId);
             win.Setup(msg, "Toll Admin");
             if (win.ShowDialog() == false)
             {
                 return;
             }
+            // Void
+            TSBCouponEditManager.VoidCoupon(tran);
 
             Search(); // refresh
         }

@@ -2767,6 +2767,30 @@ namespace DMT.Services
             var coupons = TSBCouponTransaction.GetTSBCoupon80sStock(TAAPI.TSB).Value();
             return coupons;
         }
+        public static void VoidCoupon(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+
+            tran.TransactionType = TSBCouponTransactionTypes.Stock;
+            tran.UserId = null;
+            tran.FullNameEN = null;
+            tran.FullNameTH = null;
+            //tran.UserReceiveDate = null;
+            tran.SoldBy = null;
+            tran.SoldByFullNameEN = null;
+            tran.SoldByFullNameTH = null;
+            tran.SoldDate = new DateTime?();
+            tran.FinishFlag = TSBCouponFinishedFlags.Avaliable;
+            tran.TSBInvoiceId = null; // clear invoice id
+            TSBCouponTransaction.SaveTransaction(tran);
+
+            // Write Queue
+            TAServerCouponTransaction item = tran.ToServer();
+            if (null != item)
+            {
+                TAxTODMQService.Instance.WriteQueue(item);
+            }
+        }
 
         #endregion
     }

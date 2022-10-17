@@ -1445,6 +1445,51 @@ namespace DMT.Models
             }
         }
 
+
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCouponsSoldByDate(TSB tsb, DateTime? soldDate)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            if (!soldDate.HasValue || soldDate.Value == DateTime.MinValue)
+            {
+                // Check Sold Date.
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND SoldDate >= ? ";
+                    cmd += "   AND SoldDate < ? ";
+
+                    var dt1 = soldDate.Value.Date;
+                    var dt2 = dt1.AddDays(1);
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        dt1, dt2).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
         #endregion
     }
 

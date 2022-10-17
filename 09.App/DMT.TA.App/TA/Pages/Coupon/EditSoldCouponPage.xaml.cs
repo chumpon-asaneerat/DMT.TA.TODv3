@@ -97,8 +97,15 @@ namespace DMT.TA.Pages.Coupon
         {
             grid.ItemsSource = null; // clear grid.
 
+            if (!dtSoldDate.Value.HasValue)
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกวันที่ขายคูปอง", "Toll Admin");
+                win.ShowDialog();
+                return;
+            }
 
-            grid.ItemsSource = null; // set items to grid.
+            grid.ItemsSource = TSBCouponEditManager.GetSoldCoupons(dtSoldDate.Value.Value); // set items to grid.
         }
 
         #endregion

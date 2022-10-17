@@ -102,8 +102,7 @@
                               Style="{StaticResource SingleSelectListView}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="100"
-                                                CellTemplate="{StaticResource SAPIntrSerial}"
+                                <GridViewColumn Width="120"
                                                 Header="Serial No" />
                             </GridView>
                         </ListView.View>

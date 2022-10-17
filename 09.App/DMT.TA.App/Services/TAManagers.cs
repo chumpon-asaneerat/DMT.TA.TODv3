@@ -2742,6 +2742,20 @@ namespace DMT.Services
 
     #endregion
 
+
+    #region TSBCouponEditManager (static)
+
+    public static class TSBCouponEditManager
+    {
+        public static List<TSBCouponTransaction> GetSoldCoupons(DateTime soldDate)
+        {
+            var coupons = TSBCouponTransaction.GetTSBCouponsSoldByDate(TAAPI.TSB, soldDate).Value();             
+            return coupons;
+        }
+
+        #endregion
+    }
+
     #endregion
 
     #region Exchange Manager related classes

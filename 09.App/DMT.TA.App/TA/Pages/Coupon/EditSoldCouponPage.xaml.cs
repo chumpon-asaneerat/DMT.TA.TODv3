@@ -71,6 +71,11 @@ namespace DMT.TA.Pages.Coupon
             GotoMainMenu();
         }
 
+        private void cmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
+        }
+
         #endregion
 
         #region Private Methods
@@ -86,6 +91,14 @@ namespace DMT.TA.Pages.Coupon
         {
             dtSoldDate.Value = new DateTime?();
             grid.ItemsSource = null; // clear grid.
+        }
+
+        private void Search()
+        {
+            grid.ItemsSource = null; // clear grid.
+
+
+            grid.ItemsSource = null; // set items to grid.
         }
 
         #endregion

@@ -140,18 +140,47 @@ namespace DMT.TA.Pages.Coupon
                 return;
             }
 
-            grid35.ItemsSource = TSBCouponEditManager.GetSoldCoupon35s(dtSoldDate.Value.Value); // set items to grid.
-            grid80.ItemsSource = TSBCouponEditManager.GetSoldCoupon80s(dtSoldDate.Value.Value); // set items to grid.
+            RefreshListviews();
         }
 
         private void SwapC35(TSBCouponTransaction tran)
         {
             if (null == tran) return;
+
+            var coupons = TSBCouponEditManager.GetStockCoupon35s();
+            var win = TAApp.Windows.ChooseCouponInStock;
+            win.Setup(coupons);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            var src = tran;
+            var dst = win.SelectedCoupon;
+            if (null != src && null != dst)
+            {
+
+                RefreshListviews();
+            }
         }
 
         private void SwapC80(TSBCouponTransaction tran)
         {
             if (null == tran) return;
+
+            var coupons = TSBCouponEditManager.GetStockCoupon80s();
+            var win = TAApp.Windows.ChooseCouponInStock;
+            win.Setup(coupons);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            var src = tran;
+            var dst = win.SelectedCoupon;
+            if (null != src && null != dst)
+            {
+
+                RefreshListviews();
+            }
         }
 
         private void VoidC35(TSBCouponTransaction tran)
@@ -186,6 +215,13 @@ namespace DMT.TA.Pages.Coupon
             TSBCouponEditManager.VoidCoupon(tran);
 
             Search(); // refresh
+        }
+
+        private void RefreshListviews()
+        {
+
+            grid35.ItemsSource = TSBCouponEditManager.GetSoldCoupon35s(dtSoldDate.Value.Value); // set items to grid.
+            grid80.ItemsSource = TSBCouponEditManager.GetSoldCoupon80s(dtSoldDate.Value.Value); // set items to grid.
         }
 
         #endregion

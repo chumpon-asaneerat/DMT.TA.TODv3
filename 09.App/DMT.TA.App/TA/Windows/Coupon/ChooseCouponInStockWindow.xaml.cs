@@ -153,8 +153,18 @@ namespace DMT.TA.Windows.Coupon
         public void Setup(List<TSBCouponTransaction> coupons)
         {
             SelectedCoupon = null;
+            lastFilter = string.Empty;
+            txtCouponFilter.Text = string.Empty;
+
             _coupons = coupons;
             UpadteListViews();
+
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                txtCouponFilter.SelectAll();
+                txtCouponFilter.Focus();
+            }));
         }
 
         #endregion

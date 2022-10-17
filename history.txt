@@ -33,8 +33,11 @@ Refactor DMT.TA.TODv4 #2443
 Refactor DMT.TA.TODv4 #2442
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2441
-- 
+- DMT.TAxTODv3
+  - TA App
+    - Implements EditSoldCoupon #14
 
 [commited]
 Refactor DMT.TA.TODv4 #2440

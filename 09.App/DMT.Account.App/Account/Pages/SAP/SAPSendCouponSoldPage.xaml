@@ -59,7 +59,7 @@
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
                     <!--  USER FILTER PANEL  -->
-                    <DockPanel Height="155"
+                    <DockPanel Height="80"
                                Margin="10,1"
                                VerticalAlignment="Center"
                                DockPanel.Dock="Top"
@@ -81,10 +81,6 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="5" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <!--  LINE 1  -->
@@ -92,64 +88,10 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
-                                       Text="รหัสลูกค้า : "
-                                       TextAlignment="Right" />
-                            <TextBox x:Name="txtCustomerFilter"
-                                     Grid.Row="1"
-                                     Grid.Column="2"
-                                     VerticalAlignment="Center"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     KeyDown="txtCustomerFilter_KeyDown"
-                                     Style="{StaticResource CommonTextBox}" />
-                            <StackPanel Grid.Row="1"
-                                        Grid.Column="4"
-                                        Grid.ColumnSpan="3"
-                                        Height="30"
-                                        Orientation="Horizontal">
-                                <Button x:Name="cmdSelectCustomer"
-                                        Width="150"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Click="cmdSelectCustomer_Click"
-                                        Content="ค้นหา"
-                                        FontSize="{StaticResource InputFontSize18}"
-                                        Style="{DynamicResource InlineButton}" />
-                                <Button x:Name="cmdClear"
-                                        Width="150"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Click="cmdClear_Click"
-                                        Content="Clear"
-                                        FontSize="{StaticResource InputFontSize18}"
-                                        Style="{DynamicResource InlineButton}" />
-                            </StackPanel>
-                            <!--  LINE 2  -->
-                            <TextBlock Grid.Row="3"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="ลูกค้า : "
-                                       TextAlignment="Right" />
-                            <Border Grid.Row="3"
-                                    Grid.Column="2"
-                                    Grid.ColumnSpan="5"
-                                    Background="AntiqueWhite">
-                                <TextBlock x:Name="txtCurrentCustomer"
-                                           VerticalAlignment="Center"
-                                           Foreground="Black"
-                                           Style="{StaticResource LabelText}"
-                                           Text="-"
-                                           TextAlignment="Left" />
-                            </Border>
-                            <!--  LINE 3  -->
-                            <TextBlock Grid.Row="5"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
                                        Text="ด่านเก็บเงิน : "
                                        TextAlignment="Right" />
                             <ComboBox Name="cbTSBs"
-                                      Grid.Row="5"
+                                      Grid.Row="1"
                                       Grid.Column="2"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Center"
@@ -158,14 +100,14 @@
                                       DisplayMemberPath="DisplayName"
                                       FontSize="{StaticResource InputFontSize18}"
                                       ItemsSource="{Binding}" />
-                            <TextBlock Grid.Row="5"
+                            <TextBlock Grid.Row="1"
                                        Grid.Column="4"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
                                        Text="วันที่ขาย : "
                                        TextAlignment="Right" />
                             <xceed:DateTimePicker x:Name="dtSoldDate"
-                                                  Grid.Row="5"
+                                                  Grid.Row="1"
                                                   Grid.Column="6"
                                                   VerticalAlignment="Center"
                                                   AutoCloseCalendar="True"
@@ -178,7 +120,7 @@
                                                   TimePickerShowButtonSpinner="False"
                                                   TimePickerVisibility="Collapsed" />
                             <Button x:Name="cmdSearch"
-                                    Grid.Row="5"
+                                    Grid.Row="1"
                                     Grid.Column="9"
                                     Grid.ColumnSpan="3"
                                     Width="150"
@@ -189,15 +131,15 @@
                                     Content="แสดงข้อมูล"
                                     FontSize="{StaticResource InputFontSize18}"
                                     Style="{DynamicResource InlineButton}" />
-                            <!--  LINE 4  -->
-                            <TextBlock Grid.Row="7"
+                            <!--  LINE 2  -->
+                            <TextBlock Grid.Row="3"
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
                                        Text="จำนวนรายการทั้งหมด : "
                                        TextAlignment="Right" />
                             <TextBox x:Name="txtTotalRows"
-                                     Grid.Row="7"
+                                     Grid.Row="3"
                                      Grid.Column="2"
                                      VerticalAlignment="Center"
                                      FontSize="{StaticResource InputFontSize18}"
@@ -206,7 +148,7 @@
                                      Text="0"
                                      TextAlignment="Center" />
                             <Button x:Name="cmdSendToSAP"
-                                    Grid.Row="7"
+                                    Grid.Row="3"
                                     Grid.Column="4"
                                     Grid.ColumnSpan="3"
                                     Width="150"

@@ -24,8 +24,12 @@ Refactor DMT.TA.TODv4 #2426
 Refactor DMT.TA.TODv4 #2425
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2424
-- 
+- DMT.TAxTODv3
+  - Account App
+    - Update SAP Send coupon sold page
+      - Remove customer search.
 
 [commited]
 Refactor DMT.TA.TODv4 #2423

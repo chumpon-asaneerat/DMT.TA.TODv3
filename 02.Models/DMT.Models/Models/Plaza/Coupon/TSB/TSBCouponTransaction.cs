@@ -1472,6 +1472,7 @@ namespace DMT.Models
                     cmd += "  FROM TSBCouponTransactionView ";
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
+                    cmd += "   AND SapChooseFlag = 1 ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 
@@ -1516,6 +1517,7 @@ namespace DMT.Models
                     cmd += "  FROM TSBCouponTransactionView ";
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
+                    cmd += "   AND SapChooseFlag = 1 ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 

@@ -78,22 +78,34 @@ namespace DMT.TA.Pages.Coupon
 
         private void cmdC35Swap_Click(object sender, RoutedEventArgs e)
         {
-
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            SwapC35(tran);
         }
 
         private void cmdC35Void_Click(object sender, RoutedEventArgs e)
         {
-
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            VoidC35(tran);
         }
 
         private void cmdC80Swap_Click(object sender, RoutedEventArgs e)
         {
-
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            SwapC80(tran);
         }
 
         private void cmdC80Void_Click(object sender, RoutedEventArgs e)
         {
-
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            VoidC80(tran);
         }
 
 
@@ -130,6 +142,26 @@ namespace DMT.TA.Pages.Coupon
 
             grid35.ItemsSource = TSBCouponEditManager.GetSoldCoupon35s(dtSoldDate.Value.Value); // set items to grid.
             grid80.ItemsSource = TSBCouponEditManager.GetSoldCoupon80s(dtSoldDate.Value.Value); // set items to grid.
+        }
+
+        private void SwapC35(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+        }
+
+        private void SwapC80(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+        }
+
+        private void VoidC35(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+        }
+
+        private void VoidC80(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
         }
 
         #endregion

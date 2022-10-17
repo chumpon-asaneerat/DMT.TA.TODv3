@@ -2747,9 +2747,14 @@ namespace DMT.Services
 
     public static class TSBCouponEditManager
     {
-        public static List<TSBCouponTransaction> GetSoldCoupons(DateTime soldDate)
+        public static List<TSBCouponTransaction> GetSoldCoupon35s(DateTime soldDate)
         {
-            var coupons = TSBCouponTransaction.GetTSBCouponsSoldByDate(TAAPI.TSB, soldDate).Value();             
+            var coupons = TSBCouponTransaction.GetTSBCoupon35sSoldByDate(TAAPI.TSB, soldDate).Value();             
+            return coupons;
+        }
+        public static List<TSBCouponTransaction> GetSoldCoupon80s(DateTime soldDate)
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon80sSoldByDate(TAAPI.TSB, soldDate).Value();
             return coupons;
         }
 

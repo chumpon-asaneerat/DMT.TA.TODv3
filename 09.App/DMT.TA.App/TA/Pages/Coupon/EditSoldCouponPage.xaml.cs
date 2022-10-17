@@ -76,6 +76,27 @@ namespace DMT.TA.Pages.Coupon
             Search();
         }
 
+        private void cmdC35Swap_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdC35Void_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdC80Swap_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdC80Void_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
         #endregion
 
         #region Private Methods
@@ -89,13 +110,15 @@ namespace DMT.TA.Pages.Coupon
 
         private void ClearInputs()
         {
-            dtSoldDate.Value = new DateTime?();
-            grid.ItemsSource = null; // clear grid.
+            dtSoldDate.Value = DateTime.Today.Date;
+            grid35.ItemsSource = null; // clear grid.
+            grid80.ItemsSource = null; // clear grid.
         }
 
         private void Search()
         {
-            grid.ItemsSource = null; // clear grid.
+            grid35.ItemsSource = null; // clear grid.
+            grid80.ItemsSource = null; // clear grid.
 
             if (!dtSoldDate.Value.HasValue)
             {
@@ -105,7 +128,8 @@ namespace DMT.TA.Pages.Coupon
                 return;
             }
 
-            grid.ItemsSource = TSBCouponEditManager.GetSoldCoupons(dtSoldDate.Value.Value); // set items to grid.
+            grid35.ItemsSource = TSBCouponEditManager.GetSoldCoupon35s(dtSoldDate.Value.Value); // set items to grid.
+            grid80.ItemsSource = TSBCouponEditManager.GetSoldCoupon80s(dtSoldDate.Value.Value); // set items to grid.
         }
 
         #endregion

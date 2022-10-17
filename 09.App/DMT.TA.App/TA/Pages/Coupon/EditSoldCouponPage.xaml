@@ -93,20 +93,111 @@
                     </StackPanel>
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
-                    <!--  LIST VIEW  -->
-                    <ListView x:Name="grid"
-                              Margin="10,0"
-                              FontSize="{StaticResource InputFontSize18}"
-                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
-                              ItemsSource="{Binding}"
-                              Style="{StaticResource SingleSelectListView}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="120"
-                                                Header="Serial No" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.Column="0" LastChildFill="True">
+                            <TextBlock Text="คูปอง 35 บาท"
+                                       DockPanel.Dock="Top"
+                                       Margin="10,5"
+                                       Style="{StaticResource LabelText}" />
+                            <!--  LIST VIEW 35  -->
+                            <ListView x:Name="grid35"
+                                      Margin="10,0"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                      ItemsSource="{Binding}"
+                                      Style="{StaticResource SingleSelectListView}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Serial No">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding CouponId}"
+                                                               Foreground="Red"
+                                                               TextAlignment="Center"
+                                                               Width="300" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="380">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Button x:Name="cmdC35Swap"
+                                                                Content="สลับเลขเล่ม"
+                                                                Width="150"
+                                                                FontSize="{StaticResource InputFontSize18}"
+                                                                Style="{DynamicResource InlineButton}"
+                                                                Click="cmdC35Swap_Click" />
+                                                        <TextBlock Width="5" />
+                                                        <Button x:Name="cmdC35Void"
+                                                                Content="ยกเลิกการขาย"
+                                                                Width="150"
+                                                                FontSize="{StaticResource InputFontSize18}"
+                                                                Style="{DynamicResource InlineButton}"
+                                                                Click="cmdC35Void_Click" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                        <DockPanel Grid.Column="2" LastChildFill="True">
+                            <TextBlock Text="คูปอง 80 บาท"
+                                       DockPanel.Dock="Top"
+                                       Margin="10,5"
+                                       Style="{StaticResource LabelText}" />
+                            <!--  LIST VIEW 80  -->
+                            <ListView x:Name="grid80"
+                                      Margin="10,0"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                      ItemsSource="{Binding}"
+                                      Style="{StaticResource SingleSelectListView}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Serial No">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding CouponId}"
+                                                               Foreground="Red"
+                                                               TextAlignment="Center"
+                                                               Width="300" />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="380">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Button x:Name="cmdC80Swap"
+                                                                Content="สลับเลขเล่ม"
+                                                                Width="150"
+                                                                FontSize="{StaticResource InputFontSize18}"
+                                                                Style="{DynamicResource InlineButton}"
+                                                                Click="cmdC80Swap_Click" />
+                                                        <TextBlock Width="5" />
+                                                        <Button x:Name="cmdC80Void"
+                                                                Content="ยกเลิกการขาย"
+                                                                Width="150"
+                                                                FontSize="{StaticResource InputFontSize18}"
+                                                                Style="{DynamicResource InlineButton}"
+                                                                Click="cmdC80Void_Click" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                    </Grid>
                 </DockPanel>
             </DockPanel>
         </Grid>

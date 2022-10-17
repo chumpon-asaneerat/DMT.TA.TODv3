@@ -1472,13 +1472,16 @@ namespace DMT.Models
                     cmd += "  FROM TSBCouponTransactionView ";
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
+                    cmd += "   AND (TransactionType = ? OR TransactionType = ?) ";
                     cmd += "   AND SapChooseFlag = 1 ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 
                     var dt1 = soldDate.Value.Date;
                     var dt2 = dt1.AddDays(1);
-                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, CouponType.BHT35,
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, 
+                        CouponType.BHT35,
+                        TSBCouponTransactionTypes.SoldByLane, TSBCouponTransactionTypes.SoldByTSB,
                         dt1, dt2).ToList();
                     var results = rets.ToModels();
                     result.Success(results);
@@ -1517,13 +1520,16 @@ namespace DMT.Models
                     cmd += "  FROM TSBCouponTransactionView ";
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
+                    cmd += "   AND (TransactionType = ? OR TransactionType = ?) ";
                     cmd += "   AND SapChooseFlag = 1 ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 
                     var dt1 = soldDate.Value.Date;
                     var dt2 = dt1.AddDays(1);
-                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, CouponType.BHT80,
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, 
+                        CouponType.BHT80,
+                        TSBCouponTransactionTypes.SoldByLane, TSBCouponTransactionTypes.SoldByTSB,
                         dt1, dt2).ToList();
                     var results = rets.ToModels();
                     result.Success(results);

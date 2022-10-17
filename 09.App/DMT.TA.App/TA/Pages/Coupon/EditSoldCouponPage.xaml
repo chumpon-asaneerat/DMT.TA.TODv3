@@ -12,7 +12,95 @@
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded"
              mc:Ignorable="d">
-    <Grid>
-            
+    <UserControl.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </UserControl.Resources>
+    <Grid Background="DimGray">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdBack"
+                                      Click="cmdBack_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <DockPanel LastChildFill="True">
+                    <Border Margin="10,1"
+                            Background="CornflowerBlue"
+                            BorderBrush="Silver"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top">
+                        <TextBlock Margin="5,3"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="แก้ไข ข้อมูลขายคูปอง" />
+                    </Border>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <!--  SOLD DATE  -->
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="วันที่ขายคูปอง : "
+                                   TextAlignment="Right"
+                                   Width="150" />
+                        <TextBlock Width="5" />
+                        <xceed:DateTimePicker x:Name="dtSoldDate"
+                                              VerticalAlignment="Center"
+                                              AutoCloseCalendar="True"
+                                              FontSize="{StaticResource InputFontSize18}"
+                                              Format="Custom"
+                                              FormatString="dd/MM/yyyy"
+                                              ShowButtonSpinner="False"
+                                              Style="{DynamicResource DMTDateTimePickerStyle}"
+                                              TimePickerAllowSpin="False"
+                                              TimePickerShowButtonSpinner="False"
+                                              TimePickerVisibility="Collapsed"
+                                              Width="180" />
+                    </StackPanel>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <!--  LIST VIEW  -->
+                    <ListView x:Name="grid"
+                              Margin="10,0"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource SAPIntrSerial}"
+                                                Header="Serial No" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
     </Grid>
 </UserControl>

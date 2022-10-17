@@ -46,8 +46,6 @@ namespace DMT.TA.Pages.Coupon
         private CultureInfo culture = new CultureInfo("th-TH");
         private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
 
-        private User _chief = null;
-
         #endregion
 
         #region Loaded/Unloaded
@@ -55,14 +53,57 @@ namespace DMT.TA.Pages.Coupon
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Setup DateTime Picker
-            // Sold Data
-            //dtSoldDate.CultureInfo = culture;
-            //dtSoldDate.Language = language;
+            dtSoldDate.CultureInfo = culture;
+            dtSoldDate.Language = language;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        #endregion
+
+        #region Button Handlers
+
+        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void GotoMainMenu()
+        {
+            // Main Menu Page
+            var page = TAApp.Pages.MainMenu;
+            PageContentManager.Instance.Current = page;
+        }
+
+        private void ClearInputs()
+        {
+            dtSoldDate.Value = new DateTime?();
+            grid.ItemsSource = null; // clear grid.
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup
+        /// </summary>
+        public void Setup()
+        {
+            ClearInputs();
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                dtSoldDate.SelectAll();
+                dtSoldDate.Focus();
+            }));
         }
 
         #endregion

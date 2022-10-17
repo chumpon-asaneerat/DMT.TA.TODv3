@@ -372,6 +372,28 @@ namespace DMT
 
             #endregion
 
+            #region Return Coupon
+
+            private static TA.Pages.Coupon.EditSoldCouponPage _EditSoldCoupon;
+
+            /// <summary>Gets Edit Sold Coupon Page.</summary>
+            public static TA.Pages.Coupon.EditSoldCouponPage EditSoldCoupon
+            {
+                get
+                {
+                    if (null == _EditSoldCoupon)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _EditSoldCoupon = new TA.Pages.Coupon.EditSoldCouponPage();
+                        }
+                    }
+                    return _EditSoldCoupon;
+                }
+            }
+
+            #endregion
+
             #region Credit Transaction History
 
             private static TA.Pages.Reports.CreditTransactionHistoryPreviewPage _CreditTransactionHistory;

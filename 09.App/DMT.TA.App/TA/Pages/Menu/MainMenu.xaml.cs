@@ -219,6 +219,9 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // แก้ไข ข้อมูลขายคูปอง
+            var page = TAApp.Pages.EditSoldCoupon;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         // OK - ออกจากระบบ.

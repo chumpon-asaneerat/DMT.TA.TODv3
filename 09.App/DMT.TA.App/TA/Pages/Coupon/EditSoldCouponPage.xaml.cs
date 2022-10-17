@@ -158,7 +158,15 @@ namespace DMT.TA.Pages.Coupon
             var dst = win.SelectedCoupon;
             if (null != src && null != dst)
             {
+                var win2 = TAApp.Windows.MessageBoxYesNo;
+                string msg = string.Format("ต้องการสลับเลขเล่มการขายคูปอง จากเลขที่: {0} เป็นเลขที่: {1}?", src.CouponId, dst.CouponId);
+                win2.Setup(msg, "Toll Admin");
+                if (win2.ShowDialog() == false)
+                {
+                    return;
+                }
 
+                TSBCouponEditManager.SwapCoupon(src, dst);
                 RefreshListviews();
             }
         }
@@ -178,7 +186,15 @@ namespace DMT.TA.Pages.Coupon
             var dst = win.SelectedCoupon;
             if (null != src && null != dst)
             {
+                var win2 = TAApp.Windows.MessageBoxYesNo;
+                string msg = string.Format("ต้องการสลับเลขเล่มการขายคูปอง จากเลขที่: {0} เป็นเลขที่: {1}?", src.CouponId, dst.CouponId);
+                win2.Setup(msg, "Toll Admin");
+                if (win2.ShowDialog() == false)
+                {
+                    return;
+                }
 
+                TSBCouponEditManager.SwapCoupon(src, dst);
                 RefreshListviews();
             }
         }

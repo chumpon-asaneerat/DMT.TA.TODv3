@@ -62,6 +62,19 @@ namespace DMT.TA.Windows.Coupon
             DialogResult = false;
         }
 
+        private void cmdChoose_Click(object sender, RoutedEventArgs e)
+        {
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+
+            SelectedCoupon = tran; // auto select.
+            if (null == SelectedCoupon)
+                return;
+
+            DialogResult = true; // Close Window.
+        }
+
         #endregion
 
         #region TextBox Handlers

@@ -50,7 +50,7 @@
                     <Grid Width="5" DockPanel.Dock="Right" />
                     <ctrl:ImageButton x:Name="cmdCancel"
                                       Click="cmdCancel_Click"
-                                      DockPanel.Dock="Left"
+                                      DockPanel.Dock="Right"
                                       ImageSource="/DMT.TA.App;component/Images/Button/Cancel2.png">
                         <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิก" />
                     </ctrl:ImageButton>
@@ -63,15 +63,44 @@
                     <TextBlock Style="{StaticResource LabelText}" Text="ค้นหา: " />
                     <TextBlock Width="10" />
                     <TextBox x:Name="txtCouponFilter"
-                                     Width="120"
-                                     KeyUp="txtCouponFilter_KeyUp"
-                                     Style="{StaticResource CommonTextBox}" />
+                             Width="120"
+                             KeyUp="txtCouponFilter_KeyUp"
+                             Style="{StaticResource CommonTextBox}" />
                 </StackPanel>
                 <!--  SEPERATOR  -->
                 <TextBlock Height="10" DockPanel.Dock="Top" />
                 <!--  WORK AREA  -->
-                <ListView x:Name="grid">
-                    
+                <ListView x:Name="grid"
+                          FontSize="{StaticResource InputFontSize18}"
+                          ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                          ItemsSource="{Binding}"
+                          Style="{StaticResource SingleSelectListView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="รหัสคูปอง">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding CouponId}"
+                                                   Foreground="Black"
+                                                   TextAlignment="Center"
+                                                   Width="300" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="cmdChoose"
+                                                Content="เลือก"
+                                                Width="150"
+                                                FontSize="{StaticResource InputFontSize18}"
+                                                Style="{DynamicResource InlineButton}"
+                                                Click="cmdChoose_Click" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
                 </ListView>
             </DockPanel>
         </Grid>

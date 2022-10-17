@@ -2792,6 +2792,52 @@ namespace DMT.Services
             }
         }
 
+        public static void SwapCoupon(TSBCouponTransaction src, TSBCouponTransaction dst)
+        {
+            if (null == src || null == dst) return;
+            // Dest => Update data from source
+            dst.TransactionType = src.TransactionType;
+            dst.UserId = src.UserId;
+            dst.FullNameEN = src.FullNameEN;
+            dst.FullNameTH = src.FullNameTH;
+            //dst.UserReceiveDate = src.UserReceiveDate;
+            dst.SoldBy = src.SoldBy;
+            dst.SoldByFullNameEN = src.SoldByFullNameEN;
+            dst.SoldByFullNameTH = src.SoldByFullNameTH;
+            dst.SoldDate = src.SoldDate;
+            dst.FinishFlag = src.FinishFlag;
+            dst.TSBInvoiceId = src.TSBInvoiceId;
+            TSBCouponTransaction.SaveTransaction(dst);
+
+            // Write Queue
+            TAServerCouponTransaction item1 = dst.ToServer();
+            if (null != item1)
+            {
+                TAxTODMQService.Instance.WriteQueue(item1);
+            }
+
+            // Source => to stock
+            src.TransactionType = TSBCouponTransactionTypes.Stock;
+            src.UserId = null;
+            src.FullNameEN = null;
+            src.FullNameTH = null;
+            //tran.UserReceiveDate = null;
+            src.SoldBy = null;
+            src.SoldByFullNameEN = null;
+            src.SoldByFullNameTH = null;
+            src.SoldDate = new DateTime?();
+            src.FinishFlag = TSBCouponFinishedFlags.Avaliable;
+            src.TSBInvoiceId = null; // clear invoice id
+            TSBCouponTransaction.SaveTransaction(src);
+
+            // Write Queue
+            TAServerCouponTransaction item2 = src.ToServer();
+            if (null != item2)
+            {
+                TAxTODMQService.Instance.WriteQueue(item2);
+            }
+        }
+
         #endregion
     }
 

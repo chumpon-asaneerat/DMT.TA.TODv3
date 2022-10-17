@@ -483,6 +483,17 @@ namespace DMT
                 }
             }
 
+            /// <summary>Gets Choose Coupon in stock Window.</summary>
+            public static TA.Windows.Coupon.ChooseCouponInStockWindow ChooseCouponInStock
+            {
+                get
+                {
+                    var ret = new TA.Windows.Coupon.ChooseCouponInStockWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
             #endregion
 
             #region Internal Exchange

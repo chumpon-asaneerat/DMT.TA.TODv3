@@ -52,7 +52,7 @@
                                       Click="cmdExchange_Click"
                                       DockPanel.Dock="Right"
                                       ImageSource="/DMT.TA.App;component/Images/Button/Money2.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="แลกเปลี่ยนเงิน" />
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="รับเงิน" />
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>

@@ -21,8 +21,12 @@ Refactor DMT.TA.TODv4 #2427
 Refactor DMT.TA.TODv4 #2426
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2425
-- 
+- DMT.TAxTODv3
+  - TA App
+    - Update ReceiveExchangeWindow
+      - Add logic Appvoce BHT Total must equal to Reveived BHT Total.
 
 [commited]
 Refactor DMT.TA.TODv4 #2424

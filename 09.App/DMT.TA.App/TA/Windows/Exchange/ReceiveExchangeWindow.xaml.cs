@@ -67,6 +67,15 @@ namespace DMT.TA.Windows.Exchange
             var exch = (null != _manager) ? _manager.ExchangeOut : null;
             if (null != appv && null != recv && null != exch)
             {
+                if (appv.BHTTotal != recv.BHTTotal)
+                {
+                    var win = TAApp.Windows.MessageBox;
+                    win.Owner = this; // change owner
+                    win.Setup("ยอดรวมเงินที่ได้รับจริง ไม่เท่ากับ ยอดรวมรายการอนุมัติจากบัญชี กรุณาตรวจสอบข้อมูล", "Toll Admin");
+                    win.ShowDialog();
+                    return success;
+                }
+
                 if (appv.ExchangeBHT != exch.BHTTotal)
                 {
                     var win = TAApp.Windows.MessageBox;

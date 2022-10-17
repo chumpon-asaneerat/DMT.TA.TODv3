@@ -97,6 +97,7 @@ namespace DMT.TA.Pages.Exchange
             LoadExchangeGroups();
             plazaSummary.Setup(); // Call for refresh.
         }
+
         private void LoadExchangeGroups()
         {
             gridBorrow.ItemsSource = null;

@@ -2757,6 +2757,16 @@ namespace DMT.Services
             var coupons = TSBCouponTransaction.GetTSBCoupon80sSoldByDate(TAAPI.TSB, soldDate).Value();
             return coupons;
         }
+        public static List<TSBCouponTransaction> GetStockCoupon35s(DateTime soldDate)
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon35sStock(TAAPI.TSB).Value();
+            return coupons;
+        }
+        public static List<TSBCouponTransaction> GetStockCoupon80s(DateTime soldDate)
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon80sStock(TAAPI.TSB).Value();
+            return coupons;
+        }
 
         #endregion
     }

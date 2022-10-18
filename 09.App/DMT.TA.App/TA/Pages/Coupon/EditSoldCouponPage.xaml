@@ -87,7 +87,7 @@
                                 Height="30"
                                 VerticalAlignment="Center"
                                 Click="cmdSearch_Click"
-                                Content="ค้าหาข้อมูล"
+                                Content="ค้นหาข้อมูล"
                                 FontSize="{StaticResource InputFontSize18}"
                                 Style="{DynamicResource InlineButton}" />
                     </StackPanel>

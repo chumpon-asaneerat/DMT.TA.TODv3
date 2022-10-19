@@ -199,8 +199,8 @@ namespace DMT.Account.Pages.SAP
             json.DocDate = DateTime.Now.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             json.DocDueDate = dt.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             // fixed
-            json.CardCode = "C-TollWay";
-            json.CardName = "ลูกค้าผู้ใช้ทาง";
+            json.CardCode = "C-Coupon P";
+            json.CardName = "C-Coupon P";
             json.TollwayID = _tollwayId;
 
             TAxTODMQService.Instance.WriteQueue(json);

@@ -35,7 +35,7 @@
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource NonRevenueTotalDescription}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource NonRevenueBHTTotal}" />
+                    <TextBox Style="{StaticResource NonRevenueBHTTotal}" MaxLength="6" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource NonRevenueTotalUnitStyle}" />
                 </StackPanel>

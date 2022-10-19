@@ -236,6 +236,28 @@ namespace DMT.TOD.Controls.Revenue
             }
         }
 
+        public bool IsValidOtherAmount
+        {
+            get
+            {
+                if (null == manager || null == manager.Entry)
+                    return false;
+                decimal max = (decimal)1000000;
+                return (manager.Entry.OtherBHTTotal < max);
+            }
+        }
+
+        public bool IsValidNonRevenueAmount
+        {
+            get
+            {
+                if (null == manager || null == manager.Entry)
+                    return false;
+                decimal max = (decimal)1000000;
+                return (manager.Entry.NonRevenueBHTTotal < max);
+            }
+        }
+
         #endregion
     }
 }

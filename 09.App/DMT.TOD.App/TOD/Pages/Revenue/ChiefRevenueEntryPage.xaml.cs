@@ -352,6 +352,7 @@ namespace DMT.TOD.Pages.Revenue
         {
             MethodBase med = MethodBase.GetCurrentMethod();
             med.Info("[<<<<   START PRINT PREVIEW   >>>>]");
+
             #region Check Has BagNo/BeltNo
 
             if (!entry.HasBagNo)
@@ -420,6 +421,40 @@ namespace DMT.TOD.Pages.Revenue
                 win.Height = oldHt;
 
                 entry.FocusBeltNo();
+
+                return;
+            }
+
+            #endregion
+
+            #region Check NonRevenue, Other Amount BHT
+
+            if (!entry.IsValidOtherAmount)
+            {
+                var win = TODApp.Windows.MessageBox;
+                var oldHt = win.Height;
+                win.Height += 50;
+                string msg = "ยอดรายได้อื่น" + Environment.NewLine;
+                msg += "ต้องน้อยกว่า 1 ล้านบาท" + Environment.NewLine;
+                msg += "กรุณาตรวจสอบ";
+                win.Setup(msg, "DMT - Tour of Duty");
+                win.ShowDialog();
+                win.Height = oldHt;
+
+                return;
+            }
+
+            if (!entry.IsValidNonRevenueAmount)
+            {
+                var win = TODApp.Windows.MessageBox;
+                var oldHt = win.Height;
+                win.Height += 50;
+                string msg = "ยอดเงินรับฝาก" + Environment.NewLine;
+                msg += "ต้องน้อยกว่า 1 ล้านบาท" + Environment.NewLine;
+                msg += "กรุณาตรวจสอบ";
+                win.Setup(msg, "DMT - Tour of Duty");
+                win.ShowDialog();
+                win.Height = oldHt;
 
                 return;
             }

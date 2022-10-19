@@ -35,7 +35,7 @@
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource OtherTotalDescription}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource OtherBHTTotal}" />
+                    <TextBox Style="{StaticResource OtherBHTTotal}" MaxLength="6" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource OtherTotalUnitStyle}" />
                 </StackPanel>

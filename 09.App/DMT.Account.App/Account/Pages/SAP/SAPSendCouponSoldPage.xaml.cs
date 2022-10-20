@@ -200,7 +200,7 @@ namespace DMT.Account.Pages.SAP
             json.DocDueDate = dt.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
             // fixed
             json.CardCode = "C-Coupon P";
-            json.CardName = "C-Coupon P";
+            json.CardName = "ลูกค้าคูปองที่ด่าน";
             json.TollwayID = _tollwayId;
 
             TAxTODMQService.Instance.WriteQueue(json);

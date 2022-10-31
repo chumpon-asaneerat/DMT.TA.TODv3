@@ -265,6 +265,14 @@ namespace DMT.Services
             CheckSendError(med, fullFileName, ret);
         }
 
+        private void SendEditSerialNo(string fullFileName, Models.TAAEditserialno value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.Coupon.EditSerialNo(value);
+            CheckSendError(med, fullFileName, ret);
+        }
+
         #endregion
 
         #region Resend (from error folder)
@@ -378,6 +386,15 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Exchange.SaveRecivedItem(value);
+            CheckResendError(med, fullFileName, ret);
+        }
+
+        private void ResendEditSerialNo(string fullFileName, Models.TAAEditserialno value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.Coupon.EditSerialNo(value);
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -574,6 +591,21 @@ namespace DMT.Services
                 {
                     var value = jsonString.FromJson<Models.TAAReceiveExchangeItem>();
                     SendReceiveExchangeItem(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("edit.serialno"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAEditserialno>();
+                    SendEditSerialNo(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -782,6 +814,21 @@ namespace DMT.Services
                     MoveErrorToInvalid(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("edit.serialno"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.TAAEditserialno>();
+                    ResendEditSerialNo(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
+                }
+            }
             else
             {
                 // Not Supports file.
@@ -950,6 +997,17 @@ namespace DMT.Services
                 string msg = values[i].ToJson(false);
                 WriteFile(fileName, msg);
             }
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The TAAEditserialno instance.</param>
+        public void WriteQueue(Models.TAAEditserialno value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("update.coupon.received");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
         }
 
         #endregion

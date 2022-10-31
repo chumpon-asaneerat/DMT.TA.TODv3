@@ -15,8 +15,10 @@ Refactor DMT.TA.TODv4 #2449
 Refactor DMT.TA.TODv4 #2448
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2447
-- 
+- DMT.TAxTODv3
+  - Update TA Replace Coupon process #2.
 
 [commited]
 Refactor DMT.TA.TODv4 #2446

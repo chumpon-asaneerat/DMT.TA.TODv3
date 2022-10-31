@@ -61,6 +61,19 @@ namespace DMT.Services.Operations
                     RouteConsts.TAxTOD.Coupon.Inquiry.Url, value, 15 * 1000);
                 return ret;
             }
+
+            /// <summary>
+            /// Execute EditSerialNo api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult EditSerialNo(
+                TAAEditserialno value)
+            {
+                var ret = Execute<TAAEditserialno>(
+                    RouteConsts.TAxTOD.Coupon.EditSerialNo.Url, value);
+                return ret;
+            }
         }
     }
 }

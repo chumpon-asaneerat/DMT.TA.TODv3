@@ -54,6 +54,17 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = @"/api/TA/coupons/inquiry";
                 }
+
+                // Url: /api/TA/coupons/editserialno
+                /// <summary>The EditSerialNo Class.</summary>
+                public static partial class EditSerialNo
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "EditSerialNo";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/TA/coupons/editserialno";
+                }
+
             }
         }
     }

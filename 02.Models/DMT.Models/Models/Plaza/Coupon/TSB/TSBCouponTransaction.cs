@@ -1473,7 +1473,7 @@ namespace DMT.Models
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
                     cmd += "   AND (TransactionType = ? OR TransactionType = ?) ";
-                    cmd += "   AND SapChooseFlag = 1 ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 
@@ -1521,7 +1521,7 @@ namespace DMT.Models
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
                     cmd += "   AND (TransactionType = ? OR TransactionType = ?) ";
-                    cmd += "   AND SapChooseFlag = 1 ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 
@@ -1563,7 +1563,7 @@ namespace DMT.Models
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
                     cmd += "   AND TransactionType = ? ";
-                    cmd += "   AND SapChooseFlag = 1 ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
 
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
                         CouponType.BHT35,
@@ -1599,7 +1599,7 @@ namespace DMT.Models
                     cmd += " WHERE TSBId = ? ";
                     cmd += "   AND CouponType = ? ";
                     cmd += "   AND TransactionType = ? ";
-                    cmd += "   AND SapChooseFlag = 1 ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
 
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
                         CouponType.BHT80,

@@ -131,15 +131,35 @@
                                                                 Content="สลับเลขเล่ม"
                                                                 Width="150"
                                                                 FontSize="{StaticResource InputFontSize18}"
-                                                                Style="{DynamicResource InlineButton}"
-                                                                Click="cmdC35Swap_Click" />
+                                                                Click="cmdC35Swap_Click">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button" BasedOn="{StaticResource InlineButton}">
+                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=SapChooseFlag}" Value="1">
+                                                                            <Setter Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
                                                         <TextBlock Width="5" />
                                                         <Button x:Name="cmdC35Void"
                                                                 Content="ยกเลิกการขาย"
                                                                 Width="150"
                                                                 FontSize="{StaticResource InputFontSize18}"
-                                                                Style="{DynamicResource InlineButton}"
-                                                                Click="cmdC35Void_Click" />
+                                                                Click="cmdC35Void_Click">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button" BasedOn="{StaticResource InlineButton}">
+                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=SapChooseFlag}" Value="1">
+                                                                            <Setter Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -180,15 +200,35 @@
                                                                 Content="สลับเลขเล่ม"
                                                                 Width="150"
                                                                 FontSize="{StaticResource InputFontSize18}"
-                                                                Style="{DynamicResource InlineButton}"
-                                                                Click="cmdC80Swap_Click" />
+                                                                Click="cmdC80Swap_Click">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button" BasedOn="{StaticResource InlineButton}">
+                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=SapChooseFlag}" Value="1">
+                                                                            <Setter Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
                                                         <TextBlock Width="5" />
                                                         <Button x:Name="cmdC80Void"
                                                                 Content="ยกเลิกการขาย"
                                                                 Width="150"
                                                                 FontSize="{StaticResource InputFontSize18}"
-                                                                Style="{DynamicResource InlineButton}"
-                                                                Click="cmdC80Void_Click" />
+                                                                Click="cmdC80Void_Click">
+                                                            <Button.Style>
+                                                                <Style TargetType="Button" BasedOn="{StaticResource InlineButton}">
+                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=SapChooseFlag}" Value="1">
+                                                                            <Setter Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Button.Style>
+                                                        </Button>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>

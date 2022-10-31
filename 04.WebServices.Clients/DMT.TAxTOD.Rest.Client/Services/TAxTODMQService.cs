@@ -1005,7 +1005,7 @@ namespace DMT.Services
         public void WriteQueue(Models.TAAEditserialno value)
         {
             if (null == value) return;
-            string fileName = GetFileName("update.coupon.received");
+            string fileName = GetFileName("edit.serialno");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

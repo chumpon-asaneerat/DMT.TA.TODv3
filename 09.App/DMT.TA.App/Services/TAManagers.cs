@@ -2836,6 +2836,16 @@ namespace DMT.Services
             {
                 TAxTODMQService.Instance.WriteQueue(item2);
             }
+            
+            if (null != item1 && null != item2)
+            {
+                TAAEditserialno exch1 = new TAAEditserialno();
+                exch1.TSBId = src.TSBId;
+                exch1.Oldserialno = src.CouponId;
+                exch1.Newserialno = dst.CouponId;
+                // Write Queue
+                TAxTODMQService.Instance.WriteQueue(exch1);
+            }
         }
 
         #endregion

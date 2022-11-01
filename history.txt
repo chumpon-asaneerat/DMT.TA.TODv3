@@ -27,8 +27,11 @@ Refactor DMT.TA.TODv4 #2455
 Refactor DMT.TA.TODv4 #2454
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2453
-- 
+- DMT.TAxTODv3
+  - Update TA Replace Coupon process #6.
+    - SwapCoupon -> remove send save api, only send editserialno api
 
 [commited]
 Refactor DMT.TA.TODv4 #2452

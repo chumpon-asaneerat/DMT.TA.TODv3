@@ -2810,11 +2810,13 @@ namespace DMT.Services
             TSBCouponTransaction.SaveTransaction(dst);
 
             // Write Queue
+            /*
             TAServerCouponTransaction item1 = dst.ToServer();
             if (null != item1)
             {
                 TAxTODMQService.Instance.WriteQueue(item1);
             }
+            */
 
             // Source => to stock
             src.TransactionType = TSBCouponTransactionTypes.Stock;
@@ -2831,21 +2833,20 @@ namespace DMT.Services
             TSBCouponTransaction.SaveTransaction(src);
 
             // Write Queue
+            /*
             TAServerCouponTransaction item2 = src.ToServer();
             if (null != item2)
             {
                 TAxTODMQService.Instance.WriteQueue(item2);
             }
-            
-            if (null != item1 && null != item2)
-            {
-                TAAEditserialno exch1 = new TAAEditserialno();
-                exch1.TSBId = src.TSBId;
-                exch1.Oldserialno = src.CouponId;
-                exch1.Newserialno = dst.CouponId;
-                // Write Queue
-                TAxTODMQService.Instance.WriteQueue(exch1);
-            }
+            */
+
+            TAAEditserialno exch1 = new TAAEditserialno();
+            exch1.TSBId = src.TSBId;
+            exch1.Oldserialno = src.CouponId;
+            exch1.Newserialno = dst.CouponId;
+            // Write Queue
+            TAxTODMQService.Instance.WriteQueue(exch1);
         }
 
         #endregion

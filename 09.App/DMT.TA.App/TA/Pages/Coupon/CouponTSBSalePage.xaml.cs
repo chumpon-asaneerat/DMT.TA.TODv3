@@ -2,9 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Threading;
 using System.Reflection;
 
@@ -40,11 +42,31 @@ namespace DMT.TA.Pages.Coupon
 
         #region Internal Variables
 
+        //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
+        private CultureInfo culture = new CultureInfo("th-TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
+
         private User _chief = null;
         private string last35Filter = string.Empty;
         private string last80Filter = string.Empty;
 
         private TSBCouponSoldManager manager = null;
+
+        #endregion
+
+        #region Loaded/Unloaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Setup DateTime Picker
+            dtSoldDate.CultureInfo = culture;
+            dtSoldDate.Language = language;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         #endregion
 
@@ -266,6 +288,14 @@ namespace DMT.TA.Pages.Coupon
 
         private void GotoPrintPreview()
         {
+            if (!dtSoldDate.Value.HasValue)
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกวันที่ขายคูปอง", "Toll Admin");
+                win.ShowDialog();
+                return;
+            }
+
             var sold35 = lv35Sold.ItemsSource as IList;
             var cnt35 = (null != sold35) ? sold35.Count : 0;
             var sold80 = lv80Sold.ItemsSource as IList;
@@ -421,6 +451,25 @@ namespace DMT.TA.Pages.Coupon
 
         #endregion
 
+        #region Sold Date Methods
+
+        public DateTime? GetSoldDate()
+        {
+            if (!dtSoldDate.Value.HasValue)
+            {
+                return new DateTime?();
+            }
+            else
+            {
+                var soldDate = dtSoldDate.Value.Value;
+                var soldTime = DateTime.Now;
+                return new DateTime?(new DateTime(soldDate.Year, soldDate.Month, soldDate.Day,
+                    soldTime.Hour, soldTime.Minute, soldTime.Second, soldTime.Millisecond));
+            }
+        }
+
+        #endregion
+
         #region Print Methods
 
         private void PreparePreview()
@@ -457,6 +506,12 @@ namespace DMT.TA.Pages.Coupon
             // clear reprot datasource.
             inst.DataSources.Clear();
 
+            // Set Sold date
+            if (null != manager)
+            {
+                manager.SoldDate = GetSoldDate();
+            }
+
             var tsb = TSB.GetCurrent().Value();
 
             // load C35 items.
@@ -465,6 +520,8 @@ namespace DMT.TA.Pages.Coupon
             if (null != c35coupons)
             {
                 c35coupons.ForEach(coupon => {
+                    // update sold date to transaction
+                    coupon.Transaction.SoldDate = GetSoldDate();
                     c35Items.Add(coupon.Transaction);
                 });
 
@@ -475,6 +532,8 @@ namespace DMT.TA.Pages.Coupon
             if (null != c80coupons)
             {
                 c80coupons.ForEach(coupon => {
+                    // update sold date to transaction
+                    coupon.Transaction.SoldDate = GetSoldDate();
                     c80Items.Add(coupon.Transaction);
                 });
             }
@@ -529,8 +588,10 @@ namespace DMT.TA.Pages.Coupon
 
             // Add parameters (if required).
 
-            // Coupon Received Date.
-            DateTime today = DateTime.Today;
+            // Coupon Sold Date.
+            var soldDate = GetSoldDate();
+            DateTime today = (soldDate.HasValue) ? soldDate.Value : DateTime.Now;
+
             //string couponDate = today.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
             string couponDate = today.ToThaiDateTimeString("dd/MM/yyyy");
             inst.Parameters.Add(RdlcReportParameter.Create("couponDate", couponDate));
@@ -592,11 +653,15 @@ namespace DMT.TA.Pages.Coupon
             waitPanel.Visibility = Visibility.Hidden;
             rptViewer.Visibility = Visibility.Visible;
 
+            // Set Sold Date to UI.
+            dtSoldDate.Value = DateTime.Now;
+
             _chief = chief;
             if (null == manager) manager = new TSBCouponSoldManager();
             if (null != manager)
             {
                 manager.SetUser(chief);
+                manager.SoldDate = GetSoldDate(); // Set Sold Date to manager.
                 manager.Refresh();
                 UpadteListViews();
             }

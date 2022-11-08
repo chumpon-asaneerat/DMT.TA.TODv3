@@ -24,8 +24,11 @@ Refactor DMT.TA.TODv4 #2456
 Refactor DMT.TA.TODv4 #2455
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2454
-- 
+- DMT.TAxTODv3
+  - Update TA - TSB Sold Coupon.
+    - Add sold date UI.
 
 [commited]
 Refactor DMT.TA.TODv4 #2453

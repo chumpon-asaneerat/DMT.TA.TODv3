@@ -2494,6 +2494,10 @@ namespace DMT.Services
                     if (coupon.TransactionType != TSBCouponTransactionTypes.SoldByTSB)
                         return;
                     coupon.FinishFlag = 0; // Mask as finished.
+                    if (SoldDate.HasValue)
+                    {
+                        coupon.SoldDate = new DateTime?(SoldDate.Value);
+                    }
 
                     if (null != coupon.Transaction && coupon.Commit())
                     {
@@ -2736,12 +2740,15 @@ namespace DMT.Services
                 return autoId;
             }
         }
+        /// <summary>
+        /// Gets or sets Sold Date.
+        /// </summary>
+        public DateTime? SoldDate { get; set; }
 
         #endregion
     }
 
     #endregion
-
 
     #region TSBCouponEditManager (static)
 

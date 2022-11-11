@@ -7,7 +7,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:exchange="clr-namespace:DMT.Account.Controls"
         Title="คำร้องขอการแลกเปลี่ยนเงิน"
-        Width="1600"
+        Width="1500"
         Height="700"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"

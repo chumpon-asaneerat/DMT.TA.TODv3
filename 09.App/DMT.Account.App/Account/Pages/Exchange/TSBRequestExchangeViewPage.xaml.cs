@@ -322,7 +322,7 @@ namespace DMT.Account.Pages.Exchange
                 }
 
                 var win = AccountApp.Windows.ApproveExchangeWindow;
-                win.Setup(reqId, doc);
+                win.Setup(reqId, doc, true);
                 win.ShowDialog();
             }
         }

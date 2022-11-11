@@ -36,8 +36,12 @@ Refactor DMT.TA.TODv4 #2462
 Refactor DMT.TA.TODv4 #2461
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2460
-- 
+- DMT.TAxTODv3
+  - Account App
+    - Edit/Reject item that plaza still not reveived #3.
+    - Exchange History add view details button.
 
 [commited]
 Refactor DMT.TA.TODv4 #2459

@@ -157,6 +157,24 @@
                                                     CellTemplate="{StaticResource StatusText}"
                                                     Header=" สถานะ "
                                                     HeaderContainerStyle="{StaticResource CommonHeaderContainer}" />
+                                    <!--  SHOW DETAIL (BUTTON)  -->
+                                    <GridViewColumn Width="150"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource RequestDetailHeader}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="cmdApproveDetail"
+                                                        Height="30"
+                                                        FontSize="{StaticResource InputFontSize18}"
+                                                        Style="{DynamicResource InlineButton}"
+                                                        Click="cmdApproveDetail_Click">
+                                                    <TextBlock Margin="5,0"
+                                                               Text="เรียกดู"
+                                                               TextAlignment="Left" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>

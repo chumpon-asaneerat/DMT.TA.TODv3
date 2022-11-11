@@ -65,6 +65,96 @@ namespace DMT.Account.Pages.Exchange
 
         #region Button Handlers
 
+        private void cmdApproveDetail_Click(object sender, RoutedEventArgs e)
+        {
+            // Show Detail windows
+            if (null == sender || !(sender is Button)) return;
+            var item = (sender as Button).DataContext as Models.TAAExchangeSummary;
+            if (null != item)
+            {
+                int reqId = (item.RequestId.HasValue) ? item.RequestId.Value : -1;
+                string tsbId = item.TSBId;
+                TSB tsb = TSB.GetTSB(tsbId).Value();
+
+                // create approve document
+                var doc = new TSBExchangeTransaction();
+                doc.TransactionDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
+                doc.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
+                doc.Remark = item.RequestRemark;
+                doc.AdditionalBHT = (item.AppAdditionalBHT.HasValue) ? item.AppAdditionalBHT.Value : decimal.Zero;
+                doc.BorrowBHT = (item.AppBorrowBHT.HasValue) ? item.AppBorrowBHT.Value : decimal.Zero;
+                doc.ExchangeBHT = (item.AppExchangeBHT.HasValue) ? item.AppExchangeBHT.Value : decimal.Zero;
+                doc.PeriodBegin = item.PeriodBegin;
+                doc.PeriodEnd = item.PeriodEnd;
+                doc.TSBId = tsb.TSBId;
+                doc.TSBNameEN = tsb.TSBNameEN;
+                doc.TSBNameTH = tsb.TSBNameTH;
+
+                doc.Remark = item.ApproveRemark; // assign approve's remark.
+
+                // get request details
+                var details = ops.Exchange.GetApproveItems(tsbId, reqId).Value();
+                if (null != details && details.Count > 0)
+                {
+                    details.ForEach(detail =>
+                    {
+                        if (detail.CurrencyDenomId == 1)
+                        {
+                            doc.AmountST25 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 2)
+                        {
+                            doc.AmountST50 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 3)
+                        {
+                            doc.AmountBHT1 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 4)
+                        {
+                            doc.AmountBHT2 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 5)
+                        {
+                            doc.AmountBHT5 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 6)
+                        {
+                            doc.AmountBHT10 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 7)
+                        {
+                            // Skip 10 BHT Notes.
+                        }
+                        else if (detail.CurrencyDenomId == 8)
+                        {
+                            doc.AmountBHT20 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 9)
+                        {
+                            doc.AmountBHT50 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 10)
+                        {
+                            doc.AmountBHT100 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 11)
+                        {
+                            doc.AmountBHT500 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                        else if (detail.CurrencyDenomId == 12)
+                        {
+                            doc.AmountBHT1000 = (detail.ApproveValue.HasValue) ? detail.ApproveValue.Value : decimal.Zero;
+                        }
+                    });
+                }
+
+                var win = AccountApp.Windows.ApproveExchangeWindow;
+                win.Setup(reqId, doc, false);
+                win.ShowDialog();
+            }
+        }
+
         private void cmdBack_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenu();

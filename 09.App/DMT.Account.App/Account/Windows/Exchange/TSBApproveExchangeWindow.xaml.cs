@@ -260,8 +260,25 @@ namespace DMT.Windows
 
         #region Public Method
 
-        public void Setup(int reqId, Models.TSBExchangeTransaction approve)
+        public void Setup(int reqId, Models.TSBExchangeTransaction approve, bool editable)
         {
+            if (!editable)
+            {
+                // view only
+                cmdReject.Visibility = Visibility.Collapsed;
+                cmdEdit.Visibility = Visibility.Collapsed;
+                cmdCancelEdit.Visibility = Visibility.Collapsed;
+                cmdSaveEdit.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // allow edit
+                cmdReject.Visibility = Visibility.Visible;
+                cmdEdit.Visibility = Visibility.Visible;
+                cmdCancelEdit.Visibility = Visibility.Collapsed;
+                cmdSaveEdit.Visibility = Visibility.Collapsed;
+            }
+
             // keep current request id.
             _reqId = reqId;
             if (null != approve)

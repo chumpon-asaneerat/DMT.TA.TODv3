@@ -145,13 +145,17 @@
                                                     CellTemplate="{StaticResource RequestDateCellTemplate}"
                                                     HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
                                                     HeaderTemplate="{StaticResource RequestDateHeaderTemplate}" />
-
                                     <!--  REQUEST (EXCHANGE/BORROW/ADDITIONAL)  -->
                                     <GridViewColumn Width="Auto"
                                                     CellTemplate="{StaticResource RequestExchangeColumns}"
                                                     Header="ขออนุมัติ"
                                                     HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                                                     HeaderTemplate="{StaticResource RequestExchangeColumnsHeader}" />
+                                    <!--  APPROVE DATE  -->
+                                    <GridViewColumn Width="150"
+                                                    CellTemplate="{StaticResource ApproveDateCellTemplate}"
+                                                    HeaderContainerStyle="{StaticResource CommonHeaderContainer}"
+                                                    HeaderTemplate="{StaticResource ApproveDateHeaderTemplate}" />
                                     <!--  APPROVE (EXCHANGE/BORROW/ADDITIONAL)  -->
                                     <GridViewColumn Width="Auto"
                                                     CellTemplate="{StaticResource ApproveExchangeColumns}"

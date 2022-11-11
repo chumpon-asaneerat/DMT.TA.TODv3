@@ -941,6 +941,17 @@
         <TextBlock Text="{Binding Path=RequestDateString, Mode=OneWay}" TextAlignment="Center" />
     </DataTemplate>
 
+    <!--  ApproveDate HEADER TEMPLATE  -->
+    <DataTemplate x:Key="ApproveDateHeaderTemplate">
+        <TextBlock Text="วันที่อนุมัติ"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
+    </DataTemplate>
+    <!--  ApproveDate CELL TEMPLATE  -->
+    <DataTemplate x:Key="ApproveDateCellTemplate">
+        <TextBlock Text="{Binding Path=ApproveDateString, Mode=OneWay}" TextAlignment="Center" />
+    </DataTemplate>
+
     <!--  Request UserId CELL TEMPLATE  -->
     <DataTemplate x:Key="RequestUserIdCellTemplate">
         <TextBlock Text="{Binding Path=RequestUserId, Mode=OneWay}" TextAlignment="Center" />

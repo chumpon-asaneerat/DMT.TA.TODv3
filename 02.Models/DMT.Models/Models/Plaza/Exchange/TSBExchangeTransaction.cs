@@ -839,7 +839,7 @@ namespace DMT.Models
 
 		#endregion
 
-		#region Exchange Group
+		#region Request Date
 
 		/// <summary>
 		/// Gets or sets Request Date.
@@ -914,6 +914,37 @@ namespace DMT.Models
 			get
 			{
 				var ret = (this.RequestDate == DateTime.MinValue) ? "" : this.RequestDate.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+				return ret;
+			}
+			set { }
+		}
+
+		#endregion
+
+		#region Approve Date (Runtime for account app used)
+
+		/// <summary>
+		/// Gets or sets ApproveDate (Runtime for account app used).
+		/// </summary>
+		[Category("Runtime")]
+		[Description("Gets or sets ApproveDate (Runtime for account app used).")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public DateTime ApproveDate { get; set; }
+		/// <summary>
+		/// Gets Approve Date String.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets Approve Date String.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string ApproveDateString
+		{
+			get
+			{
+				var ret = (this.ApproveDate == DateTime.MinValue) ? "" : this.ApproveDate.ToThaiDateTimeString("dd/MM/yyyy");
 				return ret;
 			}
 			set { }
@@ -1862,6 +1893,20 @@ namespace DMT.Models
 				}
 			}
 		}
+
+		#endregion
+
+		#region DocumentStatus -> for Account used
+
+		/// <summary>
+		/// Gets Document Status display text.
+		/// </summary>
+		[Category("Common")]
+		[Description("Gets Document Status display text.")]
+		[ReadOnly(true)]
+		[JsonIgnore]
+		[Ignore]
+		public string DocumentStatus { get; set; }
 
 		#endregion
 

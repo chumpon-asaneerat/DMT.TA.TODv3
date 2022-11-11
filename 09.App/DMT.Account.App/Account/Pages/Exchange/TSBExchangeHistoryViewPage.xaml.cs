@@ -17,6 +17,10 @@ using DMT.Services;
 using NLib;
 using NLib.Services;
 using NLib.Reflection;
+// Excel Export
+using OfficeOpenXml;
+using EPPlus;
+using EPPlus.DataExtractor;
 
 #endregion
 
@@ -82,7 +86,10 @@ namespace DMT.Account.Pages.Exchange
 
         private void cmdExport_Click(object sender, RoutedEventArgs e)
         {
-            List<TAAExchangeSummary> results = grid.DataContext as List<TAAExchangeSummary>;
+            string tsbId = null;
+            DateTime? requestDate = dtRequestDate.Value;
+            string status = null;
+            List<TAAExchangeSummary> results = Search(tsbId, status, requestDate);
             if (null == results)
             {
                 var win = AccountApp.Windows.MessageBox;
@@ -120,6 +127,8 @@ namespace DMT.Account.Pages.Exchange
                 doc = new TSBExchangeTransaction();
                 doc.TransactionDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
                 doc.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
+                doc.RequestDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
+                doc.ApproveDate = (item.ApproveDate.HasValue) ? item.ApproveDate.Value : DateTime.MinValue;
                 doc.Remark = item.RequestRemark;
                 doc.AdditionalBHT = (item.AppAdditionalBHT.HasValue) ? item.AppAdditionalBHT.Value : decimal.Zero;
                 doc.BorrowBHT = (item.AppBorrowBHT.HasValue) ? item.AppBorrowBHT.Value : decimal.Zero;
@@ -235,24 +244,184 @@ namespace DMT.Account.Pages.Exchange
             string status = (null != cbStatus.SelectedItem && cbStatus.SelectedItem is ExchangeStatusItem) ?
                 (cbStatus.SelectedItem as ExchangeStatusItem).Code: null;
             DateTime? requestDate = dtRequestDate.Value;
-            
             grid.DataContext = null;
 
+            List<TAAExchangeSummary> results = Search(tsbId, status, requestDate);
+
+            grid.DataContext = results;
+        }
+
+        private List<TAAExchangeSummary> Search(string tsbId, string status, DateTime? requestDate)
+        {
             List<TAAExchangeSummary> results = new List<TAAExchangeSummary>(); ;
             var rets = ops.Exchange.Gets(status, tsbId, requestDate).Value();
             if (null != rets)
             {
-                rets.ForEach(ret => 
+                rets.ForEach(ret =>
                 {
                     if (null == tsbId)
                         results.Add(ret); // all tsb case.
-                    else if (null != tsbId && ret.TSBId == tsbId) 
+                    else if (null != tsbId && ret.TSBId == tsbId)
                         results.Add(ret); // filter by selected tsbid
                 });
             }
 
-            grid.DataContext = results;
+            return results;
         }
+
+        #region Excel helper class
+
+        public class NExcelExportColumn
+        {
+            public string ColumnName { get; set; }
+            public string PropertyName { get; set; }
+        }
+        public class NExcelExport
+        {
+            #region Static Methods - Register License
+
+            /// <summary>
+            /// Register License.
+            /// </summary>
+            public static void RegisterLicense()
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            }
+
+            #endregion
+
+            #region Constructor
+
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            public NExcelExport() : base()
+            {
+                RegisterLicense();
+                this.Maps = new List<NExcelExportColumn>();
+            }
+
+            #endregion
+
+            #region Show Save Excel Dialog
+
+            public bool ShowDialog(string defaultFileName)
+            {
+                return ShowDialog(null, null, "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล", defaultFileName);
+            }
+            public bool ShowDialog(string title = "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล",
+                string initDir = null)
+            {
+                return ShowDialog(null, title, initDir);
+            }
+            public bool ShowDialog(Window owner,
+                string title = "กรุณาเลือก excel file ที่ต้องการนำเข้าข้อมูล",
+                string initDir = null,
+                string defaultFileName = "")
+            {
+                bool ret = false;
+
+                // setup dialog options
+                var sd = new Microsoft.Win32.SaveFileDialog();
+                sd.InitialDirectory = initDir;
+                sd.Title = string.IsNullOrEmpty(title) ? "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล" : title;
+                sd.Filter = "Excel Files(*.xls, *.xlsx)|*.xls;*.xlsx";
+                sd.FileName = defaultFileName;
+                ret = sd.ShowDialog(owner) == true;
+                if (ret)
+                {
+                    // assigned to FileName
+                    this.FileName = sd.FileName;
+                }
+                sd = null;
+
+                return ret;
+            }
+
+            #endregion
+
+            #region Public Methods
+
+            public bool Save<T>(List<T> items, string sheetName = "Sheet1")
+                where T : class
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+
+                bool ret = false;
+                if (string.IsNullOrWhiteSpace(FileName))
+                    return ret;
+
+                if (null == items || items.Count <= 0)
+                {
+                    return ret;
+                }
+                // ปรับ เพิ่ม Export Excel
+                using (var package = new ExcelPackage(FileName))
+                {
+                    try
+                    {
+                        var sheet = package.Workbook.Worksheets[sheetName]; // check exists
+                        if (null != sheet)
+                        {
+                            // exists so remove
+                            package.Workbook.Worksheets.Delete(sheetName);
+                        }
+                        sheet = package.Workbook.Worksheets.Add(sheetName); // create new
+                        if (null != sheet)
+                        {
+                            int iRo1 = 1;
+                            items.ForEach(item =>
+                            {
+                                int iCol = 1;
+                                Maps.ForEach(map =>
+                                {
+                                    if (iRo1 == 1)
+                                    {
+                                        sheet.Cells[iRo1, iCol].Value = map.ColumnName;
+                                        sheet.Cells[2, iCol].Value = DynamicAccess<T>.Get(item, map.PropertyName); ;
+                                    }
+                                    else if (iRo1 == 2)
+                                    {
+                                        iRo1 = 3;
+                                        sheet.Cells[iRo1, iCol].Value = DynamicAccess<T>.Get(item, map.PropertyName);
+                                    }
+                                    else
+                                    {
+                                        // write data
+                                        sheet.Cells[iRo1, iCol].Value = DynamicAccess<T>.Get(item, map.PropertyName);
+                                    }
+                                    iCol++;
+                                });
+                                iRo1++;
+                            });
+
+
+                            // save to file.
+                            package.SaveAs(this.FileName);
+                            ret = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        med.Err(ex);
+                    }
+                }
+
+                return ret;
+            }
+
+            #endregion
+
+            #region Public Properties
+
+            public string FileName { get; private set; }
+
+            public List<NExcelExportColumn> Maps { get; set; }
+
+            #endregion
+        }
+
+        #endregion
 
         private void Exports(List<TAAExchangeSummary> items)
         {
@@ -263,13 +432,49 @@ namespace DMT.Account.Pages.Exchange
             {
                 if (null == header) return;
                 var tran = CreateExchangeTransaction(header);
-                if (null != tran) trans.Add(tran);
+                if (null != tran)
+                {
+                    if (header.Status != "A" && header.Status != "F")
+                    tran.DocumentStatus = header.StatusText; // set document status text.
+                    trans.Add(tran);
+                }
             });
 
-            trans.ForEach(tran => 
+            // export.
+            NExcelExport export = new NExcelExport();
+            if (export.ShowDialog("คำร้องขอแลกยืมเงินทอน.xlsx"))
             {
-                // export.
-            });
+                // map column and property
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "ด่าน", PropertyName = "TSBNameTH" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "วันที่ร้องขอ", PropertyName = "RequestDateString" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "วันที่อนุมัติ", PropertyName = "ApproveDateString" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "สถานะ", PropertyName = "DocumentStatus" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "เงินขอแลก", PropertyName = "ExchangeBHT" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "เงินยืมเพิ่ม", PropertyName = "BorrowBHT" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "เพิ่มวงเงิน", PropertyName = "AdditionalBHT" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "1 บาท", PropertyName = "AmountBHT1" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "2 บาท", PropertyName = "AmountBHT2" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "5 บาท", PropertyName = "AmountBHT5" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "10 บาท", PropertyName = "AmountBHT10" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "20 บาท", PropertyName = "AmountBHT20" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "50 บาท", PropertyName = "AmountBHT50" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "100 บาท", PropertyName = "AmountBHT100" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "500 บาท", PropertyName = "AmountBHT500" });
+                export.Maps.Add(new NExcelExportColumn { ColumnName = "1000 บาท", PropertyName = "AmountBHT1000" });
+
+                if (export.Save(trans, "คำร้องขอแลกยืมเงินทอน"))
+                {
+                    var win = AccountApp.Windows.MessageBox;
+                    win.Setup("ส่งออกข้อมูลสำเร็จ.", "DMT - TA (Account)");
+                    win.ShowDialog();
+                }
+                else
+                {
+                    var win = AccountApp.Windows.MessageBox;
+                    win.Setup("ส่งออกข้อมูลไม่สำเร็จ.", "DMT - TA (Account)");
+                    win.ShowDialog();
+                }
+            }
         }
 
         private void GotoMainMenu()

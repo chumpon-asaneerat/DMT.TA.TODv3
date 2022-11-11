@@ -70,6 +70,7 @@ namespace DMT.Account.Controls
                 _approve.PeriodBegin = source.PeriodBegin;
                 _approve.PeriodEnd = source.PeriodEnd;
 
+                _approve.HasRemark = true;
                 _approve.Remark = source.Remark;
             }
         }
@@ -82,11 +83,11 @@ namespace DMT.Account.Controls
         {
             // keep source instance.
             source = approve;
-            CloneApprove();
-            if (null != _approve)
+            if (null != source)
             {
-                _approve.HasRemark = true;
+                source.HasRemark = true;
             }
+            CloneApprove();
             approveEntry.Setup(_approve);
         }
 
@@ -100,6 +101,11 @@ namespace DMT.Account.Controls
             approveEntry.IsEnabled = false;
             CloneApprove(); // restore current approve from source item.
             approveEntry.Setup(_approve);
+        }
+
+        public void EndEdit()
+        {
+            approveEntry.IsEnabled = false;
         }
 
         /// <summary>

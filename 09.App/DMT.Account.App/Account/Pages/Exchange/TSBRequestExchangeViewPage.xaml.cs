@@ -262,6 +262,8 @@ namespace DMT.Account.Pages.Exchange
                 doc.TSBNameEN = tsb.TSBNameEN;
                 doc.TSBNameTH = tsb.TSBNameTH;
 
+                doc.Remark = item.ApproveRemark; // assign approve's remark.
+
                 // get request details
                 var details = ops.Exchange.GetApproveItems(tsbId, reqId).Value();
                 if (null != details && details.Count > 0)

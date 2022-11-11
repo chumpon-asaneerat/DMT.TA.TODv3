@@ -74,7 +74,7 @@ namespace DMT.Windows
             header.FinishFlag = 0;
             header.PeriodBegin = _approve.PeriodBegin;
             header.PeriodEnd = _approve.PeriodEnd;
-            header.Remark = _approve.Remark;
+            header.Remark = _approve.Remark; // use remark from approve item.
             header.RequestId = _requestId;
             header.TSBId = _approve.TSBId;
             header.UserId = AccountApp.User.Current.UserId;
@@ -244,6 +244,8 @@ namespace DMT.Windows
 
                 _approve.PeriodBegin = _request.PeriodBegin;
                 _approve.PeriodEnd = _request.PeriodEnd;
+
+                _approve.Remark = _request.Remark;
             }
         }
 

@@ -18,8 +18,11 @@ Refactor DMT.TA.TODv4 #2458
 Refactor DMT.TA.TODv4 #2457
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2456
-- 
+- DMT.TAxTODv3
+  - Account App
+    - Fixed problem not show remark in view approve exchange document.
 
 [commited]
 Refactor DMT.TA.TODv4 #2455

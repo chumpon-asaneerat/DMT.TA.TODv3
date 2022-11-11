@@ -149,6 +149,7 @@
                                    TextAlignment="Left" />
                         <TextBox Height="90"
                                  Margin="10,0"
+                                 FontSize="{StaticResource EntryFontSize18}"
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Top"
                                  AcceptsReturn="True"

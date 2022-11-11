@@ -30,8 +30,11 @@ Refactor DMT.TA.TODv4 #2464
 Refactor DMT.TA.TODv4 #2463
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2462
-- 
+- DMT.TAxTODv3
+  - Account App
+    - Add EPPlus reference assemblies.
 
 [commited]
 Refactor DMT.TA.TODv4 #2461

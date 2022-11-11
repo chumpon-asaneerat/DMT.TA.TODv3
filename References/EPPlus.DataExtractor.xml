@@ -1,0 +1,575 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EPPlus.DataExtractor</name>
+    </assembly>
+    <members>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.WithProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String,System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,System.Object},System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,``0})">
+            <summary>
+            Maps a property from the type defined as the row model
+            to the column identifier that has its value.
+            </summary>
+            <typeparam name="TValue"></typeparam>
+            <param name="propertyExpression">Expression for the property to be mapped.</param>
+            <param name="column">The column that contains the value to be mapped to
+            the property defined by <paramref name="propertyExpression"/>.</param>
+            <param name="setPropertyValueCallback">Optional callback that gets executed before retrieving the cell value casted to <typeparamref name="TValue"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <param name="setPropertyCastedValueCallback">Optional callback that gets executed after retrieving the cell value casted to <typeparamref name="TValue"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.WithProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String,System.Func{System.Object,``0},System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,System.Object},System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,``0})">
+            <summary>
+            Maps a property from the type defined as the row model
+            to the column identifier that has its value.
+            </summary>
+            <typeparam name="TValue"></typeparam>
+            <param name="propertyExpression">Expression for the property to be mapped.</param>
+            <param name="column">The column that contains the value to be mapped to
+            the property defined by <paramref name="propertyExpression"/>.</param>
+            <param name="convertDataFunc">Function that can be used to convert the cell value, which is an object
+            to the desirable <typeparamref name="TValue"/>.</param>
+            <param name="setPropertyValueCallback">Optional callback that gets executed prior to the <paramref name="convertDataFunc"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <param name="setPropertyCastedValueCallback">Optional callback that gets executed after the <paramref name="convertDataFunc"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.GetData(System.Int32,System.Int32)">
+            <summary>
+            Obtains the entities for the rows previously configured.
+            </summary>
+            <param name="fromRow">The initial row to start the data extraction.</param>
+            <param name="toRow">The last row to read the data.</param>
+            <returns>Returns an <see cref="T:System.Collections.Generic.IEnumerable`1"/> with the data of the columns.</returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.GetData(System.Int32,System.Predicate{System.Int32})">
+            <summary>
+            Obtains the entities for the columns previously configured.
+            The <paramref name="fromRow"/> indicates the initial row that will be read,
+            the data extraction will only occur while the <param name="while" /> predicate returns true.
+            It'll get executed receiving the row index as parameter before extracting the data of each row.
+            </summary>
+            <param name="fromRow">The initial row to start the data extraction.</param>
+            <param name="@while">The condition that must.</param>
+            <returns>Returns an <see cref="T:System.Collections.Generic.IEnumerable`1"/> with the data of the columns.</returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.List{``0}}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="propertyCollection">Expression for the collection that will be populated
+            with elements from the columns.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.HashSet{``0}}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="propertyCollection">Expression for the collection that will be populated
+            with elements from the columns.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractor`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.ObjectModel.Collection{``0}}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="propertyCollection">Expression for the collection that will be populated
+            with elements from the columns.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractors.CollectionColumn.ColumnToCollectionConfiguration`1.WithProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String,System.Func{System.Object,``0})">
+            <summary>
+            Configure the mapping of the collection items to the columns
+            that will be read to extract multiple items to the collection.
+            </summary>
+            <typeparam name="TColumnValue">The type of the column.</typeparam>
+            <param name="columnValueProperty">Expression mapping to the property where the value of the column will be extracted to.</param>
+            <param name="columnHeader">The header of the column that will be used to identify if the value of the column
+            should be mapped to this property. This it the value of the column that will be defined in the
+            header row specified in the <see cref="!:ICollectionPropertyConfiguration.WithCollectionProperty&lt;TCollectionItem&gt;(Expression&lt;Func&lt;TRow, List&lt;TCollectionItem&gt;&gt;&gt;, int, Action&lt;IColumnToCollectionConfiguration&lt;TCollectionItem&gt;&gt;)"/>
+            </param>
+            <param name="convertDataFunc">Function that can be used to convert the cell value, which is an object
+            to the desirable <typeparamref name="TColumnValue"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractors.IColumnDataExtractor`1.SetPropertyValue(`0,System.Int32,OfficeOpenXml.ExcelRange)">
+            <summary>
+            Sets the property value for the <paramref name="dataInstance"/>.
+            This method also checks the validation actions, before and after casting the cell value,
+            if one of them aborts the execution, this method will return false and it will not set the
+            value for this property.
+            </summary>
+            <param name="dataInstance"></param>
+            <param name="row"></param>
+            <param name="cellRange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.DataExtractors.ColumnDataExtractor`2.SetPropertyValue(`0,System.Int32,OfficeOpenXml.ExcelRange)">
+            <summary>
+            Sets the property value for the <paramref name="dataInstance"/>.
+            This method also checks the validation actions, before and after casting the cell value,
+            if one of them aborts the execution, this method will return false and it will not set the
+            value for this property.
+            </summary>
+            <param name="dataInstance"></param>
+            <param name="cell"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EPPlus.DataExtractor.Data.CellAddress">
+            <summary>
+            Represents a specific cell address.
+            </summary>
+        </member>
+        <member name="P:EPPlus.DataExtractor.Data.CellAddress.Address">
+            <summary>
+            User-friendly cell address using letters for column. Like "B2".
+            </summary>
+        </member>
+        <member name="P:EPPlus.DataExtractor.Data.CellAddress.Column">
+            <summary>
+            The index of the columns, starting at one.
+            </summary>
+        </member>
+        <member name="P:EPPlus.DataExtractor.Data.CellAddress.Row">
+            <summary>
+            The index of the row, starting at one.
+            </summary>
+        </member>
+        <member name="P:EPPlus.DataExtractor.Data.PropertyExtractionContext.Aborted">
+            <summary>
+            Indicates whether or not the extraction should be aborted.
+            </summary>
+        </member>
+        <member name="P:EPPlus.DataExtractor.Data.PropertyExtractionContext.CellAddress">
+            <summary>
+            Defines the cell address from where the value of the current property was extracted.
+            </summary>
+        </member>
+        <member name="M:EPPlus.DataExtractor.Data.PropertyExtractionContext.Abort">
+            <summary>
+            Aborts the entire data extraction.
+            The entities for the rows already extracted will be returned.
+            </summary>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfigurationWithoutColumnsToCollection`1.WithCollectionProperty``3(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.List{``0}}},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``2}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <typeparam name="THeaderValue">The type of the header column.</typeparam>
+            <typeparam name="TRowValue">The type of the row value.</typeparam>
+            <param name="propertyCollection">An expression that specifies the collection
+            property that will hold the values.</param>
+            <param name="headerProperty">The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the header value.</param>
+            <param name="headerRow">The row number that contains the header data.</param>
+            <param name="rowProperty">>The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the row value.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfigurationWithoutColumnsToCollection`1.WithCollectionProperty``3(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.HashSet{``0}}},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``2}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <typeparam name="THeaderValue">The type of the header column.</typeparam>
+            <typeparam name="TRowValue">The type of the row value.</typeparam>
+            <param name="propertyCollection">An expression that specifies the collection
+            property that will hold the values.</param>
+            <param name="headerProperty">The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the header value.</param>
+            <param name="headerRow">The row number that contains the header data.</param>
+            <param name="rowProperty">>The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the row value.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfigurationWithoutColumnsToCollection`1.WithCollectionProperty``3(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.ObjectModel.Collection{``0}}},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``2}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <typeparam name="THeaderValue">The type of the header column.</typeparam>
+            <typeparam name="TRowValue">The type of the row value.</typeparam>
+            <param name="propertyCollection">An expression that specifies the collection
+            property that will hold the values.</param>
+            <param name="headerProperty">The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the header value.</param>
+            <param name="headerRow">The row number that contains the header data.</param>
+            <param name="rowProperty">>The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the row value.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfigurationWithoutColumnsToCollection`1.WithCollectionProperty``3(System.Func{`0,System.Collections.Generic.ICollection{``0}},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``2}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <typeparam name="THeaderValue">The type of the header column.</typeparam>
+            <typeparam name="TRowValue">The type of the row value.</typeparam>
+            <param name="collectionGetter">Function used to obtain the instance of collection where the
+            new values will be added.</param>
+            <param name="headerProperty">The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the header value.</param>
+            <param name="headerRow">The row number that contains the header data.</param>
+            <param name="rowProperty">>The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the row value.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfigurationWithoutColumnsToCollection`1.WithInitializedCollectionProperty``3(System.Func{`0,System.Collections.Generic.ICollection{``0}},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``2}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <typeparam name="THeaderValue">The type of the header column.</typeparam>
+            <typeparam name="TRowValue">The type of the row value.</typeparam>
+            <param name="collectionGetter">Function used to obtain the instance of collection where the
+            new values will be added.</param>
+            <param name="headerProperty">The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the header value.</param>
+            <param name="headerRow">The row number that contains the header data.</param>
+            <param name="rowProperty">>The expression property from <typeparamref name="TCollectionItem"/>
+            indicating the property that will be populated with the row value.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.List{``0}}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="propertyCollection">Expression for the collection that will be populated
+            with elements from the columns.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.HashSet{``0}}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="propertyCollection">Expression for the collection that will be populated
+            with elements from the columns.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.ObjectModel.Collection{``0}}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="propertyCollection">Expression for the collection that will be populated
+            with elements from the columns.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Func{`0,System.Collections.Generic.ICollection{``0}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="collectionGetter">Function used to obtain the instance of collection where the
+            new values will be added.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithInitializedCollectionProperty``1(System.Func{`0,System.Collections.Generic.ICollection{``0}},System.Int32,System.String,System.Action{EPPlus.DataExtractor.IColumnToCollectionConfiguration{``0}})">
+            <summary>
+            Configures a collection property to unpivot multiple columns to items in the collection property.
+            Different from the overloads, this method allows for having an undefined amount of columns
+            to be unpivoted to the collection.
+            </summary>
+            <param name="collectionGetter">Function used to obtain the instance of collection where the
+            new values will be added.</param>
+            <param name="headerRow">The number of the row where the header is defined. This row will be used
+            to search for the text of the collection columns mapping.</param>
+            <param name="startingColumn">Indicates the column address (with letters) where this collection
+            starts.</param>
+            <param name="configurePropertiesAction">Action to be used to configure the columns
+            for the collection items. Use the method
+            <see cref="!:IColumnToCollectionConfiguration.WithColumn&lt;TRowValue&gt;(Expression&lt;Func&lt;TCollectionItem, TRowValue&gt;&gt;, string)"/>
+            to define the mappings of the columns.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.List{``0}}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <param name="propertyCollection">An expression that specifies the collection
+            property that will hold the values.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.HashSet{``0}}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <param name="propertyCollection">An expression that specifies the collection
+            property that will hold the values.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.ObjectModel.Collection{``0}}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <param name="propertyCollection">An expression that specifies the collection
+            property that will hold the values.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithCollectionProperty``1(System.Func{`0,System.Collections.Generic.ICollection{``0}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <param name="collectionGetter">Function used to obtain the instance of collection where the
+            new values will be added.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.ICollectionPropertyConfiguration`1.WithInitializedCollectionProperty``1(System.Func{`0,System.Collections.Generic.ICollection{``0}},System.String,System.String)">
+            <summary>
+            Configure a collection property from <typeparamref name="TRow"/> object
+            that will be populated by columns data, instead of rows.
+            </summary>
+            <typeparam name="TCollectionItem">The type used inside a collection.
+            This type will usually have two properties, one to hold the column header and another
+            one for the row value.</typeparam>
+            <param name="collectionGetter">Function used to obtain the instance of collection where the
+            new values will be added.</param>
+            <param name="startColumn">The start of the column that will be extract to the collection.</param>
+            <param name="endColumn">The start of the column that will be extract to the collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.IColumnToCollectionConfiguration`1.WithProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String,System.Func{System.Object,``0})">
+            <summary>
+            Configure the mapping of the collection items to the columns
+            that will be read to extract multiple items to the collection.
+            </summary>
+            <typeparam name="TColumnValue">The type of the column.</typeparam>
+            <param name="columnValueProperty">Expression mapping to the property where the value of the column will be extracted to.</param>
+            <param name="columnHeader">The header of the column that will be used to identify if the value of the column
+            should be mapped to this property. This it the value of the column that will be defined in the
+            header row specified in the <see cref="!:ICollectionPropertyConfiguration.WithCollectionProperty&lt;TCollectionItem&gt;(Expression&lt;Func&lt;TRow, Collection&lt;TCollectionItem&gt;&gt;&gt;, int, string, Action&lt;IColumnToCollectionConfiguration&lt;TCollectionItem&gt;&gt;)"/>
+            </param>
+            <param name="convertDataFunc">Function that can be used to convert the cell value, which is an object
+            to the desirable <typeparamref name="TValue"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="T:EPPlus.DataExtractor.IDataExtractor`1">
+            <summary>
+            Instance used to configure the data
+            extraction.
+            </summary>
+            <typeparam name="TRow"></typeparam>
+        </member>
+        <member name="M:EPPlus.DataExtractor.IDataExtractor`1.WithProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String,System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,System.Object},System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,``0})">
+            <summary>
+            Maps a property from the type defined as the row model
+            to the column identifier that has its value.
+            </summary>
+            <typeparam name="TValue"></typeparam>
+            <param name="propertyExpression">Expression for the property to be mapped.</param>
+            <param name="column">The column that contains the value to be mapped to
+            the property defined by <paramref name="propertyExpression"/>.</param>
+            <param name="setPropertyValueCallback">Optional callback that gets executed before retrieving the cell value casted to <typeparamref name="TValue"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <param name="setPropertyCastedValueCallback">Optional callback that gets executed after retrieving the cell value casted to <typeparamref name="TValue"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.IDataExtractor`1.WithProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.String,System.Func{System.Object,``0},System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,System.Object},System.Action{EPPlus.DataExtractor.Data.PropertyExtractionContext,``0})">
+            <summary>
+            Maps a property from the type defined as the row model
+            to the column identifier that has its value.
+            </summary>
+            <typeparam name="TValue"></typeparam>
+            <param name="propertyExpression">Expression for the property to be mapped.</param>
+            <param name="column">The column that contains the value to be mapped to
+            the property defined by <paramref name="propertyExpression"/>.</param>
+            <param name="convertDataFunc">Function that can be used to convert the cell value, which is an object
+            to the desirable <typeparamref name="TValue"/>.</param>
+            <param name="setPropertyValueCallback">Optional callback that gets executed prior to the <paramref name="convertDataFunc"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <param name="validateCastedCellValue">Optional callback that gets executed after the <paramref name="convertDataFunc"/>.
+            The first parameter contains the cell address and a method that can abort the entire execution.
+            The second one the value of the cell.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.IGetData`1.GetData(System.Int32,System.Int32)">
+            <summary>
+            Obtains the entities for the columns previously configured.
+            </summary>
+            <param name="fromRow">The initial row to start the data extraction.</param>
+            <param name="toRow">The last row to read the data.</param>
+            <returns>Returns an <see cref="T:System.Collections.Generic.IEnumerable`1"/> with the data of the columns.</returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.IGetData`1.GetData(System.Int32,System.Predicate{System.Int32})">
+            <summary>
+            Obtains the entities for the columns previously configured.
+            The row that corresponds to the <paramref name="fromRow"/> will be read first,
+            the following rows will be read until the <param name="while" /> returns false,
+            the parameter for the predicate are the row index and the <see cref="!:ExcelRange" />
+            containing the data of the worksheet.
+            <para>
+            The predicate works like the condition of a do-while statement.
+            </para>
+            </summary>
+            <param name="while">The initial row to start the data extraction.</param>
+            <param name="continueToNextRow">The condition that must.</param>
+            <returns>Returns an <see cref="T:System.Collections.Generic.IEnumerable`1"/> with the data of the columns.</returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.PropertyValueSetter`2.SetPropertyValue(`0,OfficeOpenXml.ExcelRangeBase)">
+            <summary>
+            Sets the property value for the <paramref name="dataInstance"/>.
+            This method also checks the validation actions, before and after casting the cell value,
+            if one of them aborts the execution, this method will return false and it will not set the
+            value for this property.
+            </summary>
+            <param name="dataInstance"></param>
+            <param name="cell"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.SpreadsheetHelper.ConvertColumnHeaderToNumber(System.String)">
+            <summary>
+            Converts a string column header with letters only
+            to a numeric value representing the column.
+            </summary>
+            <param name="columnHeader"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EPPlus.DataExtractor.WorksheetExtensions.Extract``1(OfficeOpenXml.ExcelWorksheet)">
+            <summary>
+            Creates an <see cref="T:EPPlus.DataExtractor.IDataExtractor`1"/> to extract data from
+            the worksheet to <typeparamref name="TRow"/> objects.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if the <paramref name="worksheet"/> is null.</exception>
+            <typeparam name="TRow">The type that will be populated
+            with the data from the worksheet.</typeparam>
+            <param name="worksheet">The worksheet parameter.</param>
+            <returns>An instance of <see cref="T:EPPlus.DataExtractor.IDataExtractor`1"/>.</returns>
+        </member>
+    </members>
+</doc>

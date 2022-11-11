@@ -46,6 +46,18 @@
     <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\References\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.DataExtractor">
+      <HintPath>..\..\References\EPPlus.DataExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces">
+      <HintPath>..\..\References\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing">
+      <HintPath>..\..\References\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin">
       <HintPath>..\..\References\Microsoft.Owin.dll</HintPath>
     </Reference>

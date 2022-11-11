@@ -7,7 +7,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:exchange="clr-namespace:DMT.Account.Controls"
         Title="คำร้องขอการแลกเปลี่ยนเงินที่อนุมัติแล้ว"
-        Width="700"
+        Width="800"
         Height="700"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
@@ -40,7 +40,40 @@
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
                            DockPanel.Dock="Bottom">
-                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <!-- REJECT, BEGIN EDIT  -->
+                    <ctrl:ImageButton x:Name="cmdReject"
+                                      Margin="5, 0, 0, 0"
+                                      Click="cmdReject_Click"
+                                      DockPanel.Dock="Left"
+                                      Visibility="Visible"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Cancel.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ไม่อนุมัติ" />
+                    </ctrl:ImageButton>
+                    <ctrl:ImageButton x:Name="cmdEdit"
+                                      Margin="5, 0, 0, 0"
+                                      Click="cmdEdit_Click"
+                                      DockPanel.Dock="Left"
+                                      Visibility="Visible"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Approve.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="แก้ไข" />
+                    </ctrl:ImageButton>
+                    <!-- CANCEL EDIT, SAVE EDIT  -->
+                    <ctrl:ImageButton x:Name="cmdCancelEdit"
+                                      Margin="5, 0, 0, 0"
+                                      Click="cmdCancelEdit_Click"
+                                      DockPanel.Dock="Left"
+                                      Visibility="Collapsed"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Cancel2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ยกเลิกการแก้ไข" />
+                    </ctrl:ImageButton>
+                    <ctrl:ImageButton x:Name="cmdSaveEdit"
+                                      Margin="5, 0, 0, 0"
+                                      Click="cmdSaveEdit_Click"
+                                      DockPanel.Dock="Left"
+                                      Visibility="Collapsed"
+                                      ImageSource="/DMT.Account.App;component/Images/Button/Save2.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="บันทึกการแก้ไข" />
+                    </ctrl:ImageButton>
                     <Grid Width="5" DockPanel.Dock="Right" />
                     <ctrl:ImageButton x:Name="cmdBack"
                                       Click="cmdBack_Click"
@@ -57,4 +90,4 @@
             </DockPanel>
         </Grid>
     </Grid>
-    </Window>
+</Window>

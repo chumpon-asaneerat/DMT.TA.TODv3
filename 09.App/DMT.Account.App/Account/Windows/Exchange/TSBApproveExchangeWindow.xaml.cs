@@ -39,6 +39,38 @@ namespace DMT.Windows
             DialogResult = false;
         }
 
+        private void cmdReject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // Change buttons Visibility
+            cmdReject.Visibility = Visibility.Collapsed;
+            cmdEdit.Visibility = Visibility.Collapsed;
+            cmdCancelEdit.Visibility = Visibility.Visible;
+            cmdSaveEdit.Visibility = Visibility.Visible;
+        }
+
+        private void cmdCancelEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // Restore buttons Visibility
+            cmdReject.Visibility = Visibility.Visible;
+            cmdEdit.Visibility = Visibility.Visible;
+            cmdCancelEdit.Visibility = Visibility.Collapsed;
+            cmdSaveEdit.Visibility = Visibility.Collapsed;
+        }
+
+        private void cmdSaveEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // Restore buttons Visibility
+            cmdReject.Visibility = Visibility.Visible;
+            cmdEdit.Visibility = Visibility.Visible;
+            cmdCancelEdit.Visibility = Visibility.Collapsed;
+            cmdSaveEdit.Visibility = Visibility.Collapsed;
+        }
+
         #endregion
 
         #region Public Method

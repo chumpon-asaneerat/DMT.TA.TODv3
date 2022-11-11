@@ -31,13 +31,81 @@ namespace DMT.Account.Controls
 
         #endregion
 
+        #region Internal Variables
+
+        private TSBExchangeTransaction source = null;
+        private TSBExchangeTransaction _approve = null;
+
+        #endregion
+
+        #region Private Methods
+
+        private void CloneApprove()
+        {
+            if (null != source)
+            {
+                _approve = new TSBExchangeTransaction();
+
+                _approve.TransactionDate = DateTime.Now;
+                _approve.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
+
+                _approve.AmountST25 = source.AmountST25;
+                _approve.AmountST50 = source.AmountST50;
+                _approve.AmountBHT1 = source.AmountBHT1;
+                _approve.AmountBHT2 = source.AmountBHT2;
+                _approve.AmountBHT5 = source.AmountBHT5;
+                _approve.AmountBHT10 = source.AmountBHT10;
+                _approve.AmountBHT20 = source.AmountBHT20;
+                _approve.AmountBHT50 = source.AmountBHT50;
+                _approve.AmountBHT100 = source.AmountBHT100;
+                _approve.AmountBHT500 = source.AmountBHT500;
+                _approve.AmountBHT1000 = source.AmountBHT1000;
+
+                _approve.AdditionalBHT = source.AdditionalBHT;
+                _approve.BorrowBHT = source.BorrowBHT;
+                _approve.ExchangeBHT = source.ExchangeBHT;
+                _approve.TSBId = source.TSBId;
+                _approve.UserId = AccountApp.User.Current.UserId; // current approve user.
+
+                _approve.PeriodBegin = source.PeriodBegin;
+                _approve.PeriodEnd = source.PeriodEnd;
+
+                _approve.Remark = source.Remark;
+            }
+        }
+
+        #endregion
+
         #region Public Methods
 
         public void Setup(TSBExchangeTransaction approve)
         {
-            approve.HasRemark = true;
-            approveEntry.Setup(approve);
+            // keep source instance.
+            source = approve;
+            CloneApprove();
+            if (null != _approve)
+            {
+                _approve.HasRemark = true;
+            }
+            approveEntry.Setup(_approve);
         }
+
+        public void BeginEdit()
+        {
+            approveEntry.IsEnabled = true;
+        }
+
+        public void CancelEdit()
+        {
+            approveEntry.IsEnabled = false;
+            CloneApprove(); // restore current approve from source item.
+            approveEntry.Setup(_approve);
+        }
+
+        /// <summary>
+        /// Gets current approve item.
+        /// </summary>
+        public TSBExchangeTransaction Current { get { return _approve; } }
 
         #endregion
     }

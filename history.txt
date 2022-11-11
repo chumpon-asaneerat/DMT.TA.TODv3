@@ -33,8 +33,11 @@ Refactor DMT.TA.TODv4 #2463
 Refactor DMT.TA.TODv4 #2462
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2461
-- 
+- DMT.TAxTODv3
+  - Account App
+    - Exchange History add export function #1.
 
 [commited]
 Refactor DMT.TA.TODv4 #2460

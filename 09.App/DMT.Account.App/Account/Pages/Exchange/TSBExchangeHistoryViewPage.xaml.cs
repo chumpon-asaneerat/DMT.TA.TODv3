@@ -73,11 +73,51 @@ namespace DMT.Account.Pages.Exchange
             if (null != item)
             {
                 int reqId = (item.RequestId.HasValue) ? item.RequestId.Value : -1;
+                var doc = CreateExchangeTransaction(item);
+                var win = AccountApp.Windows.ApproveExchangeWindow;
+                win.Setup(reqId, doc, false);
+                win.ShowDialog();
+            }
+        }
+
+        private void cmdExport_Click(object sender, RoutedEventArgs e)
+        {
+            List<TAAExchangeSummary> results = grid.DataContext as List<TAAExchangeSummary>;
+            if (null == results)
+            {
+                var win = AccountApp.Windows.MessageBox;
+                win.Setup("ไม่มีรายการในการส่งออกเป็น Excel กรุณาตรวจสอบข้อมูล.", "DMT - TA (Account)");
+                win.ShowDialog();
+                return;
+            }
+            Exports(results);
+        }
+
+        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
+        private void cmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private TSBExchangeTransaction CreateExchangeTransaction(Models.TAAExchangeSummary item)
+        {
+            TSBExchangeTransaction doc = null;
+            if (null != item)
+            {
+                int reqId = (item.RequestId.HasValue) ? item.RequestId.Value : -1;
                 string tsbId = item.TSBId;
                 TSB tsb = TSB.GetTSB(tsbId).Value();
 
                 // create approve document
-                var doc = new TSBExchangeTransaction();
+                doc = new TSBExchangeTransaction();
                 doc.TransactionDate = (item.RequestDate.HasValue) ? item.RequestDate.Value : DateTime.MinValue;
                 doc.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
                 doc.Remark = item.RequestRemark;
@@ -148,26 +188,9 @@ namespace DMT.Account.Pages.Exchange
                         }
                     });
                 }
-
-                var win = AccountApp.Windows.ApproveExchangeWindow;
-                win.Setup(reqId, doc, false);
-                win.ShowDialog();
             }
+            return doc;
         }
-
-        private void cmdBack_Click(object sender, RoutedEventArgs e)
-        {
-            GotoMainMenu();
-        }
-
-        private void cmdSearch_Click(object sender, RoutedEventArgs e)
-        {
-            Search();
-        }
-
-        #endregion
-
-        #region Private Methods
 
         public class ExchangeStatusItem
         {
@@ -229,6 +252,24 @@ namespace DMT.Account.Pages.Exchange
             }
 
             grid.DataContext = results;
+        }
+
+        private void Exports(List<TAAExchangeSummary> items)
+        {
+            if (null == items) return;
+
+            var trans = new List<TSBExchangeTransaction>();
+            items.ForEach(header =>
+            {
+                if (null == header) return;
+                var tran = CreateExchangeTransaction(header);
+                if (null != tran) trans.Add(tran);
+            });
+
+            trans.ForEach(tran => 
+            {
+                // export.
+            });
         }
 
         private void GotoMainMenu()

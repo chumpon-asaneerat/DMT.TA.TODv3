@@ -471,6 +471,8 @@
     <Resource Include="Images\Background\snartcard.png" />
     <Resource Include="Images\States\checked.png" />
     <Resource Include="Images\States\unchecked.png" />
+    <Resource Include="Images\Button\Excel.png" />
+    <Resource Include="Images\Button\Excel2.png" />
     <Content Include="MasterCom.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

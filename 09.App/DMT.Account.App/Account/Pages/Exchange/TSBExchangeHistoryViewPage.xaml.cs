@@ -476,8 +476,16 @@ namespace DMT.Account.Pages.Exchange
                 else
                 {
                     var win = AccountApp.Windows.MessageBox;
-                    win.Setup("ส่งออกข้อมูลไม่สำเร็จ.", "DMT - TA (Account)");
+                    var oldWd = win.Width; // Backup Width.
+                    win.Width += 150; // Change width.
+
+                    string msg = "ส่งออกข้อมูลไม่สำเร็จ" + Environment.NewLine;
+                    msg += "อาจมีสาเหตุจาก Excel File ถูกเปิดใช้งานอยู่" + Environment.NewLine;
+                    msg += "กรุณาตรวจสอบ";
+                    win.Setup(msg, "DMT - TA (Account)");
                     win.ShowDialog();
+
+                    win.Width = oldWd; // Restore width.
                 }
             }
         }

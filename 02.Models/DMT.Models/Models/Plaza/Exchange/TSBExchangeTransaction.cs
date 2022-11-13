@@ -1903,7 +1903,7 @@ namespace DMT.Models
 		/// </summary>
 		[Category("Common")]
 		[Description("Gets Document Status display text.")]
-		[ReadOnly(true)]
+		//[ReadOnly(true)]
 		[JsonIgnore]
 		[Ignore]
 		public string DocumentStatus { get; set; }

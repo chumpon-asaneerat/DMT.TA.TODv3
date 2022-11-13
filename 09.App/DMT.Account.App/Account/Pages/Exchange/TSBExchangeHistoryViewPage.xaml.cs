@@ -140,6 +140,7 @@ namespace DMT.Account.Pages.Exchange
                 doc.TSBNameTH = tsb.TSBNameTH;
 
                 doc.Remark = item.ApproveRemark; // assign approve's remark.
+                doc.DocumentStatus = item.StatusText; // assign status text
 
                 // get request details
                 var details = ops.Exchange.GetApproveItems(tsbId, reqId).Value();
@@ -431,11 +432,15 @@ namespace DMT.Account.Pages.Exchange
             items.ForEach(header =>
             {
                 if (null == header) return;
+                // R = รออนุมัติ
+                // A = อนุมัติ
+                // C = ไม่อนุมัติ (finish = 1) 
+                // F = ด่านรับเงิน (finish = 1)
+                if (header.Status == "R" || header.Status == "C") return; // Skip if Request, Cancel
+
                 var tran = CreateExchangeTransaction(header);
                 if (null != tran)
                 {
-                    if (header.Status != "A" && header.Status != "F")
-                    tran.DocumentStatus = header.StatusText; // set document status text.
                     trans.Add(tran);
                 }
             });

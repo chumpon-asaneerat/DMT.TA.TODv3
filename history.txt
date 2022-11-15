@@ -12,8 +12,12 @@ Refactor DMT.TA.TODv4 #2470
 Refactor DMT.TA.TODv4 #2469
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2468
-- 
+- DMT.TAxTODv3
+  - RabbitMQ Client
+    - Add log when file arrived.
+  - Update App Version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2467

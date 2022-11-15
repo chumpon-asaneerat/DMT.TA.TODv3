@@ -95,8 +95,8 @@ namespace DMT.Services
                             }
                             catch (Exception ex2)
                             {
-                            // Invalid. Read file error.
-                            MoveToInvalid(file);
+                                // Invalid. Read file error.
+                                MoveToInvalid(file);
                                 med.Err(ex2);
                             }
                         });

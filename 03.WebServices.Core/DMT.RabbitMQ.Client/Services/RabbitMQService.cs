@@ -77,9 +77,14 @@ namespace DMT.Services
         private void RabbitClient_OnMessageArrived(object sender, QueueMessageEventArgs e)
         {
             if (null == e) return;
+
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("RabbitMQ: New Message arrived.");
             // Save message.
             string fileName = "msg." + DateTime.Now.ToString("yyyy.MM.dd-HH.mm.ss.ffffff",
                 System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            med.Info("RabbitMQ: Write file:" + fileName);
             WriteFile(fileName, e.Message);
         }
 
@@ -108,6 +113,7 @@ namespace DMT.Services
             {
                 if (msg.parameterName == "STAFF")
                 {
+                    med.Info("RabbitMQ: Detected STAFF file. Write to local database.");
                     // Update To Local Database.
                     var mq = jsonString.FromJson<Models.RabbitMQStaffMessage>();
                     if (null != mq)
@@ -126,21 +132,21 @@ namespace DMT.Services
                     else
                     {
                         // process success error file.
-                        med.Err("Cannot convert to STAFF message.");
+                        med.Err("RabbitMQ: Cannot convert to STAFF message.");
                         MoveToError(fullFileName);
                     }
                 }
                 else
                 {
                     // process not staff list so Not Supports file.
-                    med.Err("message is not STAFF message.");
+                    med.Err("RabbitMQ: message is not STAFF message.");
                     MoveToNotSupports(fullFileName);
                 }
             }
             else
             {
                 // process success error file.
-                med.Err("message is null or cannot convert to json object.");
+                med.Err("RabbitMQ: message is null or cannot convert to json object.");
                 MoveToError(fullFileName);
             }
         }
@@ -152,7 +158,7 @@ namespace DMT.Services
         protected override void ResendJson(string fullFileName, string jsonString)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
-            med.Err("Not Supports resend.");
+            med.Err("RabbitMQ: Not Supports resend.");
         }
         /// <summary>
         /// OnStart.
@@ -166,7 +172,7 @@ namespace DMT.Services
             {
                 if (null != RabbitMQ && RabbitMQ.Enabled)
                 {
-                    med.Info("Rabbit Host Info: " + RabbitMQ.GetString());
+                    med.Info("RabbitMQ: Rabbit Host Info: " + RabbitMQ.GetString());
                     try
                     {
                         rabbitClient = new RabbitMQClient();
@@ -178,12 +184,12 @@ namespace DMT.Services
                         rabbitClient.OnMessageArrived += RabbitClient_OnMessageArrived;
                         if (rabbitClient.Connect() && rabbitClient.Listen(RabbitMQ.QueueName))
                         {
-                            med.Info("Success connected to : " + RabbitMQ.GetString());
-                            med.Info("Listen to Queue: " + RabbitMQ.QueueName);
+                            med.Info("RabbitMQ: Success connected to : " + RabbitMQ.GetString());
+                            med.Info("RabbitMQ: Listen to Queue: " + RabbitMQ.QueueName);
                         }
                         else
                         {
-                            med.Err("failed connected to : " + RabbitMQ.HostName);
+                            med.Err("RabbitMQ: failed connected to : " + RabbitMQ.HostName);
                         }
 
                     }
@@ -199,6 +205,8 @@ namespace DMT.Services
         /// </summary>
         protected override void OnShutdown() 
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             // Free Rabbit Client
             try
             {
@@ -210,6 +218,9 @@ namespace DMT.Services
                 }
             }
             catch { }
+
+            med.Info("RabbitMQ: Shutdown");
+
             rabbitClient = null;
         }
 

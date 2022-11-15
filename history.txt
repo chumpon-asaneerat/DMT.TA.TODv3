@@ -30,8 +30,14 @@ Refactor DMT.TA.TODv4 #2474
 Refactor DMT.TA.TODv4 #2473
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2472
-- 
+- DMT.TAxTODv3
+    - Need to add new Role and update exists role in all local db
+      - ACC_Fin => GroupId = 71
+      - ACCOUNT => GroupId = 70
+      - MT_ADMIN => GroupId = 50
+    - Add ACC_Fin Role in all app permission group (TAApp.cs, AccountApp.cs, TODApp.cs in permissions class).
 
 [commited]
 Refactor DMT.TA.TODv4 #2471

@@ -32,7 +32,7 @@ namespace DMT
             public static string[] CTC = new string[]
             {
                 "ADMINS",
-                "ACCOUNT",
+                "ACCOUNT", "ACC_Fin",
                 "CTC_MGR", "CTC", /*"TC",*/
                 "MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",
@@ -43,7 +43,7 @@ namespace DMT
             public static string[] TC = new string[]
             {
                 "ADMINS",
-                "ACCOUNT",
+                "ACCOUNT", "ACC_Fin",
                 "CTC_MGR", "CTC", "TC",
                 "MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",
@@ -54,7 +54,7 @@ namespace DMT
             public static string[] CHIEFS = new string[]
             {
                 "ADMINS",
-                //"ACCOUNT",
+                //"ACCOUNT", "ACC_Fin",
                 "CTC_MGR", "CTC",/*"TC",*/
                 //"MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",
@@ -65,7 +65,7 @@ namespace DMT
             public static string[] ACCOUNTS = new string[]
             {
                 "ADMINS",
-                "ACCOUNT",
+                "ACCOUNT", "ACC_Fin",
                 //"CTC_MGR", "CTC",/*"TC",*/
                 //"MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",

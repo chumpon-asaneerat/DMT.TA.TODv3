@@ -32,11 +32,13 @@ namespace DMT
             public static string[] Account = new string[] 
             {
                 "ADMINS",
-                "ACCOUNT",
-                /*"CTC_MGR", "CTC", "TC",*/
+                "ACCOUNT", "ACC_Fin"
+                /*
+                "CTC_MGR", "CTC", "TC",
                 "MT_ADMIN", "MT_TECH",
                 "FINANCE", "SV",
-                "RAD_MGR", "RAD_SUP"            
+                "RAD_MGR", "RAD_SUP"   
+                */
             };
         }
 

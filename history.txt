@@ -33,12 +33,15 @@ Refactor DMT.TA.TODv4 #2473
 Refactor DMT.TA.TODv4 #2472
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2471
-- 
+- DMT.TAxTODv3
+  - Update App Version.
 
 [commited]
 Refactor DMT.TA.TODv4 #2470
-- Recompile projects.
+- DMT.TAxTODv3
+  - Recompile projects.
 
 [commited]
 Refactor DMT.TA.TODv4 #2469

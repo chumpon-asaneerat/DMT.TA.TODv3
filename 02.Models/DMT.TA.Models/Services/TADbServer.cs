@@ -1803,7 +1803,20 @@ namespace DMT.Services
                 RoleId = "ACCOUNT",
                 RoleNameEN = "Account",
                 RoleNameTH = "บัญชี",
-                GroupId = 63
+                GroupId = 70
+            };
+            if (!Role.Exists(item)) Role.Save(item);
+
+            #endregion
+
+            #region ACC_Fin
+
+            item = new Role()
+            {
+                RoleId = "ACC_Fin",
+                RoleNameEN = "Finance and Accounting",
+                RoleNameTH = "ฝ่ายการเงินและบัญขี",
+                GroupId = 71
             };
             if (!Role.Exists(item)) Role.Save(item);
 
@@ -1890,7 +1903,7 @@ namespace DMT.Services
                 RoleId = "MT_ADMIN",
                 RoleNameEN = "Maintenance Administrator",
                 RoleNameTH = "ทีมซ่อมบำรุง กลุ่ม Admin",
-                GroupId = 10
+                GroupId = 50
             };
             if (!Role.Exists(item)) Role.Save(item);
 

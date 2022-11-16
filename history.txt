@@ -15,8 +15,11 @@ Refactor DMT.TA.TODv4 #2479
 Refactor DMT.TA.TODv4 #2478
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2477
-- 
+- DMT.TAxTODv3
+  - TA, TOD Models
+    - Update InitRoleAndUsers -> Add ACC_Fin in default data init + change ACCOUNT, MT_ADMIN GroupId.
 
 [commited]
 Refactor DMT.TA.TODv4 #2476

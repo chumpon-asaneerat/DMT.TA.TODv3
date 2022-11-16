@@ -145,7 +145,7 @@ namespace DMT.Windows
             try
             {
                 string folderToUpload = @"D:\Test_INF_SAP\export\";
-                string sftpUploadFolder = @"/home/sapftp/SAP/couponexp/";
+                string sftpUploadFolder = @"/mnt/share-documents/DOCUMENTS/SAPUAT/SyncCoupon/";
                 string host = "172.30.76.21";
 
                 string userName = "sapftp";

@@ -13,6 +13,7 @@ AS
 		 , TSB.TSBNameEN
 		 , TSB.TSBNameTH
 		 --, UserView.FullNameEN, UserView.FullNameTH
+		 , TSBExchangeGroup.PkId AS RequestId
 		 , TSBExchangeGroup.RequestDate
 		 , req.UserId AS  RequestUserId
 		 , req.FullNameEN AS  RequestFullNameEN

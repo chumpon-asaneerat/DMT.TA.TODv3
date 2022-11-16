@@ -113,7 +113,14 @@ namespace DMT.Services
             if (null == values)
                 return null;
 
-            var ret = new TSBExchangeTransaction();
+            string tsbId = header.TSBId;
+            int reqId = header.RequestId.Value;
+            TSBExchangeTransaction ret = TSBExchangeTransaction.GetRequestApproveTransaction(header.TSBId, reqId).Value();
+            if (null == ret)
+            {
+                ret = new TSBExchangeTransaction(); // not exists create new one.
+            }
+
             ret.TransactionType = TSBExchangeTransaction.TransactionTypes.Approve;
             ret.FinishFlag = TSBExchangeTransaction.FinishedFlags.Avaliable;
             ret.TransactionDate = (header.ApproveDate.HasValue) ? header.ApproveDate.Value : DateTime.Now;
@@ -196,7 +203,9 @@ namespace DMT.Services
                     var tsb = TSB.GetCurrent().Value();
                     if (tsb != null)
                     {
-                        var localGroups = TSBExchangeGroup.GetRequestExchangeGroups(tsb, true).Value();
+                        // Gets both Request, Approve group to sync from server.
+                        // in some case account may edit approved data so need to resync again.
+                        var localGroups = TSBExchangeGroup.GetRequestExchangeGroups(tsb, false).Value();
                         if (null != localGroups && localGroups.Count > 0)
                         {
                             localGroups.ForEach(localGroup =>

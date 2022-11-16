@@ -115,6 +115,7 @@ namespace DMT.Models
 		private string _FullNameEN = string.Empty;
 		private string _FullNameTH = string.Empty;
 		// Request
+		private int _RequestId = 0; // RequestId same as Exchange Pk Id.
 		private string _RequestUserId = string.Empty;
 		private string _RequestFullNameEN = string.Empty;
 		private string _RequestFullNameTH = string.Empty;
@@ -833,6 +834,34 @@ namespace DMT.Models
 				{
 					_RequestFullNameTH = value;
 					this.RaiseChanged("RequestFullNameTH");
+				}
+			}
+		}
+
+		#endregion
+
+		#region Request Date
+
+		/// <summary>
+		/// Gets or sets Request Id or local pk id.
+		/// </summary>
+		[Category("Common")]
+		[Description(" Gets or sets Request Id or local pk id")]
+		[Ignore]
+		[ReadOnly(true)]
+		[PropertyMapName("RequestId")]
+		public virtual int RequestId
+		{
+			get
+			{
+				return _RequestId;
+			}
+			set
+			{
+				if (_RequestId != value)
+				{
+					_RequestId = value;
+					this.RaiseChanged("RequestId");
 				}
 			}
 		}
@@ -2159,6 +2188,50 @@ namespace DMT.Models
 							ret = NQuery.Query<FKs>(cmd, tsb.TSBId, type).FirstOrDefault();
 						}
 					}
+
+					var val = (null != ret) ? ret.ToModel() : null;
+					result.Success(val);
+				}
+				catch (Exception ex)
+				{
+					med.Err(ex);
+					result.Error(ex);
+				}
+				return result;
+			}
+		}
+		/// <summary>
+		/// Gets TSB Exchange Transactions by group Id and state.
+		/// </summary>
+		/// <param name="tsbId">The TSB instance.</param>
+		/// <param name="requestId">The Group Id.</param>
+		/// <returns>Returns List of TSB Exchange Transactions.</returns>
+		public static NDbResult<TSBExchangeTransaction> GetRequestApproveTransaction(string tsbId, int requestId)
+		{
+			var result = new NDbResult<TSBExchangeTransaction>();
+			SQLiteConnection db = Default;
+			if (null == db)
+			{
+				result.DbConenctFailed();
+				return result;
+			}
+			lock (sync)
+			{
+				MethodBase med = MethodBase.GetCurrentMethod();
+				try
+				{
+					FKs ret;
+
+					string cmd = string.Empty;
+					cmd += "SELECT * ";
+					cmd += "  FROM TSBExchangeTransactionView ";
+					cmd += " WHERE TSBId = ? ";
+					//cmd += "   AND FinishFlag = 1 ";
+					cmd += "   AND RequestId = ? ";
+					cmd += "   AND TransactionType = ? ";
+
+					var type = TSBExchangeTransaction.TransactionTypes.Approve;
+					ret = NQuery.Query<FKs>(cmd, tsbId, requestId, type).FirstOrDefault();
 
 					var val = (null != ret) ? ret.ToModel() : null;
 					result.Success(val);

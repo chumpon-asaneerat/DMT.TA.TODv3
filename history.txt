@@ -27,8 +27,12 @@ Refactor DMT.TA.TODv4 #2475
 Refactor DMT.TA.TODv4 #2474
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2473
-- 
+- DMT.TAxTODv3
+  - TA App
+    - Fixed Sync re-approve data from TA Server
+    - Update TSBExchangeTransactionView (add column RequestId aka PkId from TSBExchangeGroup).
 
 [commited]
 Refactor DMT.TA.TODv4 #2472

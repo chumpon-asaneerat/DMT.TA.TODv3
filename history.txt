@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #2477
 Refactor DMT.TA.TODv4 #2476
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2475
-- 
+- DMT.TAxTODv3
+  - TA App
+    - ChiefReceivedMoneyWindow -> use ACCOUNTS Role to received.
 
 [commited]
 Refactor DMT.TA.TODv4 #2474

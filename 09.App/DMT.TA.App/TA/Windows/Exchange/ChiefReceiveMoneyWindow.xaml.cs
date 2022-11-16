@@ -169,7 +169,8 @@ namespace DMT.TA.Windows.Exchange
 
             if (null != user && !string.IsNullOrWhiteSpace(user.RoleId))
             {
-                var roles = new List<string>(TAApp.Permissions.CHIEFS);
+                //var roles = new List<string>(TAApp.Permissions.CHIEFS);
+                var roles = new List<string>(TAApp.Permissions.ACCOUNTS); // all money used accounts role.
 
                 if (!roles.Contains(user.RoleId))
                 {

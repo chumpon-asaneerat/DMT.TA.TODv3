@@ -23,6 +23,8 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
 
+using Renci.SshNet;
+
 #endregion
 
 namespace DMT.Windows
@@ -114,7 +116,11 @@ namespace DMT.Windows
         #region Default
 
         private string FolderToUpload = string.Empty;
-
+        private string SFTPUploadFolder = string.Empty;
+        public string Host = string.Empty;
+        public string UserName = string.Empty;
+        public string Password = string.Empty;
+        public Int32? Port = null;
         #endregion
 
         #region ConfigInfo
@@ -122,7 +128,11 @@ namespace DMT.Windows
         public class ConfigInfo
         {
             public string FolderToUpload { get; set; }
-          
+            public string SFTPUploadFolder { get; set; }
+            public string Host { get; set; }
+            public string UserName { get; set; }
+            public string Password { get; set; }
+            public Int32? Port { get; set; }
         }
 
         #endregion
@@ -135,10 +145,21 @@ namespace DMT.Windows
             try
             {
                 string folderToUpload = @"D:\Test_INF_SAP\export\";
-                
+                string sftpUploadFolder = @"/home/sapftp/SAP/couponexp/";
+                string host = "172.30.76.21";
+
+                string userName = "sapftp";
+                string password = "$apF+p";
+                int? port = 22;
+
                 ConfigInfo config = new ConfigInfo
                 {
                     FolderToUpload = @folderToUpload,
+                    SFTPUploadFolder = @sftpUploadFolder,
+                    Host = @host,
+                    UserName = @userName,
+                    Password = @password,
+                    Port = port,
                 };
 
                 try
@@ -164,7 +185,12 @@ namespace DMT.Windows
                 };
 
                 FolderToUpload = @folderToUpload;
-               
+                SFTPUploadFolder = @sftpUploadFolder;
+                Host = @host;
+                UserName = @userName;
+                Password = @password;
+                Port = port;
+
                 return true;
             }
             catch (Exception ex)
@@ -191,6 +217,11 @@ namespace DMT.Windows
                         ConfigInfo config = (ConfigInfo)serializer.Deserialize(file, typeof(ConfigInfo));
 
                         FolderToUpload = config.FolderToUpload;
+                        SFTPUploadFolder = config.SFTPUploadFolder;
+                        Host = config.Host;
+                        UserName = config.UserName;
+                        Password = config.Password;
+                        Port = config.Port;
                     }
                 }
 
@@ -217,7 +248,7 @@ namespace DMT.Windows
 
             string toll = string.Empty;
             bool chkSFTP = true;
-
+            string newFileName = string.Empty;
 
             if (tollWayId != null)
             {
@@ -231,7 +262,7 @@ namespace DMT.Windows
                 string path = FolderToUpload;
                 FileInfo fileInfo = new FileInfo(path + @"\T" + toll + "_" + dateString + ".txt");
 
-                string newFileName = fileInfo.FullName;
+                newFileName = fileInfo.FullName;
                 try
                 {
                     if (File.Exists(newFileName))
@@ -251,6 +282,27 @@ namespace DMT.Windows
 
                     string lastDate = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
                     File.WriteAllText(newFileName, lastDate);
+
+                    if (SendFileSFTP(newFileName) == true)
+                    {
+                        try
+                        {
+                            if (File.Exists(newFileName))
+                            {
+                                FileInfo fileCheck = new FileInfo(newFileName);
+                                fileCheck.Delete();
+                            }
+
+                            chkSFTP = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            med.Err(ex);
+                            chkSFTP = false;
+                        }
+                    }
+                    else
+                        chkSFTP = false;
                 }
                 catch (Exception ex)
                 {
@@ -258,6 +310,8 @@ namespace DMT.Windows
                     MessageBox.Show(ex.Message.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     chkSFTP = false;
                 }
+
+
             }
             else
             {
@@ -274,7 +328,7 @@ namespace DMT.Windows
                         string path = FolderToUpload;
                         FileInfo fileInfo = new FileInfo(path + @"\T" + toll + "_" + dateString + ".txt");
 
-                        string newFileName = fileInfo.FullName;
+                        newFileName = fileInfo.FullName;
                         try
                         {
                             if (File.Exists(newFileName))
@@ -294,6 +348,28 @@ namespace DMT.Windows
                         {
                             string lastDate = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
                             File.WriteAllText(newFileName, lastDate);
+
+                            if (SendFileSFTP(newFileName) == true)
+                            {
+                                try
+                                {
+                                    if (File.Exists(newFileName))
+                                    {
+                                        FileInfo fileCheck = new FileInfo(newFileName);
+                                        fileCheck.Delete();
+                                    }
+
+                                    chkSFTP = true;
+                                }
+                                catch (Exception ex)
+                                {
+                                    med.Err(ex);
+                                    chkSFTP = false;
+                                    break;
+                                }
+                            }
+                            else
+                                chkSFTP = false;
                         }
                         catch (Exception ex)
                         {
@@ -312,7 +388,6 @@ namespace DMT.Windows
                 return true;
                 //MessageBox.Show("Sync coupon Complete", "Complete");
             }
-
             else
             {
                 MessageBox.Show("Can't Sync coupon", "Fail");
@@ -325,6 +400,83 @@ namespace DMT.Windows
 
 
         #endregion
+
+        private bool SendFileSFTP(string newFileName)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            string msg = string.Empty;
+            bool chkSend = true;
+            try
+            {
+                int port = 22;
+
+                if (Port != null)
+                    port = Port.Value;
+
+                using (var sftp = new SftpClient(Host, port, UserName, Password))
+                {
+                    sftp.KeepAliveInterval = TimeSpan.FromSeconds(60);
+                    sftp.ConnectionInfo.Timeout = TimeSpan.FromMinutes(180);
+                    sftp.OperationTimeout = TimeSpan.FromMinutes(180);
+                    sftp.Connect();
+
+                    if (sftp.IsConnected == true)
+                    {
+                        med.Info("Connect success.");
+
+                        string localDirectory = FolderToUpload;
+                        //string localPattern = "*.*";
+                        //string[] files = Directory.GetFiles(localDirectory, localPattern);
+
+                        var files = Directory.GetFiles(localDirectory, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".txt") || s.EndsWith(".csv"));
+
+                        foreach (string file in files)
+                        {
+                            try
+                            {
+                                using (Stream inputStream = new FileStream(file, FileMode.Open))
+                                {
+                                    string remoteFileName = System.IO.Path.GetFileName(file);
+
+                                    if (!remoteFileName.StartsWith("."))
+                                    {
+                                        if (!string.IsNullOrEmpty(remoteFileName) && remoteFileName.Length > 4)
+                                        {
+                                            if (System.IO.Path.GetExtension(remoteFileName) == ".txt" || System.IO.Path.GetExtension(remoteFileName) == ".csv")
+                                            {
+                                                sftp.UploadFile(inputStream, SFTPUploadFolder + System.IO.Path.GetFileName(file));
+                                                
+
+                                                msg = string.Format("Success Upload file to : {0}.", System.IO.Path.GetFileName(file));
+                                                med.Info(msg);
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                med.Err(ex);
+                                chkSend = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    sftp.Disconnect();
+                    sftp.Dispose();
+
+                    med.Info("Disconnect.");
+                }
+                        return chkSend;
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                return false;
+            }
+        }
 
         #region Setup
         /// <summary>

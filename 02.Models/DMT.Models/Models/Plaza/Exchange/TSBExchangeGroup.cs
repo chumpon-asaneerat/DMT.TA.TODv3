@@ -530,6 +530,9 @@ namespace DMT.Models
 					case StateTypes.Completed:
 						ret = "คำร้องเสร็จสิ้น";
 						break;
+					case StateTypes.Return:
+						ret = "คืนเงินยืม";
+						break;
 				}
 				return ret;
 			}

@@ -2276,6 +2276,7 @@ namespace DMT.Models
 					cmd += " WHERE TSBId = ? ";
 					cmd += "   AND TransactionType = ? ";
 					cmd += "   AND FinishFlag = ? ";
+					cmd += "   AND BorrowBHT > 0 ";
 					cmd += "   AND GroupId NOT IN(SELECT GroupId FROM TSBExchangeTransaction WHERE TransactionType = ?) ";
 
 					rets = NQuery.Query<FKs>(cmd, tsb.TSBId, 

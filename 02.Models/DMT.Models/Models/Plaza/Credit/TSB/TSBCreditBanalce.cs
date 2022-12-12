@@ -1254,7 +1254,7 @@ namespace DMT.Models
 		public decimal CreditFlowBHTTotal
 		{
 			// Need to check calculation
-			get { return _AdditionalBHTTotal + _BHTTotal + _UserBHTTotal; }
+			get { return /*_AdditionalBHTTotal + */_BHTTotal + _UserBHTTotal; }
 			set { }
 		}
 		/// <summary>
@@ -1269,7 +1269,10 @@ namespace DMT.Models
 		public decimal GrandBHTTotal
 		{
 			// Need to check calculation
-			get { return _AdditionalBHTTotal + _BHTTotal + _UserBHTTotal; }
+			get 
+			{ 
+				return /*_AdditionalBHTTotal + */_BHTTotal + _UserBHTTotal; 
+			}
 			set { }
 		}
 

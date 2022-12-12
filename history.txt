@@ -9,8 +9,11 @@
 Refactor DMT.TA.TODv4 #2480
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2479
-- 
+- DMT.TAxTODv3
+  - Fixed TSB Summary bug.
+  - Fixed TSB Exchane add check query
 
 [commited]
 Refactor DMT.TA.TODv4 #2478

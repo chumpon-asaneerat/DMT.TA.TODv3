@@ -873,6 +873,8 @@ namespace DMT.Services
                     UserBalance.UserId = User.UserId;
                     UserBalance.FullNameEN = User.FullNameEN;
                     UserBalance.FullNameTH = User.FullNameTH;
+                    // Assign UserId to BagNo
+                    UserBalance.BagNo = User.UserId;
                 }
             }
             else
@@ -882,6 +884,9 @@ namespace DMT.Services
                     UserBalance.UserId = null;
                     UserBalance.FullNameEN = null;
                     UserBalance.FullNameTH = null;
+                    // Assign UserId to BagNo/BeltNo (so set as null)
+                    UserBalance.BagNo = null;
+                    UserBalance.BeltNo = null;
                 }
             }
 

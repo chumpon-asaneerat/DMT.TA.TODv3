@@ -6,8 +6,44 @@
   [ ] All bank note entry can enter decimal that should be round to integer like key 0.16 instead of 0 need to prevent.
   [ ] All bank note entry can save event decimal number is invlid i.e. enter 9 in 2bht show red color but can save.
 
-Refactor DMT.TA.TODv4 #2480
+Refactor DMT.TA.TODv4 #2490
 - 
+
+Refactor DMT.TA.TODv4 #2489
+- 
+
+Refactor DMT.TA.TODv4 #2488
+- 
+
+Refactor DMT.TA.TODv4 #2487
+- 
+
+Refactor DMT.TA.TODv4 #2486
+- 
+
+Refactor DMT.TA.TODv4 #2485
+- 
+
+Refactor DMT.TA.TODv4 #2484
+- 
+
+Refactor DMT.TA.TODv4 #2483
+- 
+
+Refactor DMT.TA.TODv4 #2482
+- 
+
+Refactor DMT.TA.TODv4 #2481
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #2480
+- DMT.TAxTODv3
+  - TA.App 
+    1. เมื่อกดปุ่มเลือกพนักงาน  ให้ใส่รหัสพนักงานที่ช่อง หมายเลขถุง  เงิน ให้ด้วย (แต่ยังสามารถแก้ไขได้) OK
+    2. ไม่บังคับว่าต้องใส่ เลขเข็มขัด OK
+    3. ไม่เช็คซ้ำ เลขเข็มขัด OK
+    4. ไม่เช็คซ้ำ เลขถุงเงิน OK
 
 [commited]
 Refactor DMT.TA.TODv4 #2479

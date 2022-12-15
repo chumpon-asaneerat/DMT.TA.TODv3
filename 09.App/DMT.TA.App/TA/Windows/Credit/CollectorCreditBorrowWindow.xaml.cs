@@ -105,6 +105,8 @@ namespace DMT.TA.Windows.Credit
                 }
                 else if (string.IsNullOrEmpty(txtBeltNo.Text))
                 {
+                    // Skip check belt no.
+                    /*
                     var win = TAApp.Windows.MessageBox;
                     win.Owner = this; // change owner
                     win.Setup("โปรดระบุ หมายเลขเข็มขัดนิรภัย", "DMT - Toll Admin");
@@ -116,6 +118,7 @@ namespace DMT.TA.Windows.Credit
                         txtBeltNo.Focus();
                     }));
                     return;
+                    */
                 }
 
                 // Check valid Bag/belt number
@@ -134,21 +137,27 @@ namespace DMT.TA.Windows.Credit
                     }));
                     return;
                 }
-                if (!int.TryParse(txtBeltNo.Text, out i))
-                {
-                    var win = TAApp.Windows.MessageBox;
-                    win.Owner = this; // change owner
-                    win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
-                    win.ShowDialog();
 
-                    Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                if (!string.IsNullOrWhiteSpace(txtBeltNo.Text))
+                {
+                    if (!int.TryParse(txtBeltNo.Text, out i))
                     {
-                        txtBeltNo.SelectAll();
-                        txtBeltNo.Focus();
-                    }));
-                    return;
+                        var win = TAApp.Windows.MessageBox;
+                        win.Owner = this; // change owner
+                        win.Setup("หมายเลขเข็มขัดนิรภัย ต้องเป็นตัวเลขเท่านั้น กรุณาตรวจสอบข้อมูล", "DMT - Toll Admin");
+                        win.ShowDialog();
+
+                        Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                        {
+                            txtBeltNo.SelectAll();
+                            txtBeltNo.Focus();
+                        }));
+                        return;
+                    }
                 }
 
+                // New Requirement no need to check duplicate.
+                /*
                 // Check duplicate Bag/belt number
                 string bagNo = txtBagNo.Text;
                 var listByBag = Models.UserCreditBalance.GetUserCreditBalancesByBagNo(DateTime.Now, bagNo).Value();
@@ -189,6 +198,7 @@ namespace DMT.TA.Windows.Credit
                     }));
                     return;
                 }
+                */
             }
 
             if (manager.HasNegative())
@@ -340,8 +350,10 @@ namespace DMT.TA.Windows.Credit
         private bool Save()
         {
             bool ret = false;
-            if (string.IsNullOrEmpty(txtBagNo.Text) || string.IsNullOrEmpty(txtBeltNo.Text))
+            if (string.IsNullOrEmpty(txtBagNo.Text))
                 return ret;
+            // allow to not set belt no
+            //if (string.IsNullOrEmpty(txtBeltNo.Text)) return ret;
 
             if (null == manager)
                 return ret;

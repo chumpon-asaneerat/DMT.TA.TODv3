@@ -365,6 +365,8 @@ namespace DMT.TOD.Pages.Revenue
 
                 return;
             }
+            // No need to enter BeltNo
+            /*
             if (!entry.HasBeltNo)
             {
                 var win = TODApp.Windows.MessageBox;
@@ -375,6 +377,7 @@ namespace DMT.TOD.Pages.Revenue
 
                 return;
             }
+            */
 
             #endregion
 
@@ -400,7 +403,8 @@ namespace DMT.TOD.Pages.Revenue
 
                 return;
             }
-
+            // New Requirement no need to check duplicate
+            /*
             if (entry.HasDuplicateBagNo)
             {
                 var win = TODApp.Windows.MessageBox;
@@ -424,6 +428,7 @@ namespace DMT.TOD.Pages.Revenue
 
                 return;
             }
+            */
 
             #endregion
 

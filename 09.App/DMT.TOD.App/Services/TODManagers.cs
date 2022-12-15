@@ -2057,7 +2057,7 @@ namespace DMT.Services
                     //  Call ws success and has WS execute result returns UserCreditBalance object.
                     result.Status = ret.HttpStatus;
                     var usrCredit = (ret.Ok) ? ret.Value() : null;
-                    if (null == usrCredit)
+                    if (null == usrCredit || string.IsNullOrWhiteSpace(usrCredit.UserId))
                     {
                         // By chief - TA has no balance so create new one - update from Revenue Entry and save.
                         usrCredit = new UserCreditBalance();
@@ -2072,13 +2072,19 @@ namespace DMT.Services
 
                         if (!isNew)
                         {
-                            usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
+                            // change due to new requirement
+                            //usrCredit.BagNo = (null != Entry) ? Entry.BagNo : string.Empty;
+                            usrCredit.BagNo = (null != Entry) ? Entry.BagNo : usrCredit.UserId; // assign userid to be bag no.
+
                             usrCredit.BeltNo = (null != Entry) ? Entry.BeltNo : string.Empty;
                             usrCredit.RevenueId = (null != Entry) ? Entry.RevenueId : string.Empty;
                         }
                         else
                         {
-                            usrCredit.BagNo = string.Empty;
+                            // change due to new requirement
+                            //usrCredit.BagNo = string.Empty;
+                            usrCredit.BagNo = usrCredit.UserId; // assign userid to be bag no.
+
                             usrCredit.BeltNo = string.Empty;
                             usrCredit.RevenueId = string.Empty;
                         }

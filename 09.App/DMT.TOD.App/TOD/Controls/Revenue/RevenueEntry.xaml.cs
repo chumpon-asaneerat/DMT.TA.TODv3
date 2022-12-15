@@ -207,6 +207,8 @@ namespace DMT.TOD.Controls.Revenue
         {
             get
             {
+                if (string.IsNullOrWhiteSpace(txtBeltNo.Text))
+                    return true;
                 int i;
                 return int.TryParse(txtBeltNo.Text, out i);
             }

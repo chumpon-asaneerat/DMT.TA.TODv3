@@ -33,8 +33,13 @@ Refactor DMT.TA.TODv4 #2483
 Refactor DMT.TA.TODv4 #2482
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2481
-- 
+- DMT.TAxTODv3
+  - TOD.App (Revenue Entry - Normal)
+    1. ไม่บังคับว่าต้องใส่ เลขเข็มขัด OK
+    2. ไม่เช็คซ้ำ เลขเข็มขัด OK
+    3. ไม่เช็คซ้ำ เลขถุงเงิน OK
 
 [commited]
 Refactor DMT.TA.TODv4 #2480

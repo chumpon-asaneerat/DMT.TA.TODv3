@@ -24,8 +24,9 @@ Refactor DMT.TA.TODv4 #2486
 Refactor DMT.TA.TODv4 #2485
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2484
-- 
+- Update Framework to 4.5.2 (4.5 is out of service).
 
 [commited]
 Refactor DMT.TA.TODv4 #2483

@@ -2175,6 +2175,7 @@ namespace DMT.Models
 
         #endregion
 
+        #region GetUserCreditBalancesByBagNo/BeltNo (currently not used)
 
         /// <summary>
         /// Gets all User Credit Balances by Bag No on specificed entry date.
@@ -2309,6 +2310,55 @@ namespace DMT.Models
             }
 
         }
+
+        /// <summary>
+        /// Checks User Has assigned Credit Balance (when balance status is not completed and has no RevenueId).
+        /// </summary>
+        /// <param name="userId">The User Id.</param>
+        /// <param name="plazaGroupId">The Plaza Group Id.</param>
+        /// <returns>Returns User Credit Balance.</returns>
+        public static NDbResult<UserCreditBalance> CheckIsUserHasBalance(string userId, string plazaGroupId)
+        {
+            var result = new NDbResult<UserCreditBalance>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(userId) ||
+                        string.IsNullOrWhiteSpace(plazaGroupId)) return null;
+
+                    string cmd = @"
+                    SELECT *
+                      FROM UserCreditSummaryView
+                     WHERE UserId = ?
+                       AND PlazaGroupId = ? 
+                       AND (Canceled IS NULL OR Canceled <> 1)
+                       AND (RevenueId IS NULL OR RevenueId = '')
+                       AND State <> ? 
+                     ORDER BY UserId, UserCreditDate desc";
+
+                    var ret = NQuery.Query<FKs>(cmd,
+                        userId, plazaGroupId, StateTypes.Completed).FirstOrDefault();
+                    UserCreditBalance inst = (null != ret) ? ret.ToModel() : null;
+                    result.Success(inst);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
+        #endregion
 
         #endregion
     }

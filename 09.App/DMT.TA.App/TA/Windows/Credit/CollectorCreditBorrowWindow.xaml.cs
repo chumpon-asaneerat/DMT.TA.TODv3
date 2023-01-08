@@ -10,6 +10,8 @@ using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
 using System.Windows.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using static SQLite.SQLite3;
 
 #endregion
 
@@ -89,6 +91,30 @@ namespace DMT.TA.Windows.Credit
 
             if (null != manager && manager.IsNew)
             {
+                if (null != manager.User && null != cbPlzaGroups.SelectedItem)
+                {
+                    string usrId = manager.User.UserId;
+                    var plazaGroup = cbPlzaGroups.SelectedItem as PlazaGroup;
+                    string plazaGroupId = (null != plazaGroup) ? plazaGroup.PlazaGroupId : string.Empty;
+                    var ret = Models.UserCreditBalance.CheckIsUserHasBalance(usrId, plazaGroupId).Value();
+                    if (null != ret)
+                    {
+                        var win = TAApp.Windows.MessageBox;
+                        win.Owner = this; // change owner
+                        win.Setup(
+                            "ตรวจสอบพบว่า มีการสร้างถุงเงินให้พนักงานไปแล้ว ไม่สามารถสร้างถุงเงินใหม่ได้",
+                            "DMT - Toll Admin");
+                        win.ShowDialog();
+
+                        Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                        {
+                            txtSearchUserId.Focus();
+                        }));
+
+                        return;
+                    }
+                }
+
                 if (string.IsNullOrEmpty(txtBagNo.Text))
                 {
                     var win = TAApp.Windows.MessageBox;
@@ -155,7 +181,7 @@ namespace DMT.TA.Windows.Credit
                         return;
                     }
                 }
-
+                
                 // New Requirement no need to check duplicate.
                 /*
                 // Check duplicate Bag/belt number

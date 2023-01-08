@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #2487
 Refactor DMT.TA.TODv4 #2486
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2485
-- 
+- DMT.TAxTODv3
+  - TA.App (Assign Bag)
+    - Add code to not allow chief assign new bag on same UserId until cancel bag or full return bag.
 
 [commited]
 Refactor DMT.TA.TODv4 #2484

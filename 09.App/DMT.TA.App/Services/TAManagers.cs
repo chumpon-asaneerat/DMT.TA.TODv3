@@ -2787,15 +2787,15 @@ namespace DMT.Services
             tran.UserId = null;
             tran.FullNameEN = null;
             tran.FullNameTH = null;
-            //tran.UserReceiveDate = null;
+            tran.UserReceiveDate = null;
+            // clear laneid
+            tran.LaneId = null;
             tran.SoldBy = null;
             tran.SoldByFullNameEN = null;
             tran.SoldByFullNameTH = null;
             tran.SoldDate = new DateTime?();
             tran.FinishFlag = TSBCouponFinishedFlags.Avaliable;
             tran.TSBInvoiceId = null; // clear invoice id
-            // clear laneid
-            tran.LaneId = null;
             TSBCouponTransaction.SaveTransaction(tran);
 
             // Write Queue
@@ -2814,7 +2814,18 @@ namespace DMT.Services
             dst.UserId = src.UserId;
             dst.FullNameEN = src.FullNameEN;
             dst.FullNameTH = src.FullNameTH;
-            //dst.UserReceiveDate = src.UserReceiveDate;
+            // TSB and PlazaGroup.
+            dst.TSBId = src.TSBId;
+            dst.TSBNameEN = src.TSBNameEN;
+            dst.TSBNameTH = src.TSBNameTH;
+            dst.PlazaGroupId = src.PlazaGroupId;
+            dst.PlazaGroupNameEN = src.PlazaGroupNameEN;
+            dst.PlazaGroupNameTH = src.PlazaGroupNameTH;
+            // User Received date.
+            dst.UserReceiveDate = src.UserReceiveDate;
+            // update laneid
+            dst.LaneId = src.LaneId;
+
             dst.SoldBy = src.SoldBy;
             dst.SoldByFullNameEN = src.SoldByFullNameEN;
             dst.SoldByFullNameTH = src.SoldByFullNameTH;
@@ -2822,8 +2833,6 @@ namespace DMT.Services
             dst.FinishFlag = src.FinishFlag;
             dst.TSBInvoiceId = src.TSBInvoiceId;
             //dst.LastUpdate = src.LastUpdate;
-            // update laneid
-            dst.LaneId = src.LaneId;
             TSBCouponTransaction.SaveTransaction(dst);
 
             // Write Queue
@@ -2840,7 +2849,7 @@ namespace DMT.Services
             src.UserId = null;
             src.FullNameEN = null;
             src.FullNameTH = null;
-            //tran.UserReceiveDate = null;
+            src.UserReceiveDate = null;
             src.SoldBy = null;
             src.SoldByFullNameEN = null;
             src.SoldByFullNameTH = null;

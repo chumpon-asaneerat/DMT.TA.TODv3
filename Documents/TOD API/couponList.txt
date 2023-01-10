@@ -1,0 +1,32 @@
+{
+    "list": [
+        {
+            "couponId": 1,
+            "couponValue": 30.0,
+            "abbreviation": "30",
+            "description": "30 บาท"
+        },
+        {
+            "couponId": 2,
+            "couponValue": 35.0,
+            "abbreviation": "35",
+            "description": "35 บาท"
+        },
+        {
+            "couponId": 3,
+            "couponValue": 70.0,
+            "abbreviation": "70",
+            "description": "70 บาท"
+        },
+        {
+            "couponId": 4,
+            "couponValue": 80.0,
+            "abbreviation": "80",
+            "description": "80 บาท"
+        }
+    ],
+    "status": {
+        "code": "S200",
+        "message": "Success"
+    }
+}

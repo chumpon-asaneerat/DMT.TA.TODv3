@@ -1,0 +1,118 @@
+{
+  "networkId": 31,
+  "plazaId": 3101,
+  "staffId": "00111",
+  "bagNumber": "5555",
+  "safetyBeltNumber": "5555",
+  "cashTotalAmount": 400.00,
+  "couponTotalAmount": 4.0,
+  "couponBookTotalAmount": 2185.0,
+  "cardAllowTotalAmount": 0.0,
+  "qrcodeTotalAmount": 0.0,
+  "emvTotalAmount": 0.0,
+  "otherTotalAmount": 500.0,
+  "cashRemark": "",
+  "otherRemark": "",
+  "chiefId": "00444",
+  "chiefName": "นาย สมบูรณ์ สบายดี",
+  "shiftTypeId": 1,
+  "declareDateTime": "2020-09-03T23:36:12.415+07:00",
+  "attendanceDateTime": "2020-09-03T23:24:19.093+07:00",
+  "departureDateTime": "2020-09-03T23:36:45.290+07:00",
+  "operationDate": "2020-09-03T00:00:00.000+07:00",
+  "jobList": [
+    {
+      "networkId": 31,
+      "plazaId": 3101,
+      "laneId": 1,
+      "jobNo": 21,
+      "staffId": "00111",
+      "bojDateTime": "2020-09-03T23:33:22.000+07:00",
+      "eojDateTime": "2020-09-03T23:33:25.000+07:00"
+    },
+    {
+      "networkId": 31,
+      "plazaId": 3101,
+      "laneId": 1,
+      "jobNo": 22,
+      "staffId": "00111",
+      "bojDateTime": "2020-09-03T23:33:36.000+07:00",
+      "eojDateTime": "2020-09-03T23:33:38.000+07:00"
+    },
+    {
+      "networkId": 31,
+      "plazaId": 3101,
+      "laneId": 1,
+      "jobNo": 20,
+      "staffId": "00111",
+      "bojDateTime": "2020-09-03T23:33:11.000+07:00",
+      "eojDateTime": "2020-09-03T23:33:13.000+07:00"
+    }
+  ],
+  "cashList": [
+    {
+      "currencyId": 1,
+      "currencyDenomId": 5,
+      "denomValue": 5.0,
+      "number": 20,
+      "total": 100.0
+    },
+    {
+      "currencyId": 1,
+      "currencyDenomId": 8,
+      "denomValue": 20.0,
+      "number": 5,
+      "total": 100.0
+    },
+    {
+      "currencyId": 1,
+      "currencyDenomId": 9,
+      "denomValue": 50.0,
+      "number": 4,
+      "total": 200.0
+    }
+  ],
+  "couponList": [
+    {
+      "couponId": 1,
+      "couponValue": 30.0,
+      "number": 1,
+      "total": 30.0
+    },
+    {
+      "couponId": 2,
+      "couponValue": 35.0,
+      "number": 1,
+      "total": 35.0
+    },
+    {
+      "couponId": 3,
+      "couponValue": 70.0,
+      "number": 1,
+      "total": 70.0
+    },
+    {
+      "couponId": 4,
+      "couponValue": 80.0,
+      "number": 1,
+      "total": 80.0
+    }
+  ],
+  "couponBookList": [
+    {
+      "couponBookId": 1,
+      "couponBookValue": 35.0,
+      "number": 1,
+      "total": 665.0
+    },
+    {
+      "couponBookId": 2,
+      "couponBookValue": 80.0,
+      "number": 1,
+      "total": 1520.0
+    }
+  ],
+  "cardAllowList": [],
+  "qrcodeList": [],
+  "emvList": []
+}

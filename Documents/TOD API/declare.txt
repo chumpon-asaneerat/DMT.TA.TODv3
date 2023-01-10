@@ -1,0 +1,62 @@
+{
+    "networkId": 31,
+    "plazaId": 3101,
+    "staffId": "14124",
+    "bagNumber": "567A",
+    "safetyBeltNumber": "567B",
+    "cashTotalAmount": 10000,
+    "couponTotalAmount": 160,
+    "couponBookTotalAmount": 1330,
+    "cardAllowTotalAmount": 0,
+    "qrcodeTotalAmount": 0,
+    "emvTotalAmount": 0,
+    "otherTotalAmount": 0,
+    "cashRemark": "หมายเหตุ เงินสด 10000",
+    "otherRemark": "หมายเหตุ เงินอื่นๆ 0 บาท",
+    "jobList": [
+               {
+             "networkId": 31,
+            "plazaId": 3101,
+            "laneId": 1,
+            "jobNo": 34,
+            "staffId": "14124",
+            "bojDateTime": "2020-08-18T18:25:50.000Z"
+        }
+
+    ],
+    "cashList": [
+        {
+            "currencyId": 1,
+            "currencyDenomId": 8,
+            "denomValue": 20,
+            "number": 100,
+            "total": 2000
+        },
+        {
+            "currencyId": 1,
+            "currencyDenomId": 10,
+            "denomValue": 100,
+            "number": 80,
+            "total": 8000
+        }
+    ],
+    "couponList": [
+        {
+            "couponId": 4,
+            "couponValue": 80,
+            "number": 1,
+            "total": 80
+        }
+    ],
+    "couponBookList": [
+        {
+            "couponBookId": 1,
+            "couponBookValue": 35,
+            "number": 2,
+            "total": 1330
+        }
+    ],
+    "cardAllowList": [],
+    "qrcodeList": [],
+    "emvList": []
+}

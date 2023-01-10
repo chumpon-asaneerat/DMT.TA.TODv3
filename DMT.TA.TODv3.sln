@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tools", "99.Tools", "{B0A55A65-B4C3-451B-AE75-661F4FF88B8B}"
 EndProject
@@ -136,6 +136,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MA", "MA", "{35D2626C-A2FA-
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMT.DC.Import.App", "09.App\DMT.DC.Import.App\DMT.DC.Import.App.csproj", "{7F0F12B1-7AE3-4DD1-919F-D8903E94C7BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TOD API", "TOD API", "{6E332918-AF17-4650-B4DE-E58E3A65B69B}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TOD API\DMT_API_TOD_V1.0.xlsx = Documents\TOD API\DMT_API_TOD_V1.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V10.0.xlsx = Documents\TOD API\DMT_API_TOD_V10.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V2.0.xlsx = Documents\TOD API\DMT_API_TOD_V2.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V3.0.xlsx = Documents\TOD API\DMT_API_TOD_V3.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V4.0.xlsx = Documents\TOD API\DMT_API_TOD_V4.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V5.0.xlsx = Documents\TOD API\DMT_API_TOD_V5.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V6.0.xlsx = Documents\TOD API\DMT_API_TOD_V6.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V7.0.xlsx = Documents\TOD API\DMT_API_TOD_V7.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V8.0.xlsx = Documents\TOD API\DMT_API_TOD_V8.0.xlsx
+		Documents\TOD API\DMT_API_TOD_V9.0.xlsx = Documents\TOD API\DMT_API_TOD_V9.0.xlsx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -308,6 +322,7 @@ Global
 		{245346C8-F969-4BA6-AF44-45B2E710F830} = {079D8234-DE52-4873-9272-836D86144266}
 		{35D2626C-A2FA-43A8-8004-F2FA7B92853A} = {079D8234-DE52-4873-9272-836D86144266}
 		{7F0F12B1-7AE3-4DD1-919F-D8903E94C7BC} = {C22F5B1E-3122-4E7C-8483-70C35EE5A4CC}
+		{6E332918-AF17-4650-B4DE-E58E3A65B69B} = {079D8234-DE52-4873-9272-836D86144266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

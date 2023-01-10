@@ -2794,6 +2794,8 @@ namespace DMT.Services
             tran.SoldDate = new DateTime?();
             tran.FinishFlag = TSBCouponFinishedFlags.Avaliable;
             tran.TSBInvoiceId = null; // clear invoice id
+            // clear laneid
+            tran.LaneId = null;
             TSBCouponTransaction.SaveTransaction(tran);
 
             // Write Queue
@@ -2819,6 +2821,9 @@ namespace DMT.Services
             dst.SoldDate = src.SoldDate;
             dst.FinishFlag = src.FinishFlag;
             dst.TSBInvoiceId = src.TSBInvoiceId;
+            //dst.LastUpdate = src.LastUpdate;
+            // update laneid
+            dst.LaneId = src.LaneId;
             TSBCouponTransaction.SaveTransaction(dst);
 
             // Write Queue
@@ -2842,6 +2847,8 @@ namespace DMT.Services
             src.SoldDate = new DateTime?();
             src.FinishFlag = TSBCouponFinishedFlags.Avaliable;
             src.TSBInvoiceId = null; // clear invoice id
+            // clear laneid
+            src.LaneId = null;
             TSBCouponTransaction.SaveTransaction(src);
 
             // Write Queue

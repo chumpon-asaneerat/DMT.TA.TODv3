@@ -2123,7 +2123,8 @@ namespace DMT.Services
             {
                 var dt1 = UserShift.Begin.Value;
                 var dt2 = (UserShift.End.HasValue) ? UserShift.End.Value : DateTime.Now;
-                var search = Search.Coupon.User.Sold.Create(PlazaGroup, User, dt1, dt2);
+                //var search = Search.Coupon.User.Sold.Create(PlazaGroup, User, dt1, dt2);
+                var search = Search.Coupon.User.Sold.Create(User, dt1, dt2);
                 var ret = taaOps.Coupon.User.Sold(search);
                 if (null != ret && ret.Ok)
                 {

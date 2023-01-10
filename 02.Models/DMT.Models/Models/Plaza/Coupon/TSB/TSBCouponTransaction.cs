@@ -1391,7 +1391,8 @@ namespace DMT.Models
         /// <param name="end">The end of sold date.</param>
         /// <returns>Returns TSB Coupon transactions. If TSB not found returns null.</returns>
         public static NDbResult<List<TSBCouponTransaction>> GetUserCouponSoldByLaneTransactions(TSB tsb,
-            PlazaGroup plazaGroup, User user, DateTime? start, DateTime? end)
+            //PlazaGroup plazaGroup, 
+            User user, DateTime? start, DateTime? end)
         {
             var result = new NDbResult<List<TSBCouponTransaction>>();
             SQLiteConnection db = Default;
@@ -1400,7 +1401,9 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (null == tsb || null == plazaGroup || null == user)
+            if (null == tsb || 
+                //null == plazaGroup || 
+                null == user)
             {
                 result.ParameterIsNull();
                 return result;
@@ -1425,13 +1428,14 @@ namespace DMT.Models
                     cmd += "SELECT * ";
                     cmd += "  FROM UserCouponSoldByLaneTransactionView ";
                     cmd += " WHERE TSBId = ? ";
-                    cmd += "   AND PlazaGroupId = ? ";
+                    //cmd += "   AND PlazaGroupId = ? "; // ignore plazagroup
                     cmd += "   AND SoldBy = ? ";
                     cmd += "   AND SoldDate >= ? ";
                     cmd += "   AND SoldDate < ? ";
 
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
-                        plazaGroup.PlazaGroupId, user.UserId,
+                        //plazaGroup.PlazaGroupId, // ignore plazagroup
+                        user.UserId,
                         dt1, dt2).ToList();
                     var results = rets.ToModels();
                     result.Success(results);

@@ -25,7 +25,9 @@ namespace DMT.Services
                     ret.ParameterIsNull();
                     return ret;
                 }
-                ret = UserCouponSoldSummary.GetCouponSoldSummary(value.PlazaGroup, value.User, value.Start, value.End);
+                ret = UserCouponSoldSummary.GetCouponSoldSummary(
+                    //value.PlazaGroup, Ignore PlazaGroup
+                    value.User, value.Start, value.End);
                 return ret;
             }
         }

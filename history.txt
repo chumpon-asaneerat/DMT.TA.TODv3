@@ -36,8 +36,16 @@ Refactor DMT.TA.TODv4 #2492
 Refactor DMT.TA.TODv4 #2491
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2490
-- 
+- DMT.TAxTODv3
+  - TA.Models
+    - Update View 
+  - TA.App (user coupon sold remove plaza group)
+    - TSBCouponTransaction class
+      - Update GetUserCouponSoldByLaneTransactions
+    - UserCouponSoldSummary class
+      - Update GetCouponSoldSummary
 
 [commited]
 Refactor DMT.TA.TODv4 #2489

@@ -487,7 +487,8 @@ namespace DMT.Models
         /// <returns>
         /// Returns User Coupon Sold Summary. If not found returns null.
         /// </returns>
-        public static NDbResult<UserCouponSoldSummary> GetCouponSoldSummary(PlazaGroup plazaGroup,
+        public static NDbResult<UserCouponSoldSummary> GetCouponSoldSummary(
+            //PlazaGroup plazaGroup, // Ignore PlazaGroup
             User user, DateTime? start, DateTime? end)
         {
             var result = new NDbResult<UserCouponSoldSummary>();
@@ -498,12 +499,14 @@ namespace DMT.Models
                 return result;
             }
             var tsb = TSB.GetCurrent().Value();
-            if (null == tsb || null == plazaGroup || null == user)
+            if (null == tsb ||
+                //null == plazaGroup || // Ignore PlazaGroup
+                null == user)
             {
                 result.ParameterIsNull();
                 return result;
             }
-            result = GetCouponSoldSummary(tsb, plazaGroup, user, start, end);
+            result = GetCouponSoldSummary(tsb, /*plazaGroup, */ user, start, end);
             return result;
         }
         /// <summary>
@@ -517,7 +520,8 @@ namespace DMT.Models
         /// <returns>
         /// Returns User Coupon Sold Summary. If not found returns null.
         /// </returns>
-        public static NDbResult<UserCouponSoldSummary> GetCouponSoldSummary(TSB tsb, PlazaGroup plazaGroup,
+        public static NDbResult<UserCouponSoldSummary> GetCouponSoldSummary(TSB tsb,
+            //PlazaGroup plazaGroup, // Ignore PlazaGroup
             User user, DateTime? start, DateTime? end)
         {
             var result = new NDbResult<UserCouponSoldSummary>();
@@ -527,7 +531,9 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (null == tsb || null == plazaGroup || null == user)
+            if (null == tsb || 
+                //null == plazaGroup || Ignore PlazaGroup
+                null == user)
             {
                 result.ParameterIsNull();
                 return result;
@@ -546,7 +552,8 @@ namespace DMT.Models
                 try
                 {
                     var coupons = TSBCouponTransaction.GetUserCouponSoldByLaneTransactions(tsb,
-                        plazaGroup, user, start, end).Value();
+                        //plazaGroup, // Ignore plazagroup
+                        user, start, end).Value();
                     if (null != coupons)
                     {
                         var data = new UserCouponSoldSummary();

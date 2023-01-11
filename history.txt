@@ -24,8 +24,9 @@ Refactor DMT.TA.TODv4 #2496
 Refactor DMT.TA.TODv4 #2495
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2494
-- 
+- Add Chief Revenue Entry comment. Wait for confirm.
 
 [commited]
 Refactor DMT.TA.TODv4 #2493

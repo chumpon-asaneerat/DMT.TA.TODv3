@@ -967,7 +967,7 @@
     </DataTemplate>
 
     <!--  TA APP REQUESTS HEADER/CELL TEMPLATES  -->
-    
+
     <!--  RequestPeriodBegin CELL TEMPLATE  -->
     <DataTemplate x:Key="RequestPeriodBeginCellTemplate">
         <TextBlock Text="{Binding Path=RequestPeriodBeginDateString, Mode=OneWay}" TextAlignment="Right" />
@@ -980,12 +980,12 @@
     <GridViewColumnCollection x:Key="RequestPediodGridViewColumns">
         <GridViewColumn CellTemplate="{StaticResource RequestPeriodBeginCellTemplate}"
                         Header=" วันที่เริ่มต้น "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                         Width="110" />
         <GridViewColumn CellTemplate="{StaticResource RequestPeriodEndCellTemplate}"
                         Header=" วันที่สิ้นสุด "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
     </GridViewColumnCollection>
     <!--  Request Pediod Columns CELL TEMPLATE  -->
     <DataTemplate x:Key="RequestPediodColumns">
@@ -1038,7 +1038,7 @@
     <DataTemplate x:Key="RequestBorrowBHTCellTemplate">
         <TextBlock Text="{Binding Path=RequestBorrowBHT, Mode=OneWay, StringFormat='{}{0:#,##0}'}" TextAlignment="Right" />
     </DataTemplate>
-    
+
     <!--  Request AdditionalBHT HEADER TEMPLATE  -->
     <DataTemplate x:Key="RequestAdditionalBHTHeaderTemplate">
         <TextBlock HorizontalAlignment="Center"
@@ -1133,12 +1133,12 @@
     <GridViewColumnCollection x:Key="ApprovePediodGridViewColumns">
         <GridViewColumn CellTemplate="{StaticResource ApprovePeriodBeginCellTemplate}"
                         Header=" วันที่เริ่มต้น "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                         Width="110" />
         <GridViewColumn CellTemplate="{StaticResource ApprovePeriodEndCellTemplate}"
                         Header=" วันที่สิ้นสุด "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
     </GridViewColumnCollection>
     <!--  Approve Pediod Columns HEADER TEMPLATE  -->
     <DataTemplate x:Key="ApprovePediodColumnsHeader">
@@ -1176,12 +1176,12 @@
     <GridViewColumnCollection x:Key="ReceivePediodGridViewColumns">
         <GridViewColumn CellTemplate="{StaticResource ReceivePeriodBeginCellTemplate}"
                         Header=" วันที่เริ่มต้น "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                         Width="110" />
         <GridViewColumn CellTemplate="{StaticResource ReceivePeriodEndCellTemplate}"
                         Header=" วันที่สิ้นสุด "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
     </GridViewColumnCollection>
     <!--  Receive Pediod Columns HEADER TEMPLATE  -->
     <DataTemplate x:Key="ReceivePediodColumnsHeader">
@@ -1205,11 +1205,11 @@
         </Grid>
     </DataTemplate>
 
-    
-    
-    
-    
-    <!--  ACCOUNT APP TEMPLATES -->
+
+
+
+
+    <!--  ACCOUNT APP TEMPLATES  -->
 
     <DataTemplate x:Key="AccRequestDateHeaderTemplate">
         <TextBlock Text="วันที่ร้องขอ"
@@ -1233,12 +1233,12 @@
     <GridViewColumnCollection x:Key="AccRequestPediodGridViewColumns">
         <GridViewColumn CellTemplate="{StaticResource AccRequestPeriodBeginCellTemplate}"
                         Header=" วันที่เริ่มต้น "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                         Width="110" />
         <GridViewColumn CellTemplate="{StaticResource AccRequestPeriodEndCellTemplate}"
                         Header=" วันที่สิ้นสุด "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
     </GridViewColumnCollection>
     <!--  Request Pediod Columns CELL TEMPLATE  -->
     <DataTemplate x:Key="AccRequestPediodColumns">
@@ -1409,16 +1409,16 @@
     <GridViewColumnCollection x:Key="RequestExchangeViewColumns">
         <GridViewColumn CellTemplate="{StaticResource AccRequestExchangeBHTCellTemplate}"
                         Header=" เงินขอแลก "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                         Width="110" />
         <GridViewColumn CellTemplate="{StaticResource AccRequestBorrowBHTCellTemplate}"
                         Header=" เงินยืมเพิ่ม "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
         <GridViewColumn CellTemplate="{StaticResource AccRequestAdditionalBHTCellTemplate}"
                         Header=" เพิ่มวงเงิน "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
     </GridViewColumnCollection>
     <!--  Request Exchange Columns HEADER TEMPLATE  -->
     <DataTemplate x:Key="RequestExchangeColumnsHeader">
@@ -1459,16 +1459,16 @@
     <GridViewColumnCollection x:Key="ApproveExchangeViewColumns">
         <GridViewColumn CellTemplate="{StaticResource AppExchangeBHTCellTemplate}"
                         Header=" เงินขอแลก "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
                         Width="110" />
         <GridViewColumn CellTemplate="{StaticResource AppBorrowBHTCellTemplate}"
                         Header=" เงินยืมเพิ่ม "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
         <GridViewColumn CellTemplate="{StaticResource AppAdditionalBHTCellTemplate}"
                         Header=" เพิ่มวงเงิน "
-                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}" 
-                        Width="110"/>
+                        HeaderContainerStyle="{StaticResource CommonHeaderFreezeContainer}"
+                        Width="110" />
     </GridViewColumnCollection>
     <!--  Approve Exchange Columns HEADER TEMPLATE  -->
     <DataTemplate x:Key="ApproveExchangeColumnsHeader">

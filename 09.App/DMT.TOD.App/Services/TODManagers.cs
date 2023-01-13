@@ -2382,6 +2382,13 @@ namespace DMT.Services
                         // next day
                         Jobs.UserShift.End = Jobs.UserShift.End.Value.AddDays(1);
                     }
+
+                    // update Entry UserShift
+                    if (null != UserShift)
+                    {
+                        UserShift.Begin = Jobs.UserShift.Begin;
+                        UserShift.End = Jobs.UserShift.End;
+                    }
                 }
                 else
                 {

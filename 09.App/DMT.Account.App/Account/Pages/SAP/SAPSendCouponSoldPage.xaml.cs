@@ -83,6 +83,7 @@ namespace DMT.Account.Pages.SAP
         private void Reset()
         {
             dtSoldDate.Value = new DateTime?(DateTime.Now);
+            txtTotalRows.Text = "0";
             grid.ItemsSource = null;
             gridSum.ItemsSource = null;
 
@@ -196,8 +197,15 @@ namespace DMT.Account.Pages.SAP
             _tollwayId = (cbTSBs.SelectedItem as SAPTSB).TollwayID;
 
             SAPSaveAR json = new SAPSaveAR();
-            json.DocDate = DateTime.Now.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
-            json.DocDueDate = dt.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            //เก่า ยกเลิก
+            //json.DocDate = DateTime.Now.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            //json.DocDueDate = dt.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+
+            //New แก้ไข DocDate = วันที่ขาย
+            // DocDueDate = วันที่ขาย+7
+            json.DocDate = dt.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            json.DocDueDate = dt.Value.AddDays(7).ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+
             // fixed
             json.CardCode = "C-Coupon P";
             json.CardName = "ลูกค้าคูปองที่ด่าน";

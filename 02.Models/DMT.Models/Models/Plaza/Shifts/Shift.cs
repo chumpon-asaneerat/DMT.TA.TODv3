@@ -44,6 +44,9 @@ namespace DMT.Models
         private DateTime? _ChiefStart = new DateTime?();
         private DateTime? _ChiefEnd = new DateTime?();
 
+        private DateTime? _HistoricalStart = new DateTime?();
+        private DateTime? _HistoricalEnd = new DateTime?();
+
         #endregion
 
         #region Constructor
@@ -338,6 +341,48 @@ namespace DMT.Models
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets Historical Start.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Historical Start.")]
+        [PropertyMapName("HistoricalStart")]
+        public DateTime? HistoricalStart
+        {
+            get
+            {
+                return _HistoricalStart;
+            }
+            set
+            {
+                if (_HistoricalStart != value)
+                {
+                    _HistoricalStart = value;
+                    this.RaiseChanged("HistoricalStart");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Historical End.
+        /// </summary>
+        [Category("Common")]
+        [Description("Gets or sets Historical End.")]
+        [PropertyMapName("HistoricalEnd")]
+        public DateTime? HistoricalEnd
+        {
+            get
+            {
+                return _HistoricalEnd;
+            }
+            set
+            {
+                if (_HistoricalEnd != value)
+                {
+                    _HistoricalEnd = value;
+                    this.RaiseChanged("_HistoricalEnd");
+                }
+            }
+        }
 
         #endregion
 
@@ -458,6 +503,51 @@ namespace DMT.Models
                                 else
                                 {
                                     shift.ChiefEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
+                                }
+                                needSave = true;
+                            }
+
+                            #endregion
+
+                            #region Historical Revenue Prefered Shift Start/End
+
+                            if (!shift.HistoricalStart.HasValue)
+                            {
+                                if (shift.ShiftId == 1)
+                                {
+                                    shift.HistoricalStart = new DateTime(1, 1, 1, 6, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 2)
+                                {
+                                    shift.HistoricalStart = new DateTime(1, 1, 1, 14, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 3)
+                                {
+                                    shift.HistoricalStart = new DateTime(1, 1, 1, 22, 0, 0, 0, 0);
+                                }
+                                else
+                                {
+                                    shift.HistoricalStart = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
+                                }
+                                needSave = true;
+                            }
+                            if (!shift.HistoricalEnd.HasValue)
+                            {
+                                if (shift.ShiftId == 1)
+                                {
+                                    shift.HistoricalEnd = new DateTime(1, 1, 1, 14, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 2)
+                                {
+                                    shift.HistoricalEnd = new DateTime(1, 1, 1, 22, 0, 0, 0, 0);
+                                }
+                                else if (shift.ShiftId == 3)
+                                {
+                                    shift.HistoricalEnd = new DateTime(1, 1, 1, 6, 0, 0, 0, 0);
+                                }
+                                else
+                                {
+                                    shift.HistoricalEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, 0);
                                 }
                                 needSave = true;
                             }

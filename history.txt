@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #2497
 Refactor DMT.TA.TODv4 #2496
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2495
-- 
+- DMT.TAxTODv3
+  - DMT.Models
+    - Update Shift Model -> Add HistoricalStart, HistoricalEnd
 
 [commited]
 Refactor DMT.TA.TODv4 #2494

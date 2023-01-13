@@ -36,8 +36,9 @@ Refactor DMT.TA.TODv4 #2502
 Refactor DMT.TA.TODv4 #2501
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2500
-- 
+- Recompile all.
 
 [commited]
 Refactor DMT.TA.TODv4 #2499

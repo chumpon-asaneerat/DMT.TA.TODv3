@@ -869,7 +869,7 @@ namespace DMT.Services
                 }
                 else
                 {
-                    // Create new instance.
+                    // custom mode -> usually Chief mode. Create new instance.
                     var inst = new UserShift();
                     // Assign properties
                     if (null != Current.TSB) Current.TSB.AssignTo(inst);
@@ -2351,8 +2351,47 @@ namespace DMT.Services
             // update object properties.
             PlazaGroup.AssignTo(Entry); // assigned plaza group name (EN/TH)
 
-            var usrshf = (!ByChief) ? UserShift : Jobs.UserShift;
+            UserShift usrshf;
+            if (!ByChief)
+            {
+                // by collector
+                usrshf = UserShift;
+            }
+            else
+            {
+                // by chief
+                Models.Shift shf = Current.Shift;                
+                if (null != shf && RevenueDate.HasValue)
+                {
+                    bool addDay = false;
+                    DateTime revdt = RevenueDate.Value;
+                    DateTime revbg = shf.HistoricalStart.Value;
+                    DateTime reved = shf.HistoricalEnd.Value;
+                    if (reved < revbg)
+                    {
+                        addDay = true;
+                    }
+                    // set begin time
+                    Jobs.UserShift.Begin = new DateTime?(new DateTime(revdt.Year, revdt.Month, revdt.Day,
+                        revbg.Hour, revbg.Minute, revbg.Second, revbg.Millisecond));
+                    // set end time
+                    Jobs.UserShift.End = new DateTime?(new DateTime(revdt.Year, revdt.Month, revdt.Day,
+                        reved.Hour, reved.Minute, reved.Second, reved.Millisecond));
+                    if (addDay)
+                    {
+                        // next day
+                        Jobs.UserShift.End = Jobs.UserShift.End.Value.AddDays(1);
+                    }
+                }
+                else
+                {
+                    //Console.WriteLine("No Shift Selected or No Revenue Date");
+                    med.Err("No Shift Selected or No Revenue Date");
+                    return false;
+                }
 
+                usrshf = Jobs.UserShift;
+            }
             usrshf.AssignTo(Entry); // assigned user shift
 
             // assigned date after sync object(s) to RevenueEntry.
@@ -2382,12 +2421,10 @@ namespace DMT.Services
                 // TODO: Required to detect ShiftId = 3, Date sould be +1 (incase AppOption is > 0)
                 if (!Entry.RevenueDate.HasValue)
                 {
-                    //
-                    // Need to check here to get time by shiftid wait for confirm.
-                    //
+                    // By Chief use date only.
                     Entry.RevenueDate = new DateTime?(new DateTime(
                         RevenueDate.Value.Year, RevenueDate.Value.Month, RevenueDate.Value.Day,
-                        dtNow.Hour, dtNow.Minute, dtNow.Second, dtNow.Millisecond, DateTimeKind.Local));
+                        0, 0, 0, 0, DateTimeKind.Local));
                 }
                 med.Info("Revenue Date - By Chief : {0:dd/MM/yyyy}", Entry.RevenueDate);
             }
@@ -2396,8 +2433,18 @@ namespace DMT.Services
             Entry.Lanes = Jobs.GetLaneString(ByChief);
 
             // Find begin/end of revenue.
-            DateTime begin = usrshf.Begin.Value; // Begin time used start of shift.
-            DateTime end = DateTime.Now; // End time used printed date
+            DateTime begin;
+            DateTime end;
+            if (!ByChief)
+            {
+                begin = usrshf.Begin.Value; // Begin time used start of shift.
+                end = DateTime.Now; // End time used printed date
+            }
+            else
+            {
+                begin = usrshf.Begin.Value; // Begin time used start of user shift.
+                end = usrshf.End.Value; // End time used end of user shift
+            }
 
             if (!Entry.ShiftBegin.HasValue || Entry.ShiftBegin.Value == DateTime.MinValue)
             {

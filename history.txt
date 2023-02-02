@@ -33,8 +33,10 @@ Refactor DMT.TA.TODv4 #2503
 Refactor DMT.TA.TODv4 #2502
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2501
-- 
+- Add Example messages
+  - Add RabbitMQ - STAFF json file.
 
 [commited]
 Refactor DMT.TA.TODv4 #2500

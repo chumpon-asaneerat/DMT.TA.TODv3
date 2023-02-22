@@ -158,6 +158,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{EA
 		Documents\Msgs\RabbitMQ\STAFF_20230201_222646424.json = Documents\Msgs\RabbitMQ\STAFF_20230201_222646424.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QFree fromat source document", "QFree fromat source document", "{3CF6A452-392B-4585-A101-0E79FB6B58A5}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\QFree fromat source document\5-คู่มือการออกแบบระบบ-TA-R0-150223.docx = Documents\QFree fromat source document\5-คู่มือการออกแบบระบบ-TA-R0-150223.docx
+		Documents\QFree fromat source document\5-คู่มือการออกแบบระบบ-TOD-R0-150223.docx = Documents\QFree fromat source document\5-คู่มือการออกแบบระบบ-TOD-R0-150223.docx
+		Documents\QFree fromat source document\RTO-Manual System.docx = Documents\QFree fromat source document\RTO-Manual System.docx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Training", "Source Training", "{2AE1F379-6FA9-4947-8DCA-E7EA9921C83A}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Source Training\Couponexp.docx = Documents\Source Training\Couponexp.docx
+		Documents\Source Training\InsertCouponData.docx = Documents\Source Training\InsertCouponData.docx
+		Documents\Source Training\TA (Account) Source  document.docx = Documents\Source Training\TA (Account) Source  document.docx
+		Documents\Source Training\TA (Account) Source.pptx = Documents\Source Training\TA (Account) Source.pptx
+		Documents\Source Training\TA (Plaza) Source  document.docx = Documents\Source Training\TA (Plaza) Source  document.docx
+		Documents\Source Training\TA (Plaza) Source.pptx = Documents\Source Training\TA (Plaza) Source.pptx
+		Documents\Source Training\TA Server Source  document.docx = Documents\Source Training\TA Server Source  document.docx
+		Documents\Source Training\TA Server Source.pptx = Documents\Source Training\TA Server Source.pptx
+		Documents\Source Training\TAAutoCoupon.docx = Documents\Source Training\TAAutoCoupon.docx
+		Documents\Source Training\TOD Source  document.docx = Documents\Source Training\TOD Source  document.docx
+		Documents\Source Training\TOD Source.pptx = Documents\Source Training\TOD Source.pptx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manuals", "Manuals", "{9B4CA17F-DF29-41AA-AEBE-ED8D263F9545}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Manuals\เอกสาร Couponexp.doc = Documents\Manuals\เอกสาร Couponexp.doc
+		Documents\Manuals\เอกสาร InsertCouponData.doc = Documents\Manuals\เอกสาร InsertCouponData.doc
+		Documents\Manuals\เอกสาร TAAutoCoupon.doc = Documents\Manuals\เอกสาร TAAutoCoupon.doc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -332,6 +361,9 @@ Global
 		{6E332918-AF17-4650-B4DE-E58E3A65B69B} = {079D8234-DE52-4873-9272-836D86144266}
 		{B507C2A0-192F-4250-B44C-5501A4E4D066} = {079D8234-DE52-4873-9272-836D86144266}
 		{EAF83904-964D-4291-86D9-9ECB9B8E66EC} = {B507C2A0-192F-4250-B44C-5501A4E4D066}
+		{3CF6A452-392B-4585-A101-0E79FB6B58A5} = {079D8234-DE52-4873-9272-836D86144266}
+		{2AE1F379-6FA9-4947-8DCA-E7EA9921C83A} = {079D8234-DE52-4873-9272-836D86144266}
+		{9B4CA17F-DF29-41AA-AEBE-ED8D263F9545} = {079D8234-DE52-4873-9272-836D86144266}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

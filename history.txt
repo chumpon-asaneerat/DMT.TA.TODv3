@@ -30,8 +30,12 @@ Refactor DMT.TA.TODv4 #2504
 Refactor DMT.TA.TODv4 #2503
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2502
-- 
+- Update documents
+  - Add manuals
+  - Add source code training documents
+  - Add source code documents in QFree format.
 
 [commited]
 Refactor DMT.TA.TODv4 #2501

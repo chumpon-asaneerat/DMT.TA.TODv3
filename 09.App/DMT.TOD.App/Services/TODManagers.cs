@@ -2492,6 +2492,18 @@ namespace DMT.Services
 
             return true;
         }
+
+        public void UpdateEndShift(DateTime dt)
+        {
+            if (ByChief)
+                return; // only collector
+
+            // Update UserShift (End)
+            UserShift.End = dt;
+            // Update Revenue Entry (ShiftEnd)
+            Entry.ShiftEnd = dt;
+        }
+
         /// <summary>
         /// Save Revenue Entry.
         /// </summary>

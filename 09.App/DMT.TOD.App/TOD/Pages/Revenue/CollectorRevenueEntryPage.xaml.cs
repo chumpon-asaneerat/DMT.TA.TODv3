@@ -596,6 +596,9 @@ namespace DMT.TOD.Pages.Revenue
 
             #endregion
 
+            // Update EndShift to current time.
+            manager.UpdateEndShift(DateTime.Now);
+
             // Slip Preview
             if (!PrepareReport())
             {

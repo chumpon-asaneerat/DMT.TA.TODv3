@@ -21,8 +21,11 @@ Refactor DMT.TA.TODv4 #2507
 Refactor DMT.TA.TODv4 #2506
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2505
-- 
+- TOD Project
+  - Revenue Entry (Collector)
+    - UserShift.End and RevenueEntry.ShiftEnd used Time when click show print preview.
 
 [commited]
 Refactor DMT.TA.TODv4 #2504

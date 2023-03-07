@@ -33,8 +33,9 @@ Refactor DMT.TA.TODv4 #2513
 Refactor DMT.TA.TODv4 #2512
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2511
-- 
+- Recompile all projects.
 
 [commited]
 Refactor DMT.TA.TODv4 #2510

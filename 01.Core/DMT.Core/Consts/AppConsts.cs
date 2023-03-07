@@ -20,8 +20,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10230";
-                public static DateTime LastUpdate = new DateTime(2023, 1, 10, 20, 30, 00);
+                public static string Build = "10231";
+                public static DateTime LastUpdate = new DateTime(2023, 3, 7, 14, 45, 00);
             }
 
             public static class TOD
@@ -30,8 +30,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10212";
-                public static DateTime LastUpdate = new DateTime(2023, 3, 6, 8, 00, 00);
+                public static string Build = "10213";
+                public static DateTime LastUpdate = new DateTime(2023, 3, 7, 14, 45, 00);
             }
 
             public static class Account
@@ -40,8 +40,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10216";
-                public static DateTime LastUpdate = new DateTime(2023, 1, 13, 14, 44, 00);
+                public static string Build = "10217";
+                public static DateTime LastUpdate = new DateTime(2023, 3, 7, 14, 45, 00);
             }
 
             public static class PlazaConfig

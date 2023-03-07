@@ -36,8 +36,9 @@ Refactor DMT.TA.TODv4 #2512
 Refactor DMT.TA.TODv4 #2511
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2510
-- 
+- Update App Version
 
 [commited]
 Refactor DMT.TA.TODv4 #2509

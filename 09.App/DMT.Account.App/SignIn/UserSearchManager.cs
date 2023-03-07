@@ -2,6 +2,7 @@
 
 using DMT.Models;
 using DMT.Services;
+using System.Windows.Navigation;
 
 #endregion
 
@@ -73,7 +74,12 @@ namespace DMT.Controls
             ret.User = null;
             ret.IsCanceled = false;
 
-            var users = User.FilterByUserId(userId, roles).Value();
+            var results = User.FilterByUserId(userId, roles).Value();
+            var users = results.FindAll((usr) => 
+            { 
+                return usr.AccountStatus == User.AccountFlags.Avaliable; 
+            });
+
             if (null != users)
             {
                 if (users.Count == 1)

@@ -209,7 +209,13 @@ namespace DMT.TOD.Pages.TollAdmin
             var result = TODAPI.SearchUser(userId, TODApp.Permissions.TC);
             if (!result.IsCanceled && null != manager)
             {
-                manager.User = result.User;
+                var usr = result.User;
+                if (null != usr && result.User.AccountStatus != User.AccountFlags.Avaliable)
+                {
+                    // User is not avtive.
+                    return;
+                }
+                manager.User = usr;
                 if (null != manager.User)
                 {
                     txtSearchUserId.Text = string.Empty;

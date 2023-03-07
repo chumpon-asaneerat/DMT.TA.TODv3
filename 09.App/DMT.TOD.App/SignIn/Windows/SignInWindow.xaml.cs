@@ -12,6 +12,7 @@ using DMT.Controls;
 using System.Windows.Threading;
 using NLib;
 using System.Reflection;
+using System.Windows.Interop;
 
 #endregion
 
@@ -114,6 +115,11 @@ namespace DMT.Windows
             if (null != SmartcardManager.Instance.User)
             {
                 _user = SmartcardManager.Instance.User;
+                if (_user.AccountStatus != User.AccountFlags.Avaliable)
+                {
+                    ShowError("ข้อมูลบัตรพนักงานในระบบถูกยกเลิก");
+                    return;
+                }
                 if (tabs.SelectedIndex == 0)
                 {
                     if (null != _user)
@@ -296,6 +302,8 @@ namespace DMT.Windows
 
         private void CheckSignInInput()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             txtMsg.Text = string.Empty;
 
             string userId = txtUserId.Text.Trim();
@@ -317,6 +325,18 @@ namespace DMT.Windows
 
             var md5 = Utils.MD5.Encrypt(pwd);
             _user = User.GetByLogIn(userId, md5).Value();
+
+            if (null != _user)
+            {
+                if (_user.AccountStatus != User.AccountFlags.Avaliable)
+                {
+                    string msg = string.Format("SIGN IN DETECT USERID: {0} not active. Status: {1}", userId, _user.AccountStatus);
+                    med.Info(msg);
+
+                    ShowError("บัญชีผู้ใช้นี้ถูกยกเลิกแล้ว กรุณาใช้บัญชีผู้ใช้อื่น");
+                    return;
+                }
+            }
 
             // Check if enter mismatch password.
             if (IsUserExists(userId))
@@ -349,7 +369,7 @@ namespace DMT.Windows
 
             if (null != usr)
             {
-                msg = string.Format("SIGN IN CHECK USERID: {0} found.", userId);
+                msg = string.Format("SIGN IN CHECK USERID: {0} found. Status: {1}.", userId, usr.AccountStatus);
                 med.Info(msg);
             }
             else

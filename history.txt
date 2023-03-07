@@ -15,8 +15,10 @@ Refactor DMT.TA.TODv4 #2509
 Refactor DMT.TA.TODv4 #2508
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2507
-- 
+- TOD App Project
+  - Add Check user is disable.
 
 [commited]
 Refactor DMT.TA.TODv4 #2506

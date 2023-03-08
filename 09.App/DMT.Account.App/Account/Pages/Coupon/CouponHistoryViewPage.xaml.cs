@@ -80,6 +80,7 @@ namespace DMT.Account.Pages.Coupon
             if (null != tsbs)
             {
                 tsbs.Insert(0, new Models.TSB() { TSBId = "00", TSBNameEN = "[All]", TSBNameTH = "[ไม่ระบุด่าน]" });
+                tsbs.Add(new Models.TSB() { TSBId = "99", TSBNameEN = "[Other]", TSBNameTH = "[อื่น ๆ ]" });
             }
             cbTSBs.ItemsSource = tsbs;
             if (null != tsbs) cbTSBs.SelectedIndex = 0;

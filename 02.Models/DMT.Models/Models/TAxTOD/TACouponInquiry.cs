@@ -25,10 +25,14 @@ namespace DMT.Models
             var ret = new List<InquiryStatus>();
             ret.Add(new InquiryStatus() { ItemStatusDigit = 0, ItemStatus = "[เลือกทั้งหมด]" });
             ret.Add(new InquiryStatus() { ItemStatusDigit = 1, ItemStatus = "สต๊อก" });
-            ret.Add(new InquiryStatus() { ItemStatusDigit = 2, ItemStatus = "ด่านขาย" });
-            ret.Add(new InquiryStatus() { ItemStatusDigit = 3, ItemStatus = "ด่านปิดการขาย" });
-            ret.Add(new InquiryStatus() { ItemStatusDigit = 4, ItemStatus = "สร้าง Invoice" });
-            ret.Add(new InquiryStatus() { ItemStatusDigit = 5, ItemStatus = "Out of Stock" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 2, ItemStatus = "จ่ายพนักงาน" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 3, ItemStatus = "พนักงานขาย" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 4, ItemStatus = "หัวหน้าขาย" });
+            ret.Add(new InquiryStatus() { ItemStatusDigit = 5, ItemStatus = "รายการขาย" });
+            //ret.Add(new InquiryStatus() { ItemStatusDigit = 2, ItemStatus = "ด่านขาย" });
+            //ret.Add(new InquiryStatus() { ItemStatusDigit = 3, ItemStatus = "ด่านปิดการขาย" });
+            //ret.Add(new InquiryStatus() { ItemStatusDigit = 4, ItemStatus = "สร้าง Invoice" });
+            //ret.Add(new InquiryStatus() { ItemStatusDigit = 5, ItemStatus = "Out of Stock" });
             return ret;
         }
     }

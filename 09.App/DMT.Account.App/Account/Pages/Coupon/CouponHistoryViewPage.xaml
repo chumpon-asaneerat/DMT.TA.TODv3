@@ -105,26 +105,28 @@
                                      FontSize="{StaticResource InputFontSize18}"
                                      Style="{StaticResource CommonTextBox}" />
                             <TextBlock Grid.Row="1"
-                                       Grid.Column="4"
+                                       Grid.Column="8"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
                                        Text="เลขที่ใบโอน : "
-                                       TextAlignment="Right" />
+                                       TextAlignment="Right"
+                                       Visibility="Hidden" />
                             <TextBox x:Name="txtSAPTransferNo"
                                      Grid.Row="1"
-                                     Grid.Column="6"
+                                     Grid.Column="10"
                                      VerticalAlignment="Center"
                                      FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonTextBox}" />
+                                     Style="{StaticResource CommonTextBox}"
+                                     Visibility="Hidden" />
                             <TextBlock Grid.Row="1"
-                                       Grid.Column="8"
+                                       Grid.Column="4"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
                                        Text="ด่านเก็บเงิน : "
                                        TextAlignment="Right" />
                             <ComboBox Name="cbTSBs"
                                       Grid.Row="1"
-                                      Grid.Column="10"
+                                      Grid.Column="6"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Center"
                                       HorizontalContentAlignment="Center"
@@ -177,7 +179,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
-                                       Text="วันที่จ่าย : "
+                                       Text="วันที่ขาย : "
                                        TextAlignment="Right" />
                             <xceed:DateTimePicker x:Name="dtWorkDateFrom"
                                                   Grid.Row="5"
@@ -283,6 +285,7 @@
                                 <GridViewColumn Width="100"
                                                 CellTemplate="{StaticResource SAPIntrSerial}"
                                                 Header="Serial No" />
+                                <!--
                                 <GridViewColumn Width="140"
                                                 CellTemplate="{StaticResource SAPTransferNo}"
                                                 Header="เลขที่ใบโอนสินค้า" />
@@ -292,6 +295,7 @@
                                 <GridViewColumn Width="150"
                                                 CellTemplate="{StaticResource ItemStatus}"
                                                 Header="สถานะรายการ" />
+                                -->
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource TollWayName}"
                                                 Header="ด่านเก็บเงิน" />

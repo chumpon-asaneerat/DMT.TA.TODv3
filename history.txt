@@ -30,8 +30,10 @@ Refactor DMT.TA.TODv4 #2514
 Refactor DMT.TA.TODv4 #2513
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2512
-- 
+- Update Account/TA App
+  - Update Coupon History page.
 
 [commited]
 Refactor DMT.TA.TODv4 #2511

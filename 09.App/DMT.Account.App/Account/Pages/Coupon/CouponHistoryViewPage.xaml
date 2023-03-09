@@ -296,6 +296,9 @@
                                                 CellTemplate="{StaticResource ItemStatus}"
                                                 Header="สถานะรายการ" />
                                 -->
+                                <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource ItemStatus}"
+                                                Header="สถานะรายการ" />
                                 <GridViewColumn Width="200"
                                                 CellTemplate="{StaticResource TollWayName}"
                                                 Header="ด่านเก็บเงิน" />

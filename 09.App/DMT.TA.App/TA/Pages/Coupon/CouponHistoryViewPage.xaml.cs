@@ -177,8 +177,8 @@ namespace DMT.TA.Pages.Coupon
                 cbStatus.SelectedItem as Models.InquiryStatus : null;
             int ? itemStatusDigit = (null != status) ? status.ItemStatusDigit : new int?();
 
-            DateTime? workingDateFrom = (dtWorkDateFrom.Value.HasValue) ? dtWorkDateFrom.Value.Value : new DateTime?();
-            DateTime? workingDateTo = (dtWorkDateTo.Value.HasValue) ? dtWorkDateTo.Value.Value : new DateTime?();
+            DateTime? workingDateFrom = (dtWorkDateFrom.Value.HasValue) ? dtWorkDateFrom.Value.Value.Date : new DateTime?();
+            DateTime? workingDateTo = (dtWorkDateTo.Value.HasValue) ? dtWorkDateTo.Value.Value.Date : new DateTime?();
 
             var tsb = (null != cbTSBs.SelectedItem && cbTSBs.SelectedItem is Models.TSB) ?
                 cbTSBs.SelectedItem as Models.TSB : null;

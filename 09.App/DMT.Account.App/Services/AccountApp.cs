@@ -405,6 +405,20 @@ namespace DMT
                 }
             }
             #endregion
+
+            //New 20/04/23
+            #region SAP Get Invoice
+
+            public static DMT.Windows.GetInvoiceWindow SAPGetInvoiceWindow
+            {
+                get
+                {
+                    var ret = new DMT.Windows.GetInvoiceWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            #endregion
         }
     }
 }

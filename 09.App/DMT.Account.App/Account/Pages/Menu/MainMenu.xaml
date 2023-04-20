@@ -224,6 +224,12 @@
                         Style="{StaticResource SAPButtonStyle}" Click="cndGetCoupon_Click">
                     <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ขอคูปอง" />
                 </Button>
+                <Button x:Name="cndGetInvoice"
+                        Grid.Row="6"
+                        Grid.Column="4"
+                        Style="{StaticResource SAPButtonStyle}" Click="cndGetInvoice_Click">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ขอ Invoice" />
+                </Button>
             </Grid>
         </Grid>
     </ScrollViewer>

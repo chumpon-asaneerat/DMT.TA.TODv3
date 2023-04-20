@@ -140,13 +140,29 @@ namespace DMT.Account.Pages.Menu
 
         private void cndGetCoupon_Click(object sender, RoutedEventArgs e)
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - Get Coupon");
+            LogUser(med, AccountApp.User.Current); // write current user to log.
+
             var win = AccountApp.Windows.SAPGetCouponWindow;
             win.Setup();
             win.ShowDialog();
         }
 
-        #endregion
+        private void cndGetInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
 
+            med.Info("==> MENU - Get Invoice");
+            LogUser(med, AccountApp.User.Current); // write current user to log.
+
+            var win = AccountApp.Windows.SAPGetInvoiceWindow;
+            win.Setup();
+            win.ShowDialog();
+        }
+
+        #endregion
 
     }
 }

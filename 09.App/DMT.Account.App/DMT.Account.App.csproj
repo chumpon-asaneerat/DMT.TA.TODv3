@@ -226,6 +226,9 @@
     <Compile Include="Account\Windows\SAP\GetCouponWindow.xaml.cs">
       <DependentUpon>GetCouponWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\Windows\SAP\GetInvoiceWindow.xaml.cs">
+      <DependentUpon>GetInvoiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\Windows\SAP\SAPCustomerWindow.xaml.cs">
       <DependentUpon>SAPCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -347,6 +350,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Account\Windows\SAP\GetCouponWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\Windows\SAP\GetInvoiceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

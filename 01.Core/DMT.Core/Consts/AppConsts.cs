@@ -20,8 +20,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10233";
-                public static DateTime LastUpdate = new DateTime(2023, 3, 9, 8, 30, 00);
+                public static string Build = "10234";
+                public static DateTime LastUpdate = new DateTime(2023, 4, 21, 2, 0, 00);
             }
 
             public static class TOD

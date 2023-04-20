@@ -21,8 +21,10 @@ Refactor DMT.TA.TODv4 #2517
 Refactor DMT.TA.TODv4 #2516
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2515
-- 
+- Update TSBCouponBalanceView
+  - remove sold by tsb, sold by lane calculation from view.
 
 [commited]
 Refactor DMT.TA.TODv4 #2514

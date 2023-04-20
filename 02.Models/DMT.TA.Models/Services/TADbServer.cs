@@ -2065,7 +2065,7 @@ namespace DMT.Services
             // - TSBCouponLaneBalanceView
             // - TSBCouponSoldByLaneBalanceView
             // - TSBCouponSoldByTSBBalanceView
-            InitView("TSBCouponBalanceView", 1, prefix);
+            InitView("TSBCouponBalanceView", 2, prefix);
 
             // !!! Required for UserCouponSoldSummary model (NEW!!).
             InitView("UserCouponSoldByLaneTransactionView", 2, prefix);

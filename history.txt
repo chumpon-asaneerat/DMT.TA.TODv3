@@ -33,8 +33,10 @@ Refactor DMT.TA.TODv4 #2523
 Refactor DMT.TA.TODv4 #2522
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2521
-- 
+- Update TA #4
+  - CollectorCouponReturn Window -> SoldOnLane change color to Red.
 
 [commited]
 Refactor DMT.TA.TODv4 #2520

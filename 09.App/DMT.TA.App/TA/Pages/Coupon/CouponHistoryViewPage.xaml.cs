@@ -145,7 +145,9 @@ namespace DMT.TA.Pages.Coupon
         {
             Reset();
 
+            //CheckComboDefaultItem(cbTSBs); // comment out used auto select current TSB instead.
             AutoSelectCurrentTSB();
+
             CheckComboDefaultItem(cbStatus);
             CheckComboDefaultItem(cbShifts);
 

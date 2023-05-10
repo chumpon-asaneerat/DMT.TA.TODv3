@@ -36,8 +36,10 @@ Refactor DMT.TA.TODv4 #2522
 Refactor DMT.TA.TODv4 #2521
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2520
-- 
+- Update TA #3
+  - CouponHistoryView Page -> auto default current TSB and cannot change #3 (add old code for reference).
 
 [commited]
 Refactor DMT.TA.TODv4 #2519

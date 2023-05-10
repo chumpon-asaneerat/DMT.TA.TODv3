@@ -110,6 +110,7 @@ namespace DMT.TA.Pages.Coupon
             }
 
             cbTSBs.ItemsSource = tsbs;
+            //if (null != tsbs) tsbs.SelectedIndex = 0;
         }
 
         private void LoadShifts()

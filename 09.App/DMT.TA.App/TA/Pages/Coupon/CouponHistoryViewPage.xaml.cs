@@ -108,8 +108,8 @@ namespace DMT.TA.Pages.Coupon
                 tsbs.Insert(0, new Models.TSB() { TSBId = "00", TSBNameEN = "[All]", TSBNameTH = "[ไม่ระบุด่าน]" });
                 tsbs.Add(new Models.TSB() { TSBId = "99", TSBNameEN = "[Other]", TSBNameTH = "[อื่น ๆ ]" });
             }
+
             cbTSBs.ItemsSource = tsbs;
-            if (null != tsbs) cbTSBs.SelectedIndex = 0;
         }
 
         private void LoadShifts()
@@ -145,7 +145,7 @@ namespace DMT.TA.Pages.Coupon
         {
             Reset();
 
-            CheckComboDefaultItem(cbTSBs);
+            AutoSelectCurrentTSB();
             CheckComboDefaultItem(cbStatus);
             CheckComboDefaultItem(cbShifts);
 
@@ -161,6 +161,39 @@ namespace DMT.TA.Pages.Coupon
             {
                 var lst = cb.ItemsSource as IList;
                 if (null != lst && lst.Count > 0) cb.SelectedIndex = 0;
+            }
+        }
+
+        private void AutoSelectCurrentTSB()
+        {
+            var tsb = TSB.GetCurrent().Value();
+
+            cbTSBs.SelectedIndex = -1;
+            if (null != cbTSBs.ItemsSource)
+            {
+                var tsbs = cbTSBs.ItemsSource as List<TSB>;
+                int idx = -1;
+                if (null != tsbs && null != tsb)
+                {
+                    try
+                    {
+                        idx = tsbs.FindIndex((eachTSB) => { return eachTSB.TSBId == tsb.TSBId; });
+                    }
+                    catch
+                    {
+                        idx = -1;
+                    }
+                }
+                if (idx == -1)
+                {
+                    cbTSBs.SelectedIndex = 0;
+                    cbTSBs.IsEnabled = true;
+                }
+                else
+                {
+                    cbTSBs.SelectedIndex = idx;
+                    cbTSBs.IsEnabled = false;
+                }
             }
         }
 

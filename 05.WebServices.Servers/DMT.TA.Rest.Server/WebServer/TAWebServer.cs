@@ -388,6 +388,11 @@ namespace DMT.Services
                         actionName = RouteConsts.TA.Coupon.User.Sold.Name;
                         actionUrl = RouteConsts.TA.Coupon.User.Sold.Url;
                         Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
+
+                        // OnHand
+                        actionName = RouteConsts.TA.Coupon.User.OnHand.Name;
+                        actionUrl = RouteConsts.TA.Coupon.User.OnHand.Url;
+                        Helper.MapRoute(config, controllerName, actionName, actionUrl); // Map Route.
                     }
                 }
             }

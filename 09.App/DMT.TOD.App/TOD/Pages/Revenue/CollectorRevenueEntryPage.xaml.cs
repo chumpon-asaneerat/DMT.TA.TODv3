@@ -428,7 +428,7 @@ namespace DMT.TOD.Pages.Revenue
                     // Call WS has HTTP error or timeout.
                     //var win = TODApp.Windows.MessageBox;
                     var win = TODApp.Windows.MessageBoxYesNo;
-                    msg = "ไม่สามารถติดต่อกับ Toll Admin ได้ ต้องการนำส่งรายได้ ต่อ หรือไม่?";
+                    msg = "ไม่สามารถติดต่อกับ Toll Admin เพื่อตรวจสอบการคืนถุงเงินได้ ต้องการนำส่งรายได้ต่อหรือไม่?";
                     med.Info("REVENUE ENTRY UI - " + msg); // Write log
                     win.Setup(msg, "DMT - Tour of Duty");
                     if (win.ShowDialog() == false)
@@ -477,7 +477,7 @@ namespace DMT.TOD.Pages.Revenue
                     // Call WS has HTTP error or timeout.
                     //var win = TODApp.Windows.MessageBox;
                     var win = TODApp.Windows.MessageBoxYesNo;
-                    msg = "ไม่สามารถติดต่อกับ Toll Admin ได้ ต้องการนำส่งรายได้ ต่อ หรือไม่?";
+                    msg = "ไม่สามารถติดต่อกับ Toll Admin เพื่อตรวจสอบการคืนคูปองได้ ต้องการนำส่งรายได้ต่อหรือไม่?";
                     med.Info("REVENUE ENTRY UI - " + msg); // Write log
                     win.Setup(msg, "DMT - Tour of Duty");
                     if (win.ShowDialog() == false)

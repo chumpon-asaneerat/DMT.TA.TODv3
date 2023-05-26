@@ -1862,7 +1862,7 @@ namespace DMT.Services
 
     #endregion
 
-    #region ReturnBagStatus
+    #region UserCreditBalanceStatus
 
     /// <summary>
     /// The User Credit Balance Status class.
@@ -1877,6 +1877,26 @@ namespace DMT.Services
         public bool IsReturnBag
         {
             get { return (null != Balance && Balance.State == UserCreditBalance.StateTypes.Completed); }
+        }
+    }
+
+    #endregion
+
+    #region UserCouponBalanceStatus
+
+    /// <summary>
+    /// The User Coupon Balance Status class.
+    /// </summary>
+    public class UserCouponBalanceStatus
+    {
+        /// <summary>Gets or sets WS (HTTP) Status.</summary>
+        public HttpStatus WSStatus { get; set; }
+        /// <summary>Gets or sets user credit balance object.</summary>
+        public object Coupon { get; set; }
+        /// <summary>Checks is return bag.</summary>
+        public bool IsReturnCoupon
+        {
+            get { return (null != Coupon); }
         }
     }
 
@@ -2098,6 +2118,108 @@ namespace DMT.Services
                 {
                     msg += "<<< CheckUserCredit >>> " + Environment.NewLine;
                     msg += "Cannot get UserCreditBalance from TA App. ";
+                    msg += "This may occur due to no data match ";
+                    msg += "or in some case the TA App is busy ";
+                    msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";
+                    msg += "Please check TA App computer and try again.";
+                    med.Err(msg);
+                    // Call WS failed. Setup null results.
+                    result.Status = HttpStatus.None;
+                    result.Value = null;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region User Coupon Methods
+
+        class UserCouponBalanceResult
+        {
+            public UserCouponBalanceResult() : base()
+            {
+                this.Status = HttpStatus.None;
+            }
+            internal HttpStatus Status { get; set; }
+            internal object Value { get; set; }
+        }
+
+        private UserCreditBalanceResult CheckUserCoupon()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string msg = string.Empty;
+            UserCreditBalanceResult result = new UserCreditBalanceResult();
+            if (!ByChief)
+            {
+                // By collector call WS.
+                var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
+                var ret = taaOps.Credit.User.Completed(search);
+                if (null == ret)
+                {
+                    msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
+                    msg += "Cannot get UserCouponBalance from TA App. ";
+                    msg += "This may occur due to no data match ";
+                    msg += "or in some case the TA App is busy ";
+                    msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";
+                    msg += "Please check TA App computer and try again.";
+                    med.Err(msg);
+                    // Call WS failed. Setup null results.
+                    result.Status = HttpStatus.None;
+                    result.Value = null;
+                }
+                else
+                {
+                    msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
+                    msg += " - UserCouponBalance info: " + Environment.NewLine;
+                    msg += "   - Ok: " + ret.Ok.ToString() + Environment.NewLine;
+                    msg += "   - http status: " + ret.HttpStatus.ToString() + Environment.NewLine;
+                    med.Err(msg);
+                    //  Call ws success and has WS execute result returns UserCreditBalance object.
+                    result.Status = ret.HttpStatus;
+                    result.Value = (ret.Ok) ? ret.Value() : null;
+                }
+            }
+            else
+            {
+                // By chief call WS first. If exists used it.
+                var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
+                var ret = taaOps.Credit.User.Completed(search);
+                if (null != ret)
+                {
+                    msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
+                    msg += " - UserCouponBalance info: " + Environment.NewLine;
+                    msg += "   - Ok: " + ret.Ok.ToString() + Environment.NewLine;
+                    msg += "   - http status: " + ret.HttpStatus.ToString() + Environment.NewLine;
+                    med.Err(msg);
+                    //  Call ws success and has WS execute result returns UserCreditBalance object.
+                    result.Status = ret.HttpStatus;
+                    var usrCredit = (ret.Ok) ? ret.Value() : null;
+                    if (null == usrCredit || string.IsNullOrWhiteSpace(usrCredit.UserId))
+                    {
+                        // By chief - TA has no balance so create new one - update from Revenue Entry and save.
+                        usrCredit = new UserCreditBalance();
+                        usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
+
+                        usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
+                        usrCredit.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
+                        usrCredit.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
+                        usrCredit.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
+                        usrCredit.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
+                        usrCredit.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
+
+                    }
+
+                    // Update result (due to create new one. so always in success state).
+                    result.Status = HttpStatus.Success;
+                    result.Value = usrCredit;
+                }
+                else
+                {
+                    msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
+                    msg += "Cannot get UserCouponBalance from TA App. ";
                     msg += "This may occur due to no data match ";
                     msg += "or in some case the TA App is busy ";
                     msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";
@@ -2620,6 +2742,7 @@ namespace DMT.Services
 
             return !bCloseUserShift;
         }
+
         private void GenerateUserShiftFile(UserShift value)
         {
             if (null == value)
@@ -2764,6 +2887,27 @@ namespace DMT.Services
             {
                 ret.WSStatus = HttpStatus.None;
                 ret.Balance = null;
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Checks user coupon balance status.
+        /// </summary>
+        /// <returns></returns>
+        public UserCouponBalanceStatus GetUserCouponBalanceStatus()
+        {
+            UserCouponBalanceStatus ret = new UserCouponBalanceStatus();
+            var usrCoupRet = CheckUserCoupon();
+            if (null != usrCoupRet)
+            {
+                ret.WSStatus = usrCoupRet.Status;
+                ret.Coupon = usrCoupRet.Value;
+            }
+            else
+            {
+                ret.WSStatus = HttpStatus.None;
+                ret.Coupon = null;
             }
 
             return ret;

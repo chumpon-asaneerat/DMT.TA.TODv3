@@ -6,8 +6,39 @@
   [ ] All bank note entry can enter decimal that should be round to integer like key 0.16 instead of 0 need to prevent.
   [ ] All bank note entry can save event decimal number is invlid i.e. enter 9 in 2bht show red color but can save.
 
-Refactor DMT.TA.TODv4 #2530
+Refactor DMT.TA.TODv4 #2540
 - 
+
+Refactor DMT.TA.TODv4 #2539
+- 
+
+Refactor DMT.TA.TODv4 #2538
+- 
+
+Refactor DMT.TA.TODv4 #2537
+- 
+
+Refactor DMT.TA.TODv4 #2536
+- 
+
+Refactor DMT.TA.TODv4 #2535
+- 
+
+Refactor DMT.TA.TODv4 #2534
+- 
+
+Refactor DMT.TA.TODv4 #2533
+- 
+
+Refactor DMT.TA.TODv4 #2532
+- 
+
+Refactor DMT.TA.TODv4 #2531
+- 
+
+[commited]
+Refactor DMT.TA.TODv4 #2530
+- Prepare history.txt
 
 [commited]
 Refactor DMT.TA.TODv4 #2529

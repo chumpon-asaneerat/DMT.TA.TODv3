@@ -1892,11 +1892,11 @@ namespace DMT.Services
         /// <summary>Gets or sets WS (HTTP) Status.</summary>
         public HttpStatus WSStatus { get; set; }
         /// <summary>Gets or sets user credit balance object.</summary>
-        public object Coupon { get; set; }
-        /// <summary>Checks is return bag.</summary>
+        public UserCouponOnHandSummary Coupon { get; set; }
+        /// <summary>Checks is return coupon.</summary>
         public bool IsReturnCoupon
         {
-            get { return (null != Coupon); }
+            get { return (null != Coupon && Coupon.CouponTotal <= 0); }
         }
     }
 
@@ -2143,24 +2143,24 @@ namespace DMT.Services
                 this.Status = HttpStatus.None;
             }
             internal HttpStatus Status { get; set; }
-            internal object Value { get; set; }
+            internal UserCouponOnHandSummary Value { get; set; }
         }
 
-        private UserCreditBalanceResult CheckUserCoupon()
+        private UserCouponBalanceResult CheckUserCoupon()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
             string msg = string.Empty;
-            UserCreditBalanceResult result = new UserCreditBalanceResult();
+            UserCouponBalanceResult result = new UserCouponBalanceResult();
             if (!ByChief)
             {
                 // By collector call WS.
-                var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
-                var ret = taaOps.Credit.User.Completed(search);
+                var search = Models.Search.Coupon.User.OnHand.Create(User, PlazaGroup);
+                var ret = taaOps.Coupon.User.OnHand(search);
                 if (null == ret)
                 {
                     msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
-                    msg += "Cannot get UserCouponBalance from TA App. ";
+                    msg += "Cannot get UserCouponOnHand from TA App. ";
                     msg += "This may occur due to no data match ";
                     msg += "or in some case the TA App is busy ";
                     msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";
@@ -2173,7 +2173,7 @@ namespace DMT.Services
                 else
                 {
                     msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
-                    msg += " - UserCouponBalance info: " + Environment.NewLine;
+                    msg += " - UserCouponOnHand info: " + Environment.NewLine;
                     msg += "   - Ok: " + ret.Ok.ToString() + Environment.NewLine;
                     msg += "   - http status: " + ret.HttpStatus.ToString() + Environment.NewLine;
                     med.Err(msg);
@@ -2185,41 +2185,41 @@ namespace DMT.Services
             else
             {
                 // By chief call WS first. If exists used it.
-                var search = Models.Search.Credit.User.Completed.Create(User, PlazaGroup);
-                var ret = taaOps.Credit.User.Completed(search);
+                var search = Models.Search.Coupon.User.OnHand.Create(User, PlazaGroup);
+                var ret = taaOps.Coupon.User.OnHand(search);
                 if (null != ret)
                 {
                     msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
-                    msg += " - UserCouponBalance info: " + Environment.NewLine;
+                    msg += " - UserCouponOnHand info: " + Environment.NewLine;
                     msg += "   - Ok: " + ret.Ok.ToString() + Environment.NewLine;
                     msg += "   - http status: " + ret.HttpStatus.ToString() + Environment.NewLine;
                     med.Err(msg);
                     //  Call ws success and has WS execute result returns UserCreditBalance object.
                     result.Status = ret.HttpStatus;
-                    var usrCredit = (ret.Ok) ? ret.Value() : null;
-                    if (null == usrCredit || string.IsNullOrWhiteSpace(usrCredit.UserId))
+                    var usrCoupon = (ret.Ok) ? ret.Value() : null;
+                    if (null == usrCoupon || string.IsNullOrWhiteSpace(usrCoupon.UserId))
                     {
                         // By chief - TA has no balance so create new one - update from Revenue Entry and save.
-                        usrCredit = new UserCreditBalance();
-                        usrCredit.State = UserCreditBalance.StateTypes.Completed; // set completed state.
+                        usrCoupon = new UserCreditBalance();
+                        usrCoupon.State = UserCreditBalance.StateTypes.Completed; // set completed state.
 
-                        usrCredit.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
-                        usrCredit.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
-                        usrCredit.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
-                        usrCredit.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
-                        usrCredit.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
-                        usrCredit.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
+                        usrCoupon.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
+                        usrCoupon.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
+                        usrCoupon.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
+                        usrCoupon.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
+                        usrCoupon.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
+                        usrCoupon.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
 
                     }
 
                     // Update result (due to create new one. so always in success state).
                     result.Status = HttpStatus.Success;
-                    result.Value = usrCredit;
+                    result.Value = usrCoupon;
                 }
                 else
                 {
                     msg += "<<< CheckUserCoupon >>> " + Environment.NewLine;
-                    msg += "Cannot get UserCouponBalance from TA App. ";
+                    msg += "Cannot get UserCouponOnHand from TA App. ";
                     msg += "This may occur due to no data match ";
                     msg += "or in some case the TA App is busy ";
                     msg += "(CPU, Memory, Disk usage is reach maximum for long time). ";

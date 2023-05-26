@@ -113,6 +113,7 @@
     <Compile Include="Routes\TAxTOD\TCT\TAxTOD.TCT.RouteConsts.cs" />
     <Compile Include="Routes\TAxTOD\TOD\TAxTOD.TOD.RouteConsts.cs" />
     <Compile Include="Routes\TA\Coupon\Actions\TSB\Current.cs" />
+    <Compile Include="Routes\TA\Coupon\Actions\User\OnHand.cs" />
     <Compile Include="Routes\TA\Coupon\Actions\User\Sold.cs" />
     <Compile Include="Routes\TA\Coupon\TA.Coupon.Controller.cs" />
     <Compile Include="Routes\TA\Credit\Actions\User\Completed.cs" />

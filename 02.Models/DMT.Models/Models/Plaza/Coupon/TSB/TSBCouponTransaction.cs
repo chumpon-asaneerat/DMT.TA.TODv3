@@ -1389,7 +1389,7 @@ namespace DMT.Models
         /// <param name="user">The target User to get balance.</param>
         /// <param name="start">The start of sold date.</param>
         /// <param name="end">The end of sold date.</param>
-        /// <returns>Returns TSB Coupon transactions. If TSB not found returns null.</returns>
+        /// <returns>Returns User Coupon transactions. If TSB not found returns null.</returns>
         public static NDbResult<List<TSBCouponTransaction>> GetUserCouponSoldByLaneTransactions(TSB tsb,
             //PlazaGroup plazaGroup, 
             User user, DateTime? start, DateTime? end)
@@ -1448,7 +1448,58 @@ namespace DMT.Models
                 return result;
             }
         }
+        /// <summary>
+        /// Gets User Coupon OnHand transactions.
+        /// </summary>
+        /// <param name="tsb">The target TSB to get coupon transaction.</param>
+        /// <param name="plazaGroup">The target PlazaGroup to get balance.</param>
+        /// <param name="user">The target User to get balance.</param>
+        /// <returns>Returns User Coupon transactions. If TSB not found returns null.</returns>
+        public static NDbResult<List<TSBCouponTransaction>> GetUserCouponOnHandTransactions(TSB tsb,
+            //PlazaGroup plazaGroup, 
+            User user)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == tsb ||
+                //null == plazaGroup || 
+                null == user)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
 
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM UserCouponOnHandTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    //cmd += "   AND PlazaGroupId = ? "; // ignore plazagroup
+                    cmd += "   AND UserId = ? ";
+
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        //plazaGroup.PlazaGroupId, // ignore plazagroup
+                        user.UserId).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
 
         public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon35sSoldByDate(TSB tsb, DateTime? soldDate)
         {

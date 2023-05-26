@@ -208,7 +208,7 @@ namespace DMT.Models
             /// <summary>User Coupon Searchs.</summary>
             public static partial class User
             {
-                #region Current
+                #region Sold
 
                 /// <summary>
                 /// Gets User Coupon Sold Balance. 
@@ -258,6 +258,49 @@ namespace DMT.Models
                         ret.User = user;
                         ret.Start = start;
                         ret.End = end;
+                        return ret;
+                    }
+
+                    #endregion
+                }
+
+                #endregion
+
+                #region OnHand
+
+                /// <summary>
+                /// Gets User Coupon OnHand (By User, PlazaGroup). 
+                /// State is complted and has No RevenueId.
+                /// </summary>
+                public class OnHand : NSearch<OnHand>
+                {
+                    #region Public Properties
+
+                    /// <summary>
+                    /// Gets or sets User.
+                    /// </summary>
+                    public Models.User User { get; set; }
+                    /// <summary>
+                    /// Gets or sets Plaza Group.
+                    /// </summary>
+                    public Models.PlazaGroup PlazaGroup { get; set; }
+
+                    #endregion
+
+                    #region Static Method (Create)
+
+                    /// <summary>
+                    /// Create Search instance.
+                    /// </summary>
+                    /// <param name="user">The User.</param>
+                    /// <param name="plazaGroup">The Plaza Group.</param>
+                    /// <returns>Returns Search instance.</returns>
+                    public static OnHand Create(Models.User user,
+                        Models.PlazaGroup plazaGroup)
+                    {
+                        var ret = new OnHand();
+                        ret.User = user;
+                        ret.PlazaGroup = plazaGroup;
                         return ret;
                     }
 

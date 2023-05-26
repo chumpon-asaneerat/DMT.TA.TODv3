@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Coupon\Coupon.Operations.cs" />
     <Compile Include="Services\Coupon\Operations\TSB\Current.cs" />
+    <Compile Include="Services\Coupon\Operations\User\OnHand.cs" />
     <Compile Include="Services\Coupon\Operations\User\Sold.cs" />
     <Compile Include="Services\Credit\Credit.Operations.cs" />
     <Compile Include="Services\Credit\Operations\User\Completed.cs" />

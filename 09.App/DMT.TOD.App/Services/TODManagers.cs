@@ -2200,8 +2200,7 @@ namespace DMT.Services
                     if (null == usrCoupon || string.IsNullOrWhiteSpace(usrCoupon.UserId))
                     {
                         // By chief - TA has no balance so create new one - update from Revenue Entry and save.
-                        usrCoupon = new UserCreditBalance();
-                        usrCoupon.State = UserCreditBalance.StateTypes.Completed; // set completed state.
+                        usrCoupon = new UserCouponOnHandSummary();
 
                         usrCoupon.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
                         usrCoupon.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
@@ -2209,7 +2208,6 @@ namespace DMT.Services
                         usrCoupon.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
                         usrCoupon.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
                         usrCoupon.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
-
                     }
 
                     // Update result (due to create new one. so always in success state).

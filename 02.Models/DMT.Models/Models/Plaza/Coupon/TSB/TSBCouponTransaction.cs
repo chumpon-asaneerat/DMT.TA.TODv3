@@ -87,6 +87,8 @@ namespace DMT.Models
         private string _FullNameTH = string.Empty;
         private DateTime? _UserReceivedDate = new DateTime?();
 
+        private DateTime? _UserReturnDate = new DateTime?();
+
         // Lane
         private string _LaneId = string.Empty;
 
@@ -681,6 +683,91 @@ namespace DMT.Models
             set { }
         }
 
+        #endregion
+
+        #region User Return Date (comment out)
+        /*
+        /// <summary>
+        /// Gets or sets User Return Date.
+        /// </summary>
+        [Category("User")]
+        [Description(" Gets or sets User Return Date")]
+        [ReadOnly(true)]
+        [PropertyMapName("UserReturnDate")]
+        public DateTime? UserReturnDate
+        {
+            get
+            {
+                return _UserReturnDate;
+            }
+            set
+            {
+                if (_UserReturnDate != value)
+                {
+                    _UserReturnDate = (value.HasValue && value.Value != DateTime.MinValue) ?
+                        value : new DateTime?();
+                    this.RaiseChanged("UserReturnDateDate");
+                    this.RaiseChanged("UserReturnDateDateString");
+                    this.RaiseChanged("UserReturnDateTimeString");
+                    this.RaiseChanged("UserReturnDateDateTimeString");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets User Return Date String.
+        /// </summary>
+        [Category("User")]
+        [Description("Gets User Return Date String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string UserReturnDateString
+        {
+            get
+            {
+                var ret = (!this.UserReturnDate.HasValue || this.UserReturnDate.Value == DateTime.MinValue) ?
+                    string.Empty : this.UserReturnDate.Value.ToThaiDateTimeString("dd/MM/yyyy");
+                return ret;
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets User Return Time String.
+        /// </summary>
+        [Category("User")]
+        [Description("Gets User Return Time String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string UserReturnTimeString
+        {
+            get
+            {
+                var ret = (!this.UserReturnDate.HasValue || this.UserReturnDate.Value == DateTime.MinValue) ?
+                    string.Empty : this.UserReturnDate.Value.ToThaiTimeString();
+                return ret;
+            }
+            set { }
+        }
+        /// <summary>
+        /// Gets User Return Date Time String.
+        /// </summary>
+        [Category("User")]
+        [Description("Gets User Return Date Time String.")]
+        [ReadOnly(true)]
+        [JsonIgnore]
+        [Ignore]
+        public string UserReturnDateTimeString
+        {
+            get
+            {
+                var ret = (!this.UserReturnDate.HasValue || this.UserReturnDate.Value == DateTime.MinValue) ?
+                    string.Empty : this.UserReturnDate.Value.ToThaiDateTimeString("dd/MM/yyyy HH:mm:ss");
+                return ret;
+            }
+            set { }
+        }
+        */
         #endregion
 
         #region Lane

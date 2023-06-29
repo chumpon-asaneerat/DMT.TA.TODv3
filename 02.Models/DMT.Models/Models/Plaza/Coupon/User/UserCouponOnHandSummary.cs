@@ -50,6 +50,8 @@ namespace DMT.Models
         private decimal _CouponBHT80Total = decimal.Zero;
         private decimal _CouponBHTTotal = decimal.Zero;
 
+        private int _TotalOnHandRows = 0;
+
         #endregion
 
         #region Constructor
@@ -350,6 +352,27 @@ namespace DMT.Models
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets total coupon on hand.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets total coupon on hand.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("TotalOnHandRows")]
+        public virtual int TotalOnHandRows
+        {
+            get { return _TotalOnHandRows; }
+            set
+            {
+                if (_TotalOnHandRows != value)
+                {
+                    _TotalOnHandRows = value;
+                    // Raise event.
+                    this.RaiseChanged("TotalOnHandRows");
+                }
+            }
+        }
 
         #endregion
 
@@ -360,7 +383,7 @@ namespace DMT.Models
         /// <summary>
         /// The internal FKs class for query data.
         /// </summary>
-        public class FKs : UserCouponSoldSummary, IFKs<UserCouponSoldSummary>
+        public class FKs : UserCouponOnHandSummary, IFKs<UserCouponOnHandSummary>
         {
             #region TSB
 
@@ -469,6 +492,15 @@ namespace DMT.Models
                 get { return base.CouponBHTTotal; }
                 set { base.CouponBHTTotal = value; }
             }
+            /// <summary>
+            /// Gets or sets total coupon on hand.
+            /// </summary>
+            [PropertyMapName("TotalOnHandRows")]
+            public override int TotalOnHandRows
+            {
+                get { return base.TotalOnHandRows; }
+                set { base.TotalOnHandRows = value; }
+            }
 
             #endregion
         }
@@ -543,8 +575,14 @@ namespace DMT.Models
                     var coupons = TSBCouponTransaction.GetUserCouponOnHandTransactions(tsb,
                         //plazaGroup, // Ignore plazagroup
                         user).Value();
+
+                    string msg;
+
                     if (null != coupons)
                     {
+                        msg = string.Format("ตรวจสอบจำนวนคูปองที่จ่ายให้ พก : {0} รายการ", coupons.Count);
+                        med.Info(msg);
+
                         var data = new UserCouponOnHandSummary();
                         data.TSBId = tsb.TSBId;
                         data.TSBNameEN = tsb.TSBNameEN;
@@ -557,6 +595,7 @@ namespace DMT.Models
                         data.CouponBHT35Total = decimal.Zero;
                         data.CouponBHT80Total = decimal.Zero;
                         data.CouponBHTTotal = decimal.Zero;
+                        data.TotalOnHandRows = coupons.Count;
 
                         coupons.ForEach(coupon =>
                         {
@@ -581,6 +620,9 @@ namespace DMT.Models
                     }
                     else
                     {
+                        msg = "ตรวจสอบจำนวนคูปองที่จ่ายให้ พก : 0 รายการ";
+                        med.Info(msg);
+
                         result.Success(null);
                     }
                 }

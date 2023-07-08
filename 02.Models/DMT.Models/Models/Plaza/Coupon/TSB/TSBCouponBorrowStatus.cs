@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using System.Windows;
 
 #endregion
 
@@ -34,7 +35,6 @@ namespace DMT.Models
         #region Internal Variables
 
         private string _TSBId = string.Empty;
-        private string _PlazaGroupId = string.Empty;
         private string _UserId = string.Empty;
         private string _CouponId = string.Empty;
 
@@ -64,34 +64,6 @@ namespace DMT.Models
                 {
                     _TSBId = value;
                     this.RaiseChanged("TSBId");
-                }
-            }
-        }
-
-        #endregion
-
-        #region PlazaGroup
-
-        /// <summary>
-        /// Gets or sets Plaza Group Id.
-        /// </summary>
-        [Category("Plaza Group")]
-        [Description("Gets or sets Plaza Group Id.")]
-        [ReadOnly(true)]
-        [Ignore]
-        [PropertyMapName("PlazaGroupId")]
-        public virtual string PlazaGroupId
-        {
-            get
-            {
-                return _PlazaGroupId;
-            }
-            set
-            {
-                if (_PlazaGroupId != value)
-                {
-                    _PlazaGroupId = value;
-                    this.RaiseChanged("PlazaGroupId");
                 }
             }
         }
@@ -170,12 +142,9 @@ namespace DMT.Models
         /// <summary>
         /// Get.
         /// </summary>
-        /// <param name="plazaGroupId"></param>
-        /// <param name="userId"></param>
         /// <param name="couponId"></param>
         /// <returns></returns>
-        public static NDbResult<TSBCouponBorrowStatus> Get(string plazaGroupId, string userId, 
-            string couponId)
+        public static NDbResult<TSBCouponBorrowStatus> Get(string couponId)
         {
             var result = new NDbResult<TSBCouponBorrowStatus>();
             SQLiteConnection db = Default;
@@ -184,8 +153,7 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (string.IsNullOrWhiteSpace(plazaGroupId) || string.IsNullOrWhiteSpace(userId) || 
-                string.IsNullOrWhiteSpace(couponId))
+            if (string.IsNullOrWhiteSpace(couponId))
             {
                 result.ParameterIsNull();
                 return result;
@@ -206,13 +174,20 @@ namespace DMT.Models
                     cmd += "SELECT * ";
                     cmd += "  FROM TSBCouponBorrowStatus ";
                     cmd += " WHERE TSBId = ? ";
-                    cmd += "   AND PlazaGroupId = ? ";
-                    cmd += "   AND UserId = ? ";
                     cmd += "   AND CouponId = ? ";
 
-                    var ret = NQuery.Query<FKs>(cmd,
-                        tsb.TSBId, plazaGroupId, userId, couponId).FirstOrDefault().ToModel();
-                    result.Success(ret);
+                    var rets = NQuery.Query<FKs>(cmd,
+                        tsb.TSBId, couponId).ToList();
+
+                    if (rets.Count > 0) 
+                    {
+                        var ret = rets[0];
+                        result.Success(ret);
+                    }
+                    else
+                    {
+                        result.Success(null);
+                    }
 
                     return result;
                 }
@@ -227,12 +202,10 @@ namespace DMT.Models
         /// <summary>
         /// Insert.
         /// </summary>
-        /// <param name="plazaGroupId"></param>
         /// <param name="userId"></param>
         /// <param name="couponId"></param>
         /// <returns></returns>
-        private static NDbResult Insert(string plazaGroupId, string userId, 
-            string couponId)
+        private static NDbResult Insert(string userId, string couponId)
         {
             var result = new NDbResult();
             SQLiteConnection db = Default;
@@ -241,8 +214,7 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (string.IsNullOrWhiteSpace(plazaGroupId) || string.IsNullOrWhiteSpace(userId) ||
-                string.IsNullOrWhiteSpace(couponId))
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(couponId))
             {
                 result.ParameterIsNull();
                 return result;
@@ -260,11 +232,11 @@ namespace DMT.Models
                 try
                 {
                     string cmd = string.Empty;
-                    cmd += "INSERT INTO TSBCouponBorrowStatus (TSBId, PlazaGroupId, UserId, CouponId) ";
-                    cmd += " VALUES (?, ?, ?, ?) ";
+                    cmd += "INSERT INTO TSBCouponBorrowStatus (TSBId, UserId, CouponId) ";
+                    cmd += " VALUES (?, ?, ?) ";
 
                     var ret = NQuery.Execute(cmd,
-                        tsb.TSBId, plazaGroupId, userId, couponId);
+                        tsb.TSBId, userId, couponId);
                     result.Success();
 
                     return result;
@@ -280,12 +252,9 @@ namespace DMT.Models
         /// <summary>
         /// Remove (Delete).
         /// </summary>
-        /// <param name="plazaGroupId"></param>
-        /// <param name="userId"></param>
         /// <param name="couponId"></param>
         /// <returns></returns>
-        private static NDbResult Remove(string plazaGroupId, string userId,
-            string couponId)
+        private static NDbResult Remove(string couponId)
         {
             var result = new NDbResult();
             SQLiteConnection db = Default;
@@ -294,8 +263,7 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (string.IsNullOrWhiteSpace(plazaGroupId) || string.IsNullOrWhiteSpace(userId) ||
-                string.IsNullOrWhiteSpace(couponId))
+            if (string.IsNullOrWhiteSpace(couponId))
             {
                 result.ParameterIsNull();
                 return result;
@@ -315,12 +283,10 @@ namespace DMT.Models
                     string cmd = string.Empty;
                     cmd += "DELETE FROM TSBCouponBorrowStatus ";
                     cmd += " WHERE TSBId = ?";
-                    cmd += "   AND PlazaGroupId = ?";
-                    cmd += "   AND UserId = ? ";
                     cmd += "   AND CouponId = ?";
 
                     var ret = NQuery.Execute(cmd,
-                        tsb.TSBId, plazaGroupId, userId, couponId);
+                        tsb.TSBId, couponId);
                     result.Success();
 
                     return result;
@@ -336,11 +302,10 @@ namespace DMT.Models
         /// <summary>
         /// Set Borrow Coupon.
         /// </summary>
-        /// <param name="plazaGroupId"></param>
         /// <param name="userId"></param>
         /// <param name="couponId"></param>
         /// <returns></returns>
-        public static NDbResult Borrow(string plazaGroupId, string userId, string couponId)
+        public static NDbResult Borrow(string userId, string couponId)
         {
             var result = new NDbResult();
             SQLiteConnection db = Default;
@@ -349,16 +314,16 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (string.IsNullOrWhiteSpace(plazaGroupId) || string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(couponId))
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(couponId))
             {
                 result.ParameterIsNull();
                 return result;
             }
 
-            var row = Get(plazaGroupId, userId, couponId).Value();
+            var row = Get(couponId).Value();
             if (null == row)
             {
-                result = Insert(plazaGroupId, userId, couponId);
+                result = Insert(userId, couponId);
             }
             result.Success();
 
@@ -367,11 +332,10 @@ namespace DMT.Models
         /// <summary>
         /// Set Return Coupon.
         /// </summary>
-        /// <param name="plazaGroupId"></param>
         /// <param name="userId"></param>
         /// <param name="couponId"></param>
         /// <returns></returns>
-        public static NDbResult Return(string plazaGroupId, string userId, string couponId)
+        public static NDbResult Return(string couponId)
         {
             var result = new NDbResult();
             SQLiteConnection db = Default;
@@ -380,16 +344,16 @@ namespace DMT.Models
                 result.DbConenctFailed();
                 return result;
             }
-            if (string.IsNullOrWhiteSpace(plazaGroupId) || string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(couponId))
+            if (string.IsNullOrWhiteSpace(couponId))
             {
                 result.ParameterIsNull();
                 return result;
             }
 
-            var row = Get(plazaGroupId, userId, couponId).Value();
+            var row = Get(couponId).Value();
             if (null != row)
             {
-                result = Remove(plazaGroupId, userId, couponId);
+                result = Remove(couponId);
             }
 
             result.Success();

@@ -138,6 +138,8 @@ namespace DMT.Services
 
             Db.CreateTable<TSBCouponTransaction>();
 
+            Db.CreateTable<TSBCouponBorrowStatus>();
+
             ////Db.CreateTable<UserCouponBalance>();
             //Db.CreateTable<UserCouponTransaction>();
         }

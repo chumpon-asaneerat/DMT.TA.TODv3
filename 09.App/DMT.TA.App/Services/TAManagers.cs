@@ -1958,6 +1958,20 @@ namespace DMT.Services
 
                 saveList.ForEach(localTran =>
                 {
+                    // insert coupon status into table
+                    if (localTran.TransactionType == TSBCouponTransactionTypes.Lane ||
+                        localTran.TransactionType == TSBCouponTransactionTypes.SoldByLane)
+                    {
+                        // insert.
+                        TSBCouponBorrowStatus.Borrow(localTran.UserId, localTran.CouponId);
+                    }
+                    else if (localTran.TransactionType == TSBCouponTransactionTypes.Stock ||
+                        localTran.TransactionType == TSBCouponTransactionTypes.CancelOrRemove)
+                    {
+                        // Remove.
+                        TSBCouponBorrowStatus.Return(localTran.CouponId);
+                    }
+
                     // Write Queue
                     TAServerCouponTransaction tran = localTran.ToServer();
                     if (null != tran)

@@ -119,6 +119,7 @@
     <Compile Include="Models\Plaza\Configuration\ViewHistory.cs" />
     <Compile Include="Models\Plaza\Coupon\Common\Enums.cs" />
     <Compile Include="Models\Plaza\Coupon\TSB\TSBCouponBalance.cs" />
+    <Compile Include="Models\Plaza\Coupon\TSB\TSBCouponBorrowStatus.cs" />
     <Compile Include="Models\Plaza\Coupon\TSB\TSBCouponSummary.cs" />
     <Compile Include="Models\Plaza\Coupon\TSB\TSBCouponTransaction.cs" />
     <Compile Include="Models\Plaza\Coupon\User\UserCouponBalance.cs" />

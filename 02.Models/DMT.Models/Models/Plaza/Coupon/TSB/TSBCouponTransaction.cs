@@ -1535,6 +1535,7 @@ namespace DMT.Models
                 return result;
             }
         }
+        /*
         /// <summary>
         /// Gets User Coupon OnHand transactions.
         /// </summary>
@@ -1587,7 +1588,7 @@ namespace DMT.Models
                 return result;
             }
         }
-
+        */
         public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon35sSoldByDate(TSB tsb, DateTime? soldDate)
         {
             var result = new NDbResult<List<TSBCouponTransaction>>();

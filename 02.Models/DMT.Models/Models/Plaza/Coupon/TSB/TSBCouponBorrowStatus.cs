@@ -140,6 +140,53 @@ namespace DMT.Models
         #region Static Methods
 
         /// <summary>
+        /// Gets User OnHand Coupons.
+        /// </summary>
+        /// <param name="tsb">The target TSB to get coupon.</param>
+        /// <param name="user">The target User to get balance.</param>
+        /// <returns>Returns User Borrow Coupons. If TSB not found returns null.</returns>
+        public static NDbResult<List<TSBCouponBorrowStatus>> GetUserOnHandCoupons(TSB tsb, User user)
+        {
+            var result = new NDbResult<List<TSBCouponBorrowStatus>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (null == tsb ||
+                //null == plazaGroup || 
+                null == user)
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponBorrowStatus ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND UserId = ? ";
+
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        user.UserId).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        /// <summary>
         /// Get.
         /// </summary>
         /// <param name="couponId"></param>

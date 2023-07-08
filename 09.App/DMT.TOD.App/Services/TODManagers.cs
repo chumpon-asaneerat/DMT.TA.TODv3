@@ -1896,7 +1896,15 @@ namespace DMT.Services
         /// <summary>Checks is return coupon.</summary>
         public bool IsReturnCoupon
         {
-            get { return (null != Coupon && Coupon.CouponTotal <= 0); }
+            get 
+            {
+                if (null == Coupon)
+                    return true; // already return.
+                else
+                {
+                    return (null != Coupon && null != Coupon.Coupons && Coupon.Coupons.Count <= 0);
+                }
+            }
         }
     }
 
@@ -2203,11 +2211,7 @@ namespace DMT.Services
                         usrCoupon = new UserCouponOnHandSummary();
 
                         usrCoupon.TSBId = (null != UserShift) ? UserShift.TSBId : string.Empty;
-                        usrCoupon.TSBNameEN = (null != UserShift) ? UserShift.TSBNameEN : string.Empty;
-                        usrCoupon.TSBNameTH = (null != UserShift) ? UserShift.TSBNameTH : string.Empty;
                         usrCoupon.UserId = (null != UserShift) ? UserShift.UserId : string.Empty;
-                        usrCoupon.FullNameEN = (null != UserShift) ? UserShift.FullNameEN : string.Empty;
-                        usrCoupon.FullNameTH = (null != UserShift) ? UserShift.FullNameTH : string.Empty;
                     }
 
                     // Update result (due to create new one. so always in success state).

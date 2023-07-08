@@ -15,8 +15,9 @@ Refactor DMT.TA.TODv4 #2539
 Refactor DMT.TA.TODv4 #2538
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2537
-- 
+- Update TA/TOD Check return coupon #12.
 
 [commited]
 Refactor DMT.TA.TODv4 #2536

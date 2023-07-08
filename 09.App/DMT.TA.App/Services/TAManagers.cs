@@ -26,6 +26,7 @@ using NLib.Reflection;
 using RestSharp;
 using System.Windows.Media;
 using System.Threading.Tasks;
+using DMT.Controls.StatusBar;
 
 #endregion
 
@@ -2232,6 +2233,9 @@ namespace DMT.Services
 
                 saveList.ForEach(localTran =>
                 {
+                    // Remove all from Coupon Borrow Table
+                    TSBCouponBorrowStatus.Return(localTran.CouponId);
+
                     // Write Queue
                     TAServerCouponTransaction tran = localTran.ToServer();
                     if (null != tran)

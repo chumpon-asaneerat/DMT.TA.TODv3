@@ -9,8 +9,10 @@
 Refactor DMT.TA.TODv4 #2540
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2539
-- 
+- Update TA/TOD Check return coupon #14.
+  - Rebuild all solution.
 
 [commited]
 Refactor DMT.TA.TODv4 #2538

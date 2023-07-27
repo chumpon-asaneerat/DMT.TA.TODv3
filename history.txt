@@ -33,8 +33,9 @@ Refactor DMT.TA.TODv4 #2543
 Refactor DMT.TA.TODv4 #2542
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2541
-- 
+- Update User Access Reset logic #1
 
 [commited]
 Refactor DMT.TA.TODv4 #2540

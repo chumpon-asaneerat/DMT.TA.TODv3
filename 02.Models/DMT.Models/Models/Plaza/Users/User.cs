@@ -1209,13 +1209,19 @@ namespace DMT.Models
 
                     users.ForEach(user =>
                     {
+                        bool resetAccess = false;
                         User match = User.GetByUserId(user.UserId).Value();
                         if (null == match)
                         {
-                            Save(user); // insert
+                            // insert
+                            Save(user);
+                            UserAccess.Reset(user.UserId); // reset access
                         }
                         else
                         {
+                            resetAccess = (match.PasswordDate < user.PasswordDate);
+
+                            // Update
                             match.UserId = user.UserId;
                             match.CardId = user.CardId;
 
@@ -1239,6 +1245,11 @@ namespace DMT.Models
                             match.RoleNameTH = user.RoleNameTH;
 
                             Save(match); // update
+
+                            if (resetAccess)
+                            {
+                                UserAccess.Reset(user.UserId); // reset access
+                            }
                         }
                     });
 
@@ -1255,7 +1266,7 @@ namespace DMT.Models
                 {
                     med.Info("End Update all users from RabbitMQ message...");
                 }
-
+                /*
                 try
                 {
                     db.BeginTransaction();
@@ -1271,7 +1282,7 @@ namespace DMT.Models
                     med.Err(ex2);
                     db.Rollback();
                 }
-
+                */
                 return result;
             }
 

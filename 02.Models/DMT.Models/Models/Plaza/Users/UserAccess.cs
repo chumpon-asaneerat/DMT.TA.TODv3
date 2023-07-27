@@ -654,6 +654,57 @@ namespace DMT.Models
             }
         }
 
+        /// <summary>
+        /// Reset.
+        /// </summary>
+        /// <param name="userId">The User Id.</param>
+        /// <returns>Returns NDbResult instance.</returns>
+        public static NDbResult Reset(string userId)
+        {
+            SQLiteConnection db = Default;
+            return Reset(db, userId);
+        }
+        /// <summary>
+        /// Reset.
+        /// </summary>
+        /// <param name="db">The database connection.</param>
+        /// <param name="userId">The User Id.</param>
+        /// <returns>Returns NDbResult instance.</returns>
+        public static NDbResult Reset(SQLiteConnection db, string userId)
+        {
+            var result = new NDbResult();
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "DELETE ";
+                    cmd += "  FROM UserAccess ";
+                    cmd += " WHERE UserId = ? ";
+
+                    NQuery.Execute(cmd, userId);
+                    result.Success();
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+
         #endregion
     }
 

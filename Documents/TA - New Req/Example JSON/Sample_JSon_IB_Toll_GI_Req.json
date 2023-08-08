@@ -1,0 +1,87 @@
+{
+    "DOC_DATE": "20230721",
+    "DOC_TYPE": "DI",
+    "COMP_CODE": "DMT1",
+    "PSTNG_DATE": "20230721",
+    "FIS_PERIOD": "07",
+    "CURRENCY": "THB",
+    "REF_DOC_NO": "10800001",
+    "HEADER_TXT": "TADD20230001",
+    "BRANCH": "0000",
+    "Item_AR": [
+        {
+            "POST_KEY": "01",
+            "CUSTOMER": "11000002",
+            "ACCOUNT": "112010002",
+            "AMT_DOCCUR": "128400",
+            "BASETAX_AMT": "",
+            "TAX_CODE": "OX",
+            "PROFIT_CTR": "",
+            "ASSIGNMENT": "COUPON-010823",
+            "ITEM_TEXT": "รายได้ค่าผ่านทาง-เล่มคูปอง"
+        },
+        {
+            "POST_KEY": "50",
+            "CUSTOMER": "",
+            "ACCOUNT": "213010001",
+            "AMT_DOCCUR": "80000",
+            "BASETAX_AMT": "",
+            "TAX_CODE": "OX",
+            "PROFIT_CTR": "OCAN01",
+            "ASSIGNMENT": "COUPON-010823",
+            "ITEM_TEXT": "รายได้ค่าผ่านทาง-เล่มคูปอง"
+        },
+        {
+            "POST_KEY": "50",
+            "CUSTOMER": "",
+            "ACCOUNT": "213010004",
+            "AMT_DOCCUR": "40000",
+            "BASETAX_AMT": "",
+            "TAX_CODE": "OX",
+            "PROFIT_CTR": "OCAN01",
+            "ASSIGNMENT": "COUPON-010823",
+            "ITEM_TEXT": "รายได้ค่าผ่านทาง-เล่มคูปอง"
+        },
+        {
+            "POST_KEY": "50",
+            "CUSTOMER": "",
+            "ACCOUNT": "213070001",
+            "AMT_DOCCUR": "8400",
+            "BASETAX_AMT": "120000",
+            "TAX_CODE": "O7",
+            "PROFIT_CTR": "",
+            "ASSIGNMENT": "COUPON-010823",
+            "ITEM_TEXT": "ลูกหนี้-คูปอง"
+        }
+    ],
+    "Item_INVENT": [
+        {
+            "ITEM_NUMBER": "1",
+            "MATERIAL_NUM": "31000001",
+            "MATERIAL_DESCRIPTION": "เล่มคูปอง 80 บาท",
+            "PLANT": "1010",
+            "SLOC": "CCDD",
+            "MOVE_TYPE": "901",
+            "QUANTITY": "5",
+            "UNIT_OF_MEASURE": "BOK",
+            "GOODS_RECIPIENT": "Remark",
+            "ZSERIAL_NO": [
+                {
+                    "SERIAL_NO": "C000001"
+                },
+                {
+                    "SERIAL_NO": "C000002"
+                },
+                {
+                    "SERIAL_NO": "C000003"
+                },
+                {
+                    "SERIAL_NO": "C000004"
+                },
+                {
+                    "SERIAL_NO": "C000005"
+                }
+           ]
+        }
+    ]
+}

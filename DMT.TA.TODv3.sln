@@ -187,6 +187,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manuals", "Manuals", "{9B4C
 		Documents\Manuals\เอกสาร TAAutoCoupon.doc = Documents\Manuals\เอกสาร TAAutoCoupon.doc
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TA - New Req", "TA - New Req", "{873767D4-BD54-4B86-9BF2-C9DA6110E22C}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\FL_r2.xlsx = Documents\TA - New Req\FL_r2.xlsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example JSON", "Example JSON", "{1F3D4B28-FF9E-425E-AF4E-B11F0551DDF2}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_GI_Req.json = Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_GI_Req.json
+		Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_GI_Res.json = Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_GI_Res.json
+		Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_Req.json = Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_Req.json
+		Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_Res.json = Documents\TA - New Req\Example JSON\Sample_JSon_IB_Toll_Res.json
+		Documents\TA - New Req\Example JSON\Sample_JSon_OB_Toll_Req.json = Documents\TA - New Req\Example JSON\Sample_JSon_OB_Toll_Req.json
+		Documents\TA - New Req\Example JSON\Sample_JSon_OB_Toll_Res.json = Documents\TA - New Req\Example JSON\Sample_JSon_OB_Toll_Res.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface Structure SAP System with TA System", "Interface Structure SAP System with TA System", "{003EFC20-C488-4B00-BCF0-E5593C828116}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\Interface Structure SAP System with TA System\DMT-SAP-FS-FI-AR-I-001 Inbound Interface Toll รายได้ค่าผ่านทาง V1.0.docx = Documents\TA - New Req\Interface Structure SAP System with TA System\DMT-SAP-FS-FI-AR-I-001 Inbound Interface Toll รายได้ค่าผ่านทาง V1.0.docx
+		Documents\TA - New Req\Interface Structure SAP System with TA System\IM0009-MM Gathering IB Interface create reservation_TA V1.0 20230721.xlsx = Documents\TA - New Req\Interface Structure SAP System with TA System\IM0009-MM Gathering IB Interface create reservation_TA V1.0 20230721.xlsx
+		Documents\TA - New Req\Interface Structure SAP System with TA System\IM0011-MM Gathering IB Interface PGI Coupon_TA V1.0 20230725.xlsx = Documents\TA - New Req\Interface Structure SAP System with TA System\IM0011-MM Gathering IB Interface PGI Coupon_TA V1.0 20230725.xlsx
+		Documents\TA - New Req\Interface Structure SAP System with TA System\IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx = Documents\TA - New Req\Interface Structure SAP System with TA System\IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -364,6 +387,9 @@ Global
 		{3CF6A452-392B-4585-A101-0E79FB6B58A5} = {079D8234-DE52-4873-9272-836D86144266}
 		{2AE1F379-6FA9-4947-8DCA-E7EA9921C83A} = {079D8234-DE52-4873-9272-836D86144266}
 		{9B4CA17F-DF29-41AA-AEBE-ED8D263F9545} = {079D8234-DE52-4873-9272-836D86144266}
+		{873767D4-BD54-4B86-9BF2-C9DA6110E22C} = {079D8234-DE52-4873-9272-836D86144266}
+		{1F3D4B28-FF9E-425E-AF4E-B11F0551DDF2} = {873767D4-BD54-4B86-9BF2-C9DA6110E22C}
+		{003EFC20-C488-4B00-BCF0-E5593C828116} = {873767D4-BD54-4B86-9BF2-C9DA6110E22C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

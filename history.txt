@@ -21,8 +21,9 @@ Refactor DMT.TA.TODv4 #2547
 Refactor DMT.TA.TODv4 #2546
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2545
-- 
+- Update New TA Req documents - 230816_TA-SCW_r6.
 
 [commited]
 Refactor DMT.TA.TODv4 #2544

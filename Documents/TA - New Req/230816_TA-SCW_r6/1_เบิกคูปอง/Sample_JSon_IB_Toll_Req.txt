@@ -1,0 +1,17 @@
+{
+    "BASE_DATE": "20230721",
+    "MOVEMENT_TYPE": "311",
+    "GOODS_RECIPIENT": "TADD20230001",
+    "RECEIVING_STOR": "CCDD",
+    "Item": [
+        {
+            "ITEM_NUMBER": "1",
+            "MATERIAL_NUM": "31000001",
+            "MATERIAL_DESCRIPTION": "เล่มคูปอง 80 บาท",
+            "QUANTITY": "100",
+            "UNIT_OF_MEASURE": "BO",
+            "PLANT": "1010",
+            "FROM_STOR": "CDMT"
+        }
+    ]
+}

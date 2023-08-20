@@ -1,0 +1,11 @@
+{
+   "RETURN":[
+      {
+         "TYPE":"S",
+         "MESSAGE":"Success",
+         "AC_DOC_NO":"2100000001",
+         "FISC_YEAR":"2023",
+         "TAX_NO":"10800001"
+      }
+   ]
+}

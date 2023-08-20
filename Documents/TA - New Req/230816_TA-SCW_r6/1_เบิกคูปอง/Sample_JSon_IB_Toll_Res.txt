@@ -1,0 +1,16 @@
+{
+    "Return": [
+        {
+            "TYPE": "E",
+            "MESSAGE": "No material found",
+            "GOODS_RECIPIENT": "TADD20230001",
+            "RESERVATION_NO" : ""
+        },
+        {
+            "TYPE": "S",
+            "MESSAGE": "Successfull",
+            "GOODS_RECIPIENT": "TADD20230002",
+            "RESERVATION_NO" : "1",
+        }
+    ]
+}

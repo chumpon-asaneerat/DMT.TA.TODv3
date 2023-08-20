@@ -1,0 +1,58 @@
+{
+    "Header": [
+        {
+            "POSTING_DATE": "20230721",
+            "MAT_SLIP": "TADD20230001",
+            "HEADER_TXT": "",
+            "Item": [
+                {
+                    "ITEM_NUMBER ": "1",
+                    "MATERIAL_NUM": "310000001",
+                    "MATERIAL_DESCRIPTION": "เล่มคูปอง 80 บาท",
+                    "QUANTITY": "2",
+                    "UNIT_OF_MEASURE": "BOK",
+                    "PLANT": "1010",
+                    "STORAGE_LOCATION": "CCDD",
+                    "GOODS_RECIPIENT": "TADD20230001",
+                    "ZSERIAL_NO": [
+                        {
+                            "OBJECT_COUNTER": "1",
+                            "SERIAL_NO": "C000001"
+                        },
+                        {
+                            "OBJECT_COUNTER": "2",
+                            "SERIAL_NO": "C000002"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "POSTING_DATE": "20230721",
+            "MAT_SLIP": "TADD20230002",
+            "HEADER_TXT": "",
+            "Item": [
+                {
+                    "ITEM_NUMBER ": "1",
+                    "MATERIAL_NUM": "310000002",
+                    "MATERIAL_DESCRIPTION": "เล่มคูปอง 80 บาท",
+                    "QUANTITY": "2",
+                    "UNIT_OF_MEASURE": "BOK",
+                    "PLANT": "1010",
+                    "STORAGE_LOCATION": "CCDD",
+                    "GOODS_RECIPIENT": "TADD20230001",
+                    "ZSERIAL_NO": [
+                        {
+                            "OBJECT_COUNTER": "1",
+                            "SERIAL_NO": "ข000001"
+                        },
+                        {
+                            "OBJECT_COUNTER": "2",
+                            "SERIAL_NO": "ข000002"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

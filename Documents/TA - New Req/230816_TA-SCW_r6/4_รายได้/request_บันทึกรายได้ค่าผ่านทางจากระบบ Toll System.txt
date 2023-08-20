@@ -1,0 +1,56 @@
+{
+   "DOC_DATE":"20230801",
+   "DOC_TYPE":"DC",
+   "COMP_CODE":"DMT1",
+   "PSTNG_DATE":"20230801",
+   "FIS_PERIOD":"08",
+   "CURRENCY":"THB",
+   "REF_DOC_NO":"",
+   "HEADER_TXT":"TOLL003",
+   "BRANCH":"0000",
+   "ITEM":[
+      {
+         "POST_KEY":"11",
+         "CUSTOMER":"11000003",
+         "ACCOUNT":"112010001",
+         "AMT_DOCCUR":"80",
+         "BASETAX_AMT":"0",
+         "TAX_CODE":"",
+         "PROFIT_CTR":"",
+         "INVREF_NO":"2100000002",
+         "INVREF_YEAR":"2023",
+         "INVREF_ITEM":"001",
+         "ASSIGNMENT":"EASYPASS-010823",
+         "ITEM_TEXT":"EasyPass Income in 01/08/23"
+      },
+      {
+         "POST_KEY":"40",
+         "CUSTOMER":"",
+         "ACCOUNT":"411010003",
+         "AMT_DOCCUR":"74.77",
+         "BASETAX_AMT":"0",
+         "TAX_CODE":"OX",
+         "PROFIT_CTR":"OCAN04",
+         "INVREF_NO":"",
+         "INVREF_YEAR":"",
+         "INVREF_ITEM":"",
+         "ASSIGNMENT":"EASYPASS-010823",
+         "ITEM_TEXT":"EasyPass Income in 01/08/23"
+      },
+      {
+         "POST_KEY":"40",
+         "CUSTOMER":"",
+         "ACCOUNT":"213070001",
+         "AMT_DOCCUR":"5.23",
+         "BASETAX_AMT":"74.77",
+         "TAX_CODE":"O7",
+         "PROFIT_CTR":"",
+         "INVREF_NO":"",
+         "INVREF_YEAR":"",
+         "INVREF_ITEM":"",
+         "ASSIGNMENT":"",
+         "ITEM_TEXT":""
+      }
+   ],
+   "RETURN":[]
+}

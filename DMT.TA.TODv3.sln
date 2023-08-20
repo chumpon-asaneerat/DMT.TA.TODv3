@@ -210,6 +210,40 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface Structure SAP Sys
 		Documents\TA - New Req\Interface Structure SAP System with TA System\IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx = Documents\TA - New Req\Interface Structure SAP System with TA System\IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "230816_TA-SCW_r6", "230816_TA-SCW_r6", "{DF6D54EC-0CB7-4772-BB84-D229637DAF2E}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\230816_TA-SCW_r6\requirement_r6.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\requirement_r6.xlsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_เบิกคูปอง", "1_เบิกคูปอง", "{D4E39C7E-43AA-4607-A890-899CCC96984C}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\PTE_IM0009-MM Gathering IB Interface create reservation_TA V1.0 20230721.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\PTE_IM0009-MM Gathering IB Interface create reservation_TA V1.0 20230721.xlsx
+		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Req.txt = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Req.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Res.txt = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Res.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_รับเข้าคูปอง", "2_รับเข้าคูปอง", "{DFD1BFF4-6F3A-4F92-84B3-23FC98DC3077}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\PTE_IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\PTE_IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx
+		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Req.txt = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Req.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Res.txt = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Res.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_ขายคูปอง", "3_ขายคูปอง", "{BE11F532-E848-45D1-A56A-692733FE3C9F}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\IM0011-MM Gathering IB Interface PGI Coupon_TA V1.0 20230725.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\IM0011-MM Gathering IB Interface PGI Coupon_TA V1.0 20230725.xlsx
+		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Req.txt = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Req.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Res.txt = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Res.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_รายได้", "4_รายได้", "{4E3EDEB6-1227-47F8-933C-B7167D756E1F}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_DMT-SAP-FS-FI-AR-I-001 Inbound Interface Toll รายได้ค่าผ่านทาง (Mapping profit center).xlsx = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_DMT-SAP-FS-FI-AR-I-001 Inbound Interface Toll รายได้ค่าผ่านทาง (Mapping profit center).xlsx
+		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_Template case toll interface.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_Template case toll interface.xlsx
+		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\request_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\request_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -390,6 +424,11 @@ Global
 		{873767D4-BD54-4B86-9BF2-C9DA6110E22C} = {079D8234-DE52-4873-9272-836D86144266}
 		{1F3D4B28-FF9E-425E-AF4E-B11F0551DDF2} = {873767D4-BD54-4B86-9BF2-C9DA6110E22C}
 		{003EFC20-C488-4B00-BCF0-E5593C828116} = {873767D4-BD54-4B86-9BF2-C9DA6110E22C}
+		{DF6D54EC-0CB7-4772-BB84-D229637DAF2E} = {873767D4-BD54-4B86-9BF2-C9DA6110E22C}
+		{D4E39C7E-43AA-4607-A890-899CCC96984C} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
+		{DFD1BFF4-6F3A-4F92-84B3-23FC98DC3077} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
+		{BE11F532-E848-45D1-A56A-692733FE3C9F} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
+		{4E3EDEB6-1227-47F8-933C-B7167D756E1F} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

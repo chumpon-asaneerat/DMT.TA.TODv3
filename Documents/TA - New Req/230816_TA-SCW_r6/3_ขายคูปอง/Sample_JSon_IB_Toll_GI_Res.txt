@@ -1,0 +1,15 @@
+{
+    "Return": [
+        {
+            "TYPE": "S",
+            "MESSAGE": "Success",
+            "MT_POSTING_DATE": "20230721",
+            "AC_DOC_NO": "2100000001",
+            "FISC_YEAR": "2023",
+            "TAX_NO": "10800001",
+            "MT_MAT_DOC_NO": "4900000001",
+            "MT_MAT_DOC_YEAR": "2023",
+            "MT_HEADER_TXT" : "ID TA System"
+        }
+    ]
+}

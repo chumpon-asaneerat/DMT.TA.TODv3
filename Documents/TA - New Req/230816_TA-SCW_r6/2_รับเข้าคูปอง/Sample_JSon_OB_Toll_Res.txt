@@ -1,0 +1,14 @@
+{
+    "Return": [
+        {
+            "MAT_SLIP": "TADD20230001",
+            "TYPE": "E",
+            "MESSAGE": "No material found"
+        },
+        {
+            "MAT_SLIP": "TADD20230002",
+            "TYPE": "S",
+            "MESSAGE": "Successfull"
+        }
+    ]
+}

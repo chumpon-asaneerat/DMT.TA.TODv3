@@ -218,30 +218,30 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_เบิกคูปอง", "1_เบิกคูปอง", "{D4E39C7E-43AA-4607-A890-899CCC96984C}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\PTE_IM0009-MM Gathering IB Interface create reservation_TA V1.0 20230721.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\PTE_IM0009-MM Gathering IB Interface create reservation_TA V1.0 20230721.xlsx
-		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Req.txt = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Req.txt
-		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Res.txt = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Res.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Req.json = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Req.json
+		Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Res.json = Documents\TA - New Req\230816_TA-SCW_r6\1_เบิกคูปอง\Sample_JSon_IB_Toll_Res.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_รับเข้าคูปอง", "2_รับเข้าคูปอง", "{DFD1BFF4-6F3A-4F92-84B3-23FC98DC3077}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\PTE_IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\PTE_IM0020-MM Gathering OB Interface Transfer Stock_TA_V1.0 20230721.xlsx
-		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Req.txt = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Req.txt
-		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Res.txt = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Res.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Req.json = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Req.json
+		Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Res.json = Documents\TA - New Req\230816_TA-SCW_r6\2_รับเข้าคูปอง\Sample_JSon_OB_Toll_Res.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_ขายคูปอง", "3_ขายคูปอง", "{BE11F532-E848-45D1-A56A-692733FE3C9F}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\IM0011-MM Gathering IB Interface PGI Coupon_TA V1.0 20230725.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\IM0011-MM Gathering IB Interface PGI Coupon_TA V1.0 20230725.xlsx
-		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Req.txt = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Req.txt
-		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Res.txt = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Res.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Req.json = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Req.json
+		Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Res.json = Documents\TA - New Req\230816_TA-SCW_r6\3_ขายคูปอง\Sample_JSon_IB_Toll_GI_Res.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_รายได้", "4_รายได้", "{4E3EDEB6-1227-47F8-933C-B7167D756E1F}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_DMT-SAP-FS-FI-AR-I-001 Inbound Interface Toll รายได้ค่าผ่านทาง (Mapping profit center).xlsx = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_DMT-SAP-FS-FI-AR-I-001 Inbound Interface Toll รายได้ค่าผ่านทาง (Mapping profit center).xlsx
 		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_Template case toll interface.xlsx = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\230817_Template case toll interface.xlsx
-		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\request_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\request_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt
-		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.txt
+		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\request_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.json = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\request_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.json
+		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.json = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.json
 	EndProjectSection
 EndProject
 Global

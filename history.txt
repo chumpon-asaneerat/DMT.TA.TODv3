@@ -15,8 +15,9 @@ Refactor DMT.TA.TODv4 #2549
 Refactor DMT.TA.TODv4 #2548
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2547
-- 
+- Update New TA Req documents - after meeting
 
 [commited]
 Refactor DMT.TA.TODv4 #2546

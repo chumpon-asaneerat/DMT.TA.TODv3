@@ -339,6 +339,9 @@
     <Compile Include="TA\Windows\Reports\CreditTransactionHistorySearchWindow.xaml.cs">
       <DependentUpon>CreditTransactionHistorySearchWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Windows\Reservation\NewReservationWindow.xaml.cs">
+      <DependentUpon>NewReservationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Utils\SplashScreenWindow.xaml.cs">
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
@@ -579,6 +582,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Windows\Reports\CreditTransactionHistorySearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Reservation\NewReservationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

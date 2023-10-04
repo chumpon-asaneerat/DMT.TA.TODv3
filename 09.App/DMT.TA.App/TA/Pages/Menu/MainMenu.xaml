@@ -248,14 +248,36 @@
                 <TextBlock Grid.Row="5"
                            Grid.Column="1"
                            Width="{StaticResource ButtonSpace}" />
-                <Button x:Name="cmdCreditTransactionSummaryReport"
+                <Button x:Name="cmdNewReservation"
                         Grid.Row="5"
                         Grid.Column="2"
+                        Click="cmdNewReservation_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="สร้างใบเบิกคูปอง" />
+                    </StackPanel>
+                </Button>
+                
+                <TextBlock Grid.Row="7"
+                           Grid.Column="1"
+                           Width="{StaticResource ButtonSpace}" />
+                <Button x:Name="cmdCreditTransactionSummaryReport"
+                        Grid.Row="7"
+                        Grid.Column="0"
                         Click="cmdCreditTransactionSummaryReport_Click"
                         Style="{StaticResource ExchangeAndCouponButtonStyle}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="รายงานสรุปการ" />
                         <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ยืมเงินทอน" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="cmdCouponReserveStatus"
+                        Grid.Row="7"
+                        Grid.Column="2"
+                        Click="cmdCouponReserveStatus_Click"
+                        Style="{StaticResource ExchangeAndCouponButtonStyle}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="สถานะใบเบิก" />
                     </StackPanel>
                 </Button>
             </Grid>

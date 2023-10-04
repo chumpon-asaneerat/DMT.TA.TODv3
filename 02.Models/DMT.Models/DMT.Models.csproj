@@ -166,6 +166,7 @@
     <Compile Include="Models\Plaza\Shifts\TSBShift.cs" />
     <Compile Include="Models\TAxTOD\TAAEditserialno.cs" />
     <Compile Include="Models\TAxTOD\TAAExchange.cs" />
+    <Compile Include="Models\TAxTOD\TAAReservations.cs" />
     <Compile Include="Models\TAxTOD\TAATSBCredit.cs" />
     <Compile Include="Models\TAxTOD\TAAUserCredit.cs" />
     <Compile Include="Models\TAxTOD\TACouponInquiry.cs" />

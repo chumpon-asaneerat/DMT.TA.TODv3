@@ -196,6 +196,35 @@ namespace DMT.TA.Pages.Menu
             PageContentManager.Instance.Current = page;
         }
 
+        // OK - สร้างใบเบิกคูปอง
+        private void cmdNewReservation_Click(object sender, RoutedEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - สร้างใบเบิกคูปอง (NEW TA Coupon Reservation Request)");
+            LogUser(med, TAApp.User.Current); // write current user to log.
+
+            // สร้างใบเบิกคูปอง
+            var win = TAApp.Windows.NewReservation;
+            win.Setup();
+            if (win.ShowDialog() == false) return;
+        }
+        // OK - สถานะใบเบิก
+        private void cmdCouponReserveStatus_Click(object sender, RoutedEventArgs e)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            med.Info("==> MENU - สถานะใบเบิก (View TA Coupon Reservation Request Status)");
+            LogUser(med, TAApp.User.Current); // write current user to log.
+
+            // view สถานะใบเบิก
+            /*
+            var page = TAApp.Pages.EditSoldCoupon;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
+            */
+        }
+
         // OK - เช็คยอดด่าน.
         private void cmdCheckBalance_Click(object sender, RoutedEventArgs e)
         {

@@ -64,6 +64,7 @@
     <Compile Include="Services\Credit\Credit.Operations.cs" />
     <Compile Include="Services\Coupon\Coupon.Operations.cs" />
     <Compile Include="Services\Exchange\Exchange.Operations.cs" />
+    <Compile Include="Services\SAP2\SAP2.Operations.cs" />
     <Compile Include="Services\SAP\SAP.Operations.cs" />
     <Compile Include="Services\TAA\TAA.Operations.cs" />
     <Compile Include="Services\TAxTODMQService.cs" />

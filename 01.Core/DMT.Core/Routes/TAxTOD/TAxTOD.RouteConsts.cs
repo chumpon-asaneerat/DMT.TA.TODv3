@@ -57,6 +57,9 @@ namespace DMT
                 public const string Url = TAxTOD.Url + @"/account/sap";
             }
 
+            /// <summary>The TA Reservation's SAP class.</summary>
+            public static partial class SAP2 { }
+
             /// <summary>The TAA class.</summary>
             public static partial class TAA
             {

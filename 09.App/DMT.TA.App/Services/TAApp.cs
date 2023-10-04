@@ -612,6 +612,21 @@ namespace DMT
 
             #endregion
 
+            #region Reservation
+
+            /// <summary>Gets NewReservation Window.</summary>
+            public static TA.Windows.Reservation.NewReservationWindow NewReservation
+            {
+                get
+                {
+                    var ret = new TA.Windows.Reservation.NewReservationWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region User Search
 
             /// <summary>Gets User Search Window.</summary>

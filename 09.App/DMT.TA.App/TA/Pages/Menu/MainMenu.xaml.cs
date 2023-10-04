@@ -218,11 +218,9 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // view สถานะใบเบิก
-            /*
-            var page = TAApp.Pages.EditSoldCoupon;
+            var page = TAApp.Pages.ReservationHistoryView;
             page.Setup();
             PageContentManager.Instance.Current = page;
-            */
         }
 
         // OK - เช็คยอดด่าน.

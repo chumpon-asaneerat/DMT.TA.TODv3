@@ -415,6 +415,28 @@ namespace DMT
             }
 
             #endregion
+
+            #region Coupon History View
+
+            private static TA.Pages.Reservation.ReservationHistoryViewPage _ReservationHistoryView;
+
+            /// <summary>Gets Reservation History View Page.</summary>
+            public static TA.Pages.Reservation.ReservationHistoryViewPage ReservationHistoryView
+            {
+                get
+                {
+                    if (null == _ReservationHistoryView)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _ReservationHistoryView = new TA.Pages.Reservation.ReservationHistoryViewPage();
+                        }
+                    }
+                    return _ReservationHistoryView;
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>

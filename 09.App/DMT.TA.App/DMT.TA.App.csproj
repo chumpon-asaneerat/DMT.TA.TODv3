@@ -297,6 +297,9 @@
     <Compile Include="TA\Pages\Reports\CreditTransactionHistoryPreviewPage.xaml.cs">
       <DependentUpon>CreditTransactionHistoryPreviewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Pages\Reservation\ReservationHistoryViewPage.xaml.cs">
+      <DependentUpon>ReservationHistoryViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Windows\Coupon\ChooseCouponInStockWindow.xaml.cs">
       <DependentUpon>ChooseCouponInStockWindow.xaml</DependentUpon>
     </Compile>
@@ -526,6 +529,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Pages\Reports\CreditTransactionHistoryPreviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Pages\Reservation\ReservationHistoryViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

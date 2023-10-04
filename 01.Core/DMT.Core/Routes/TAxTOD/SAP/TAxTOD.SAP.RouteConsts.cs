@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Security.AccessControl;
 
 #endregion
 
@@ -115,6 +116,59 @@ namespace DMT
                     public const string Url = @"/api/account/sap/save/arserial";
                 }
                 //------------------------------------------------------------------------------
+            }
+
+            static partial class SAP2
+            {
+                // Url: /api/secure/master/coupon/gets
+                /// <summary>The Get Coupon Master Class.</summary>
+                public static partial class GetCouponMasters
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "GetCouponMasters";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/master/coupon/gets";
+                }
+
+                // Url: /api/secure/master/storage/gets
+                /// <summary>The Get Coupon Master Class.</summary>
+                public static partial class GetStorageLocations
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "GetStorageLocations";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/master/storage/gets";
+                }
+
+                // Url: /api/secure/reservation/runningno/get
+                /// <summary>The Get Coupon Master Class.</summary>
+                public static partial class GetReservationCurrentRunningNo
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "GetReservationCurrentRunningNo";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/reservation/runningno/get";
+                }
+
+                // Url: /api/secure/reservation/search
+                /// <summary>The Get Coupon Master Class.</summary>
+                public static partial class SearchReservation
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "SearchReservation";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/reservation/search";
+                }
+
+                // Url: /api/secure/reservation/save
+                /// <summary>The Get Coupon Master Class.</summary>
+                public static partial class SaveReservation
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "SaveReservation";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/reservation/save";
+                }
             }
         }
     }

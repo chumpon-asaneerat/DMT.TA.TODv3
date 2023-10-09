@@ -57,8 +57,28 @@
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
-                <DockPanel LastChildFill="True">
-                    <Grid/>
+                <DockPanel LastChildFill="True" Margin="10">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="ประเภทคูปอง : "
+                                   TextAlignment="Right" />
+                        <ComboBox x:Name="cbCouponMasters"
+                                  Style="{StaticResource CommonComboBox}"
+                                  DisplayMemberPath="Description"
+                                  Width="250" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Width="10"/>
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="จำนวนเล่ม : "
+                                   TextAlignment="Right" />
+                        <TextBox x:Name="txtAmount"
+                                  Style="{StaticResource CommonTextBox}"
+                                  Width="100" />
+                    </StackPanel>
+                    <Grid />
                 </DockPanel>
             </DockPanel>
         </Grid>

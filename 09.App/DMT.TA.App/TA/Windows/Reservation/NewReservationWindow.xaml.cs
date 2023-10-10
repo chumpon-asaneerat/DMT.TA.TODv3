@@ -59,6 +59,30 @@ namespace DMT.TA.Windows.Reservation
             ClearItems();
         }
 
+        private void cmdDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (null != sender) ? sender as Button : null;
+            var ctx = (null != button) ? button.DataContext : null;
+            var item = (null != ctx) ? ctx as ReserveRequestItem : null;
+            // delete item
+            DeleteItem(item);
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtAmount_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter) 
+            {
+                // Add to list
+                AddCurrrentItem();
+
+                e.Handled = true;
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -116,13 +140,38 @@ namespace DMT.TA.Windows.Reservation
             PrepereItemInputs();
         }
 
+        private void DeleteItem(ReserveRequestItem delItem)
+        {
+            if (null == delItem)
+                return;
+            if (null == request && null != request.items)
+                return;
+
+            int idx = request.items.FindIndex(item =>
+            {
+                return item.materialnum == delItem.materialnum;
+            });
+
+            if (idx != -1)
+            {
+                request.items.RemoveAt(idx);
+            }
+
+            grid.DataContext = null;
+
+            grid.DataContext = request.items;
+        }
+
         private void PrepereItemInputs()
         {
-            txtAmount.DataContext = null;
             cbCouponMasters.SelectedIndex = (null != couponTypes && couponTypes.Count > 0) ? 0 : -1;
 
+            txtAmount.DataContext = null;
             reqItem = new ReserveRequestItem(); // for binding
             txtAmount.DataContext = reqItem;
+
+            txtAmount.SelectAll();
+            txtAmount.Focus();
         }
 
         private void AddCurrrentItem()
@@ -184,10 +233,8 @@ namespace DMT.TA.Windows.Reservation
         public void Setup()
         {
             LoadMasterData();
-
-            PrepareRequest();
-
             LoadComboboxs();
+            PrepareRequest();
         }
 
         #endregion

@@ -4,12 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Reflection;
 
 using DMT.Models;
 using DMT.Services;
 using NLib.Services;
 using NLib.Reflection;
 using System.Linq;
+using NLib.Reflection.Emit;
+using NLib;
 
 #endregion
 
@@ -162,6 +165,11 @@ namespace DMT.TA.Windows.Reservation
             grid.DataContext = request.items;
         }
 
+        private bool HstQty()
+        {
+            return (null != reqItem && reqItem.quantity > 0);
+        }
+
         private void PrepereItemInputs()
         {
             cbCouponMasters.SelectedIndex = (null != couponTypes && couponTypes.Count > 0) ? 0 : -1;
@@ -185,9 +193,17 @@ namespace DMT.TA.Windows.Reservation
             {
                 return;
             }
+
+            if  (!HstQty())
+            {
+                txtAmount.SelectAll();
+                txtAmount.Focus();
+                return;
+            }
+
             var couponType = couponTypes[cbCouponMasters.SelectedIndex];
-            reqItem.description = couponType.Description;
-            reqItem.materialnum = couponType.MATERIAL_NUM;
+            reqItem.description = couponType.Description.Trim();
+            reqItem.materialnum = couponType.MATERIAL_NUM.Trim();
 
             // check exits in list
             int idx = request.items.FindIndex(item => 
@@ -223,7 +239,33 @@ namespace DMT.TA.Windows.Reservation
 
         private void SaveReservationToQueue()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
 
+            if (null != tsb && null != runningNo && null != request && null != request.items)
+            {
+                int itemNum = 1;
+                foreach (var item in request.items) 
+                {
+                    item.itemnumber = itemNum.ToString();
+                    item.goodsrecipient = request.goodsrecipient; // same as header
+                    itemNum++;
+                }
+
+                // Update current running no
+                ops.UpdateReservationCurrentRunningNo(tsb.TSBId, runningNo.RunningNo + 1);
+
+                // Write to queue
+                TAxTODMQService.Instance.WriteQueue(request);
+
+                var win = TAApp.Windows.MessageBox;
+                string msg = string.Format("สร้างใบเบิก เลขที่ : '{0}' สำเร็จ", request.goodsrecipient);
+                win.Setup(msg, "Toll Admin");
+                win.ShowDialog();
+            }
+            else
+            {
+                med.Err("SaveReservationToQueue failed. Some parameter(s) is null.");
+            }
         }
 
         #endregion

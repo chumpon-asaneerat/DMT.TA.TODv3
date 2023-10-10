@@ -47,19 +47,31 @@ namespace DMT.Services.Operations
                     new { tsbid = tsbId, year = sYear });
                 return ret;
             }
-
-            /*
             /// <summary>
-            /// Execute Save AR api.
+            /// Execute SaveReservation api.
             /// </summary>
             /// <param name="value">The api parameter.</param>
             /// <returns>Returns instance of NRestResult.</returns>
-            public static NRestResult SaveAR(SAPSaveAR value)
+            public static NRestResult SaveReservation(ReserveRequest value)
             {
-                var ret = Execute(RouteConsts.TAxTOD.SAP.SaveAR.Url, value);
+                var ret = Execute(RouteConsts.TAxTOD.SAP2.SaveReservation.Url, value);
                 return ret;
             }
-            */
+            /// <summary>
+            /// Execute UpdateReservationCurrentRunningNo api.
+            /// </summary>
+            /// <param name="value">The api parameter.</param>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult UpdateReservationCurrentRunningNo(string tsbId, int runningNo)
+            {
+                var ret = Execute(RouteConsts.TAxTOD.SAP2.UpdateReservationCurrentRunningNo.Url, 
+                    new
+                    {
+                        tsbid = tsbId,
+                        runningno = runningNo
+                    });
+                return ret;
+            }
         }
     }
 }

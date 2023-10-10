@@ -52,7 +52,7 @@
                                       Click="cmdOk_Click"
                                       DockPanel.Dock="Right"
                                       ImageSource="/DMT.TA.App;component/Images/Button/OK2.png">
-                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ตกลง" />
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="ส่งคำร้องขอ" />
                     </ctrl:ImageButton>
                     <Grid />
                 </DockPanel>

@@ -273,6 +273,14 @@ namespace DMT.Services
             CheckSendError(med, fullFileName, ret);
         }
 
+        private void SendReservationRequest(string fullFileName, Models.ReserveRequest value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var ret = ops.SAP2.SaveReservation(value);
+            CheckSendError(med, fullFileName, ret);
+        }
+
         #endregion
 
         #region Resend (from error folder)
@@ -395,6 +403,15 @@ namespace DMT.Services
             med.Info("Resend file: " + fullFileName);
 
             var ret = ops.Coupon.EditSerialNo(value);
+            CheckResendError(med, fullFileName, ret);
+        }
+
+        private void ResendReservationRequest(string fullFileName, Models.ReserveRequest value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            med.Info("Resend file: " + fullFileName);
+
+            var ret = ops.SAP2.SaveReservation(value);
             CheckResendError(med, fullFileName, ret);
         }
 
@@ -606,6 +623,21 @@ namespace DMT.Services
                 {
                     var value = jsonString.FromJson<Models.TAAEditserialno>();
                     SendEditSerialNo(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveToInvalid(fullFileName);
+                }
+            }
+            else if (fullFileName.Contains("req.reservation"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.ReserveRequest>();
+                    SendReservationRequest(fullFileName, value);
                 }
                 catch (Exception ex)
                 {
@@ -829,6 +861,21 @@ namespace DMT.Services
                     MoveErrorToInvalid(fullFileName);
                 }
             }
+            else if (fullFileName.Contains("req.reservation"))
+            {
+                try
+                {
+                    var value = jsonString.FromJson<Models.ReserveRequest>();
+                    ResendReservationRequest(fullFileName, value);
+                }
+                catch (Exception ex)
+                {
+                    // Parse Error.
+                    med.Err(ex);
+                    med.Err("message is null or cannot convert to json object.");
+                    MoveErrorToInvalid(fullFileName);
+                }
+            }
             else
             {
                 // Not Supports file.
@@ -1006,6 +1053,17 @@ namespace DMT.Services
         {
             if (null == value) return;
             string fileName = GetFileName("edit.serialno");
+            string msg = value.ToJson(false);
+            WriteFile(fileName, msg);
+        }
+        /// <summary>
+        /// Write Queue.
+        /// </summary>
+        /// <param name="value">The ReserveRequest instance.</param>
+        public void WriteQueue(Models.ReserveRequest value)
+        {
+            if (null == value) return;
+            string fileName = GetFileName("req.reservation");
             string msg = value.ToJson(false);
             WriteFile(fileName, msg);
         }

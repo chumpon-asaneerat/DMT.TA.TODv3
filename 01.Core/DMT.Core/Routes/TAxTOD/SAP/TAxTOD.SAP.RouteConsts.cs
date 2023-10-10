@@ -131,7 +131,7 @@ namespace DMT
                 }
 
                 // Url: /api/secure/master/storage/gets
-                /// <summary>The Get Coupon Master Class.</summary>
+                /// <summary>The Get GetStorageLocations Class.</summary>
                 public static partial class GetStorageLocations
                 {
                     /// <summary>Gets route name.</summary>
@@ -141,7 +141,7 @@ namespace DMT
                 }
 
                 // Url: /api/secure/reservation/runningno/get
-                /// <summary>The Get Coupon Master Class.</summary>
+                /// <summary>The Get GetReservationCurrentRunningNo Class.</summary>
                 public static partial class GetReservationCurrentRunningNo
                 {
                     /// <summary>Gets route name.</summary>
@@ -150,8 +150,18 @@ namespace DMT
                     public const string Url = @"/api/secure/reservation/runningno/get";
                 }
 
+                // Url: /api/secure/reservation/runningno/save
+                /// <summary>The UpdateReservationCurrentRunningNo Class.</summary>
+                public static partial class UpdateReservationCurrentRunningNo
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "UpdateReservationCurrentRunningNo";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/reservation/runningno/save";
+                }
+
                 // Url: /api/secure/reservation/search
-                /// <summary>The Get Coupon Master Class.</summary>
+                /// <summary>The Get SearchReservation Class.</summary>
                 public static partial class SearchReservation
                 {
                     /// <summary>Gets route name.</summary>
@@ -161,7 +171,7 @@ namespace DMT
                 }
 
                 // Url: /api/secure/reservation/save
-                /// <summary>The Get Coupon Master Class.</summary>
+                /// <summary>The Get SaveReservation Class.</summary>
                 public static partial class SaveReservation
                 {
                     /// <summary>Gets route name.</summary>

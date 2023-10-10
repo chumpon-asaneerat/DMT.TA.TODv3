@@ -169,6 +169,15 @@ namespace DMT
                     /// <summary>Gets route url.</summary>
                     public const string Url = @"/api/secure/reservation/search";
                 }
+                // Url: /api/secure/reservation/items/search
+                /// <summary>The Get SearchReservation Class.</summary>
+                public static partial class GetReservationItems
+                {
+                    /// <summary>Gets route name.</summary>
+                    public const string Name = "GetReservationItems";
+                    /// <summary>Gets route url.</summary>
+                    public const string Url = @"/api/secure/reservation/items/search";
+                }
 
                 // Url: /api/secure/reservation/save
                 /// <summary>The Get SaveReservation Class.</summary>

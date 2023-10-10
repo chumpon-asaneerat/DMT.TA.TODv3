@@ -62,190 +62,56 @@
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
                     <!--  USER FILTER PANEL  -->
-                    <DockPanel Height="150"
-                               Margin="10,1"
+                    <DockPanel Margin="10,1"
                                VerticalAlignment="Center"
                                DockPanel.Dock="Top"
                                LastChildFill="True">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="110" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="110" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="150" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <!--  LINE 1  -->
-                            <TextBlock Grid.Row="1"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="รหัสสินค้า : "
-                                       TextAlignment="Right" />
-                            <TextBox x:Name="txtSAPItemCode"
-                                     Grid.Row="1"
-                                     Grid.Column="2"
-                                     VerticalAlignment="Center"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonTextBox}" />
-                            <TextBlock Grid.Row="1"
-                                       Grid.Column="8"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="เลขที่ใบโอน : "
-                                       TextAlignment="Right"
-                                       Visibility="Hidden" />
-                            <TextBox x:Name="txtSAPTransferNo"
-                                     Grid.Row="1"
-                                     Grid.Column="10"
-                                     VerticalAlignment="Center"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonTextBox}"
-                                     Visibility="Hidden" />
-                            <TextBlock Grid.Row="1"
-                                       Grid.Column="4"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="ด่านเก็บเงิน : "
-                                       TextAlignment="Right" />
-                            <ComboBox Name="cbTSBs"
-                                      Grid.Row="1"
-                                      Grid.Column="6"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Center"
-                                      HorizontalContentAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      DisplayMemberPath="TSBNameTH"
-                                      FontSize="{StaticResource InputFontSize18}"
-                                      ItemsSource="{Binding}" />
-                            <!--  LINE 2  -->
-                            <TextBlock Grid.Row="3"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="Serial No : "
-                                       TextAlignment="Right" />
-                            <TextBox x:Name="txtSAPIntrSerial"
-                                     Grid.Row="3"
-                                     Grid.Column="2"
-                                     VerticalAlignment="Center"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonTextBox}" />
-                            <TextBlock Grid.Row="3"
-                                       Grid.Column="4"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource LabelText}"
-                                       Text="สถานะ : "
-                                       TextAlignment="Right" />
-                            <ComboBox Name="cbStatus"
-                                      Grid.Row="3"
-                                      Grid.Column="6"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Center"
-                                      HorizontalContentAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      DisplayMemberPath="ItemStatus"
-                                      FontSize="{StaticResource InputFontSize18}"
-                                      ItemsSource="{Binding}" />
-                            <TextBlock Grid.Row="3"
-                                       Grid.Column="8"
-                                       Style="{StaticResource LabelText}"
-                                       Text="เลขที่ AR Invoice : "
-                                       TextAlignment="Right" />
-                            <TextBox x:Name="txtSAPARInvoice"
-                                     Grid.Row="3"
-                                     Grid.Column="10"
-                                     VerticalAlignment="Center"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     Style="{StaticResource CommonTextBox}" />
-                            <!--  LINE 3  -->
-                            <TextBlock Grid.Row="5"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <TextBlock VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
                                        Text="วันที่ขาย : "
                                        TextAlignment="Right" />
-                            <xceed:DateTimePicker x:Name="dtWorkDateFrom"
-                                                  Grid.Row="5"
-                                                  Grid.Column="2"
+                            <xceed:DateTimePicker x:Name="dtCreateDate"
                                                   VerticalAlignment="Center"
                                                   AutoCloseCalendar="True"
                                                   FontSize="{StaticResource InputFontSize18}"
                                                   Format="Custom"
                                                   FormatString="dd/MM/yyyy"
+                                                  Width="200"
                                                   ShowButtonSpinner="False"
                                                   Style="{DynamicResource DMTDateTimePickerStyle}"
                                                   TimePickerAllowSpin="False"
                                                   TimePickerShowButtonSpinner="False"
                                                   TimePickerVisibility="Collapsed" />
-                            <xceed:DateTimePicker x:Name="dtWorkDateTo"
-                                                  Grid.Row="5"
-                                                  Grid.Column="4"
-                                                  Grid.ColumnSpan="3"
-                                                  Width="150"
-                                                  HorizontalAlignment="Left"
-                                                  VerticalAlignment="Center"
-                                                  AutoCloseCalendar="True"
-                                                  FontSize="{StaticResource InputFontSize18}"
-                                                  Format="Custom"
-                                                  FormatString="dd/MM/yyyy"
-                                                  ShowButtonSpinner="False"
-                                                  Style="{DynamicResource DMTDateTimePickerStyle}"
-                                                  TimePickerAllowSpin="False"
-                                                  TimePickerShowButtonSpinner="False"
-                                                  TimePickerVisibility="Collapsed" />
-                            <TextBlock Grid.Row="5"
-                                       Grid.Column="8"
-                                       VerticalAlignment="Center"
+                            <TextBlock Width="10" />
+                            <TextBlock VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
-                                       Text="กะทำงาน : "
+                                       Text="สถานะใบเบิก : "
                                        TextAlignment="Right" />
-                            <ComboBox x:Name="cbShifts"
-                                      Grid.Row="5"
-                                      Grid.Column="10"
+                            <ComboBox Name="cbReserveStatus"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Center"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
-                                      DisplayMemberPath="ShiftNameTH"
+                                      DisplayMemberPath="Description"
                                       FontSize="{StaticResource InputFontSize18}"
-                                      SelectedValuePath="ShiftId"
-                                      Style="{StaticResource CommonComboBox}" />
-                            <!--  LINE 4  -->
-                            <TextBlock Grid.Row="7"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
+                                      Width="150"
+                                      ItemsSource="{Binding}" />
+                            <TextBlock Width="10" />
+                            <TextBlock VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
-                                       Text="สต็อกคงเหลือ : "
+                                       Text="สถานะการโอน : "
                                        TextAlignment="Right" />
-                            <TextBox x:Name="txtStockBalance"
-                                     Grid.Row="7"
-                                     Grid.Column="2"
-                                     VerticalAlignment="Center"
-                                     FontSize="{StaticResource InputFontSize18}"
-                                     IsReadOnly="True"
-                                     Style="{StaticResource CommonTextBox}"
-                                     Text="0"
-                                     TextAlignment="Center" />
+                            <ComboBox Name="cbTransferStatus"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      DisplayMemberPath="Description"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      Width="150"
+                                      ItemsSource="{Binding}" />
+                            <TextBlock Width="10" />
                             <Button x:Name="cmdSearch"
                                     Grid.Row="7"
                                     Grid.Column="6"
@@ -256,69 +122,95 @@
                                     Content="แสดงข้อมูล"
                                     FontSize="{StaticResource InputFontSize18}"
                                     Style="{DynamicResource InlineButton}" />
-                            <Button x:Name="cmdClear"
-                                    Grid.Row="7"
-                                    Grid.Column="8"
-                                    Width="150"
-                                    Height="30"
-                                    VerticalAlignment="Center"
-                                    Click="cmdClear_Click"
-                                    Content="เคลียร์"
-                                    FontSize="{StaticResource InputFontSize18}"
-                                    Style="{DynamicResource InlineButton}" />
-                        </Grid>
+                        </StackPanel>
+                        <Grid />
                     </DockPanel>
                     <!--  SEPERATOR  -->
                     <TextBlock Height="10" DockPanel.Dock="Top" />
                     <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
                     <TextBlock Height="10" DockPanel.Dock="Bottom" />
                     <!--  LIST VIEW  -->
-                    <ListView x:Name="grid"
-                              Margin="10,0"
-                              FontSize="{StaticResource InputFontSize18}"
-                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
-                              ItemsSource="{Binding}"
-                              Style="{StaticResource SingleSelectListView}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource SAPItemCode}"
-                                                Header="รหัสสินค้า" />
-                                <GridViewColumn Width="100"
-                                                CellTemplate="{StaticResource SAPIntrSerial}"
-                                                Header="Serial No" />
-                                <!--
-                                <GridViewColumn Width="140"
-                                                CellTemplate="{StaticResource SAPTransferNo}"
-                                                Header="เลขที่ใบโอนสินค้า" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource SAPTransferDateString}"
-                                                Header="วันที่โอนสินค้า" />
-                                -->
-                                <GridViewColumn Width="150"
-                                                CellTemplate="{StaticResource ItemStatus}"
-                                                Header="สถานะรายการ" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource TollWayName}"
-                                                Header="ด่านเก็บเงิน" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource WorkingDateString}"
-                                                Header="วันที่ทำงาน" />
-                                <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource ShiftName}"
-                                                Header="กะทำงาน" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource SAPARInvoice}"
-                                                Header="AR Invoice" />
-                                <GridViewColumn Width="200"
-                                                CellTemplate="{StaticResource CouponSoldBy}"
-                                                Header="ขายโดย" />
-                                <GridViewColumn Width="80"
-                                                CellTemplate="{StaticResource CouponSoldLaneId}"
-                                                Header="เลน" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <Grid Margin="10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <!--  TOP VIEW  -->
+                        <ListView x:Name="grid"
+                                  Grid.Row="0"
+                                  FontSize="{StaticResource InputFontSize18}"
+                                  ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                  ItemsSource="{Binding}"
+                                  Style="{StaticResource SingleSelectListView}"
+                                  SelectionChanged="grid_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource GOODS_RECIPIENT}"
+                                                    Header="เลขที่ใบเบิก" />
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource BASE_DATE}"
+                                                    Header="วันที่สร้างเอกสาร" />
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource CREATE_BY}"
+                                                    Header="ผู้ทำรายการ" />
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource ReserveStatus}"
+                                                    Header="สถานะใบเบิก" />
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource ReserveStatusText}"
+                                                    Header="รายละเอียดสถานะ" />
+                                    <GridViewColumn Width="80"
+                                                    CellTemplate="{StaticResource MAT_SLIP}"
+                                                    Header="เลขที่ใบโอน" />
+                                    <GridViewColumn Width="200"
+                                                    CellTemplate="{StaticResource POSTING_DATE}"
+                                                    Header="วันที่โอน" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--  BOTTOM VIEW  -->
+                        <DockPanel Grid.Row="1" LastChildFill="True">
+                            <StackPanel Orientation="Horizontal"
+                                        Height="40"
+                                        DockPanel.Dock="Top">
+                                <TextBlock VerticalAlignment="Center"
+                                           Style="{StaticResource LabelText}"
+                                           Text="เลขที่ใบเบิก : "
+                                           TextAlignment="Right" />
+                                <TextBlock x:Name="txtGOODS_RECIPIENT"
+                                           Margin="2,0"
+                                           Foreground="YellowGreen"
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"
+                                           Style="{StaticResource LabelText}"
+                                           Text="-"
+                                           TextAlignment="Left" />
+                            </StackPanel>
+                            <ListView x:Name="grid2"
+                                      FontSize="{StaticResource InputFontSize18}"
+                                      ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                                      ItemsSource="{Binding}"
+                                      Style="{StaticResource SingleSelectListView}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="200"
+                                                        CellTemplate="{StaticResource ITEM_NUMBER}"
+                                                        Header="No." />
+                                        <GridViewColumn Width="200"
+                                                        CellTemplate="{StaticResource MATERIAL_DESCRIPTION}"
+                                                        Header="ประเภทคูปอง" />
+                                        <GridViewColumn Width="200"
+                                                        CellTemplate="{StaticResource QUANTITY}"
+                                                        Header="จำนวนขอเบิก" />
+                                        <GridViewColumn Width="200"
+                                                        CellTemplate="{StaticResource TRANSFER_QTY}"
+                                                        Header="จำนวนโอน" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                    </Grid>
                 </DockPanel>
             </DockPanel>
         </Grid>

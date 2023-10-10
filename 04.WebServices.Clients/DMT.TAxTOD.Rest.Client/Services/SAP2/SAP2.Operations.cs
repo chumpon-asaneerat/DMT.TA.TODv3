@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Windows.Media;
 using DMT.Models;
 
 #endregion
@@ -70,6 +71,30 @@ namespace DMT.Services.Operations
                         tsbid = tsbId,
                         runningno = runningNo
                     });
+                return ret;
+            }
+            /// <summary>
+            /// Execute SearchReservation api.
+            /// </summary>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult<List<ReserveDocument>, NRestOut> SearchReservation(
+                string baseDate, string sReqStatus, string sTransfer)
+            {
+                var ret = Execute<List<ReserveDocument>, NRestOut>(
+                    RouteConsts.TAxTOD.SAP2.SearchReservation.Url,
+                    new { basedate = baseDate, sendresult = sReqStatus, transfer = sTransfer });
+                return ret;
+            }
+            /// <summary>
+            /// Execute GetReservationItems api.
+            /// </summary>
+            /// <returns>Returns instance of NRestResult.</returns>
+            public static NRestResult<List<ReserveDocumentItem>, NRestOut> GetReservationItems(
+                string goodsRecipient)
+            {
+                var ret = Execute<List<ReserveDocumentItem>, NRestOut>(
+                    RouteConsts.TAxTOD.SAP2.GetReservationItems.Url,
+                    new { goodsrecipient = goodsRecipient });
                 return ret;
             }
         }

@@ -24,6 +24,8 @@ using System.Text.RegularExpressions;
 
 namespace DMT.TA.Pages.Reservation
 {
+    using ops = DMT.Services.Operations.TAxTOD.SAP2;
+
     /// <summary>
     /// Interaction logic for ReservationHistoryViewPage.xaml
     /// </summary>
@@ -47,8 +49,6 @@ namespace DMT.TA.Pages.Reservation
         private CultureInfo culture = new CultureInfo("th-TH");
         private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
 
-        private User _chief = null;
-
         #endregion
 
         #region Loaded/Unloaded
@@ -56,12 +56,8 @@ namespace DMT.TA.Pages.Reservation
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Setup DateTime Picker
-            // Work From
-            dtWorkDateFrom.CultureInfo = culture;
-            dtWorkDateFrom.Language = language;
-            // Work To
-            dtWorkDateTo.CultureInfo = culture;
-            dtWorkDateTo.Language = language;
+            dtCreateDate.CultureInfo = culture;
+            dtCreateDate.Language = language;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -83,9 +79,18 @@ namespace DMT.TA.Pages.Reservation
             Search();
         }
 
-        private void cmdClear_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region ListView Handlers
+
+        private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ClearInputs();
+            var item = grid.SelectedItem as ReserveDocument;
+            if (null != item)
+            {
+                LoadItems(item.GOODS_RECIPIENT);
+            }
+            else LoadItems(null);
         }
 
         #endregion
@@ -99,18 +104,42 @@ namespace DMT.TA.Pages.Reservation
             PageContentManager.Instance.Current = page;
         }
 
-        private void ClearInputs()
-        {
-
-        }
-
         private void Search()
         {
+            string basedate = (dtCreateDate.Value.HasValue) ? 
+                dtCreateDate.Value.Value.ToString("yyyyMMdd", System.Globalization.DateTimeFormatInfo.InvariantInfo) : null;
+            ReservationRequestStatus resStatus = cbReserveStatus.SelectedItem as ReservationRequestStatus;
+            string sReqStatus = (null != resStatus) ? resStatus.Code : null;
+            ReservationTransferStatus tranStatus = cbTransferStatus.SelectedItem as ReservationTransferStatus;
+            string sTranStatus = (null != tranStatus) ? tranStatus.Code : null;
 
+            grid.ItemsSource = null;
+            var items = ops.SearchReservation(basedate, sReqStatus, sTranStatus).Value();
+            grid.ItemsSource = items;
+        }
+
+        private void LoadItems(string goodsRecipient)
+        {
+            // update text
+            txtGOODS_RECIPIENT.Text = goodsRecipient;
+
+            grid2.ItemsSource = null;
+            if (!string.IsNullOrEmpty(goodsRecipient))
+            {
+                var items = ops.GetReservationItems(goodsRecipient).Value();
+                grid2.ItemsSource = items;
+            }
+        }
+
+        private void LoadComboboxes()
+        {
+            cbReserveStatus.ItemsSource = ReservationRequestStatus.Gets();
+            cbReserveStatus.SelectedIndex = 0;
+            cbTransferStatus.ItemsSource = ReservationTransferStatus.Gets();
+            cbTransferStatus.SelectedIndex = 0;
         }
 
         #endregion
-
 
         #region Public Methods
 
@@ -122,7 +151,8 @@ namespace DMT.TA.Pages.Reservation
             // Focus on search textbox.
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-
+                dtCreateDate.Value = DateTime.Today;
+                LoadComboboxes();
             }));
         }
 

@@ -542,6 +542,128 @@
                    TextAlignment="Right" />
     </DataTemplate>
 
+    <DataTemplate x:Key="BASE_DATE">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding BaseDateText}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="MOVEMENT_TYPE">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding MOVEMENT_TYPE}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="GOODS_RECIPIENT">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding GOODS_RECIPIENT}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="RECEIVING_STOR">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding RECEIVING_STOR}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="CREATE_BY">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CreateUserName}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="CREATE_DATE">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CreateDateText}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="POSTING_DATE">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding PostingDateText}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="MAT_SLIP">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding MAT_SLIP}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="HEADER_TXT">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding HEADER_TXT}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TRANSFER_DATE">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransferDateText}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SENDSAP">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SENDSAP}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="SENDRESULT">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding SENDRESULT}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="RESULTMSG">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding RESULTMSG}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ReserveStatus">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ReserveStatus}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ReserveStatusText">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ReserveStatusText}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="TransferStatus">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TransferStatus}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ITEM_NUMBER">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding ITEM_NUMBER}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="MATERIAL_NUM">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding MATERIAL_NUM}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="MATERIAL_DESCRIPTION">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding MATERIAL_DESCRIPTION}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="QUANTITY">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding QUANTITY, StringFormat={}{0:n0}}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="TRANSFER_QTY">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding TRANSFER_QTY, StringFormat={}{0:n0}}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+    <DataTemplate x:Key="UNIT_OF_MEASURE">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding UNIT_OF_MEASURE}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="PLANT">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding PLANT}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="FROM_STOR">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding FROM_STOR}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+
     <!--  Common for Coupon History View  -->
     <!--
         {

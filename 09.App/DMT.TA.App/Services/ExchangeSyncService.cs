@@ -231,11 +231,15 @@ namespace DMT.Services
                                             // load approve details from server
                                             var items = GetApproveItems(tsb.TSBId, reqId).Value();
                                             var tran = CreateApproveTransaction(approve, items);
-                                            // set FKs
-                                            tran.GroupId = localGroup.GroupId;
+
                                             // save changes
                                             TSBExchangeGroup.SaveTSBExchangeGroup(localGroup);
-                                            TSBExchangeTransaction.SaveTransaction(tran);
+                                            // set FKs
+                                            if (null != tran)
+                                            {
+                                                tran.GroupId = localGroup.GroupId;
+                                                TSBExchangeTransaction.SaveTransaction(tran);
+                                            }
                                         }
                                         else if (approve.Status == "C")
                                         {

@@ -66,19 +66,62 @@
                         <ComboBox x:Name="cbCouponMasters"
                                   Style="{StaticResource CommonComboBox}"
                                   DisplayMemberPath="Description"
-                                  Width="250" />
+                                  Width="220" />
                         <TextBlock VerticalAlignment="Center"
                                    Style="{StaticResource LabelText}"
-                                   Width="10"/>
+                                   Width="10" />
                         <TextBlock VerticalAlignment="Center"
                                    Style="{StaticResource LabelText}"
                                    Text="จำนวนเล่ม : "
                                    TextAlignment="Right" />
                         <TextBox x:Name="txtAmount"
-                                  Style="{StaticResource CommonTextBox}"
-                                  Width="100" />
+                                 Style="{StaticResource CommonTextBox}"
+                                 Text="{Binding quantity}"
+                                 Width="100" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Width="10" />
+                        <Button x:Name="cmdAdd"
+                                Width="150"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Content="เพิ่ม"
+                                Click="cmdAdd_Click"
+                                FontSize="{StaticResource InputFontSize18}"
+                                Style="{DynamicResource InlineButton}" />
+                        <TextBlock VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Width="10" />
+                        <Button x:Name="cmdClear"
+                                Width="150"
+                                Height="30"
+                                VerticalAlignment="Center"
+                                Content="เคลียร์"
+                                Click="cmdClear_Click"
+                                FontSize="{StaticResource InputFontSize18}"
+                                Style="{DynamicResource InlineButton}" />
                     </StackPanel>
-                    <Grid />
+                    <!--  LIST VIEW  -->
+                    <ListView x:Name="grid"
+                              Margin="0,5"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource ReqMaterialnum}"
+                                                Header="รหัส" />
+                                <GridViewColumn Width="150"
+                                                CellTemplate="{StaticResource ReqDescription}"
+                                                Header="รายละเอียด" />
+                                <GridViewColumn Width="100"
+                                                CellTemplate="{StaticResource ReqQty}"
+                                                Header="มูลค่าคูปอง" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </Grid>

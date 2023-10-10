@@ -39,7 +39,7 @@ namespace DMT.Models
         public int RunningNo { get; set; }
     }
 
-    public class ReserveHead
+    public class ReserveRequest
     {
         public string basedate { get; set; }
         public string movementtype { get; set; } = "311"; // Fixed
@@ -50,14 +50,15 @@ namespace DMT.Models
         public string mat_slip { get; set; }
         public string headertext { get; set; }
 
-        public List<ReserveItem> items { get; set; } = new List<ReserveItem>();
+        public List<ReserveRequestItem> items { get; set; } = new List<ReserveRequestItem>();
     }
 
-    public class ReserveItem
+    public class ReserveRequestItem
     {
         public string itemnumber { get; set; }
         public string goodsrecipient { get; set; }
         public string materialnum { get; set;}
+        public string description { get; set; } // for UI binding only
         public int quantity { get; set; }
         public string unit { get; set; } = "BOK"; // Fixed
         public string plant { get; set; } = "1010"; // Fixed

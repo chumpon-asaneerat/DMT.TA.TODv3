@@ -525,6 +525,23 @@
                    TextAlignment="Right" />
     </DataTemplate>
 
+    <!--  Common for New Reservation  -->
+    <DataTemplate x:Key="ReqMaterialnum">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding materialnum}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ReqDescription">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding description}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="ReqQty">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding quantity, StringFormat={}{0:n0}}"
+                   TextAlignment="Right" />
+    </DataTemplate>
+
     <!--  Common for Coupon History View  -->
     <!--
         {

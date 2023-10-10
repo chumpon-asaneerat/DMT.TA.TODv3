@@ -164,7 +164,7 @@
                                                     CellTemplate="{StaticResource MAT_SLIP}"
                                                     Header="เลขที่ใบโอน" />
                                     <GridViewColumn Width="200"
-                                                    CellTemplate="{StaticResource POSTING_DATE}"
+                                                    CellTemplate="{StaticResource TRANSFER_DATE}"
                                                     Header="วันที่โอน" />
                                 </GridView>
                             </ListView.View>

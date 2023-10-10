@@ -309,16 +309,9 @@ namespace DMT.Models
             get 
             { 
                 string ret;
-                if (!string.IsNullOrWhiteSpace(POSTING_DATE))
+                if (!string.IsNullOrWhiteSpace(MAT_SLIP))
                 {
-                    if (TRANSFER_DATE.HasValue)
-                    {
-                        ret = "รับโอน";
-                    }
-                    else
-                    {
-                        ret = "รอใบเบิก";
-                    }
+                    ret = "รับโอน";
                 }
                 else
                 {

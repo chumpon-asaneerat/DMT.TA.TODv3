@@ -24,8 +24,10 @@ Refactor DMT.TA.TODv4 #2566
 Refactor DMT.TA.TODv4 #2565
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2564
-- 
+- Implements TA Reservation #16
+  - Update TA app version - build 10301
 
 [commited]
 Refactor DMT.TA.TODv4 #2563

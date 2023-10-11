@@ -127,7 +127,7 @@ namespace DMT.TA.Windows.Reservation
                 txtAmount.IsEnabled = true;
                 cmdAdd.IsEnabled = true;
                 cmdClear.IsEnabled = true;
-                cmdOk.Visibility = Visibility.Hidden;
+                cmdOk.Visibility = Visibility.Visible;
 
                 med.Info("NEW COUPON RESERVATION - LOAD MASTER DATA:");
                 med.Info("  - Success load master data");

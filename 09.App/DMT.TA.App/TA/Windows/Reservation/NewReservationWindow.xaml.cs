@@ -41,7 +41,10 @@ namespace DMT.TA.Windows.Reservation
 
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
-            SaveReservationToQueue();
+            if (!SaveReservationToQueue())
+            {
+                return;
+            }
             DialogResult = true;
         }
 
@@ -263,9 +266,48 @@ namespace DMT.TA.Windows.Reservation
             cbCouponMasters.SelectedIndex = (null != couponTypes && couponTypes.Count > 0) ? 0 : -1;
         }
 
-        private void SaveReservationToQueue()
+        private bool CanSave()
+        {
+            bool ret = false;
+            if (null != tsb && null != runningNo && null != request)
+            {
+                ret = true;
+            }
+            return ret;
+        }
+
+        private bool HasItems()
+        {
+            bool ret = false;
+            if (null != tsb && null != runningNo && null != request &&
+                null != request.items && request.items.Count > 0)
+            {
+                ret = true;
+            }
+            return ret;
+        }
+
+        private bool SaveReservationToQueue()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+            bool ret = false;
+
+            if (!CanSave())
+            {
+                var win = TAApp.Windows.MessageBox;
+                string msg = "ไม่ข้อมูลมาสเตอร์ จาก TA server";
+                win.Setup(msg, "Toll Admin");
+                win.ShowDialog();
+                return ret;
+            }
+            if (!HasItems())
+            {
+                var win = TAApp.Windows.MessageBox;
+                string msg = "ไม่พบรายการคูปองที่ขอ ต้องมีอย่างน้อย 1 รายการ";
+                win.Setup(msg, "Toll Admin");
+                win.ShowDialog();
+                return ret;
+            }
 
             if (null != tsb && null != runningNo && null != request && null != request.items)
             {
@@ -287,11 +329,15 @@ namespace DMT.TA.Windows.Reservation
                 string msg = string.Format("สร้างใบเบิก เลขที่ : '{0}' สำเร็จ", request.goodsrecipient);
                 win.Setup(msg, "Toll Admin");
                 win.ShowDialog();
+
+                ret = true;
             }
             else
             {
                 med.Err("SaveReservationToQueue failed. Some parameter(s) is null.");
             }
+
+            return ret;
         }
 
         #endregion

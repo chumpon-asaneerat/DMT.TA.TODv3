@@ -87,7 +87,7 @@ namespace DMT.Models
         private string _FullNameTH = string.Empty;
         private DateTime? _UserReceivedDate = new DateTime?();
 
-        private DateTime? _UserReturnDate = new DateTime?();
+        //private DateTime? _UserReturnDate = new DateTime?();
 
         // Lane
         private string _LaneId = string.Empty;

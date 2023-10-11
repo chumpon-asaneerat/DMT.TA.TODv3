@@ -33,8 +33,9 @@ Refactor DMT.TA.TODv4 #2563
 Refactor DMT.TA.TODv4 #2562
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2561
-- 
+- Implements TA Reservation #13
 
 [commited]
 Refactor DMT.TA.TODv4 #2560

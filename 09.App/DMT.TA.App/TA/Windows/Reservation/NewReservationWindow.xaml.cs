@@ -100,12 +100,26 @@ namespace DMT.TA.Windows.Reservation
 
         private void LoadMasterData()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             tsb = TSB.GetCurrent().Value();
             sYear = DateTime.Now.Year.ToString();
-            storage = ops.GetStorageLocations(tsb.TSBId).Value().FirstOrDefault();
-            //Console.WriteLine(storage);
-            runningNo = ops.GetReservationCurrentRunningNo(tsb.TSBId, sYear).Value().FirstOrDefault();
-            //Console.WriteLine(runningNo);
+            var storages = ops.GetStorageLocations(tsb.TSBId).Value();
+            storage = (null != storages) ? storages.FirstOrDefault() : null;
+
+            var runningNos = ops.GetReservationCurrentRunningNo(tsb.TSBId, sYear).Value();
+            runningNo = (null != runningNos) ? runningNos.FirstOrDefault() : null;
+
+            if (null == storage || null == runningNo)
+            {
+                cbCouponMasters.IsEnabled = false;
+                cmdAdd.IsEnabled = false;
+                cmdClear.IsEnabled = false;
+                cmdOk.IsEnabled = false;
+
+                med.Err("NEW COUPON RESERVATION - LOAD MASTER DATA:");
+                med.Err("  - Cannot no requred data from server");
+            }
         }
 
         private void PrepareRequest()

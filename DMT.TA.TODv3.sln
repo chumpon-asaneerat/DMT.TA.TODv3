@@ -244,6 +244,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_รายได้", "4_�
 		Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.json = Documents\TA - New Req\230816_TA-SCW_r6\4_รายได้\response_บันทึกรายได้ค่าผ่านทางจากระบบ Toll System.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevNote1", "DevNote1", "{F60D1861-34F6-48AE-B06A-8A3CDC308CBC}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\TA - New Req\DevNote1\2023-09-14 - TA-SAP-SCW Server (https).docx = Documents\TA - New Req\DevNote1\2023-09-14 - TA-SAP-SCW Server (https).docx
+		Documents\TA - New Req\DevNote1\2023-09-19 - Table and SP DMT.docx = Documents\TA - New Req\DevNote1\2023-09-19 - Table and SP DMT.docx
+		Documents\TA - New Req\DevNote1\2023-09-25 - SP for Reeservation Coupon.docx = Documents\TA - New Req\DevNote1\2023-09-25 - SP for Reeservation Coupon.docx
+		Documents\TA - New Req\DevNote1\2023-10-03 - TA Reservation Logic.docx = Documents\TA - New Req\DevNote1\2023-10-03 - TA Reservation Logic.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -429,6 +437,7 @@ Global
 		{DFD1BFF4-6F3A-4F92-84B3-23FC98DC3077} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
 		{BE11F532-E848-45D1-A56A-692733FE3C9F} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
 		{4E3EDEB6-1227-47F8-933C-B7167D756E1F} = {DF6D54EC-0CB7-4772-BB84-D229637DAF2E}
+		{F60D1861-34F6-48AE-B06A-8A3CDC308CBC} = {873767D4-BD54-4B86-9BF2-C9DA6110E22C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8294B55B-41AD-4128-B464-FF8E2F01BA71}

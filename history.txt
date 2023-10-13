@@ -18,8 +18,10 @@ Refactor DMT.TA.TODv4 #2568
 Refactor DMT.TA.TODv4 #2567
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2566
-- 
+- Implements TA Reservation #18
+  - Update documents
 
 [commited]
 Refactor DMT.TA.TODv4 #2565

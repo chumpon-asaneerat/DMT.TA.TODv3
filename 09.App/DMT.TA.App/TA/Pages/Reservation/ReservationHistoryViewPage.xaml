@@ -69,7 +69,7 @@
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                             <TextBlock VerticalAlignment="Center"
                                        Style="{StaticResource LabelText}"
-                                       Text="วันที่ขาย : "
+                                       Text="วันที่ : "
                                        TextAlignment="Right" />
                             <xceed:DateTimePicker x:Name="dtCreateDate"
                                                   VerticalAlignment="Center"

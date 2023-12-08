@@ -9,8 +9,11 @@
 Refactor DMT.TA.TODv4 #2570
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2569
-- 
+- Update TA
+  - Hide Menu
+  - Update TA app version - build 10304
 
 [commited]
 Refactor DMT.TA.TODv4 #2568

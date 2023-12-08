@@ -357,6 +357,7 @@
                 <TextBlock Grid.Row="5"
                            Grid.Column="1"
                            Width="{StaticResource ButtonSpace}" />
+                <!--
                 <Button x:Name="cmdEditSoldCoupon"
                         Grid.Row="5"
                         Grid.Column="2"
@@ -370,6 +371,15 @@
 
                 <Button x:Name="cmdExit"
                         Grid.Row="7"
+                        Grid.Column="2"
+                        Click="cmdExit_Click"
+                        Style="{StaticResource ConfigAndExitButtonStyle}">
+                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />
+                </Button>
+                -->
+
+                <Button x:Name="cmdExit"
+                        Grid.Row="5"
                         Grid.Column="2"
                         Click="cmdExit_Click"
                         Style="{StaticResource ConfigAndExitButtonStyle}">

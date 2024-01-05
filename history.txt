@@ -30,8 +30,10 @@ Refactor DMT.TA.TODv4 #2574
 Refactor DMT.TA.TODv4 #2573
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2572
-- 
+- Update TA, TOD, Account, Plaza App 
+  - Add supports remove message older than 120 days (4 months).
 
 [commited]
 Refactor DMT.TA.TODv4 #2571

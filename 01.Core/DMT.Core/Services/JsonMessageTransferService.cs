@@ -405,6 +405,144 @@ namespace DMT.Services
                 med.Info("End CompressFiles - Current directory: {0}", this.MessageFolder);
 #endif
             }
+
+            // Remove backup files and folders
+            RemoveBackup();
+        }
+
+        #endregion
+
+        #region Remove Backup File and Folders
+
+        private void RemoveBackup()
+        {
+            RemoveBackupFolders();
+            RemoveBackupFiles();
+        }
+
+        private void RemoveBackupFolders()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            List<string> folders = new List<string>();
+            List<string> oldFolders = new List<string>();
+
+            string backupFolder = Path.Combine(this.MessageFolder, "Backup");
+            if (!Directory.Exists(backupFolder)) return; // No Backup Folder.
+
+            var backupDirs = Directory.GetDirectories(backupFolder);
+            if (null != backupDirs && backupDirs.Length > 0) folders.AddRange(backupDirs);
+
+            // Find old files to delete.
+            DateTime today = DateTime.Today;
+            DateTime firstOnMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            DateTime targetDT = firstOnMonth.AddMonths(-4); // last 4 month.
+
+            folders.ForEach(folder =>
+            {
+                try
+                {
+                    string folderName = Path.GetFileName(folder);
+                    string fileYMD = folderName.Substring(0, 10);
+                    DateTime fileDT;
+                    if (DateTime.TryParseExact(fileYMD, "yyyy.MM.dd",
+                        System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                        System.Globalization.DateTimeStyles.None,
+                        out fileDT))
+                    {
+                        if (fileDT < targetDT)
+                        {
+                            oldFolders.Add(folder);
+                        }
+                    }
+                    else
+                    {
+                        med.Info("Cannot parse folder name: " + folderName);
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    med.Err(ex1);
+                }
+            });
+            // Move old files to target folder.
+            if (null != oldFolders && oldFolders.Count > 0)
+            {
+                med.Info("=== DELETE OLD FOLDERS ===");
+
+                oldFolders.ForEach(folder =>
+                {
+                    try
+                    {
+                        if (Directory.Exists(folder))
+                        {
+                            Directory.Delete(folder, true);
+                        }
+                    }
+                    catch (Exception ex2)
+                    {
+                        med.Err(ex2);
+                    }
+                });
+            }
+        }
+
+        private void RemoveBackupFiles()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            List<string> files = new List<string>();
+            List<string> oldFiles = new List<string>();
+
+            string backupFolder = Path.Combine(this.MessageFolder, "Backup");
+            if (!Directory.Exists(backupFolder)) return; // No Backup Folder.
+
+            var backupFiles = Directory.GetFiles(backupFolder, "*.zip");
+            if (null != backupFiles && backupFiles.Length > 0) files.AddRange(backupFiles);
+
+            // Find old files to delete.
+            DateTime today = DateTime.Today;
+            DateTime firstOnMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            DateTime targetDT = firstOnMonth.AddMonths(-4); // last 4 month.
+
+            files.ForEach(file =>
+            {
+                try
+                {
+                    string fileName = Path.GetFileName(file);
+                    string fileYMD = fileName.Substring(0, 10);
+                    DateTime fileDT;
+                    if (DateTime.TryParseExact(fileYMD, "yyyy.MM.dd",
+                        System.Globalization.DateTimeFormatInfo.InvariantInfo,
+                        System.Globalization.DateTimeStyles.None,
+                        out fileDT))
+                    {
+                        if (fileDT < targetDT)
+                        {
+                            oldFiles.Add(file);
+                        }
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    med.Err(ex1);
+                }
+            });
+            // Move old files to target folder.
+            if (null != oldFiles && oldFiles.Count > 0)
+            {
+                med.Info("=== DELETE OLD FILES ===");
+
+                oldFiles.ForEach(file =>
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch (Exception ex2)
+                    {
+                        med.Err(ex2);
+                    }
+                });
+            }
         }
 
         #endregion

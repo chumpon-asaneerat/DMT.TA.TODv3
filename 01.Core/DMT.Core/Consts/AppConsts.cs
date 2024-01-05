@@ -20,8 +20,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10304";
-                public static DateTime LastUpdate = new DateTime(2023, 12, 08, 16, 20, 00);
+                public static string Build = "10310";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class TOD
@@ -30,8 +30,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10251";
-                public static DateTime LastUpdate = new DateTime(2023, 7, 28, 07, 00, 00);
+                public static string Build = "10255";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class Account
@@ -40,8 +40,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10221";
-                public static DateTime LastUpdate = new DateTime(2023, 7, 28, 07, 00, 00);
+                public static string Build = "10225";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class PlazaConfig
@@ -50,8 +50,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10100";
-                public static DateTime LastUpdate = new DateTime(2021, 09, 21, 17, 00, 00);
+                public static string Build = "10105";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class PlazaSumulator
@@ -60,8 +60,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10100";
-                public static DateTime LastUpdate = new DateTime(2021, 09, 21, 17, 00, 00);
+                public static string Build = "10105";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class PlazaWorkBench
@@ -70,8 +70,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10100";
-                public static DateTime LastUpdate = new DateTime(2021, 09, 21, 17, 00, 00);
+                public static string Build = "10105";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class PlazaServiceManager
@@ -80,8 +80,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10100";
-                public static DateTime LastUpdate = new DateTime(2021, 09, 21, 17, 00, 00);
+                public static string Build = "10105";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
 
             public static class DCImporter
@@ -90,8 +90,8 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10000";
-                public static DateTime LastUpdate = new DateTime(2022, 07, 17, 12, 10, 00);
+                public static string Build = "10005";
+                public static DateTime LastUpdate = new DateTime(2024, 01, 05, 18, 00, 00);
             }
         }
         /*

@@ -2216,7 +2216,7 @@ namespace DMT.Services
             while (_th != null) 
             {
                 var ts = DateTime.Now - _lastCheck;
-                if (ts.TotalMilliseconds <= 5000) continue; // check every 5 second.
+                if (ts.TotalMinutes <= 20) continue; // check every 20 minutes.
 
                 if (_onbackup) continue;
 
@@ -2250,6 +2250,7 @@ namespace DMT.Services
                 string bakDir = Path.Combine(LocalFolder, "Backup");
                 string backupFileName = string.Format("{0:yyyy.MM.dd.HH}.{1}", DateTime.Now, FileName);
                 string bakFile = Path.Combine(bakDir, backupFileName);
+
                 if (File.Exists(srcFile))
                 {
                     if (!Directory.Exists(bakDir))
@@ -2259,7 +2260,12 @@ namespace DMT.Services
                     if (!File.Exists(bakFile)) 
                     {
                         // copy only when no backup found
+                        med.Info("Backup local db:" + backupFileName);
                         File.Copy(srcFile, bakFile, true);
+                    }
+                    else
+                    {
+                        med.Info("Backup local db:" + backupFileName + " alrady exists.");
                     }
                 }
             }
@@ -2277,7 +2283,7 @@ namespace DMT.Services
             string bakDir = Path.Combine(LocalFolder, "Backup");
             DirectoryInfo di = new DirectoryInfo(bakDir);
             FileInfo[] files = di.GetFiles("*.db");
-            if (files.Length <= 24)
+            if (null == files || files.Length <= 24)
                 return;
 
             List<string> fileNames = new List<string>();
@@ -2287,6 +2293,8 @@ namespace DMT.Services
 
             try
             {
+                med.Info("Remove Backup local db:" + fileNames[0]);
+
                 File.Delete(fileNames[0]); // remove first file.
             }
             catch (Exception ex)

@@ -21,6 +21,7 @@ using NLib.IO;
 
 using DMT.Models;
 using DMT.Views;
+using System.Threading;
 
 #endregion
 
@@ -2077,6 +2078,135 @@ namespace DMT.Services
 
         #endregion
 
+        #region Private Methods (backup db every hour)
+
+        private Thread _th;
+        private DateTime _lastCheck = DateTime.Now;
+        private bool _onbackup = false;
+
+        private void CreateThread()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            if (null != _th)
+            {
+                med.Info("Auto backup thread is alreary created.");
+                return;
+            }
+
+            _th = new Thread(AutoBackup);
+            _th.Priority = ThreadPriority.BelowNormal;
+            _th.Start();
+        }
+
+        private void FreeThread()
+        {
+            try
+            {
+                if (null != _th) _th.Abort();
+            }
+            catch (ThreadAbortException)
+            {
+                Thread.ResetAbort();
+            }
+            _th = null;
+        }
+
+        private void AutoBackup()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            while (_th != null)
+            {
+                var ts = DateTime.Now - _lastCheck;
+                if (ts.TotalMinutes <= 20) continue; // check every 20 minutes.
+
+                if (_onbackup) continue;
+
+                _onbackup = true;
+                try
+                {
+                    Backup();
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+                finally
+                {
+                    _onbackup = false;
+
+                    _lastCheck = DateTime.Now;
+                }
+            }
+            FreeThread();
+        }
+
+        private void Backup()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+            try
+            {
+                RemoveOldFiles();
+
+                string srcFile = Path.Combine(LocalFolder, FileName);
+                string bakDir = Path.Combine(LocalFolder, "Backup");
+                string backupFileName = string.Format("{0:yyyy.MM.dd.HH}.{1}", DateTime.Now, FileName);
+                string bakFile = Path.Combine(bakDir, backupFileName);
+
+                if (File.Exists(srcFile))
+                {
+                    if (!Directory.Exists(bakDir))
+                    {
+                        Directory.CreateDirectory(bakDir);
+                    }
+                    if (!File.Exists(bakFile))
+                    {
+                        // copy only when no backup found
+                        med.Info("Backup local db:" + backupFileName);
+                        File.Copy(srcFile, bakFile, true);
+                    }
+                    else
+                    {
+                        med.Info("Backup local db:" + backupFileName + " alrady exists.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                med.Err("Fail to create backup db");
+                med.Err(ex);
+            }
+        }
+
+        private void RemoveOldFiles()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string bakDir = Path.Combine(LocalFolder, "Backup");
+            DirectoryInfo di = new DirectoryInfo(bakDir);
+            FileInfo[] files = di.GetFiles("*.db");
+            if (null == files || files.Length <= 24)
+                return;
+
+            List<string> fileNames = new List<string>();
+            foreach (var item in files)
+                fileNames.Add(item.FullName);
+            fileNames.Sort();
+
+            try
+            {
+                med.Info("Remove Backup local db:" + fileNames[0]);
+
+                File.Delete(fileNames[0]); // remove first file.
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+
+        #endregion
+
         #region Public Methods (Start/Shutdown)
 
         /// <summary>
@@ -2131,6 +2261,8 @@ namespace DMT.Services
                         InitViews(); // init views.
 
                         OnConnected.Call(this, EventArgs.Empty);
+
+                        CreateThread();
                     }
                 }
             }
@@ -2140,6 +2272,8 @@ namespace DMT.Services
         /// </summary>
         public void Shutdown()
         {
+            FreeThread();
+
             if (null != Db)
             {
                 Db.Dispose();

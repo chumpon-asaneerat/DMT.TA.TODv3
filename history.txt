@@ -33,8 +33,10 @@ Refactor DMT.TA.TODv4 #2573
 Refactor DMT.TA.TODv4 #2572
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2571
-- 
+- Update TA, TOD, Account, Plaza App 
+  - Add supports auto backup local db.
 
 [commited]
 Refactor DMT.TA.TODv4 #2570

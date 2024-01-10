@@ -2182,19 +2182,19 @@ namespace DMT.Services
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            string bakDir = Path.Combine(LocalFolder, "Backup");
-            DirectoryInfo di = new DirectoryInfo(bakDir);
-            FileInfo[] files = di.GetFiles("*.db");
-            if (null == files || files.Length <= 24)
-                return;
-
-            List<string> fileNames = new List<string>();
-            foreach (var item in files)
-                fileNames.Add(item.FullName);
-            fileNames.Sort();
-
             try
             {
+                string bakDir = Path.Combine(LocalFolder, "Backup");
+                DirectoryInfo di = new DirectoryInfo(bakDir);
+                FileInfo[] files = di.GetFiles("*.db");
+                if (null == files || files.Length <= 24)
+                    return;
+
+                List<string> fileNames = new List<string>();
+                foreach (var item in files)
+                    fileNames.Add(item.FullName);
+                fileNames.Sort();
+
                 med.Info("Remove Backup local db:" + fileNames[0]);
 
                 File.Delete(fileNames[0]); // remove first file.

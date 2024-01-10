@@ -21,8 +21,9 @@ Refactor DMT.TA.TODv4 #2577
 Refactor DMT.TA.TODv4 #2576
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2575
-- 
+- Add Unhandle exception and Recompile all projects
 
 [commited]
 Refactor DMT.TA.TODv4 #2574

@@ -22,6 +22,30 @@ namespace DMT
     {
         private Services.TAWebServer appServ = null;
 
+        #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public App() : base()
+        {
+            if (null != AppDomain.CurrentDomain)
+            {
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            }
+        }
+
+        #endregion
+
+        #region Unhandle exception
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ToString(), "Application Unhandle Exception.");
+        }
+
+        #endregion
+
         /// <summary>
         /// OnStartup.
         /// </summary>
@@ -147,6 +171,7 @@ namespace DMT
             splash.Close();
             splash = null;
         }
+
         /// <summary>
         /// OnExit
         /// </summary>

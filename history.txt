@@ -18,8 +18,10 @@ Refactor DMT.TA.TODv4 #2578
 Refactor DMT.TA.TODv4 #2577
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2576
-- 
+- NLib fixed PageContentManager #1
+  - Add SupportZOrder property
 
 [commited]
 Refactor DMT.TA.TODv4 #2575

@@ -15,8 +15,17 @@ Refactor DMT.TA.TODv4 #2579
 Refactor DMT.TA.TODv4 #2578
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2577
-- 
+- Fixed NDbConnection ambiguous reference DbColumn
+  - Change DbColumn -> NDbColumn
+- Fixedd Security access for Json File in projects
+  - DMT.Core
+  - DMT.Rest.Server
+  - DMT.TA.Rest.Server
+  - DMT.TOD.Rest.Server
+  - DMT.TA.App
+  - DMT.TOD.App
 
 [commited]
 Refactor DMT.TA.TODv4 #2576

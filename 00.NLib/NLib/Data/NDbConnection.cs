@@ -3039,7 +3039,7 @@ namespace NLib.Components
         /// </summary>
         /// <param name="tableName">The table or view name.</param>
         /// <returns>Returns list of columns.</returns>
-        public List<DbColumn> GetTableColumns(string tableName)
+        public List<NDbColumn> GetTableColumns(string tableName)
         {
             return GetTableColumns(tableName, null);
         }
@@ -3049,7 +3049,7 @@ namespace NLib.Components
         /// <param name="tableName">The table or view name.</param>
         /// <param name="transaction">Transaction instance.</param>
         /// <returns>Returns list of columns.</returns>
-        public List<DbColumn> GetTableColumns(string tableName, DbTransaction transaction)
+        public List<NDbColumn> GetTableColumns(string tableName, DbTransaction transaction)
         {
             string queryText = string.Empty;
             string fmtTableName = FormatTableName(tableName);
@@ -3065,7 +3065,7 @@ namespace NLib.Components
         /// </summary>
         /// <param name="queryText">The query text.</param>
         /// <returns>Returns list of columns.</returns>
-        public List<DbColumn> GetQueryColumns(string queryText)
+        public List<NDbColumn> GetQueryColumns(string queryText)
         {
             return GetQueryColumns(queryText, null);
         }
@@ -3075,14 +3075,14 @@ namespace NLib.Components
         /// <param name="queryText">The query text.</param>
         /// <param name="transaction">Transaction instance.</param>
         /// <returns>Returns list of columns.</returns>
-        public List<DbColumn> GetQueryColumns(string queryText, DbTransaction transaction)
+        public List<NDbColumn> GetQueryColumns(string queryText, DbTransaction transaction)
         {
             DataTable table = GetSchemaTable(queryText, transaction);
             if (null == table) return null;
-            List<DbColumn> results = new List<DbColumn>();
+            List<NDbColumn> results = new List<NDbColumn>();
             foreach (DataRow row in table.Rows)
             {
-                DbColumn result = new DbColumn();
+                NDbColumn result = new NDbColumn();
 
                 #region Assigned Data
 

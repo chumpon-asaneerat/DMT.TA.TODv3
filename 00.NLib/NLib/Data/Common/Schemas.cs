@@ -1602,10 +1602,10 @@ namespace NLib.Data
     #region Db Column
 
     /// <summary>
-    /// DbColumn Class. wrapper the result from GetSchemaTable()
+    /// NDbColumn Class. wrapper the result from GetSchemaTable()
     /// </summary>
     [Serializable]
-    public class DbColumn : DbSchemaObject
+    public class NDbColumn : DbSchemaObject
     {
         #region Internal Variable
 
@@ -1644,11 +1644,11 @@ namespace NLib.Data
         /// <summary>
         /// Constructor
         /// </summary>
-        public DbColumn() : base() { }
+        public NDbColumn() : base() { }
         /// <summary>
         /// Destructor
         /// </summary>
-        ~DbColumn()
+        ~NDbColumn()
         {
             // Free Memory
             //GarbageCollector.FreeGC(this);

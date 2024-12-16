@@ -416,6 +416,28 @@ namespace DMT
 
             #endregion
 
+            #region Return Coupon 2
+
+            private static TA.Pages.Coupon.ReturnCouponPage2 _ReturnCoupon2;
+
+            /// <summary>Gets Return Coupon Page 2.</summary>
+            public static TA.Pages.Coupon.ReturnCouponPage2 ReturnCoupon2
+            {
+                get
+                {
+                    if (null == _ReturnCoupon2)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _ReturnCoupon2 = new TA.Pages.Coupon.ReturnCouponPage2();
+                        }
+                    }
+                    return _ReturnCoupon2;
+                }
+            }
+
+            #endregion
+
             #region Return Coupon
 
             private static TA.Pages.Coupon.EditSoldCouponPage _EditSoldCoupon;
@@ -554,6 +576,17 @@ namespace DMT
                 get
                 {
                     var ret = new TA.Windows.Coupon.CollectorCouponReturnWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            /// <summary>Gets Collector Coupon Return Window 2.</summary>
+            public static TA.Windows.Coupon.CollectorCouponReturnWindow2 CollectorCouponReturn2
+            {
+                get
+                {
+                    var ret = new TA.Windows.Coupon.CollectorCouponReturnWindow2();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

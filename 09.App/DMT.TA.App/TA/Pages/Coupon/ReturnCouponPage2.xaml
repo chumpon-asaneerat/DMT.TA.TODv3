@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="DMT.TA.Pages.Coupon.ReturnCouponPage2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ctrl="clr-namespace:DMT.Controls.Buttons;assembly=DMT.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  IMAGE BUTTON STYLE  -->
+        <sys:Double x:Key="ImageButtonWidth">250</sys:Double>
+    </UserControl.Resources>
+    <Grid Background="DimGray">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <!--  BUTTONS  -->
+                <DockPanel Height="60"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           DockPanel.Dock="Bottom">
+                    <Grid Width="5" DockPanel.Dock="Left" />
+                    <ctrl:ImageButton x:Name="cmdRefresh"
+                                      Click="cmdRefresh_Click"
+                                      DockPanel.Dock="Left"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                        <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="อ่านข้อมูลคูปองทั้งหมด" />
+                        <TextBlock Style="{StaticResource ImageButtonTextMD}" Text="จาก server" />
+                    </ctrl:ImageButton>
+                    <Grid Width="5" DockPanel.Dock="Right" />
+                    <ctrl:ImageButton x:Name="cmdBack"
+                                      Click="cmdBack_Click"
+                                      DockPanel.Dock="Right"
+                                      ImageSource="/DMT.TA.App;component/Images/Button/Home.png">
+                        <TextBlock Style="{StaticResource ImageButtonText}" Text="กลับสู่หน้าจอหลัก" />
+                    </ctrl:ImageButton>
+                    <Grid />
+                </DockPanel>
+                <!--  WORK AREA  -->
+                <DockPanel LastChildFill="True">
+                    <Border Margin="10,1"
+                            Background="CornflowerBlue"
+                            BorderBrush="Silver"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top">
+                        <TextBlock Margin="5,3"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource LabelText}"
+                                   Text="ข้อมูลการคืนคูปอง" />
+                    </Border>
+                    <!--  SEPERATOR  -->
+                    <TextBlock Height="10" DockPanel.Dock="Top" />
+                    <!--  SEPERATOR (BOTTOM BELOW LISTVIEW)  -->
+                    <TextBlock Height="10" DockPanel.Dock="Bottom" />
+                    <!--  LIST VIEW  -->
+                    <ListView x:Name="grid"
+                              Margin="10,1"
+                              FontSize="{StaticResource InputFontSize18}"
+                              ItemContainerStyle="{StaticResource DMTListViewItemContainer}"
+                              ItemsSource="{Binding}"
+                              Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="120"
+                                                CellTemplate="{StaticResource UserId}"
+                                                Header="รหัสพนักงาน" />
+                                <GridViewColumn Width="300"
+                                                CellTemplate="{StaticResource FullNameTH}"
+                                                Header="ชื่อพนักงาน" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CountCouponBHT40}"
+                                                Header="จำนวนเล่ม (40 บาท)" />
+                                <GridViewColumn Width="200"
+                                                CellTemplate="{StaticResource CountCouponBHT90}"
+                                                Header="จำนวนเล่ม (90 บาท)" />
+                                <!--  BUTTON (EDIT/PRINT)  -->
+                                <GridViewColumn Width="155" Header="คำสั่ง">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="3"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                <TextBlock Width="5" />
+                                                <Button x:Name="cmdReturn"
+                                                        Width="120"
+                                                        Height="30"
+                                                        Click="cmdReturn_Click"
+                                                        CommandParameter="{Binding}"
+                                                        Content="คืน"
+                                                        FontSize="{StaticResource InputFontSize18}"
+                                                        Style="{DynamicResource InlineButton}" />
+                                                <TextBlock Width="5" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

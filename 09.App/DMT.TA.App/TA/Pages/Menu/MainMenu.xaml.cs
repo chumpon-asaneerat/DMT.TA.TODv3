@@ -178,7 +178,7 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // คืนคูปอง (collector)
-            var page = TAApp.Pages.ReturnCoupon;
+            var page = TAApp.Pages.ReturnCoupon2;
             page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }

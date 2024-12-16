@@ -500,7 +500,7 @@ namespace DMT.TA.Pages.Coupon
         {
             Assembly assembly = this.GetType().Assembly;
             RdlcReportModel inst = new RdlcReportModel();
-            inst.Definition.EmbededReportName = "DMT.TA.Reports.CouponSalesReceiptRep.rdlc";
+            inst.Definition.EmbededReportName = "DMT.TA.Reports.CouponSalesReceiptRep2.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
             // clear reprot datasource.

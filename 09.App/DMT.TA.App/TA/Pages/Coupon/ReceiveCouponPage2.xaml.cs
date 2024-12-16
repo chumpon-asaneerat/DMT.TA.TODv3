@@ -259,7 +259,7 @@ namespace DMT.TA.Pages.Coupon
             // Set Display Name (default file name).
             inst.DisplayName = ReportDisplayName;
 
-            inst.Definition.EmbededReportName = "DMT.TA.Reports.CollectorCouponReceived.rdlc";
+            inst.Definition.EmbededReportName = "DMT.TA.Reports.CollectorCouponReceived2.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
             // clear reprot datasource.
@@ -308,7 +308,7 @@ namespace DMT.TA.Pages.Coupon
             // assign new data source (main for coupon35)
             RdlcReportDataSource c40DS = new RdlcReportDataSource();
             c40DS.Name = "C40"; // the datasource name in the rdlc report.
-            c40DS.Items = c90Items; // setup data source
+            c40DS.Items = c40Items; // setup data source
             // Add to datasources
             inst.DataSources.Add(c40DS);
 

@@ -25,7 +25,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="C35">
+    <DataSet Name="C40">
       <Query>
         <DataSourceName>DMTModels</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -110,7 +110,7 @@
         <rd:ObjectDataSourceType>DMT.Models.UserCouponTransaction, DMT.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="C80">
+    <DataSet Name="C90">
       <Query>
         <DataSourceName>DMTModels1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -209,6 +209,14 @@
           <DataField>AmountCouponBHT35String</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="AmountCouponBHT40">
+          <DataField>AmountCouponBHT40</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AmountCouponBHT40String">
+          <DataField>AmountCouponBHT40String</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="AmountCouponBHT80">
           <DataField>AmountCouponBHT80</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -217,12 +225,28 @@
           <DataField>AmountCouponBHT80String</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="AmountCouponBHT90">
+          <DataField>AmountCouponBHT90</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AmountCouponBHT90String">
+          <DataField>AmountCouponBHT90String</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CountCouponBHT35">
           <DataField>CountCouponBHT35</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="CountCouponBHT40">
+          <DataField>CountCouponBHT40</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="CountCouponBHT80">
           <DataField>CountCouponBHT80</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CountCouponBHT90">
+          <DataField>CountCouponBHT90</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CountCouponTotal">
@@ -468,7 +492,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>C35</DataSetName>
+            <DataSetName>C40</DataSetName>
             <Top>0.04002in</Top>
             <Left>0.26333in</Left>
             <Height>0.7in</Height>
@@ -660,7 +684,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>C80</DataSetName>
+            <DataSetName>C90</DataSetName>
             <Top>0.04002in</Top>
             <Left>3.94975in</Left>
             <Height>0.7in</Height>
@@ -860,7 +884,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>คูปอง 35 บาท</Value>
+                      <Value>คูปอง 40 บาท</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Calibri</FontFamily>
@@ -896,7 +920,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>คูปอง 80 บาท</Value>
+                      <Value>คูปอง 40 บาท</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Calibri</FontFamily>
@@ -1375,7 +1399,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Sum(Fields!CountCouponBHT35.Value, "main")</Value>
+                      <Value>=Sum(Fields!CountCouponBHT40.Value, "main")</Value>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
@@ -1413,7 +1437,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Sum(Fields!CountCouponBHT80.Value, "main")</Value>
+                      <Value>=Sum(Fields!CountCouponBHT90.Value, "main")</Value>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
@@ -1618,7 +1642,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!AmountCouponBHT35.Value, "main")</Value>
+                      <Value>=First(Fields!AmountCouponBHT40.Value, "main")</Value>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>
@@ -1655,7 +1679,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!AmountCouponBHT80.Value, "main")</Value>
+                      <Value>=First(Fields!AmountCouponBHT90.Value, "main")</Value>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>11pt</FontSize>

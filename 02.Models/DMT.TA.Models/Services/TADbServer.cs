@@ -2057,18 +2057,18 @@ namespace DMT.Services
             prefix = @"Coupons";
             InitView("TSBCouponTransactionView", 4, prefix);
             
-            InitView("TSBCouponSummarryView", 2, prefix);
-            InitView("TSBCouponStockBalanceView", 1, prefix);
-            InitView("TSBCouponLaneBalanceView", 1, prefix);
-            InitView("TSBCouponSoldByLaneBalanceView", 1, prefix);
-            InitView("TSBCouponSoldByTSBBalanceView", 1, prefix);
+            InitView("TSBCouponSummarryView", 3, prefix);
+            InitView("TSBCouponStockBalanceView", 3, prefix);
+            InitView("TSBCouponLaneBalanceView", 3, prefix);
+            InitView("TSBCouponSoldByLaneBalanceView", 3, prefix);
+            InitView("TSBCouponSoldByTSBBalanceView", 3, prefix);
             // !!! Required 
             // - TSBCouponSummarryView
             // - TSBCouponStockBalanceView
             // - TSBCouponLaneBalanceView
             // - TSBCouponSoldByLaneBalanceView
             // - TSBCouponSoldByTSBBalanceView
-            InitView("TSBCouponBalanceView", 2, prefix);
+            InitView("TSBCouponBalanceView", 3, prefix);
 
             // !!! Required for UserCouponSoldSummary model (NEW!!).
             InitView("UserCouponSoldByLaneTransactionView", 2, prefix);

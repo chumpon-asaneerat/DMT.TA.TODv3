@@ -36,9 +36,17 @@ namespace DMT.Models
         /// </summary>
         BHT35 = 35,
         /// <summary>
+        /// Coupon 40 BHT
+        /// </summary>
+        BHT40 = 40,
+        /// <summary>
         /// Coupon 80 BHT
         /// </summary>
-        BHT80 = 80
+        BHT80 = 80,
+        /// <summary>
+        /// Coupon 90 BHT
+        /// </summary>
+        BHT90 = 90
     }
 
     #endregion

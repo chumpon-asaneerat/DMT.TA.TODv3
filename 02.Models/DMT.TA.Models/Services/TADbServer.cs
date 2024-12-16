@@ -2057,7 +2057,7 @@ namespace DMT.Services
             prefix = @"Coupons";
             InitView("TSBCouponTransactionView", 4, prefix);
             
-            InitView("TSBCouponSummarryView", 1, prefix);
+            InitView("TSBCouponSummarryView", 2, prefix);
             InitView("TSBCouponStockBalanceView", 1, prefix);
             InitView("TSBCouponLaneBalanceView", 1, prefix);
             InitView("TSBCouponSoldByLaneBalanceView", 1, prefix);

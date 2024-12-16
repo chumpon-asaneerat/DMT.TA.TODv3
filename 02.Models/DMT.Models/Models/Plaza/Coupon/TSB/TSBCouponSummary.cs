@@ -48,16 +48,22 @@ namespace DMT.Models
 		private string _FullNameTH = string.Empty;
 
 		private int _CountCouponBHT35 = 0;
-		private int _CountCouponBHT80 = 0;
+        private int _CountCouponBHT40 = 0;
+        private int _CountCouponBHT80 = 0;
+        private int _CountCouponBHT90 = 0;
 
 		private decimal _AmountCouponBHT35 = decimal.Zero;
-		private decimal _AmountCouponBHT80 = decimal.Zero;
+        private decimal _AmountCouponBHT40 = decimal.Zero;
+        private decimal _AmountCouponBHT80 = decimal.Zero;
+        private decimal _AmountCouponBHT90 = decimal.Zero;
 
 		private int _CountCouponTotal = 0;
 		private decimal _CouponBHTTotal = decimal.Zero;
 
 		private string _AmountCouponBHT35String = string.Empty;
-		private string _AmountCouponBHT80String = string.Empty;
+        private string _AmountCouponBHT40String = string.Empty;
+        private string _AmountCouponBHT80String = string.Empty;
+        private string _AmountCouponBHT90String = string.Empty;
 		private string _CouponBHTTotalString = string.Empty;
 
 		#endregion
@@ -75,7 +81,7 @@ namespace DMT.Models
 
 		private void CalcCouponTotal()
 		{
-			_CountCouponTotal = _CountCouponBHT35 + _CountCouponBHT80;
+			_CountCouponTotal = _CountCouponBHT35 + _CountCouponBHT40 + _CountCouponBHT80 + _CountCouponBHT90;
 			// Raise event.
 			this.RaiseChanged("CountCouponTotal");
 
@@ -83,14 +89,18 @@ namespace DMT.Models
 
 		private void CalcAmountTotal()
 		{
-			_CouponBHTTotal = _AmountCouponBHT35 + _AmountCouponBHT80;
+			_CouponBHTTotal = _AmountCouponBHT35 + _AmountCouponBHT40 + _AmountCouponBHT80 + _AmountCouponBHT90;
 			_AmountCouponBHT35String = NLib.Utils.StringUtils.ToThaiCurrency(_AmountCouponBHT35);
-			_AmountCouponBHT80String = NLib.Utils.StringUtils.ToThaiCurrency(_AmountCouponBHT80);
+            _AmountCouponBHT40String = NLib.Utils.StringUtils.ToThaiCurrency(_AmountCouponBHT40);
+            _AmountCouponBHT80String = NLib.Utils.StringUtils.ToThaiCurrency(_AmountCouponBHT80);
+            _AmountCouponBHT90String = NLib.Utils.StringUtils.ToThaiCurrency(_AmountCouponBHT90);
 			_CouponBHTTotalString = NLib.Utils.StringUtils.ToThaiCurrency(_CouponBHTTotal);
 			// Raise event.
 			this.RaiseChanged("CouponBHTTotal");
 			this.RaiseChanged("AmountCouponBHT35");
-			this.RaiseChanged("AmountCouponBHT80");
+            this.RaiseChanged("AmountCouponBHT40");
+            this.RaiseChanged("AmountCouponBHT80");
+            this.RaiseChanged("AmountCouponBHT90");
 			this.RaiseChanged("CouponBHTTotalString");
 		}
 
@@ -332,10 +342,33 @@ namespace DMT.Models
 				}
 			}
 		}
-		/// <summary>
-		/// Gets or sets number of 80 BHT coupon.
-		/// </summary>
-		[Category("Coupon")]
+        /// <summary>
+        /// Gets or sets number of 40 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets number of 40 BHT coupon.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("CountCouponBHT40")]
+        public virtual int CountCouponBHT40
+        {
+            get { return _CountCouponBHT40; }
+            set
+            {
+                if (_CountCouponBHT40 != value)
+                {
+                    _CountCouponBHT40 = value;
+                    CalcCouponTotal();
+                    // Raise event.
+                    this.RaiseChanged("CountCouponBHT40");
+
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets number of 80 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
 		[Description("Gets or sets number of 80 BHT coupon.")]
 		[ReadOnly(true)]
 		[Ignore]
@@ -354,10 +387,32 @@ namespace DMT.Models
 				}
 			}
 		}
-		/// <summary>
-		/// Gets or sets Amount of 35 BHT coupon.
-		/// </summary>
-		[Category("Coupon")]
+        /// <summary>
+        /// Gets or sets number of 90 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets number of 90 BHT coupon.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("CountCouponBHT90")]
+        public virtual int CountCouponBHT90
+        {
+            get { return _CountCouponBHT90; }
+            set
+            {
+                if (_CountCouponBHT90 != value)
+                {
+                    _CountCouponBHT90 = value;
+                    CalcCouponTotal();
+                    // Raise event.
+                    this.RaiseChanged("CountCouponBHT90");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Amount of 35 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
 		[Description("Gets or sets Amount of 35 BHT coupon.")]
 		[ReadOnly(true)]
 		[Ignore]
@@ -390,10 +445,46 @@ namespace DMT.Models
 			get { return _AmountCouponBHT35String; }
 			set { }
 		}
-		/// <summary>
-		/// Gets or sets Amount of 80 BHT coupon.
-		/// </summary>
-		[Category("Coupon")]
+        /// <summary>
+        /// Gets or sets Amount of 40 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets Amount of 40 BHT coupon.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("AmountCouponBHT40")]
+        public virtual decimal AmountCouponBHT40
+        {
+            get { return _AmountCouponBHT40; }
+            set
+            {
+                if (_AmountCouponBHT40 != value)
+                {
+                    _AmountCouponBHT40 = value;
+                    CalcAmountTotal();
+                    // Raise event.
+                    this.RaiseChanged("AmountCouponBHT40");
+
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Amount of 40 BHT coupon in string.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets Amount of 40 BHT coupon in string.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("AmountCouponBHT40String")]
+        public virtual string AmountCouponBHT40String
+        {
+            get { return _AmountCouponBHT40String; }
+            set { }
+        }
+        /// <summary>
+        /// Gets or sets Amount of 80 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
 		[Description("Gets or sets Amount of 80 BHT coupon.")]
 		[ReadOnly(true)]
 		[Ignore]
@@ -425,10 +516,45 @@ namespace DMT.Models
 			get { return _AmountCouponBHT80String; }
 			set { }
 		}
-		/// <summary>
-		/// Gets calculate coupon total (book count).
-		/// </summary>
-		[Category("Coupon")]
+        /// <summary>
+        /// Gets or sets Amount of 90 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets Amount of 90 BHT coupon.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("AmountCouponBHT90")]
+        public virtual decimal AmountCouponBHT90
+        {
+            get { return _AmountCouponBHT90; }
+            set
+            {
+                if (_AmountCouponBHT90 != value)
+                {
+                    _AmountCouponBHT90 = value;
+                    CalcAmountTotal();
+                    // Raise event.
+                    this.RaiseChanged("AmountCouponBHT90");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Amount of 90 BHT coupon in string.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets Amount of 90 BHT coupon in string.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("AmountCouponBHT90String")]
+        public virtual string AmountCouponBHT90String
+        {
+            get { return _AmountCouponBHT90String; }
+            set { }
+        }
+        /// <summary>
+        /// Gets calculate coupon total (book count).
+        /// </summary>
+        [Category("Coupon")]
 		[Description("Gets calculate coupon total (book count).")]
 		[ReadOnly(true)]
 		[Ignore]
@@ -513,46 +639,81 @@ namespace DMT.Models
 				get { return base.CountCouponBHT35; }
 				set { base.CountCouponBHT35 = value; }
 			}
-			/// <summary>
-			/// Gets or sets number of 80 BHT coupon.
-			/// </summary>
-			[PropertyMapName("CountCouponBHT80")]
+            /// <summary>
+            /// Gets or sets number of 40 BHT coupon.
+            /// </summary>
+            [PropertyMapName("CountCouponBHT40")]
+            public override int CountCouponBHT40
+            {
+                get { return base.CountCouponBHT40; }
+                set { base.CountCouponBHT40 = value; }
+            }
+            /// <summary>
+            /// Gets or sets number of 80 BHT coupon.
+            /// </summary>
+            [PropertyMapName("CountCouponBHT80")]
 			public override int CountCouponBHT80
 			{
 				get { return base.CountCouponBHT80; }
 				set { base.CountCouponBHT80 = value; }
 			}
-			/// <summary>
-			/// Gets or sets Amount of 35 BHT coupon.
-			/// </summary>
-			[PropertyMapName("AmountCouponBHT35")]
+            /// Gets or sets number of 90 BHT coupon.
+            /// </summary>
+            [PropertyMapName("CountCouponBHT90")]
+            public override int CountCouponBHT90
+            {
+                get { return base.CountCouponBHT90; }
+                set { base.CountCouponBHT90 = value; }
+            }
+            /// <summary>
+            /// Gets or sets Amount of 35 BHT coupon.
+            /// </summary>
+            [PropertyMapName("AmountCouponBHT35")]
 			public override decimal AmountCouponBHT35
 			{
 				get { return base.AmountCouponBHT35; }
 				set { base.AmountCouponBHT35 = value; }
 			}
-			/// <summary>
-			/// Gets or sets Amount of 80 BHT coupon.
-			/// </summary>
-			[PropertyMapName("AmountCouponBHT80")]
+            /// <summary>
+            /// Gets or sets Amount of 40 BHT coupon.
+            /// </summary>
+            [PropertyMapName("AmountCouponBHT40")]
+            public override decimal AmountCouponBHT40
+            {
+                get { return base.AmountCouponBHT40; }
+                set { base.AmountCouponBHT40 = value; }
+            }
+            /// <summary>
+            /// Gets or sets Amount of 80 BHT coupon.
+            /// </summary>
+            [PropertyMapName("AmountCouponBHT80")]
 			public override decimal AmountCouponBHT80
 			{
 				get { return base.AmountCouponBHT80; }
 				set { base.AmountCouponBHT80 = value; }
 			}
+            /// <summary>
+            /// Gets or sets Amount of 90 BHT coupon.
+            /// </summary>
+            [PropertyMapName("AmountCouponBHT90")]
+            public override decimal AmountCouponBHT90
+            {
+                get { return base.AmountCouponBHT90; }
+                set { base.AmountCouponBHT90 = value; }
+            }
 
-			#endregion
-		}
+            #endregion
+        }
 
-		#endregion
+        #endregion
 
-		#region Static Methods
+        #region Static Methods
 
-		/// <summary>
-		/// Gets Active TSB Coupon summaries.
-		/// </summary>
-		/// <returns>Returns Current Active TSB Coupon balance. If not found returns null.</returns>
-		public static NDbResult<List<TSBCouponSummary>> GetTSBCouponSummaries()
+        /// <summary>
+        /// Gets Active TSB Coupon summaries.
+        /// </summary>
+        /// <returns>Returns Current Active TSB Coupon balance. If not found returns null.</returns>
+        public static NDbResult<List<TSBCouponSummary>> GetTSBCouponSummaries()
 		{
 			var result = new NDbResult<List<TSBCouponSummary>>();
 			SQLiteConnection db = Default;

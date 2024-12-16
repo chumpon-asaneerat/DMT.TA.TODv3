@@ -328,6 +328,28 @@ namespace DMT
 
             #endregion
 
+            #region Coupon TSB Sale2
+
+            private static TA.Pages.Coupon.CouponTSBSalePage2 _CouponTSBSale2;
+
+            /// <summary>Gets Coupon TSB Sale Page.</summary>
+            public static TA.Pages.Coupon.CouponTSBSalePage2 CouponTSBSale2
+            {
+                get
+                {
+                    if (null == _CouponTSBSale2)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _CouponTSBSale2 = new TA.Pages.Coupon.CouponTSBSalePage2();
+                        }
+                    }
+                    return _CouponTSBSale2;
+                }
+            }
+
+            #endregion
+
             #region Receive Coupon
 
             private static TA.Pages.Coupon.ReceiveCouponPage _ReceiveCoupon;

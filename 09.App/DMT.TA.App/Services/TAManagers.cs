@@ -1795,6 +1795,10 @@ namespace DMT.Services
                 {
                     coupons.ForEach(coupon =>
                     {
+                        if (coupon.CouponType == CouponType.BHT40 || coupon.CouponType == CouponType.BHT90)
+                        {
+                            Console.WriteLine("{0}", coupon.CouponId);
+                        }
                         Coupons.Add(new TSBCouponItem(coupon));
                     });
                 }
@@ -2054,6 +2058,8 @@ namespace DMT.Services
 
         #region Public Properties
 
+        #region C35
+
         /// <summary>Gets or set 35 BHT Coupon Filter.</summary>
         public string C35StockFilter { get; set; }
         /// <summary>Gets all 35 BHT Coupons in Stock of current TSB.</summary>
@@ -2109,6 +2115,69 @@ namespace DMT.Services
             }
         }
 
+        #endregion
+
+        #region C40
+
+        /// <summary>Gets or set 40 BHT Coupon Filter.</summary>
+        public string C40StockFilter { get; set; }
+        /// <summary>Gets all 40 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C40Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C40StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT40
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.CouponId.Contains(C40StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT40
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 35 BHT Coupons on Lane by current User.</summary>
+        public List<TSBCouponItem> C40Lanes
+        {
+            get
+            {
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        (item.TransactionType == TSBCouponTransactionTypes.Lane ||
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByLane) &&
+                        item.UserId == User.UserId &&
+                        item.CouponType == CouponType.BHT40
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
+
+        #region C80
+
         /// <summary>Gets or set 80 BHT Coupon Filter.</summary>
         public string C80StockFilter { get; set; }
         /// <summary>Gets all 80 BHT Coupons in Stock of current TSB.</summary>
@@ -2163,6 +2232,67 @@ namespace DMT.Services
                 return results;
             }
         }
+
+        #endregion
+
+        #region C90
+
+        /// <summary>Gets or set 90 BHT Coupon Filter.</summary>
+        public string C90StockFilter { get; set; }
+        /// <summary>Gets all 90 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C90Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C90StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT90
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.CouponId.Contains(C90StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT90
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 90 BHT Coupons on Lane by current User.</summary>
+        public List<TSBCouponItem> C90Lanes
+        {
+            get
+            {
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        (item.TransactionType == TSBCouponTransactionTypes.Lane ||
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByLane) &&
+                        item.UserId == User.UserId &&
+                        item.CouponType == CouponType.BHT90
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
 
         #endregion
     }
@@ -2363,6 +2493,8 @@ namespace DMT.Services
 
         #region Public Properties
 
+        #region C35
+
         /// <summary>Gets or set 35 BHT Coupon Sold By Lane Filter.</summary>
         public string C35SoldByLaneFilter { get; set; }
         /// <summary>Gets all 35 BHT Coupons in Sold by current user.</summary>
@@ -2421,6 +2553,68 @@ namespace DMT.Services
             }
         }
 
+        #endregion
+
+        #region C40
+
+        /// <summary>Gets or set 40 BHT Coupon Filter.</summary>
+        public string C40StockFilter { get; set; }
+        /// <summary>Gets all 40 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C40Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C40StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT40
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.CouponId.Contains(C40StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT40
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 40 BHT Coupons on Sold.</summary>
+        public List<TSBCouponItem> C40Solds
+        {
+            get
+            {
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByTSB &&
+                        //item.UserId == User.UserId &&
+                        item.CouponType == CouponType.BHT40
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
+
+        #region C80
+
         /// <summary>Gets or set 80 BHT Coupon Sold By Lane Filter.</summary>
         public string C80SoldByLaneFilter { get; set; }
         /// <summary>Gets all 80 BHT Coupons in Sold by current user.</summary>
@@ -2478,6 +2672,66 @@ namespace DMT.Services
                 return results;
             }
         }
+
+        #endregion
+
+        #region C90
+
+        /// <summary>Gets or set 90 BHT Coupon Filter.</summary>
+        public string C90StockFilter { get; set; }
+        /// <summary>Gets all 90 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C90Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C90StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT90
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.CouponId.Contains(C90StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT90
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 90 BHT Coupons on Sold.</summary>
+        public List<TSBCouponItem> C90Solds
+        {
+            get
+            {
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByTSB &&
+                        //item.UserId == User.UserId &&
+                        item.CouponType == CouponType.BHT90
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
 
         #endregion
     }
@@ -2643,6 +2897,8 @@ namespace DMT.Services
 
         #region Public Properties
 
+        #region C35
+
         /// <summary>Gets or set 35 BHT Coupon Filter.</summary>
         public string C35StockFilter { get; set; }
         /// <summary>Gets all 35 BHT Coupons in Stock of current TSB.</summary>
@@ -2697,6 +2953,68 @@ namespace DMT.Services
             }
         }
 
+        #endregion
+
+        #region C40
+
+        /// <summary>Gets or set 40 BHT Coupon Filter.</summary>
+        public string C40StockFilter { get; set; }
+        /// <summary>Gets all 40 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C40Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C40StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT40
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.CouponId.Contains(C40StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT40
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 40 BHT Coupons on Sold.</summary>
+        public List<TSBCouponItem> C40Solds
+        {
+            get
+            {
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByTSB &&
+                        //item.UserId == User.UserId &&
+                        item.CouponType == CouponType.BHT40
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
+
+        #region C80
+
         /// <summary>Gets or set 80 BHT Coupon Filter.</summary>
         public string C80StockFilter { get; set; }
         /// <summary>Gets all 80 BHT Coupons in Stock of current TSB.</summary>
@@ -2750,6 +3068,69 @@ namespace DMT.Services
                 return results;
             }
         }
+
+        #endregion
+
+        #region C90
+
+        /// <summary>Gets or set 90 BHT Coupon Filter.</summary>
+        public string C90StockFilter { get; set; }
+        /// <summary>Gets all 90 BHT Coupons in Stock of current TSB.</summary>
+        public List<TSBCouponItem> C90Stocks
+        {
+            get
+            {
+                if (null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = false;
+                    if (string.IsNullOrEmpty(C90StockFilter))
+                    {
+                        ret = (
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT90
+                        );
+                    }
+                    else
+                    {
+                        ret = (
+                            item.CouponId.Contains(C90StockFilter) &&
+                            item.TransactionType == TSBCouponTransactionTypes.Stock &&
+                            item.CouponType == CouponType.BHT90
+                        );
+                    }
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+        /// <summary>Gets all 90 BHT Coupons on Sold.</summary>
+        public List<TSBCouponItem> C90Solds
+        {
+            get
+            {
+                if (null == User || null == Coupons || Coupons.Count <= 0) return new List<TSBCouponItem>();
+
+                var results = Coupons.FindAll(item =>
+                {
+                    bool ret = (
+                        item.TransactionType == TSBCouponTransactionTypes.SoldByTSB &&
+                        //item.UserId == User.UserId &&
+                        item.CouponType == CouponType.BHT90
+                    );
+                    return ret;
+                }).OrderBy(x => x.CouponId).ToList();
+
+                return results;
+            }
+        }
+
+        #endregion
+
+        #region Invoice/SoldDate
+
         /// <summary>
         /// Gets current TSB Coupon sold invoice id.
         /// </summary>
@@ -2767,6 +3148,8 @@ namespace DMT.Services
         /// Gets or sets Sold Date.
         /// </summary>
         public DateTime? SoldDate { get; set; }
+
+        #endregion
 
         #endregion
     }
@@ -2894,9 +3277,9 @@ namespace DMT.Services
             // Write Queue
             TAxTODMQService.Instance.WriteQueue(exch1);
         }
-
-        #endregion
     }
+
+    #endregion
 
     #endregion
 

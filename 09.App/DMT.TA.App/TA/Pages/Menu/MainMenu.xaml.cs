@@ -94,7 +94,8 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // หัวหน่าขายคูปอง
-            var page = TAApp.Pages.CouponTSBSale;
+            //var page = TAApp.Pages.CouponTSBSale;
+            var page = TAApp.Pages.CouponTSBSale2;
             page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }

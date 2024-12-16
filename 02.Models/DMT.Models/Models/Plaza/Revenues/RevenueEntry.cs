@@ -114,19 +114,28 @@ namespace DMT.Models
         // Coupon Usage
         private int _CouponUsageBHT30 = 0;
         private int _CouponUsageBHT35 = 0;
+        private int _CouponUsageBHT40 = 0;
         private int _CouponUsageBHT60 = 0;
         private int _CouponUsageBHT70 = 0;
         private int _CouponUsageBHT80 = 0;
+        private int _CouponUsageBHT90 = 0;
         // Free Pass
         private int _FreePassUsageClassA = 0;
         private int _FreePassUsageOther = 0;
         // Coupon Sold
         private int _CouponSoldBHT35 = 0;
+        private int _CouponSoldBHT40 = 0;
         private int _CouponSoldBHT80 = 0;
+        private int _CouponSoldBHT90 = 0;
+
         private decimal _CouponSoldBHT35Factor = 665;
+        private decimal _CouponSoldBHT40Factor = 760;
         private decimal _CouponSoldBHT80Factor = 1520;
+        private decimal _CouponSoldBHT90Factor = 1710;
         private decimal _CouponSoldBHT35Total = decimal.Zero;
+        private decimal _CouponSoldBHT40Total = decimal.Zero;
         private decimal _CouponSoldBHT80Total = decimal.Zero;
+        private decimal _CouponSoldBHT90Total = decimal.Zero;
         private decimal _CouponSoldBHTTotal = decimal.Zero;
 
         private int _Status = 0;
@@ -177,12 +186,20 @@ namespace DMT.Models
             _CouponSoldBHT35Total = Convert.ToDecimal(_CouponSoldBHT35 * _CouponSoldBHT35Factor);
             this.RaiseChanged("CouponSoldBHT35Total");
 
+            _CouponSoldBHT40Total = Convert.ToDecimal(_CouponSoldBHT40 * _CouponSoldBHT40Factor);
+            this.RaiseChanged("CouponSoldBHT40Total");
+
             _CouponSoldBHT80Total = Convert.ToDecimal(_CouponSoldBHT80 * _CouponSoldBHT80Factor);
             this.RaiseChanged("CouponSoldBHT80Total");
 
+            _CouponSoldBHT90Total = Convert.ToDecimal(_CouponSoldBHT90 * _CouponSoldBHT90Factor);
+            this.RaiseChanged("CouponSoldBHT90Total");
+
             decimal total = 0;
             total += _CouponSoldBHT35Total;
+            total += _CouponSoldBHT40Total;
             total += _CouponSoldBHT80Total;
+            total += _CouponSoldBHT90Total;
 
             _CouponSoldBHTTotal = total;
             // Raise event.
@@ -1432,6 +1449,26 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets or sets number of 40 BHT coupon.
+        /// </summary>
+        [Category("Coupon Usage")]
+        [Description("Gets or sets number of 40 BHT coupon.")]
+        [PropertyMapName("CouponUsageBHT40")]
+        public int CouponUsageBHT40
+        {
+            get { return _CouponUsageBHT40; }
+            set
+            {
+                if (value < 0) return;
+                if (_CouponUsageBHT40 != value)
+                {
+                    _CouponUsageBHT40 = value;
+                    // Raise event.
+                    this.RaiseChanged("CouponUsageBHT40");
+                }
+            }
+        }
+        /// <summary>
         /// Gets or sets number of 60 BHT coupon.
         /// </summary>
         [Category("Coupon Usage")]
@@ -1488,6 +1525,26 @@ namespace DMT.Models
                     _CouponUsageBHT80 = value;
                     // Raise event.
                     this.RaiseChanged("CouponUsageBHT80");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets number of 90 BHT coupon.
+        /// </summary>
+        [Category("Coupon Usage")]
+        [Description("Gets or sets number of 90 BHT coupon.")]
+        [PropertyMapName("CouponUsageBHT90")]
+        public int CouponUsageBHT90
+        {
+            get { return _CouponUsageBHT90; }
+            set
+            {
+                if (value < 0) return;
+                if (_CouponUsageBHT90 != value)
+                {
+                    _CouponUsageBHT90 = value;
+                    // Raise event.
+                    this.RaiseChanged("CouponUsageBHT90");
                 }
             }
         }
@@ -1573,6 +1630,28 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets or sets number of 40 BHT coupon.
+        /// </summary>
+        [Category("Coupon Sold")]
+        [Description("Gets or sets number of 40 BHT coupon.")]
+        [PropertyMapName("CouponSoldBHT40")]
+        public int CouponSoldBHT40
+        {
+            get { return _CouponSoldBHT40; }
+            set
+            {
+                if (value < 0) return;
+                if (_CouponSoldBHT40 != value)
+                {
+                    _CouponSoldBHT40 = value;
+                    CalcCouponSoldTotal();
+                    // Raise event.
+                    this.RaiseChanged("CouponSoldBHT40");
+
+                }
+            }
+        }
+        /// <summary>
         /// Gets or sets number of 80 BHT coupon.
         /// </summary>
         [Category("Coupon Sold")]
@@ -1590,6 +1669,27 @@ namespace DMT.Models
                     CalcCouponSoldTotal();
                     // Raise event.
                     this.RaiseChanged("CouponSoldBHT80");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets number of 90 BHT coupon.
+        /// </summary>
+        [Category("Coupon Sold")]
+        [Description("Gets or sets number of 90 BHT coupon.")]
+        [PropertyMapName("CouponSoldBHT90")]
+        public int CouponSoldBHT90
+        {
+            get { return _CouponSoldBHT90; }
+            set
+            {
+                if (value < 0) return;
+                if (_CouponSoldBHT90 != value)
+                {
+                    _CouponSoldBHT90 = value;
+                    CalcCouponSoldTotal();
+                    // Raise event.
+                    this.RaiseChanged("CouponSoldBHT90");
                 }
             }
         }
@@ -1615,6 +1715,27 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets or sets number of 40 BHT coupon factor.
+        /// </summary>
+        [Category("Coupon Sold")]
+        [Description("Gets or sets number of 40 BHT coupon factor.")]
+        [PropertyMapName("CouponSoldBHT40Factor")]
+        public decimal CouponSoldBHT40Factor
+        {
+            get { return _CouponSoldBHT40Factor; }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_CouponSoldBHT40Factor != value)
+                {
+                    _CouponSoldBHT40Factor = value;
+                    CalcCouponSoldTotal();
+                    // Raise event.
+                    this.RaiseChanged("CouponSoldBHT40Factor");
+                }
+            }
+        }
+        /// <summary>
         /// Gets or sets number of 80 BHT coupon factor.
         /// </summary>
         [Category("Coupon Sold")]
@@ -1636,6 +1757,27 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets or sets number of 90 BHT coupon factor.
+        /// </summary>
+        [Category("Coupon Sold")]
+        [Description("Gets or sets number of 90 BHT coupon factor.")]
+        [PropertyMapName("CouponSoldBHT90Factor")]
+        public decimal CouponSoldBHT90Factor
+        {
+            get { return _CouponSoldBHT90Factor; }
+            set
+            {
+                if (value < decimal.Zero) return;
+                if (_CouponSoldBHT90Factor != value)
+                {
+                    _CouponSoldBHT90Factor = value;
+                    CalcCouponSoldTotal();
+                    // Raise event.
+                    this.RaiseChanged("CouponSoldBHT90Factor");
+                }
+            }
+        }
+        /// <summary>
         /// Gets 35 BHT coupon total in BHT.
         /// </summary>
         [Category("Coupon Sold")]
@@ -1648,6 +1790,18 @@ namespace DMT.Models
             set { }
         }
         /// <summary>
+        /// Gets 40 BHT coupon total in BHT.
+        /// </summary>
+        [Category("Coupon Sold")]
+        [Description("Gets 40 BHT coupon total in BHT.")]
+        [ReadOnly(true)]
+        [PropertyMapName("CouponSoldBHT40Total")]
+        public decimal CouponSoldBHT40Total
+        {
+            get { return _CouponSoldBHT40Total; }
+            set { }
+        }
+        /// <summary>
         /// Gets 80 BHT coupon total in BHT.
         /// </summary>
         [Category("Coupon Sold")]
@@ -1657,6 +1811,18 @@ namespace DMT.Models
         public decimal CouponSoldBHT80Total
         {
             get { return _CouponSoldBHT80Total; }
+            set { }
+        }
+        /// <summary>
+        /// Gets 90 BHT coupon total in BHT.
+        /// </summary>
+        [Category("Coupon Sold")]
+        [Description("Gets 90 BHT coupon total in BHT.")]
+        [ReadOnly(true)]
+        [PropertyMapName("CouponSoldBHT90Total")]
+        public decimal CouponSoldBHT90Total
+        {
+            get { return _CouponSoldBHT90Total; }
             set { }
         }
         /// <summary>

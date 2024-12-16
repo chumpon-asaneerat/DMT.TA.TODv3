@@ -196,15 +196,40 @@ namespace DMT.Models.ExtensionMethods
                         total = value.CouponSoldBHT80Total
                     });
                 }
+                //TODO: CHECK HERE
+                if (value.CouponSoldBHT40 > 0)
+                {
+                    inst.couponBookList.Add(new SCWDeclareCouponBook()
+                    {
+                        couponBookId = 3,
+                        couponBookValue = 40,
+                        number = value.CouponSoldBHT40,
+                        total = value.CouponSoldBHT40Total
+                    });
+                }
+                if (value.CouponSoldBHT90 > 0)
+                {
+                    inst.couponBookList.Add(new SCWDeclareCouponBook()
+                    {
+                        couponBookId = 4,
+                        couponBookValue = 90,
+                        number = value.CouponSoldBHT90,
+                        total = value.CouponSoldBHT90Total
+                    });
+                }
             }
             // Coupon Usage (coupon)
             inst.couponTotalAmount = (value.CouponUsageBHT30 * 30) +
                 (value.CouponUsageBHT35 * 35) +
+                (value.CouponUsageBHT40 * 40) +
                 (value.CouponUsageBHT60 * 60) +
                 (value.CouponUsageBHT70 * 70) +
-                (value.CouponUsageBHT80 * 80);
+                (value.CouponUsageBHT80 * 80) +
+                (value.CouponUsageBHT90 * 90);
             inst.couponList = new List<SCWDeclareCoupon>();
+
             // helper action for coupon usage
+            //TODO: CHECK HERE
             Action<List<SCWDeclareCoupon>, decimal, int> addToCouponList = (list, couponVal, num) =>
             {
                 if (null == list) return;
@@ -215,10 +240,12 @@ namespace DMT.Models.ExtensionMethods
             if (inst.couponTotalAmount > 0)
             {
                 addToCouponList(inst.couponList, 30, value.CouponUsageBHT30);
+                addToCouponList(inst.couponList, 40, value.CouponUsageBHT40);
                 addToCouponList(inst.couponList, 35, value.CouponUsageBHT35);
                 addToCouponList(inst.couponList, 60, value.CouponUsageBHT60);
                 addToCouponList(inst.couponList, 70, value.CouponUsageBHT70);
                 addToCouponList(inst.couponList, 80, value.CouponUsageBHT80);
+                addToCouponList(inst.couponList, 90, value.CouponUsageBHT90);
             }
             // Free Pass.
             inst.cardAllowTotalAmount = value.FreePassUsageClassA +

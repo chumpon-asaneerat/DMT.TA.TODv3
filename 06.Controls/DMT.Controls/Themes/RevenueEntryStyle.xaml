@@ -222,6 +222,13 @@
         <Setter Property="Width" Value="70" />
         <Setter Property="Text" Value="35 บาท" />
     </Style>
+    <Style x:Key="CouponUsage40Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="40 บาท" />
+    </Style>
     <Style x:Key="CouponUsage60Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
@@ -243,6 +250,13 @@
         <Setter Property="Width" Value="70" />
         <Setter Property="Text" Value="80 บาท" />
     </Style>
+    <Style x:Key="CouponUsage90Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="90 บาท" />
+    </Style>
 
     <!--  COUPON SOLD ENTRY (TEXTBOX)  -->
     <Style x:Key="CouponUsageBHT30"
@@ -256,6 +270,12 @@
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
         <Setter Property="Text" Value="{Binding CouponUsageBHT35, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="CouponUsageBHT40"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT40, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="CouponUsageBHT60"
            BasedOn="{StaticResource BankNoteCountStyle}"
@@ -275,6 +295,12 @@
         <Setter Property="Width" Value="50" />
         <Setter Property="Text" Value="{Binding CouponUsageBHT80, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
+    <Style x:Key="CouponUsageBHT90"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponUsageBHT90, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
 
     <!--  COUPON USAGE UNIT  -->
     <Style x:Key="CouponUsageUnitCountStyle"
@@ -293,12 +319,26 @@
         <Setter Property="Width" Value="70" />
         <Setter Property="Text" Value="35 บาท" />
     </Style>
+    <Style x:Key="CouponSold40Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="40 บาท" />
+    </Style>
     <Style x:Key="CouponSold80Description"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
            TargetType="TextBlock">
         <Setter Property="Margin" Value="5,0" />
         <Setter Property="Width" Value="70" />
         <Setter Property="Text" Value="80 บาท" />
+    </Style>
+    <Style x:Key="CouponSold90Description"
+           BasedOn="{StaticResource BankNoteDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="Width" Value="70" />
+        <Setter Property="Text" Value="90 บาท" />
     </Style>
     <Style x:Key="CouponSoldTotalBHTDescription"
            BasedOn="{StaticResource BankNoteDescriptionStyle}"
@@ -315,12 +355,24 @@
         <Setter Property="Width" Value="50" />
         <Setter Property="Text" Value="{Binding CouponSoldBHT35, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
+    <Style x:Key="CouponSoldBHT40Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT40, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
 
     <Style x:Key="CouponSoldBHT80Count"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="50" />
         <Setter Property="Text" Value="{Binding CouponSoldBHT80, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="CouponSoldBHT90Count"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT90, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="CouponSoldBHT35Total"
@@ -331,12 +383,28 @@
         <Setter Property="Text" Value="{Binding CouponSoldBHT35Total, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
+    <Style x:Key="CouponSoldBHT40Total"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT40Total, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+
     <Style x:Key="CouponSoldBHT80Total"
            BasedOn="{StaticResource BankNoteCountStyle}"
            TargetType="TextBox">
         <Setter Property="Width" Value="90" />
         <Setter Property="IsEnabled" Value="False" />
         <Setter Property="Text" Value="{Binding CouponSoldBHT80Total, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+
+    <Style x:Key="CouponSoldBHT90Total"
+           BasedOn="{StaticResource BankNoteCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Text" Value="{Binding CouponSoldBHT90Total, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
 
     <Style x:Key="CouponSoldBHTTotal"

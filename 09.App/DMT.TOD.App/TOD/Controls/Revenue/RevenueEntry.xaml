@@ -102,12 +102,12 @@
 
                         <!--  NON REVENUE  -->
                         <local:NonRevenueEntry x:Name="nonRevenue"
-                                          Grid.Row="4"
-                                          Grid.Column="2"
-                                          Margin="3"
-                                          VerticalAlignment="Stretch"
-                                          Background="CornflowerBlue"
-                                          Foreground="Black" />
+                                               Grid.Row="4"
+                                               Grid.Column="2"
+                                               Margin="3"
+                                               VerticalAlignment="Stretch"
+                                               Background="CornflowerBlue"
+                                               Foreground="Black" />
 
                         <!--  COUPON SOLD  -->
                         <local:CouponRevenueEntry x:Name="couponSold"

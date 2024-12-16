@@ -31,19 +31,19 @@
         <TextBlock Height="5" DockPanel.Dock="Top" />
         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                <!--  COUPON 35 BHT  -->
+                <!--  COUPON 40 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource CouponUsage35Description}" />
+                    <TextBlock Style="{StaticResource CouponUsage40Description}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource CouponUsageBHT35}" />
+                    <TextBox Style="{StaticResource CouponUsageBHT40}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
                 </StackPanel>
-                <!--  COUPON 80 BHT  -->
+                <!--  COUPON 90 BHT  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource CouponUsage80Description}" />
+                    <TextBlock Style="{StaticResource CouponUsage90Description}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource CouponUsageBHT80}" />
+                    <TextBox Style="{StaticResource CouponUsageBHT90}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
                 </StackPanel>
@@ -52,6 +52,14 @@
                     <TextBlock Style="{StaticResource CouponUsage30Description}" />
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource CouponUsageBHT30}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
+                </StackPanel>
+                <!--  COUPON 35 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource CouponUsage35Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource CouponUsageBHT35}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
                 </StackPanel>
@@ -68,6 +76,14 @@
                     <TextBlock Style="{StaticResource CouponUsage70Description}" />
                     <TextBlock Width="5" />
                     <TextBox Style="{StaticResource CouponUsageBHT70}" />
+                    <TextBlock Width="5" />
+                    <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
+                </StackPanel>
+                <!--  COUPON 80 BHT  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource CouponUsage80Description}" />
+                    <TextBlock Width="5" />
+                    <TextBox Style="{StaticResource CouponUsageBHT80}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponUsageUnitCountStyle}" />
                 </StackPanel>

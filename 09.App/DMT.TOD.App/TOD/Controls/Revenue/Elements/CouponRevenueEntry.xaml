@@ -31,27 +31,27 @@
         <TextBlock Height="5" DockPanel.Dock="Top" />
         <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                <!--  COUPON SOLD 35  -->
+                <!--  COUPON SOLD 40  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource CouponSold35Description}" />
+                    <TextBlock Style="{StaticResource CouponSold40Description}" />
                     <TextBlock Width="5" />
-                    <TextBox IsEnabled="{Binding CouponSoldEnable}" Style="{StaticResource CouponSoldBHT35Count}" />
+                    <TextBox IsEnabled="{Binding CouponSoldEnable}" Style="{StaticResource CouponSoldBHT40Count}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponSoldUnitCountStyle}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource CouponSoldBHT35Total}" />
+                    <TextBox Style="{StaticResource CouponSoldBHT40Total}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponSoldUnitAmountStyle}" />
                 </StackPanel>
-                <!--  COUPON SOLD 80  -->
+                <!--  COUPON SOLD 90  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
-                    <TextBlock Style="{StaticResource CouponSold80Description}" />
+                    <TextBlock Style="{StaticResource CouponSold90Description}" />
                     <TextBlock Width="5" />
-                    <TextBox IsEnabled="{Binding CouponSoldEnable}" Style="{StaticResource CouponSoldBHT80Count}" />
+                    <TextBox IsEnabled="{Binding CouponSoldEnable}" Style="{StaticResource CouponSoldBHT90Count}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponSoldUnitCountStyle}" />
                     <TextBlock Width="5" />
-                    <TextBox Style="{StaticResource CouponSoldBHT80Total}" />
+                    <TextBox Style="{StaticResource CouponSoldBHT90Total}" />
                     <TextBlock Width="5" />
                     <TextBlock Style="{StaticResource CouponSoldUnitAmountStyle}" />
                 </StackPanel>

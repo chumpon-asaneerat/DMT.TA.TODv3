@@ -8,7 +8,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="เช็คยอดด่าน"
         Width="700"
-        Height="550"
+        Height="600"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -65,7 +65,7 @@
                             <RowDefinition Height="5" />
                             <RowDefinition Height="35" />
                             <RowDefinition Height="10" />
-                            <RowDefinition Height="180" />
+                            <RowDefinition Height="240" />
                             <RowDefinition Height="5" />
                             <RowDefinition Height="180" />
                             <RowDefinition Height="5" />

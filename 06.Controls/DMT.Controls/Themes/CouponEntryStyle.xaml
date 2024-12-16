@@ -32,11 +32,23 @@
         <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="35 บาท" />
     </Style>
+    <Style x:Key="C40CountDescription"
+           BasedOn="{StaticResource CouponDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="40 บาท" />
+    </Style>
     <Style x:Key="C80CountDescription"
            BasedOn="{StaticResource CouponDescriptionStyle}"
            TargetType="TextBlock">
         <Setter Property="Width" Value="120" />
         <Setter Property="Text" Value="80 บาท" />
+    </Style>
+    <Style x:Key="C90CountDescription"
+           BasedOn="{StaticResource CouponDescriptionStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Text" Value="90 บาท" />
     </Style>
     <Style x:Key="TotalCountDescription"
            BasedOn="{StaticResource CouponDescriptionStyle}"
@@ -57,10 +69,20 @@
            TargetType="TextBox">
         <Setter Property="Text" Value="{Binding CouponBHT35, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
+    <Style x:Key="CouponBHT40"
+           BasedOn="{StaticResource CouponCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CouponBHT40, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
     <Style x:Key="CouponBHT80"
            BasedOn="{StaticResource CouponCountStyle}"
            TargetType="TextBox">
         <Setter Property="Text" Value="{Binding CouponBHT80, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
+    </Style>
+    <Style x:Key="CouponBHT90"
+           BasedOn="{StaticResource CouponCountStyle}"
+           TargetType="TextBox">
+        <Setter Property="Text" Value="{Binding CouponBHT90, StringFormat=N0, Converter={StaticResource ToNumberConverter}}" />
     </Style>
     <Style x:Key="CouponTotal"
            BasedOn="{StaticResource CouponCountStyle}"
@@ -79,7 +101,17 @@
            TargetType="TextBlock">
         <Setter Property="Text" Value="เล่ม" />
     </Style>
+    <Style x:Key="C40CountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="เล่ม" />
+    </Style>
     <Style x:Key="C80CountUnitStyle"
+           BasedOn="{StaticResource UnitStyle}"
+           TargetType="TextBlock">
+        <Setter Property="Text" Value="เล่ม" />
+    </Style>
+    <Style x:Key="C90CountUnitStyle"
            BasedOn="{StaticResource UnitStyle}"
            TargetType="TextBlock">
         <Setter Property="Text" Value="เล่ม" />

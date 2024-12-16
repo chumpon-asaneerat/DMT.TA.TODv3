@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="170"
+             d:DesignHeight="230"
              d:DesignWidth="340"
              BorderBrush="Silver"
              BorderThickness="1"
@@ -42,11 +42,23 @@
                     <TextBox IsEnabled="False" Style="{StaticResource CouponBHT35}" />
                     <TextBlock Style="{StaticResource C35CountUnitStyle}" />
                 </StackPanel>
+                <!--  Coupon 40 Count  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource C40CountDescription}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource CouponBHT40}" />
+                    <TextBlock Style="{StaticResource C40CountUnitStyle}" />
+                </StackPanel>
                 <!--  Coupon 80 Count  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">
                     <TextBlock Style="{StaticResource C80CountDescription}" />
                     <TextBox IsEnabled="False" Style="{StaticResource CouponBHT80}" />
                     <TextBlock Style="{StaticResource C80CountUnitStyle}" />
+                </StackPanel>
+                <!--  Coupon 90 Count  -->
+                <StackPanel Style="{StaticResource EntryStackPanel}">
+                    <TextBlock Style="{StaticResource C90CountDescription}" />
+                    <TextBox IsEnabled="False" Style="{StaticResource CouponBHT90}" />
+                    <TextBlock Style="{StaticResource C90CountUnitStyle}" />
                 </StackPanel>
                 <!--  Coupon Total Count  -->
                 <StackPanel Style="{StaticResource EntryStackPanel}">

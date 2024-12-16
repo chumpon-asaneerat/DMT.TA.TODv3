@@ -43,11 +43,15 @@ namespace DMT.Models
         private string _FullNameTH = string.Empty;
 
         private int _CouponBHT35 = 0;
+        private int _CouponBHT40 = 0;
         private int _CouponBHT80 = 0;
+        private int _CouponBHT90 = 0;
         private int _CouponTotal = 0;
 
         private decimal _CouponBHT35Total = decimal.Zero;
+        private decimal _CouponBHT40Total = decimal.Zero;
         private decimal _CouponBHT80Total = decimal.Zero;
+        private decimal _CouponBHT90Total = decimal.Zero;
         private decimal _CouponBHTTotal = decimal.Zero;
 
         #endregion
@@ -65,7 +69,7 @@ namespace DMT.Models
 
         private void CalcCouponTotal()
         {
-            _CouponTotal = _CouponBHT35 + _CouponBHT80;
+            _CouponTotal = _CouponBHT35 + _CouponBHT40 + _CouponBHT80 + _CouponBHT90;
             // Raise event.
             this.RaiseChanged("CouponTotal");
 
@@ -252,6 +256,29 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets or sets number of 40 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets number of 40 BHT coupon.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("CouponBHT40")]
+        public virtual int CouponBHT40
+        {
+            get { return _CouponBHT40; }
+            set
+            {
+                if (_CouponBHT40 != value)
+                {
+                    _CouponBHT40 = value;
+                    CalcCouponTotal();
+                    // Raise event.
+                    this.RaiseChanged("CouponBHT40");
+
+                }
+            }
+        }
+        /// <summary>
         /// Gets or sets number of 80 BHT coupon.
         /// </summary>
         [Category("Coupon")]
@@ -270,6 +297,28 @@ namespace DMT.Models
                     CalcCouponTotal();
                     // Raise event.
                     this.RaiseChanged("CouponBHT80");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets number of 90 BHT coupon.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets number of 90 BHT coupon.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("CouponBHT90")]
+        public virtual int CouponBHT90
+        {
+            get { return _CouponBHT90; }
+            set
+            {
+                if (_CouponBHT90 != value)
+                {
+                    _CouponBHT90 = value;
+                    CalcCouponTotal();
+                    // Raise event.
+                    this.RaiseChanged("CouponBHT90");
                 }
             }
         }
@@ -309,6 +358,27 @@ namespace DMT.Models
             }
         }
         /// <summary>
+        /// Gets or sets total coupon 40 in baht.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets total coupon 40 in baht.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("CouponBHT40Total")]
+        public virtual decimal CouponBHT40Total
+        {
+            get { return _CouponBHT40Total; }
+            set
+            {
+                if (_CouponBHT40Total != value)
+                {
+                    _CouponBHT40Total = value;
+                    // Raise event.
+                    this.RaiseChanged("CouponBHT40Total");
+                }
+            }
+        }
+        /// <summary>
         /// Gets or sets total coupon 80 in baht.
         /// </summary>
         [Category("Coupon")]
@@ -326,6 +396,27 @@ namespace DMT.Models
                     _CouponBHT80Total = value;
                     // Raise event.
                     this.RaiseChanged("CouponBHT80Total");
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets total coupon 90 in baht.
+        /// </summary>
+        [Category("Coupon")]
+        [Description("Gets or sets total coupon 90 in baht.")]
+        [ReadOnly(true)]
+        [Ignore]
+        [PropertyMapName("CouponBHT90Total")]
+        public virtual decimal CouponBHT90Total
+        {
+            get { return _CouponBHT90Total; }
+            set
+            {
+                if (_CouponBHT90Total != value)
+                {
+                    _CouponBHT90Total = value;
+                    // Raise event.
+                    this.RaiseChanged("CouponBHT90Total");
                 }
             }
         }
@@ -434,6 +525,15 @@ namespace DMT.Models
                 set { base.CouponBHT35 = value; }
             }
             /// <summary>
+            /// Gets or sets number of 40 BHT coupon.
+            /// </summary>
+            [PropertyMapName("CouponBHT40")]
+            public override int CouponBHT40
+            {
+                get { return base.CouponBHT40; }
+                set { base.CouponBHT40 = value; }
+            }
+            /// <summary>
             /// Gets or sets number of 80 BHT coupon.
             /// </summary>
             [PropertyMapName("CouponBHT80")]
@@ -441,6 +541,15 @@ namespace DMT.Models
             {
                 get { return base.CouponBHT80; }
                 set { base.CouponBHT80 = value; }
+            }
+            /// <summary>
+            /// Gets or sets number of 90 BHT coupon.
+            /// </summary>
+            [PropertyMapName("CouponBHT90")]
+            public override int CouponBHT90
+            {
+                get { return base.CouponBHT90; }
+                set { base.CouponBHT90 = value; }
             }
             /// <summary>
             /// Gets or sets coupon 35 total in baht.
@@ -452,6 +561,15 @@ namespace DMT.Models
                 set { base.CouponBHT35Total = value; }
             }
             /// <summary>
+            /// Gets or sets coupon 40 total in baht.
+            /// </summary>
+            [PropertyMapName("CouponBHT40Total")]
+            public override decimal CouponBHT40Total
+            {
+                get { return base.CouponBHT40Total; }
+                set { base.CouponBHT40Total = value; }
+            }
+            /// <summary>
             /// Gets or sets coupon 80 total in baht.
             /// </summary>
             [PropertyMapName("CouponBHT80Total")]
@@ -459,6 +577,15 @@ namespace DMT.Models
             {
                 get { return base.CouponBHT80Total; }
                 set { base.CouponBHT80Total = value; }
+            }
+            /// <summary>
+            /// Gets or sets coupon 90 total in baht.
+            /// </summary>
+            [PropertyMapName("CouponBHT90Total")]
+            public override decimal CouponBHT90Total
+            {
+                get { return base.CouponBHT90Total; }
+                set { base.CouponBHT90Total = value; }
             }
             /// <summary>
             /// Gets or sets total value in baht.
@@ -579,10 +706,22 @@ namespace DMT.Models
                                     data.CouponBHT35Total += coupon.Price;
                                     data.CouponBHTTotal += coupon.Price;
                                 }
+                                else if (coupon.CouponType == CouponType.BHT40)
+                                {
+                                    data.CouponBHT40++;
+                                    data.CouponBHT40Total += coupon.Price;
+                                    data.CouponBHTTotal += coupon.Price;
+                                }
                                 else if (coupon.CouponType == CouponType.BHT80)
                                 {
                                     data.CouponBHT80++;
                                     data.CouponBHT80Total += coupon.Price;
+                                    data.CouponBHTTotal += coupon.Price;
+                                }
+                                else if (coupon.CouponType == CouponType.BHT90)
+                                {
+                                    data.CouponBHT90++;
+                                    data.CouponBHT90Total += coupon.Price;
                                     data.CouponBHTTotal += coupon.Price;
                                 }
                             }

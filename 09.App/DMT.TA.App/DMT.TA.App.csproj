@@ -270,6 +270,9 @@
     <Compile Include="TA\Pages\Coupon\ReceiveCouponPage.xaml.cs">
       <DependentUpon>ReceiveCouponPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TA\Pages\Coupon\ReceiveCouponPage2.xaml.cs">
+      <DependentUpon>ReceiveCouponPage2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TA\Pages\Coupon\ReturnCouponPage.xaml.cs">
       <DependentUpon>ReturnCouponPage.xaml</DependentUpon>
     </Compile>
@@ -308,6 +311,9 @@
     </Compile>
     <Compile Include="TA\Windows\Coupon\CollectorCouponBorrowWindow.xaml.cs">
       <DependentUpon>CollectorCouponBorrowWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TA\Windows\Coupon\CollectorCouponBorrowWindow2.xaml.cs">
+      <DependentUpon>CollectorCouponBorrowWindow2.xaml</DependentUpon>
     </Compile>
     <Compile Include="TA\Windows\Coupon\CollectorCouponReturnWindow.xaml.cs">
       <DependentUpon>CollectorCouponReturnWindow.xaml</DependentUpon>
@@ -499,6 +505,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TA\Pages\Coupon\ReceiveCouponPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TA\Pages\Coupon\ReturnCouponPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -548,6 +558,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TA\Windows\Coupon\CollectorCouponBorrowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TA\Windows\Coupon\CollectorCouponBorrowWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

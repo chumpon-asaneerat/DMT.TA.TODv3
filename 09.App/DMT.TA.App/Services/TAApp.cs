@@ -328,11 +328,11 @@ namespace DMT
 
             #endregion
 
-            #region Coupon TSB Sale2
+            #region Coupon TSB Sale 2
 
             private static TA.Pages.Coupon.CouponTSBSalePage2 _CouponTSBSale2;
 
-            /// <summary>Gets Coupon TSB Sale Page.</summary>
+            /// <summary>Gets Coupon TSB Sale Page 2.</summary>
             public static TA.Pages.Coupon.CouponTSBSalePage2 CouponTSBSale2
             {
                 get
@@ -367,6 +367,28 @@ namespace DMT
                         }
                     }
                     return _ReceiveCoupon;
+                }
+            }
+
+            #endregion
+
+            #region Receive Coupon 2
+
+            private static TA.Pages.Coupon.ReceiveCouponPage2 _ReceiveCoupon2;
+
+            /// <summary>Gets Receive Coupon Page 2.</summary>
+            public static TA.Pages.Coupon.ReceiveCouponPage2 ReceiveCoupon2
+            {
+                get
+                {
+                    if (null == _ReceiveCoupon2)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _ReceiveCoupon2 = new TA.Pages.Coupon.ReceiveCouponPage2();
+                        }
+                    }
+                    return _ReceiveCoupon2;
                 }
             }
 
@@ -511,6 +533,16 @@ namespace DMT
                 get
                 {
                     var ret = new TA.Windows.Coupon.CollectorCouponBorrowWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+            /// <summary>Gets Collector Coupon Borrow Window 2.</summary>
+            public static TA.Windows.Coupon.CollectorCouponBorrowWindow2 CollectorCouponBorrow2
+            {
+                get
+                {
+                    var ret = new TA.Windows.Coupon.CollectorCouponBorrowWindow2();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

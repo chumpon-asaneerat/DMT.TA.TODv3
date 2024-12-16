@@ -449,9 +449,19 @@
                    Text="{Binding CountCouponBHT35}"
                    TextAlignment="Center" />
     </DataTemplate>
+    <DataTemplate x:Key="CountCouponBHT40">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CountCouponBHT40}"
+                   TextAlignment="Center" />
+    </DataTemplate>
     <DataTemplate x:Key="CountCouponBHT80">
         <TextBlock HorizontalAlignment="Stretch"
                    Text="{Binding CountCouponBHT80}"
+                   TextAlignment="Center" />
+    </DataTemplate>
+    <DataTemplate x:Key="CountCouponBHT90">
+        <TextBlock HorizontalAlignment="Stretch"
+                   Text="{Binding CountCouponBHT90}"
                    TextAlignment="Center" />
     </DataTemplate>
 

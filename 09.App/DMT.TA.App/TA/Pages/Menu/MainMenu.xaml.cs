@@ -164,7 +164,7 @@ namespace DMT.TA.Pages.Menu
             LogUser(med, TAApp.User.Current); // write current user to log.
 
             // รับคูปอง (collector)
-            var page = TAApp.Pages.ReceiveCoupon;
+            var page = TAApp.Pages.ReceiveCoupon2;
             page.Setup(TAApp.User.Current);
             PageContentManager.Instance.Current = page;
         }

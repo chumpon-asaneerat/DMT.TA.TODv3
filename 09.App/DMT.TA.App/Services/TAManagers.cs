@@ -3173,9 +3173,19 @@ namespace DMT.Services
             var coupons = TSBCouponTransaction.GetTSBCoupon35sSoldByDate(TAAPI.TSB, soldDate).Value();             
             return coupons;
         }
+        public static List<TSBCouponTransaction> GetSoldCoupon40s(DateTime soldDate)
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon40sSoldByDate(TAAPI.TSB, soldDate).Value();
+            return coupons;
+        }
         public static List<TSBCouponTransaction> GetSoldCoupon80s(DateTime soldDate)
         {
             var coupons = TSBCouponTransaction.GetTSBCoupon80sSoldByDate(TAAPI.TSB, soldDate).Value();
+            return coupons;
+        }
+        public static List<TSBCouponTransaction> GetSoldCoupon90s(DateTime soldDate)
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon90sSoldByDate(TAAPI.TSB, soldDate).Value();
             return coupons;
         }
         public static List<TSBCouponTransaction> GetStockCoupon35s()
@@ -3183,9 +3193,19 @@ namespace DMT.Services
             var coupons = TSBCouponTransaction.GetTSBCoupon35sStock(TAAPI.TSB).Value();
             return coupons;
         }
+        public static List<TSBCouponTransaction> GetStockCoupon40s()
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon40sStock(TAAPI.TSB).Value();
+            return coupons;
+        }
         public static List<TSBCouponTransaction> GetStockCoupon80s()
         {
             var coupons = TSBCouponTransaction.GetTSBCoupon80sStock(TAAPI.TSB).Value();
+            return coupons;
+        }
+        public static List<TSBCouponTransaction> GetStockCoupon90s()
+        {
+            var coupons = TSBCouponTransaction.GetTSBCoupon90sStock(TAAPI.TSB).Value();
             return coupons;
         }
         public static void VoidCoupon(TSBCouponTransaction tran)

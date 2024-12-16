@@ -257,7 +257,7 @@
                         <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="สร้างใบเบิกคูปอง" />
                     </StackPanel>
                 </Button>
-                
+
                 <TextBlock Grid.Row="7"
                            Grid.Column="1"
                            Width="{StaticResource ButtonSpace}" />
@@ -357,10 +357,11 @@
                 <TextBlock Grid.Row="5"
                            Grid.Column="1"
                            Width="{StaticResource ButtonSpace}" />
-                <!--
+
                 <Button x:Name="cmdEditSoldCoupon"
-                        Grid.Row="5"
-                        Grid.Column="2"
+                        Visibility="Collapsed"
+                        Grid.Row="7"
+                        Grid.Column="0"
                         Click="cmdEditSoldCoupon_Click"
                         Style="{StaticResource CollectorCreditAndCouponButtonStyle}">
                     <StackPanel Orientation="Vertical">
@@ -368,15 +369,6 @@
                         <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ข้อมูลขายคูปอง" />
                     </StackPanel>
                 </Button>
-
-                <Button x:Name="cmdExit"
-                        Grid.Row="7"
-                        Grid.Column="2"
-                        Click="cmdExit_Click"
-                        Style="{StaticResource ConfigAndExitButtonStyle}">
-                    <TextBlock Style="{StaticResource MenuButtonCaptionStyle}" Text="ออกจากระบบ" />
-                </Button>
-                -->
 
                 <Button x:Name="cmdExit"
                         Grid.Row="5"

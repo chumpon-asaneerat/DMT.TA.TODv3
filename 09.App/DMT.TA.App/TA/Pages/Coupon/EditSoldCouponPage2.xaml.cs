@@ -1,0 +1,263 @@
+﻿#region Using
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Threading;
+using System.Reflection;
+
+using DMT.Models;
+using DMT.Services;
+
+using NLib;
+using NLib.Services;
+using NLib.Reflection;
+
+#endregion
+
+namespace DMT.TA.Pages.Coupon
+{
+    /// <summary>
+    /// Interaction logic for EditSoldCouponPage2.xaml
+    /// </summary>
+    public partial class EditSoldCouponPage2 : UserControl
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public EditSoldCouponPage2()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
+
+        #region Internal Variables
+
+        //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
+        private CultureInfo culture = new CultureInfo("th-TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
+
+        #endregion
+
+        #region Loaded/Unloaded
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Setup DateTime Picker
+            dtSoldDate.CultureInfo = culture;
+            dtSoldDate.Language = language;
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Button Handlers
+
+        private void cmdBack_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMainMenu();
+        }
+
+        private void cmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
+        }
+
+        private void cmdC40Swap_Click(object sender, RoutedEventArgs e)
+        {
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            SwapC40(tran);
+        }
+
+        private void cmdC40Void_Click(object sender, RoutedEventArgs e)
+        {
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            VoidC40(tran);
+        }
+
+        private void cmdC90Swap_Click(object sender, RoutedEventArgs e)
+        {
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            SwapC90(tran);
+        }
+
+        private void cmdC90Void_Click(object sender, RoutedEventArgs e)
+        {
+            var cmd = sender as Button;
+            var ctx = null != cmd ? cmd.DataContext : null;
+            var tran = ctx as TSBCouponTransaction;
+            VoidC90(tran);
+        }
+
+
+        #endregion
+
+        #region Private Methods
+
+        private void GotoMainMenu()
+        {
+            // Main Menu Page
+            var page = TAApp.Pages.MainMenu;
+            PageContentManager.Instance.Current = page;
+        }
+
+        private void ClearInputs()
+        {
+            dtSoldDate.Value = DateTime.Today.Date;
+            grid40.ItemsSource = null; // clear grid.
+            grid90.ItemsSource = null; // clear grid.
+        }
+
+        private void Search()
+        {
+            grid40.ItemsSource = null; // clear grid.
+            grid90.ItemsSource = null; // clear grid.
+
+            if (!dtSoldDate.Value.HasValue)
+            {
+                var win = TAApp.Windows.MessageBox;
+                win.Setup("กรุณาเลือกวันที่ขายคูปอง", "Toll Admin");
+                win.ShowDialog();
+                return;
+            }
+
+            RefreshListviews();
+        }
+
+        private void SwapC40(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+
+            var coupons = TSBCouponEditManager.GetStockCoupon40s();
+            var win = TAApp.Windows.ChooseCouponInStock;
+            win.Setup(coupons);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            var src = tran;
+            var dst = win.SelectedCoupon;
+            if (null != src && null != dst)
+            {
+                var win2 = TAApp.Windows.MessageBoxYesNo;
+                string msg = string.Format("ต้องการสลับเลขเล่มการขายคูปอง จากเลขที่: {0} เป็นเลขที่: {1}?", src.CouponId, dst.CouponId);
+                win2.Setup(msg, "Toll Admin");
+                if (win2.ShowDialog() == false)
+                {
+                    return;
+                }
+
+                TSBCouponEditManager.SwapCoupon(src, dst);
+                RefreshListviews();
+            }
+        }
+
+        private void SwapC90(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+
+            var coupons = TSBCouponEditManager.GetStockCoupon90s();
+            var win = TAApp.Windows.ChooseCouponInStock;
+            win.Setup(coupons);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            var src = tran;
+            var dst = win.SelectedCoupon;
+            if (null != src && null != dst)
+            {
+                var win2 = TAApp.Windows.MessageBoxYesNo;
+                string msg = string.Format("ต้องการสลับเลขเล่มการขายคูปอง จากเลขที่: {0} เป็นเลขที่: {1}?", src.CouponId, dst.CouponId);
+                win2.Setup(msg, "Toll Admin");
+                if (win2.ShowDialog() == false)
+                {
+                    return;
+                }
+
+                TSBCouponEditManager.SwapCoupon(src, dst);
+                RefreshListviews();
+            }
+        }
+
+        private void VoidC40(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+
+            var win = TAApp.Windows.MessageBoxYesNo;
+            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่: {0} ?", tran.CouponId);
+            win.Setup(msg, "Toll Admin");
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            // Void
+            TSBCouponEditManager.VoidCoupon(tran);
+
+            Search(); // refresh
+        }
+
+        private void VoidC90(TSBCouponTransaction tran)
+        {
+            if (null == tran) return;
+
+            var win = TAApp.Windows.MessageBoxYesNo;
+            string msg = string.Format("ต้องการยกเลิกการขายคูปอง เลขที่: {0} ?", tran.CouponId);
+            win.Setup(msg, "Toll Admin");
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            // Void
+            TSBCouponEditManager.VoidCoupon(tran);
+
+            Search(); // refresh
+        }
+
+        private void RefreshListviews()
+        {
+
+            grid40.ItemsSource = TSBCouponEditManager.GetSoldCoupon40s(dtSoldDate.Value.Value); // set items to grid.
+            grid90.ItemsSource = TSBCouponEditManager.GetSoldCoupon90s(dtSoldDate.Value.Value); // set items to grid.
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup
+        /// </summary>
+        public void Setup()
+        {
+            ClearInputs();
+            // Focus on search textbox.
+            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                dtSoldDate.SelectAll();
+                dtSoldDate.Focus();
+            }));
+        }
+
+        #endregion
+    }
+}

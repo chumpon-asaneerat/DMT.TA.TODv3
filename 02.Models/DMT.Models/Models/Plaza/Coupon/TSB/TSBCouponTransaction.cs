@@ -1637,6 +1637,54 @@ namespace DMT.Models
                 return result;
             }
         }
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon40sSoldByDate(TSB tsb, DateTime? soldDate)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            if (!soldDate.HasValue || soldDate.Value == DateTime.MinValue)
+            {
+                // Check Sold Date.
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND CouponType = ? ";
+                    cmd += "   AND (TransactionType = ? OR TransactionType = ?) ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
+                    cmd += "   AND SoldDate >= ? ";
+                    cmd += "   AND SoldDate < ? ";
+
+                    var dt1 = soldDate.Value.Date;
+                    var dt2 = dt1.AddDays(1);
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        CouponType.BHT40,
+                        TSBCouponTransactionTypes.SoldByLane, TSBCouponTransactionTypes.SoldByTSB,
+                        dt1, dt2).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
         public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon80sSoldByDate(TSB tsb, DateTime? soldDate)
         {
             var result = new NDbResult<List<TSBCouponTransaction>>();
@@ -1672,6 +1720,54 @@ namespace DMT.Models
                     var dt2 = dt1.AddDays(1);
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId, 
                         CouponType.BHT80,
+                        TSBCouponTransactionTypes.SoldByLane, TSBCouponTransactionTypes.SoldByTSB,
+                        dt1, dt2).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon90sSoldByDate(TSB tsb, DateTime? soldDate)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+
+            if (!soldDate.HasValue || soldDate.Value == DateTime.MinValue)
+            {
+                // Check Sold Date.
+                result.ParameterIsNull();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND CouponType = ? ";
+                    cmd += "   AND (TransactionType = ? OR TransactionType = ?) ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
+                    cmd += "   AND SoldDate >= ? ";
+                    cmd += "   AND SoldDate < ? ";
+
+                    var dt1 = soldDate.Value.Date;
+                    var dt2 = dt1.AddDays(1);
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        CouponType.BHT90,
                         TSBCouponTransactionTypes.SoldByLane, TSBCouponTransactionTypes.SoldByTSB,
                         dt1, dt2).ToList();
                     var results = rets.ToModels();
@@ -1722,6 +1818,42 @@ namespace DMT.Models
                 return result;
             }
         }
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon40sStock(TSB tsb)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND CouponType = ? ";
+                    cmd += "   AND TransactionType = ? ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
+
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        CouponType.BHT40,
+                        TSBCouponTransactionTypes.Stock).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
         public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon80sStock(TSB tsb)
         {
             var result = new NDbResult<List<TSBCouponTransaction>>();
@@ -1746,6 +1878,42 @@ namespace DMT.Models
 
                     var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
                         CouponType.BHT80,
+                        TSBCouponTransactionTypes.Stock).ToList();
+                    var results = rets.ToModels();
+                    result.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    result.Error(ex);
+                }
+                return result;
+            }
+        }
+        public static NDbResult<List<TSBCouponTransaction>> GetTSBCoupon90sStock(TSB tsb)
+        {
+            var result = new NDbResult<List<TSBCouponTransaction>>();
+            SQLiteConnection db = Default;
+            if (null == db)
+            {
+                result.DbConenctFailed();
+                return result;
+            }
+            lock (sync)
+            {
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * ";
+                    cmd += "  FROM TSBCouponTransactionView ";
+                    cmd += " WHERE TSBId = ? ";
+                    cmd += "   AND CouponType = ? ";
+                    cmd += "   AND TransactionType = ? ";
+                    //cmd += "   AND SapChooseFlag = 1 ";
+
+                    var rets = NQuery.Query<FKs>(cmd, tsb.TSBId,
+                        CouponType.BHT90,
                         TSBCouponTransactionTypes.Stock).ToList();
                     var results = rets.ToModels();
                     result.Success(results);

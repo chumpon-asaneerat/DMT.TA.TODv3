@@ -438,7 +438,7 @@ namespace DMT
 
             #endregion
 
-            #region Return Coupon
+            #region Edit Sold Coupon
 
             private static TA.Pages.Coupon.EditSoldCouponPage _EditSoldCoupon;
 
@@ -455,6 +455,28 @@ namespace DMT
                         }
                     }
                     return _EditSoldCoupon;
+                }
+            }
+
+            #endregion
+
+            #region Edit Sold Coupon 2
+
+            private static TA.Pages.Coupon.EditSoldCouponPage2 _EditSoldCoupon2;
+
+            /// <summary>Gets Edit Sold Coupon Page.</summary>
+            public static TA.Pages.Coupon.EditSoldCouponPage2 EditSoldCoupon2
+            {
+                get
+                {
+                    if (null == _EditSoldCoupon2)
+                    {
+                        lock (typeof(TAApp))
+                        {
+                            _EditSoldCoupon2 = new TA.Pages.Coupon.EditSoldCouponPage2();
+                        }
+                    }
+                    return _EditSoldCoupon2;
                 }
             }
 

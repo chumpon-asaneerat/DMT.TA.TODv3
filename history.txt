@@ -9,8 +9,10 @@
 Refactor DMT.TA.TODv4 #2590
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2589
-- 
+- Update App build
+  - TOD 10275
 
 [commited]
 Refactor DMT.TA.TODv4 #2588

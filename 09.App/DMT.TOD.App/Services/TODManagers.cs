@@ -2943,7 +2943,7 @@ namespace DMT.Services
             med.Info("   - Load Report [ RevenueSlip ] rdlc file."); // write log
             Assembly assembly = this.GetType().Assembly;
             RdlcReportModel inst = new RdlcReportModel();
-            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip.rdlc";
+            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlip2.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
 

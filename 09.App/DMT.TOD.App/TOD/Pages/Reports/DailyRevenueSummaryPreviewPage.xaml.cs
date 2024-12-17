@@ -102,7 +102,7 @@ namespace DMT.TOD.Pages.Reports
             // Set Display Name (default file name).
             inst.DisplayName = ReportDisplayName;
 
-            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlipSum.rdlc";
+            inst.Definition.EmbededReportName = "DMT.TOD.Reports.RevenueSlipSum2.rdlc";
             inst.Definition.RdlcInstance = RdlcReportUtils.GetEmbededReport(assembly,
                 inst.Definition.EmbededReportName);
             // clear reprot datasource.

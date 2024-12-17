@@ -490,7 +490,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="TOD\Reports\RevenueSlip.rdlc" />
+    <EmbeddedResource Include="TOD\Reports\RevenueSlip2.rdlc" />
     <EmbeddedResource Include="TOD\Reports\RevenueSlipNull.rdlc" />
+    <EmbeddedResource Include="TOD\Reports\RevenueSlipNull2.rdlc" />
+    <EmbeddedResource Include="TOD\Reports\RevenueSlipSum2.rdlc" />
     <EmbeddedResource Include="TOD\Reports\RevenueSlipSumL.rdlc" />
     <EmbeddedResource Include="TOD\Reports\RevenueSlipSumOld.rdlc" />
     <EmbeddedResource Include="TOD\Reports\RevenueSlipSum.rdlc" />

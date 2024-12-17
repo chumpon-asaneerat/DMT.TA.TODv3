@@ -20,7 +20,7 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10330";
+                public static string Build = "10335";
                 public static DateTime LastUpdate = new DateTime(2024, 12, 17, 8, 45, 00);
             }
 
@@ -30,7 +30,7 @@ namespace DMT
                 // common
                 public static string Version = AppConsts.Version;
                 public static string Minor = AppConsts.Minor;
-                public static string Build = "10275";
+                public static string Build = "10280";
                 public static DateTime LastUpdate = new DateTime(2024, 12, 17, 8, 45, 00);
             }
 

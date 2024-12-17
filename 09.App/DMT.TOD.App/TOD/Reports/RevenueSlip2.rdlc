@@ -45,6 +45,18 @@
           <DataField>CouponSoldBHT35Total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="CouponSoldBHT40">
+          <DataField>CouponSoldBHT40</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CouponSoldBHT40Factor">
+          <DataField>CouponSoldBHT40Factor</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CouponSoldBHT40Total">
+          <DataField>CouponSoldBHT40Total</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="CouponSoldBHT80">
           <DataField>CouponSoldBHT80</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -55,6 +67,18 @@
         </Field>
         <Field Name="CouponSoldBHT80Total">
           <DataField>CouponSoldBHT80Total</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CouponSoldBHT90">
+          <DataField>CouponSoldBHT90</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CouponSoldBHT90Factor">
+          <DataField>CouponSoldBHT90Factor</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CouponSoldBHT90Total">
+          <DataField>CouponSoldBHT90Total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="CouponSoldBHTTotal">
@@ -73,6 +97,10 @@
           <DataField>CouponUsageBHT35</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="CouponUsageBHT40">
+          <DataField>CouponUsageBHT40</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="CouponUsageBHT60">
           <DataField>CouponUsageBHT60</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -83,6 +111,10 @@
         </Field>
         <Field Name="CouponUsageBHT80">
           <DataField>CouponUsageBHT80</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CouponUsageBHT90">
+          <DataField>CouponUsageBHT90</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Direction">
@@ -887,7 +919,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>6.49722in</Top>
+            <Top>7.14722in</Top>
             <Left>4.25083in</Left>
             <Height>0.2375in</Height>
             <Width>0.98251in</Width>
@@ -961,7 +993,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>7.0125in</Top>
+            <Top>8.02861in</Top>
             <Left>4.10001in</Left>
             <Height>0.25in</Height>
             <Width>1.59375in</Width>
@@ -999,7 +1031,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>8.32272in</Top>
+            <Top>9.33522in</Top>
             <Left>4.25083in</Left>
             <Height>0.25in</Height>
             <Width>0.98251in</Width>
@@ -3017,7 +3049,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>คูปอง 35 บาท</Value>
+                        <Value>คูปอง 40 บาท</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Tahoma</FontFamily>
@@ -3053,7 +3085,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>คูปอง 80 บาท</Value>
+                        <Value>คูปอง 90 บาท</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Tahoma</FontFamily>
@@ -3203,14 +3235,14 @@
                   </Border>
                 </Style>
               </Line>
-              <Textbox Name="CouponSoldBHT35">
+              <Textbox Name="CouponSoldBHT40">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!CouponSoldBHT35.Value, "main")</Value>
+                        <Value>=Sum(Fields!CouponSoldBHT40.Value, "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3221,7 +3253,6 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>CouponSoldBHT35</rd:DefaultName>
                 <Top>0.52373in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
@@ -3237,14 +3268,14 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="CouponSoldBHT35Total">
+              <Textbox Name="CouponSoldBHT40Total">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!CouponSoldBHT35Total.Value, "main")</Value>
+                        <Value>=Sum(Fields!CouponSoldBHT40Total.Value, "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3255,7 +3286,6 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>CouponSoldBHT35Total</rd:DefaultName>
                 <Top>0.52373in</Top>
                 <Left>2.4743in</Left>
                 <Height>0.25in</Height>
@@ -3271,14 +3301,14 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="CouponSoldBHT80">
+              <Textbox Name="CouponSoldBHT90">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!CouponSoldBHT80.Value, "main")</Value>
+                        <Value>=Sum(Fields!CouponSoldBHT90.Value, "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3289,7 +3319,6 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>CouponSoldBHT80</rd:DefaultName>
                 <Top>0.82929in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
@@ -3305,14 +3334,14 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="CouponSoldBHT80Total">
+              <Textbox Name="CouponSoldBHT90Total">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!CouponSoldBHT80Total.Value, "main")</Value>
+                        <Value>=Sum(Fields!CouponSoldBHT90Total.Value, "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3323,7 +3352,6 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>CouponSoldBHT80Total</rd:DefaultName>
                 <Top>0.82929in</Top>
                 <Left>2.4743in</Left>
                 <Height>0.25in</Height>
@@ -3474,7 +3502,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
                 <Top>0.04179in</Top>
-                <Left>0.10985in</Left>
+                <Left>0.09365in</Left>
                 <Height>0.25in</Height>
                 <Width>1.08333in</Width>
                 <Style>
@@ -3513,7 +3541,7 @@
                 <Top>0.04179in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
-                <Width>0.98251in</Width>
+                <Width>1in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -3532,7 +3560,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>คูปอง 35 บาท</Value>
+                        <Value>คูปอง 40 บาท</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Tahoma</FontFamily>
@@ -3547,7 +3575,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
                 <Top>0.37248in</Top>
-                <Left>0.10985in</Left>
+                <Left>0.09365in</Left>
                 <Height>0.25in</Height>
                 <Width>1.08333in</Width>
                 <ZIndex>2</ZIndex>
@@ -3568,7 +3596,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>คูปอง 80 บาท</Value>
+                        <Value>คูปอง 90 บาท</Value>
                         <Style>
                           <FontStyle>Normal</FontStyle>
                           <FontFamily>Tahoma</FontFamily>
@@ -3583,7 +3611,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
                 <Top>0.68936in</Top>
-                <Left>0.10985in</Left>
+                <Left>0.09365in</Left>
                 <Height>0.25in</Height>
                 <Width>1.08333in</Width>
                 <ZIndex>3</ZIndex>
@@ -3618,8 +3646,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>1.32792in</Top>
-                <Left>0.10985in</Left>
+                <Top>1.95688in</Top>
+                <Left>0.09365in</Left>
                 <Height>0.25in</Height>
                 <Width>1.08333in</Width>
                 <ZIndex>4</ZIndex>
@@ -3654,8 +3682,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>1.64737in</Top>
-                <Left>0.10985in</Left>
+                <Top>2.27376in</Top>
+                <Left>0.09365in</Left>
                 <Height>0.25in</Height>
                 <Width>1.08333in</Width>
                 <ZIndex>5</ZIndex>
@@ -3671,7 +3699,7 @@
               </Textbox>
               <Line Name="Line19">
                 <Left>1.26369in</Left>
-                <Height>1.92237in</Height>
+                <Height>2.57in</Height>
                 <Width>0in</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
@@ -3724,14 +3752,14 @@
                   </Border>
                 </Style>
               </Line>
-              <Textbox Name="CouponUsageBHT30">
+              <Textbox Name="CouponUsageBHT40">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!CouponUsageBHT35.Value, "main")</Value>
+                        <Value>=Sum(Fields!CouponUsageBHT40.Value, "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3742,7 +3770,6 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>CouponUsageBHT30</rd:DefaultName>
                 <Top>0.37248in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
@@ -3758,14 +3785,14 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="CouponUsageBHT35">
+              <Textbox Name="CouponUsageBHT90">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!CouponUsageBHT80.Value, "main")</Value>
+                        <Value>=Sum(Fields!CouponUsageBHT90.Value, "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3776,7 +3803,6 @@
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>CouponUsageBHT35</rd:DefaultName>
                 <Top>0.69193in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
@@ -3811,7 +3837,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>CouponUsageBHT70</rd:DefaultName>
-                <Top>1.32792in</Top>
+                <Top>1.95688in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
@@ -3845,7 +3871,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>CouponUsageBHT80</rd:DefaultName>
-                <Top>1.64737in</Top>
+                <Top>2.27376in</Top>
                 <Left>1.34873in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
@@ -3861,7 +3887,8 @@
                 </Style>
               </Textbox>
               <Line Name="Line27">
-                <Top>1.61118in</Top>
+                <Top>1.60574in</Top>
+                <Left>0.00137cm</Left>
                 <Height>0in</Height>
                 <Width>2.40119in</Width>
                 <ZIndex>15</ZIndex>
@@ -3892,7 +3919,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>1.01118in</Top>
+                <Top>1.64in</Top>
                 <Left>0.09365in</Left>
                 <Height>0.25in</Height>
                 <Width>1.08333in</Width>
@@ -3926,11 +3953,172 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>CouponUsageBHT70</rd:DefaultName>
-                <Top>1.01118in</Top>
-                <Left>1.33253in</Left>
+                <Top>1.64in</Top>
+                <Left>1.34873in</Left>
                 <Height>0.25in</Height>
-                <Width>1.0162in</Width>
+                <Width>1in</Width>
                 <ZIndex>17</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line28">
+                <Top>1.91824in</Top>
+                <Height>0in</Height>
+                <Width>2.40119in</Width>
+                <ZIndex>18</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Line Name="Line29">
+                <Top>2.24243in</Top>
+                <Height>-0.01169in</Height>
+                <Width>6.09902cm</Width>
+                <ZIndex>19</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="Textbox65">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>คูปอง 35 บาท</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox3</rd:DefaultName>
+                <Top>1.00624in</Top>
+                <Left>0.09365in</Left>
+                <Height>0.25in</Height>
+                <Width>1.08333in</Width>
+                <ZIndex>20</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox66">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>คูปอง 80 บาท</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox3</rd:DefaultName>
+                <Top>1.32312in</Top>
+                <Left>0.09365in</Left>
+                <Height>0.25in</Height>
+                <Width>1.08333in</Width>
+                <ZIndex>21</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="CouponUsageBHT35">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Sum(Fields!CouponUsageBHT35.Value, "main")</Value>
+                        <Style>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <Format>n0</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <Top>1.00624in</Top>
+                <Left>1.34873in</Left>
+                <Height>0.25in</Height>
+                <Width>1in</Width>
+                <ZIndex>22</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="CouponUsageBHT36">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Sum(Fields!CouponUsageBHT80.Value, "main")</Value>
+                        <Style>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <Format>n0</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>CouponUsageBHT35</rd:DefaultName>
+                <Top>1.32312in</Top>
+                <Left>1.34873in</Left>
+                <Height>0.25in</Height>
+                <Width>1in</Width>
+                <ZIndex>23</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -3945,8 +4133,8 @@
             <KeepTogether>true</KeepTogether>
             <Top>4.55103in</Top>
             <Left>4.02881in</Left>
-            <Height>1.92237in</Height>
-            <Width>2.40119in</Width>
+            <Height>2.57in</Height>
+            <Width>2.40173in</Width>
             <ZIndex>45</ZIndex>
             <Style>
               <Border>
@@ -3963,7 +4151,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum((Fields!CouponUsageBHT30.Value)+(Fields!CouponUsageBHT35.Value)+(Fields!CouponUsageBHT60.Value)+(Fields!CouponUsageBHT70.Value)+(Fields!CouponUsageBHT80.Value), "main")</Value>
+                        <Value>=Sum((Fields!CouponUsageBHT40.Value)+(Fields!CouponUsageBHT90.Value)+(Fields!CouponUsageBHT30.Value)+(Fields!CouponUsageBHT35.Value)+(Fields!CouponUsageBHT60.Value)+(Fields!CouponUsageBHT70.Value)+(Fields!CouponUsageBHT80.Value), "main")</Value>
                         <Style>
                           <FontFamily>Tahoma</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -3975,10 +4163,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>CouponUsageBHT80</rd:DefaultName>
-                <Top>0.01671in</Top>
-                <Left>0.09533in</Left>
+                <Top>0.00814in</Top>
+                <Left>0.08864in</Left>
                 <Height>0.25in</Height>
-                <Width>1in</Width>
+                <Width>1.00669in</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -3991,9 +4179,9 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>6.47496in</Top>
+            <Top>7.12103in</Top>
             <Left>5.2889in</Left>
-            <Height>0.28194in</Height>
+            <Height>0.29444in</Height>
             <Width>1.1411in</Width>
             <ZIndex>46</ZIndex>
             <Style>
@@ -4254,7 +4442,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>7.30272in</Top>
+            <Top>8.31883in</Top>
             <Left>4.02881in</Left>
             <Height>1.00056in</Height>
             <Width>2.40119in</Width>
@@ -4286,7 +4474,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>FreePassUsageOther</rd:DefaultName>
-                <Top>0.01666in</Top>
+                <Top>0.0125in</Top>
                 <Left>0.0834in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
@@ -4302,7 +4490,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>8.3005in</Top>
+            <Top>9.31939in</Top>
             <Left>5.2889in</Left>
             <Height>0.29444in</Height>
             <Width>1.1411in</Width>

@@ -2413,9 +2413,13 @@ namespace DMT.Services
                     //Entry.CouponSoldEnable = false;
                     Entry.CouponSoldEnable = true;
                     Entry.CouponSoldBHT35 = usrSold.CouponBHT35;
+                    Entry.CouponSoldBHT40 = usrSold.CouponBHT40;
                     Entry.CouponSoldBHT80 = usrSold.CouponBHT80;
+                    Entry.CouponSoldBHT90 = usrSold.CouponBHT90;
                     Entry.CouponSoldBHT35Total = usrSold.CouponBHT35Total;
+                    Entry.CouponSoldBHT40Total = usrSold.CouponBHT40Total;
                     Entry.CouponSoldBHT80Total = usrSold.CouponBHT80Total;
+                    Entry.CouponSoldBHT90Total = usrSold.CouponBHT90Total;
                 }
                 else
                 {

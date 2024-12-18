@@ -691,9 +691,13 @@ namespace DMT.Models
                         data.FullNameEN = user.FullNameEN;
                         data.FullNameTH = user.FullNameTH;
                         data.CouponBHT35 = 0;
+                        data.CouponBHT40 = 0;
                         data.CouponBHT80 = 0;
+                        data.CouponBHT90 = 0;
                         data.CouponBHT35Total = decimal.Zero;
+                        data.CouponBHT40Total = decimal.Zero;
                         data.CouponBHT80Total = decimal.Zero;
+                        data.CouponBHT90Total = decimal.Zero;
                         data.CouponBHTTotal = decimal.Zero;
 
                         coupons.ForEach(coupon =>

@@ -24,8 +24,9 @@ Refactor DMT.TA.TODv4 #2596
 Refactor DMT.TA.TODv4 #2595
 - 
 
+[commited]
 Refactor DMT.TA.TODv4 #2594
-- 
+- Update for C40, C90 #13
 
 [commited]
 Refactor DMT.TA.TODv4 #2593

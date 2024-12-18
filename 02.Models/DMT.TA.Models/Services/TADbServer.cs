@@ -289,7 +289,8 @@ namespace DMT.Services
         {
             if (null == Db) return;
 
-            if (Db.Table<MCoupon>().Count() > 0) return; // already exists.
+            int cnt = Db.Table<MCoupon>().Count();
+            if (cnt >= 7) return; // already exists.
 
             MCoupon item;
             item = new MCoupon()
@@ -332,13 +333,32 @@ namespace DMT.Services
                 description = "80 บาท"
             };
             if (!MCoupon.Exists(item)) MCoupon.Save(item);
+            // NEW!! 40,90
+            item = new MCoupon()
+            {
+                couponId = 6,
+                couponValue = 40,
+                abbreviation = "40",
+                description = "40 บาท"
+            };
+            if (!MCoupon.Exists(item)) MCoupon.Save(item);
+            item = new MCoupon()
+            {
+                couponId = 7,
+                couponValue = 90,
+                abbreviation = "90",
+                description = "90 บาท"
+            };
+            if (!MCoupon.Exists(item)) MCoupon.Save(item);
         }
 
         private void InitMCouponBook()
         {
             if (null == Db) return;
 
-            if (Db.Table<MCouponBook>().Count() > 0) return; // already exists.
+            int cnt = Db.Table<MCouponBook>().Count();
+            if (cnt >= 4) return; // already exists.
+
             MCouponBook item;
             item = new MCouponBook()
             {
@@ -354,6 +374,23 @@ namespace DMT.Services
                 couponBookValue = 1520,
                 abbreviation = "80",
                 description = "80 บาท"
+            };
+            if (!MCouponBook.Exists(item)) MCouponBook.Save(item);
+            // NEW!! 40, 90
+            item = new MCouponBook()
+            {
+                couponBookId = 3,
+                couponBookValue = 760,
+                abbreviation = "40",
+                description = "40 บาท"
+            };
+            if (!MCouponBook.Exists(item)) MCouponBook.Save(item);
+            item = new MCouponBook()
+            {
+                couponBookId = 4,
+                couponBookValue = 1710,
+                abbreviation = "90",
+                description = "90 บาท"
             };
             if (!MCouponBook.Exists(item)) MCouponBook.Save(item);
         }
